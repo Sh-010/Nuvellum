@@ -1,0 +1,8 @@
+---
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import { getArticles, slugify } from '../../lib/articles';
+export async function getStaticPaths(){const a=await getArticles();return [...new Set(a.map(x=>slugify(x.author)))].map(author=>({params:{author}}));}
+const key=Astro.params.author!;const articles=(await getArticles()).filter(a=>slugify(a.author)===key);const name=articles[0]?.author||key;
+---
+<!doctype html><html lang="en"><head><SiteHead title={`${name} — Nuvellum`} description={`Stories by ${name}.`}/></head><body><div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header><main class="section wrap"><div class="section-head"><h2>{name}</h2><a href="/">Home</a></div><div class="cards">{articles.map(a=><article class="card"><a href={`/article/${a.slug}`}><img src={a.image} alt=""/><div class="kicker">{a.section} · {a.type}</div><h3>{a.title}</h3><p>{a.dek}</p></a></article>)}</div></main></body></html>

@@ -1,0 +1,1 @@
+import type { APIRoute } from 'astro';import {getArticles} from '../lib/articles';export const GET:APIRoute=async()=>{const a=await getArticles();return new Response(JSON.stringify(a.map(({Content,...x})=>x)),{headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'public, max-age=300'}})};

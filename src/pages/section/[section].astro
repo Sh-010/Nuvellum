@@ -1,0 +1,17 @@
+---
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import { getArticles, slugify } from '../../lib/articles';
+export async function getStaticPaths(){
+ const articles=await getArticles();
+ const sections=[...new Set(articles.map(a=>slugify(a.section)))];
+ return sections.map(section=>({params:{section}}));
+}
+const key=Astro.params.section!;
+const articles=(await getArticles()).filter(a=>slugify(a.section)===key || (key==='entertainment' && ['anime','film-tv','gaming'].includes(slugify(a.section))));
+const label=articles[0]?.section || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
+---
+<!doctype html><html lang="en"><head><SiteHead title={`${label} — Nuvellum`} description={`Latest ${label} reporting and analysis from Nuvellum.`}/></head><body>
+<div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div><div class="nav-shell"><nav class="nav wrap"><a href="/section/world">World</a><a href="/section/business">Business</a><a href="/section/technology">Technology</a><a href="/section/sports">Sports</a><a href="/section/culture">Culture</a><a href="/section/anime">Anime</a></nav></div></header>
+<main class="section wrap"><div class="section-head"><h2>{label}</h2><a href="/">Home</a></div><div class="cards">{articles.map(a=><article class="card motion-story"><a href={`/article/${a.slug}`}><img src={a.image} alt={a.imageAlt}/><div class="kicker">{a.type}</div><h3>{a.title}</h3><p>{a.dek}</p></a></article>)}</div>{articles.length===0 && <p>No published stories in this section yet.</p>}</main>
+<footer class="footer"><div class="wrap"><div class="footer-brand">NUVELLUM</div><div class="tag">Beyond the headline.</div></div></footer></body></html>

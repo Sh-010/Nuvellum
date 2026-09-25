@@ -1,0 +1,28 @@
+---
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/article.css';
+import { getArticles } from '../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+const { article } = Astro.props;
+const { Content } = article;
+const related = (await getArticles()).filter((a) => a.slug !== article.slug).slice(0,3);
+---
+<!doctype html><html lang="en"><head>
+<SiteHead title={`${article.title} — Nuvellum`} description={article.dek} image={article.image} />
+</head><body>
+<div class="article-curtain" id="articleCurtain"></div><div class="progress" id="progress"></div>
+<header class="site-header"><div class="head wrap"><a class="back" href="/">← Back to Nuvellum</a><a class="brand article-logo" id="articleLogo" href="/"><span>N</span><span>U</span><span>V</span><span>E</span><span>L</span><span>L</span><span>U</span><span>M</span></a><div class="head-actions"><button class="btn" id="fontBtn">Text +</button><button class="btn" id="saveBtn">Save</button><button class="btn" id="shareBtn">Share</button><button class="btn" id="themeBtn">Night</button></div></div></header>
+<main>
+<header class="article-head"><div class="kicker">{article.section.toUpperCase()} · {article.type.toUpperCase()}</div><h1>{article.title}</h1><div class="dek">{article.dek}</div><div class="byline"><strong>{article.author}</strong><span>{new Date(article.date+'T00:00:00Z').toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'})} · {article.readingTime} read</span></div></header>
+<figure class="hero"><img src={article.image} alt={article.imageAlt}/><figcaption class="caption">NUVELLUM · Illustrative launch image</figcaption></figure>
+<div class="article-layout"><aside class="rail"><div class="rail-title">Reading tools</div><button class="btn" id="smaller">A−</button><button class="btn" id="larger">A+</button><button class="btn" id="copyBtn">Copy link</button></aside>
+<article class="body" id="articleBody"><Content /><div class="end"><div class="kicker">NUVELLUM · BEYOND THE HEADLINE</div><p>News, analysis, opinion and review are labeled separately across Nuvellum.</p></div></article>
+<aside class="toc"><h3>In this story</h3><a href="#the-map-beneath-the-map">The map beneath the map</a><a href="#why-this-matters">Why this matters</a><a href="#a-more-complicated-kind-of-power">A more complicated kind of power</a></aside></div>
+<section class="more"><div class="wrap"><h2>Continue reading</h2><div class="moregrid">{related.map((r)=><a href={`/article/${r.slug}`}><article tabindex="0" data-related={r.title}><div class="kicker">{r.section.toUpperCase()}</div><h3>{r.title}</h3></article></a>)}</div></div></section>
+</main><div class="article-progress-label" id="progressLabel">0% read</div><div class="article-tools-pop" id="articlePop" aria-live="polite"></div><div class="share-toast" id="toast">Link copied.</div>
+<script is:inline src="/js/article.js"></script>
+</body></html>
