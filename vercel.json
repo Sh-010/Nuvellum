@@ -55,5 +55,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/article/scottish-diesel-prices-surpass-2-a-litre-as-rural-communities-and-hauliers-face-rising-cos",
+      "destination": "/article/scotland-diesel-prices-over-2-pounds",
+      "permanent": true
+    }
   ]
 }
