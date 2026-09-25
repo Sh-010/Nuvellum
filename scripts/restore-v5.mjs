@@ -134,9 +134,12 @@ function productionizeHome(html) {
   for (const [from, to] of replacements) html = html.split(from).join(to);
   html = patchStaticStoryLinks(html);
 
-  // The v5.1 mockup displayed a fake newsletter success message. Until a real
-  // subscriber backend is connected, be explicit that no address is stored.
+  // The v5.1 mockup contains two local demo handlers that claim an address
+  // was subscribed. Until a real subscriber backend exists, neither may
+  // claim success or imply storage.
   html = html
+    .split("qs('#signupMsg').textContent=`Welcome to The Nuvellum Brief — \${v} is on the list.`;")
+    .join("qs('#signupMsg').textContent='Newsletter signup is not live yet — no address was stored.';")
     .split("msg.textContent=`Welcome to The Nuvellum Brief — \${email} is on the list.`;")
     .join("msg.textContent='Newsletter signup is not live yet — no address was stored.';");
 
