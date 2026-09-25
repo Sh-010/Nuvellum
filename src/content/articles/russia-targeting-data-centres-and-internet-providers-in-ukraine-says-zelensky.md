@@ -1,37 +1,40 @@
 ---
-title: "Russia Targeting Data Centres and Internet Providers in Ukraine, Says Zelensky"
-dek: "Ukrainian President Volodymyr Zelensky says Russia has widened its attacks to target data centres and internet providers to disrupt ordinary life."
+title: "Zelensky says Russia is widening attacks on Ukraine's data and internet infrastructure"
+dek: "Ukraine's president says strikes on data centres and internet providers are intended to disrupt ordinary life, while Russia says some targeted facilities supported Ukrainian military intelligence."
 section: "World"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "2 min"
 image: "/images/world.svg"
-imageAlt: "Russia Targeting Data Centres and Internet Providers in Ukraine, Says Zelensky"
-status: "review"
+imageAlt: "Damaged communications and data infrastructure in Ukraine"
+status: "published"
 tags: ["Ukraine","Russia","War in Ukraine","Internet","Technology"]
-sourceUrls: ["https://www.bbc.co.uk/news/articles/c84gkwgk7d06o?at_medium=RSS&at_campaign=rss"]
-sourceNote: "Prepared from the linked source and subject to Nuvellum editorial review."
+sourceUrls: ["https://www.bbc.co.uk/news/articles/c84gkwgk7d06o","https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-september-23-2026"]
+sourceNote: "Prepared from BBC reporting and cross-checked against additional reporting on the September 23 communications-infrastructure strikes."
 origin: "automation"
 risk: "sensitive"
-reviewedBy: ""
+reviewedBy: "Sam Shehab"
 ---
-## Attacks on Digital Infrastructure
 
-President Volodymyr Zelensky stated that Russia has expanded its military operations to target Ukraine's data centres and internet providers. According to Zelensky, these actions are intended to cause maximum disruption to everyday activities, affecting the population's ability to stay connected, study, and work.
+Ukrainian President Volodymyr Zelensky said Russia has widened its attacks to include data centres and internet providers, arguing that the strikes are intended to disrupt people's ability to stay connected, study and work.
 
-On Friday, a Russian drone struck a business centre in Kyiv, killing four people and damaging a data centre operated by Datagroup. A separate attack resulted in the death of a 14-year-old boy, whom Israel's foreign ministry identified as an Israeli citizen. Kyiv Mayor Vitaliy Klitschko reported that overnight attacks left seven people dead and 59 injured.
+The BBC reported that a Russian drone struck a business centre in Kyiv on Friday, killing four people and damaging a data centre operated by Datagroup, according to Ukrainian officials. A separate attack killed a 14-year-old boy. Kyiv Mayor Vitaliy Klitschko said the broader overnight attacks left seven people dead and 59 injured.
 
-Russia's defence ministry confirmed it targeted the Datagroup site, claiming the location was being utilized by Ukrainian military intelligence. The Russian military ministry also reported targeting several other data processing and telecommunications centres across Ukraine in recent days, including New-Telco, United DC, Kyivstar, and Parkovyi.
+## Communications infrastructure under attack
 
-Datagroup stated that its specialists were assessing damage from the daytime strike, though all services continued to operate from backup locations. Meanwhile, about 100,000 households in Kyiv and surrounding regions experienced internet outages on Wednesday due to strikes. In Lutsk, electronic information boards at public transport stops malfunctioned on Friday following attacks on Kyiv data facilities, according to city officials.
+Russia's defence ministry said it struck the Datagroup site and claimed the facility was being used by Ukrainian military intelligence. The ministry also said Russian forces had targeted other data-processing and telecommunications centres in recent days, including New-Telco and United DC.
 
-## Official Responses and Measures
+Independent reporting on the September 23 attacks also documented damage to internet-provider data centres in Kyiv and widespread service disruption. Ukraine's Ministry of Digital Transformation said roughly 100,000 households in Kyiv and the surrounding region experienced internet problems after the strikes.
 
-Ukrainian Foreign Minister Andrii Sybiha said the strikes aim to disrupt 'life-saving information,' noting that rapid alerts about missile and drone threats are essential civil infrastructure. Serhii Beskrestnov, a top defence technology adviser to Zelensky, acknowledged that local disruptions could occur and internet service costs might increase to cover repairs. However, he emphasized that Ukraine's decentralized internet network prevents total loss of access.
+Datagroup said services continued from backup locations while specialists assessed the damage.
 
-Following a meeting with top defence and security officials, Zelensky announced that additional measures were approved to protect critical communications facilities and ensure continuous operation. Some firms have begun transferring data from damaged servers to facilities abroad.
+## Ukraine moves to protect critical communications
 
-In related developments, the European Union agreed to release €6.6bn for Ukraine, including €900 million for the EU's Military Assistance Mission and a €1 billion fund for joint equipment procurement, according to EU diplomat Kaja Kallas. Kallas described the funding as a counter to Moscow's hybrid attacks.
+Ukrainian Foreign Minister Andrii Sybiha said attacks on data centres threatened the flow of emergency information, including missile and drone alerts.
 
-Meanwhile, Polish prosecutors launched an investigation into an arson attack on a Starlink satellite station in Wola Krobowska, stating there is a reasonable suspicion the perpetrators acted on orders from Russian special services. Moscow has not commented on the investigation. The station routes internet traffic through Poland to countries including Ukraine using SpaceX systems.
+Serhii Beskrestnov, a defence-technology adviser to Zelensky, said local internet disruptions could occur and repair costs could push service prices higher, while arguing that Ukraine's decentralised network makes a nationwide loss of internet access unlikely.
+
+Zelensky later said additional measures had been approved to protect data centres and other critical communications facilities.
+
+The competing claims around the targets remain part of the broader information war surrounding the conflict: Ukrainian officials describe the infrastructure as essential to civilian life, while Russia says at least some of the facilities support military intelligence.
