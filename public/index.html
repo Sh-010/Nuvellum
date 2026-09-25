@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nuvellum — Beyond the headline.</title>
+<meta name="description" content="Nuvellum is an independent international publication covering world affairs, business, technology, culture, film, anime, gaming, sport and ideas.">
+<style>
+:root{--paper:#fbf8f1;--ivory:#f2ede3;--ink:#11110f;--ox:#6d1720;--ox2:#8a2531;--muted:#69635c;--line:#d3ccbf;--soft:#e8e0d2;--night:#131313;--shadow:0 12px 36px rgba(30,20,10,.09);--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);transition:background .28s,color .28s} a{color:inherit;text-decoration:none} button,input{font:inherit} img{display:block;width:100%} .wrap{width:min(1260px,calc(100% - 42px));margin:auto}
+body.night{--paper:#161513;--ivory:#1e1c19;--ink:#f5efe4;--muted:#b8afa4;--line:#3b3731;--soft:#24211d;--shadow:0 14px 38px rgba(0,0,0,.34)} body.night .nav-shell,body.night .utility-shell{background:rgba(22,21,19,.94)} body.night .search-panel,body.night .saved-panel{background:#1b1917} body.night .btn-outline{border-color:#5a5147}
+.topline{height:4px;background:var(--ox)} .utility-shell{background:rgba(251,248,241,.94);backdrop-filter:blur(12px)} .utility{height:44px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)} .utility-center{font-weight:700;color:var(--ink)} .utility-actions{display:flex;justify-content:flex-end;gap:6px;align-items:center} .mini-btn{border:0;background:none;color:inherit;cursor:pointer;padding:8px 10px;text-transform:uppercase;font-size:10px;letter-spacing:.09em} .mini-btn:hover{color:var(--ox)} .saved-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--ox);color:#fff;font-size:9px;margin-left:4px}
+.mast{text-align:center;padding:28px 0 24px;border-top:1px solid var(--line)} .brand{font-family:var(--serif);font-size:clamp(58px,8vw,108px);line-height:.88;letter-spacing:.055em;font-weight:700} .tag{margin-top:10px;font-family:var(--serif);font-size:15px;font-style:italic;color:var(--muted)}
+.nav-shell{position:sticky;top:0;z-index:30;background:rgba(251,248,241,.94);backdrop-filter:blur(16px);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)} .nav{display:flex;align-items:center;gap:24px;overflow:auto;white-space:nowrap;padding:12px 0;font-size:11px;text-transform:uppercase;letter-spacing:.09em;font-weight:700;scrollbar-width:none} .nav::-webkit-scrollbar{display:none} .nav a{position:relative;padding:3px 0} .nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-13px;height:2px;background:var(--ox);transition:right .2s} .nav a:hover:after,.nav a.active:after{right:0}
+.breaking{display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:14px} .live{background:var(--ox);color:#fff;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.14em;padding:5px 7px} .ticker{overflow:hidden;white-space:nowrap} .ticker-text{display:inline-block;transition:opacity .2s,transform .2s} .ticker-text.swap{opacity:0;transform:translateY(5px)} .ticker-time{font-family:var(--sans);font-size:10px;color:var(--muted)} .ticker-btn{border:0;background:none;cursor:pointer;color:var(--muted);font-size:16px}
+.hero{display:grid;grid-template-columns:minmax(0,2.05fr) minmax(290px,.95fr);gap:30px;padding:34px 0 46px} .lead{padding-right:30px;border-right:1px solid var(--line)} .media{position:relative;display:block;overflow:hidden;background:var(--soft);box-shadow:var(--shadow)} .media img{aspect-ratio:16/9;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s} .media:hover img{transform:scale(1.025);filter:saturate(1.08)} .photo-credit{position:absolute;left:10px;bottom:8px;background:rgba(10,10,10,.68);color:white;padding:4px 6px;font-size:8px;letter-spacing:.08em} .kicker{margin-top:15px;color:var(--ox);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase} h1,h2,h3{font-family:var(--serif)} .lead h1{font-size:clamp(42px,5.3vw,74px);line-height:.96;letter-spacing:-.025em;margin:11px 0 14px} .lead .dek{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--muted);max-width:830px} .meta{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-top:14px} .hero-actions{display:flex;gap:8px;margin-top:16px} .btn-outline{border:1px solid var(--line);background:transparent;color:inherit;padding:8px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.09em;cursor:pointer} .btn-outline:hover{border-color:var(--ox);color:var(--ox)} .save-btn.saved{background:var(--ox);border-color:var(--ox);color:#fff}
+.hero-side{display:grid;gap:20px} .side{padding-bottom:20px;border-bottom:1px solid var(--line)} .side .media img{aspect-ratio:16/10} .side h2{font-size:28px;line-height:1.04;margin:8px 0 7px} .side p{font-family:var(--serif);font-size:15px;line-height:1.45;color:var(--muted);margin:0}
+.latest-band{background:var(--ivory);border-block:1px solid var(--line);padding:20px 0} .latest-title-row{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:16px} .latest-title{font-family:var(--serif);font-size:34px} .filters{display:flex;gap:8px;overflow:auto;scrollbar-width:none} .filter{border:1px solid var(--line);background:transparent;color:inherit;padding:7px 10px;font-size:9px;text-transform:uppercase;letter-spacing:.09em;cursor:pointer} .filter.active,.filter:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)} .latest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px} .latest-card{border-left:1px solid var(--line);padding-left:16px;transition:opacity .2s,transform .2s} .latest-card.hide{display:none} .latest-card .kicker{margin-top:0} .latest-card h3{font-size:20px;line-height:1.08;margin:7px 0} .latest-card p{font-family:var(--serif);font-size:13px;color:var(--muted);line-height:1.35}
+.section{padding:58px 0} .section-head{display:flex;align-items:end;justify-content:space-between;border-top:2px solid var(--ink);padding-top:10px;margin-bottom:24px} .section-head h2{font-size:43px;margin:0;font-weight:400} .section-head a{font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:700} .grid3{display:grid;grid-template-columns:1.25fr 1fr .9fr;gap:28px} .story-card{position:relative;border-right:1px solid var(--line);padding-right:28px} .story-card h3{font-size:30px;line-height:1.05;margin:8px 0} .story-card p{font-family:var(--serif);line-height:1.45;color:var(--muted)} .stack article{padding-bottom:17px;margin-bottom:17px;border-bottom:1px solid var(--line)} .stack h3{font-size:22px;line-height:1.08;margin:7px 0} .card-tools{display:flex;justify-content:space-between;align-items:center;margin-top:10px} .bookmark{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px} .bookmark:hover,.bookmark.saved{color:var(--ox)}
+.dark-section{background:#161615;color:#f6f1e9;padding:58px 0} body.night .dark-section{background:#0d0d0c} .dark-section .section-head{border-color:#f6f1e9} .dark-section .muted{color:#bdb3a8} .dark-section .kicker{color:#d8aeb2} .culture{display:grid;grid-template-columns:1.55fr .72fr .72fr;gap:24px} .culture article{position:relative} .culture .feature{padding-right:24px;border-right:1px solid #3b3936} .culture .mini{padding-right:20px;border-right:1px solid #3b3936} .culture h3{font-size:27px;line-height:1.05;margin:9px 0} .culture .feature h3{font-size:44px} .culture p{font-family:var(--serif);line-height:1.45;color:#bdb3a8}
+.opinions{display:grid;grid-template-columns:repeat(3,1fr);gap:22px} .opinion{border-top:1px solid var(--line);padding-top:18px;display:flex;gap:13px} .avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--ivory);border:1px solid var(--line);font-family:var(--serif);flex:none} .opinion h3{font-size:24px;line-height:1.08;margin:7px 0} .opinion small{color:var(--muted)}
+.newsletter{background:var(--ox);color:#fff;padding:58px 0} .newsletter-in{display:grid;grid-template-columns:1.2fr .8fr;gap:54px;align-items:end} .newsletter h2{font-size:48px;line-height:1.02;margin:8px 0} .signup{display:grid;grid-template-columns:1fr auto;gap:8px} .signup input{padding:14px;border:1px solid rgba(255,255,255,.45);background:transparent;color:white} .signup input::placeholder{color:#e1c8cc} .signup button{border:0;background:white;color:var(--ox);padding:0 18px;font-weight:700;cursor:pointer} .signup-msg{grid-column:1/-1;font-size:11px;color:#f2dfe1;min-height:14px}
+.footer{background:#10100f;color:#eee7dd;padding:42px 0 22px} .footer-brand{font-family:var(--serif);font-size:48px;letter-spacing:.05em} .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;border-top:1px solid #312e29;margin-top:24px;padding-top:24px} .footer-grid h4{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#9f968d} .footer-grid a{display:block;font-family:var(--serif);margin:8px 0;color:#d8d0c5} .footer-bottom{border-top:1px solid #312e29;margin-top:25px;padding-top:16px;font-size:9px;color:#837c73}
+.search-panel,.saved-panel{position:fixed;inset:0 0 auto 0;z-index:80;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 20px 45px rgba(0,0,0,.16);transform:translateY(-110%);transition:transform .28s ease;max-height:82vh;overflow:auto} .search-panel.open,.saved-panel.open{transform:translateY(0)} .panel-in{width:min(920px,calc(100% - 32px));margin:auto;padding:28px 0 34px} .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px} .panel-head strong{font-family:var(--serif);font-size:30px} .close{border:0;background:none;color:inherit;font-size:26px;cursor:pointer} .search-input{width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;color:inherit;font-family:var(--serif);font-size:34px;padding:10px 0;outline:0} .results{margin-top:20px} .result{padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:110px 1fr;gap:15px} .result .cat{font-size:9px;color:var(--ox);text-transform:uppercase;letter-spacing:.12em} .result h4{font-family:var(--serif);font-size:20px;margin:0} .empty{padding:24px 0;color:var(--muted);font-family:var(--serif)} .scrim{position:fixed;inset:0;background:rgba(0,0,0,.32);z-index:70;opacity:0;pointer-events:none;transition:.25s} .scrim.show{opacity:1;pointer-events:auto}
+.mobile-toggle{display:none;border:0;background:none;color:inherit;font-size:22px;cursor:pointer} .backtop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:inherit;box-shadow:var(--shadow);cursor:pointer;opacity:0;pointer-events:none;transition:.2s;z-index:40} .backtop.show{opacity:1;pointer-events:auto}
+.reveal{opacity:0;transform:translateY(16px);transition:.55s ease} .reveal.in{opacity:1;transform:none}
+@media(max-width:950px){.utility{grid-template-columns:1fr 1fr}.utility-center{display:none}.hero{grid-template-columns:1fr}.lead{border-right:0;padding-right:0}.hero-side{grid-template-columns:1fr 1fr}.hero-side .side:first-child{grid-column:1/-1}.latest-grid{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}.stack{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:20px}.culture{grid-template-columns:1fr 1fr}.culture .feature{grid-column:1/-1}.newsletter-in{grid-template-columns:1fr}}
+@media(max-width:650px){.wrap{width:min(100% - 24px,1260px)}.utility{height:42px;font-size:9px}.utility>div:first-child{display:none}.utility-actions{grid-column:2}.mobile-toggle{display:inline-block}.brand{font-size:53px}.mast{padding:22px 0 19px}.nav{justify-content:flex-start}.breaking{grid-template-columns:auto 1fr auto}.ticker-time{display:none}.hero{padding-top:22px}.lead h1{font-size:44px}.hero-side{grid-template-columns:1fr}.hero-side .side:first-child{grid-column:auto}.latest-title-row{align-items:flex-start;flex-direction:column}.latest-grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.story-card{border-right:0;padding-right:0}.stack{grid-template-columns:1fr}.culture{grid-template-columns:1fr}.culture .feature{grid-column:auto;border-right:0;padding-right:0}.culture .mini{border-right:0;padding-right:0}.culture .feature h3{font-size:36px}.opinions{grid-template-columns:1fr}.newsletter h2{font-size:38px}.signup{grid-template-columns:1fr}.signup button{padding:13px}.footer-grid{grid-template-columns:1fr 1fr}.search-input{font-size:26px}.result{grid-template-columns:80px 1fr}}
+
+/* --- v3 Living Editorial interactions --- */
+.mast-live{position:relative;overflow:hidden;isolation:isolate}
+.logo-live{
+  display:inline-flex;gap:.01em;position:relative;z-index:2;
+  cursor:pointer;user-select:none;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.2,.75,.2,1),filter .5s ease;
+  will-change:transform
+}
+.logo-live span{
+  display:inline-block;
+  transform:translate3d(0,0,0) rotate(0);
+  transition:
+    transform .48s cubic-bezier(.16,.82,.22,1),
+    color .28s ease,
+    text-shadow .45s ease;
+  transition-delay:calc(var(--i,0) * 18ms)
+}
+.logo-live:hover span{color:var(--ink);text-shadow:0 8px 26px rgba(109,23,32,.08)}
+.logo-live:hover span:nth-child(odd){transform:translateY(-3px)}
+.logo-live:hover span:nth-child(even){transform:translateY(2px)}
+.logo-live.is-awake span{animation:logoWake .72s cubic-bezier(.2,.75,.2,1) both}
+.logo-live.is-awake span:nth-child(2){animation-delay:.03s}.logo-live.is-awake span:nth-child(3){animation-delay:.06s}
+.logo-live.is-awake span:nth-child(4){animation-delay:.09s}.logo-live.is-awake span:nth-child(5){animation-delay:.12s}
+.logo-live.is-awake span:nth-child(6){animation-delay:.15s}.logo-live.is-awake span:nth-child(7){animation-delay:.18s}
+.logo-live.is-awake span:nth-child(8){animation-delay:.21s}
+@keyframes logoWake{
+  0%{transform:translateY(0) rotate(0);color:var(--ink)}
+  42%{transform:translateY(-10px) rotate(-1deg);color:var(--ox)}
+  100%{transform:translateY(0) rotate(0);color:var(--ink)}
+}
+.tagline-live{position:relative;display:inline-block;overflow:hidden}
+.tagline-live span{display:inline-block;transition:transform .45s ease,opacity .45s ease}
+.mast-live.logo-active .tagline-live span{transform:translateY(-2px);opacity:.68}
+.mast-rule{
+  width:0;height:1px;background:linear-gradient(90deg,transparent,var(--ox),transparent);
+  margin:14px auto 0;opacity:.8;transition:width .62s cubic-bezier(.2,.8,.2,1)
+}
+.mast-live:hover .mast-rule,.mast-live.logo-active .mast-rule{width:min(520px,74vw)}
+.mast-live:before{
+  content:"";position:absolute;left:50%;top:48%;width:460px;height:180px;
+  transform:translate(-50%,-50%) scale(.8);border-radius:50%;
+  background:radial-gradient(circle,rgba(109,23,32,.07),transparent 68%);
+  opacity:0;transition:opacity .5s,transform .7s;pointer-events:none;z-index:-1
+}
+.mast-live:hover:before,.mast-live.logo-active:before{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+.media{transition:transform .35s ease,box-shadow .35s ease}
+.media:hover{transform:translateY(-2px);box-shadow:0 18px 48px rgba(30,20,10,.12)}
+.latest-card,.side,.story-card,.opinion,.culture article{
+  transition:transform .32s cubic-bezier(.2,.75,.2,1),opacity .25s ease,border-color .25s ease
+}
+.latest-card:hover,.side:hover,.story-card:hover,.opinion:hover,.culture article:hover{transform:translateY(-4px)}
+.story-card:hover,.side:hover{border-color:var(--ox)}
+.section-head h2{position:relative;display:inline-block}
+.section-head h2:after{
+  content:"";position:absolute;left:0;bottom:-8px;width:0;height:2px;background:var(--ox);
+  transition:width .45s cubic-bezier(.2,.8,.2,1)
+}
+.section:hover .section-head h2:after,.dark-section:hover .section-head h2:after{width:72px}
+.btn-outline,.filter,.mini-btn,.bookmark,.signup button,.backtop{
+  transition:transform .18s ease,background .2s,color .2s,border-color .2s,box-shadow .2s
+}
+.btn-outline:active,.filter:active,.mini-btn:active,.bookmark:active,.signup button:active,.backtop:active{transform:scale(.96)}
+.nav a{transition:color .2s ease,transform .2s ease}.nav a:hover{color:var(--ox);transform:translateY(-1px)}
+.hero .lead,.hero-side .side{will-change:transform}
+body.pointer-fine .hero .lead[data-tilt]{transition:transform .18s linear}
+body.pointer-fine .hero-side .side[data-tilt]{transition:transform .18s linear}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+}
+
+
+/* === v4 FULLY INTERACTIVE EDITORIAL LAYER === */
+.home-progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--ox);z-index:120;transition:width .08s linear}
+.interactive-story{cursor:pointer;position:relative}
+.interactive-story:focus-visible{outline:2px solid var(--ox);outline-offset:5px}
+.interactive-story .story-hit{
+  position:absolute;inset:0;z-index:3;border:0;background:transparent;cursor:pointer;
+}
+.interactive-story a,.interactive-story button{position:relative;z-index:5}
+.media .quick-chip{
+  position:absolute;right:12px;top:12px;z-index:8;
+  border:1px solid rgba(255,255,255,.42);
+  background:rgba(15,15,15,.70);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  padding:7px 10px;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateY(-5px);
+  transition:opacity 220ms ease,transform 320ms var(--ease-spring);
+  pointer-events:none;
+}
+@media (hover:hover) and (pointer:fine){
+  .media:hover .quick-chip,
+  .interactive-story:hover .quick-chip{opacity:1;transform:none}
+}
+@media (hover:none),(pointer:coarse){
+  .media .quick-chip{display:none}
+}
+.pressable{transition:transform .16s ease}.pressable:active{transform:scale(.975)}
+.section-head .section-actions{display:flex;gap:8px;align-items:center}
+.section-toggle{
+  border:1px solid var(--line);background:transparent;color:inherit;cursor:pointer;
+  padding:7px 10px;font-size:9px;text-transform:uppercase;letter-spacing:.09em
+}
+.section-toggle:hover{border-color:var(--ox);color:var(--ox)}
+.section.collapsed .section-body{display:none}
+.section.collapsed{padding-bottom:26px}
+.section.collapsed .section-toggle .collapse-label:after{content:"Show"}
+.section:not(.collapsed) .section-toggle .collapse-label:after{content:"Hide"}
+
+.story-drawer{
+  position:fixed;top:0;right:0;bottom:0;width:min(520px,92vw);z-index:100;
+  background:var(--paper);border-left:1px solid var(--line);box-shadow:-22px 0 50px rgba(0,0,0,.16);
+  transform:translateX(105%);transition:transform .34s cubic-bezier(.2,.75,.2,1);
+  overflow:auto
+}
+.story-drawer.open{transform:none}
+.drawer-inner{padding:28px}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px}
+.drawer-brand{font-family:var(--serif);font-size:25px;letter-spacing:.06em}
+.drawer-close{border:0;background:none;color:inherit;font-size:28px;cursor:pointer}
+.drawer-visual{margin:24px 0 18px;aspect-ratio:16/9;background:linear-gradient(135deg,var(--soft),var(--ivory));position:relative;overflow:hidden}
+.drawer-visual:before,.drawer-visual:after{content:"";position:absolute;border-radius:50%;background:var(--ox);opacity:.08}
+.drawer-visual:before{width:240px;height:240px;right:-40px;top:-80px}
+.drawer-visual:after{width:180px;height:180px;left:-60px;bottom:-80px}
+.drawer-kicker{color:var(--ox);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.drawer-title{font-family:var(--serif);font-size:42px;line-height:1.01;letter-spacing:-.02em;margin:10px 0 13px}
+.drawer-dek{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--muted)}
+.drawer-meta{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:18px 0}
+.drawer-actions{display:flex;gap:8px;flex-wrap:wrap}
+.drawer-actions button,.drawer-actions a{border:1px solid var(--line);background:transparent;color:inherit;padding:10px 13px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+.drawer-actions .primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.drawer-related{margin-top:34px;border-top:1px solid var(--line);padding-top:16px}
+.drawer-related h4{font-family:var(--serif);font-size:21px;margin:0 0 8px}
+.drawer-related button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;padding:12px 0;cursor:pointer;font-family:var(--serif);font-size:16px}
+.drawer-related button:hover{color:var(--ox)}
+
+.info-modal{
+ position:fixed;left:50%;top:50%;z-index:105;width:min(680px,calc(100% - 28px));max-height:78vh;overflow:auto;
+ transform:translate(-50%,-46%) scale(.98);opacity:0;pointer-events:none;background:var(--paper);
+ border:1px solid var(--line);box-shadow:0 25px 70px rgba(0,0,0,.25);transition:.25s
+}
+.info-modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.modal-in{padding:28px}.modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:18px}
+.modal-head h3{font-size:30px;margin:0}.modal-body{font-family:var(--serif);font-size:17px;line-height:1.58;color:var(--muted)}
+.modal-body strong{color:var(--ink)}
+.toast-v4{
+ position:fixed;left:50%;bottom:22px;z-index:130;transform:translate(-50%,16px);
+ background:var(--ink);color:var(--paper);padding:10px 14px;font-size:11px;letter-spacing:.03em;
+ opacity:0;pointer-events:none;transition:.22s;border:1px solid var(--line)
+}
+.toast-v4.show{opacity:1;transform:translate(-50%,0)}
+.nav a.nav-pulse:before{
+ content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ox);
+ transform:translate(-50%,-50%) scale(1);opacity:.25;animation:navPulse .5s ease-out forwards
+}
+@keyframes navPulse{to{transform:translate(-50%,-50%) scale(11);opacity:0}}
+.hero .media:after,.story-card .media:after,.side .media:after,.culture .media:after{
+ content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.14),transparent 70%);
+ transform:translateX(-120%);transition:transform .7s ease;pointer-events:none
+}
+@media (hover:hover) and (pointer:fine){
+ .hero .media:hover:after,.story-card .media:hover:after,.side .media:hover:after,.culture .media:hover:after{transform:translateX(120%)}
+}
+.footer-grid a,.section-head a{position:relative;cursor:pointer}
+.footer-grid a:after,.section-head a:after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:currentColor;transition:right .2s}
+.footer-grid a:hover:after,.section-head a:hover:after{right:0}
+#topicsRail{display:flex;gap:8px;overflow:auto;padding:0 0 16px;scrollbar-width:none}
+#topicsRail::-webkit-scrollbar{display:none}
+.topic-pill{border:1px solid var(--line);background:transparent;color:inherit;padding:8px 11px;white-space:nowrap;font-size:9px;text-transform:uppercase;letter-spacing:.09em;cursor:pointer}
+.topic-pill:hover,.topic-pill.active{background:var(--ox);color:#fff;border-color:var(--ox)}
+@media(max-width:650px){
+ .drawer-title{font-size:34px}.drawer-inner{padding:20px}
+ .section-head{align-items:flex-start;gap:12px}.section-head .section-actions{flex-wrap:wrap;justify-content:flex-end}
+}
+
+
+/* === v5 FLUID MOTION SYSTEM === */
+:root{
+  --ease-fluid:cubic-bezier(.22,.74,.18,1);
+  --ease-spring:cubic-bezier(.16,1,.3,1);
+  --motion-fast:180ms;
+  --motion:360ms;
+  --motion-slow:620ms;
+}
+body{overflow-x:hidden}
+a,button{ -webkit-tap-highlight-color:transparent }
+.motion-story{
+  --mx:50%;--my:50%;
+  position:relative;cursor:pointer;isolation:isolate;
+  transition:
+    transform var(--motion) var(--ease-fluid),
+    opacity var(--motion) ease,
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
+}
+.motion-story::after{
+  content:"";position:absolute;inset:-1px;z-index:-1;pointer-events:none;
+  background:radial-gradient(360px circle at var(--mx) var(--my),rgba(109,23,32,.075),transparent 62%);
+  opacity:0;transition:opacity var(--motion) ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .motion-story:hover{transform:translateY(-5px)}
+  .motion-story:hover::after{opacity:1}
+  .motion-story:hover h2,.motion-story:hover h3{color:var(--ox)}
+}
+.motion-story h2,.motion-story h3{
+  transition:color var(--motion-fast) ease,transform var(--motion) var(--ease-fluid)
+}
+.motion-story:active{transform:translateY(-1px) scale(.992)}
+.motion-story:focus-visible{outline:2px solid var(--ox);outline-offset:5px}
+
+.stack article{
+  cursor:pointer;position:relative;padding-left:0;
+  transition:padding-left var(--motion) var(--ease-fluid),color var(--motion-fast) ease,opacity var(--motion) ease
+}
+.stack article::before{
+  content:"";position:absolute;left:0;top:50%;width:0;height:1px;background:var(--ox);
+  transition:width var(--motion) var(--ease-fluid)
+}
+@media (hover:hover) and (pointer:fine){
+  .stack article:hover{padding-left:18px}
+  .stack article:hover::before{width:11px}
+  .stack article:hover h3{color:var(--ox)}
+}
+
+.latest-card{
+  transform-origin:center;
+  transition:
+    opacity 280ms ease,
+    transform 420ms var(--ease-fluid),
+    filter 280ms ease;
+}
+.latest-card.filter-out{opacity:0;transform:scale(.965) translateY(8px);filter:blur(1.5px);pointer-events:none}
+.latest-card.filter-in{animation:filterIn .46s var(--ease-spring) both}
+@keyframes filterIn{from{opacity:0;transform:translateY(10px) scale(.975)}to{opacity:1;transform:none}}
+
+.section-body{
+  overflow:hidden;
+  transition:
+    height var(--motion-slow) var(--ease-spring),
+    opacity 360ms ease,
+    transform var(--motion-slow) var(--ease-spring);
+  will-change:height,opacity,transform
+}
+.section.is-collapsing .section-body,
+.section.is-collapsed .section-body{opacity:0;transform:translateY(-8px)}
+.section.is-collapsed .section-body{height:0!important}
+.section-toggle{
+  transition:background var(--motion-fast),color var(--motion-fast),border-color var(--motion-fast),transform var(--motion-fast)
+}
+.section-toggle:hover{transform:translateY(-1px)}
+.section-toggle:active{transform:scale(.96)}
+.section-toggle .collapse-label::after{content:"Hide"}
+.section.is-collapsed .section-toggle .collapse-label::after{content:"Show"}
+
+.story-drawer{
+  opacity:0;
+  transform:translateX(102%) scale(.992);
+  transition:
+    transform 520ms var(--ease-spring),
+    opacity 320ms ease;
+}
+.story-drawer.open{opacity:1;transform:none}
+.drawer-inner>*{opacity:0;transform:translateY(9px)}
+.story-drawer.open .drawer-inner>*{
+  animation:drawerChild .52s var(--ease-spring) forwards;
+}
+.story-drawer.open .drawer-inner>*:nth-child(2){animation-delay:.035s}
+.story-drawer.open .drawer-inner>*:nth-child(3){animation-delay:.06s}
+.story-drawer.open .drawer-inner>*:nth-child(4){animation-delay:.085s}
+.story-drawer.open .drawer-inner>*:nth-child(5){animation-delay:.11s}
+.story-drawer.open .drawer-inner>*:nth-child(6){animation-delay:.135s}
+.story-drawer.open .drawer-inner>*:nth-child(7){animation-delay:.16s}
+@keyframes drawerChild{to{opacity:1;transform:none}}
+
+.scrim{backdrop-filter:blur(0);transition:opacity 300ms ease,backdrop-filter 400ms ease}
+.scrim.show{backdrop-filter:blur(3px)}
+
+.info-modal{transition:opacity 280ms ease,transform 420ms var(--ease-spring)}
+.info-modal.open{transform:translate(-50%,-50%) scale(1)}
+
+.filter{
+  position:relative;overflow:hidden;
+  transition:color 220ms ease,border-color 220ms ease,transform 220ms var(--ease-fluid),background-color 220ms ease
+}
+.filter::before{
+  content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform 300ms var(--ease-fluid);z-index:-1
+}
+.filter:hover,.filter.active{color:var(--paper);border-color:var(--ink);background:transparent}
+.filter:hover::before,.filter.active::before{transform:scaleX(1)}
+.filter:active{transform:scale(.97)}
+
+.topic-pill{
+  transition:transform 220ms var(--ease-fluid),background-color 220ms,color 220ms,border-color 220ms
+}
+.topic-pill:hover{transform:translateY(-2px)}
+.topic-pill:active{transform:translateY(0) scale(.97)}
+
+.newsletter{position:relative;overflow:hidden}
+.newsletter::before{
+  content:"";position:absolute;width:420px;height:420px;right:-150px;top:-230px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);transform:scale(.75);opacity:.4;
+  transition:transform 1.1s var(--ease-spring),opacity .6s
+}
+.newsletter:hover::before{transform:scale(1.05);opacity:.72}
+.signup input,.signup button{
+  transition:border-color 220ms,background-color 220ms,color 220ms,transform 220ms var(--ease-fluid),box-shadow 220ms
+}
+.signup input:focus{outline:none;border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
+.signup button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.signup button:active{transform:scale(.98)}
+.signup-msg{transition:opacity 250ms,transform 320ms var(--ease-fluid)}
+.signup-msg.changed{animation:signupMsg .48s var(--ease-spring)}
+@keyframes signupMsg{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
+
+.footer-grid a{
+  transition:color 180ms,padding-left 300ms var(--ease-fluid),opacity 180ms
+}
+.footer-grid a:hover{padding-left:7px;color:#fff}
+
+.page-curtain{
+  position:fixed;inset:0;z-index:250;pointer-events:none;background:var(--ox);
+  transform:scaleY(0);transform-origin:bottom;
+}
+.page-curtain.go{animation:curtainIn .5s var(--ease-spring) forwards}
+@keyframes curtainIn{to{transform:scaleY(1)}}
+
+.media{
+  overflow:hidden;transform:translateZ(0);
+}
+.media img{
+  transition:transform 780ms var(--ease-spring),filter 420ms ease,opacity 260ms ease
+}
+@media (hover:hover) and (pointer:fine){
+  .motion-story:hover .media img,.media:hover img{transform:scale(1.035)}
+}
+.quick-chip{
+  transition:opacity 220ms ease,transform 320ms var(--ease-spring)!important
+}
+.opinion .avatar{
+  transition:transform 400ms var(--ease-spring),background-color 240ms,color 240ms
+}
+@media (hover:hover) and (pointer:fine){
+  .opinion:hover .avatar{transform:rotate(-7deg) scale(1.06);background:var(--ox);color:#fff}
+}
+
+.mast-live{transition:padding 400ms var(--ease-fluid)}
+.logo-live{transition:transform 520ms var(--ease-spring),letter-spacing 520ms var(--ease-spring)}
+@media (hover:hover) and (pointer:fine){
+  .logo-live:hover{letter-spacing:.064em}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .motion-story,.section-body,.story-drawer,.drawer-inner>*,.latest-card,.page-curtain{transition:none!important;animation:none!important}
+}
+
+</style>
+</head>
+<body><div class="page-curtain" id="pageCurtain"></div><div class="home-progress" id="homeProgress"></div>
+<div class="topline"></div>
+<div class="utility-shell">
+  <div class="utility wrap">
+    <div id="today">Friday, September 25, 2026</div>
+    <div class="utility-center">Global Edition</div>
+    <div class="utility-actions">
+      <button class="mini-btn" id="themeBtn">Night reading</button>
+      <button class="mini-btn" id="savedBtn">Saved <span class="saved-count" id="savedCount">0</span></button>
+      <button class="mini-btn" id="searchBtn">Search</button>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="mast wrap mast-live" id="mastLive">
+      <a class="brand logo-live" id="logoLive" href="index.html" aria-label="Nuvellum home">
+        <span>N</span><span>U</span><span>V</span><span>E</span><span>L</span><span>L</span><span>U</span><span>M</span>
+      </a>
+      <div class="tag tagline-live"><span>Beyond the headline.</span></div>
+      <div class="mast-rule" aria-hidden="true"></div>
+    </div>
+  <div class="nav-shell">
+    <nav class="nav wrap" id="nav">
+      <a href="#world">World</a><a href="#business">Business</a><a href="#technology">Technology</a><a href="#science">Science</a><a href="#crime">Crime</a><a href="#sports">Sports</a><a href="#culture">Culture</a><a href="#screen">Film & TV</a><a href="#screen">Anime</a><a href="#screen">Gaming</a><a href="#opinion">Opinion</a>
+    </nav>
+  </div>
+</header>
+
+<div class="search-panel" id="searchPanel"><div class="panel-in"><div class="panel-head"><strong>Search Nuvellum</strong><button class="close" data-close>×</button></div><input class="search-input" id="searchInput" placeholder="Search stories, topics, sections…" autocomplete="off"><div class="results" id="searchResults"></div></div></div>
+<div class="saved-panel" id="savedPanel"><div class="panel-in"><div class="panel-head"><strong>Your reading list</strong><button class="close" data-close>×</button></div><div class="results" id="savedResults"></div></div></div>
+<div class="scrim" id="scrim"></div>
+
+<div class="story-drawer" id="storyDrawer" aria-hidden="true">
+  <div class="drawer-inner">
+    <div class="drawer-top"><div class="drawer-brand">NUVELLUM</div><button class="drawer-close" id="drawerClose" type="button" aria-label="Close preview">×</button></div>
+    <div class="drawer-visual" id="drawerVisual"></div>
+    <div class="drawer-kicker" id="drawerKicker">NUVELLUM</div>
+    <h2 class="drawer-title" id="drawerTitle">Story preview</h2>
+    <div class="drawer-dek" id="drawerDek"></div>
+    <div class="drawer-meta" id="drawerMeta">Nuvellum Desk · Preview</div>
+    <div class="drawer-actions">
+      <a class="primary" id="drawerRead" href="article.html">Read story</a>
+      <button id="drawerSave" type="button">Save</button>
+      <button id="drawerShare" type="button">Share</button>
+    </div>
+    <div class="drawer-related"><h4>Related coverage</h4><div id="drawerRelated"></div></div>
+  </div>
+</div>
+<div class="info-modal" id="infoModal" role="dialog" aria-modal="true" aria-hidden="true">
+ <div class="modal-in">
+  <div class="modal-head"><h3 id="modalTitle">Nuvellum</h3><button class="drawer-close" id="modalClose" type="button" aria-label="Close">×</button></div>
+  <div class="modal-body" id="modalBody"></div>
+ </div>
+</div>
+<div class="toast-v4" id="toastV4" aria-live="polite"></div>
+
+
+<main>
+  <section class="breaking wrap">
+    <span class="live">LIVE</span><div class="ticker"><a class="ticker-text" id="tickerText" href="article.html">Markets, diplomacy and technology reshape a volatile global week</a></div><span class="ticker-time" id="tickerTime">8 min ago</span><button class="ticker-btn" id="tickerNext" title="Next headline">›</button>
+  </section>
+<div class="wrap" id="topicsRail" aria-label="Trending topics">
+<button class="topic-pill active" type="button" data-topic="all">Top stories</button>
+<button class="topic-pill" type="button" data-topic="world">Global power</button>
+<button class="topic-pill" type="button" data-topic="tech">Artificial intelligence</button>
+<button class="topic-pill" type="button" data-topic="screen">Film & anime</button>
+<button class="topic-pill" type="button" data-topic="sport">Sports business</button>
+<button class="topic-pill" type="button" data-topic="culture">Culture</button>
+</div>
+  <section class="hero wrap">
+    <article class="lead reveal" data-tilt data-title="A world in motion: the forces quietly redrawing the global order" data-kicker="World · Analysis">
+      <a class="media" href="article.html"><span class="quick-chip">Open story</span><img src="data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%221000%22%20viewBox%3D%220%200%201600%201000%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2317222c%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23785d4b%22/%3E%0A%20%20%20%20%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22grain%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22table%22%20tableValues%3D%220%20.08%22/%3E%3C/feComponentTransfer%3E%0A%20%20%20%20%20%20%20%20%3C/filter%3E%0A%20%20%20%20%20%20%3C/defs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221220%22%20cy%3D%22260%22%20r%3D%22260%22%20fill%3D%22%23f1e6d2%22%20opacity%3D%22.13%22/%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20820%20L520%20370%20L840%20690%20L1160%20280%20L1600%20700%20L1600%201000%20L0%201000Z%22%20fill%3D%22%23000%22%20opacity%3D%22.17%22/%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2288%22%20y%3D%2292%22%20width%3D%226%22%20height%3D%22130%22%20fill%3D%22%23f1e6d2%22%20opacity%3D%22.85%22/%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%22120%22%20y%3D%22170%22%20fill%3D%22%23f1e6d2%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%20letter-spacing%3D%2210%22%3EWORLD%3C/text%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20filter%3D%22url%28%23grain%29%22%20opacity%3D%22.75%22/%3E%0A%20%20%20%20%3C/svg%3E%0A%20%20%20%20" alt="Abstract editorial world image"><span class="photo-credit">NUVELLUM / GLOBAL DESK</span></a>
+      <div class="kicker">WORLD · ANALYSIS</div>
+      <h1><a href="article.html">A world in motion: the forces quietly redrawing the global order</a></h1>
+      <div class="dek">From trade routes to technology and culture, the most important shifts are happening beyond the obvious headlines.</div>
+      <div class="meta">By Nuvellum Global Desk · 12 min read</div>
+      <div class="hero-actions"><a class="btn-outline" href="article.html">Read analysis</a><button class="btn-outline save-btn" data-save="A world in motion: the forces quietly redrawing the global order" data-cat="World · Analysis">Save</button></div>
+    </article>
+    <aside class="hero-side">
+      <article class="side reveal interactive-story motion-story" tabindex="0" data-tilt data-title="AI is becoming infrastructure, not merely a product"><a class="media" href="article.html"><img src="data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%221000%22%20viewBox%3D%220%200%201600%201000%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2311161b%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23526370%22/%3E%0A%20%20%20%20%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22grain%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22table%22%20tableValues%3D%220%20.08%22/%3E%3C/feComponentTransfer%3E%0A%20%20%20%20%20%20%20%20%3C/filter%3E%0A%20%20%20%20%20%20%3C/defs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221220%22%20cy%3D%22260%22%20r%3D%22260%22%20fill%3D%22%23d8b59a%22%20opacity%3D%22.13%22/%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20820%20L520%20370%20L840%20690%20L1160%20280%20L1600%20700%20L1600%201000%20L0%201000Z%22%20fill%3D%22%23000%22%20opacity%3D%22.17%22/%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2288%22%20y%3D%2292%22%20width%3D%226%22%20height%3D%22130%22%20fill%3D%22%23d8b59a%22%20opacity%3D%22.85%22/%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%22120%22%20y%3D%22170%22%20fill%3D%22%23d8b59a%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%20letter-spacing%3D%2210%22%3ETECHNOLOGY%3C/text%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20filter%3D%22url%28%23grain%29%22%20opacity%3D%22.75%22/%3E%0A%20%20%20%20%3C/svg%3E%0A%20%20%20%20" alt=""></a><div class="kicker">TECHNOLOGY</div><h2><a href="article.html">AI is becoming infrastructure, not merely a product</a></h2><p>Why the next phase may look less like an app boom and more like an operating layer.</p><div class="card-tools"><span class="meta">8 min read</span><button class="bookmark" data-save="AI is becoming infrastructure, not merely a product" data-cat="Technology">♡</button></div></article>
+      <article class="side reveal interactive-story motion-story" tabindex="0" data-tilt><div class="kicker">BUSINESS</div><h2>Why patient capital is quietly returning</h2><p>Investors are rediscovering businesses built for durability rather than quarterly spectacle.</p><div class="card-tools"><span class="meta">6 min read</span><button class="bookmark" data-save="Why patient capital is quietly returning" data-cat="Business">♡</button></div></article>
+      <article class="side reveal interactive-story motion-story" tabindex="0" data-tilt><div class="kicker">CULTURE</div><h2>Prestige media is rediscovering restraint</h2><p>A quieter visual language is replacing the frantic aesthetics of the last decade.</p><div class="card-tools"><span class="meta">5 min read</span><button class="bookmark" data-save="Prestige media is rediscovering restraint" data-cat="Culture">♡</button></div></article>
+    </aside>
+  </section>
+
+  <section class="latest-band" id="technology">
+    <div class="wrap">
+      <div class="latest-title-row"><div class="latest-title">Latest</div><div class="filters" id="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="world">World</button><button class="filter" data-filter="tech">Tech</button><button class="filter" data-filter="culture">Culture</button><button class="filter" data-filter="screen">Screen & Play</button><button class="filter" data-filter="sport">Sports</button></div></div>
+      <div class="latest-grid" id="latestGrid">
+        <article class="latest-card interactive-story motion-story" tabindex="0" data-filter-cat="sport"><div class="kicker">SPORTS</div><h3>The business of sport is becoming a media war</h3><p>Rights, clubs and platforms are competing for the same global attention.</p></article>
+        <article class="latest-card interactive-story motion-story" tabindex="0" data-filter-cat="screen"><div class="kicker">FILM</div><h3>The return of the 150-minute epic</h3><p>Scale is back, but audiences are asking for stronger stories.</p></article>
+        <article class="latest-card interactive-story motion-story" tabindex="0" data-filter-cat="screen"><div class="kicker">GAMING</div><h3>Studios rethink what players will pay for</h3><p>Premium, subscription and free-to-play models collide.</p></article>
+        <article class="latest-card interactive-story motion-story" tabindex="0" data-filter-cat="world"><div class="kicker">SCIENCE</div><h3>A new generation of observatories goes online</h3><p>The universe is becoming a data problem as much as an optics problem.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="world">
+    <div class="section-head"><h2>World</h2><div class="section-actions"><button class="section-toggle" type="button" data-collapse="world"><span class="collapse-label"></span></button><a href="#" data-info="world">View all</a></div></div>
+    <div class="grid3 section-body">
+      <article class="story-card reveal interactive-story motion-story" tabindex="0"><a class="media" href="article.html"><img src="data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%221000%22%20viewBox%3D%220%200%201600%201000%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2317222c%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23785d4b%22/%3E%0A%20%20%20%20%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22grain%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22table%22%20tableValues%3D%220%20.08%22/%3E%3C/feComponentTransfer%3E%0A%20%20%20%20%20%20%20%20%3C/filter%3E%0A%20%20%20%20%20%20%3C/defs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221220%22%20cy%3D%22260%22%20r%3D%22260%22%20fill%3D%22%23f1e6d2%22%20opacity%3D%22.13%22/%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20820%20L520%20370%20L840%20690%20L1160%20280%20L1600%20700%20L1600%201000%20L0%201000Z%22%20fill%3D%22%23000%22%20opacity%3D%22.17%22/%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2288%22%20y%3D%2292%22%20width%3D%226%22%20height%3D%22130%22%20fill%3D%22%23f1e6d2%22%20opacity%3D%22.85%22/%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%22120%22%20y%3D%22170%22%20fill%3D%22%23f1e6d2%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%20letter-spacing%3D%2210%22%3EWORLD%3C/text%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20filter%3D%22url%28%23grain%29%22%20opacity%3D%22.75%22/%3E%0A%20%20%20%20%3C/svg%3E%0A%20%20%20%20" alt=""></a><div class="kicker">GEOPOLITICS</div><h3>Power is becoming more distributed — and more difficult to read</h3><p>Old alliances remain, but economic and technological influence no longer follows the same map.</p><div class="card-tools"><span class="meta">10 min read</span><button class="bookmark" data-save="Power is becoming more distributed — and more difficult to read" data-cat="World">♡</button></div></article>
+      <article class="story-card reveal interactive-story motion-story" tabindex="0"><a class="media" href="article.html"><img src="data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%221000%22%20viewBox%3D%220%200%201600%201000%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2324221d%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2384704f%22/%3E%0A%20%20%20%20%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22grain%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22table%22%20tableValues%3D%220%20.08%22/%3E%3C/feComponentTransfer%3E%0A%20%20%20%20%20%20%20%20%3C/filter%3E%0A%20%20%20%20%20%20%3C/defs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221220%22%20cy%3D%22260%22%20r%3D%22260%22%20fill%3D%22%23efe2c4%22%20opacity%3D%22.13%22/%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20820%20L520%20370%20L840%20690%20L1160%20280%20L1600%20700%20L1600%201000%20L0%201000Z%22%20fill%3D%22%23000%22%20opacity%3D%22.17%22/%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2288%22%20y%3D%2292%22%20width%3D%226%22%20height%3D%22130%22%20fill%3D%22%23efe2c4%22%20opacity%3D%22.85%22/%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%22120%22%20y%3D%22170%22%20fill%3D%22%23efe2c4%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%20letter-spacing%3D%2210%22%3EBUSINESS%3C/text%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20filter%3D%22url%28%23grain%29%22%20opacity%3D%22.75%22/%3E%0A%20%20%20%20%3C/svg%3E%0A%20%20%20%20" alt=""></a><div class="kicker">CITIES</div><h3>The megacity is becoming a defining unit of global power</h3><p>Infrastructure, finance and demographics are shifting influence toward urban systems.</p><div class="card-tools"><span class="meta">7 min read</span><button class="bookmark" data-save="The megacity is becoming a defining unit of global power" data-cat="World">♡</button></div></article>
+      <div class="stack reveal" id="worldStack">
+        <article><div class="kicker">EUROPE</div><h3>A new industrial race gathers pace</h3></article>
+        <article><div class="kicker">ASIA</div><h3>Supply chains are becoming foreign policy</h3></article>
+        <article><div class="kicker">AFRICA</div><h3>Young cities, old systems and a new investment map</h3></article>
+        <article><div class="kicker">MIDDLE EAST</div><h3>Regional power is increasingly measured in logistics</h3></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section" id="screen">
+    <div class="wrap">
+      <div class="section-head"><h2>Screen & Play</h2><div class="section-actions"><a href="#" data-info="screen">Film · Anime · Gaming</a></div></div>
+      <div class="culture">
+        <article class="feature reveal interactive-story motion-story" tabindex="0"><div class="media"><span class="quick-chip">Quick view</span><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCAxNjAwIDEwMDAiPgo8ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBzdG9wLWNvbG9yPSIjMTcxNTE3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNmUxYjI3Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+CjxyZWN0IHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9InVybCgjZykiLz4KPGNpcmNsZSBjeD0iMTIxMCIgY3k9IjIzMCIgcj0iMjcwIiBmaWxsPSIjZjRkOWNhIiBvcGFjaXR5PSIuMTMiLz4KPHBhdGggZD0iTTAgODIwTDQ2MCAzOTBMNzgwIDcwMEwxMTYwIDI1MEwxNjAwIDY5MFYxMDAwSDBaIiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMjIiLz4KPHJlY3QgeD0iOTIiIHk9Ijg4IiB3aWR0aD0iNiIgaGVpZ2h0PSIxNDAiIGZpbGw9IiNmNGQ5Y2EiLz4KPHRleHQgeD0iMTIyIiB5PSIxNzIiIGZpbGw9IiNmNGQ5Y2EiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjQ2IiBsZXR0ZXItc3BhY2luZz0iMTAiPkZJTE0gJmFtcDsgVFY8L3RleHQ+Cjwvc3ZnPg==" alt=""></div><div class="kicker">FILM & TV</div><h3>The spectacle is back — but audiences want more than scale</h3><p>What the next generation of global blockbusters is learning from prestige television and animation.</p><button class="bookmark" data-save="The spectacle is back — but audiences want more than scale" data-cat="Film & TV">♡ Save</button></article>
+        <article class="mini reveal interactive-story motion-story" tabindex="0"><div class="media"><span class="quick-chip">Quick view</span><img src="data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%221000%22%20viewBox%3D%220%200%201600%201000%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2324212f%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237d384d%22/%3E%0A%20%20%20%20%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22grain%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22table%22%20tableValues%3D%220%20.08%22/%3E%3C/feComponentTransfer%3E%0A%20%20%20%20%20%20%20%20%3C/filter%3E%0A%20%20%20%20%20%20%3C/defs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221220%22%20cy%3D%22260%22%20r%3D%22260%22%20fill%3D%22%23f4d7e3%22%20opacity%3D%22.13%22/%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20820%20L520%20370%20L840%20690%20L1160%20280%20L1600%20700%20L1600%201000%20L0%201000Z%22%20fill%3D%22%23000%22%20opacity%3D%22.17%22/%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2288%22%20y%3D%2292%22%20width%3D%226%22%20height%3D%22130%22%20fill%3D%22%23f4d7e3%22%20opacity%3D%22.85%22/%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%22120%22%20y%3D%22170%22%20fill%3D%22%23f4d7e3%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%20letter-spacing%3D%2210%22%3EANIME%3C/text%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20filter%3D%22url%28%23grain%29%22%20opacity%3D%22.75%22/%3E%0A%20%20%20%20%3C/svg%3E%0A%20%20%20%20" alt=""></div><div class="kicker">ANIME</div><h3>The medium’s global audience no longer needs an introduction</h3><button class="bookmark" data-save="The medium’s global audience no longer needs an introduction" data-cat="Anime">♡</button></article>
+        <article class="mini reveal interactive-story motion-story" tabindex="0"><div class="media"><span class="quick-chip">Quick view</span><img src="data:image/svg+xml;charset=UTF-8,%0A%20%20%20%20%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221600%22%20height%3D%221000%22%20viewBox%3D%220%200%201600%201000%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23151a1e%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%233f5460%22/%3E%0A%20%20%20%20%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22grain%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.7%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%0A%20%20%20%20%20%20%20%20%20%20%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22table%22%20tableValues%3D%220%20.08%22/%3E%3C/feComponentTransfer%3E%0A%20%20%20%20%20%20%20%20%3C/filter%3E%0A%20%20%20%20%20%20%3C/defs%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%221220%22%20cy%3D%22260%22%20r%3D%22260%22%20fill%3D%22%23c9d9cf%22%20opacity%3D%22.13%22/%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20820%20L520%20370%20L840%20690%20L1160%20280%20L1600%20700%20L1600%201000%20L0%201000Z%22%20fill%3D%22%23000%22%20opacity%3D%22.17%22/%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%2288%22%20y%3D%2292%22%20width%3D%226%22%20height%3D%22130%22%20fill%3D%22%23c9d9cf%22%20opacity%3D%22.85%22/%3E%0A%20%20%20%20%20%20%3Ctext%20x%3D%22120%22%20y%3D%22170%22%20fill%3D%22%23c9d9cf%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%20letter-spacing%3D%2210%22%3EGAMING%3C/text%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%221600%22%20height%3D%221000%22%20filter%3D%22url%28%23grain%29%22%20opacity%3D%22.75%22/%3E%0A%20%20%20%20%3C/svg%3E%0A%20%20%20%20" alt=""></div><div class="kicker">GAMING</div><h3>Why smaller studios keep stealing the conversation</h3><button class="bookmark" data-save="Why smaller studios keep stealing the conversation" data-cat="Gaming">♡</button></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="opinion">
+    <div class="section-head"><h2>Opinion & Ideas</h2><div class="section-actions"><button class="section-toggle" type="button" data-collapse="opinion"><span class="collapse-label"></span></button><a href="#" data-info="opinion">All columns</a></div></div>
+    <div class="opinions section-body">
+      <article class="opinion reveal interactive-story motion-story" tabindex="0"><div class="avatar">NS</div><div><div class="kicker">COLUMN</div><h3>We have too much information and too little interpretation</h3><small>By N. Selwyn</small></div></article>
+      <article class="opinion reveal interactive-story motion-story" tabindex="0"><div class="avatar">AR</div><div><div class="kicker">ESSAY</div><h3>The internet flattened taste. Culture is becoming strange again.</h3><small>By A. Rahman</small></div></article>
+      <article class="opinion reveal interactive-story motion-story" tabindex="0"><div class="avatar">LM</div><div><div class="kicker">IDEAS</div><h3>Why seriousness is becoming fashionable again</h3><small>By L. Moreau</small></div></article>
+    </div>
+  </section>
+
+  <section class="newsletter" id="newsletter">
+    <div class="newsletter-in wrap">
+      <div><div class="kicker" style="color:#f1d8dc">THE NUVELLUM BRIEF</div><h2>One intelligent read of the world.<br>Once a day.</h2></div>
+      <form class="signup" id="signup"><input type="email" id="email" required placeholder="you@example.com"><button type="submit">Join the brief</button><div class="signup-msg" id="signupMsg">No noise. Unsubscribe anytime.</div></form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap"><div class="footer-brand">NUVELLUM</div><div class="tag">Beyond the headline.</div>
+    <div class="footer-grid"><div><h4>Sections</h4><a href="#world">World</a><a href="#">Business</a><a href="#technology">Technology</a><a href="#">Sports</a></div><div><h4>Culture</h4><a href="#screen">Film & TV</a><a href="#screen">Anime</a><a href="#screen">Gaming</a><a href="#opinion">Opinion</a></div><div><h4>Nuvellum</h4><a href="#" data-info="about">About</a><a href="#" data-info="standards">Editorial Standards</a><a href="#" data-info="corrections">Corrections</a><a href="#" data-info="contact">Contact</a></div><div><h4>Business</h4><a href="#" data-info="advertise">Advertise</a><a href="#" data-info="sponsorships">Sponsorships</a><a href="#" data-info="privacy">Privacy</a><a href="#" data-info="terms">Terms</a></div></div>
+    <div class="footer-bottom">© 2026 Nuvellum. Independent international media.</div>
+  </div>
+</footer>
+<button class="backtop" id="backtop" title="Back to top">↑</button>
+
+<script>
+const storyIndex = [{"cat": "world", "kicker": "WORLD \u00b7 ANALYSIS", "title": "A world in motion: the forces quietly redrawing the global order", "dek": "From trade routes to technology and culture, the most important shifts are happening beyond the obvious headlines."}, {"cat": "tech", "kicker": "TECHNOLOGY", "title": "AI is becoming infrastructure, not merely a product", "dek": "The next phase may look less like an app boom and more like an operating layer beneath modern life."}, {"cat": "business", "kicker": "BUSINESS", "title": "Why patient capital is quietly returning", "dek": "Investors are rediscovering businesses built for durability rather than quarterly spectacle."}, {"cat": "culture", "kicker": "CULTURE", "title": "Prestige media is rediscovering restraint", "dek": "A quieter visual language is replacing the frantic aesthetics of the last decade."}, {"cat": "film", "kicker": "FILM & TV", "title": "The spectacle is back \u2014 but audiences want more than scale", "dek": "Blockbusters are borrowing intimacy from prestige television and animation."}, {"cat": "anime", "kicker": "ANIME", "title": "Anime\u2019s global audience no longer needs an introduction", "dek": "Streaming changed distribution. Fandom changed the economics."}, {"cat": "gaming", "kicker": "GAMING", "title": "Smaller studios keep stealing the conversation", "dek": "Players are rewarding strong ideas over sheer production scale."}, {"cat": "sport", "kicker": "SPORTS", "title": "The business of sport is becoming a media war", "dek": "Rights, clubs and platforms are competing for the same global attention."}, {"cat": "science", "kicker": "SCIENCE", "title": "A new generation of observatories goes online", "dek": "Bigger datasets are changing what it means to look at the universe."}, {"cat": "crime", "kicker": "CRIME", "title": "Inside the new economics of organized cybercrime", "dek": "Digital criminal networks increasingly resemble service businesses."}];
+const qs=(s,p=document)=>p.querySelector(s), qsa=(s,p=document)=>[...p.querySelectorAll(s)];
+const storageKey='nuvellum-saved-v2';
+let saved=JSON.parse(localStorage.getItem(storageKey)||'[]');
+function saveData(){localStorage.setItem(storageKey,JSON.stringify(saved));renderSaved();syncSaveButtons();
+
+/* v3 living masthead + micro-interactions */
+const logoLive=qs('#logoLive'),mastLive=qs('#mastLive');
+if(logoLive){
+  [...logoLive.children].forEach((s,i)=>s.style.setProperty('--i',i));
+  logoLive.addEventListener('pointerenter',()=>mastLive.classList.add('logo-active'));
+  logoLive.addEventListener('pointerleave',()=>{mastLive.classList.remove('logo-active');logoLive.style.transform=''});
+  logoLive.addEventListener('pointermove',e=>{
+    if(matchMedia('(pointer:fine)').matches){
+      const r=logoLive.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      logoLive.style.transform=`perspective(700px) rotateX(${-y*2.3}deg) rotateY(${x*4.2}deg) translateY(-1px)`;
+    }
+  });
+  logoLive.addEventListener('click',e=>{
+    if(location.pathname.endsWith('index.html') || location.pathname.endsWith('/')){
+      e.preventDefault();
+      logoLive.classList.remove('is-awake');void logoLive.offsetWidth;logoLive.classList.add('is-awake');
+      setTimeout(()=>logoLive.classList.remove('is-awake'),1000);
+      scrollTo({top:0,behavior:'smooth'});
+    }
+  });
+}
+if(matchMedia('(pointer:fine)').matches){
+  document.body.classList.add('pointer-fine');
+  qsa('[data-tilt]').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(1000px) rotateX(${-y*1.1}deg) rotateY(${x*1.3}deg) translateY(-2px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+}
+}
+function toggleSave(title,cat){const i=saved.findIndex(x=>x.title===title); if(i>=0)saved.splice(i,1); else saved.push({title,cat}); saveData();}
+function syncSaveButtons(){qsa('[data-save]').forEach(b=>{const on=saved.some(x=>x.title===b.dataset.save);b.classList.toggle('saved',on);if(b.classList.contains('save-btn'))b.textContent=on?'Saved':'Save';else b.textContent=on?'♥':'♡';});qs('#savedCount').textContent=saved.length;}
+function renderSaved(){const box=qs('#savedResults');if(!saved.length){box.innerHTML='<div class="empty">Nothing saved yet. Tap the heart on any story to build a reading list.</div>';return;} box.innerHTML=saved.map(x=>`<a class="result" href="article.html"><div class="cat">${x.cat}</div><h4>${x.title}</h4></a>`).join('');}
+qsa('[data-save]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();toggleSave(b.dataset.save,b.dataset.cat||'Nuvellum')}));
+function openPanel(which){qs('#searchPanel').classList.toggle('open',which==='search');qs('#savedPanel').classList.toggle('open',which==='saved');qs('#scrim').classList.add('show');if(which==='search')setTimeout(()=>qs('#searchInput').focus(),180)}
+function closePanels(){qsa('.search-panel,.saved-panel').forEach(x=>x.classList.remove('open'));qs('#scrim').classList.remove('show')}
+qs('#searchBtn').onclick=()=>openPanel('search');qs('#savedBtn').onclick=()=>openPanel('saved');qs('#scrim').onclick=closePanels;qsa('[data-close]').forEach(b=>b.onclick=closePanels);
+qs('#searchInput').addEventListener('input',e=>{let q=e.target.value.trim().toLowerCase();let r=q?storyIndex.filter(x=>(x.title+' '+x.kicker+' '+x.dek).toLowerCase().includes(q)).slice(0,8):[];qs('#searchResults').innerHTML=!q?'<div class="empty">Start typing to search Nuvellum.</div>':r.length?r.map(x=>`<a class="result" href="article.html"><div class="cat">${x.kicker}</div><h4>${x.title}</h4></a>`).join(''):'<div class="empty">No stories matched that search.</div>';})
+qs('#searchResults').innerHTML='<div class="empty">Start typing to search Nuvellum.</div>';
+const tickers=[['Markets, diplomacy and technology reshape a volatile global week','8 min ago'],['Global studios race to secure the next generation of entertainment franchises','13 min ago'],['New data-centre investment pushes infrastructure into the political spotlight','21 min ago'],['Major sporting rights deal redraws the streaming landscape','34 min ago']];
+let ti=0;function tick(){ti=(ti+1)%tickers.length;let el=qs('#tickerText');el.classList.add('swap');setTimeout(()=>{el.textContent=tickers[ti][0];qs('#tickerTime').textContent=tickers[ti][1];el.classList.remove('swap')},180)};let timer=setInterval(tick,5200);qs('#tickerNext').onclick=tick;qs('.breaking').onmouseenter=()=>clearInterval(timer);qs('.breaking').onmouseleave=()=>timer=setInterval(tick,5200);
+qsa('.filter').forEach(b=>b.onclick=()=>{qsa('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');let f=b.dataset.filter;qsa('.latest-card').forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.filterCat!==f));});
+qs('#themeBtn').onclick=()=>{document.body.classList.toggle('night');let n=document.body.classList.contains('night');qs('#themeBtn').textContent=n?'Day reading':'Night reading';localStorage.setItem('nuvellum-theme',n?'night':'day')};
+if(localStorage.getItem('nuvellum-theme')==='night'){document.body.classList.add('night');qs('#themeBtn').textContent='Day reading'}
+qs('#signup').addEventListener('submit',e=>{e.preventDefault();let v=qs('#email').value.trim();qs('#signupMsg').textContent=`Welcome to The Nuvellum Brief — ${v} is on the list.`;qs('#email').value='';});
+const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});qsa('.reveal').forEach(x=>observer.observe(x));
+const sections=qsa('section[id]');const navLinks=qsa('#nav a');const navObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-30% 0px -60% 0px'});sections.forEach(s=>navObs.observe(s));
+window.addEventListener('scroll',()=>qs('#backtop').classList.toggle('show',scrollY>700));qs('#backtop').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+try{qs('#today').textContent=new Intl.DateTimeFormat('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).format(new Date())}catch(e){}
+renderSaved();syncSaveButtons();
+
+/* v3 living masthead + micro-interactions */
+const logoLive=qs('#logoLive'),mastLive=qs('#mastLive');
+if(logoLive){
+  [...logoLive.children].forEach((s,i)=>s.style.setProperty('--i',i));
+  logoLive.addEventListener('pointerenter',()=>mastLive.classList.add('logo-active'));
+  logoLive.addEventListener('pointerleave',()=>{mastLive.classList.remove('logo-active');logoLive.style.transform=''});
+  logoLive.addEventListener('pointermove',e=>{
+    if(matchMedia('(pointer:fine)').matches){
+      const r=logoLive.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      logoLive.style.transform=`perspective(700px) rotateX(${-y*2.3}deg) rotateY(${x*4.2}deg) translateY(-1px)`;
+    }
+  });
+  logoLive.addEventListener('click',e=>{
+    if(location.pathname.endsWith('index.html') || location.pathname.endsWith('/')){
+      e.preventDefault();
+      logoLive.classList.remove('is-awake');void logoLive.offsetWidth;logoLive.classList.add('is-awake');
+      setTimeout(()=>logoLive.classList.remove('is-awake'),1000);
+      scrollTo({top:0,behavior:'smooth'});
+    }
+  });
+}
+if(matchMedia('(pointer:fine)').matches){
+  document.body.classList.add('pointer-fine');
+  qsa('[data-tilt]').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(1000px) rotateX(${-y*1.1}deg) rotateY(${x*1.3}deg) translateY(-2px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+}
+
+
+/* === v4 FULL INTERACTIVITY === */
+const toastV4=qs('#toastV4');
+function toast4(msg){toastV4.textContent=msg;toastV4.classList.add('show');clearTimeout(toast4.t);toast4.t=setTimeout(()=>toastV4.classList.remove('show'),1500)}
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement,max=d.scrollHeight-innerHeight;
+  qs('#homeProgress').style.width=(max?scrollY/max*100:0)+'%';
+},{passive:true});
+
+const drawer=qs('#storyDrawer'),drawerClose=qs('#drawerClose');
+let currentDrawer={title:'',cat:''};
+function storyDataFrom(el){
+  const title=(el.dataset.title||qs('h1,h2,h3',el)?.textContent||'Nuvellum story').trim();
+  const kicker=(el.dataset.kicker||qs('.kicker',el)?.textContent||'Nuvellum').trim();
+  const dek=(qs('p,.dek',el)?.textContent||'Open this story for the full Nuvellum treatment, context and related coverage.').trim();
+  return {title,kicker,dek};
+}
+function openDrawer(data){
+  currentDrawer={title:data.title,cat:data.kicker};
+  qs('#drawerTitle').textContent=data.title;
+  qs('#drawerKicker').textContent=data.kicker;
+  qs('#drawerDek').textContent=data.dek;
+  qs('#drawerMeta').textContent='Nuvellum Desk · Interactive preview';
+  qs('#drawerSave').textContent=saved.some(x=>x.title===data.title)?'Saved':'Save';
+  const rel=storyIndex.filter(x=>x.title!==data.title).slice(0,3);
+  qs('#drawerRelated').innerHTML=rel.map(x=>`<button type="button" data-related-title="${x.title.replace(/"/g,'&quot;')}" data-related-kicker="${x.kicker.replace(/"/g,'&quot;')}" data-related-dek="${x.dek.replace(/"/g,'&quot;')}">${x.title}</button>`).join('');
+  drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');qs('#scrim').classList.add('show');
+}
+function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');if(!qs('#infoModal').classList.contains('open')&&!qs('#searchPanel').classList.contains('open')&&!qs('#savedPanel').classList.contains('open'))qs('#scrim').classList.remove('show')}
+drawerClose.onclick=closeDrawer;
+qs('#drawerSave').onclick=()=>{toggleSave(currentDrawer.title,currentDrawer.cat);qs('#drawerSave').textContent=saved.some(x=>x.title===currentDrawer.title)?'Saved':'Save';toast4(saved.some(x=>x.title===currentDrawer.title)?'Saved to your reading list.':'Removed from your reading list.')};
+qs('#drawerShare').onclick=async()=>{
+  try{
+    if(navigator.share) await navigator.share({title:currentDrawer.title,url:location.href});
+    else toast4('Share ready — use your browser share menu in this local mockup.');
+  }catch(e){}
+};
+qs('#drawerRelated').addEventListener('click',e=>{
+  const b=e.target.closest('[data-related-title]');if(!b)return;
+  openDrawer({title:b.dataset.relatedTitle,kicker:b.dataset.relatedKicker,dek:b.dataset.relatedDek});
+});
+
+function shouldOpenPreview(target){
+  return !target.closest('a[href="article.html"],button,input,form,.bookmark,.save-btn');
+}
+qsa('.interactive-story').forEach(el=>{
+  el.addEventListener('click',e=>{if(shouldOpenPreview(e.target))openDrawer(storyDataFrom(el))});
+  el.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('a,button,input')){e.preventDefault();openDrawer(storyDataFrom(el))}});
+});
+
+const infoContent={
+  world:['World desk','A full World section would open here, with regions, latest analysis, explainers and live updates. In the production build this becomes a real category page.'],
+  opinion:['Opinion & Ideas','Columns, essays and signed analysis live here. Opinion is visually separated from straight reporting throughout Nuvellum.'],
+  screen:['Screen & Play','A combined entertainment desk for Film & TV, Anime and Gaming — visually richer, but still unmistakably Nuvellum.'],
+  about:['About Nuvellum','Nuvellum is an independent international digital publication built around one promise: <strong>Beyond the headline.</strong> The product combines fast reporting with context, analysis and culture coverage.'],
+  standards:['Editorial Standards','News, analysis, opinion, review and sponsored work are labeled separately. Sensitive claims require human review before publication. Sources and corrections remain visible.'],
+  corrections:['Corrections','The production site will maintain a public corrections policy and visible update notes on materially changed stories.'],
+  contact:['Contact','This mockup keeps contact actions local. The production build will include editorial, business and rights contacts.'],
+  advertise:['Advertise with Nuvellum','Future inventory can include premium display placements, section sponsorships and clearly labeled branded content — without degrading the reading experience.'],
+  sponsorships:['Sponsorships','Newsletter, vertical and special-report sponsorships can be designed as premium editorial-adjacent products with strict labeling.'],
+  privacy:['Privacy','The production site will use a proper privacy policy based on the analytics, advertising and newsletter tools actually deployed.'],
+  terms:['Terms','The final terms page will be written around the real publishing entity, jurisdiction, user features and monetization stack.']
+};
+const infoModal=qs('#infoModal');
+function openInfo(key){let c=infoContent[key]||['Nuvellum','This part of the publication is ready to become a real page in the production build.'];qs('#modalTitle').textContent=c[0];qs('#modalBody').innerHTML=c[1];infoModal.classList.add('open');infoModal.setAttribute('aria-hidden','false');qs('#scrim').classList.add('show')}
+function closeInfo(){infoModal.classList.remove('open');infoModal.setAttribute('aria-hidden','true');if(!drawer.classList.contains('open')&&!qs('#searchPanel').classList.contains('open')&&!qs('#savedPanel').classList.contains('open'))qs('#scrim').classList.remove('show')}
+qs('#modalClose').onclick=closeInfo;
+qsa('[data-info]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openInfo(a.dataset.info)}));
+
+const oldScrimHandler=qs('#scrim').onclick;
+qs('#scrim').onclick=()=>{closePanels();closeDrawer();closeInfo()};
+
+qsa('[data-collapse]').forEach(btn=>btn.addEventListener('click',()=>{
+  const sec=btn.closest('.section'); if(!sec)return; sec.classList.toggle('collapsed');
+  toast4(sec.classList.contains('collapsed')?'Section collapsed.':'Section expanded.');
+}));
+
+qsa('#nav a').forEach(a=>a.addEventListener('click',()=>{
+  a.classList.remove('nav-pulse');void a.offsetWidth;a.classList.add('nav-pulse');
+  setTimeout(()=>a.classList.remove('nav-pulse'),520);
+}));
+
+qsa('.topic-pill').forEach(b=>b.addEventListener('click',()=>{
+  qsa('.topic-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  const t=b.dataset.topic;
+  if(t==='world') document.querySelector('#world')?.scrollIntoView({behavior:'smooth'});
+  else if(t==='screen') document.querySelector('#screen')?.scrollIntoView({behavior:'smooth'});
+  else if(t==='tech') document.querySelector('#technology')?.scrollIntoView({behavior:'smooth'});
+  else if(t==='sport'){ qsa('.filter').find(x=>x.dataset.filter==='sport')?.click();document.querySelector('#technology')?.scrollIntoView({behavior:'smooth'});}
+  else if(t==='culture') document.querySelector('#screen')?.scrollIntoView({behavior:'smooth'});
+  else scrollTo({top:0,behavior:'smooth'});
+}));
+
+qsa('.footer-grid a[href="#"], .section-head a[href="#"]').forEach(a=>{
+  if(!a.dataset.info)a.addEventListener('click',e=>{e.preventDefault();toast4('This becomes a dedicated page in the production build.')});
+});
+
+/* Keyboard polish: / focuses search, Esc closes layered UI. */
+document.addEventListener('keydown',e=>{
+  const editing=/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'');
+  if(e.key==='/'&&!editing){e.preventDefault();openPanel('search')}
+  if(e.key==='Escape'){closePanels();closeDrawer();closeInfo()}
+});
+
+
+/* === v5 smooth behavior === */
+const curtain=qs('#pageCurtain');
+function goWithCurtain(url){
+  if(!url)return;
+  curtain.classList.add('go');
+  setTimeout(()=>location.href=url,390);
+}
+
+/* Smooth same-site article navigation */
+qsa('a[href="article.html"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    e.preventDefault();goWithCurtain(a.getAttribute('href'));
+  });
+});
+
+/* Every remaining editorial item gets pointer-responsive light and a quick view. */
+qsa('.motion-story').forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+    if(!matchMedia('(pointer:fine)').matches)return;
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+    card.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+  });
+});
+
+/* World list was previously visually static — make every row open a fluid preview. */
+qsa('#worldStack article').forEach(row=>{
+  row.classList.add('motion-story');
+  row.tabIndex=0;
+  const fire=()=>openDrawer(storyDataFrom(row));
+  row.addEventListener('click',fire);
+  row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fire()}});
+});
+
+/* Replace abrupt section hide/show with measured height animation. */
+qsa('[data-collapse]').forEach(btn=>{
+  /* remove old behavior by cloning the control */
+  const clone=btn.cloneNode(true);
+  btn.replaceWith(clone);
+  clone.addEventListener('click',()=>{
+    const sec=clone.closest('.section'), body=qs('.section-body',sec);
+    if(!body)return;
+    const collapsed=sec.classList.contains('is-collapsed');
+    if(collapsed){
+      sec.classList.remove('is-collapsed');
+      body.style.height='0px';
+      requestAnimationFrame(()=>{
+        const h=body.scrollHeight;
+        body.style.height=h+'px';
+        requestAnimationFrame(()=>{body.style.opacity='1';body.style.transform='none'});
+      });
+      setTimeout(()=>{body.style.height='auto'},650);
+    }else{
+      const h=body.scrollHeight;
+      body.style.height=h+'px';
+      requestAnimationFrame(()=>{
+        sec.classList.add('is-collapsing');
+        body.style.height='0px';body.style.opacity='0';body.style.transform='translateY(-8px)';
+      });
+      setTimeout(()=>{
+        sec.classList.remove('is-collapsing');sec.classList.add('is-collapsed');
+      },620);
+    }
+  });
+});
+
+/* FLIP animation for Latest filters so the grid does not snap. */
+qsa('.filter').forEach(old=>{
+  const b=old.cloneNode(true);old.replaceWith(b);
+});
+function flipFilter(filter){
+  const cards=qsa('.latest-card'), first=new Map(cards.map(c=>[c,c.getBoundingClientRect()]));
+  cards.forEach(c=>{
+    const show=filter==='all'||c.dataset.filterCat===filter;
+    c.hidden=!show;
+    c.classList.toggle('filter-out',!show);
+  });
+  const shown=cards.filter(c=>!c.hidden);
+  requestAnimationFrame(()=>{
+    shown.forEach(c=>{
+      const a=first.get(c), b=c.getBoundingClientRect();
+      const dx=a.left-b.left,dy=a.top-b.top;
+      c.animate(
+        [{transform:`translate(${dx}px,${dy}px) scale(.985)`,opacity:.55},{transform:'translate(0,0) scale(1)',opacity:1}],
+        {duration:460,easing:'cubic-bezier(.16,1,.3,1)'}
+      );
+      c.classList.remove('filter-out');c.classList.add('filter-in');
+      setTimeout(()=>c.classList.remove('filter-in'),500);
+    });
+  });
+}
+qsa('.filter').forEach(b=>b.addEventListener('click',()=>{
+  qsa('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');flipFilter(b.dataset.filter);
+}));
+
+/* Smooth newsletter acknowledgement. */
+const signupForm=qs('#signup');
+if(signupForm){
+  const newForm=signupForm.cloneNode(true);signupForm.replaceWith(newForm);
+  newForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const email=qs('#email',newForm).value.trim(),msg=qs('#signupMsg',newForm);
+    if(!email){msg.textContent='Enter an email address first.';return}
+    msg.classList.remove('changed');void msg.offsetWidth;
+    msg.textContent=`Welcome to The Nuvellum Brief — ${email} is on the list.`;
+    msg.classList.add('changed');qs('#email',newForm).value='';
+  });
+}
+
+</script>
+</body></html>
