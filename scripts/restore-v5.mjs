@@ -134,12 +134,14 @@ function productionizeHome(html) {
   for (const [from, to] of replacements) html = html.split(from).join(to);
   html = patchStaticStoryLinks(html);
 
-  // The v5.1 mockup displayed a fake newsletter success message. Until a real
-  // subscriber backend is connected, be explicit that no address is stored.
-  html = html.replace(
-    /msg\.textContent=\`Welcome to The Nuvellum Brief — \\$\{email\} is on the list\.\`;\s*msg\.classList\.add\('changed'\);qs\('#email',newForm\)\.value='';/,
-    "msg.textContent='Newsletter signup is not live yet — no address was stored.';msg.classList.add('changed');"
-  );
+  // The v5.1 mockup contains two local demo handlers that claim an address
+  // was subscribed. Until a real subscriber backend exists, neither may
+  // claim success or imply storage.
+  html = html
+    .split("qs('#signupMsg').textContent=`Welcome to The Nuvellum Brief — \${v} is on the list.`;")
+    .join("qs('#signupMsg').textContent='Newsletter signup is not live yet — no address was stored.';")
+    .split("msg.textContent=`Welcome to The Nuvellum Brief — \${email} is on the list.`;")
+    .join("msg.textContent='Newsletter signup is not live yet — no address was stored.';");
 
   // Any real anchor is navigation and must not also trigger the preview drawer.
   html = html.replace("return !target.closest('a[href=\"article.html\"],button,input,form,.bookmark,.save-btn');", "return !target.closest('a[href],button,input,form,.bookmark,.save-btn');");
@@ -206,6 +208,9 @@ for (const file of ['index.html','article.html']) {
   const path = join(root, 'public', file);
   let html = readFileSync(path, 'utf8');
   html = file === 'index.html' ? productionizeHome(html) : productionizeLegacyArticle(html);
+  if (file === 'index.html' && html.includes('is on the list.')) {
+    throw new Error('Production homepage still contains the mock newsletter success message.');
+  }
   writeFileSync(path, html);
 }
 
