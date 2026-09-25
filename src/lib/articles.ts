@@ -32,12 +32,17 @@ export async function getArticles(): Promise<Article[]> {
   return Object.entries(modules)
     .map(([path, mod]) => {
       const slug = path.split('/').pop()!.replace(/\.md$/, '');
-      return {
+      const article = {
         slug,
         ...mod.frontmatter,
         Content: mod.Content,
         getHeadings: mod.getHeadings
       } as Article;
+      if (article.origin === 'automation') {
+        article.image = `/generated/${slug}.svg`;
+        if (!article.imageAlt) article.imageAlt = `Original Nuvellum editorial illustration for ${article.title}`;
+      }
+      return article;
     })
     .filter((a) => a.status === 'published')
     .sort((a,b) => +new Date(b.date) - +new Date(a.date));
