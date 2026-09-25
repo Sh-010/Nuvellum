@@ -17,6 +17,6 @@
   "devDependencies": {
     "typescript": "5.9.2",
     "@astrojs/check": "0.9.10",
-    "adm-zip": "0.5.16"
+    "adm-zip": "0.6.1"
   }
 }
