@@ -56,7 +56,7 @@ function addHomeMetadata(html) {
   const meta = `
 <link rel="canonical" href="${url}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="/manifest.webmanifest">\n<link rel="alternate" type="application/rss+xml" title="Nuvellum RSS" href="/rss.xml">
 <meta name="theme-color" content="#6d1720">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nuvellum">
