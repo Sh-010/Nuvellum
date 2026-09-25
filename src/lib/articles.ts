@@ -1,3 +1,9 @@
+export type ArticleHeading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
 export type Article = {
   slug: string;
   title: string;
@@ -6,13 +12,19 @@ export type Article = {
   type: string;
   author: string;
   date: string;
+  updated?: string;
   readingTime: string;
   image: string;
   imageAlt: string;
   status: string;
   tags: string[];
   sourceNote?: string;
+  sourceUrls?: string[];
+  origin?: 'manual' | 'automation';
+  risk?: 'low' | 'sensitive';
+  reviewedBy?: string;
   Content: any;
+  getHeadings?: () => ArticleHeading[] | Promise<ArticleHeading[]>;
 };
 
 export async function getArticles(): Promise<Article[]> {
@@ -20,7 +32,12 @@ export async function getArticles(): Promise<Article[]> {
   return Object.entries(modules)
     .map(([path, mod]) => {
       const slug = path.split('/').pop()!.replace(/\.md$/, '');
-      return { slug, ...mod.frontmatter, Content: mod.Content } as Article;
+      return {
+        slug,
+        ...mod.frontmatter,
+        Content: mod.Content,
+        getHeadings: mod.getHeadings
+      } as Article;
     })
     .filter((a) => a.status === 'published')
     .sort((a,b) => +new Date(b.date) - +new Date(a.date));
