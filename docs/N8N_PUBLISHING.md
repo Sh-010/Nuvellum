@@ -6,6 +6,17 @@ The preferred production flow is now **source → n8n → GitHub review branch �
 
 See `docs/EDITORIAL_PIPELINE.md` for the full architecture.
 
+## Duplicate protection
+
+The workflow should normalize every source URL by removing query strings/fragments before comparison. It must check:
+- already-published Nuvellum articles;
+- open editorial pull requests;
+- other candidates created earlier in the same execution.
+
+Incoming branches should use a deterministic source hash (for example `incoming/<slug>-<source-hash>`) rather than a timestamp. The same source then resolves to the same branch identity instead of generating endless parallel review branches.
+
+GitHub also runs a repository-level duplicate-source guard on editorial PRs, so a second PR using the same normalized source URL is blocked even if n8n misbehaves.
+
 ## Core rules
 
 1. Fetch candidate stories from approved sources.
