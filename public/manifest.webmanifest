@@ -1,0 +1,10 @@
+{
+  "name": "Nuvellum",
+  "short_name": "Nuvellum",
+  "description": "Beyond the headline.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf8f1",
+  "theme_color": "#6d1720",
+  "icons": []
+}

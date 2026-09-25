@@ -1,0 +1,24 @@
+---
+const { title='Nuvellum', description='Beyond the headline.', image='/images/world.svg', canonical } = Astro.props;
+const site = Astro.site ?? new URL('https://nuvellum.news');
+const url = canonical ? new URL(canonical, site) : new URL(Astro.url.pathname, site);
+const imageUrl = new URL(image, site);
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Nuvellum" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={imageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="theme-color" content="#6d1720" />
