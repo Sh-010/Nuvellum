@@ -1,48 +1,58 @@
 # Nuvellum publishing workflow
 
-Nuvellum is static-first. n8n does not need an admin password, a CMS login, or a public publishing API. It prepares a Markdown article and commits it to GitHub. Vercel then rebuilds the site.
+Nuvellum is static-first. n8n does not need an admin password, CMS login, or public publishing API.
 
-## Recommended production flow
+The preferred production flow is now **source → n8n → GitHub review branch → pull request → checks → human merge → Vercel**.
+
+See `docs/EDITORIAL_PIPELINE.md` for the full architecture.
+
+## Core rules
 
 1. Fetch candidate stories from approved sources.
-2. Extract verifiable facts and source URLs.
+2. Extract verifiable source text and keep the source URL.
 3. Draft original copy; do not republish source text.
 4. Classify as News / Analysis / Opinion / Review / Explainer / Essay / Ideas.
-5. Run duplicate, attribution, legal-risk and quality checks.
-6. Create Markdown using `docs/article-template.md`.
-7. Use `status: review` by default for politics, accusations, crime allegations, conflict coverage, identifiable-person claims, paid content, unclear sourcing, or other sensitive material.
-8. Use `status: published` only after the applicable review gate passes.
-9. Commit to `src/content/articles/<slug>.md` through GitHub.
-10. GitHub Actions validates the content and builds it.
-11. Vercel deploys the accepted `main` commit.
+5. Run duplicate, attribution, factual, legal-risk and quality checks.
+6. Build Markdown matching `docs/article-payload.schema.json`.
+7. Create a unique `incoming/<slug>-<timestamp>` GitHub branch.
+8. Commit only `src/content/articles/<slug>.md`.
+9. Open a pull request against `main`.
+10. Let GitHub Actions run content validation, dependency audit, CodeQL and the production build.
+11. Merge only after review.
 
-## GitHub step in n8n
+## Sensitive material
 
-Use GitHub's Create or Update File action.
+Politics/elections, allegations about identifiable people, crime accusations, armed conflict, sensitive personal data, and serious legal/reputational risk must use:
 
-- Path: `src/content/articles/{{$json.slug}}.md`
-- Commit message: `publish: {{$json.title}}`
-- Branch: use a review branch for sensitive content; use `main` only for content that has passed the editorial gate.
-- Never put API keys, source credentials, access tokens, cookies, or private source material in the repository.
+- `origin: "automation"`
+- `risk: "sensitive"`
+- `status: "review"`
 
-## Required article fields
+Before publication, a human editor must add `reviewedBy` and change the status to `published`.
 
-The build rejects malformed content before deployment. Every story needs:
+## Low-risk material
 
-`title`, `dek`, `section`, `type`, `author`, `date`, `readingTime`, `image`, `imageAlt`, `status`, and `tags`.
+Low-risk automated content may be prepared with `status: "published"`, but it still remains offline until the GitHub pull request is merged.
 
-File names must be lowercase URL slugs such as `new-industrial-policy.md`.
+This preserves a human merge gate without requiring WordPress.
 
-Article bodies must be Markdown. Raw HTML and dangerous script/event-handler patterns are blocked by the validator.
+## GitHub credential
+
+Use a fine-grained token limited to the Nuvellum repository. Grant only the permissions needed for repository contents and pull requests. Store it in n8n's credential store, never in the workflow JSON or repository.
 
 ## Images
 
-At launch, place approved article images in `public/uploads/YYYY/MM/` and reference them as `/uploads/YYYY/MM/file-name.webp` (or another web image format). Do not put credentials or private images in `public/`.
+At launch, use the existing section artwork or approved files under `public/uploads/YYYY/MM/`. Later, object storage can be added without changing article URLs.
 
-## Editorial safety gate
+## Failure behavior
 
-Automation should prepare sensitive stories, not autonomously publish them. Human review is required for material involving political persuasion, allegations about identifiable people, criminal claims, high-impact conflict reporting, sensitive personal data, paid praise/attack content, or unclear sourcing.
+The workflow should fail closed:
 
-## Deployment safety
+- duplicate check cannot be parsed → skip;
+- source text is insufficient → skip;
+- article JSON cannot be parsed → skip;
+- editorial review cannot be parsed → skip;
+- repository validation fails → PR cannot be considered ready;
+- build fails → do not merge.
 
-The production homepage design is restored from the checksum-pinned v5.1 archive during every build. Content automation cannot replace the homepage route. If content validation, the baseline checksum, or the Astro build fails, deployment stops instead of publishing a broken version.
+The approved v5.1 homepage baseline remains checksum-protected and cannot be replaced by article automation.
