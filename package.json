@@ -12,11 +12,11 @@
     "security:audit": "npm audit --audit-level=high"
   },
   "dependencies": {
-    "astro": "^7.3.4"
+    "astro": "7.3.4"
   },
   "devDependencies": {
-    "typescript": "^5.9.2",
-    "@astrojs/check": "^0.9.10",
-    "adm-zip": "^0.5.16"
+    "typescript": "5.9.2",
+    "@astrojs/check": "0.9.10",
+    "adm-zip": "0.5.16"
   }
 }
