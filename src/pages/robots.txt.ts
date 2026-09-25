@@ -1,1 +1,8 @@
-import type {APIRoute} from 'astro';export const GET:APIRoute=({site})=>{const root=(site||new URL('https://nuvellum.news')).toString().replace(/\/$/,'');return new Response(`User-agent: *\nAllow: /\nSitemap: ${root}/sitemap.xml\n`,{headers:{'Content-Type':'text/plain; charset=utf-8'}})};
+import type { APIRoute } from 'astro';
+
+export const GET: APIRoute = ({ site }) => {
+  const root = (site || new URL('https://nuvellum.vercel.app')).toString().replace(/\/$/,'');
+  return new Response(`User-agent: *\nAllow: /\nSitemap: ${root}/sitemap.xml\n`, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+  });
+};
