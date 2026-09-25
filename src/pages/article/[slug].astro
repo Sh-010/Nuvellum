@@ -10,9 +10,26 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = article;
 const related = (await getArticles()).filter((a) => a.slug !== article.slug).slice(0,3);
+const site = Astro.site ?? new URL('https://nuvellum.vercel.app');
+const articleUrl = new URL(`/article/${article.slug}`, site).toString();
+const imageUrl = new URL(article.image, site).toString();
+const publishedTime = `${article.date}T00:00:00Z`;
+const articleSchema = {
+  '@context':'https://schema.org',
+  '@type': article.type === 'Opinion' || article.type === 'Essay' || article.type === 'Ideas' ? 'Article' : 'NewsArticle',
+  headline: article.title,
+  description: article.dek,
+  datePublished: publishedTime,
+  dateModified: publishedTime,
+  author: {'@type':'Person','name':article.author},
+  publisher: {'@type':'Organization','name':'Nuvellum','url':site.toString()},
+  mainEntityOfPage: articleUrl,
+  image: [imageUrl]
+};
 ---
 <!doctype html><html lang="en"><head>
-<SiteHead title={`${article.title} — Nuvellum`} description={article.dek} image={article.image} />
+<SiteHead title={`${article.title} — Nuvellum`} description={article.dek} image={article.image} type="article" publishedTime={publishedTime} modifiedTime={publishedTime} author={article.author} />
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
 </head><body>
 <div class="article-curtain" id="articleCurtain"></div><div class="progress" id="progress"></div>
 <header class="site-header"><div class="head wrap"><a class="back" href="/">← Back to Nuvellum</a><a class="brand article-logo" id="articleLogo" href="/"><span>N</span><span>U</span><span>V</span><span>E</span><span>L</span><span>L</span><span>U</span><span>M</span></a><div class="head-actions"><button class="btn" id="fontBtn">Text +</button><button class="btn" id="saveBtn">Save</button><button class="btn" id="shareBtn">Share</button><button class="btn" id="themeBtn">Night</button></div></div></header>
