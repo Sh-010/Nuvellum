@@ -1,10 +1,19 @@
 # Deployment
 
-Cloudflare Pages settings:
+## Current production
+
+Nuvellum is deployed on Vercel at:
+
+`https://nuvellum.vercel.app`
+
+The Vercel project is connected to `Sh-010/Nuvellum` and deploys from the `main` branch.
+
+## Build settings
+
 - Framework preset: Astro
 - Build command: `npm run build`
 - Output directory: `dist`
 - Node version: 22
-- Environment variable: `SITE_URL=https://your-domain.example`
+- Canonical site URL: `https://nuvellum.vercel.app`
 
-Connect the GitHub repository in Cloudflare Pages. Every commit to `main` deploys automatically. Preview branches can be enabled for editorial testing.
+When a custom domain such as `nuvellum.news` is purchased and connected, update `SITE_URL` in Vercel and this repository so canonical URLs, sitemap, RSS and Open Graph metadata use the custom domain.
