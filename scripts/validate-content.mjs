@@ -58,6 +58,19 @@ const errors = [];
 const seenTitles = new Map();
 const seenSources = new Map();
 
+function normalizeSource(value) {
+  try {
+    const u = new URL(String(value || '').trim());
+    u.hash = '';
+    u.search = '';
+    u.hostname = u.hostname.toLowerCase();
+    u.pathname = u.pathname.replace(/\/+$/, '') || '/';
+    return u.toString();
+  } catch {
+    return String(value || '').trim().replace(/[?#].*$/, '').replace(/\/+$/, '');
+  }
+}
+
 for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
   const path = join(dir, name);
   const src = readFileSync(path, 'utf8');
@@ -101,7 +114,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       } else {
         for (const sourceUrl of data.sourceUrls) {
           if (!/^https:\/\//i.test(String(sourceUrl))) errors.push(`${name}: source URL must use https://`);
-          const key = String(sourceUrl).trim();
+          const key = normalizeSource(sourceUrl);
           if (key) {
             if (seenSources.has(key)) errors.push(`${name}: source URL already used by ${seenSources.get(key)}`);
             else seenSources.set(key, name);

@@ -1,0 +1,27 @@
+name: Editorial duplicate guard
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/content/articles/**"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  duplicate-source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check source URLs against other open PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node scripts/check-pr-duplicates.mjs
