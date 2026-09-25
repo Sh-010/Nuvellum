@@ -134,6 +134,13 @@ function productionizeHome(html) {
   for (const [from, to] of replacements) html = html.split(from).join(to);
   html = patchStaticStoryLinks(html);
 
+  // The v5.1 mockup displayed a fake newsletter success message. Until a real
+  // subscriber backend is connected, be explicit that no address is stored.
+  html = html.replace(
+    /msg\.textContent=\`Welcome to The Nuvellum Brief — \\$\{email\} is on the list\.\`;\s*msg\.classList\.add\('changed'\);qs\('#email',newForm\)\.value='';/,
+    "msg.textContent='Newsletter signup is not live yet — no address was stored.';msg.classList.add('changed');"
+  );
+
   // Any real anchor is navigation and must not also trigger the preview drawer.
   html = html.replace("return !target.closest('a[href=\"article.html\"],button,input,form,.bookmark,.save-btn');", "return !target.closest('a[href],button,input,form,.bookmark,.save-btn');");
 
@@ -141,6 +148,7 @@ function productionizeHome(html) {
 (()=>{
   const routes=${JSON.stringify(storyRoutes)};
   const routeFor=t=>routes[(t||'').trim()]||'/article/world-in-motion';
+  const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   document.querySelectorAll('article').forEach(card=>{
     const title=(card.dataset.title||card.querySelector('h1,h2,h3')?.textContent||'').trim();
     const route=routes[title];
@@ -172,7 +180,7 @@ function productionizeHome(html) {
       const q=input.value.trim().toLowerCase();
       if(!q||!fullIndex.length)return;
       const matches=fullIndex.filter(x=>[x.title||'',x.section||'',x.dek||'',(x.tags||[]).join(' ')].join(' ').toLowerCase().includes(q)).slice(0,8);
-      results.innerHTML=matches.length?matches.map(x=>'<a class="result" href="/article/'+x.slug+'"><div class="cat">'+(x.section||'Nuvellum')+'</div><h4>'+x.title+'</h4></a>').join(''):'<div class="empty">No stories matched that search.</div>';
+      results.innerHTML=matches.length?matches.map(x=>'<a class="result" href="/article/'+encodeURIComponent(x.slug)+'"><div class="cat">'+esc(x.section||'Nuvellum')+'</div><h4>'+esc(x.title)+'</h4></a>').join(''):'<div class="empty">No stories matched that search.</div>';
     });
   }
 })();
