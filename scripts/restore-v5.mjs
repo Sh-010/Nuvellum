@@ -79,6 +79,35 @@ function addHomeMetadata(html) {
   return injectBeforeHeadClose(html, meta);
 }
 
+function patchStaticStoryLinks(html) {
+  const scriptStart = html.indexOf('<script>');
+  const cutoff = scriptStart >= 0 ? scriptStart : html.length;
+  let content = html.slice(0, cutoff);
+  const tail = html.slice(cutoff);
+  for (const [title, route] of Object.entries(storyRoutes)) {
+    let from = 0;
+    while (true) {
+      const pos = content.indexOf(title, from);
+      if (pos < 0) break;
+      const start = content.lastIndexOf('<article', pos);
+      const endTag = content.indexOf('</article>', pos);
+      if (start >= 0 && endTag > pos) {
+        const end = endTag + '</article>'.length;
+        const card = content.slice(start, end);
+        const next = card.split('href="article.html"').join(`href="${route}"`);
+        if (next !== card) content = content.slice(0, start) + next + content.slice(end);
+        from = start + next.length;
+      } else {
+        from = pos + title.length;
+      }
+    }
+  }
+  content = content
+    .replace('id="tickerText" href="article.html"', 'id="tickerText" href="/article/world-in-motion"')
+    .replace('id="drawerRead" href="article.html"', 'id="drawerRead" href="/article/world-in-motion"');
+  return content + tail;
+}
+
 function productionizeHome(html) {
   // Preserve v5.1 markup/CSS/motion exactly; only destinations and metadata change.
   const replacements = [
@@ -103,6 +132,7 @@ function productionizeHome(html) {
     ['<a href="#">Sports</a>', '<a href="/section/sports">Sports</a>']
   ];
   for (const [from, to] of replacements) html = html.split(from).join(to);
+  html = patchStaticStoryLinks(html);
 
   // Any real anchor is navigation and must not also trigger the preview drawer.
   html = html.replace("return !target.closest('a[href=\"article.html\"],button,input,form,.bookmark,.save-btn');", "return !target.closest('a[href],button,input,form,.bookmark,.save-btn');");
