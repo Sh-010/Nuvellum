@@ -3,18 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "scripts": {
-    "dev": "node scripts/restore-v5.mjs && astro dev",
-    "build": "node scripts/restore-v5.mjs && astro build",
-    "preview": "astro preview",
-    "check": "astro check"
-  },
-  "dependencies": {
-    "astro": "^7.3.4"
-  },
-  "devDependencies": {
-    "typescript": "^5.9.2",
-    "@astrojs/check": "^0.9.10",
-    "adm-zip": "^0.5.16"
-  }
+  "scripts": {"dev":"astro dev","build":"astro build","preview":"astro preview","check":"astro check"},
+  "dependencies": {"astro":"^7.3.4"},
+  "devDependencies": {"typescript":"^5.9.2","@astrojs/check":"^0.9.10"}
 }
