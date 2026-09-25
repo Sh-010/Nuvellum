@@ -149,6 +149,10 @@ function productionizeHome(html) {
   const bridge = `<script id="nuvellum-production-bridge">
 (()=>{
   const routes=${JSON.stringify(storyRoutes)};
+  document.querySelectorAll('article[data-route]').forEach(card=>{
+    const title=(card.dataset.title||card.querySelector('h1,h2,h3')?.textContent||'').trim();
+    if(title&&card.dataset.route) routes[title]=card.dataset.route;
+  });
   const routeFor=t=>routes[(t||'').trim()]||'/article/world-in-motion';
   const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   document.querySelectorAll('article').forEach(card=>{
