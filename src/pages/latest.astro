@@ -1,0 +1,20 @@
+---
+import SiteHead from '../components/SiteHead.astro';
+import '../styles/global.css';
+import { getArticles } from '../lib/articles';
+
+const articles = await getArticles();
+---
+<!doctype html><html lang="en"><head>
+<SiteHead title="Latest — Nuvellum" description="The latest published reporting, analysis and ideas from Nuvellum." />
+</head><body>
+<div class="topline"></div>
+<header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header>
+<main class="section wrap">
+  <div class="section-head"><h2>Latest</h2><a href="/">Home</a></div>
+  <div class="cards">
+    {articles.map((a)=><article class="card motion-story"><a href={`/article/${a.slug}`}><img src={a.image} alt={a.imageAlt}/><div class="kicker">{a.section} · {a.type}</div><h3>{a.title}</h3><p>{a.dek}</p><div class="meta">{new Date(a.date+'T00:00:00Z').toLocaleDateString('en-GB',{year:'numeric',month:'short',day:'numeric',timeZone:'UTC'})} · {a.readingTime} read</div></a></article>)}
+  </div>
+</main>
+<footer class="footer"><div class="wrap"><div class="footer-brand">NUVELLUM</div><div class="tag">Beyond the headline.</div></div></footer>
+</body></html>
