@@ -19,7 +19,7 @@ reviewedBy: "Sam Shehab"
 
 Ukrainian President Volodymyr Zelensky said Russia has widened its attacks to include data centres and internet providers, arguing that the strikes are intended to disrupt people's ability to stay connected, study and work.
 
-The BBC reported that a Russian drone struck a business centre in Kyiv on Friday, killing four people and damaging a data centre operated by Datagroup, according to Ukrainian officials. A separate attack killed a 14-year-old boy. Kyiv Mayor Vitaliy Klitschko said the broader overnight attacks left seven people dead and 59 injured.
+Ukrainian officials said a Russian drone struck a business centre in Kyiv on Friday, killing four people and damaging a data centre operated by Datagroup. A separate attack killed a 14-year-old boy, according to the BBC. Kyiv Mayor Vitaliy Klitschko said the broader overnight attacks left seven people dead and 59 injured.
 
 ## Communications infrastructure under attack
 
@@ -37,4 +37,4 @@ Serhii Beskrestnov, a defence-technology adviser to Zelensky, said local interne
 
 Zelensky later said additional measures had been approved to protect data centres and other critical communications facilities.
 
-The competing claims around the targets remain part of the broader information war surrounding the conflict: Ukrainian officials describe the infrastructure as essential to civilian life, while Russia says at least some of the facilities support military intelligence.
+Ukrainian officials describe the communications infrastructure as essential to civilian life, while Russia says at least some of the facilities support military intelligence. Those claims are attributed to the respective sides and are not presented here as independent findings.
