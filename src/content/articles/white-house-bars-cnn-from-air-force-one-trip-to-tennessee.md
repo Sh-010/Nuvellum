@@ -1,37 +1,46 @@
 ---
-title: "White House Bars CNN From Air Force One Trip to Tennessee"
-dek: "The White House has excluded CNN from travelling on Air Force One for a scheduled presidential trip to Tennessee, following previous disputes over media access."
+title: "White House leaves CNN off Air Force One trip to Tennessee"
+dek: "CNN was omitted from the media schedule for President Donald Trump's Saturday trip, days after a federal judge ordered broader White House access restored."
 section: "World"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "2 min"
 image: "/images/world.svg"
-imageAlt: "White House Bars CNN From Air Force One Trip to Tennessee"
+imageAlt: "Editorial illustration representing Air Force One and White House press access"
 status: "review"
-tags: ["White House","CNN","Donald Trump","media freedom","Air Force One"]
-sourceUrls: ["https://www.bbc.co.uk/news/articles/cxq633770y16o?at_medium=RSS&at_campaign=rss"]
-sourceNote: "Prepared from the linked source and subject to Nuvellum editorial review."
+tags: ["White House","CNN","Donald Trump","Press Access","Air Force One"]
+sourceUrls: ["https://www.bbc.co.uk/news/articles/cxq633770y16o","https://www.reuters.com/legal/government/trumps-white-house-media-ban-faces-long-odds-court-legal-experts-say-2026-09-22/"]
+sourceNote: "Prepared from BBC reporting and cross-checked against Reuters reporting on the underlying White House media-access dispute. Sensitive political coverage requires human editorial approval."
 origin: "automation"
 risk: "sensitive"
 reviewedBy: ""
 ---
-## Exclusion from Air Force One Schedule
 
-US broadcaster CNN has been barred from travelling with President Donald Trump on Air Force One for a scheduled trip to Tennessee on Saturday. CNN had been set to accompany the president for a college American football game until a White House media schedule released on Friday night omitted the broadcaster.
+CNN was left off the Air Force One media schedule for President Donald Trump's trip to Tennessee on Saturday, extending a dispute between the White House and several news organisations over press access.
 
-The BBC has requested comment from the White House regarding the decision. According to CNN, no other news outlet was listed as a replacement in the tentative presidential schedule.
+CNN had been scheduled to travel with the president for a college football game in Knoxville. A White House note released on Friday night did not list the broadcaster, and CNN said no other television outlet was named as its replacement in the tentative schedule.
 
-## Broader Disputes Over Media Access
+The BBC said it had requested comment from the White House.
 
-This development follows a series of conflicts between the administration and several news organizations. Last week, President Trump banned journalists from CNN, Politico, and MS NOW from the White House, accusing them of producing "fiction or lies" regarding his administration.
+## Dispute follows broader White House access ban
 
-In response, the affected outlets stated they were pursuing legal action and accused the administration of violating their constitutional rights concerning free speech and freedom of the press. Additionally, four other television networks that share a daily rotation of White House coverage—ABC, CBS, Fox News, and NBC—temporarily paused their broadcasts of the president in solidarity with the banned organizations. During this period, the White House introduced its own streaming channel, Trump TV, ahead of the United General Assembly in New York.
+The Air Force One decision came after Trump barred journalists from CNN, Politico and MS NOW from the White House, accusing the outlets of producing "fiction or lies" about his administration.
 
-## Legal Rulings and Recent Developments
+The three organisations challenged the restrictions in court and argued that the bans violated constitutional protections for speech and press freedom.
 
-A federal judge subsequently ruled that barring the news outlets from the White House was likely unconstitutional, requiring the administration to permit their return. Despite this, the White House denied entry to certain CNN and MS NOW reporters assigned to cover arrivals at a state dinner for Chinese leader Xi Jinping on Thursday.
+A federal judge later made a preliminary finding that the broader White House restrictions were likely unconstitutional and ordered access restored for the affected journalists while the case proceeds.
 
-A White House communications account posted on X that the outlets did not "just get to have free rein into every part of the White House, every event, and every press call." Regular US television coverage resumed on Friday after officials allowed reporters entry to the premises.
+That ruling concerned White House access; it did not itself establish a general right to a seat on Air Force One.
 
-President Trump is scheduled to attend a college football game between the University of Tennessee and the University of Texas at Neyland Stadium in Knoxville on Saturday.
+Reuters reported that legal experts viewed the broader restrictions as facing serious constitutional challenges because press access rules cannot be imposed arbitrarily or as punishment for a publication's viewpoint.
+
+## Press-pool tensions continue
+
+CNN and MS NOW said some of their journalists were still denied access to a White House event after the court order.
+
+Four television networks that participate in the White House pool rotation with CNN — ABC, CBS, Fox News and NBC — had temporarily paused video coverage of the president in solidarity with the excluded outlets. Regular television coverage resumed on Friday after reporters were again allowed onto the White House grounds.
+
+The White House also launched its own streaming channel, Trump TV, ahead of the United Nations General Assembly in New York.
+
+Trump was scheduled to attend the University of Tennessee-University of Texas football game at Neyland Stadium in Knoxville on Saturday.
