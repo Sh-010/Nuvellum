@@ -8,13 +8,13 @@ date: "2026-09-26"
 readingTime: "3 min"
 image: "/images/world.svg"
 imageAlt: "Editorial illustration representing shipping through the Strait of Hormuz"
-status: "review"
+status: "published"
 tags: ["Iran","United States","Strait of Hormuz","Oil","Middle East"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko","https://www.reuters.com/world/middle-east/iran-ready-reopen-strait-hormuz-if-us-eases-military-pressure-lifts-blockade-2026-09-22/"]
 sourceNote: "Prepared from BBC reporting and cross-checked against Reuters reporting on Iran's conditions for reopening the strait. Sensitive geopolitical coverage requires human editorial approval."
 origin: "automation"
 risk: "sensitive"
-reviewedBy: ""
+reviewedBy: "Sam Shehab"
 ---
 
 Iran says it has proposed an agreement to the United States that could reopen the Strait of Hormuz within seven days if Washington accepts conditions already set out in a June memorandum.
