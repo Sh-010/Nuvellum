@@ -1,5 +1,10 @@
 name: Auto-open editorial PR
 
+# Opens, or corrects, the editorial PR for an incoming/** branch.
+# Title and body come from the article the branch adds relative to main,
+# read at the pushed commit (scripts/open-editorial-pr.mjs). The script runs
+# from the default branch, never from branch code.
+
 on:
   push:
     branches:
@@ -9,104 +14,26 @@ permissions:
   contents: read
   pull-requests: write
 
+concurrency:
+  group: open-editorial-pr-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   open-pr:
     if: startsWith(github.ref, 'refs/heads/incoming/')
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: Open PR for committed article
-        uses: actions/github-script@v7
+      - uses: actions/checkout@v4
         with:
-          github-token: ${{ github.token }}
-          script: |
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const branch = context.ref.replace('refs/heads/', '');
-
-            const commit = await github.rest.repos.getCommit({
-              owner,
-              repo,
-              ref: context.sha
-            });
-            const files = (commit.data.files || []).map((f) => f.filename);
-            const articlePath = files.find((p) => /^src\/content\/articles\/.*\.md$/.test(p));
-
-            // Image-only commit in the same incoming branch: wait for the article commit.
-            if (!articlePath) {
-              core.info('No article file in this push; nothing to open yet.');
-              return;
-            }
-
-            const existing = await github.rest.pulls.list({
-              owner,
-              repo,
-              state: 'open',
-              head: owner + ':' + branch,
-              base: 'main'
-            });
-            if (existing.data.length) {
-              core.info('PR already exists for ' + branch);
-              return;
-            }
-
-            const file = await github.rest.repos.getContent({
-              owner,
-              repo,
-              path: articlePath,
-              ref: context.sha
-            });
-
-            const markdown = Buffer.from(file.data.content, 'base64').toString('utf8');
-            const frontmatter = markdown.split('---')[1] || '';
-
-            const value = (key) => {
-              const m = frontmatter.match(new RegExp('^' + key + ':\\s*"?(.*?)"?\\s*$', 'm'));
-              return m ? m[1].replace(/^"|"$/g, '') : '';
-            };
-            const sourceMatch = frontmatter.match(/^sourceUrls:\s*\["([^"]+)"/m);
-
-            const title = value('title') || articlePath.split('/').pop().replace(/\.md$/, '').replace(/-/g, ' ');
-            const risk = value('risk') || 'unknown';
-            const status = value('status') || 'unknown';
-            const editorialReview = value('editorialReview') || 'missing';
-            const verification = value('verification') || (risk === 'sensitive' ? 'missing' : 'n/a');
-            const source = sourceMatch ? sourceMatch[1] : '';
-
-            // Informational only. The binding decision is made by the
-            // auto-publish gate (scripts/lib/editorial.mjs) after all checks pass.
-            const cleared = status === 'published' && editorialReview === 'passed'
-              && (risk === 'low' || (risk === 'sensitive' && verification === 'cleared'));
-            const reviewNote = cleared
-              ? 'Cleared by the newsroom pipeline. The publication gate will merge this PR automatically once every required check is green (if NUVELLUM_AUTOPUBLISH is on).'
-              : '⛔ Not cleared for automatic publication. This PR will not be merged automatically; close it or fix it at the source.';
-
-            try {
-              await github.rest.pulls.create({
-                owner,
-                repo,
-                head: branch,
-                base: 'main',
-                title: 'Editorial: ' + title,
-                body: [
-                  'Automated Nuvellum editorial candidate.',
-                  '',
-                  '**Risk:** ' + risk,
-                  '**Proposed status:** ' + status,
-                  '**Editorial review:** ' + editorialReview,
-                  '**Sensitive verification:** ' + verification,
-                  '**Source:** ' + source,
-                  '',
-                  reviewNote,
-                  '',
-                  'This PR was opened by Nuvellum repository automation after n8n committed the article branch.',
-                  'Label it `hold` to stop automatic publication.'
-                ].join('\n')
-              });
-            } catch (err) {
-              // A PR opened concurrently (by a person or a re-run) is fine.
-              if (err.status === 422 && /already exists/i.test(String(err.message))) {
-                core.info('PR already exists for ' + branch);
-                return;
-              }
-              throw err;
-            }
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Open or correct the PR from this branch's article
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          HEAD_BRANCH: ${{ github.ref_name }}
+          HEAD_SHA: ${{ github.sha }}
+        run: node scripts/open-editorial-pr.mjs
