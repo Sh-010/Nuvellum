@@ -11,7 +11,9 @@ Crime is now a first-class Nuvellum section. Opinion & Ideas remains human-led r
 
 Nuvellum is static-first. n8n does not need an admin password, CMS login, or public publishing API.
 
-The preferred production flow is now **source → n8n → GitHub review branch → pull request → checks → human merge → Vercel**.
+The production flow is **source → n8n → `incoming/**` branch → checks → automatic PR → publication gate → Vercel**.
+
+The canonical workflow lives in `n8n/workflows/`. Its contract is in `n8n/README.md`, and the publication policy is in `docs/EDITORIAL_PIPELINE.md`.
 
 See `docs/EDITORIAL_PIPELINE.md` for the full architecture.
 
@@ -24,7 +26,7 @@ The workflow should normalize every source URL by removing query strings/fragmen
 
 Incoming branches should use a deterministic source hash (for example `incoming/<slug>-<source-hash>`) rather than a timestamp. The same source then resolves to the same branch identity instead of generating endless parallel review branches.
 
-GitHub also runs a repository-level duplicate-source guard on editorial PRs, so a second PR using the same normalized source URL is blocked even if n8n misbehaves.
+GitHub also runs a repository-level duplicate-source guard on every push to `incoming/**`, so a second in-flight branch using the same normalized source URL fails its checks and cannot be published even if n8n misbehaves.
 
 ## Core rules
 
@@ -34,27 +36,29 @@ GitHub also runs a repository-level duplicate-source guard on editorial PRs, so 
 4. Classify as News / Analysis / Opinion / Review / Explainer / Essay / Ideas.
 5. Run duplicate, attribution, factual, legal-risk and quality checks.
 6. Build Markdown matching `docs/article-payload.schema.json`.
-7. Create a unique `incoming/<slug>-<timestamp>` GitHub branch.
-8. Commit only `src/content/articles/<slug>.md`.
-9. Open a pull request against `main`.
-10. Let GitHub Actions run content validation, dependency audit, CodeQL and the production build.
-11. Merge only after review.
+7. Create the `incoming/<slug>-<source-hash>` GitHub branch.
+8. Commit `src/content/articles/<slug>.md` and, optionally, `public/generated/ai/<slug>.svg`.
+9. GitHub Actions runs content validation, the SVG safety check, dependency audit, CodeQL, the duplicate guard and the production build on the pushed commit.
+10. GitHub opens the PR automatically. The publication gate merges it only if the story is cleared and every check is green.
 
 ## Sensitive material
 
-Politics/elections, allegations about identifiable people, crime accusations, armed conflict, sensitive personal data, and serious legal/reputational risk must use:
+Politics/elections, allegations about identifiable people, crime accusations, armed conflict, sensitive personal data, and serious legal/reputational risk use `risk: "sensitive"`.
 
-- `origin: "automation"`
-- `risk: "sensitive"`
-- `status: "review"`
+A sensitive story may be published automatically only when the dedicated verification pass explicitly cleared it:
 
-Before publication, a human editor must add `reviewedBy` and change the status to `published`.
+- `editorialReview: "passed"`
+- `verification: "cleared"`
+- `reviewedBy: "Nuvellum Verification Pipeline"`
+- `status: "published"`
+
+A failed or uncertain verification means `status: "review"`, and the story never publishes.
 
 ## Low-risk material
 
-Low-risk automated content may be prepared with `status: "published"`, but it still remains offline until the GitHub pull request is merged.
+Low-risk stories need `editorialReview: "passed"` and `status: "published"`. They publish automatically once every repository check is green.
 
-This preserves a human merge gate without requiring WordPress.
+See `docs/EDITORIAL_PIPELINE.md` for the full gate, the kill switch (`NUVELLUM_AUTOPUBLISH`) and the `hold` label.
 
 ## GitHub credential
 
@@ -62,7 +66,8 @@ Use a fine-grained token limited to the Nuvellum repository. Grant only the perm
 
 ## Images
 
-At launch, use the existing section artwork or approved files under `public/uploads/YYYY/MM/`. Later, object storage can be added without changing article URLs.
+- Story-specific AI art: `public/generated/ai/<slug>.svg`, referenced as `image: "/generated/ai/<slug>.svg"`. It must pass the strict SVG safety check in `scripts/lib/svg-safety.mjs`.
+- Otherwise use the section artwork (`/images/<section>.svg`) or approved files under `public/uploads/YYYY/MM/`. Automated stories without custom art get a build-time illustration.
 
 ## Failure behavior
 
@@ -72,7 +77,8 @@ The workflow should fail closed:
 - source text is insufficient → skip;
 - article JSON cannot be parsed → skip;
 - editorial review cannot be parsed → skip;
-- repository validation fails → PR cannot be considered ready;
-- build fails → do not merge.
+- verification failed or uncertain → never published;
+- repository validation fails → the gate will not merge;
+- build fails → the gate will not merge.
 
 The approved v5.1 homepage baseline remains checksum-protected and cannot be replaced by article automation.
