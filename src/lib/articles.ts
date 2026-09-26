@@ -39,7 +39,10 @@ export async function getArticles(): Promise<Article[]> {
         getHeadings: mod.getHeadings
       } as Article;
       if (article.origin === 'automation') {
-        article.image = `/generated/${slug}.svg`;
+        const hasCustomEditorialImage = typeof article.image === 'string'
+          && article.image.trim()
+          && !article.image.startsWith('/images/');
+        if (!hasCustomEditorialImage) article.image = `/generated/${slug}.svg`;
         if (!article.imageAlt) article.imageAlt = `Original Nuvellum editorial illustration for ${article.title}`;
       }
       return article;
