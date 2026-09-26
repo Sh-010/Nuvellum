@@ -6,7 +6,7 @@ function parseSourceUrl(value) {
   if (!parts) throw new Error('Invalid source host');
   return { protocol: match[1].toLowerCase(), hostname: parts[1], port: parts[2] || '', pathname: match[3] || '/', search: match[4] || '' };
 }
-const TRACKING_PARAM = /^(utm_[a-z0-9_]*|fbclid|gclid|dclid|msclkid|yclid|igshid|mc_cid|mc_eid|_ga|_gl|__source|at_[a-z0-9_]*|cmp|cmpid|intcmp|ocid|ns_[a-z0-9_]*|ref|ref_src|referrer|src|source|smid|taid|partner|mod|traffic_source|ito|xtor|s_cid|sr_share|guccounter|guce_[a-z_]*|rss|feed|feedname|ftag|dcmp|cid|eid|mbid|spm|share|sh)$/i;
+const TRACKING_PARAM = /^(utm_[a-z0-9_]*|fbclid|gclid|dclid|msclkid|yclid|igshid|mc_cid|mc_eid|_ga|_gl|__source|at_[a-z0-9_]*|cmp|cmpid|intcmp|ocid|ns_[a-z0-9_]*|ref|ref_src|referrer|src|source|smid|taid|partner|mod|traffic_source|ito|xtor|s_cid|sr_share|guccounter|guce_[a-z_]*|rss|feed|feedname|ftag|dcmp|cid|eid|mbid|spm|share|sh|maca|wt_[a-z0-9_]*|wt.[a-z0-9_.]*|cmpid|emc|ICID|icid|ftcamp|segmentid|mkt_tok|oly_[a-z_]*|rb_clickid|s_kwcid|vero_[a-z_]*|trk|trkCampaign)$/i;
 // Canonical form for sourceUrls: https, lowercase host, no fragment, no tracking params, no trailing slash.
 function canonicalSourceUrl(value) {
   try {

@@ -27,7 +27,7 @@ function hintFor(item) {
 
 // Formats that are not standalone text articles: live blogs, video/audio, galleries, podcasts, newsletters.
 const blockedPaths = [
-  /\/video(s)?\//i, /\/av\//i, /\/watch\//i, /\/live(blog)?s?\//i, /\/live-news\//i, /\/live-updates?\//i, /-live-updates?\b/i,
+  /\/video(s)?\//i, /\/av\//i, /\/watch\//i, /\/live(blog)?s?\//i, /\/live-\d+/i, /\/live-news\//i, /\/live-updates?\//i, /-live-updates?\b/i,
   /\/liveblog\//i, /\/audio\//i, /\/sounds\//i, /\/podcasts?\b/i, /\/galler(y|ies)\//i, /\/in-pictures\//i,
   /\/pictures\//i, /\/photos?\//i, /\/slideshows?\//i, /\/newsletters?\//i, /\/quiz(zes)?\//i
 ];
