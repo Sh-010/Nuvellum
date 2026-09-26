@@ -1,11 +1,14 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import { validateSvg } from './lib/svg-safety.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
 const dir = join(root, 'src', 'content', 'articles');
+const aiArtDir = join(root, 'public', 'generated', 'ai');
+const AI_IMAGE_RE = /^\/generated\/ai\/([a-z0-9]+(?:-[a-z0-9]+)*)\.svg$/;
 
 const required = ['title','dek','section','type','author','date','readingTime','image','imageAlt','status','tags'];
 const statuses = new Set(['draft','review','published']);
@@ -99,7 +102,17 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
-    if (data.image && !/^(\/images\/|\/uploads\/|https:\/\/)/.test(String(data.image))) errors.push(`${name}: image must use /images/, /uploads/ or https://`);
+    if (data.image) {
+      const image = String(data.image);
+      const aiImage = image.match(AI_IMAGE_RE);
+      if (image.startsWith('/generated/')) {
+        if (!aiImage) errors.push(`${name}: generated images must be /generated/ai/<slug>.svg`);
+        else if (aiImage[1] !== slug) errors.push(`${name}: AI image must belong to this article (/generated/ai/${slug}.svg)`);
+        else if (!existsSync(join(aiArtDir, `${slug}.svg`))) errors.push(`${name}: AI image file public/generated/ai/${slug}.svg is missing`);
+      } else if (!/^(\/images\/|\/uploads\/|https:\/\/)/.test(image)) {
+        errors.push(`${name}: image must use /images/, /uploads/, /generated/ai/ or https://`);
+      }
+    }
     if (!body) errors.push(`${name}: article body is empty`);
     if (/<\s*\/?\s*[A-Za-z][^>]*>/.test(body)) errors.push(`${name}: raw HTML is blocked in article bodies; use Markdown only`);
     for (const pattern of dangerous) if (pattern.test(src)) errors.push(`${name}: blocked unsafe markup or URL pattern: ${pattern}`);
@@ -135,6 +148,18 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     }
   } catch (err) {
     errors.push(err.message);
+  }
+}
+
+// Every committed AI illustration is untrusted input served from our origin.
+if (existsSync(aiArtDir)) {
+  for (const file of readdirSync(aiArtDir).sort()) {
+    if (file.startsWith('.')) continue;
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/.test(file)) {
+      errors.push(`public/generated/ai/${file}: only <slug>.svg files are allowed here`);
+      continue;
+    }
+    for (const problem of validateSvg(readFileSync(join(aiArtDir, file), 'utf8'), `public/generated/ai/${file}`)) errors.push(problem);
   }
 }
 
