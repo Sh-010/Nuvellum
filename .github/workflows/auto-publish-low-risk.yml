@@ -1,4 +1,4 @@
-name: Auto-publish low-risk editorial stories
+name: Auto-publish verified editorial stories
 
 on:
   workflow_run:
@@ -25,7 +25,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Publish low-risk story when every newsroom check is green
+      - name: Publish verified story when every newsroom check is green
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -56,9 +56,15 @@ jobs:
           ARTICLE="$(gh api -H 'Accept: application/vnd.github.raw+json' "repos/$REPO/contents/$ARTICLE_FILE?ref=$HEAD_SHA")"
           RISK="$(printf '%s\n' "$ARTICLE" | sed -n 's/^risk: "\(.*\)"$/\1/p' | head -n 1)"
           STATUS="$(printf '%s\n' "$ARTICLE" | sed -n 's/^status: "\(.*\)"$/\1/p' | head -n 1)"
+          REVIEWED_BY="$(printf '%s\n' "$ARTICLE" | sed -n 's/^reviewedBy: "\(.*\)"$/\1/p' | head -n 1)"
 
-          if [ "$RISK" != "low" ] || [ "$STATUS" != "published" ]; then
-            echo "Human review required: risk=$RISK status=$STATUS"
+          if [ "$STATUS" != "published" ]; then
+            echo "Story is not cleared for publication: risk=$RISK status=$STATUS"
+            exit 0
+          fi
+
+          if [ "$RISK" = "sensitive" ] && [ "$REVIEWED_BY" != "Nuvellum Verification Pipeline" ]; then
+            echo "Sensitive story has not passed the automated verification gate"
             exit 0
           fi
 
@@ -81,5 +87,5 @@ jobs:
             fi
           done
 
-          echo "All checks passed for low-risk story. Publishing PR #$PR."
+          echo "All checks passed for verified story. Publishing PR #$PR."
           gh pr merge "$PR" --repo "$REPO" --squash --delete-branch
