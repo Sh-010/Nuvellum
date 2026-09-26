@@ -67,3 +67,41 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 3. Leave `NUVELLUM_AUTOPUBLISH` unset until n8n emits `editorialReview` and `verification`.
 4. Decide what to do about the 18 placeholder articles.
 5. Social accounts don't exist yet. Distribution stays in dry run.
+
+## 2026-09-26: reconciliation into one production PR (Claude Code, n8n MCP session)
+
+Two sessions worked in parallel:
+- the `stabilize/newsroom` sprint (#30 and #31);
+- the local `newsroom-v6.5-stabilization` branch, which had live n8n access over MCP.
+
+This branch (`stabilize/newsroom`, PR #31) is now the single production PR.
+
+**Base:** #31. It is a superset of #30 (commit `0ce89c9`) and of the repo side of `newsroom-v6.5-stabilization`:
+- same AI-art rule, with a stricter shared `svg-safety.mjs` and tests;
+- same `publishedAt` ordering;
+- adds build hygiene, lockfile and `npm ci`;
+- adds checks on `incoming/**` pushes;
+- adds the publication gate with the `NUVELLUM_AUTOPUBLISH` kill switch, off by default.
+
+**Added from `newsroom-v6.5-stabilization`:**
+- `n8n/workflows/nuvellum-newsroom.json`: the sanitized export of the **live** v6.5 workflow (`8hXx6NuZuJU9dRR1`, version `b2693640`), sanitized with `npm run n8n:sanitize`; passes `check-n8n-exports`.
+- `n8n/README.md`: documents what is actually deployed in each live node. The live code is canonical; the generated snippets are an alternative implementation and must not overwrite live behaviour untested. Branch hash (FNV-1a in live v6.5) and SVG handling (sanitize, then strict re-check) are corrected.
+- The last human-gate wording is removed: `docs/N8N_PUBLISHING.md`, `docs/SOURCE_MATRIX.md`, and one sentence on `src/pages/standards.astro`. Outdated "n8n doesn't emit the contract" notes in `AGENTS.md` are fixed.
+
+**Compatibility, verified locally:** a story produced by the live v6.5 Code nodes, with its sanitized AI SVG, passes this branch's `validate-content.mjs`, `newStoryQualityProblems` and `contentPolicyErrors`:
+- low-risk: 0 problems;
+- sensitive with `verification: "cleared"`: passes;
+- `verification: "failed"`: rejected.
+
+**Removed from production scope:**
+- `engines/`, `distribution.yml`, `engines.yml`, `docs/ENGINES.md` and the gate's distribution dispatch. The gate now needs only `actions: read`.
+- These are preserved unchanged on branch **`engines/distribution-shorts`** (= `1257948`).
+
+**Superseded, close after this PR merges:**
+- #30 (identical commit included here);
+- #27 (see `docs/RECONCILIATION-2026-09-26.md`);
+- the `newsroom-v6.5-stabilization` branch (repo changes superseded; its live-n8n history is recorded here).
+
+Still open: #26 and #29 must be regenerated, and #28 must be closed, as the reconciliation doc says.
+
+**n8n side (live, in place, no new versions):** Queue now also blocks DW `/live-<id>` pages and strips `maca=` and other trackers. The workflow is still **inactive**.

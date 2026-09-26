@@ -6,10 +6,30 @@ This folder is the version-controlled home of the **canonical production newsroo
 n8n/
   README.md                         this file
   workflows/
-    nuvellum-newsroom.json          canonical production workflow (sanitized; add on first export)
+    nuvellum-newsroom.json          canonical production workflow (sanitized export of live v6.5)
   prompts/                          versioned prompts for draft, review, verification, SVG
   snippets/                         GENERATED Code-node JavaScript (tested in CI)
 ```
+
+## Live production workflow (v6.5)
+
+The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is its sanitized export at n8n version `b2693640-37ba-42f8-ac82-ec4b3452869c`. Fix it in place; do not create v6.6+ copies.
+
+**The live Code nodes are the code in that export, not the generated snippets below.** v6.5 was stabilized directly in n8n and verified against real execution data. Its output (low-risk, sensitive-cleared and sensitive-failed cases) passes `scripts/validate-content.mjs` and `newStoryQualityProblems`. The snippets are an alternative, CI-tested implementation of the same contract. Before replacing any live node with a snippet, test it against a real execution, and never downgrade the live behaviour listed here.
+
+| Live node | Behaviour |
+| --- | --- |
+| Queue Latest Candidates | Canonical https URLs without tracking params (utm_*, fbclid, gclid, __source, maca, …). Rejects live blogs (`/live/`, `/live-<id>`), video/av, audio, galleries, podcasts, newsletters and quizzes. Skips failed feeds. Takes up to 3 candidates across different outlets and desks. |
+| Prepare Source | Real outlet names. Story text from JSON-LD `articleBody` first, then `<article>`/`<main>`/RSS, with an on-topic guard so unrelated stories are never merged. |
+| Prepare Duplicate Context / Check Open PR Duplicates | Exact-source dedupe against the live search index and open PRs, by source URL or branch hash. |
+| Parse Draft & Build Markdown | Sentence-case headlines. `publishedAt`. Real outlet in `sourceNote`. No padding. Fails closed per story. |
+| Parse Editorial Review | `editorialReview: "passed"` only on a clean pass. Low-risk stories become `published`. |
+| Parse Sensitive Verification | Only a clean pass writes `verification: "cleared"`, `reviewedBy: "Nuvellum Verification Pipeline"` and `status: "published"`. Failed or uncertain stories are never committed. |
+| Sanitize Editorial SVG | Strips unsafe content, then re-checks against an element allowlist and blocked patterns. Anything left unsafe falls back to the section image. The repository validator re-checks the committed file with `svg-safety.mjs`. |
+| Build GitHub Payload | Final contract gate before any commit. Branch `incoming/<slug ≤60>-<8-hex FNV-1a of the normalized source URL>`. |
+| Create Review Branch | An existing branch skips the story; the run continues. |
+
+The workflow is **inactive**. `NUVELLUM_AUTOPUBLISH` stays off until three real end-to-end runs have passed.
 
 ## Code-node snippets
 
@@ -53,7 +73,7 @@ The repository enforces the rules below. A story that breaks them is not publish
 
 ### Branch and commits
 
-- Branch name: `incoming/<slug>-<first 8 hex of sha256(normalized source URL)>`. The same source always maps to the same branch.
+- Branch name: `incoming/<slug>-<8 hex deterministic source hash>`. Live v6.5 uses FNV-1a of the normalized source URL; `scripts/lib/newsroom.mjs` uses sha256. The gate checks the format and slug, so both are accepted. The same source always maps to the same branch.
 - Commits: `src/content/articles/<slug>.md` and, optionally, `public/generated/ai/<slug>.svg`. Nothing else goes on the branch.
 - The article must be a **new** file. Automation never edits a published article.
 - Push with n8n's own GitHub credential (fine-grained token, Nuvellum repo only, Contents read/write). Those pushes start Build, Security, CodeQL and the duplicate guard. Work that GitHub starts with `GITHUB_TOKEN` does not trigger other workflows, so the pushes must not come from GitHub's token.
@@ -84,7 +104,7 @@ Better still, the workflow should skip failed or uncertain stories rather than c
 
 The SVG must pass `scripts/lib/svg-safety.mjs`. That means inert drawing elements only: no `<script>`, `<foreignObject>`, `<image>`, `<a>`, event handlers, external or `data:` URLs, or non-local `href`s. Only `url(#id)` references are allowed.
 
-If Gemini returns an SVG that fails this check, commit no art and fall back to the section image. Do not try to clean the SVG up.
+If Gemini returns an SVG that still fails this check after sanitizing, commit no art and fall back to the section image. Live v6.5 sanitizes, then re-validates strictly, and the repository validator always re-checks the committed file.
 
 ### Headline and source hygiene
 
@@ -94,7 +114,7 @@ If Gemini returns an SVG that fails this check, commit no art and fall back to t
 
 ## Connecting Claude (or another agent) to the live n8n instance
 
-No n8n connection existed when this was written. Here is what an agent session needs, all supplied by you and never committed:
+An n8n MCP connection is in use as of 2026-09-26. Here is what an agent session needs, all supplied by you and never committed:
 
 1. In n8n, go to **Settings → n8n API → Create API key**. Give it a clear label, e.g. "Claude maintenance".
 2. Note your instance's base URL, e.g. `https://<name>.app.n8n.cloud`.

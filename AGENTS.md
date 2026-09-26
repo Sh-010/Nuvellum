@@ -64,4 +64,4 @@ Vercel then deploys `main`. Details: `docs/EDITORIAL_PIPELINE.md`.
 ## Known limitations (2026-09-26)
 
 - 18 of the 27 published articles are **seed placeholders**: two bodies duplicated 12 and 6 times. They are live and indexed. They need real content or `noindex`; the owner decides.
-- The live n8n workflow is not yet exported into `n8n/workflows/`, and it does not yet emit `editorialReview`, `verification`, or the new quality fields. The gate therefore holds every new story. That is the intended fail-closed state.
+- The live n8n workflow (v6.5, id `8hXx6NuZuJU9dRR1`) is exported, sanitized, in `n8n/workflows/nuvellum-newsroom.json`. It emits `editorialReview`, `verification`, `reviewedBy`, `publishedAt`, canonical `sourceUrls` and deterministic `incoming/<slug>-<hash8>` branches, and its output passes `scripts/validate-content.mjs` and `newStoryQualityProblems`. The workflow stays inactive and `NUVELLUM_AUTOPUBLISH` stays off until three real end-to-end runs pass.
