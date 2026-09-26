@@ -36,7 +36,13 @@ function esc(value) {
 
 function attr(value) { return esc(value); }
 function route(a) { return `/article/${a.slug}`; }
-function art(a) { return a.origin === 'automation' ? `/generated/${a.slug}.svg` : a.image; }
+function art(a) {
+  const hasCustomEditorialImage = a.origin === 'automation'
+    && typeof a.image === 'string'
+    && a.image.trim()
+    && !a.image.startsWith('/images/');
+  return a.origin === 'automation' && !hasCustomEditorialImage ? `/generated/${a.slug}.svg` : a.image;
+}
 function kicker(a) { return `${a.section} · ${a.type}`; }
 function upperKicker(a) { return `${a.section} · ${a.type}`.toUpperCase(); }
 
