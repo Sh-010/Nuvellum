@@ -90,3 +90,28 @@ test('rejects non-svg files in the AI art folder', () => {
   const r = runValidator({ articles: { 'a-story': article('a-story', { image: '/images/world.svg' }) }, aiSvgs: { 'x.html': '<p>x</p>' } });
   assert.equal(r.code, 1);
 });
+
+test('policy: sensitive story with pipeline reviewer but no explicit clearance fails validation', () => {
+  const r = runValidator({
+    articles: { 'a-story': article('a-story', { risk: 'sensitive', reviewedBy: 'Nuvellum Verification Pipeline' }) },
+    aiSvgs: { 'a-story.svg': goodSvg }
+  });
+  assert.equal(r.code, 1);
+  assert.match(r.out, /requires verification/);
+});
+
+test('policy: explicitly cleared sensitive story passes validation', () => {
+  const r = runValidator({
+    articles: { 'a-story': article('a-story', { risk: 'sensitive', reviewedBy: 'Nuvellum Verification Pipeline', verification: 'cleared', editorialReview: 'passed' }) },
+    aiSvgs: { 'a-story.svg': goodSvg }
+  });
+  assert.equal(r.code, 0, r.out);
+});
+
+test('policy: a published story whose verification failed is rejected', () => {
+  const r = runValidator({
+    articles: { 'a-story': article('a-story', { risk: 'sensitive', reviewedBy: 'X', verification: 'failed' }) },
+    aiSvgs: { 'a-story.svg': goodSvg }
+  });
+  assert.equal(r.code, 1);
+});

@@ -3,6 +3,7 @@ import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { validateSvg } from './lib/svg-safety.mjs';
+import { contentPolicyErrors } from './lib/editorial.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
@@ -145,6 +146,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data.risk === 'sensitive' && data.status === 'published' && !String(data.reviewedBy || '').trim()) {
         errors.push(`${name}: sensitive automated stories cannot be published without reviewedBy`);
       }
+      errors.push(...contentPolicyErrors(data, name));
     }
   } catch (err) {
     errors.push(err.message);

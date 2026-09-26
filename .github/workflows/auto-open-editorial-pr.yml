@@ -66,14 +66,19 @@ jobs:
             const sourceMatch = frontmatter.match(/^sourceUrls:\s*\["([^"]+)"/m);
 
             const title = value('title') || articlePath.split('/').pop().replace(/\.md$/, '').replace(/-/g, ' ');
-            const risk = value('risk') || 'low';
-            const status = value('status') || 'review';
+            const risk = value('risk') || 'unknown';
+            const status = value('status') || 'unknown';
+            const editorialReview = value('editorialReview') || 'missing';
+            const verification = value('verification') || (risk === 'sensitive' ? 'missing' : 'n/a');
             const source = sourceMatch ? sourceMatch[1] : '';
 
-            const sensitive = risk === 'sensitive' || status === 'review';
-            const reviewNote = sensitive
-              ? '⚠️ Sensitive story: keep this PR unmerged until a human editor verifies the sourcing and approves publication.'
-              : 'Low-risk candidate: merging this PR publishes the article after repository checks pass.';
+            // Informational only. The binding decision is made by the
+            // auto-publish gate (scripts/lib/editorial.mjs) after all checks pass.
+            const cleared = status === 'published' && editorialReview === 'passed'
+              && (risk === 'low' || (risk === 'sensitive' && verification === 'cleared'));
+            const reviewNote = cleared
+              ? 'Cleared by the newsroom pipeline. The publication gate will merge this PR automatically once every required check is green (if NUVELLUM_AUTOPUBLISH is on).'
+              : '⛔ Not cleared for automatic publication. This PR will not be merged automatically; close it or fix it at the source.';
 
             await github.rest.pulls.create({
               owner,
@@ -86,10 +91,13 @@ jobs:
                 '',
                 '**Risk:** ' + risk,
                 '**Proposed status:** ' + status,
+                '**Editorial review:** ' + editorialReview,
+                '**Sensitive verification:** ' + verification,
                 '**Source:** ' + source,
                 '',
                 reviewNote,
                 '',
-                'This PR was opened by Nuvellum repository automation after n8n committed the article branch.'
+                'This PR was opened by Nuvellum repository automation after n8n committed the article branch.',
+                'Label it `hold` to stop automatic publication.'
               ].join('\n')
             });
