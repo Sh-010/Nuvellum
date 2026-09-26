@@ -3,7 +3,7 @@ name: Auto-open editorial PR
 on:
   push:
     branches:
-      - 'incoming/**'
+      - "incoming/**"
 
 permissions:
   contents: read
@@ -11,82 +11,83 @@ permissions:
 
 jobs:
   open-pr:
+    if: startsWith(github.ref, 'refs/heads/incoming/')
     runs-on: ubuntu-latest
     steps:
-      - name: Check out incoming branch
-        uses: actions/checkout@v4
+      - name: Open PR for committed article
+        uses: actions/github-script@v7
         with:
-          fetch-depth: 2
+          github-token: ${{ github.token }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const branch = context.ref.replace('refs/heads/', '');
 
-      - name: Read article metadata
-        id: article
-        shell: bash
-        run: |
-          set -euo pipefail
-          FILE="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep '^src/content/articles/.*\.md$' | tail -n 1 || true)"
-          if [ -z "$FILE" ]; then
-            echo "found=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
+            const files = [
+              ...(context.payload.head_commit?.added || []),
+              ...(context.payload.head_commit?.modified || [])
+            ];
+            const articlePath = files.find((p) => /^src\/content\/articles\/.*\.md$/.test(p));
 
-          TITLE="$(sed -n 's/^title: "\(.*\)"$/\1/p' "$FILE" | head -n 1)"
-          RISK="$(sed -n 's/^risk: "\(.*\)"$/\1/p' "$FILE" | head -n 1)"
-          STATUS="$(sed -n 's/^status: "\(.*\)"$/\1/p' "$FILE" | head -n 1)"
-          SOURCE="$(sed -n 's/^sourceUrls: \["\([^"]*\)".*/\1/p' "$FILE" | head -n 1)"
+            // Image-only commit in the same incoming branch: wait for the article commit.
+            if (!articlePath) {
+              core.info('No article file in this push; nothing to open yet.');
+              return;
+            }
 
-          if [ -z "$TITLE" ]; then
-            TITLE="$(basename "$FILE" .md | tr '-' ' ')"
-          fi
+            const existing = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              head: owner + ':' + branch,
+              base: 'main'
+            });
+            if (existing.data.length) {
+              core.info('PR already exists for ' + branch);
+              return;
+            }
 
-          echo "found=true" >> "$GITHUB_OUTPUT"
-          {
-            echo "title<<EOF"
-            echo "$TITLE"
-            echo "EOF"
-            echo "risk=$RISK"
-            echo "status=$STATUS"
-            echo "source=$SOURCE"
-          } >> "$GITHUB_OUTPUT"
+            const file = await github.rest.repos.getContent({
+              owner,
+              repo,
+              path: articlePath,
+              ref: context.sha
+            });
 
-      - name: Open editorial pull request
-        if: steps.article.outputs.found == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          ARTICLE_TITLE: ${{ steps.article.outputs.title }}
-          ARTICLE_RISK: ${{ steps.article.outputs.risk }}
-          ARTICLE_STATUS: ${{ steps.article.outputs.status }}
-          ARTICLE_SOURCE: ${{ steps.article.outputs.source }}
-        shell: bash
-        run: |
-          set -euo pipefail
+            const markdown = Buffer.from(file.data.content, 'base64').toString('utf8');
+            const frontmatter = markdown.split('---')[1] || '';
 
-          COUNT="$(gh pr list --head "$GITHUB_REF_NAME" --state open --json number --jq 'length')"
-          if [ "$COUNT" != "0" ]; then
-            echo "An open PR already exists for $GITHUB_REF_NAME"
-            exit 0
-          fi
+            const value = (key) => {
+              const m = frontmatter.match(new RegExp('^' + key + ':\\s*"?(.*?)"?\\s*$', 'm'));
+              return m ? m[1].replace(/^"|"$/g, '') : '';
+            };
+            const sourceMatch = frontmatter.match(/^sourceUrls:\s*\["([^"]+)"/m);
 
-          if [ "$ARTICLE_STATUS" = "review" ] || [ "$ARTICLE_RISK" = "sensitive" ]; then
-            REVIEW_NOTE="⚠️ Sensitive story: keep this PR unmerged until a human editor verifies the sourcing and approves publication."
-          else
-            REVIEW_NOTE="Low-risk candidate: merging this PR publishes the article after repository checks pass."
-          fi
+            const title = value('title') || articlePath.split('/').pop().replace(/\.md$/, '').replace(/-/g, ' ');
+            const risk = value('risk') || 'low';
+            const status = value('status') || 'review';
+            const source = sourceMatch ? sourceMatch[1] : '';
 
-          BODY="$(cat <<EOF
-Automated Nuvellum editorial candidate.
+            const sensitive = risk === 'sensitive' || status === 'review';
+            const reviewNote = sensitive
+              ? '⚠️ Sensitive story: keep this PR unmerged until a human editor verifies the sourcing and approves publication.'
+              : 'Low-risk candidate: merging this PR publishes the article after repository checks pass.';
 
-**Risk:** $ARTICLE_RISK
-**Proposed status:** $ARTICLE_STATUS
-**Source:** $ARTICLE_SOURCE
-
-$REVIEW_NOTE
-
-This PR was opened by Nuvellum's repository automation after n8n committed the article branch.
-EOF
-)"
-
-          gh pr create \
-            --base main \
-            --head "$GITHUB_REF_NAME" \
-            --title "Editorial: $ARTICLE_TITLE" \
-            --body "$BODY"
+            await github.rest.pulls.create({
+              owner,
+              repo,
+              head: branch,
+              base: 'main',
+              title: 'Editorial: ' + title,
+              body: [
+                'Automated Nuvellum editorial candidate.',
+                '',
+                '**Risk:** ' + risk,
+                '**Proposed status:** ' + status,
+                '**Source:** ' + source,
+                '',
+                reviewNote,
+                '',
+                'This PR was opened by Nuvellum repository automation after n8n committed the article branch.'
+              ].join('\n')
+            });
