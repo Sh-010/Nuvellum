@@ -13,7 +13,7 @@ const b64 = (s) => Buffer.from(s).toString('base64');
 
 function md(fields) {
   const fm = Object.entries(fields).map(([k, v]) => `${k}: ${JSON.stringify(v)}`).join('\n');
-  return `---\n${fm}\n---\n\nBody.\n`;
+  return `---\n${fm}\n---\n\n${'A measured, sourced paragraph of reporting with names and figures. '.repeat(20)}\n`;
 }
 
 // Minimal GitHub API mock. `state` describes branches, PRs and runs.
@@ -39,7 +39,8 @@ function mockGitHub(state) {
     if ((m = p.match(new RegExp(`^${base}/pulls/(\\d+)$`)))) return json(200, state.prs.find(x => x.number === +m[1]));
     if (req.method === 'DELETE' && (m = p.match(new RegExp(`^${base}/git/refs/heads/(.+)$`)))) { state.deleted.push(m[1]); return json(204); }
     if (p === `${base}/actions/runs`) return json(200, { workflow_runs: state.runs[url.searchParams.get('head_sha')] || [] });
-    if (p === `${base}/git/matching-refs/heads/incoming/`) return json(200, Object.keys(state.branches).filter(b => b.startsWith('incoming/')).map(b => ({ ref: `refs/heads/${b}` })));
+    if (p === `${base}/git/matching-refs/heads/incoming/`) return json(400, { message: 'Bad Request (real GitHub behaviour)' });
+    if (p === `${base}/git/matching-refs/heads/incoming`) return json(200, [...Object.keys(state.branches).filter(b => b.startsWith('incoming/')), 'incoming-lookalike'].map(b => ({ ref: `refs/heads/${b}` })));
     if ((m = p.match(new RegExp(`^${base}/compare/main\\.\\.\\.(.+)$`)))) {
       const br = state.branches[m[1]] || Object.values(state.branches).find(b => b.sha === m[1]);
       if (!br) return json(404, { message: 'Not Found' });
@@ -70,25 +71,25 @@ const green = () => REQUIRED_CHECKS.map(name => ({ name, status: 'completed', co
 function prFor(number, slug, sha, extra = {}) {
   return {
     number, state: 'open', draft: false, labels: [], base: { ref: 'main' },
-    head: { ref: `incoming/${slug}`, sha, repo: { full_name: REPO } },
+    head: { ref: `incoming/${slug}-1a2b3c4d`, sha, repo: { full_name: REPO } },
     files: [{ filename: `src/content/articles/${slug}.md`, status: 'added' }],
     ...extra
   };
 }
 
 function scenario() {
-  const low = md({ title: 'Low story', status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed', section: 'World', type: 'News', sourceUrls: ['https://ex.com/low'] });
-  const sensOk = md({ title: 'Sensitive ok', status: 'published', origin: 'automation', risk: 'sensitive', editorialReview: 'passed', verification: 'cleared', reviewedBy: VERIFICATION_REVIEWER, section: 'World', type: 'News', sourceUrls: ['https://ex.com/s1'] });
-  const sensBad = md({ title: 'Sensitive uncertain', status: 'review', origin: 'automation', risk: 'sensitive', editorialReview: 'passed', verification: 'uncertain', section: 'World', type: 'News', sourceUrls: ['https://ex.com/s2'] });
-  const pending = md({ title: 'Pending checks', status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed', section: 'World', type: 'News', sourceUrls: ['https://ex.com/p'] });
+  const low = md({ title: 'Low story', status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed', section: 'World', type: 'News', sourceUrls: ['https://ex.com/low'], sourceNote: 'Prepared from Example reporting.' });
+  const sensOk = md({ title: 'Sensitive ok', status: 'published', origin: 'automation', risk: 'sensitive', editorialReview: 'passed', verification: 'cleared', reviewedBy: VERIFICATION_REVIEWER, section: 'World', type: 'News', sourceUrls: ['https://ex.com/s1'], sourceNote: 'Prepared from Example reporting.' });
+  const sensBad = md({ title: 'Sensitive uncertain', status: 'review', origin: 'automation', risk: 'sensitive', editorialReview: 'passed', verification: 'uncertain', section: 'World', type: 'News', sourceUrls: ['https://ex.com/s2'], sourceNote: 'Prepared from Example reporting.' });
+  const pending = md({ title: 'Pending checks', status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed', section: 'World', type: 'News', sourceUrls: ['https://ex.com/p'], sourceNote: 'Prepared from Example reporting.' });
   return {
     main: [],
     merged: [], deleted: [],
     branches: {
-      'incoming/low': { sha: 'sha-low', first: '1', files: [['src/content/articles/low.md', low]] },
-      'incoming/sens-ok': { sha: 'sha-sok', first: '1', files: [['src/content/articles/sens-ok.md', sensOk]] },
-      'incoming/sens-bad': { sha: 'sha-sbad', first: '1', files: [['src/content/articles/sens-bad.md', sensBad]] },
-      'incoming/pending': { sha: 'sha-pend', first: '1', files: [['src/content/articles/pending.md', pending]] }
+      'incoming/low-1a2b3c4d': { sha: 'sha-low', first: '1', files: [['src/content/articles/low.md', low]] },
+      'incoming/sens-ok-1a2b3c4d': { sha: 'sha-sok', first: '1', files: [['src/content/articles/sens-ok.md', sensOk]] },
+      'incoming/sens-bad-1a2b3c4d': { sha: 'sha-sbad', first: '1', files: [['src/content/articles/sens-bad.md', sensBad]] },
+      'incoming/pending-1a2b3c4d': { sha: 'sha-pend', first: '1', files: [['src/content/articles/pending.md', pending]] }
     },
     prs: [prFor(1, 'low', 'sha-low'), prFor(2, 'sens-ok', 'sha-sok'), prFor(3, 'sens-bad', 'sha-sbad'), prFor(4, 'pending', 'sha-pend')],
     runs: {
@@ -109,7 +110,7 @@ test('auto-publish: merges only cleared stories with green checks, pinned to hea
       assert.equal(m.merge_method, 'squash');
       assert.equal(m.sha, state.prs.find(p => p.number === m.number).head.sha);
     }
-    assert.deepEqual(state.deleted.sort(), ['incoming/low', 'incoming/sens-ok']);
+    assert.deepEqual(state.deleted.sort(), ['incoming/low-1a2b3c4d', 'incoming/sens-ok-1a2b3c4d']);
     assert.match(r.out, /HOLD {2}PR #3[\s\S]*uncertain/);
     assert.match(r.out, /HOLD {2}PR #4[\s\S]*CodeQL" is in_progress/);
   } finally { server.close(); }
@@ -130,7 +131,7 @@ test('auto-publish: HEAD_BRANCH limits evaluation to one PR', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
-    const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on', HEAD_BRANCH: 'incoming/sens-ok' });
+    const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on', HEAD_BRANCH: 'incoming/sens-ok-1a2b3c4d' });
     assert.equal(r.code, 0, r.out);
     assert.deepEqual(state.merged.map(m => m.number), [2]);
   } finally { server.close(); }

@@ -12,6 +12,8 @@ export type Article = {
   type: string;
   author: string;
   date: string;
+  /** ISO 8601 timestamp; orders same-day stories. Optional for older articles. */
+  publishedAt?: string;
   updated?: string;
   readingTime: string;
   image: string;
@@ -48,7 +50,9 @@ export async function getArticles(): Promise<Article[]> {
       return article;
     })
     .filter((a) => a.status === 'published')
-    .sort((a,b) => +new Date(b.date) - +new Date(a.date));
+    // Newest first. publishedAt (if present) breaks same-day ties; articles
+    // without it keep their previous relative order (stable sort).
+    .sort((a,b) => (+new Date(b.date) - +new Date(a.date)) || (+new Date(b.publishedAt || 0) - +new Date(a.publishedAt || 0)));
 }
 
 export function slugify(input: string) {

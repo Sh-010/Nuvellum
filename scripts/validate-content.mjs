@@ -93,6 +93,8 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     if (data.risk && !risks.has(data.risk)) errors.push(`${name}: risk must be low or sensitive`);
 
     if (data.date && (!/^\d{4}-\d{2}-\d{2}$/.test(data.date) || Number.isNaN(Date.parse(data.date + 'T00:00:00Z')))) errors.push(`${name}: date must be YYYY-MM-DD`);
+    if (data.publishedAt !== undefined && (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/.test(String(data.publishedAt)) || Number.isNaN(Date.parse(String(data.publishedAt))))) errors.push(`${name}: publishedAt must be an ISO 8601 timestamp with timezone`);
+    else if (data.publishedAt && data.date && !String(data.publishedAt).startsWith(data.date) && Math.abs(Date.parse(data.publishedAt) - Date.parse(data.date + 'T12:00:00Z')) > 36 * 3600e3) errors.push(`${name}: publishedAt does not match date`);
     if (data.updated && (!/^\d{4}-\d{2}-\d{2}$/.test(data.updated) || Number.isNaN(Date.parse(data.updated + 'T00:00:00Z')))) errors.push(`${name}: updated must be YYYY-MM-DD`);
 
     if (data.title && String(data.title).length > 180) errors.push(`${name}: title is over 180 characters`);

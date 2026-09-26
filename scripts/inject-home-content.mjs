@@ -58,7 +58,9 @@ const published = readdirSync(articlesDir)
 
 const real = published
   .filter(a => a.origin === 'automation')
-  .sort((a,b) => String(b.date||'').localeCompare(String(a.date||'')) || a.slug.localeCompare(b.slug));
+  .sort((a,b) => String(b.date||'').localeCompare(String(a.date||''))
+    || String(b.publishedAt||'').localeCompare(String(a.publishedAt||''))
+    || a.slug.localeCompare(b.slug));
 
 if (!real.length) {
   console.log('No published automated stories yet; preserving v5.1 homepage demo slots.');

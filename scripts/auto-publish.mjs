@@ -20,15 +20,15 @@ const onlyPr = Number(process.env.PR_NUMBER || 0);
 const onlyBranch = process.env.HEAD_BRANCH || '';
 const deleteBranch = process.env.DELETE_BRANCH_AFTER_MERGE !== '0';
 
-if (!token || !repo) {
-  console.error('Missing GITHUB_TOKEN or GITHUB_REPOSITORY.');
+if (!repo || (!token && enabled && process.env.DRY_RUN !== '1')) {
+  console.error('Missing GITHUB_REPOSITORY, or GITHUB_TOKEN when merging is enabled.');
   process.exit(1);
 }
 
 const api = (process.env.GITHUB_API_URL || 'https://api.github.com').replace(/\/$/, '');
 const headers = {
   Accept: 'application/vnd.github+json',
-  Authorization: `Bearer ${token}`,
+  ...(token ? { Authorization: `Bearer ${token}` } : {}),
   'X-GitHub-Api-Version': '2022-11-28'
 };
 

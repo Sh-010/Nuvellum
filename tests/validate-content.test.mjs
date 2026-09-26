@@ -115,3 +115,22 @@ test('policy: a published story whose verification failed is rejected', () => {
   });
   assert.equal(r.code, 1);
 });
+
+test('publishedAt: valid ISO timestamp passes, malformed or mismatched fails', () => {
+  const svg = { 'a-story.svg': goodSvg };
+  assert.equal(runValidator({ articles: { 'a-story': article('a-story', { publishedAt: '2026-09-26T09:15:00Z' }) }, aiSvgs: svg }).code, 0);
+  assert.equal(runValidator({ articles: { 'a-story': article('a-story', { publishedAt: '2026-09-26 09:15' }) }, aiSvgs: svg }).code, 1);
+  assert.equal(runValidator({ articles: { 'a-story': article('a-story', { publishedAt: '2026-08-01T09:15:00Z' }) }, aiSvgs: svg }).code, 1);
+});
+
+test('duplicate title and duplicate source are rejected; malformed frontmatter is rejected', () => {
+  const svg = { 'a.svg': goodSvg, 'b.svg': goodSvg };
+  const dupTitle = runValidator({ articles: { a: article('a', { title: 'Same headline' }), b: article('b', { title: 'Same headline!' }) }, aiSvgs: svg });
+  assert.equal(dupTitle.code, 1); assert.match(dupTitle.out, /duplicate title/);
+  const dupSource = runValidator({ articles: { a: article('a', { sourceUrls: ['https://x.com/1?utm_source=a'] }), b: article('b', { sourceUrls: ['https://x.com/1'] }) }, aiSvgs: svg });
+  assert.equal(dupSource.code, 1); assert.match(dupSource.out, /source URL already used/);
+  const broken = runValidator({ articles: { a: '---\ntitle: "No closing delimiter"\n\nbody' }, aiSvgs: svg });
+  assert.equal(broken.code, 1);
+  const html = runValidator({ articles: { a: article('a').replace('Body paragraph', '<script>alert(1)</script> Body') }, aiSvgs: svg });
+  assert.equal(html.code, 1);
+});

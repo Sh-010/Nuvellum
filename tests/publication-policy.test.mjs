@@ -12,12 +12,14 @@ function md(fields = {}) {
   const base = {
     title: 'A new story', dek: 'Standfirst', section: 'World', type: 'News',
     status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed',
-    sourceUrls: ['https://example.com/a'], ...fields
+    sourceUrls: ['https://example.com/a'], sourceNote: 'Prepared from Example News reporting.', image: '/generated/ai/a-new-story.svg', ...fields
   };
   const fm = Object.entries(base).filter(([, v]) => v !== undefined)
     .map(([k, v]) => `${k}: ${Array.isArray(v) ? JSON.stringify(v) : JSON.stringify(String(v))}`).join('\n');
-  return `---\n${fm}\n---\n\nBody.\n`;
+  return `---\n${fm}\n---\n\n${BODY}\n`;
 }
+
+const BODY = 'The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures. The reporting describes a measured development with named officials, dates and figures.';
 
 const sensitiveCleared = { risk: 'sensitive', verification: 'cleared', reviewedBy: VERIFICATION_REVIEWER };
 
@@ -157,4 +159,35 @@ test('duplicates: different sources do not conflict', () => {
   const a = { ref: 'incoming/a', firstCommitAt: '1', sources: new Set(['https://x.com/a']) };
   const b = { ref: 'incoming/b', firstCommitAt: '0', sources: new Set(['https://x.com/b']) };
   assert.equal(duplicateConflicts(a, [b]).length, 0);
+});
+
+// Real pattern observed on PR #29 (2026-09-26): n8n's push (actor Sh-010)
+// ran the checks; the bot-opened PR then added newer pull_request runs that
+// GitHub parked as action_required.
+test('ignores never-approved action_required runs created after green push runs', () => {
+  const runs = [
+    ...REQUIRED_CHECKS.map(name => ({ name, event: 'push', status: 'completed', conclusion: 'success', created_at: '2026-09-26T12:50:10Z' })),
+    ...REQUIRED_CHECKS.map(name => ({ name, event: 'pull_request', status: 'completed', conclusion: 'action_required', created_at: '2026-09-26T12:50:30Z' }))
+  ];
+  ok(input({ runs }));
+});
+test('action_required runs alone never count as passing', () => {
+  const runs = REQUIRED_CHECKS.map(name => ({ name, event: 'pull_request', status: 'completed', conclusion: 'action_required', created_at: 't' }));
+  no(input({ runs }), /has not run/);
+});
+
+// ---- Quality rules for new automated stories (real defects seen in PRs #26/#28/#29)
+test('quality: Title Case headline is held', () => no(input({ fields: { title: 'Pope Leo XIV Visits France, Meeting Migrants and Marginalised Communities' } }), /Title Case/));
+test('quality: sentence-case headline with proper nouns passes', () => ok(input({ fields: { title: 'India and Pakistan trade accusations at UN General Assembly' } })));
+test('quality: "Prepared from Source reporting" placeholder is held', () => no(input({ fields: { sourceNote: 'Prepared from Source reporting and subject to Nuvellum editorial review.' } }), /placeholder/));
+test('quality: tracking parameters in sourceUrls are held', () => no(input({ fields: { sourceUrls: ['https://www.bbc.co.uk/news/articles/x?at_medium=RSS&at_campaign=rss'] } }), /tracking/));
+test('quality: live blog sources are held (they cluster unrelated stories)', () => no(input({ fields: { sourceUrls: ['https://www.dw.com/en/germany-news-eu-ministers-meet-for-migration-showdown/live-79441034'] } }), /live blog/));
+test('quality: thin bodies are held rather than padded', () => no(input({ article: md().replace(/\n\n[\s\S]*$/, '\n\nShort body only.\n') }), /only \d+ words/));
+test('quality: very long headlines are held', () => no(input({ fields: { title: 'a'.repeat(141) } }), /characters/));
+test('quality: timestamp-named branches are held', () => no(input({ pr: { head: { ref: 'incoming/a-new-story-0377091141', sha: 's', repo: { full_name: REPO } } } }), /does not follow/));
+test('quality: branch slug must match the article', () => no(input({ pr: { head: { ref: 'incoming/other-story-1a2b3c4d', sha: 's', repo: { full_name: REPO } } } }), /does not match/));
+test('quality: committed AI art must be referenced by the article', () => no(input({ fields: { image: '/images/world.svg' } }), /AI art was committed/));
+test('quality: malformed publishedAt is held; valid one passes', () => {
+  no(input({ fields: { publishedAt: '26/09/2026 10:00' } }), /publishedAt/);
+  ok(input({ fields: { publishedAt: '2026-09-26T10:15:00Z' } }));
 });

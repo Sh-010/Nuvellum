@@ -18,15 +18,16 @@ const headRef = process.env.HEAD_REF;
 const headSha = process.env.HEAD_SHA;
 const baseRef = process.env.BASE_REF || 'main';
 
-if (!token || !repo || !headRef || !headSha) {
-  console.error('Missing GITHUB_TOKEN, GITHUB_REPOSITORY, HEAD_REF or HEAD_SHA.');
+// GITHUB_TOKEN is optional for reading a public repository (local testing).
+if (!repo || !headRef || !headSha) {
+  console.error('Missing GITHUB_REPOSITORY, HEAD_REF or HEAD_SHA.');
   process.exit(1);
 }
 
 const api = (process.env.GITHUB_API_URL || 'https://api.github.com').replace(/\/$/, '');
 const headers = {
   Accept: 'application/vnd.github+json',
-  Authorization: `Bearer ${token}`,
+  ...(token ? { Authorization: `Bearer ${token}` } : {}),
   'X-GitHub-Api-Version': '2022-11-28'
 };
 
@@ -80,8 +81,11 @@ for (let page = 1; page <= 5; page++) {
 
 const refs = new Set();
 for (const [ref, pr] of prByRef) if (pr.state === 'open') refs.add(ref);
-const incoming = await gh(`/repos/${repo}/git/matching-refs/heads/incoming/`);
-for (const r of incoming || []) {
+// No trailing slash: GitHub answers 400 for "heads/incoming/". The prefix
+// also matches e.g. "incoming-x", so filter to the incoming/ namespace.
+const incoming = (await gh(`/repos/${repo}/git/matching-refs/heads/incoming`) || [])
+  .filter(r => r.ref.startsWith('refs/heads/incoming/'));
+for (const r of incoming) {
   const ref = r.ref.replace(/^refs\/heads\//, '');
   const pr = prByRef.get(ref);
   if (!pr || pr.state === 'open') refs.add(ref);

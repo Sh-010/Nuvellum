@@ -1,3 +1,5 @@
+import { newStoryQualityProblems } from './newsroom.mjs';
+
 // Shared editorial rules used by the content validator, the duplicate guard
 // and the auto-publish gate, so the policy is defined in exactly one place.
 
@@ -147,12 +149,20 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
     } else {
       fail(`risk is "${data.risk ?? 'missing'}"`);
     }
+
+    const text = String(article);
+    const body = text.slice(text.indexOf('\n---', 3) + 4);
+    const hasAiArt = (files || []).some(f => AI_ART_PATH_RE.test(f.filename));
+    for (const q of newStoryQualityProblems(data, body, { slug, branch: pr?.head?.ref, hasAiArt })) fail(`quality: ${q}`);
   }
 
   // --- Repository checks on this exact commit ----------------------------
+  // GitHub parks pull_request runs on bot-opened PRs as "action_required"
+  // (awaiting approval). They never ran, so they neither pass nor block; the
+  // push-triggered run on the same commit is the one that counts.
   for (const name of REQUIRED_CHECKS) {
     const latest = (runs || [])
-      .filter(r => r.name === name)
+      .filter(r => r.name === name && r.conclusion !== 'action_required')
       .sort((a, b) => String(a.created_at).localeCompare(String(b.created_at)))
       .pop();
     if (!latest) fail(`required check "${name}" has not run on ${pr?.head?.sha?.slice(0, 7) ?? 'head'}`);

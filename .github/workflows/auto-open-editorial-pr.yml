@@ -80,24 +80,33 @@ jobs:
               ? 'Cleared by the newsroom pipeline. The publication gate will merge this PR automatically once every required check is green (if NUVELLUM_AUTOPUBLISH is on).'
               : '⛔ Not cleared for automatic publication. This PR will not be merged automatically; close it or fix it at the source.';
 
-            await github.rest.pulls.create({
-              owner,
-              repo,
-              head: branch,
-              base: 'main',
-              title: 'Editorial: ' + title,
-              body: [
-                'Automated Nuvellum editorial candidate.',
-                '',
-                '**Risk:** ' + risk,
-                '**Proposed status:** ' + status,
-                '**Editorial review:** ' + editorialReview,
-                '**Sensitive verification:** ' + verification,
-                '**Source:** ' + source,
-                '',
-                reviewNote,
-                '',
-                'This PR was opened by Nuvellum repository automation after n8n committed the article branch.',
-                'Label it `hold` to stop automatic publication.'
-              ].join('\n')
-            });
+            try {
+              await github.rest.pulls.create({
+                owner,
+                repo,
+                head: branch,
+                base: 'main',
+                title: 'Editorial: ' + title,
+                body: [
+                  'Automated Nuvellum editorial candidate.',
+                  '',
+                  '**Risk:** ' + risk,
+                  '**Proposed status:** ' + status,
+                  '**Editorial review:** ' + editorialReview,
+                  '**Sensitive verification:** ' + verification,
+                  '**Source:** ' + source,
+                  '',
+                  reviewNote,
+                  '',
+                  'This PR was opened by Nuvellum repository automation after n8n committed the article branch.',
+                  'Label it `hold` to stop automatic publication.'
+                ].join('\n')
+              });
+            } catch (err) {
+              // A PR opened concurrently (by a person or a re-run) is fine.
+              if (err.status === 422 && /already exists/i.test(String(err.message))) {
+                core.info('PR already exists for ' + branch);
+                return;
+              }
+              throw err;
+            }

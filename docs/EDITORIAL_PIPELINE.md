@@ -25,9 +25,11 @@ Git is the audit trail. Vercel deploys only from `main`.
 
 ### Why checks run on `push`
 
-GitHub does not start new workflow runs for events created with the built-in `GITHUB_TOKEN`, with two exceptions (`workflow_dispatch` and `repository_dispatch`). The auto-opened PR is created with that token, so `pull_request` workflows never ran on automated PRs.
+GitHub does not treat events created with the built-in `GITHUB_TOKEN` like normal events. The auto-opened PR is created with that token. On 2026-09-26 the `pull_request` runs for bot-opened PRs #28 and #29 were created, but GitHub parked every one of them as **`action_required`**: waiting for manual approval and never executed. The only checks on those PRs were therefore `open-pr` and a failing Vercel preview.
 
-n8n's pushes use n8n's own credential, so `push` workflows do run. Their results attach to the branch head commit, which is the commit the PR shows. `pull_request` triggers remain for human-opened PRs.
+n8n pushes with its own credential, which shows as actor `Sh-010`. `push` workflows therefore run normally on `incoming/**`, and their results attach to the exact head commit the PR displays.
+
+The gate ignores the parked `action_required` runs. It judges each required check by its latest run that actually executed on that commit. `pull_request` triggers remain for human-opened PRs.
 
 ## Publication policy
 
