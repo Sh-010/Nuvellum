@@ -99,7 +99,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
-    if (data.image && !/^(\/images\/|\/uploads\/|https:\/\/)/.test(String(data.image))) errors.push(`${name}: image must use /images/, /uploads/ or https://`);
+    if (data.image && !/^(\/images\/|\/uploads\/|\/generated\/|https:\/\/)/.test(String(data.image))) errors.push(`${name}: image must use /images/, /uploads/, /generated/ or https://`);
     if (!body) errors.push(`${name}: article body is empty`);
     if (/<\s*\/?\s*[A-Za-z][^>]*>/.test(body)) errors.push(`${name}: raw HTML is blocked in article bodies; use Markdown only`);
     for (const pattern of dangerous) if (pattern.test(src)) errors.push(`${name}: blocked unsafe markup or URL pattern: ${pattern}`);
@@ -130,7 +130,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (!Array.isArray(data.sourceUrls) || data.sourceUrls.length === 0) errors.push(`${name}: automated stories require at least one sourceUrls entry`);
       if (!data.risk) errors.push(`${name}: automated stories require risk: low or sensitive`);
       if (data.risk === 'sensitive' && data.status === 'published' && !String(data.reviewedBy || '').trim()) {
-        errors.push(`${name}: sensitive automated stories cannot be published without reviewedBy`);
+        errors.push(`${name}: sensitive automated stories cannot be published without a recorded verification step`);
       }
     }
   } catch (err) {
