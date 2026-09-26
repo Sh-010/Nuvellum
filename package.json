@@ -4,12 +4,15 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run validate && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/inject-home-content.mjs && astro dev",
-    "build": "npm run validate && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/inject-home-content.mjs && astro build",
+    "dev": "npm run validate && node scripts/prepare-public.mjs && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/inject-home-content.mjs && astro dev",
+    "build": "npm run validate && node scripts/prepare-public.mjs && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/inject-home-content.mjs && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "validate": "node scripts/validate-content.mjs",
-    "security:audit": "npm audit --audit-level=high"
+    "validate": "node scripts/validate-content.mjs && node scripts/check-n8n-exports.mjs && node scripts/build-n8n-snippets.mjs --check",
+    "security:audit": "npm audit --audit-level=high",
+    "test": "node --test tests/*.test.mjs",
+    "n8n:sanitize": "node scripts/sanitize-n8n-export.mjs",
+    "n8n:snippets": "node scripts/build-n8n-snippets.mjs"
   },
   "dependencies": {
     "astro": "7.3.4"

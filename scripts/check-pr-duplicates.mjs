@@ -1,100 +1,122 @@
-import { readFileSync, existsSync } from 'node:fs';
+// Editorial duplicate guard.
+//
+// Works for both `push` (incoming/** branches written by n8n) and
+// `pull_request` events, so it does not depend on a PR having been opened —
+// PRs opened with GITHUB_TOKEN never trigger pull_request workflows.
+//
+// It compares the source URLs of articles added/changed on this branch with
+// every other in-flight editorial branch (open PRs and incoming/** branches
+// that have not been closed). The oldest branch for a source wins; newer
+// duplicates fail. Duplicates of already-published stories are caught by
+// scripts/validate-content.mjs, which runs in the build.
+
+import { ARTICLE_PATH_RE, articleSources, duplicateConflicts } from './lib/editorial.mjs';
 
 const token = process.env.GITHUB_TOKEN;
 const repo = process.env.GITHUB_REPOSITORY;
-const prNumber = Number(process.env.PR_NUMBER || 0);
+const headRef = process.env.HEAD_REF;
+const headSha = process.env.HEAD_SHA;
+const baseRef = process.env.BASE_REF || 'main';
 
-if (!token || !repo || !prNumber) {
-  console.error('Missing GITHUB_TOKEN, GITHUB_REPOSITORY or PR_NUMBER.');
+// GITHUB_TOKEN is optional for reading a public repository (local testing).
+if (!repo || !headRef || !headSha) {
+  console.error('Missing GITHUB_REPOSITORY, HEAD_REF or HEAD_SHA.');
   process.exit(1);
 }
 
-const api = 'https://api.github.com';
+const api = (process.env.GITHUB_API_URL || 'https://api.github.com').replace(/\/$/, '');
 const headers = {
   Accept: 'application/vnd.github+json',
-  Authorization: `Bearer ${token}`,
+  ...(token ? { Authorization: `Bearer ${token}` } : {}),
   'X-GitHub-Api-Version': '2022-11-28'
 };
 
-async function gh(path) {
+async function gh(path, { allow404 = false } = {}) {
   const res = await fetch(api + path, { headers });
+  if (allow404 && res.status === 404) return null;
   if (!res.ok) throw new Error(`GitHub API ${res.status} for ${path}`);
   return res.json();
 }
 
-function normalizeSource(value) {
-  try {
-    const u = new URL(String(value).trim());
-    u.hash = '';
-    u.search = '';
-    u.hostname = u.hostname.toLowerCase();
-    u.pathname = u.pathname.replace(/\/+$/, '') || '/';
-    return u.toString();
-  } catch {
-    return String(value || '').trim().replace(/[?#].*$/, '').replace(/\/+$/, '');
-  }
+const enc = (p) => p.split('/').map(encodeURIComponent).join('/');
+
+async function fileText(path, ref) {
+  const payload = await gh(`/repos/${repo}/contents/${enc(path)}?ref=${encodeURIComponent(ref)}`, { allow404: true });
+  return payload?.content ? Buffer.from(payload.content, 'base64').toString('utf8') : '';
 }
 
-function parseSources(text) {
-  const out = new Set();
-  const block = String(text || '').match(/^sourceUrls:\s*\[(.*)\]\s*$/m);
-  if (block) {
-    for (const m of block[1].matchAll(/["'](https:\/\/[^"']+)["']/g)) out.add(normalizeSource(m[1]));
-  }
-  for (const m of String(text || '').matchAll(/^\*\*Source:\*\*\s*(https:\/\/\S+)/gm)) {
-    out.add(normalizeSource(m[1]));
-  }
-  return out;
+// Articles this ref adds or changes relative to main, plus its oldest commit time.
+async function branchInfo(ref) {
+  const cmp = await gh(`/repos/${repo}/compare/${enc(baseRef)}...${enc(ref)}`);
+  const articles = (cmp.files || [])
+    .filter(f => ARTICLE_PATH_RE.test(f.filename) && f.status !== 'removed')
+    .map(f => f.filename);
+  const firstCommitAt = cmp.commits?.[0]?.commit?.committer?.date || '';
+  return { articles, firstCommitAt, aheadBy: cmp.ahead_by };
 }
 
-const changed = await gh(`/repos/${repo}/pulls/${prNumber}/files?per_page=100`);
-const articlePaths = changed
-  .map(f => f.filename)
-  .filter(p => p.startsWith('src/content/articles/') && p.endsWith('.md'));
-
-const currentSources = new Set();
-for (const path of articlePaths) {
-  if (!existsSync(path)) continue;
-  for (const source of parseSources(readFileSync(path, 'utf8'))) currentSources.add(source);
+const self = await branchInfo(headSha);
+if (!self.articles.length) {
+  console.log(`No article files changed on ${headRef}; nothing to check.`);
+  process.exit(0);
 }
 
-if (!currentSources.size) {
+const selfSources = new Set();
+for (const path of self.articles) for (const s of articleSources(await fileText(path, headSha))) selfSources.add(s);
+if (!selfSources.size) {
   console.log('No source URLs found in changed article files.');
   process.exit(0);
 }
 
-const openPrs = await gh(`/repos/${repo}/pulls?state=open&per_page=100`);
-const duplicates = [];
-
-for (const pr of openPrs) {
-  if (pr.number === prNumber) continue;
-
-  const candidateSources = new Set(parseSources(pr.body || ''));
-
-  if (!candidateSources.size) {
-    const files = await gh(`/repos/${repo}/pulls/${pr.number}/files?per_page=100`);
-    for (const file of files) {
-      if (!file.filename.startsWith('src/content/articles/') || !file.filename.endsWith('.md')) continue;
-      const encoded = file.filename.split('/').map(encodeURIComponent).join('/');
-      const payload = await gh(`/repos/${repo}/contents/${encoded}?ref=${encodeURIComponent(pr.head.ref)}`);
-      if (!payload?.content) continue;
-      const text = Buffer.from(payload.content, 'base64').toString('utf8');
-      for (const source of parseSources(text)) candidateSources.add(source);
-    }
+// Latest PR per head branch (any state) so closed/merged branches are ignored.
+const prByRef = new Map();
+for (let page = 1; page <= 5; page++) {
+  const prs = await gh(`/repos/${repo}/pulls?state=all&per_page=100&page=${page}&sort=created&direction=desc`);
+  for (const pr of prs) {
+    if (pr.head?.repo?.full_name !== repo) continue;
+    if (!prByRef.has(pr.head.ref)) prByRef.set(pr.head.ref, pr);
   }
-
-  const overlap = [...currentSources].filter(source => candidateSources.has(source));
-  if (overlap.length) duplicates.push({ pr: pr.number, title: pr.title, sources: overlap });
+  if (prs.length < 100) break;
 }
 
-if (duplicates.length) {
-  console.error('\nDuplicate editorial source detected in another open PR:\n');
-  for (const d of duplicates) {
-    console.error(` - PR #${d.pr}: ${d.title}`);
-    for (const source of d.sources) console.error(`   ${source}`);
+const refs = new Set();
+for (const [ref, pr] of prByRef) if (pr.state === 'open') refs.add(ref);
+// No trailing slash: GitHub answers 400 for "heads/incoming/". The prefix
+// also matches e.g. "incoming-x", so filter to the incoming/ namespace.
+const incoming = (await gh(`/repos/${repo}/git/matching-refs/heads/incoming`) || [])
+  .filter(r => r.ref.startsWith('refs/heads/incoming/'));
+for (const r of incoming) {
+  const ref = r.ref.replace(/^refs\/heads\//, '');
+  const pr = prByRef.get(ref);
+  if (!pr || pr.state === 'open') refs.add(ref);
+}
+refs.delete(headRef);
+refs.delete(baseRef);
+
+const others = [];
+for (const ref of refs) {
+  let info;
+  try { info = await branchInfo(ref); } catch (err) { console.warn(`Skipping ${ref}: ${err.message}`); continue; }
+  if (!info.aheadBy) continue;
+  const sources = new Set();
+  for (const path of info.articles) {
+    // An article already on main was published (e.g. squash-merged); the
+    // validator handles duplicates against published stories.
+    if (await fileText(path, baseRef)) continue;
+    for (const s of articleSources(await fileText(path, ref))) sources.add(s);
   }
-  console.error('\nClose the duplicate PR or use a genuinely different source/story before merging.');
+  if (sources.size) others.push({ ref, pr: prByRef.get(ref)?.number, firstCommitAt: info.firstCommitAt, sources });
+}
+
+const conflicts = duplicateConflicts({ ref: headRef, firstCommitAt: self.firstCommitAt, sources: selfSources }, others);
+if (conflicts.length) {
+  console.error('\nDuplicate editorial source: an older in-flight branch already covers this source.\n');
+  for (const c of conflicts) {
+    console.error(` - ${c.ref}${c.pr ? ` (PR #${c.pr})` : ''}`);
+    for (const s of c.sources) console.error(`   ${s}`);
+  }
+  console.error('\nThis newer duplicate must not be published. Close it, or use a genuinely different source/story.');
   process.exit(1);
 }
 
-console.log('No duplicate source URLs found across open editorial PRs.');
+console.log(`No duplicate sources across ${others.length} other in-flight editorial branch(es).`);

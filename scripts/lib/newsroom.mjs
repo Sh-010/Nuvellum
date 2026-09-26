@@ -1,0 +1,312 @@
+// Nuvellum newsroom helpers shared by the repository gate and n8n.
+//
+// Dependency-free on purpose: `npm run n8n:snippets` inlines this file into
+// n8n/snippets/ so the SAME code runs inside n8n Code nodes and in CI.
+// No Node built-ins are used (n8n restricts module loading by default).
+
+// ---------------------------------------------------------------------------
+// Source URLs
+// ---------------------------------------------------------------------------
+
+const TRACKING_PARAM_RE = /^(utm_.*|at_.*|maca|cmpid|cmp|ocid|fbclid|gclid|dclid|mc_cid|mc_eid|xtor|ito|ns_.*|rss|feed|ref|referrer|src|__twitter_impression|smid|smtyp|taid|guccounter|partner|traffic_source)$/i;
+
+/** Canonical source URL: https, lower-case host without www, no fragment, no tracking params. */
+export function canonicalSourceUrl(value) {
+  const u = new URL(String(value).trim());
+  if (u.protocol !== 'https:' && u.protocol !== 'http:') throw new Error(`unsupported URL scheme: ${u.protocol}`);
+  u.protocol = 'https:';
+  u.hash = '';
+  u.hostname = u.hostname.toLowerCase().replace(/^www\./, '');
+  for (const key of [...u.searchParams.keys()]) if (TRACKING_PARAM_RE.test(key)) u.searchParams.delete(key);
+  u.pathname = u.pathname.replace(/\/+$/, '') || '/';
+  return u.toString();
+}
+
+export function trackingParams(value) {
+  try { return [...new URL(String(value)).searchParams.keys()].filter(k => TRACKING_PARAM_RE.test(k)); }
+  catch { return []; }
+}
+
+/** Live blogs, video, audio and gallery pages aggregate many unrelated items; they cluster stories. */
+export function isAggregatePage(value) {
+  return /\/(live|liveblog|live-news|live-updates|video|videos|av|audio|podcasts?|gallery|galleries|in-pictures)(\/|-|$)|[-/]live-\d+/i.test(String(value));
+}
+
+// ---------------------------------------------------------------------------
+// Pure-JS SHA-256 (n8n Code nodes may not allow require('crypto'))
+// ---------------------------------------------------------------------------
+
+export function sha256Hex(message) {
+  const bytes = new TextEncoder().encode(String(message));
+  const K = new Uint32Array([
+    0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+    0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+    0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+    0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2]);
+  const H = new Uint32Array([0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]);
+  const len = bytes.length;
+  const padded = new Uint8Array(((len + 9 + 63) >> 6) << 6);
+  padded.set(bytes); padded[len] = 0x80;
+  const bitLen = len * 8;
+  const dv = new DataView(padded.buffer);
+  dv.setUint32(padded.length - 8, Math.floor(bitLen / 2 ** 32));
+  dv.setUint32(padded.length - 4, bitLen >>> 0);
+  const W = new Uint32Array(64);
+  const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+  for (let off = 0; off < padded.length; off += 64) {
+    for (let i = 0; i < 16; i++) W[i] = dv.getUint32(off + i * 4);
+    for (let i = 16; i < 64; i++) {
+      const s0 = rotr(W[i - 15], 7) ^ rotr(W[i - 15], 18) ^ (W[i - 15] >>> 3);
+      const s1 = rotr(W[i - 2], 17) ^ rotr(W[i - 2], 19) ^ (W[i - 2] >>> 10);
+      W[i] = (W[i - 16] + s0 + W[i - 7] + s1) >>> 0;
+    }
+    let [a, b, c, d, e, f, g, h] = H;
+    for (let i = 0; i < 64; i++) {
+      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+      const t1 = (h + S1 + ((e & f) ^ (~e & g)) + K[i] + W[i]) >>> 0;
+      const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+      const t2 = (S0 + ((a & b) ^ (a & c) ^ (b & c))) >>> 0;
+      h = g; g = f; f = e; e = (d + t1) >>> 0; d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+    }
+    H[0] += a; H[1] += b; H[2] += c; H[3] += d; H[4] += e; H[5] += f; H[6] += g; H[7] += h;
+  }
+  return [...H].map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+}
+
+// ---------------------------------------------------------------------------
+// Slugs, branches, reading time
+// ---------------------------------------------------------------------------
+
+export function slugify(input, max = 90) {
+  const s = String(input).normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  if (s.length <= max) return s;
+  return s.slice(0, max).replace(/-[^-]*$/, '') || s.slice(0, max);
+}
+
+export const BRANCH_RE = /^incoming\/([a-z0-9]+(?:-[a-z0-9]+)*)-([0-9a-f]{8})$/;
+
+/** Deterministic branch: the same source always maps to the same branch. */
+export function branchName(slug, sourceUrl) {
+  const hash = sha256Hex(canonicalSourceUrl(sourceUrl)).slice(0, 8);
+  return `incoming/${String(slug).slice(0, 72).replace(/-+$/, '')}-${hash}`;
+}
+
+export function wordCount(markdown) {
+  return String(markdown || '').replace(/[#>*_`\[\]()!-]/g, ' ').split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).length;
+}
+
+export function readingTime(markdown, wpm = 220) {
+  return `${Math.max(1, Math.round(wordCount(markdown) / wpm))} min`;
+}
+
+// ---------------------------------------------------------------------------
+// Headline style
+// ---------------------------------------------------------------------------
+
+const SMALL_WORDS = new Set(['a','an','and','as','at','but','by','for','from','in','into','nor','of','on','or','over','per','the','to','up','via','vs','with','is','its','it','than','that','this']);
+
+/**
+ * Nuvellum headlines use sentence case. Proper nouns make this impossible to
+ * check perfectly, so flag only the unambiguous case: every non-initial word
+ * of four or more letters is capitalised (at least four such words), or a
+ * short function word ("And", "For") is capitalised mid-headline.
+ */
+export function looksTitleCase(title) {
+  const words = String(title).replace(/[“”"'‘’:;,.!?()\[\]]/g, ' ').split(/\s+/).filter(Boolean);
+  const rest = words.slice(1);
+  const long = rest.filter(w => /^[A-Za-z][a-z]{3,}/.test(w) || /^[A-Z][a-z]{3,}/.test(w));
+  const capsLong = long.filter(w => /^[A-Z]/.test(w));
+  if (long.length >= 4 && capsLong.length === long.length) return true;
+  const smallCapped = rest.filter((w, i) => SMALL_WORDS.has(w.toLowerCase()) && /^[A-Z][a-z]+$/.test(w) && !/[:.!?]$/.test(words[i]));
+  return smallCapped.length >= 2;
+}
+
+// ---------------------------------------------------------------------------
+// Model verdicts: fail closed
+// ---------------------------------------------------------------------------
+
+/** Criteria the independent sensitive-story verifier must explicitly clear. */
+export const SENSITIVE_CRITERIA = [
+  'unsupported_factual_assertions',
+  'disputed_claims_as_fact',
+  'inferred_motive_intent_guilt_or_causation',
+  'fabricated_or_misquoted_quotes',
+  'partisan_advocacy',
+  'political_endorsement_attack_ranking_or_prediction',
+  'opinion_presented_as_fact',
+  'missing_material_uncertainty_or_counter_position',
+  'headline_or_dek_overstates_evidence',
+  'unattributed_legal_or_reputational_claims'
+];
+
+/** Criteria the general editorial review must explicitly clear. */
+export const EDITORIAL_CRITERIA = [
+  'supported_by_source',
+  'original_wording_not_close_rewrite',
+  'headline_accurate_sentence_case',
+  'single_story_not_clustered',
+  'correct_section_and_type',
+  'risk_classification_correct'
+];
+
+function extractJson(text) {
+  if (text && typeof text === 'object') return text;
+  const s = String(text ?? '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
+  const start = s.indexOf('{');
+  const end = s.lastIndexOf('}');
+  if (start < 0 || end <= start) throw new Error('no JSON object in model output');
+  return JSON.parse(s.slice(start, end + 1));
+}
+
+/**
+ * Parse the sensitive verifier's output.
+ * Expected: {"verdict":"cleared"|"failed", "checks": {<criterion>: "pass"|"fail"}, "notes": "..."}
+ * Anything missing, malformed or contradictory yields "uncertain". Only an
+ * explicit "cleared" with every criterion explicitly "pass" returns "cleared".
+ */
+export function parseVerification(output) {
+  let data;
+  try { data = extractJson(output); } catch (err) { return { verification: 'uncertain', problems: [`unparseable verifier output: ${err.message}`] }; }
+  const problems = [];
+  const checks = data?.checks && typeof data.checks === 'object' ? data.checks : {};
+  for (const c of SENSITIVE_CRITERIA) {
+    const v = String(checks[c] ?? '').toLowerCase();
+    if (v === 'fail') problems.push(`failed: ${c}`);
+    else if (v !== 'pass') problems.push(`not explicitly checked: ${c}`);
+  }
+  const verdict = String(data?.verdict ?? '').toLowerCase();
+  if (verdict === 'failed' || problems.some(p => p.startsWith('failed'))) return { verification: 'failed', problems: problems.length ? problems : ['verifier verdict: failed'] };
+  if (verdict !== 'cleared' || problems.length) return { verification: 'uncertain', problems: problems.length ? problems : [`verdict "${verdict || 'missing'}"`] };
+  return { verification: 'cleared', problems: [] };
+}
+
+/** Parse the editorial reviewer's output with the same fail-closed rules. */
+export function parseEditorialReview(output) {
+  let data;
+  try { data = extractJson(output); } catch (err) { return { editorialReview: 'uncertain', risk: null, problems: [`unparseable review output: ${err.message}`] }; }
+  const problems = [];
+  const checks = data?.checks && typeof data.checks === 'object' ? data.checks : {};
+  for (const c of EDITORIAL_CRITERIA) {
+    const v = String(checks[c] ?? '').toLowerCase();
+    if (v === 'fail') problems.push(`failed: ${c}`);
+    else if (v !== 'pass') problems.push(`not explicitly checked: ${c}`);
+  }
+  const risk = ['low', 'sensitive'].includes(data?.risk) ? data.risk : null;
+  if (!risk) problems.push('risk must be "low" or "sensitive"');
+  const verdict = String(data?.verdict ?? '').toLowerCase();
+  if (verdict === 'failed' || problems.some(p => p.startsWith('failed'))) return { editorialReview: 'failed', risk, problems };
+  if (verdict !== 'passed' || problems.length) return { editorialReview: 'uncertain', risk, problems: problems.length ? problems : [`verdict "${verdict || 'missing'}"`] };
+  return { editorialReview: 'passed', risk, problems: [] };
+}
+
+// ---------------------------------------------------------------------------
+// Pre-publication quality checks for NEW automated stories
+// ---------------------------------------------------------------------------
+
+/**
+ * Deterministic checks the publication gate applies to new automated
+ * articles. Returns a list of problems (empty = acceptable). Existing
+ * published articles are never re-checked by this function.
+ */
+export function newStoryQualityProblems(data, body, { slug, branch, hasAiArt } = {}) {
+  const p = [];
+  const title = String(data.title || '');
+  if (title.length > 140) p.push(`headline is ${title.length} characters (max 140)`);
+  if (looksTitleCase(title)) p.push('headline is in Title Case; Nuvellum uses sentence case');
+  if (/prepared from source reporting/i.test(String(data.sourceNote || '')) || !String(data.sourceNote || '').trim()) {
+    p.push('sourceNote is missing or still the "Prepared from Source reporting" placeholder');
+  }
+  const urls = Array.isArray(data.sourceUrls) ? data.sourceUrls : [];
+  if (!urls.length) p.push('no sourceUrls');
+  for (const u of urls) {
+    const tp = trackingParams(u);
+    if (tp.length) p.push(`sourceUrl carries tracking parameters (${tp.join(', ')}): ${u}`);
+    if (isAggregatePage(u)) p.push(`sourceUrl is a live blog/video/gallery page, which clusters unrelated stories: ${u}`);
+  }
+  const words = wordCount(body);
+  if (words < 120) p.push(`body is only ${words} words; skip thin sources rather than publish or pad`);
+  if (data.publishedAt !== undefined && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/.test(String(data.publishedAt))) {
+    p.push('publishedAt must be an ISO 8601 timestamp with timezone');
+  }
+  if (slug && branch) {
+    const m = String(branch).match(BRANCH_RE);
+    if (!m) p.push(`branch "${branch}" does not follow incoming/<slug>-<8 hex source hash>`);
+    else if (!slug.startsWith(m[1])) p.push(`branch slug "${m[1]}" does not match article slug "${slug}"`);
+  }
+  if (hasAiArt && slug && data.image !== `/generated/ai/${slug}.svg`) p.push(`AI art was committed but image is "${data.image}"`);
+  return p;
+}
+
+// ---------------------------------------------------------------------------
+// Article Markdown builder (the ONLY way n8n should produce article files)
+// ---------------------------------------------------------------------------
+
+export const VERIFICATION_REVIEWER_NAME = 'Nuvellum Verification Pipeline';
+const FRONTMATTER_ORDER = ['title', 'dek', 'section', 'type', 'author', 'date', 'publishedAt', 'readingTime', 'image', 'imageAlt', 'status', 'tags', 'sourceUrls', 'sourceNote', 'origin', 'risk', 'editorialReview', 'verification', 'reviewedBy'];
+
+function fmValue(v) {
+  if (Array.isArray(v)) return JSON.stringify(v.map(x => String(x)));
+  return JSON.stringify(String(v ?? ''));
+}
+
+/**
+ * Build the Markdown file for an automated story.
+ * Clearance (and therefore status) is derived here from the parsed review and
+ * verification results, so n8n cannot mark an uncleared story "published".
+ *
+ * @param {object} s  { title, dek, section, type, date, publishedAt, bodyMarkdown, tags, sourceUrls, sourceOutlet,
+ *                      aiArt: boolean, sectionImage, imageAlt, review: parseEditorialReview(...), verification?: parseVerification(...) }
+ * @returns {{ slug, path, branch, markdown, status, cleared, reasons }}
+ */
+export function buildArticle(s) {
+  const reasons = [];
+  const review = s.review || { editorialReview: 'uncertain', risk: null };
+  const risk = review.risk === 'sensitive' || s.forceSensitive ? 'sensitive' : review.risk === 'low' ? 'low' : null;
+  if (!risk) reasons.push('risk unknown');
+  const editorialReview = review.editorialReview || 'uncertain';
+  if (editorialReview !== 'passed') reasons.push(`editorial review ${editorialReview}`);
+  let verification;
+  if (risk === 'sensitive') {
+    verification = s.verification?.verification || 'uncertain';
+    if (verification !== 'cleared') reasons.push(`verification ${verification}`);
+  }
+  const cleared = reasons.length === 0;
+  const sourceUrls = (s.sourceUrls || []).map(canonicalSourceUrl);
+  const slug = slugify(s.slug || s.title);
+  const outlet = String(s.sourceOutlet || '').trim();
+  if (!outlet || /^source$/i.test(outlet)) reasons.push('sourceOutlet missing');
+  const data = {
+    title: String(s.title || '').trim(),
+    dek: String(s.dek || '').trim(),
+    section: s.section,
+    type: s.type || 'News',
+    author: s.author || 'Nuvellum Global Desk',
+    date: s.date,
+    publishedAt: s.publishedAt,
+    readingTime: readingTime(s.bodyMarkdown),
+    image: s.aiArt ? `/generated/ai/${slug}.svg` : (s.sectionImage || '/images/world.svg'),
+    imageAlt: s.imageAlt || `Editorial illustration for ${String(s.title || '').trim()}`,
+    status: cleared && reasons.length === 0 ? 'published' : 'review',
+    tags: (s.tags || []).slice(0, 12),
+    sourceUrls,
+    sourceNote: `Prepared from ${outlet || 'UNKNOWN OUTLET'} reporting.${risk === 'sensitive' ? ' Sensitive coverage cleared by the Nuvellum verification pipeline.' : ''}`,
+    origin: 'automation',
+    risk: risk || 'sensitive',
+    editorialReview,
+    verification,
+    reviewedBy: risk === 'sensitive' && verification === 'cleared' ? VERIFICATION_REVIEWER_NAME : ''
+  };
+  const fm = FRONTMATTER_ORDER.filter(k => data[k] !== undefined && data[k] !== '' || k === 'reviewedBy').map(k => `${k}: ${fmValue(data[k])}`).join('\n');
+  const markdown = `---\n${fm}\n---\n\n${String(s.bodyMarkdown || '').trim()}\n`;
+  return {
+    slug,
+    path: `src/content/articles/${slug}.md`,
+    artPath: s.aiArt ? `public/generated/ai/${slug}.svg` : null,
+    branch: sourceUrls[0] ? branchName(slug, sourceUrls[0]) : null,
+    markdown,
+    status: data.status,
+    cleared: data.status === 'published',
+    reasons
+  };
+}

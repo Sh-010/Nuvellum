@@ -1,0 +1,66 @@
+name: Auto-publish verified editorial stories
+
+# Merges an incoming/** editorial PR only when scripts/lib/editorial.mjs
+# says it is cleared AND every required check is green on its head commit.
+#
+# Triggers:
+# - workflow_run: when any required check finishes on an incoming/** branch.
+#   (The checks are started by n8n's push, not by GITHUB_TOKEN, so this fires.)
+# - schedule: a sweep that catches PRs opened after their checks finished.
+# - workflow_dispatch: manual evaluation, optionally as a dry run.
+#
+# Kill switch: nothing is merged unless the repository variable
+# NUVELLUM_AUTOPUBLISH is set to "on". Label a PR "hold" to exclude it.
+
+on:
+  workflow_run:
+    workflows:
+      - Build Nuvellum
+      - Security checks
+      - CodeQL
+      - Editorial duplicate guard
+    types: [completed]
+    branches:
+      - "incoming/**"
+  schedule:
+    - cron: "7,27,47 * * * *"
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Evaluate only this PR number (optional)"
+        required: false
+      dry_run:
+        description: "Evaluate without merging"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read    # read check runs
+
+concurrency:
+  group: auto-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Always run the gate from the default branch, never from PR code.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Evaluate and publish cleared stories
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          NUVELLUM_AUTOPUBLISH: ${{ vars.NUVELLUM_AUTOPUBLISH }}
+          HEAD_BRANCH: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || '' }}
+          PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || '' }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '0' }}
+        run: node scripts/auto-publish.mjs

@@ -1,12 +1,21 @@
 name: Build Nuvellum
 on:
+  # incoming/** pushes come from n8n with its own credential, so they trigger
+  # workflows normally. PRs opened with GITHUB_TOKEN do not trigger
+  # pull_request workflows, so checks must not depend on pull_request alone.
   push:
-    branches: [main]
+    branches:
+      - main
+      - "incoming/**"
   pull_request:
     branches: [main]
 
 permissions:
   contents: read
+
+concurrency:
+  group: build-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build:
@@ -17,5 +26,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
       - run: npm run build
+      - name: Build must not modify tracked files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            echo "::error::The build changed or created files outside ignored build folders."
+            exit 1
+          fi

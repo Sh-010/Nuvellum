@@ -55,11 +55,11 @@
     },
     "date": {
       "type": "string",
-      "pattern": "^\\\\d{4}-\\\\d{2}-\\\\d{2}$"
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "updated": {
       "type": "string",
-      "pattern": "^\\\\d{4}-\\\\d{2}-\\\\d{2}$"
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "readingTime": {
       "type": "string",
@@ -67,7 +67,7 @@
     },
     "image": {
       "type": "string",
-      "pattern": "^(?:/images/|/uploads/|https://)"
+      "pattern": "^(?:/images/|/uploads/|/generated/ai/[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$|https://)"
     },
     "imageAlt": {
       "type": "string",
@@ -121,11 +121,83 @@
     },
     "reviewedBy": {
       "type": "string",
-      "maxLength": 100
+      "maxLength": 100,
+      "description": "For automatically verified sensitive stories: \"Nuvellum Verification Pipeline\"."
     },
     "bodyMarkdown": {
       "type": "string",
       "minLength": 200
+    },
+    "editorialReview": {
+      "enum": [
+        "passed",
+        "failed",
+        "uncertain"
+      ],
+      "description": "Outcome of the automated editorial/risk review. Only \"passed\" can publish."
+    },
+    "verification": {
+      "enum": [
+        "cleared",
+        "failed",
+        "uncertain"
+      ],
+      "description": "Outcome of the dedicated verification pass. Required as \"cleared\" for sensitive stories to publish."
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "risk": {
+            "const": "sensitive"
+          },
+          "status": {
+            "const": "published"
+          }
+        },
+        "required": [
+          "risk",
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "verification",
+          "reviewedBy"
+        ],
+        "properties": {
+          "verification": {
+            "const": "cleared"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "published"
+          },
+          "origin": {
+            "const": "automation"
+          }
+        },
+        "required": [
+          "status",
+          "origin"
+        ]
+      },
+      "then": {
+        "required": [
+          "editorialReview"
+        ],
+        "properties": {
+          "editorialReview": {
+            "const": "passed"
+          }
+        }
+      }
+    }
+  ]
 }

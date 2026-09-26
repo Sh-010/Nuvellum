@@ -2,7 +2,9 @@ name: Security checks
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - "incoming/**"
   pull_request:
     branches: [main]
   schedule:
@@ -11,6 +13,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: security-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   dependency-and-content-audit:
@@ -21,7 +27,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --no-fund
+      - run: npm ci --no-fund
       - run: npm audit --audit-level=high
       - run: npm run validate
       - run: npm run build
+      - name: Build must not modify tracked files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            echo "::error::The build changed or created files outside ignored build folders."
+            exit 1
+          fi

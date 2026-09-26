@@ -6,7 +6,7 @@ The approved homepage design is the exact archive at `assets/nuvellum-v5.zip`.
 
 Do not recreate the homepage in `src/pages/index.astro`. The build intentionally fails if that route exists because Astro would override the approved static homepage.
 
-The build script `scripts/restore-v5.mjs` verifies the v5.1 archive checksum, extracts the exact design into `public/`, and then applies only non-visual production bridges: canonical/OG/Twitter metadata, real route destinations, live search-index integration, and duplicate-indexing protection for the legacy `article.html` demo.
+The build script `scripts/restore-v5.mjs` verifies the v5.1 archive checksum, extracts the exact design into the build-only `.build/public/` directory (never the tracked `public/` folder), and then applies only non-visual production bridges: canonical/OG/Twitter metadata, real route destinations, live search-index integration, and duplicate-indexing protection for the legacy `article.html` demo.
 
 ## Recovery points
 

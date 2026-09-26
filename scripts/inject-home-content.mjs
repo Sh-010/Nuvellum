@@ -1,11 +1,12 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildPublicDir } from './lib/paths.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
 const articlesDir = join(root, 'src', 'content', 'articles');
-const homePath = join(root, 'public', 'index.html');
+const homePath = join(buildPublicDir, 'index.html');
 
 function parseValue(value) {
   const v = String(value ?? '').trim();
@@ -57,7 +58,9 @@ const published = readdirSync(articlesDir)
 
 const real = published
   .filter(a => a.origin === 'automation')
-  .sort((a,b) => String(b.date||'').localeCompare(String(a.date||'')) || a.slug.localeCompare(b.slug));
+  .sort((a,b) => String(b.date||'').localeCompare(String(a.date||''))
+    || String(b.publishedAt||'').localeCompare(String(a.publishedAt||''))
+    || a.slug.localeCompare(b.slug));
 
 if (!real.length) {
   console.log('No published automated stories yet; preserving v5.1 homepage demo slots.');

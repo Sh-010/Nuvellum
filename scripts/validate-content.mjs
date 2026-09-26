@@ -1,11 +1,15 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import { validateSvg } from './lib/svg-safety.mjs';
+import { contentPolicyErrors } from './lib/editorial.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
 const dir = join(root, 'src', 'content', 'articles');
+const aiArtDir = join(root, 'public', 'generated', 'ai');
+const AI_IMAGE_RE = /^\/generated\/ai\/([a-z0-9]+(?:-[a-z0-9]+)*)\.svg$/;
 
 const required = ['title','dek','section','type','author','date','readingTime','image','imageAlt','status','tags'];
 const statuses = new Set(['draft','review','published']);
@@ -89,6 +93,8 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     if (data.risk && !risks.has(data.risk)) errors.push(`${name}: risk must be low or sensitive`);
 
     if (data.date && (!/^\d{4}-\d{2}-\d{2}$/.test(data.date) || Number.isNaN(Date.parse(data.date + 'T00:00:00Z')))) errors.push(`${name}: date must be YYYY-MM-DD`);
+    if (data.publishedAt !== undefined && (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/.test(String(data.publishedAt)) || Number.isNaN(Date.parse(String(data.publishedAt))))) errors.push(`${name}: publishedAt must be an ISO 8601 timestamp with timezone`);
+    else if (data.publishedAt && data.date && !String(data.publishedAt).startsWith(data.date) && Math.abs(Date.parse(data.publishedAt) - Date.parse(data.date + 'T12:00:00Z')) > 36 * 3600e3) errors.push(`${name}: publishedAt does not match date`);
     if (data.updated && (!/^\d{4}-\d{2}-\d{2}$/.test(data.updated) || Number.isNaN(Date.parse(data.updated + 'T00:00:00Z')))) errors.push(`${name}: updated must be YYYY-MM-DD`);
 
     if (data.title && String(data.title).length > 180) errors.push(`${name}: title is over 180 characters`);
@@ -99,7 +105,17 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
-    if (data.image && !/^(\/images\/|\/uploads\/|https:\/\/)/.test(String(data.image))) errors.push(`${name}: image must use /images/, /uploads/ or https://`);
+    if (data.image) {
+      const image = String(data.image);
+      const aiImage = image.match(AI_IMAGE_RE);
+      if (image.startsWith('/generated/')) {
+        if (!aiImage) errors.push(`${name}: generated images must be /generated/ai/<slug>.svg`);
+        else if (aiImage[1] !== slug) errors.push(`${name}: AI image must belong to this article (/generated/ai/${slug}.svg)`);
+        else if (!existsSync(join(aiArtDir, `${slug}.svg`))) errors.push(`${name}: AI image file public/generated/ai/${slug}.svg is missing`);
+      } else if (!/^(\/images\/|\/uploads\/|https:\/\/)/.test(image)) {
+        errors.push(`${name}: image must use /images/, /uploads/, /generated/ai/ or https://`);
+      }
+    }
     if (!body) errors.push(`${name}: article body is empty`);
     if (/<\s*\/?\s*[A-Za-z][^>]*>/.test(body)) errors.push(`${name}: raw HTML is blocked in article bodies; use Markdown only`);
     for (const pattern of dangerous) if (pattern.test(src)) errors.push(`${name}: blocked unsafe markup or URL pattern: ${pattern}`);
@@ -132,9 +148,22 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data.risk === 'sensitive' && data.status === 'published' && !String(data.reviewedBy || '').trim()) {
         errors.push(`${name}: sensitive automated stories cannot be published without reviewedBy`);
       }
+      errors.push(...contentPolicyErrors(data, name));
     }
   } catch (err) {
     errors.push(err.message);
+  }
+}
+
+// Every committed AI illustration is untrusted input served from our origin.
+if (existsSync(aiArtDir)) {
+  for (const file of readdirSync(aiArtDir).sort()) {
+    if (file.startsWith('.')) continue;
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/.test(file)) {
+      errors.push(`public/generated/ai/${file}: only <slug>.svg files are allowed here`);
+      continue;
+    }
+    for (const problem of validateSvg(readFileSync(join(aiArtDir, file), 'utf8'), `public/generated/ai/${file}`)) errors.push(problem);
   }
 }
 

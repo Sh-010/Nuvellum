@@ -2,7 +2,9 @@ name: CodeQL
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - "incoming/**"
   pull_request:
     branches: [main]
   schedule:
@@ -11,6 +13,10 @@ on:
 permissions:
   contents: read
   security-events: write
+
+concurrency:
+  group: codeql-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   analyze:

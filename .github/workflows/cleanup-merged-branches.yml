@@ -1,0 +1,31 @@
+name: Clean up merged editorial branches
+
+# Manual only. Deletes incoming/** branches whose PR was merged and whose tip
+# is exactly the merged commit. Branches with open, closed-unmerged or no PRs
+# are always kept. Dry run by default.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "yes" to actually delete (otherwise dry run)'
+        required: false
+        default: "no"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/cleanup-merged-branches.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          CONFIRM_DELETE: ${{ inputs.confirm }}

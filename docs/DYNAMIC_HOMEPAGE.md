@@ -2,8 +2,9 @@
 
 The approved v5.1 ZIP remains the visual source of truth. The build does **not** replace its CSS, layout, motion system or section composition.
 
-During each build:
+During each build (all steps write only to the gitignored `.build/public/`):
 
+0. `scripts/prepare-public.mjs` copies the tracked `public/` folder to `.build/public/`.
 1. `scripts/restore-v5.mjs` restores the checksum-pinned v5.1 homepage.
 2. `scripts/generate-editorial-art.mjs` creates an original deterministic SVG illustration for each published automated story.
 3. `scripts/inject-home-content.mjs` fills existing v5.1 story slots with published automated stories.
@@ -24,7 +25,7 @@ This lets Nuvellum become live gradually without creating empty sections or rebu
 
 ## Editorial illustrations
 
-Automated stories use `/generated/<slug>.svg`.
+Automated stories use their validated story-specific art at `/generated/ai/<slug>.svg` when n8n committed one, otherwise the build-time `/generated/<slug>.svg`.
 
 These SVGs are generated locally from the article slug, section and headline. They use Nuvellum-owned abstract editorial motifs and do not copy source-site photography. This keeps the launch workflow copyright-safe and free of image-API costs.
 

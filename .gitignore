@@ -3,3 +3,10 @@ dist/
 .astro/
 .env
 .DS_Store
+.build/
+
+# Raw n8n exports contain credential ids and execution data. Never commit them.
+n8n/raw/
+*.raw.json
+.env.*
+!.env.example

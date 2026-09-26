@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { buildPublicDir } from './lib/paths.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
@@ -13,8 +14,8 @@ const actualSha256 = createHash('sha256').update(archive).digest('hex');
 if (actualSha256 !== expectedSha256) throw new Error(`Nuvellum v5.1 baseline archive checksum mismatch: ${actualSha256}`);
 if (existsSync(join(root, 'src', 'pages', 'index.astro'))) throw new Error('src/pages/index.astro would override the approved v5.1 homepage. Remove it before building.');
 const zip = new AdmZip(archive);
-zip.extractAllTo(join(root, 'public'), true);
-const baselineHtml = readFileSync(join(root, 'public', 'index.html'), 'utf8');
+zip.extractAllTo(buildPublicDir, true);
+const baselineHtml = readFileSync(join(buildPublicDir, 'index.html'), 'utf8');
 if (!baselineHtml.includes('v4 FULLY INTERACTIVE EDITORIAL LAYER') || !baselineHtml.includes('quick-chip')) throw new Error('Extracted homepage does not match the approved v5.1 interaction baseline.');
 
 const canonical = (process.env.SITE_URL || 'https://nuvellum.vercel.app').replace(/\/$/, '');
@@ -174,14 +175,15 @@ function productionizeHome(html) {
     const a=e.target.closest('#searchResults a.result,#savedResults a.result');
     if(!a)return;
     const title=a.querySelector('h4')?.textContent||'';
-    const route=routes[title];
+    let route=routes[title];
+    if(!route){try{const hit=(JSON.parse(localStorage.getItem('nuvellum-saved-v2')||'[]')||[]).find(x=>x&&x.title===title&&typeof x.url==='string'&&x.url.startsWith('/article/'));if(hit)route=hit.url}catch(err){}}
     if(route){e.preventDefault();location.href=route;}
   });
   const input=document.getElementById('searchInput');
   const results=document.getElementById('searchResults');
   if(input&&results){
     let fullIndex=[];
-    fetch('/search-index.json').then(r=>r.ok?r.json():[]).then(data=>{if(Array.isArray(data))fullIndex=data}).catch(()=>{});
+    fetch('/search-index.json').then(r=>r.ok?r.json():[]).then(data=>{if(Array.isArray(data)){fullIndex=data;data.forEach(x=>{if(x&&x.title&&x.slug&&!routes[x.title])routes[x.title]='/article/'+encodeURIComponent(x.slug)})}}).catch(()=>{});
     input.addEventListener('input',()=>{
       const q=input.value.trim().toLowerCase();
       if(!q||!fullIndex.length)return;
@@ -209,7 +211,7 @@ function productionizeLegacyArticle(html) {
 }
 
 for (const file of ['index.html','article.html']) {
-  const path = join(root, 'public', file);
+  const path = join(buildPublicDir, file);
   let html = readFileSync(path, 'utf8');
   html = file === 'index.html' ? productionizeHome(html) : productionizeLegacyArticle(html);
   if (file === 'index.html' && html.includes('is on the list.')) {

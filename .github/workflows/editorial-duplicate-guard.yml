@@ -1,6 +1,12 @@
 name: Editorial duplicate guard
 
 on:
+  # Runs on every push to an incoming/** branch (n8n's own credential, so the
+  # event is not suppressed) and on human-opened PRs. No paths filter on push:
+  # the auto-publish gate requires this check to exist on the head commit.
+  push:
+    branches:
+      - "incoming/**"
   pull_request:
     branches: [main]
     paths:
@@ -9,6 +15,10 @@ on:
 permissions:
   contents: read
   pull-requests: read
+
+concurrency:
+  group: duplicate-guard-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   duplicate-source-check:
@@ -19,9 +29,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check source URLs against other open PRs
+      - name: Check source URLs against other in-flight editorial branches
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_REF: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+          HEAD_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          BASE_REF: main
         run: node scripts/check-pr-duplicates.mjs

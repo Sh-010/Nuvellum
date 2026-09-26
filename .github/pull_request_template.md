@@ -13,14 +13,14 @@
 
 ### Sensitive stories
 If `risk: "sensitive"`:
-- [ ] A human editor reviewed the full source material.
 - [ ] Political/electoral coverage is neutral and descriptive.
 - [ ] Allegations and contested claims are attributed.
-- [ ] `reviewedBy` contains the reviewing editor's name.
-- [ ] `status` was changed from `review` to `published` only after review.
+- [ ] Automated: `verification: "cleared"` and `reviewedBy: "Nuvellum Verification Pipeline"`, written by the verification pass (see `docs/EDITORIAL_PIPELINE.md`). Manual: `reviewedBy` names the reviewing editor.
+- [ ] A failed or uncertain verification stays `status: "review"`.
 
 ### Production
-- [ ] Content validation passes.
+- [ ] Content validation passes (including the AI SVG safety check).
+- [ ] Unit tests pass (`npm test`).
 - [ ] Build passes.
 - [ ] Security checks pass.
 - [ ] The approved v5.1 homepage design is unchanged unless this PR explicitly has visual approval.
