@@ -175,14 +175,15 @@ function productionizeHome(html) {
     const a=e.target.closest('#searchResults a.result,#savedResults a.result');
     if(!a)return;
     const title=a.querySelector('h4')?.textContent||'';
-    const route=routes[title];
+    let route=routes[title];
+    if(!route){try{const hit=(JSON.parse(localStorage.getItem('nuvellum-saved-v2')||'[]')||[]).find(x=>x&&x.title===title&&typeof x.url==='string'&&x.url.startsWith('/article/'));if(hit)route=hit.url}catch(err){}}
     if(route){e.preventDefault();location.href=route;}
   });
   const input=document.getElementById('searchInput');
   const results=document.getElementById('searchResults');
   if(input&&results){
     let fullIndex=[];
-    fetch('/search-index.json').then(r=>r.ok?r.json():[]).then(data=>{if(Array.isArray(data))fullIndex=data}).catch(()=>{});
+    fetch('/search-index.json').then(r=>r.ok?r.json():[]).then(data=>{if(Array.isArray(data)){fullIndex=data;data.forEach(x=>{if(x&&x.title&&x.slug&&!routes[x.title])routes[x.title]='/article/'+encodeURIComponent(x.slug)})}}).catch(()=>{});
     input.addEventListener('input',()=>{
       const q=input.value.trim().toLowerCase();
       if(!q||!fullIndex.length)return;

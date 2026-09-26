@@ -9,9 +9,15 @@ document.getElementById('themeBtn').onclick=()=>{body.classList.toggle('night');
 function showToast(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1500)}
 async function copyLink(){try{await navigator.clipboard.writeText(location.href);showToast('Link copied.')}catch(e){showToast('Copy unavailable in this preview.')}}
 document.getElementById('copyBtn').onclick=copyLink;document.getElementById('shareBtn').onclick=async()=>{if(navigator.share){try{await navigator.share({title:document.title,url:location.href})}catch(e){}}else copyLink()};
-const savedKey='nuvellum-saved-v2',title='A world in motion: the forces quietly redrawing the global order';let saved=JSON.parse(localStorage.getItem(savedKey)||'[]');
-function syncSave(){let on=saved.some(x=>x.title===title);document.getElementById('saveBtn').classList.toggle('saved',on);document.getElementById('saveBtn').textContent=on?'Saved':'Save'} syncSave();
-document.getElementById('saveBtn').onclick=()=>{let i=saved.findIndex(x=>x.title===title);if(i>=0)saved.splice(i,1);else saved.push({title,cat:'World · Analysis'});localStorage.setItem(savedKey,JSON.stringify(saved));syncSave()};
+// Save the article that is actually on screen (previously hard-coded to one demo story).
+const articleHead=document.querySelector('.article-head');
+const savedKey='nuvellum-saved-v2';
+const title=(articleHead?.dataset.title||articleHead?.querySelector('h1')?.textContent||document.title).trim();
+const savedCat=(articleHead?.dataset.kicker||'').trim()||'Nuvellum';
+const savedUrl=location.pathname;
+let saved=[];try{saved=JSON.parse(localStorage.getItem(savedKey)||'[]');if(!Array.isArray(saved))saved=[]}catch(e){saved=[]}
+function syncSave(){let on=saved.some(x=>x&&x.title===title);document.getElementById('saveBtn').classList.toggle('saved',on);document.getElementById('saveBtn').textContent=on?'Saved':'Save'} syncSave();
+document.getElementById('saveBtn').onclick=()=>{let i=saved.findIndex(x=>x&&x.title===title);if(i>=0)saved.splice(i,1);else saved.push({title,cat:savedCat,url:savedUrl});try{localStorage.setItem(savedKey,JSON.stringify(saved))}catch(e){}syncSave()};
 window.addEventListener('scroll',()=>{let d=document.documentElement;let max=d.scrollHeight-innerHeight;document.getElementById('progress').style.width=(max?scrollY/max*100:0)+'%'});
 const links=[...document.querySelectorAll('.toc a')], secs=links.map(a=>document.querySelector(a.getAttribute('href')));let ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-25% 0px -65% 0px'});secs.forEach(s=>s&&ob.observe(s));
 
