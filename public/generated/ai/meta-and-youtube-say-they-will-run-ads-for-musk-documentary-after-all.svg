@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090e" />
+      <stop offset="50%" stop-color="#121824" />
+      <stop offset="100%" stop-color="#1b1724" />
+    </linearGradient>
+
+    
+    <linearGradient id="beamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
+      <stop offset="40%" stop-color="#3b82f6" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0.03" />
+    </linearGradient>
+
+    
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#fb7185" />
+    </linearGradient>
+
+    
+    <linearGradient id="metaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    
+    <linearGradient id="youtubeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+
+    
+    <pattern id="filmPerforations" width="20" height="40" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="20" height="40" fill="none" />
+      <rect x="4" y="8" width="12" height="24" rx="2" fill="#07090e" />
+    </pattern>
+
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bgGrad)" />
+
+  
+  <g opacity="0.15">
+    <circle cx="200" cy="150" r="2" fill="#ffffff" />
+    <circle cx="850" cy="100" r="1.5" fill="#ffffff" />
+    <circle cx="1050" cy="450" r="2" fill="#ffffff" />
+    <circle cx="450" cy="550" r="1" fill="#ffffff" />
+    <circle cx="700" cy="250" r="1.5" fill="#ffffff" />
+    <path d="M 0 100 Q 600 50 1200 200" stroke="#3b82f6" stroke-width="0.5" fill="none" opacity="0.3" />
+    <path d="M 0 400 Q 600 300 1200 500" stroke="#ec4899" stroke-width="0.5" fill="none" opacity="0.3" />
+  </g>
+
+  
+  <polygon points="120,310 1050,110 1050,565 120,365" fill="url(#beamGrad)" />
+
+  
+  <g transform="translate(120, 335)" opacity="0.6">
+    
+    <path d="M -40 -30 L 20 -40 L 30 40 L -30 30 Z" fill="#334155" />
+    <circle cx="0" cy="0" r="35" fill="#1e293b" stroke="#64748b" stroke-width="3" />
+    
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#94a3b8" stroke-width="6" stroke-dasharray="6,4" />
+    <circle cx="0" cy="0" r="8" fill="#f43f5e" />
+  </g>
+
+  
+  
+  <rect x="280" y="80" width="770" height="515" rx="12" fill="#0f172a" stroke="#334155" stroke-width="4" filter="url(#glow)" />
+  
+  
+  <rect x="300" y="100" width="730" height="475" rx="6" fill="url(#screenGrad)" />
+
+  
+  <g clip-path="url(#screenClip)">
+    <clipPath id="screenClip">
+      <rect x="300" y="100" width="730" height="475" rx="6" />
+    </clipPath>
+
+    
+    <path d="M 350 480 Q 450 380 500 250 T 650 180" fill="none" stroke="#3b82f6" stroke-width="3" opacity="0.4" />
+    <path d="M 350 500 Q 480 420 530 290 T 700 210" fill="none" stroke="url(#accentGrad)" stroke-width="4" opacity="0.7" />
+
+    
+    <path d="M 850 575 C 850 450 780 380 700 380 C 650 380 610 400 580 430 L 560 300 C 620 240 700 220 780 260 C 850 300 890 380 890 575 Z" fill="#1e293b" opacity="0.8" />
+    <path d="M 720 235 C 750 250 780 280 800 330 C 820 380 810 460 830 575 L 950 575 C 920 450 880 350 810 290 Z" fill="#0f172a" opacity="0.6" />
+
+    
+    <circle cx="680" cy="310" r="120" fill="#3b82f6" opacity="0.1" filter="url(#glow)" />
+    <circle cx="680" cy="310" r="4" fill="#ffffff" filter="url(#softGlow)" />
+    <path d="M 640 310 L 720 310 M 680 270 L 680 350" stroke="#ffffff" stroke-width="1.5" opacity="0.6" />
+
+    
+    <g transform="translate(640, 310)" opacity="0.85">
+      <circle cx="40" cy="0" r="45" fill="#07090e" opacity="0.6" stroke="#ffffff" stroke-width="2" />
+      <polygon points="28,-20 60,0 28,20" fill="#ffffff" />
+    </g>
+  </g>
+
+  
+  <rect x="290" y="100" width="10" height="475" fill="url(#filmPerforations)" opacity="0.5" />
+  <rect x="1030" y="100" width="10" height="475" fill="url(#filmPerforations)" opacity="0.5" />
+
+  
+  
+  
+  
+  <g transform="translate(200, 420)" filter="url(#softGlow)">
+    <rect x="0" y="0" width="220" height="70" rx="35" fill="#0f172a" stroke="#0ea5e9" stroke-width="2" />
+    
+    <rect x="15" y="15" width="40" height="40" rx="20" fill="url(#metaGrad)" />
+    
+    <path d="M 30 35 L 36 41 L 47 28" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    
+    
+    
+  </g>
+
+  
+  <g transform="translate(780, 140)" filter="url(#softGlow)">
+    <rect x="0" y="0" width="240" height="70" rx="35" fill="#0f172a" stroke="#ef4444" stroke-width="2" />
+    
+    <rect x="15" y="15" width="40" height="40" rx="20" fill="url(#youtubeGrad)" />
+    
+    <polygon points="32,28 44,35 32,42" fill="#ffffff" />
+    <path d="M 40 38 L 44 42 L 52 32" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    
+    
+    
+  </g>
+
+  
+  <g transform="translate(180, 230) rotate(-10)" opacity="0.9">
+    <rect x="0" y="0" width="130" height="90" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2" />
+    
+    <path d="M 0 0 L 25 25 L 15 25 L 0 10 Z" fill="#f43f5e" />
+    <path d="M 35 0 L 60 25 L 50 25 L 25 0 Z" fill="#ffffff" />
+    <path d="M 70 0 L 95 25 L 85 25 L 60 0 Z" fill="#f43f5e" />
+    <path d="M 105 0 L 130 25 L 120 25 L 95 0 Z" fill="#ffffff" />
+    <rect x="15" y="40" width="100" height="8" rx="4" fill="#38bdf8" />
+    <rect x="15" y="58" width="70" height="6" rx="3" fill="#64748b" />
+  </g>
+
+  
+  <g transform="translate(920, 480) rotate(12)" opacity="0.95" filter="url(#softGlow)">
+    <circle cx="50" cy="50" r="48" fill="none" stroke="url(#accentGrad)" stroke-width="4" stroke-dasharray="6,3" />
+    <circle cx="50" cy="50" r="40" fill="none" stroke="url(#accentGrad)" stroke-width="2" />
+    <path d="M 25 50 L 42 65 L 75 35" fill="none" stroke="#f43f5e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  
+  <path d="M 0 0 L 1200 0 L 1200 675 L 0 675 Z" fill="none" stroke="#07090e" stroke-width="20" opacity="0.5" />
+</svg>
