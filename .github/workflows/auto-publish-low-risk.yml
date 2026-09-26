@@ -1,0 +1,91 @@
+name: Auto-publish verified editorial stories
+
+on:
+  workflow_run:
+    workflows:
+      - Build Nuvellum
+      - Security checks
+      - CodeQL
+      - Editorial duplicate guard
+    types:
+      - completed
+    branches:
+      - 'incoming/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: auto-publish-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish verified story when every newsroom check is green
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PR="$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$PR" ]; then
+            echo "No open editorial PR for $HEAD_BRANCH"
+            exit 0
+          fi
+
+          STATE="$(gh pr view "$PR" --repo "$REPO" --json state --jq '.state')"
+          if [ "$STATE" != "OPEN" ]; then
+            echo "PR #$PR is no longer open"
+            exit 0
+          fi
+
+          ARTICLE_FILE="$(gh pr diff "$PR" --repo "$REPO" --name-only | grep '^src/content/articles/.*\.md$' | head -n 1 || true)"
+          if [ -z "$ARTICLE_FILE" ]; then
+            echo "No article Markdown file found; refusing automatic publication"
+            exit 0
+          fi
+
+          ARTICLE="$(gh api -H 'Accept: application/vnd.github.raw+json' "repos/$REPO/contents/$ARTICLE_FILE?ref=$HEAD_SHA")"
+          RISK="$(printf '%s\n' "$ARTICLE" | sed -n 's/^risk: "\(.*\)"$/\1/p' | head -n 1)"
+          STATUS="$(printf '%s\n' "$ARTICLE" | sed -n 's/^status: "\(.*\)"$/\1/p' | head -n 1)"
+          REVIEWED_BY="$(printf '%s\n' "$ARTICLE" | sed -n 's/^reviewedBy: "\(.*\)"$/\1/p' | head -n 1)"
+
+          if [ "$STATUS" != "published" ]; then
+            echo "Story is not cleared for publication: risk=$RISK status=$STATUS"
+            exit 0
+          fi
+
+          if [ "$RISK" = "sensitive" ] && [ "$REVIEWED_BY" != "Nuvellum Verification Pipeline" ]; then
+            echo "Sensitive story has not passed the automated verification gate"
+            exit 0
+          fi
+
+          RUNS="$(gh api "repos/$REPO/actions/runs?head_sha=$HEAD_SHA&per_page=100")"
+          REQUIRED=("Build Nuvellum" "Security checks" "CodeQL" "Editorial duplicate guard")
+
+          for NAME in "${REQUIRED[@]}"; do
+            RESULT="$(printf '%s' "$RUNS" | jq -r --arg name "$NAME" '
+              [.workflow_runs[] | select(.name == $name)]
+              | sort_by(.created_at)
+              | last
+              | if . == null then "missing\tmissing" else [.status, (.conclusion // "")] | @tsv end
+            ')"
+            RUN_STATUS="${RESULT%%$'\t'*}"
+            CONCLUSION="${RESULT#*$'\t'}"
+            echo "$NAME: status=$RUN_STATUS conclusion=$CONCLUSION"
+            if [ "$RUN_STATUS" != "completed" ] || [ "$CONCLUSION" != "success" ]; then
+              echo "Not all required checks are green yet"
+              exit 0
+            fi
+          done
+
+          echo "All checks passed for verified story. Publishing PR #$PR."
+          gh pr merge "$PR" --repo "$REPO" --squash --delete-branch

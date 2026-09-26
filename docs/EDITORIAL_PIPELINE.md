@@ -2,59 +2,76 @@
 
 ## Goal
 
-Source material becomes a reviewable GitHub pull request, not an invisible direct publish. Production remains Git-backed and Vercel deploys only from accepted changes to `main`.
+Nuvellum is designed to operate without a permanent human copy desk. Source material is processed through multiple automated editorial gates, proposed on an incoming GitHub branch, validated by repository checks, and published only when those gates agree that the story is ready.
+
+Git remains the audit trail and Vercel deploys only from accepted changes to `main`.
 
 ## Automated intake
 
-Recommended n8n flow:
+The n8n newsroom flow:
 
-1. Schedule or manual trigger.
-2. Read approved RSS feeds.
-3. Remove duplicate source URLs.
-4. Fetch the full source page.
-5. Extract the strongest article body candidate.
-6. Reject items with insufficient source text.
-7. Read `/search-index.json` and run a duplicate-story check.
-8. Draft an original Nuvellum article from the source only.
-9. Run a second editorial/factual review.
-10. Build the Markdown file with Nuvellum frontmatter.
-11. Read the current GitHub `main` SHA.
-12. Create a unique `incoming/<slug>-<timestamp>` branch.
-13. Commit only `src/content/articles/<slug>.md`.
-14. Open an editorial pull request against `main`.
-15. GitHub Actions validates content, dependencies and the full site build before merge.
+1. Runs on a schedule or manually.
+2. Reads Nuvellum's approved, diversified RSS feeds.
+3. Normalizes source URLs and removes duplicate candidates.
+4. Fetches the source article and extracts the strongest usable text.
+5. Rejects items with insufficient source material.
+6. Checks both published Nuvellum stories and open editorial branches for duplicates.
+7. Drafts an original Nuvellum article from the source material.
+8. Runs a separate editorial/factual review.
+9. For sensitive stories, runs an additional strict verification pass focused on attribution, unsupported claims, neutrality, legal/reputational risk, and political persuasion.
+10. Rejects sensitive stories that do not pass that second gate. Failed stories are skipped rather than left waiting for a nonexistent human reviewer.
+11. Generates a story-specific editorial SVG where possible, with the existing Nuvellum illustration system as fallback.
+12. Creates an `incoming/<slug>-<source-hash>` branch and commits the article and any generated illustration.
+13. GitHub opens the editorial pull request automatically.
+14. Build, Security, CodeQL and the editorial duplicate guard run against the branch.
+15. GitHub automatically merges a story only when the article is marked `status: "published"` and every required repository check is green.
 
 ## Publication behavior
 
-- Low-risk stories may be generated with `status: "published"`, but they still do **not** reach production until a human merges the PR.
-- Sensitive stories are generated with `status: "review"`.
-- A sensitive story must be source-checked by a human editor, have `reviewedBy` filled, and have its status changed to `published` before it can appear on Nuvellum.
-- The repository validator blocks sensitive automated stories marked published without `reviewedBy`.
+### Low-risk stories
 
-Sensitive includes politics/elections, allegations about identifiable people, crime accusations, armed conflict, sensitive personal data, and material legal/reputational risk.
+Low-risk reporting is marked `status: "published"` after the normal editorial review passes. Once the repository checks are green, GitHub automatically merges the PR and Vercel publishes it.
+
+### Sensitive stories
+
+Sensitive reporting includes politics and elections, armed conflict, crime accusations, deaths or serious harm, security/privacy incidents, lawsuits, and other serious legal or reputational claims.
+
+A sensitive article starts as `status: "review"`. It then goes through the separate Nuvellum Sensitive Verification gate.
+
+That verifier must confirm that:
+- the article is supported by the supplied source material;
+- disputed claims are explicitly attributed;
+- motives, guilt, intent and causation are not inferred beyond the source;
+- quotes are faithful;
+- material uncertainty and counter-positions in the source are preserved;
+- political coverage is descriptive rather than persuasive, predictive or partisan;
+- the headline and dek do not overstate the evidence.
+
+If the second verifier passes the story, the workflow changes it to `status: "published"` and records:
+
+`reviewedBy: "Nuvellum Verification Pipeline"`
+
+If it fails, the story is not published and the workflow moves on to another candidate.
+
+This is intentionally fail-closed: uncertainty stops publication rather than silently weakening the standard.
+
+## Pull requests
+
+Pull requests remain in the architecture even though ordinary publication is automatic. They provide a durable audit trail of the generated article, source URL, image asset, risk classification and every repository check.
+
+A PR is therefore a machine-auditable staging step, not a requirement that somebody manually click Merge.
 
 ## Credentials
 
-Use two separate n8n credentials:
-
 ### Google Gemini
 
-Select the existing Gemini API credential on the drafting, duplicate-check and editorial-review nodes.
+The existing Gemini credential is used for duplicate evaluation, drafting, editorial review, sensitive-story verification and editorial SVG generation.
 
-### GitHub fine-grained token
+### GitHub
 
-Create a token limited to the **Nuvellum** repository only. The workflow needs repository Contents write permission and Pull Requests write permission. Store it in n8n's credential store as an HTTP Header Auth credential:
+n8n uses the existing repository-scoped GitHub credential for branch and file writes. GitHub Actions opens and merges eligible pull requests using the repository's built-in token.
 
-- Header: `Authorization`
-- Value: `Bearer <token>`
-
-Do not paste the token into a Code node, workflow JSON, article file, or GitHub repository.
-
-## Why pull requests instead of direct auto-publish
-
-The PR is the control point. It gives you the generated article, source URL, risk classification, automated review note, build result and security checks before a story can affect production.
-
-This also means a bad AI draft, malformed Markdown or broken page cannot silently replace the live site.
+Do not place tokens inside Code nodes, article files or the repository.
 
 ## Existing publication contract
 
