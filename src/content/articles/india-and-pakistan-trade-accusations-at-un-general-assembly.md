@@ -1,5 +1,5 @@
 ---
-title: "India and Pakistan Trade Accusations at UN General Assembly"
+title: "India and Pakistan trade accusations at UN General Assembly"
 dek: "New Delhi and Islamabad exchanged sharp criticisms at the UN General Assembly over Kashmir, cross-border terrorism, water resources, and past military clashes."
 section: "World"
 type: "News"
@@ -7,11 +7,11 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "2 min"
 image: "/images/world.svg"
-imageAlt: "Editorial illustration for India and Pakistan Trade Accusations at UN General Assembly"
+imageAlt: "Editorial illustration representing India-Pakistan tensions at the United Nations"
 status: "review"
 tags: ["India","Pakistan","UN General Assembly","Kashmir","Cross-border terrorism"]
-sourceUrls: ["https://www.dw.com/en/india-news-new-delhi-islamabad-trade-accusations-at-un-general-assembly/live-79440869?maca=en-rss-en-all-1573-rdf"]
-sourceNote: "Prepared from Source reporting and subject to Nuvellum editorial review."
+sourceUrls: ["https://www.dw.com/en/india-news-new-delhi-islamabad-trade-accusations-at-un-general-assembly/live-79440869","https://www.aljazeera.com/news/2026/9/25/houthi-attack-on-mecca-medina-would-cross-red-line-pakistan-pm-tells-un"]
+sourceNote: "Prepared from Deutsche Welle reporting and cross-checked against Al Jazeera coverage of Shehbaz Sharif's UN address. Sensitive political claims remain attributed and require human editorial approval."
 origin: "automation"
 risk: "sensitive"
 reviewedBy: ""
