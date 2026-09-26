@@ -1,35 +1,46 @@
 ---
-title: "Iran Proposes Seven-Day Deal to Reopen Strait of Hormuz"
-dek: "Iranian Foreign Minister Abbas Araghchi says Tehran has delivered a proposal via Qatar to reopen the vital shipping lane within a week if conditions from a June MOU are met."
+title: "Iran says Strait of Hormuz could reopen within seven days if US accepts terms"
+dek: "Iranian Foreign Minister Abbas Araghchi says Tehran sent a proposal through Qatar tied to conditions in the June US-Iran memorandum."
 section: "World"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "3 min"
 image: "/images/world.svg"
-imageAlt: "Iran Proposes Seven-Day Deal to Reopen Strait of Hormuz"
+imageAlt: "Editorial illustration representing shipping through the Strait of Hormuz"
 status: "review"
 tags: ["Iran","United States","Strait of Hormuz","Oil","Middle East"]
-sourceUrls: ["https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko?at_medium=RSS&at_campaign=rss"]
-sourceNote: "Prepared from the linked source and subject to Nuvellum editorial review."
+sourceUrls: ["https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko","https://www.reuters.com/world/middle-east/iran-ready-reopen-strait-hormuz-if-us-eases-military-pressure-lifts-blockade-2026-09-22/"]
+sourceNote: "Prepared from BBC reporting and cross-checked against Reuters reporting on Iran's conditions for reopening the strait. Sensitive geopolitical coverage requires human editorial approval."
 origin: "automation"
 risk: "sensitive"
 reviewedBy: ""
 ---
-Iranian Foreign Minister Abbas Araghchi announced that his country has proposed an agreement to the United States that would lead to the reopening of the Strait of Hormuz within seven days. Speaking to reporters at the United Nations in New York, Araghchi stated that the reopening could occur "if the necessary conditions are met," pointing to a memorandum of understanding (MOU) signed in June.
 
-According to Araghchi, the proposal was delivered to the US through Qatar. "The choice now rests with the United States," he said, adding that everything is prepared if the US demonstrates seriousness in reaching a deal. A US official told the BBC that positive discussions were underway through mediators, addressing nuclear issues among other topics, but also noted that the US is "in a very strong position with control of the Strait of Hormuz, so we are not in a rush."
+Iran says it has proposed an agreement to the United States that could reopen the Strait of Hormuz within seven days if Washington accepts conditions already set out in a June memorandum.
 
-## Background on the Conflict and the June MOU
+Foreign Minister Abbas Araghchi told reporters at the United Nations in New York that the proposal had been delivered to the US through Qatar. He said normal maritime passage could resume within a week if the required steps were taken.
 
-The current military conflict escalated after the US and Israel launched air strikes on Iran on 28 February. In response, Iran attacked Israel, US bases in the Gulf, and US Arab Gulf allies, while also blocking the Strait of Hormuz. Prior to the war, approximately 20% of the world's oil and liquefied natural gas passed through the strait. Its closure has triggered significant fluctuations in global energy prices and increased political pressure on US President Donald Trump ahead of Congressional elections in November.
+A US official told the BBC that discussions through mediators were constructive and included nuclear issues, while also saying Washington did not consider itself under pressure to move quickly.
 
-The June MOU between the US and Iran was originally designed to establish a ceasefire and partially reopen the strait. The 14-point agreement stated that Iran would not acquire a nuclear weapon and that the US, Iran, and their allies would cease military operations on all fronts. It included provisions for an end to the US naval blockade, sanctions relief, and arrangements by Iran to use its best efforts to ensure the safe passage of commercial vessels alongside talks with Oman over shipping arrangements. The agreement collapsed shortly after signing when both sides resumed military strikes.
+The BBC also reported that the Wall Street Journal, citing US officials, said President Donald Trump had rejected the proposal. The US had not issued a formal public response when the BBC report was published.
 
-While Araghchi did not outline new steps required from Washington, he maintained that the necessary actions are already detailed in the MOU. Meanwhile, the US has maintained a blockade of Iranian ports and targeted Iranian sites and tankers in the strait. President Trump claimed the US has successfully facilitated oil shipments through the waterway, though commodities data firm Kpler noted recent averages of about 18 transits per day, with daily figures dropping as low as nine vessels.
+## The June memorandum
 
-## Regional Escalation and Wider Pressures
+The US and Iran signed a 14-point memorandum on 18 June that was intended to establish a ceasefire and partially reopen the strait.
 
-The situation in the region has been further complicated by activities from Yemen's Houthi movement, an ally of Iran. The Houthis have intensified attacks to disrupt oil exports from Saudi Arabia via the Red Sea, seizing strategic areas of the Red Sea coast, including the port of Mokha near the Bab al-Mandab Strait. These actions and attacks on Saudi oil installations prompted requests for military support from US President Trump by Saudi Crown Prince Mohammed bin Salman, according to US media reports.
+According to the BBC, the agreement included a commitment that Iran would not acquire a nuclear weapon, provisions for an end to the US naval blockade and sanctions relief, and language calling on Iran to make arrangements for the safe passage of commercial vessels. It also called for talks with Oman over future shipping arrangements.
 
-During his address at the UN General Assembly, President Trump indicated that he believes an Iran deal could materialize following the November elections, while also making public threats regarding the potential annihilation of the Islamic Republic if an agreement is not reached. In response to these remarks, Araghchi stated on Friday that Iran rejects coercion, threats, and intimidation, emphasizing that "peace cannot be built through threats of annihilation."
+The agreement broke down after military strikes resumed.
+
+Iranian President Masoud Pezeshkian told CBS News that Iran would allow UN nuclear inspectors back into the country if negotiations moved forward.
+
+## Shipping remains sharply reduced
+
+Before the current conflict, roughly one-fifth of the world's oil and liquefied natural gas moved through the Strait of Hormuz.
+
+Shipping traffic has since fallen sharply. Data from Kpler cited by Reuters and the BBC showed a recent 10-day average of about 18 transits per day, with some days dropping to nine.
+
+Iran has attacked vessels it says tried to cross without authorisation, while the US has struck Iranian sites in and around the strait and maintained a blockade of Iranian ports.
+
+The proposal comes amid continuing military pressure and volatile energy markets. Its terms remain contested, and statements from Tehran and Washington are attributed to the officials making them rather than treated as independently established facts.
