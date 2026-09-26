@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="bg-grad" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#222b38" />
+      <stop offset="60%" stop-color="#121721" />
+      <stop offset="100%" stop-color="#0a0d14" />
+    </radialGradient>
+
+    
+    <radialGradient id="spotlight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3d5270" stop-opacity="0.3" />
+      <stop offset="70%" stop-color="#121721" stop-opacity="0" />
+    </radialGradient>
+
+    
+    <linearGradient id="gold-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3c678" />
+      <stop offset="50%" stop-color="#c18a3e" />
+      <stop offset="100%" stop-color="#704a17" />
+    </linearGradient>
+
+    
+    <linearGradient id="shadow-fade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.8" />
+    </linearGradient>
+    
+    
+    <linearGradient id="crystal-red" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#d63031" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#6e1515" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="steel-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#89a2b8" />
+      <stop offset="50%" stop-color="#4c6375" />
+      <stop offset="100%" stop-color="#22303d" />
+    </linearGradient>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="65%">
+      <stop offset="40%" stop-color="#000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#05070a" stop-opacity="0.85" />
+    </radialGradient>
+
+    
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="cinematic-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="40" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bg-grad)" />
+
+  
+  <g opacity="0.15" filter="url(#cinematic-blur)">
+    <polygon points="400,0 200,675 0,675 150,0" fill="#6495ed" />
+    <polygon points="800,0 1000,675 1200,675 1050,0" fill="#f3c678" />
+    <ellipse cx="600" cy="300" rx="400" ry="250" fill="url(#spotlight)" />
+  </g>
+
+  
+  <g opacity="0.25">
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#4a5d73" stroke-width="2" />
+    <line x1="0" y1="205" x2="1200" y2="205" stroke="#121721" stroke-width="2" />
+    <line x1="0" y1="450" x2="1200" y2="450" stroke="#4a5d73" stroke-width="1.5" />
+    <line x1="0" y1="454" x2="1200" y2="454" stroke="#121721" stroke-width="1.5" />
+  </g>
+
+  
+  <path d="M0 520 L1200 520 L1200 675 L0 675 Z" fill="#080a0f" />
+  <path d="M0 520 L1200 520" stroke="#3d5270" stroke-width="1" opacity="0.4" />
+  <rect x="0" y="520" width="1200" height="155" fill="url(#shadow-fade)" />
+
+  
+
+  <g transform="translate(600, 310)">
+    
+    
+    <circle cx="0" cy="0" r="180" fill="#2d2315" filter="url(#soft-glow)" opacity="0.6" />
+
+    
+    <path d="M -500 120 C -250 180, 250 180, 500 120 L 480 20 C 200 80, -200 80, -480 20 Z" fill="#141a24" stroke="#2c3a4d" stroke-width="2" />
+    
+    <path d="M -490 70 C -200 130, 200 130, 490 70" stroke="url(#gold-rim)" stroke-width="1.5" stroke-dasharray="8,6" fill="none" opacity="0.7" />
+
+    
+    
+    <g transform="translate(-280, 75) rotate(12)">
+      <rect x="-35" y="-45" width="70" height="90" rx="8" fill="url(#gold-rim)" stroke="#fff" stroke-width="0.5" opacity="0.85" />
+      <rect x="-30" y="-40" width="60" height="80" rx="4" fill="#1a1e26" />
+      <circle cx="0" cy="0" r="20" fill="url(#gold-rim)" opacity="0.9" />
+      <path d="M-10 0 L0 -15 L10 0 L0 15 Z" fill="#222b38" />
+    </g>
+
+    
+    <g transform="translate(280, 75) rotate(-12)">
+      <rect x="-35" y="-45" width="70" height="90" rx="8" fill="url(#gold-rim)" stroke="#fff" stroke-width="0.5" opacity="0.85" />
+      <rect x="-30" y="-40" width="60" height="80" rx="4" fill="#1a1e26" />
+      <circle cx="0" cy="0" r="20" fill="url(#gold-rim)" opacity="0.9" />
+      <path d="M-10 0 L0 -15 L10 0 L0 15 Z" fill="#222b38" />
+    </g>
+
+    
+    <g transform="translate(0, 50)">
+      
+      <path d="M -110 -120 
+               C -30 -140, 30 -140, 110 -120
+               C 130 -20, 150 60, 90 130
+               C 40 170, -40 170, -90 130
+               C -150 60, -130 -20, -110 -120 Z" 
+            fill="url(#gold-rim)" stroke="#fff" stroke-width="1.5" filter="url(#soft-glow)" opacity="0.4" />
+
+      <path d="M -100 -110 
+               C -25 -130, 25 -130, 100 -110
+               C 120 -15, 140 50, 80 120
+               C 35 155, -35 155, -80 120
+               C -140 50, -120 -15, -100 -110 Z" 
+            fill="url(#gold-rim)" stroke="#ffeaa7" stroke-width="2" />
+            
+      
+      <path d="M -88 -98 
+               C -20 -114, 20 -114, 88 -98
+               C 105 -12, 125 42, 70 106
+               C 30 138, -30 138, -70 106
+               C -125 42, -105 -12, -88 -98 Z" 
+            fill="#0f141d" />
+
+      
+      <g opacity="0.3" stroke="url(#gold-rim)" stroke-width="1.5">
+        <line x1="0" y1="-90" x2="0" y2="100" />
+        <line x1="-60" y1="-60" x2="60" y2="80" />
+        <line x1="60" y1="-60" x2="-60" y2="80" />
+      </g>
+
+      
+      
+      
+      <g transform="translate(0, 5)">
+        
+        <path d="M -45 -70 L 45 -70 L 20 -10 L -20 -10 Z" fill="url(#steel-blue)" opacity="0.8" />
+        
+        <path d="M -20 10 L 20 10 L 45 70 L -45 70 Z" fill="url(#steel-blue)" opacity="0.8" />
+        
+        
+        <ellipse cx="0" cy="0" rx="14" ry="6" fill="url(#gold-rim)" />
+
+        
+        <path d="M -5 -25 L 3 -18 L -2 -10 Z" fill="url(#crystal-red)" opacity="0.9" />
+        <path d="M 8 -5 L 14 8 L 4 3 Z" fill="url(#crystal-red)" opacity="0.8" />
+        <path d="M -10 20 L -3 35 L -15 28 Z" fill="url(#crystal-red)" opacity="0.9" />
+
+        
+        <path d="M 0 -35 C 15 -50, 30 -25, 0 0 C -30 -25, -15 -50, 0 -35 Z" fill="url(#crystal-red)" filter="url(#soft-glow)" opacity="0.85" />
+        <path d="M 0 -35 C 15 -50, 30 -25, 0 0 C -30 -25, -15 -50, 0 -35 Z" fill="url(#crystal-red)" stroke="#ff9999" stroke-width="1" />
+      </g>
+
+      
+      <circle cx="0" cy="-118" r="3" fill="#ffeaa7" />
+      <circle cx="-75" cy="-70" r="3" fill="#ffeaa7" />
+      <circle cx="75" cy="-70" r="3" fill="#ffeaa7" />
+      <circle cx="-95" cy="20" r="3" fill="#ffeaa7" />
+      <circle cx="95" cy="20" r="3" fill="#ffeaa7" />
+      <circle cx="0" cy="142" r="3" fill="#ffeaa7" />
+    </g>
+
+    
+    
+    <g transform="translate(-420, -180) rotate(-15)" opacity="0.6">
+      <rect x="0" y="0" width="55" height="350" fill="#0d1117" stroke="#334155" stroke-width="1.5" rx="2" />
+      <rect x="8" y="15" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="80" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="145" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="210" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="275" width="39" height="50" fill="#1a222d" rx="1" />
+      
+      <circle cx="4" cy="30" r="2.5" fill="#475569" />
+      <circle cx="51" cy="30" r="2.5" fill="#475569" />
+      <circle cx="4" cy="95" r="2.5" fill="#475569" />
+      <circle cx="51" cy="95" r="2.5" fill="#475569" />
+      <circle cx="4" cy="160" r="2.5" fill="#475569" />
+      <circle cx="51" cy="160" r="2.5" fill="#475569" />
+      <circle cx="4" cy="225" r="2.5" fill="#475569" />
+      <circle cx="51" cy="225" r="2.5" fill="#475569" />
+      <circle cx="4" cy="290" r="2.5" fill="#475569" />
+      <circle cx="51" cy="290" r="2.5" fill="#475569" />
+    </g>
+
+    
+    <g transform="translate(370, -150) rotate(18)" opacity="0.6">
+      <rect x="0" y="0" width="55" height="350" fill="#0d1117" stroke="#334155" stroke-width="1.5" rx="2" />
+      <rect x="8" y="15" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="80" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="145" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="210" width="39" height="50" fill="#1a222d" rx="1" />
+      <rect x="8" y="275" width="39" height="50" fill="#1a222d" rx="1" />
+      
+      <circle cx="4" cy="30" r="2.5" fill="#475569" />
+      <circle cx="51" cy="30" r="2.5" fill="#475569" />
+      <circle cx="4" cy="95" r="2.5" fill="#475569" />
+      <circle cx="51" cy="95" r="2.5" fill="#475569" />
+      <circle cx="4" cy="160" r="2.5" fill="#475569" />
+      <circle cx="51" cy="160" r="2.5" fill="#475569" />
+      <circle cx="4" cy="225" r="2.5" fill="#475569" />
+      <circle cx="51" cy="225" r="2.5" fill="#475569" />
+      <circle cx="4" cy="290" r="2.5" fill="#475569" />
+      <circle cx="51" cy="290" r="2.5" fill="#475569" />
+    </g>
+
+  </g>
+
+  
+  <g opacity="0.6">
+    <circle cx="250" cy="180" r="2" fill="#ffeaa7" filter="url(#soft-glow)" />
+    <circle cx="950" cy="150" r="1.5" fill="#6495ed" filter="url(#soft-glow)" />
+    <circle cx="350" cy="480" r="2.5" fill="#ff6b6b" filter="url(#soft-glow)" opacity="0.5" />
+    <circle cx="850" cy="450" r="2" fill="#ffeaa7" filter="url(#soft-glow)" />
+    <circle cx="520" cy="100" r="1" fill="#fff" />
+    <circle cx="680" cy="80" r="1.5" fill="#ffeaa7" />
+  </g>
+
+  
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none" />
+</svg>
