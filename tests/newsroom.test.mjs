@@ -93,3 +93,61 @@ test('parseEditorialReview requires every criterion and a valid risk', () => {
   assert.equal(parseEditorialReview({ verdict: 'passed', risk: 'low', checks: { ...allPass(EDITORIAL_CRITERIA), single_story_not_clustered: 'fail' } }).editorialReview, 'failed');
   assert.equal(parseEditorialReview('timeout').editorialReview, 'uncertain');
 });
+
+import { buildArticle } from '../scripts/lib/newsroom.mjs';
+import { evaluatePublication, contentPolicyErrors, parseFrontmatter, REQUIRED_CHECKS } from '../scripts/lib/editorial.mjs';
+
+const story = (over = {}) => ({
+  title: 'Iran says Strait of Hormuz could reopen within seven days', dek: 'Tehran set out conditions through Qatar.',
+  section: 'World', date: '2026-09-26', publishedAt: '2026-09-26T10:05:00Z',
+  bodyMarkdown: 'Iran says it has proposed an agreement to the United States. '.repeat(25),
+  tags: ['Iran'], sourceUrls: ['https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko?at_medium=RSS'], sourceOutlet: 'BBC', aiArt: true,
+  review: { editorialReview: 'passed', risk: 'sensitive' }, verification: { verification: 'cleared' }, ...over
+});
+
+function gate(built) {
+  const runs = REQUIRED_CHECKS.map(name => ({ name, status: 'completed', conclusion: 'success', created_at: 't' }));
+  const files = [{ filename: built.path, status: 'added' }, ...(built.artPath ? [{ filename: built.artPath, status: 'added' }] : [])];
+  return evaluatePublication({ repo: 'R', pr: { state: 'open', base: { ref: 'main' }, head: { ref: built.branch, sha: 's', repo: { full_name: 'R' } }, labels: [] }, files, article: built.markdown, runs });
+}
+
+test('buildArticle: cleared sensitive story passes the real gate and validator policy', () => {
+  const b = buildArticle(story());
+  assert.equal(b.status, 'published');
+  const fm = parseFrontmatter(b.markdown);
+  assert.equal(fm.verification, 'cleared');
+  assert.equal(fm.reviewedBy, 'Nuvellum Verification Pipeline');
+  assert.deepEqual(fm.sourceUrls, ['https://bbc.co.uk/news/articles/cqgmrr9ekr7ko']);
+  assert.equal(fm.sourceNote.startsWith('Prepared from BBC reporting.'), true);
+  assert.deepEqual(contentPolicyErrors(fm, 'x'), []);
+  const g = gate(b); assert.equal(g.publish, true, g.reasons.join('; '));
+});
+
+test('buildArticle: uncleared stories are written as review and never pass the gate', () => {
+  for (const over of [
+    { verification: { verification: 'uncertain' } },
+    { verification: { verification: 'failed' } },
+    { verification: undefined },
+    { review: { editorialReview: 'uncertain', risk: 'low' } },
+    { review: { editorialReview: 'passed', risk: null } },
+    { sourceOutlet: 'Source' }
+  ]) {
+    const b = buildArticle(story(over));
+    assert.equal(b.status, 'review', JSON.stringify(over));
+    assert.deepEqual(contentPolicyErrors(parseFrontmatter(b.markdown), 'x'), []);
+    assert.equal(gate(b).publish, false, JSON.stringify(over));
+  }
+});
+
+test('buildArticle: low-risk story publishes without verification fields', () => {
+  const b = buildArticle(story({ review: { editorialReview: 'passed', risk: 'low' }, verification: undefined, aiArt: false, sectionImage: '/images/world.svg' }));
+  assert.equal(b.status, 'published');
+  const fm = parseFrontmatter(b.markdown);
+  assert.equal(fm.verification, undefined);
+  assert.equal(fm.reviewedBy, '');
+  assert.equal(gate(b).publish, true, gate(b).reasons.join('; '));
+});
+
+test('buildArticle is idempotent: same input gives identical file and branch', () => {
+  assert.deepEqual(buildArticle(story()), buildArticle(story()));
+});

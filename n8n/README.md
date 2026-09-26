@@ -6,8 +6,26 @@ This folder is the version-controlled home of the **canonical production newsroo
 n8n/
   README.md                         this file
   workflows/
-    nuvellum-newsroom.json          canonical production workflow (sanitized)
+    nuvellum-newsroom.json          canonical production workflow (sanitized; add on first export)
+  prompts/                          versioned prompts for draft, review, verification, SVG
+  snippets/                         GENERATED Code-node JavaScript (tested in CI)
 ```
+
+## Code-node snippets
+
+`n8n/snippets/*.js` are generated from `scripts/lib/newsroom.mjs` and `scripts/lib/svg-safety.mjs` by `npm run n8n:snippets`. CI fails if they are stale. `tests/n8n-snippets.test.mjs` executes each one in an n8n-like sandbox with no `require`.
+
+| Snippet | Place it | What it guarantees |
+| --- | --- | --- |
+| `normalize-candidates.js` | right after the RSS merge | canonical URLs without tracking parameters, no live blogs or video pages, no items without a URL, no duplicates within a run, deterministic `sourceHash` |
+| `parse-review.js` | after the editorial-review model | `editorialReview` is `passed` only with an explicit pass on every criterion; anything else is `failed` or `uncertain` |
+| `parse-verification.js` | after the sensitive verifier | `verification` is `cleared` only with an explicit pass on all ten criteria |
+| `validate-svg.js` | after SVG generation | unsafe or broken art is dropped, and the section image is used |
+| `build-article.js` | before the GitHub commit | the Markdown file, path, art path and deterministic branch; `status` is derived from review and verification, so it can't be set by hand |
+
+To use one, paste the file into a Code node set to "Run Once for All Items". After updating the repository, re-paste. Never edit a snippet inside n8n.
+
+The prompts in `n8n/prompts/` define the JSON the parsers expect. Keep prompt and parser changes in the same PR.
 
 `n8n/raw/` and `*.raw.json` are gitignored. Raw exports never go into Git.
 
@@ -73,6 +91,18 @@ If Gemini returns an SVG that fails this check, commit no art and fall back to t
 - Headlines use sentence case, matching the published archive.
 - `sourceNote` must name the real outlet, e.g. "Prepared from BBC reporting…", never the placeholder word "Source".
 - Store canonical source URLs without tracking parameters where possible.
+
+## Connecting Claude (or another agent) to the live n8n instance
+
+No n8n connection existed when this was written. Here is what an agent session needs, all supplied by you and never committed:
+
+1. In n8n, go to **Settings → n8n API → Create API key**. Give it a clear label, e.g. "Claude maintenance".
+2. Note your instance's base URL, e.g. `https://<name>.app.n8n.cloud`.
+3. Connect using one of these:
+   - **An n8n MCP server** configured in your Claude app or Claude Code settings with those two values (for example the community `n8n-mcp` server, with `N8N_API_URL` and `N8N_API_KEY`).
+   - **An environment** where the agent can call the n8n public API (`GET /api/v1/workflows`, `PUT /api/v1/workflows/{id}`) with the `X-N8N-API-KEY` header.
+4. First action in any maintenance session: export the production workflow, sanitize it, and commit it here **before** changing anything. This is the backup and the diff baseline.
+5. Stabilize the existing workflow **in place**. Don't clone it into new versions (v6.5, v6.6, …).
 
 ## Credentials
 
