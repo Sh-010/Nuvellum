@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a101d"/>
+      <stop offset="50%" stop-color="#141d31"/>
+      <stop offset="100%" stop-color="#1e1824"/>
+    </linearGradient>
+
+    
+    <radialGradient id="techGlowLeft" cx="20%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0a101d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="techGlowRight" cx="80%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b91c1c" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0a101d" stop-opacity="0"/>
+    </radialGradient>
+
+    
+    <linearGradient id="usPillarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="chinaPillarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="50%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+
+    
+    <linearGradient id="metalSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.6"/>
+    </linearGradient>
+    
+    <linearGradient id="beamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.8"/>
+    </linearGradient>
+    
+    <linearGradient id="redBeamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#f87171" stop-opacity="0.4"/>
+    </linearGradient>
+
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="deepGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="30" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    
+    <pattern id="circuitGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+  <rect width="1200" height="675" fill="url(#circuitGrid)"/>
+
+  
+  <circle cx="350" cy="337" r="350" fill="url(#techGlowLeft)" filter="url(#deepGlow)"/>
+  <circle cx="850" cy="337" r="350" fill="url(#techGlowRight)" filter="url(#deepGlow)"/>
+
+  
+  <g opacity="0.3">
+    <ellipse cx="600" cy="620" rx="550" ry="80" fill="none" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4 8"/>
+    <path d="M 100 620 L 400 450 M 1100 620 L 800 450" stroke="#1e293b" stroke-width="2"/>
+    <path d="M 50 675 C 200 550, 400 500, 600 500 C 800 500, 1000 550, 1150 675" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.4"/>
+  </g>
+
+  
+  <g>
+    
+    <path d="M 580 150 L 520 520 L 680 520 L 620 150 Z" fill="#070a12" opacity="0.8"/>
+    <path d="M 590 150 L 610 150 L 630 520 L 570 520 Z" fill="none" stroke="#ef4444" stroke-width="1" stroke-dasharray="6 6" opacity="0.6"/>
+  </g>
+
+  
+  <g id="us-infrastructure">
+    
+    <path d="M 180 540 L 380 580 L 500 500 L 300 460 Z" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+    <path d="M 300 460 L 500 500 L 500 515 L 300 475 Z" fill="#3b82f6" opacity="0.3"/>
+
+    
+    <path d="M 310 465 L 310 180 L 370 150 L 370 435 Z" fill="url(#usPillarGrad)"/>
+    <path d="M 370 150 L 430 180 L 430 465 L 370 435 Z" fill="#2563eb" opacity="0.8"/>
+    <path d="M 310 465 L 370 435 L 430 465 L 370 495 Z" fill="#1d4ed8"/>
+
+    
+    <path d="M 310 180 L 370 150 L 370 435 L 310 465 Z" fill="url(#metalSheen)" opacity="0.5"/>
+
+    
+    <g stroke="#93c5fd" stroke-width="1.5" fill="none" opacity="0.8">
+      <path d="M 340 200 L 390 220 L 390 250"/>
+      <circle cx="390" cy="250" r="3" fill="#93c5fd"/>
+      <path d="M 330 280 L 360 295 L 360 340"/>
+      <circle cx="360" cy="340" r="3" fill="#93c5fd"/>
+      <path d="M 350 380 L 410 400"/>
+    </g>
+
+    
+    <g filter="url(#glow)">
+      <path d="M 330 150 L 330 60" stroke="url(#beamGrad)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 370 120 L 370 30" stroke="url(#beamGrad)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 410 160 L 410 80" stroke="url(#beamGrad)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    
+    <circle cx="370" cy="10" r="4" fill="#ffffff" filter="url(#glow)"/>
+    <circle cx="330" cy="35" r="3" fill="#93c5fd"/>
+    <circle cx="410" cy="50" r="3" fill="#60a5fa"/>
+  </g>
+
+
+  
+  <g id="china-infrastructure">
+    
+    <path d="M 700 500 L 820 580 L 1020 540 L 900 460 Z" fill="#1e293b" stroke="#dc2626" stroke-width="1.5"/>
+    <path d="M 700 500 L 900 460 L 900 475 L 700 515 Z" fill="#dc2626" opacity="0.2"/>
+
+    
+    <path d="M 830 440 L 830 240 L 880 220 L 880 420 Z" fill="url(#chinaPillarGrad)"/>
+    <path d="M 880 220 L 930 240 L 930 440 L 880 420 Z" fill="#b91c1c" opacity="0.8"/>
+    <path d="M 830 440 L 880 420 L 930 440 L 880 460 Z" fill="#7f1d1d"/>
+
+    
+    <path d="M 830 240 L 880 220 L 880 420 L 830 440 Z" fill="url(#metalSheen)" opacity="0.4"/>
+
+    
+    <g stroke="#fca5a5" stroke-width="2" opacity="0.7">
+      <line x1="820" y1="260" x2="940" y2="280"/>
+      <line x1="820" y1="320" x2="940" y2="340"/>
+      <line x1="820" y1="380" x2="940" y2="400"/>
+    </g>
+
+    
+    <g filter="url(#glow)">
+      <path d="M 880 210 L 880 150" stroke="url(#redBeamGrad)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <circle cx="880" cy="135" r="3" fill="#fca5a5"/>
+  </g>
+
+
+  
+  <g id="communication-channel">
+    
+    <path d="M 370 150 Q 600 20 880 220" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 8" opacity="0.5"/>
+    <path d="M 370 150 Q 600 60 880 220" fill="none" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4 8" opacity="0.4"/>
+
+    
+    <g transform="translate(600, 115)">
+      <circle cx="0" cy="0" r="18" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="0" cy="0" r="8" fill="#38bdf8" filter="url(#glow)"/>
+      
+      <circle cx="0" cy="0" r="28" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.4" stroke-dasharray="4 2"/>
+    </g>
+  </g>
+
+
+  
+  <g id="super-intelligence-core" transform="translate(600, 310)">
+    
+    <circle cx="0" cy="0" r="75" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.15"/>
+    <circle cx="0" cy="0" r="75" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="20 115" opacity="0.8" filter="url(#glow)"/>
+    <circle cx="0" cy="0" r="75" fill="none" stroke="#f87171" stroke-width="2.5" stroke-dasharray="20 115" stroke-dashoffset="67" opacity="0.8" filter="url(#glow)"/>
+
+    
+    <polygon points="0,-50 43,25 -43,25" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+    <polygon points="0,50 43,-25 -43,-25" fill="none" stroke="#f87171" stroke-width="2" opacity="0.6"/>
+    
+    
+    <circle cx="0" cy="0" r="16" fill="#ffffff" filter="url(#glow)"/>
+    <circle cx="0" cy="0" r="8" fill="#3b82f6"/>
+    
+    
+    <ellipse cx="0" cy="0" rx="95" ry="30" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.2" transform="rotate(-25)"/>
+    <ellipse cx="0" cy="0" rx="95" ry="30" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.2" transform="rotate(25)"/>
+  </g>
+
+  
+  <path d="M 0 0 L 1200 0 L 1200 675 L 0 675 Z" fill="none" stroke="#000000" stroke-width="24" opacity="0.3"/>
+</svg>
