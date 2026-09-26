@@ -1,0 +1,2509 @@
+{
+  "id": "8hXx6NuZuJU9dRR1",
+  "name": "Nuvellum v6.5 — Fixed Source Resolution",
+  "active": false,
+  "isArchived": false,
+  "versionId": "56aa9047-cfe7-488f-8f51-2d23858a423c",
+  "activeVersionId": null,
+  "triggerCount": 0,
+  "nodeCount": 65,
+  "createdAt": "2026-09-26T09:05:22.927Z",
+  "updatedAt": "2026-09-26T14:38:14.389Z",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true
+  },
+  "tags": [],
+  "parentFolderId": null,
+  "canExecute": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS BBC World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Al Jazeera",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS France 24",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Deutsche Welle",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Business",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS CNBC",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Fortune",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Technology",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS TechCrunch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS The Verge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Ars Technica",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Science",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS NASA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS ScienceDaily",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS FBI Press Releases",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Guardian US Crime",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Sport",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS ESPN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Culture",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Guardian Culture",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Guardian Film",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Variety",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Deadline",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Anime News Network",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS IGN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Polygon",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS GamesIndustry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS BBC World",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Al Jazeera",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS France 24",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Deutsche Welle",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Business",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS CNBC",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Fortune",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Technology",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS TechCrunch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS The Verge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Ars Technica",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Science",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS NASA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS ScienceDaily",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS FBI Press Releases",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Guardian US Crime",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Sport",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS ESPN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS BBC Culture",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Guardian Culture",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Guardian Film",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Variety",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Deadline",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Anime News Network",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS IGN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Polygon",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS GamesIndustry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue Latest Candidates": {
+      "main": [
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process One by One": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Fetch Full Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Full Source": {
+      "main": [
+        [
+          {
+            "node": "Extract Source Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Source Text": {
+      "main": [
+        [
+          {
+            "node": "Prepare Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Source": {
+      "main": [
+        [
+          {
+            "node": "Enough Source?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enough Source?": {
+      "main": [
+        [
+          {
+            "node": "Get Nuvellum Search Index",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Nuvellum Search Index": {
+      "main": [
+        [
+          {
+            "node": "Prepare Duplicate Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Duplicate Context": {
+      "main": [
+        [
+          {
+            "node": "Get Open Editorial PRs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Duplicate Judge": {
+      "main": [
+        [
+          {
+            "node": "Parse Duplicate Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Duplicate Decision": {
+      "main": [
+        [
+          {
+            "node": "Is New Story?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is New Story?": {
+      "main": [
+        [
+          {
+            "node": "Gemini Draft Article",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Draft Article": {
+      "main": [
+        [
+          {
+            "node": "Parse Draft & Build Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Draft & Build Markdown": {
+      "main": [
+        [
+          {
+            "node": "Gemini Editorial Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Editorial Review": {
+      "main": [
+        [
+          {
+            "node": "Parse Editorial Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Editorial Review": {
+      "main": [
+        [
+          {
+            "node": "Editorial Review Passed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Editorial Review Passed?": {
+      "main": [
+        [
+          {
+            "node": "Sensitive Story?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Main Ref": {
+      "main": [
+        [
+          {
+            "node": "Build GitHub Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build GitHub Payload": {
+      "main": [
+        [
+          {
+            "node": "Create Review Branch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Review Branch": {
+      "main": [
+        [
+          {
+            "node": "AI Image Ready?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Commit Article File": {
+      "main": [
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Open Editorial PRs": {
+      "main": [
+        [
+          {
+            "node": "Check Open PR Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Open PR Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Exact Source Duplicate?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Exact Source Duplicate?": {
+      "main": [
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gemini Duplicate Judge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS BBC World": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Al Jazeera": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS France 24": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "RSS Deutsche Welle": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "RSS BBC Business": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "RSS CNBC": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "RSS Fortune": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources A",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Merge Sources A": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS BBC Technology": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS TechCrunch": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS The Verge": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "RSS Ars Technica": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "RSS BBC Science": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "RSS NASA": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "RSS ScienceDaily": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources B",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Merge Sources B": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS FBI Press Releases": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Guardian US Crime": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS BBC Sport": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "RSS ESPN": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "RSS BBC Culture": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "RSS Guardian Culture": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "RSS Guardian Film": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources C",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Merge Sources C": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "RSS Variety": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources D",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Deadline": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources D",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS Anime News Network": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources D",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "RSS IGN": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources D",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "RSS Polygon": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources D",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "RSS GamesIndustry": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources D",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Merge Sources D": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Merge Sources": {
+      "main": [
+        [
+          {
+            "node": "Queue Latest Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Editorial SVG": {
+      "main": [
+        [
+          {
+            "node": "Sanitize Editorial SVG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sanitize Editorial SVG": {
+      "main": [
+        [
+          {
+            "node": "Get Main Ref",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Image Ready?": {
+      "main": [
+        [
+          {
+            "node": "Commit AI Illustration",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Commit Article File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Commit AI Illustration": {
+      "main": [
+        [
+          {
+            "node": "Commit Article File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sensitive Story?": {
+      "main": [
+        [
+          {
+            "node": "Gemini Sensitive Verification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gemini Editorial SVG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Sensitive Verification": {
+      "main": [
+        [
+          {
+            "node": "Parse Sensitive Verification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Sensitive Verification": {
+      "main": [
+        [
+          {
+            "node": "Sensitive Verified?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sensitive Verified?": {
+      "main": [
+        [
+          {
+            "node": "Gemini Editorial SVG",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -224,
+        4560
+      ],
+      "id": "f2112c1e-3544-423e-8505-bc05bca6a4a0",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        368
+      ],
+      "id": "39285fdd-bda8-4932-8a48-9641b9666ec5",
+      "name": "Manual Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n's Code sandbox does not expose the browser URL global.\nfunction parseSourceUrl(value) {\n  const match = String(value || '').trim().match(/^(https?):\\/\\/([^\\/?#\\s]+)(\\/[^?#\\s]*)?(\\?[^#\\s]*)?(#[^\\s]*)?$/i);\n  if (!match || match[2].includes('@')) throw new Error('Invalid public source URL');\n  const authority = match[2].toLowerCase();\n  const parts = authority.match(/^([a-z0-9.-]+)(?::(\\d+))?$/i);\n  if (!parts) throw new Error('Invalid source host');\n  return {\n    protocol: match[1].toLowerCase() + ':', hostname: parts[1], port: parts[2] || '',\n    pathname: match[3] || '/', search: match[4] || '', hash: match[5] || '',\n    toString() { return this.protocol + '//' + this.hostname + (this.port ? ':' + this.port : '') + this.pathname + this.search + this.hash; }\n  };\n}\n\nconst items = $input.all();\n\nfunction normalizeUrl(value) {\n  try {\n    const u = parseSourceUrl(String(value || '').trim());\n    u.hash = '';\n    u.search = '';\n    u.hostname = u.hostname.toLowerCase();\n    u.pathname = u.pathname.replace(/\\/+$/, '') || '/';\n    return u.toString();\n  } catch {\n    return String(value || '').trim().replace(/[?#].*$/, '').replace(/\\/+$/, '');\n  }\n}\nfunction hostOf(value) {\n  try { return parseSourceUrl(String(value || '')).hostname.replace(/^www\\./,'').toLowerCase(); }\n  catch { return ''; }\n}\nfunction categoriesOf(item) {\n  const c = item.json.categories ?? item.json.category ?? [];\n  return (Array.isArray(c) ? c : [c]).map(x => String(x || '').toLowerCase()).join(' ');\n}\nfunction hintFor(item) {\n  const link = String(item.json.link || '');\n  const host = hostOf(link);\n  const path = (() => { try { return parseSourceUrl(link).pathname.toLowerCase(); } catch { return ''; }})();\n  const cats = categoriesOf(item);\n\n  if (host.includes('espn.com') || path.startsWith('/sport/') || path.startsWith('/sports/')) return 'Sports';\n  if (host.includes('techcrunch.com') || host.includes('theverge.com') || host.includes('arstechnica.com')) return 'Technology';\n  if (host.includes('nasa.gov') || host.includes('sciencedaily.com') || /science|environment/.test(cats)) return 'Science';\n  if (host.includes('fbi.gov') || /crime|policing|criminal/.test(cats) || path.includes('/crime/')) return 'Crime';\n  if (host.includes('cnbc.com') || host.includes('fortune.com') || /business|markets|economy|finance/.test(cats)) return 'Business';\n  if (host.includes('animenewsnetwork.com')) return 'Anime';\n  if (host.includes('ign.com') || host.includes('polygon.com') || host.includes('gamesindustry.biz')) return 'Gaming';\n  if (host.includes('variety.com') || host.includes('deadline.com') || path.startsWith('/film/') || /film|television|tv/.test(cats)) return 'Film & TV';\n  if (/culture|arts|music|books|theatre/.test(cats)) return 'Culture';\n  return 'World';\n}\n\nconst blocked = [\n  /\\/video\\//i,\n  /\\/liveblog\\//i,\n  /\\/audio\\//i,\n  /\\/podcast/i\n];\n\nitems.sort((a,b) => new Date(b.json.isoDate || b.json.pubDate || 0) - new Date(a.json.isoDate || a.json.pubDate || 0));\n\nconst seenUrls = new Set();\nconst candidates = [];\nfunction pickLink(json) {\n  const atomLink = json?.['atom:link'];\n  const atomHref =\n    Array.isArray(atomLink) ? atomLink.find(x => x && typeof x === 'object' && x.href)?.href :\n    atomLink && typeof atomLink === 'object' ? atomLink.href :\n    '';\n\n  const candidates = [\n    json?.link,\n    json?.url,\n    json?.permalink,\n    json?.guid,\n    json?.id,\n    atomHref\n  ];\n\n  for (const value of candidates) {\n    const s = String(value || '').trim();\n    if (/^https?:\\/\\//i.test(s)) return s;\n  }\n  return '';\n}\n\nfor (const item of items) {\n  const link = pickLink(item.json);\n  if (!link || blocked.some(re => re.test(link))) continue;\n\n  // Normalize downstream shape so every later node can safely read item.json.link.\n  item.json.link = link;\n\n  const key = normalizeUrl(link);\n  if (!key || seenUrls.has(key)) continue;\n  seenUrls.add(key);\n  item.json._sourceHost = hostOf(link);\n  item.json._sectionHint = hintFor(item);\n  candidates.push(item);\n}\n\n// First pass: favor both source-domain and section diversity.\nconst selected = [];\nconst usedHosts = new Set();\nconst usedSections = new Set();\nfor (const item of candidates) {\n  const host = item.json._sourceHost;\n  const section = item.json._sectionHint;\n  if (usedHosts.has(host) || usedSections.has(section)) continue;\n  selected.push(item);\n  usedHosts.add(host);\n  usedSections.add(section);\n  if (selected.length >= 3) break;\n}\n\n// Second pass: fill remaining slots with unique domains, even if section repeats.\nif (selected.length < 3) {\n  for (const item of candidates) {\n    if (selected.includes(item)) continue;\n    const host = item.json._sourceHost;\n    if (usedHosts.has(host)) continue;\n    selected.push(item);\n    usedHosts.add(host);\n    if (selected.length >= 3) break;\n  }\n}\n\nreturn selected.slice(0, 3);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        2528
+      ],
+      "id": "ad63c61f-000f-4f3b-8b15-ef15359e30b4",
+      "name": "Queue Latest Candidates"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        896,
+        2528
+      ],
+      "id": "4e949638-4ada-4a3c-b52b-bdf9ceed7593",
+      "name": "Process One by One"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.link }}",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        1120,
+        2208
+      ],
+      "id": "90f517d8-0c74-413c-8fce-fac79c97640d",
+      "name": "Fetch Full Source",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "mainText",
+              "cssSelector": "main"
+            },
+            {
+              "key": "articleText",
+              "cssSelector": "article"
+            },
+            {
+              "key": "bodyText",
+              "cssSelector": "body",
+              "skipSelectors": "script, style, nav, header, footer, aside, form, noscript, svg"
+            },
+            {
+              "key": "jsonLdText",
+              "cssSelector": "script[type=\"application/ld+json\"]",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        2208
+      ],
+      "id": "c100ab27-9b62-498e-8f9e-09daccbea43a",
+      "name": "Extract Source Text"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const extracted = $json;\nconst source = $('Process One by One').item.json;\n\nfunction clean(value) {\n  if (!value) return '';\n  return String(value)\n    .replace(/<script[\\s\\S]*?<\\/script>/gi,' ')\n    .replace(/<style[\\s\\S]*?<\\/style>/gi,' ')\n    .replace(/<[^>]+>/g,' ')\n    .replace(/&nbsp;/gi,' ')\n    .replace(/&amp;/gi,'&')\n    .replace(/&quot;/gi,'\"')\n    .replace(/&#39;/gi,\"'\")\n    .replace(/\\s+/g,' ')\n    .trim();\n}\nfunction words(s){ return clean(s).split(/\\s+/).filter(Boolean).length; }\nfunction hostOf(value) {\n  try { return new URL(String(value || '')).hostname.replace(/^www\\./,'').toLowerCase(); }\n  catch { return ''; }\n}\nfunction sourceInfo(link, sectionHint) {\n  const host = hostOf(link);\n  const path = (() => { try { return new URL(link).pathname.toLowerCase(); } catch { return ''; }})();\n  const registry = [\n    [/bbc\\.co\\.uk$|bbc\\.com$/, 'BBC', null],\n    [/aljazeera\\.com$/, 'Al Jazeera', 'World'],\n    [/france24\\.com$/, 'France 24', 'World'],\n    [/dw\\.com$|rss\\.dw\\.com$/, 'Deutsche Welle', 'World'],\n    [/cnbc\\.com$/, 'CNBC', 'Business'],\n    [/fortune\\.com$/, 'Fortune', 'Business'],\n    [/techcrunch\\.com$/, 'TechCrunch', 'Technology'],\n    [/theverge\\.com$/, 'The Verge', 'Technology'],\n    [/arstechnica\\.com$/, 'Ars Technica', 'Technology'],\n    [/nasa\\.gov$/, 'NASA', 'Science'],\n    [/sciencedaily\\.com$/, 'ScienceDaily', 'Science'],\n    [/fbi\\.gov$/, 'FBI', 'Crime'],\n    [/espn\\.com$/, 'ESPN', 'Sports'],\n    [/variety\\.com$/, 'Variety', 'Film & TV'],\n    [/deadline\\.com$/, 'Deadline', 'Film & TV'],\n    [/animenewsnetwork\\.com$/, 'Anime News Network', 'Anime'],\n    [/ign\\.com$/, 'IGN', 'Gaming'],\n    [/polygon\\.com$/, 'Polygon', 'Gaming'],\n    [/gamesindustry\\.biz$/, 'GamesIndustry.biz', 'Gaming'],\n    [/theguardian\\.com$/, 'The Guardian', null],\n  ];\n  let sourceName = host || 'Source';\n  let hint = sectionHint || '';\n  for (const [re,name,forced] of registry) {\n    if (re.test(host)) {\n      sourceName = name;\n      if (forced) hint = forced;\n      break;\n    }\n  }\n  if (host.includes('bbc.co.uk') || host.includes('bbc.com')) {\n    if (path.startsWith('/sport/')) hint = 'Sports';\n  }\n  if (host.includes('aljazeera.com') && path.startsWith('/sports/')) hint = 'Sports';\n  if (host.includes('theguardian.com')) {\n    if (path.includes('/film/')) hint = 'Film & TV';\n    else if (path.includes('/games/')) hint = 'Gaming';\n    else if (path.includes('/culture/')) hint = 'Culture';\n    else if (path.includes('/crime/')) hint = 'Crime';\n  }\n  return { sourceName, sourceSectionHint: hint || 'World', sourceHost: host };\n}\n\nconst structured = [];\nfunction visit(v) {\n  if (!v) return;\n  if (Array.isArray(v)) return v.forEach(visit);\n  if (typeof v !== 'object') return;\n  if (typeof v.articleBody === 'string') structured.push(clean(v.articleBody));\n  Object.values(v).forEach(x => { if (x && typeof x === 'object') visit(x); });\n}\nconst blocks = Array.isArray(extracted.jsonLdText) ? extracted.jsonLdText : (extracted.jsonLdText ? [extracted.jsonLdText] : []);\nfor (const block of blocks) {\n  try { visit(JSON.parse(String(block).trim())); } catch {}\n}\nconst candidates = [\n  ...structured,\n  clean(extracted.articleText),\n  clean(extracted.mainText),\n  clean(source['content:encoded']),\n  clean(source.content),\n  clean(source.contentSnippet),\n  clean(source.description)\n].filter(Boolean).sort((a,b)=>words(b)-words(a));\n\nconst articleText = candidates[0] || '';\nconst sourceLink = String(source.link || '').trim();\nconst meta = sourceInfo(sourceLink, source._sectionHint);\nreturn { json: {\n  sourceTitle: clean(source.title),\n  sourceLink,\n  publishedAt: source.isoDate || source.pubDate || '',\n  articleText,\n  sourceWordCount: words(articleText),\n  sourceReady: words(articleText) >= 180,\n  ...meta\n}};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        2208
+      ],
+      "id": "d087d36d-76be-46d7-be56-008b2cc2d459",
+      "name": "Prepare Source"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7cae9b7b-c97f-5c18-bc1b-37391d8569db",
+              "leftValue": "={{ $json.sourceReady }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1792,
+        2208
+      ],
+      "id": "54667e37-52d9-4df0-837e-6c280935c647",
+      "name": "Enough Source?"
+    },
+    {
+      "parameters": {
+        "url": "https://nuvellum.vercel.app/search-index.json",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        2016,
+        2208
+      ],
+      "id": "81bca92e-c4de-47bb-a624-c8339eaaa013",
+      "name": "Get Nuvellum Search Index"
+    },
+    {
+      "parameters": {
+        "jsCode": "const source = $('Prepare Source').item.json;\nconst recent = $input.all().map(i=>i.json).slice(0,60);\n\nfunction normalizeSource(value) {\n  try {\n    const u = new URL(String(value || '').trim());\n    u.hash = '';\n    u.search = '';\n    u.hostname = u.hostname.toLowerCase();\n    u.pathname = u.pathname.replace(/\\/+$/, '') || '/';\n    return u.toString();\n  } catch {\n    return String(value || '').trim().replace(/[?#].*$/, '').replace(/\\/+$/, '');\n  }\n}\n\nconst sourceKey = normalizeSource(source.sourceLink);\nconst exactSourceMatch = recent.some(x =>\n  Array.isArray(x.sourceUrls) && x.sourceUrls.some(url => normalizeSource(url) === sourceKey)\n);\n\nreturn [{\n  json:{\n    ...source,\n    normalizedSourceLink: sourceKey,\n    recentTitles:recent.map(x=>x.title).filter(Boolean).slice(0,40),\n    exactSourceMatch\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        2208
+      ],
+      "id": "503f24db-0020-404a-ab7c-8ac3d78d0964",
+      "name": "Prepare Duplicate Context"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are Nuvellum's duplicate-story gate.\n\nNew source headline:\n{{ $json.sourceTitle }}\n\nSource URL:\n{{ $json.sourceLink }}\n\nRecent published Nuvellum titles:\n{{ JSON.stringify($json.recentTitles) }}\n\nTitles already waiting in open editorial PRs:\n{{ JSON.stringify($json.openPrTitles || []) }}\n\nRules:\n- If exactSourceMatch is true, it is a duplicate.\n- Treat the same event reported by a different outlet as a duplicate when there is no materially new development.\n- A follow-up with a genuinely new event, decision, result, casualty update, filing, launch, ruling, score, release, or other substantive development is NOT a duplicate.\n- Similar topic alone is NOT a duplicate.\n- Compare against both published titles and open-PR titles.\n- Be conservative about blocking genuinely new developments.\n- Return one line of valid JSON only:\n{\"isDuplicate\":false,\"matchedTitle\":\"\",\"reason\":\"brief reason\"}\n\nexactSourceMatch:\n{{ $json.exactSourceMatch }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        3136,
+        2208
+      ],
+      "id": "a5a9f82c-c1a9-4c4c-8717-6cda6de871e8",
+      "name": "Gemini Duplicate Judge",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 12000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "REDACTED",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function textOf(data){\n  const c=[data?.content?.parts?.[0]?.text,data?.candidates?.[0]?.content?.parts?.[0]?.text,\n    Array.isArray(data?.content)?data.content.find(x=>x?.type==='text')?.text:undefined,\n    data?.text,typeof data?.content==='string'?data.content:undefined];\n  return c.find(x=>typeof x==='string'&&x.trim())||'';\n}\nfunction jsonOf(text){\n  let s=String(text||'').trim().replace(/^```(?:json)?\\s*/i,'').replace(/\\s*```$/,'').trim();\n  const a=s.indexOf('{'),b=s.lastIndexOf('}');\n  if(a>=0&&b>a)s=s.slice(a,b+1);\n  return JSON.parse(s);\n}\n\nconst context=$('Prepare Duplicate Context').item.json;\ntry {\n  const d=jsonOf(textOf($json));\n  return {json:{...context,isDuplicate:context.exactSourceMatch===true||d?.isDuplicate===true,matchedTitle:String(d?.matchedTitle||''),duplicateReason:String(d?.reason||'')}};\n} catch (e) {\n  return {json:{...context,isDuplicate:true,matchedTitle:'',duplicateReason:'Duplicate check could not be parsed; skipped safely.',duplicateParserError:e.message}};\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3488,
+        2208
+      ],
+      "id": "04b82682-d3a3-47ad-8eac-54833a5f169a",
+      "name": "Parse Duplicate Decision"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "13f091f9-671d-5654-9b14-a5a2e2ce9651",
+              "leftValue": "={{ $json.isDuplicate }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3712,
+        2208
+      ],
+      "id": "1dfcdb47-40dd-4862-8ae2-d00318fe47ab",
+      "name": "Is New Story?"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-flash-lite-latest",
+          "mode": "list",
+          "cachedResultName": "models/gemini-flash-lite-latest"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a senior editor at Nuvellum, an independent English-language international digital publication.\n\nWrite an ORIGINAL article using ONLY the source material below. Do not invent facts, quotes, numbers, motives, or background that the source does not support. Do not copy long phrases. Attribute uncertain or contested claims.\n\nFor political/public-policy/election/conflict material: remain neutral and descriptive. Do not endorse, oppose, rank, campaign for, or persuade readers toward any candidate, party, official, policy, legislation, or ballot choice. Attribute disputed interpretations.\n\nReturn valid JSON only, one object, no markdown fences:\n{\n  \"title\":\"...\",\n  \"dek\":\"...\",\n  \"section\":\"World|Business|Technology|Science|Crime|Sports|Culture|Film & TV|Anime|Gaming\",\n  \"type\":\"News|Analysis|Explainer\",\n  \"author\":\"Nuvellum Global Desk\",\n  \"tags\":[\"...\"],\n  \"risk\":\"low|sensitive\",\n  \"bodyMarkdown\":\"...\"\n}\n\nEditorial rules:\n- Aim for 300-700 words when the source supports it. Brief source-driven news can be 160-300 words; never pad with filler or invented context.\n- Use Markdown paragraphs and 2-4 H2 headings (## Heading).\n- No raw HTML.\n- No embedded images.\n- Prefer the source-section hint unless the actual story clearly belongs elsewhere.\n- risk=sensitive for politics/elections, actions by political officeholders in a political/public-policy context, allegations about identifiable people, crime accusations, armed conflict, deaths/serious harm, sensitive personal data, security/privacy breaches, lawsuits or serious legal/reputational risk.\n- A routine mention of a government department, grant, public service, company, charity, school, sports body, scientific agency or regulator is NOT by itself enough to make a story sensitive.\n- Ordinary business, technology product, science, sports, arts, entertainment, charity, consumer and service stories are normally low risk when they contain no serious allegation or sensitive personal data.\n- Analysis must clearly distinguish facts from interpretation.\n- Do not generate Opinion, Essay, Ideas or Review pieces from third-party reporting; those are human-led Nuvellum formats.\n- No clickbait.\n- The dek must be factual and <= 260 characters.\n\nSource outlet:\n{{ $json.sourceName }}\n\nSource section hint:\n{{ $json.sourceSectionHint }}\n\nSource title:\n{{ $json.sourceTitle }}\n\nSource URL:\n{{ $json.sourceLink }}\n\nSource text:\n{{ $json.articleText }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        3936,
+        2208
+      ],
+      "id": "b135ca13-5a6d-4bba-80dc-f8981a78021e",
+      "name": "Gemini Draft Article",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 12000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "REDACTED",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function textOf(data){\n  const c=[data?.content?.parts?.[0]?.text,data?.candidates?.[0]?.content?.parts?.[0]?.text,\n    Array.isArray(data?.content)?data.content.find(x=>x?.type==='text')?.text:undefined,\n    data?.text,typeof data?.content==='string'?data.content:undefined];\n  return c.find(x=>typeof x==='string'&&x.trim())||'';\n}\nfunction jsonOf(text){\n  let s=String(text||'').trim().replace(/^```(?:json)?\\s*/i,'').replace(/\\s*```$/,'').trim();\n  const a=s.indexOf('{'),b=s.lastIndexOf('}');\n  if(a>=0&&b>a)s=s.slice(a,b+1);\n  return JSON.parse(s);\n}\n\nconst source=$('Prepare Source').item.json;\nfunction sourceMetaFromUrl(link, currentHint, currentName){\n  let host='';\n  let path='';\n  try{\n    const u=new URL(String(link||'').trim());\n    host=u.hostname.replace(/^www\\./,'').toLowerCase();\n    path=u.pathname.toLowerCase();\n  }catch{}\n\n  const registry=[\n    [/bbc\\.co\\.uk$|bbc\\.com$/, 'BBC', null],\n    [/aljazeera\\.com$/, 'Al Jazeera', 'World'],\n    [/france24\\.com$/, 'France 24', 'World'],\n    [/dw\\.com$|rss\\.dw\\.com$/, 'Deutsche Welle', 'World'],\n    [/cnbc\\.com$/, 'CNBC', 'Business'],\n    [/fortune\\.com$/, 'Fortune', 'Business'],\n    [/techcrunch\\.com$/, 'TechCrunch', 'Technology'],\n    [/theverge\\.com$/, 'The Verge', 'Technology'],\n    [/arstechnica\\.com$/, 'Ars Technica', 'Technology'],\n    [/nasa\\.gov$/, 'NASA', 'Science'],\n    [/sciencedaily\\.com$/, 'ScienceDaily', 'Science'],\n    [/fbi\\.gov$/, 'FBI', 'Crime'],\n    [/espn\\.com$/, 'ESPN', 'Sports'],\n    [/variety\\.com$/, 'Variety', 'Film & TV'],\n    [/deadline\\.com$/, 'Deadline', 'Film & TV'],\n    [/animenewsnetwork\\.com$/, 'Anime News Network', 'Anime'],\n    [/ign\\.com$/, 'IGN', 'Gaming'],\n    [/polygon\\.com$/, 'Polygon', 'Gaming'],\n    [/gamesindustry\\.biz$/, 'GamesIndustry.biz', 'Gaming'],\n    [/theguardian\\.com$/, 'The Guardian', null]\n  ];\n\n  let sourceName=String(currentName||'').trim();\n  let hint=String(currentHint||'').trim();\n  for(const [re,name,forced] of registry){\n    if(re.test(host)){\n      sourceName=name;\n      if(forced) hint=forced;\n      break;\n    }\n  }\n\n  if(host.includes('bbc.co.uk')||host.includes('bbc.com')){\n    if(path.startsWith('/sport/')) hint='Sports';\n    else if(path.includes('/news/business')) hint='Business';\n    else if(path.includes('/news/technology')) hint='Technology';\n    else if(path.includes('/news/science')) hint='Science';\n    else if(path.includes('/culture')) hint='Culture';\n  }\n  if(host.includes('aljazeera.com') && path.startsWith('/sports/')) hint='Sports';\n  if(host.includes('theguardian.com')){\n    if(path.includes('/film/')) hint='Film & TV';\n    else if(path.includes('/games/')) hint='Gaming';\n    else if(path.includes('/culture/')) hint='Culture';\n    else if(path.includes('/crime/')) hint='Crime';\n  }\n\n  return {\n    ...source,\n    sourceName: sourceName || host || 'Source',\n    sourceSectionHint: hint || 'World'\n  };\n}\nconst resolvedSource=sourceMetaFromUrl(source.sourceLink,source.sourceSectionHint,source.sourceName);\nconst allowedSections=new Set(['World','Business','Technology','Science','Crime','Sports','Culture','Film & TV','Anime','Gaming']);\nconst allowedTypes=new Set(['News','Analysis','Explainer']);\nfunction slugify(s){return String(s).toLowerCase().normalize('NFKD').replace(/[^\\x00-\\x7F]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,90);}\nfunction words(s){return String(s||'').trim().split(/\\s+/).filter(Boolean).length;}\nfunction yaml(v){return JSON.stringify(String(v??''));}\n\nconst draft=jsonOf(textOf($json));\nconst title=String(draft.title||'').trim();\nconst dek=String(draft.dek||'').trim();\nlet section=allowedSections.has(String(draft.section||''))?String(draft.section):'World';\nlet type=allowedTypes.has(String(draft.type||''))?String(draft.type):'News';\nlet body=String(draft.bodyMarkdown||'').trim();\nif(!title||!dek||!body) throw new Error('Draft is missing title, dek, or bodyMarkdown');\nif(/<\\s*\\/?\\s*[A-Za-z][^>]*>/.test(body)) throw new Error('Raw HTML is not allowed in generated articles');\nconst articleWords=words(body);\nconst minimumWords = Number(source.sourceWordCount || 0) < 500 ? 160 : 190;\nif(articleWords < minimumWords) throw new Error(`Generated article is too short: ${articleWords} words (minimum ${minimumWords})`);\nconst shortArticle = articleWords < 220;\n\nconst strongHints=new Set(['Business','Technology','Science','Crime','Sports','Culture','Film & TV','Anime','Gaming']);\nif (strongHints.has(resolvedSource.sourceSectionHint)) section=resolvedSource.sourceSectionHint;\n\nconst combined=[resolvedSource.sourceTitle,title,body].join(' ');\nconst strongRisk=/\\b(election|campaign|candidate|ballot|voting|war|armed conflict|air ?strike|missile|military|invasion|murder|homicide|killed|fatal|arrested|charged|indicted|accused|alleged|lawsuit|court ruling|judge|sanction|terrorism|sexual abuse|data breach|security breach|privacy breach|hacked|cyberattack)\\b/i.test(combined);\nconst politicalOffice=/\\b(president|prime minister|minister|government|white house|parliament|congress|governor|mayor)\\b/i.test(combined)\n  && /\\b(policy|election|vote|law|ban|sanction|diplom|war|conflict|administration|court|rights|protest|deal|negotiat|press access|foreign policy)\\b/i.test(combined);\nconst deterministicSensitive=strongRisk||politicalOffice||section==='Crime';\nconst risk=(String(draft.risk)==='sensitive'||deterministicSensitive)?'sensitive':'low';\nconst status=risk==='sensitive'?'review':'published';\nconst slug=slugify(title)||`story-${Date.now()}`;\nconst date=new Date().toISOString().slice(0,10);\nconst readingTime=`${Math.max(1,Math.ceil(words(body)/225))} min`;\nconst tags=(Array.isArray(draft.tags)?draft.tags:[]).map(x=>String(x).trim()).filter(Boolean).slice(0,8);\nif(!tags.length) tags.push(section.toLowerCase());\nconst imageMap={'World':'/images/world.svg','Business':'/images/business.svg','Technology':'/images/technology.svg','Science':'/images/technology.svg','Crime':'/images/world.svg','Sports':'/images/sports.svg','Culture':'/images/culture.svg','Film & TV':'/images/film.svg','Anime':'/images/anime.svg','Gaming':'/images/gaming.svg'};\nconst image=imageMap[section]||'/images/world.svg';\nconst sourceName=String(resolvedSource.sourceName||'the linked source');\nconst front=[\n'---',\n`title: ${yaml(title)}`,\n`dek: ${yaml(dek)}`,\n`section: ${yaml(section)}`,\n`type: ${yaml(type)}`,\n`author: ${yaml(String(draft.author||'Nuvellum Global Desk'))}`,\n`date: ${yaml(date)}`,\n`readingTime: ${yaml(readingTime)}`,\n`image: ${yaml(image)}`,\n`imageAlt: ${yaml(`Editorial illustration for ${title}`)}`,\n`status: ${yaml(status)}`,\n`tags: ${JSON.stringify(tags)}`,\n`sourceUrls: ${JSON.stringify([resolvedSource.sourceLink])}`,\n`sourceNote: ${yaml(`Prepared from ${sourceName} reporting and subject to Nuvellum editorial review.`)}`,\n`origin: \"automation\"`,\n`risk: ${yaml(risk)}`,\n`reviewedBy: \"\"`,\n'---',\n''\n].join('\\n');\nconst markdown=front+body+'\\n';\nreturn {json:{...resolvedSource,title,dek,section,type,bodyMarkdown:body,slug,date,readingTime,tags,image,risk,status,markdown,articleWordCount:articleWords,shortArticle}};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4288,
+        2208
+      ],
+      "id": "1a995017-879f-4c3f-9982-a508c5dd4eab",
+      "name": "Parse Draft & Build Markdown"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are Nuvellum's publication review gate.\n\nCompare the proposed article with the source text. Reject it if it contains unsupported facts, invented quotes/numbers, material omissions that distort meaning, plagiarism-like copying, loaded political persuasion, or a misleading headline/dek.\n\nFor political and electoral material, evaluate neutrality only; do not decide which actor, party, candidate, policy or outcome is better.\n\nReturn valid JSON only:\n{\"approved\":true,\"risk_score\":0,\"issues\":[],\"decision_reason\":\"...\",\"sensitive\":false}\n\nRules:\n- approved=true only when there is no material factual/editorial problem.\n- risk_score 0-100; >20 must mean approved=false.\n- sensitive=true for politics/elections, political officeholder actions in a political/public-policy context, allegations about identifiable people, crime accusations, armed conflict, deaths/serious harm, sensitive personal data, security/privacy breaches, lawsuits or serious legal/reputational risk.\n- A routine reference to a government service, grant, public agency, regulator, school, company, charity, science agency, sports body or public funding is not by itself sensitive.\n- Ordinary business, technology product, science, sports, arts, entertainment, charity, consumer and service stories should normally remain low risk when no serious allegation or sensitive personal data is involved.\n- If parsing or evidence is insufficient, fail closed.\n\nSOURCE OUTLET:\n{{ $('Prepare Source').item.json.sourceName }}\n\nSOURCE:\n{{ $('Prepare Source').item.json.articleText }}\n\nPROPOSED TITLE:\n{{ $json.title }}\n\nPROPOSED ARTICLE:\n{{ $json.bodyMarkdown }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        4512,
+        2208
+      ],
+      "id": "5725bf17-b9bb-497f-a7de-ed0d77f7ac70",
+      "name": "Gemini Editorial Review",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 12000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "REDACTED",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function textOf(data){\n  const c=[data?.content?.parts?.[0]?.text,data?.candidates?.[0]?.content?.parts?.[0]?.text,\n    Array.isArray(data?.content)?data.content.find(x=>x?.type==='text')?.text:undefined,\n    data?.text,typeof data?.content==='string'?data.content:undefined];\n  return c.find(x=>typeof x==='string'&&x.trim())||'';\n}\nfunction jsonOf(text){\n  let s=String(text||'').trim().replace(/^```(?:json)?\\s*/i,'').replace(/\\s*```$/,'').trim();\n  const a=s.indexOf('{'),b=s.lastIndexOf('}');\n  if(a>=0&&b>a)s=s.slice(a,b+1);\n  return JSON.parse(s);\n}\n\nconst article=$('Parse Draft & Build Markdown').item.json;\ntry {\n  const d=jsonOf(textOf($json));\n  const score=Number(d.risk_score);\n  const issues=Array.isArray(d.issues)?d.issues:['Invalid issues field'];\n  const approved=d.approved===true&&Number.isFinite(score)&&score<=20&&issues.length===0;\n  const sensitive=article.risk==='sensitive'||d.sensitive===true;\n  let markdown=article.markdown;\n  if(sensitive && article.status!=='review') markdown=markdown.replace('status: \"published\"','status: \"review\"').replace('risk: \"low\"','risk: \"sensitive\"');\n  return {json:{...article,editorialApproved:approved,editorialRiskScore:Number.isFinite(score)?score:100,editorialIssues:issues,decisionReason:String(d.decision_reason||''),risk:sensitive?'sensitive':article.risk,status:sensitive?'review':article.status,markdown}};\n} catch(e) {\n  return {json:{...article,editorialApproved:false,editorialRiskScore:100,editorialIssues:['Editorial review could not be parsed'],decisionReason:'Failed closed',reviewParserError:e.message}};\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4864,
+        2208
+      ],
+      "id": "64354cf4-0447-4f28-8dbf-7bbb12a7a748",
+      "name": "Parse Editorial Review"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are Nuvellum's senior editorial illustrator.\n\nCreate ONE story-specific SVG editorial illustration for the finished article below.\n\nReturn ONLY the SVG markup, starting with <svg and ending with </svg>. No markdown fences and no explanation.\n\nART DIRECTION\n- Canvas/viewBox: exactly 0 0 1200 675 (16:9).\n- Premium international magazine/news editorial illustration, not stock art and not generic abstract wallpaper.\n- One strong visual idea and one obvious focal subject.\n- The reader should understand the subject at a glance before reading the headline.\n- Use concrete story-specific visual cues: places, objects, infrastructure, technology, sport, culture, flags/colors or institutional architecture when genuinely relevant.\n- For sensitive politics/conflict/crime stories, illustrate the reported subject without inventing documentary evidence or depicting unverified acts as fact.\n- Prefer symbolic/editorial composition over fake photojournalism.\n- Sophisticated depth, lighting and composition. Use gradients, shapes, paths and restrained visual metaphors.\n- No clickbait collage, no random explosions, no gore, no sensationalism.\n- NO text, letters, numbers, captions, logos, watermarks or UI inside the illustration.\n- Do not include external images or external URLs.\n- Do not use <script>, <foreignObject>, <image>, <use>, <a>, event handlers, href/xlink:href, or embedded data.\n- Keep SVG under about 35 KB.\n\nSTYLE\n- Elegant, cinematic editorial vector art.\n- Strong foreground/midground/background hierarchy.\n- Rich but restrained palette chosen for the story, not the same palette every time.\n- Avoid the obvious 'AI generated' look: no impossible anatomy, no clutter, no meaningless symbols.\n\nArticle title:\n{{ $json.title }}\n\nDek:\n{{ $json.dek }}\n\nSection:\n{{ $json.section }}\n\nRisk:\n{{ $json.risk }}\n\nArticle:\n{{ $json.bodyMarkdown }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        6336,
+        2208
+      ],
+      "id": "abaf2b67-63f3-46e6-af49-8c393cac193b",
+      "name": "Gemini Editorial SVG",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 8000,
+      "continueOnFail": true,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "REDACTED",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function textOf(data){\n  const c=[\n    data?.content?.parts?.[0]?.text,\n    data?.candidates?.[0]?.content?.parts?.[0]?.text,\n    Array.isArray(data?.content)?data.content.find(x=>x?.type==='text')?.text:undefined,\n    data?.text,\n    typeof data?.content==='string'?data.content:undefined\n  ];\n  return c.find(x=>typeof x==='string'&&x.trim())||'';\n}\nfunction yamlQuote(v){ return JSON.stringify(String(v ?? '')); }\nfunction setFrontmatter(markdown,key,valueLine){\n  const lines=String(markdown||'').split('\\n');\n  if(lines[0]!=='---') return markdown;\n  let end=1;\n  for(;end<lines.length;end++){\n    if(lines[end]==='---') break;\n    if(lines[end].startsWith(key+':')){\n      lines[end]=`${key}: ${valueLine}`;\n      return lines.join('\\n');\n    }\n  }\n  lines.splice(end,0,`${key}: ${valueLine}`);\n  return lines.join('\\n');\n}\nfunction fallbackAlt(article){\n  return `AI-generated editorial illustration for ${article.title}`;\n}\n\nlet article;\ntry { article=$('Parse Sensitive Verification').item.json; } catch {}\nif(!article || !article.markdown) article=$('Parse Editorial Review').item.json;\nlet result={...article,aiImageReady:false,imageGenerationMode:'existing-svg-fallback'};\n\ntry{\n  let svg=textOf($json).trim()\n    .replace(/^```(?:svg|xml)?\\s*/i,'')\n    .replace(/\\s*```$/,'')\n    .trim();\n\n  const start=svg.indexOf('<svg');\n  const end=svg.lastIndexOf('</svg>');\n  if(start<0||end<start) throw new Error('No complete SVG returned');\n  svg=svg.slice(start,end+6);\n\n  if(svg.length<350) throw new Error('SVG too small');\n  if(svg.length>120000) throw new Error('SVG too large');\n\n  // Remove unsafe/unsupported content rather than discarding an otherwise usable illustration.\n  svg=svg\n    .replace(/<\\?xml[\\s\\S]*?\\?>/gi,'')\n    .replace(/<!--[\\s\\S]*?-->/g,'')\n    .replace(/<script\\b[\\s\\S]*?<\\/script>/gi,'')\n    .replace(/<foreignObject\\b[\\s\\S]*?<\\/foreignObject>/gi,'')\n    .replace(/<iframe\\b[\\s\\S]*?<\\/iframe>/gi,'')\n    .replace(/<image\\b[^>]*\\/?>/gi,'')\n    .replace(/<use\\b[^>]*\\/?>/gi,'')\n    .replace(/<a\\b[^>]*>([\\s\\S]*?)<\\/a>/gi,'$1')\n    .replace(/<text\\b[\\s\\S]*?<\\/text>/gi,'')\n    .replace(/\\son[a-z]+\\s*=\\s*(\"[^\"]*\"|'[^']*')/gi,'')\n    .replace(/\\s(?:href|xlink:href)\\s*=\\s*(\"[^\"]*\"|'[^']*')/gi,'')\n    .replace(/javascript\\s*:/gi,'')\n    .replace(/url\\(\\s*[\"']?\\s*(?!#)[^)]+\\)/gi,'none')\n    .trim();\n\n  // Normalize the canvas so the site always receives a predictable 16:9 asset.\n  if(/viewBox\\s*=\\s*[\"'][^\"']+[\"']/i.test(svg)){\n    svg=svg.replace(/viewBox\\s*=\\s*[\"'][^\"']+[\"']/i,'viewBox=\"0 0 1200 675\"');\n  }else{\n    svg=svg.replace(/<svg\\b/i,'<svg viewBox=\"0 0 1200 675\"');\n  }\n  svg=svg.replace(/\\swidth\\s*=\\s*[\"'][^\"']+[\"']/i,'').replace(/\\sheight\\s*=\\s*[\"'][^\"']+[\"']/i,'');\n\n  const imagePath=`/generated/ai/${article.slug}.svg`;\n  const imageAlt=fallbackAlt(article);\n  let markdown=String(article.markdown||'');\n  markdown=setFrontmatter(markdown,'image',yamlQuote(imagePath));\n  markdown=setFrontmatter(markdown,'imageAlt',yamlQuote(imageAlt));\n\n  result={\n    ...article,\n    markdown,\n    image:imagePath,\n    imageAlt,\n    aiImageReady:true,\n    aiSvg:svg,\n    aiSvgBase64:Buffer.from(svg,'utf8').toString('base64'),\n    imageGenerationMode:'gemini-svg'\n  };\n}catch(e){\n  result={...result,aiImageError:e.message};\n}\nreturn {json:result};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6688,
+        2208
+      ],
+      "id": "55da9395-8bca-422e-b183-1a6cdd034b53",
+      "name": "Sanitize Editorial SVG"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f7228875-0769-51fa-b2ed-f4591299c344",
+              "leftValue": "={{ $json.editorialApproved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        5088,
+        2208
+      ],
+      "id": "3f090755-7849-4095-b390-e9160041bc2b",
+      "name": "Editorial Review Passed?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4887524d-e2c1-4648-83d7-e4821c1edd5c",
+              "leftValue": "={{ $json.risk }}",
+              "rightValue": "sensitive",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        5312,
+        2208
+      ],
+      "id": "eec3488c-2fa3-4628-8bf4-7bdd1855e9e4",
+      "name": "Sensitive Story?"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are Nuvellum's final verification editor for SENSITIVE reporting.\n\nThis is a separate second-pass check. Be strict. Your job is not to improve the writing; your job is to decide whether the article is safe to publish automatically from the supplied source material.\n\nReturn valid JSON only:\n{\n  \"publishable\": true,\n  \"risk_score\": 0,\n  \"issues\": [],\n  \"reason\": \"...\"\n}\n\nFAIL the article (publishable=false) if ANY of the following apply:\n- a factual claim is not supported by the supplied source text;\n- a disputed political, conflict, crime, legal, security or reputational claim is written as established fact instead of clearly attributed;\n- motive, intent, guilt, causation or responsibility is inferred beyond the source;\n- a quote is invented, altered materially, or attributed incorrectly;\n- the article adopts partisan or persuasive language;\n- election/political coverage endorses, attacks, ranks, predicts, or advocates;\n- the source itself is opinion/commentary and the article launders that view into factual reporting;\n- material uncertainty or a key counter-position in the source is omitted;\n- the headline/dek overstate what the source establishes.\n\nPASS only when:\n- the article is a faithful factual report of the source;\n- contested claims remain explicitly attributed;\n- the tone is neutral;\n- the headline and dek are supportable;\n- the story can responsibly be published without a human editor.\n\nArticle title:\n{{ $json.title }}\n\nDek:\n{{ $json.dek }}\n\nRisk:\n{{ $json.risk }}\n\nSource outlet:\n{{ $json.sourceName }}\n\nSource title:\n{{ $json.sourceTitle }}\n\nSource URL:\n{{ $json.sourceLink }}\n\nSOURCE TEXT:\n{{ $json.articleText }}\n\nNUVELLUM ARTICLE:\n{{ $json.bodyMarkdown }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        5536,
+        2144
+      ],
+      "id": "f3098d44-966a-4488-afe0-05fce2bf4676",
+      "name": "Gemini Sensitive Verification",
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 10000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "REDACTED",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function textOf(data){\n  const c=[data?.content?.parts?.[0]?.text,data?.candidates?.[0]?.content?.parts?.[0]?.text,\n    Array.isArray(data?.content)?data.content.find(x=>x?.type==='text')?.text:undefined,\n    data?.text,typeof data?.content==='string'?data.content:undefined];\n  return c.find(x=>typeof x==='string'&&x.trim())||'';\n}\nfunction jsonOf(text){\n  let s=String(text||'').trim().replace(/^```(?:json)?\\s*/i,'').replace(/\\s*```$/,'').trim();\n  const a=s.indexOf('{'),b=s.lastIndexOf('}');\n  if(a>=0&&b>a)s=s.slice(a,b+1);\n  return JSON.parse(s);\n}\nfunction setFrontmatter(markdown,key,valueLine){\n  const lines=String(markdown||'').split('\\n');\n  if(lines[0]!=='---') return markdown;\n  let end=1;\n  for(;end<lines.length;end++){\n    if(lines[end]==='---') break;\n    if(lines[end].startsWith(key+':')){\n      lines[end]=`${key}: ${valueLine}`;\n      return lines.join('\\n');\n    }\n  }\n  lines.splice(end,0,`${key}: ${valueLine}`);\n  return lines.join('\\n');\n}\n\nconst article=$('Parse Editorial Review').item.json;\ntry{\n  const d=jsonOf(textOf($json));\n  const score=Number(d.risk_score);\n  const issues=Array.isArray(d.issues)?d.issues:['Invalid issues field'];\n  const verified=d.publishable===true && Number.isFinite(score) && score<=10 && issues.length===0;\n\n  let markdown=String(article.markdown||'');\n  if(verified){\n    markdown=setFrontmatter(markdown,'status','\"published\"');\n    markdown=setFrontmatter(markdown,'reviewedBy','\"Nuvellum Verification Pipeline\"');\n  }\n\n  return {json:{\n    ...article,\n    markdown,\n    status: verified ? 'published' : 'review',\n    reviewedBy: verified ? 'Nuvellum Verification Pipeline' : '',\n    sensitiveVerified: verified,\n    sensitiveRiskScore: Number.isFinite(score)?score:100,\n    sensitiveIssues: issues,\n    sensitiveDecisionReason: String(d.reason||'')\n  }};\n}catch(e){\n  return {json:{\n    ...article,\n    sensitiveVerified:false,\n    sensitiveRiskScore:100,\n    sensitiveIssues:['Sensitive verification could not be parsed'],\n    sensitiveDecisionReason:'Failed closed',\n    sensitiveVerificationError:e.message\n  }};\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5888,
+        2144
+      ],
+      "id": "ffb45585-aa50-4070-b5c0-c46e548b33bc",
+      "name": "Parse Sensitive Verification"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2e1ace03-ae01-4446-ab1b-ca7d443c3107",
+              "leftValue": "={{ $json.sensitiveVerified }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        6112,
+        2144
+      ],
+      "id": "5c235f11-543b-4b58-8a04-9dc0909ab176",
+      "name": "Sensitive Verified?"
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/Sh-010/Nuvellum/git/ref/heads/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        6912,
+        2208
+      ],
+      "id": "55b2155e-110d-4da3-8bd3-2bf5b5bff114",
+      "name": "Get Main Ref",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REDACTED",
+          "name": "Nuvellum GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let article;\ntry { article=$('Sanitize Editorial SVG').item.json; } catch {}\nif(!article || !article.markdown) article=$('Parse Editorial Review').item.json;\nconst ref=$json;\nconst baseSha=ref?.object?.sha;\nif(!baseSha) throw new Error('GitHub main SHA missing');\nfunction normalizeSource(value) {\n  try {\n    const u = new URL(String(value || '').trim());\n    u.hash = '';\n    u.search = '';\n    u.hostname = u.hostname.toLowerCase();\n    u.pathname = u.pathname.replace(/\\/+$/, '') || '/';\n    return u.toString();\n  } catch {\n    return String(value || '').trim().replace(/[?#].*$/, '').replace(/\\/+$/, '');\n  }\n}\nfunction fnv1a(str) {\n  let h = 0x811c9dc5;\n  for (let i=0;i<str.length;i++) {\n    h ^= str.charCodeAt(i);\n    h = Math.imul(h, 0x01000193);\n  }\n  return (h >>> 0).toString(16).padStart(8,'0');\n}\nconst sourceKey = normalizeSource(article.sourceLink);\nconst sourceHash = fnv1a(sourceKey);\nconst branchName=`incoming/${String(article.slug).slice(0,72)}-${sourceHash}`;\nconst contentBase64=Buffer.from(article.markdown,'utf8').toString('base64');\nfunction sourceLabel(value,link){\n  const raw=String(value||'').trim();\n  if(raw && raw.toLowerCase()!=='source' && raw.toLowerCase()!=='unknown') return raw;\n  try{\n    const h=new URL(String(link||'')).hostname.replace(/^www\\./,'').toLowerCase();\n    const labels={\n      'bbc.co.uk':'BBC','bbc.com':'BBC','aljazeera.com':'Al Jazeera','france24.com':'France 24',\n      'dw.com':'Deutsche Welle','cnbc.com':'CNBC','fortune.com':'Fortune','techcrunch.com':'TechCrunch',\n      'theverge.com':'The Verge','arstechnica.com':'Ars Technica','nasa.gov':'NASA',\n      'sciencedaily.com':'ScienceDaily','fbi.gov':'FBI','espn.com':'ESPN','variety.com':'Variety',\n      'deadline.com':'Deadline','animenewsnetwork.com':'Anime News Network','ign.com':'IGN',\n      'polygon.com':'Polygon','gamesindustry.biz':'GamesIndustry.biz','theguardian.com':'The Guardian'\n    };\n    return labels[h] || h || 'Unknown';\n  }catch{return raw || 'Unknown';}\n}\nconst resolvedSourceName=sourceLabel(article.sourceName,article.sourceLink);\nconst prBody=[\n  'Automated Nuvellum editorial candidate.',\n  '',\n  `**Risk:** ${article.risk}`,\n  `**Proposed status:** ${article.status}`,\n  `**Source:** ${article.sourceLink}`,\n  `**Source outlet:** ${resolvedSourceName}`,\n  `**Section:** ${article.section}`,\n  `**Editorial AI risk score:** ${article.editorialRiskScore}`,\n  `**Editorial image:** ${article.aiImageReady ? 'Gemini-generated SVG included in this PR' : 'Fallback illustration (AI SVG generation unavailable)'}`,\n  '',\n  article.status==='review'\n    ? '⛔ Automated verification did not clear this story for publication; the workflow should normally skip it rather than publish it.'\n    : (article.risk==='sensitive'\n        ? 'Sensitive story cleared by Nuvellum\\'s second-pass verification pipeline; repository checks still must pass before publication.'\n        : 'Low-risk candidate cleared by editorial review; repository checks still must pass before publication.'),\n  '',\n  `Review note: ${article.decisionReason || 'No additional note.'}`\n].join('\\n');\nreturn {json:{...article,baseSha,sourceKey,sourceHash,branchName,contentBase64,prBody}};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7136,
+        2208
+      ],
+      "id": "d3e74f04-4a89-41f3-af76-caaf49582b62",
+      "name": "Build GitHub Payload"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/Sh-010/Nuvellum/git/refs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "ref",
+              "value": "={{ 'refs/heads/' + $json.branchName }}"
+            },
+            {
+              "name": "sha",
+              "value": "={{ $json.baseSha }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        7360,
+        2208
+      ],
+      "id": "77dc92a8-ef81-4981-9f3a-8c7096a0f21b",
+      "name": "Create Review Branch",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REDACTED",
+          "name": "Nuvellum GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ 'https://api.github.com/repos/Sh-010/Nuvellum/contents/src/content/articles/' + $('Build GitHub Payload').item.json.slug + '.md' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ 'editorial: add ' + $('Build GitHub Payload').item.json.slug }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $('Build GitHub Payload').item.json.contentBase64 }}"
+            },
+            {
+              "name": "branch",
+              "value": "={{ $('Build GitHub Payload').item.json.branchName }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        8032,
+        2288
+      ],
+      "id": "48f68cf2-ecd9-4515-864c-fb30cc742811",
+      "name": "Commit Article File",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REDACTED",
+          "name": "Nuvellum GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/Sh-010/Nuvellum/pulls?state=open&per_page=100",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        2464,
+        2208
+      ],
+      "id": "f390b3d7-3f02-4a90-9da7-5dbfd9ed9119",
+      "name": "Get Open Editorial PRs",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REDACTED",
+          "name": "Nuvellum GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const context = $('Prepare Duplicate Context').item.json;\nconst raw = $input.all().map(i => i.json);\nconst prs = raw.flatMap(x => Array.isArray(x) ? x : [x]).filter(x => x && typeof x === 'object');\n\nfunction normalizeSource(value) {\n  try {\n    const u = new URL(String(value || '').trim());\n    u.hash = '';\n    u.search = '';\n    u.hostname = u.hostname.toLowerCase();\n    u.pathname = u.pathname.replace(/\\/+$/, '') || '/';\n    return u.toString();\n  } catch {\n    return String(value || '').trim().replace(/[?#].*$/, '').replace(/\\/+$/, '');\n  }\n}\n\nconst sourceKey = normalizeSource(context.sourceLink);\nlet openPrDuplicate = null;\nconst openPrTitles = [];\n\nfor (const pr of prs) {\n  const title = String(pr.title || '').replace(/^Editorial:\\s*/i,'').trim();\n  if (title) openPrTitles.push(title);\n  const body = String(pr.body || '');\n  const matches = [...body.matchAll(/^\\*\\*Source:\\*\\*\\s*(https:\\/\\/\\S+)/gm)].map(m => normalizeSource(m[1]));\n  if (matches.includes(sourceKey) && !openPrDuplicate) {\n    openPrDuplicate = {\n      number: pr.number,\n      title: pr.title || '',\n      html_url: pr.html_url || ''\n    };\n  }\n}\n\nreturn [{\n  json: {\n    ...context,\n    normalizedSourceLink: sourceKey,\n    openPrExactSourceMatch: Boolean(openPrDuplicate),\n    openPrDuplicate,\n    openPrTitles: [...new Set(openPrTitles)].slice(0,100),\n    exactSourceMatch: context.exactSourceMatch === true || Boolean(openPrDuplicate)\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2688,
+        2208
+      ],
+      "id": "795a679b-8cbf-4b73-977e-0e048f5b4dc4",
+      "name": "Check Open PR Duplicates"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "cbabeba3-c83d-42c8-b8b8-8d67700bb2d5",
+              "leftValue": "={{ $json.exactSourceMatch }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2912,
+        2208
+      ],
+      "id": "a7f9561a-bf92-4818-8aca-f96b2bb64880",
+      "name": "Exact Source Duplicate?"
+    },
+    {
+      "parameters": {
+        "numberInputs": 7
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        224,
+        432
+      ],
+      "id": "baf41894-c490-4866-8d96-d01b36cf85df",
+      "name": "Merge Sources A"
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "467ee115-25e1-416e-ab5e-43beddff1d60",
+      "name": "RSS BBC World",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.aljazeera.com/xml/rss/all.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        192
+      ],
+      "id": "436585ab-55ad-48d2-bdd3-03472fdfe494",
+      "name": "RSS Al Jazeera",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.france24.com/en/rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        384
+      ],
+      "id": "81a9ae3a-78f4-4bf6-a567-f59894a075f8",
+      "name": "RSS France 24",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://rss.dw.com/rdf/rss-en-all",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        576
+      ],
+      "id": "7f92297a-57fb-4931-8f80-89014ae59b19",
+      "name": "RSS Deutsche Welle",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/business/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        768
+      ],
+      "id": "147373a4-9b8e-4c47-b226-8cd86b659600",
+      "name": "RSS BBC Business",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        960
+      ],
+      "id": "68762ade-8d91-4c2d-96c0-ea475b82eff0",
+      "name": "RSS CNBC",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://fortune.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1344
+      ],
+      "id": "7fa38519-7ce2-4742-9ca5-2c7272ea2280",
+      "name": "RSS Fortune",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 7
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        224,
+        1776
+      ],
+      "id": "f0d69dc3-0e7c-4de8-abfc-17b0b825ac01",
+      "name": "Merge Sources B"
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1152
+      ],
+      "id": "e67c8b05-1227-4a86-821b-601b3710be83",
+      "name": "RSS BBC Technology",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://techcrunch.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1536
+      ],
+      "id": "c2637beb-cfd8-416e-97fa-8ee297791c1a",
+      "name": "RSS TechCrunch",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.theverge.com/rss/index.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1728
+      ],
+      "id": "9a62be62-542d-40bf-973e-9711e025770d",
+      "name": "RSS The Verge",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.arstechnica.com/arstechnica/index",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        1920
+      ],
+      "id": "98d23e3b-f7c5-4779-b9e0-f66ce4d0ccf6",
+      "name": "RSS Ars Technica",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        2112
+      ],
+      "id": "abd7abe2-3db5-4e45-99eb-ec7cc80cbd82",
+      "name": "RSS BBC Science",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.nasa.gov/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        2304
+      ],
+      "id": "ac83bcac-5cbd-46bb-a1af-84a6def4251a",
+      "name": "RSS NASA",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.sciencedaily.com/rss/top/science.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        2688
+      ],
+      "id": "5dd5e5ad-30f7-42a9-a88c-c075c4973229",
+      "name": "RSS ScienceDaily",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 7
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        224,
+        3120
+      ],
+      "id": "dfe9f682-0a65-48d6-a932-2d83bc5f7c6a",
+      "name": "Merge Sources C"
+    },
+    {
+      "parameters": {
+        "url": "https://www.fbi.gov/feeds/national-press-releases/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        2496
+      ],
+      "id": "d4d109b9-50fd-4fd1-a04e-259a6118fb87",
+      "name": "RSS FBI Press Releases",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.theguardian.com/us-news/us-crime/rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        2880
+      ],
+      "id": "4918c93d-91cf-4fcd-8d99-63b179b0fa3e",
+      "name": "RSS Guardian US Crime",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/sport/rss.xml?edition=uk",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        3072
+      ],
+      "id": "146d184f-8162-4c06-acc9-198ff4f88d61",
+      "name": "RSS BBC Sport",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.espn.com/espn/rss/news",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        3264
+      ],
+      "id": "6f18d597-f75a-4609-a4c2-a5686dccd3ca",
+      "name": "RSS ESPN",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        3456
+      ],
+      "id": "7673cff9-b35d-4834-b1d1-c5af2c84d8ed",
+      "name": "RSS BBC Culture",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.theguardian.com/culture/rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        3648
+      ],
+      "id": "a12eba5d-2278-4644-a6a4-45d139ac9e98",
+      "name": "RSS Guardian Culture",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.theguardian.com/film/rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        3840
+      ],
+      "id": "be7ea107-c5fc-4916-90ab-6192d5f50ff4",
+      "name": "RSS Guardian Film",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 6
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        224,
+        4400
+      ],
+      "id": "6219b7f2-90fa-43a9-8e3b-0dc5114d7a17",
+      "name": "Merge Sources D"
+    },
+    {
+      "parameters": {
+        "url": "https://variety.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        4032
+      ],
+      "id": "f55fa2aa-a109-4bb6-94b7-06d9cdf428a5",
+      "name": "RSS Variety",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://deadline.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        4224
+      ],
+      "id": "87c72fd3-1f57-4c9b-aa90-c7bab1db6230",
+      "name": "RSS Deadline",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        4416
+      ],
+      "id": "bc78a8fd-502a-4025-a4ea-7dba9ad360e4",
+      "name": "RSS Anime News Network",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.feedburner.com/ign/all",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        4608
+      ],
+      "id": "d5fdd660-896c-4589-ac6e-20bd04ddea93",
+      "name": "RSS IGN",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.polygon.com/rss/index.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        4800
+      ],
+      "id": "bcedb052-b08e-41bb-b29d-dba55cb58335",
+      "name": "RSS Polygon",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.gamesindustry.biz/feed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        4992
+      ],
+      "id": "eb0f66e7-09ea-400a-b00e-af67b93c7593",
+      "name": "RSS GamesIndustry",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        448,
+        2496
+      ],
+      "id": "0471f8be-4752-49ad-a730-e5a4a913bcc2",
+      "name": "Merge Sources"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "84a5277b-7220-43e4-b506-9abf5a2d1645",
+              "leftValue": "={{ $('Build GitHub Payload').item.json.aiImageReady }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        7584,
+        2208
+      ],
+      "id": "7e46659b-99f5-44e2-8320-8e515162b7e6",
+      "name": "AI Image Ready?"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ 'https://api.github.com/repos/Sh-010/Nuvellum/contents/public/generated/ai/' + $('Build GitHub Payload').item.json.slug + '.svg' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ 'editorial: add AI illustration for ' + $('Build GitHub Payload').item.json.slug }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $('Build GitHub Payload').item.json.aiSvgBase64 }}"
+            },
+            {
+              "name": "branch",
+              "value": "={{ $('Build GitHub Payload').item.json.branchName }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        7808,
+        2144
+      ],
+      "id": "76927488-cc76-4fad-bee8-0e15a0264954",
+      "name": "Commit AI Illustration",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REDACTED",
+          "name": "Nuvellum GitHub"
+        }
+      }
+    }
+  ],
+  "nodeGroups": [],
+  "activeVersion": null,
+  "meta": null
+}
