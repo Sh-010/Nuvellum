@@ -1,12 +1,21 @@
 name: Build Nuvellum
 on:
+  # incoming/** pushes come from n8n with its own credential, so they trigger
+  # workflows normally. PRs opened with GITHUB_TOKEN do not trigger
+  # pull_request workflows, so checks must not depend on pull_request alone.
   push:
-    branches: [main]
+    branches:
+      - main
+      - "incoming/**"
   pull_request:
     branches: [main]
 
 permissions:
   contents: read
+
+concurrency:
+  group: build-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build:
