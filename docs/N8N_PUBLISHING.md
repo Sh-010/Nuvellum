@@ -1,5 +1,14 @@
 # Nuvellum publishing workflow
 
+## v5 intake policy
+
+The production intake should use the diversified source registry in `docs/SOURCE_MATRIX.md`, process up to three candidates per run, prefer different source domains and desks, and compare candidates with both published stories and open editorial pull requests.
+
+The risk classifier must not treat a routine mention of a government department, grant, public service or regulator as sensitive by itself. Politics/elections, conflict, crime, death/serious harm, security/privacy incidents, lawsuits and serious allegations remain human-review material.
+
+Crime is now a first-class Nuvellum section. Opinion & Ideas remains human-led rather than automatically rewritten from outside opinion feeds.
+
+
 Nuvellum is static-first. n8n does not need an admin password, CMS login, or public publishing API.
 
 The preferred production flow is now **source → n8n → GitHub review branch → pull request → checks → human merge → Vercel**.
