@@ -1,0 +1,92 @@
+name: Auto-open editorial PR
+
+on:
+  push:
+    branches:
+      - 'incoming/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out incoming branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Read article metadata
+        id: article
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep '^src/content/articles/.*\.md$' | tail -n 1 || true)"
+          if [ -z "$FILE" ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          TITLE="$(sed -n 's/^title: "\(.*\)"$/\1/p' "$FILE" | head -n 1)"
+          RISK="$(sed -n 's/^risk: "\(.*\)"$/\1/p' "$FILE" | head -n 1)"
+          STATUS="$(sed -n 's/^status: "\(.*\)"$/\1/p' "$FILE" | head -n 1)"
+          SOURCE="$(sed -n 's/^sourceUrls: \["\([^"]*\)".*/\1/p' "$FILE" | head -n 1)"
+
+          if [ -z "$TITLE" ]; then
+            TITLE="$(basename "$FILE" .md | tr '-' ' ')"
+          fi
+
+          echo "found=true" >> "$GITHUB_OUTPUT"
+          {
+            echo "title<<EOF"
+            echo "$TITLE"
+            echo "EOF"
+            echo "risk=$RISK"
+            echo "status=$STATUS"
+            echo "source=$SOURCE"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Open editorial pull request
+        if: steps.article.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTICLE_TITLE: ${{ steps.article.outputs.title }}
+          ARTICLE_RISK: ${{ steps.article.outputs.risk }}
+          ARTICLE_STATUS: ${{ steps.article.outputs.status }}
+          ARTICLE_SOURCE: ${{ steps.article.outputs.source }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          COUNT="$(gh pr list --head "$GITHUB_REF_NAME" --state open --json number --jq 'length')"
+          if [ "$COUNT" != "0" ]; then
+            echo "An open PR already exists for $GITHUB_REF_NAME"
+            exit 0
+          fi
+
+          if [ "$ARTICLE_STATUS" = "review" ] || [ "$ARTICLE_RISK" = "sensitive" ]; then
+            REVIEW_NOTE="⚠️ Sensitive story: keep this PR unmerged until a human editor verifies the sourcing and approves publication."
+          else
+            REVIEW_NOTE="Low-risk candidate: merging this PR publishes the article after repository checks pass."
+          fi
+
+          BODY="$(cat <<EOF
+Automated Nuvellum editorial candidate.
+
+**Risk:** $ARTICLE_RISK
+**Proposed status:** $ARTICLE_STATUS
+**Source:** $ARTICLE_SOURCE
+
+$REVIEW_NOTE
+
+This PR was opened by Nuvellum's repository automation after n8n committed the article branch.
+EOF
+)"
+
+          gh pr create \
+            --base main \
+            --head "$GITHUB_REF_NAME" \
+            --title "Editorial: $ARTICLE_TITLE" \
+            --body "$BODY"
