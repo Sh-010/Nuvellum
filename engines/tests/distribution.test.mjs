@@ -12,9 +12,9 @@ import { server } from './helpers.mjs';
 const story = loadStory('iran-proposes-seven-day-deal-to-reopen-strait-of-hormuz');
 const tmp = () => mkdtempSync(join(tmpdir(), 'dist-'));
 
-test('template copy for EVERY published article passes length, link and grounding checks', () => {
+test('template copy for EVERY promotable published article passes length, link and grounding checks', () => {
   const slugs = listPublishedSlugs();
-  assert.ok(slugs.length >= 20);
+  assert.ok(slugs.length >= 9);
   for (const slug of slugs) {
     const s = loadStory(slug);
     const c = templateCopy(s);
@@ -145,4 +145,12 @@ test('live: a platform that keeps failing becomes dead-letter after max runs', a
     for (let i = 0; i < 4; i++) statuses.push((await distribute(story, opts)).results[0].status);
     assert.deepEqual(statuses, ['failed', 'failed', 'dead-letter', 'dead-letter']);
   } finally { await s.close(); rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('placeholder articles (bodies shared by several articles) are never promoted', async () => {
+  const { placeholderSlugs } = await import('../shared/article.mjs');
+  const ph = placeholderSlugs();
+  assert.ok(ph.has('world-in-motion') && ph.has('ai-infrastructure'));
+  assert.throws(() => loadStory('world-in-motion'), /placeholder/);
+  assert.ok(!listPublishedSlugs().some(s => ph.has(s)));
 });

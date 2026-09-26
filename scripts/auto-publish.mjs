@@ -99,6 +99,13 @@ for (const pr of await candidatePrs()) {
     });
     console.log(`MERGED ${label}`);
     summary.push(`| #${pr.number} | merged | all rules passed |`);
+    // GITHUB_TOKEN merges do not trigger push workflows; start distribution
+    // explicitly (workflow_dispatch is allowed). Failure here is non-fatal.
+    if (result.slug) {
+      try {
+        await gh(`/repos/${repo}/actions/workflows/distribution.yml/dispatches`, { method: 'POST', body: JSON.stringify({ ref: 'main', inputs: { slug: result.slug } }) });
+      } catch (err) { console.warn(`Merged, but could not start distribution for ${result.slug}: ${err.message}`); }
+    }
     if (deleteBranch) {
       try { await gh(`/repos/${repo}/git/refs/heads/${enc(pr.head.ref)}`, { method: 'DELETE' }); }
       catch (err) { console.warn(`Merged, but could not delete ${pr.head.ref}: ${err.message}`); }

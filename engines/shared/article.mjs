@@ -40,6 +40,13 @@ export function plainText(markdown) {
     .trim();
 }
 
+/** Sentences from Markdown body paragraphs; headings and list markers are excluded. */
+export function bodySentences(markdown) {
+  const paras = String(markdown).split(/\n\s*\n/).map(p => p.trim())
+    .filter(p => p && !/^#{1,6}\s/.test(p));
+  return paras.flatMap(p => sentences(plainText(p)));
+}
+
 export function sentences(text) {
   return String(text).replace(/\s+/g, ' ')
     .split(/(?<=[.!?]["”’]?)\s+(?=["“‘A-Z0-9])/)
@@ -73,14 +80,27 @@ export function storyPayload(slug, markdown) {
     tags: Array.isArray(data.tags) ? data.tags : [],
     sourceUrls: Array.isArray(data.sourceUrls) ? data.sourceUrls : [],
     text,
-    sentences: sentences(text),
+    sentences: bodySentences(body),
     image: articleImage(slug, data)
   };
 }
 
-export function loadStory(slug) {
+const bodyKey = (md) => { try { return parseArticle(md).body.replace(/\s+/g, ' ').trim(); } catch { return ''; } };
+
+/** Bodies shared by 2+ articles are launch placeholders, not reporting. */
+export function placeholderSlugs() {
+  const byBody = new Map();
+  for (const f of readdirSync(ARTICLES).filter(f => f.endsWith('.md'))) {
+    const k = bodyKey(readFileSync(join(ARTICLES, f), 'utf8'));
+    byBody.set(k, [...(byBody.get(k) || []), f.slice(0, -3)]);
+  }
+  return new Set([...byBody.values()].filter(v => v.length > 1).flat());
+}
+
+export function loadStory(slug, { allowPlaceholder = false } = {}) {
   const file = join(ARTICLES, `${slug}.md`);
   if (!existsSync(file)) throw new Error(`no article ${slug}`);
+  if (!allowPlaceholder && placeholderSlugs().has(slug)) throw new Error(`article ${slug} has a placeholder body shared with other articles; engines will not promote it`);
   return storyPayload(slug, readFileSync(file, 'utf8'));
 }
 
