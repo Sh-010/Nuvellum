@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0c16"/>
+      <stop offset="40%" stop-color="#12182b"/>
+      <stop offset="80%" stop-color="#1a2038"/>
+      <stop offset="100%" stop-color="#241a2e"/>
+    </linearGradient>
+
+    
+    <linearGradient id="sunGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7e39" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#e63946" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#12182b" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="bakuHaze" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#f4a261" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#e76f51" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0a0c16" stop-opacity="0"/>
+    </linearGradient>
+
+    
+    <linearGradient id="asphalt" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1d24"/>
+      <stop offset="100%" stop-color="#0d0f14"/>
+    </linearGradient>
+
+    
+    <linearGradient id="silverBody" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="30%" stop-color="#ced4da"/>
+      <stop offset="60%" stop-color="#adb5bd"/>
+      <stop offset="100%" stop-color="#6c757d"/>
+    </linearGradient>
+
+    <linearGradient id="silverHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#adb5bd" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <linearGradient id="petronasTeal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+
+    <linearGradient id="redBullNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1b2a4a"/>
+      <stop offset="100%" stop-color="#0b1329"/>
+    </linearGradient>
+
+    <linearGradient id="redBullYellow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffbe0b"/>
+      <stop offset="100%" stop-color="#fb5607"/>
+    </linearGradient>
+
+    
+    <linearGradient id="visorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166"/>
+      <stop offset="50%" stop-color="#f77f00"/>
+      <stop offset="100%" stop-color="#d62828"/>
+    </linearGradient>
+
+    
+    <linearGradient id="speedBlur" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#00f2fe" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    
+    <filter id="sharpGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#skyGrad)"/>
+
+  
+  <circle cx="950" cy="280" r="220" fill="url(#sunGlow)" filter="url(#glow)"/>
+
+  
+  <g opacity="0.35">
+    
+    <path d="M0 400 L50 380 L100 410 L180 370 L250 420 L320 360 L400 430 L480 350 L560 410 L640 330 L720 390 L800 300 L880 380 L960 320 L1040 390 L1120 340 L1200 400 L1200 500 L0 500 Z" fill="#0d111a"/>
+    
+    
+    
+    <path d="M820 420 C815 320 830 220 850 150 C865 220 875 320 870 420 Z" fill="#141a29"/>
+    
+    <path d="M885 430 C875 300 895 180 920 100 C945 180 960 300 950 430 Z" fill="#1a2236"/>
+    
+    <path d="M965 440 C960 340 975 240 990 170 C1005 240 1015 340 1010 440 Z" fill="#141a29"/>
+  </g>
+
+  
+  <rect x="0" y="300" width="1200" height="200" fill="url(#bakuHaze)"/>
+
+  
+  <g opacity="0.5">
+    <path d="M0 450 L120 445 L240 452 L350 448 L450 455 L550 450 L620 500 L0 500 Z" fill="#15131f"/>
+    
+    <path d="M40 460 L80 460 M150 465 L200 465 M280 460 L320 460 M400 470 L450 470" stroke="#252233" stroke-width="3"/>
+  </g>
+
+  
+  <path d="M-100 675 C 200 675, 400 480, 1300 460 L1300 675 Z" fill="url(#asphalt)"/>
+  
+  
+  <path d="M-100 665 C 200 665, 395 470, 1300 450" stroke="#ffffff" stroke-width="12" fill="none" opacity="0.8"/>
+  <path d="M-100 665 C 200 665, 395 470, 1300 450" stroke="#e63946" stroke-width="12" stroke-dasharray="35 35" fill="none"/>
+
+  
+  <g opacity="0.4">
+    <line x1="200" y1="520" x2="600" y2="520" stroke="url(#speedBlur)" stroke-width="2"/>
+    <line x1="100" y1="550" x2="700" y2="550" stroke="url(#speedBlur)" stroke-width="4"/>
+    <line x1="300" y1="580" x2="900" y2="580" stroke="url(#speedBlur)" stroke-width="2"/>
+    <line x1="50" y1="610" x2="800" y2="610" stroke="url(#speedBlur)" stroke-width="3"/>
+  </g>
+
+  
+  
+  
+  <g id="mercedesCar" transform="translate(420, 290)">
+    
+    <ellipse cx="250" cy="180" rx="220" ry="60" fill="#00f2fe" opacity="0.15" filter="url(#glow)"/>
+
+    
+    <path d="M 30 110 L 100 100 L 105 130 L 35 140 Z" fill="#111" stroke="#00f2fe" stroke-width="1.5"/>
+    <path d="M 45 108 L 90 102" stroke="#silverBody" stroke-width="3"/>
+    
+    <line x1="60" y1="105" x2="65" y2="125" stroke="#00f2fe" stroke-width="2"/>
+
+    
+    <g transform="translate(100, 140)">
+      <ellipse cx="0" cy="0" rx="35" ry="50" fill="#0b0c10"/>
+      <ellipse cx="0" cy="0" rx="25" ry="38" fill="#1f242d"/>
+      <ellipse cx="0" cy="0" rx="15" ry="22" fill="#0b0c10"/>
+      
+      <path d="M-5 -25 L5 25 M-15 -10 L15 10" stroke="#00f2fe" stroke-width="2" opacity="0.6"/>
+      
+      <path d="M -40 -30 L -60 -25 M -40 0 L -65 0 M -40 30 L -60 25" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+    </g>
+
+    
+    <path d="M 80 155 C 130 140, 250 120, 380 135 C 440 142, 470 155, 490 170 C 470 175, 420 180, 350 178 C 200 175, 120 170, 80 155 Z" fill="url(#silverBody)"/>
+    <path d="M 120 150 C 180 140, 300 130, 420 145 C 400 148, 250 152, 120 150 Z" fill="url(#silverHighlight)"/>
+
+    
+    <path d="M 90 154 C 150 144, 300 134, 440 150" stroke="url(#petronasTeal)" stroke-width="4" fill="none" filter="url(#sharpGlow)"/>
+    <path d="M 140 162 C 220 155, 320 155, 410 163" stroke="url(#petronasTeal)" stroke-width="2.5" fill="none"/>
+
+    
+    <path d="M 230 130 C 240 120, 270 120, 285 132 L 275 145 L 235 145 Z" fill="#0b0c10" stroke="#333" stroke-width="1.5"/>
+    
+    <path d="M 233 132 C 245 118, 270 118, 282 132" stroke="#212529" stroke-width="5" fill="none"/>
+    <path d="M 233 132 C 245 118, 270 118, 282 132" stroke="url(#silverBody)" stroke-width="2" fill="none"/>
+    <line x1="258" y1="120" x2="258" y2="135" stroke="#212529" stroke-width="4"/>
+
+    
+    <g transform="translate(250, 110)">
+      
+      <path d="M -18 35 C -15 20, 15 20, 18 35 L 25 45 L -25 45 Z" fill="#00f2fe"/>
+      <path d="M -15 28 L 15 28" stroke="#ffffff" stroke-width="3"/>
+      
+      
+      <circle cx="0" cy="12" r="14" fill="#ffffff" stroke="#111" stroke-width="1"/>
+      
+      <path d="M -12 10 C -5 -2, 10 2, 12 15 C 5 15, -5 15, -12 10 Z" fill="#d62828"/>
+      <path d="M -14 12 C -8 18, 8 18, 14 12 C 10 5, -10 5, -14 12 Z" fill="#1d3557"/>
+      
+      
+      <path d="M -8 10 C -3 8, 3 8, 8 10 C 7 14, -7 14, -8 10 Z" fill="url(#visorGrad)" stroke="#ffb703" stroke-width="0.7"/>
+
+      
+      <rect x="-8" y="25" width="16" height="8" rx="2" fill="#212529"/>
+    </g>
+
+    
+    <path d="M 370 150 L 510 162 C 520 163, 520 167, 510 168 L 370 162 Z" fill="url(#silverBody)"/>
+    <path d="M 450 161 L 515 165 L 500 178 L 440 170 Z" fill="#1b1e23" stroke="#00f2fe" stroke-width="1.5"/>
+    <line x1="480" y1="163" x2="495" y2="173" stroke="url(#petronasTeal)" stroke-width="3"/>
+
+    
+    <g transform="translate(430, 175)">
+      <ellipse cx="0" cy="0" rx="32" ry="46" fill="#0b0c10"/>
+      <ellipse cx="0" cy="0" rx="22" ry="32" fill="#1f242d"/>
+      <ellipse cx="0" cy="0" rx="12" ry="18" fill="#0b0c10"/>
+      <path d="M-4 -20 L4 20 M-12 -8 L12 8" stroke="#00f2fe" stroke-width="2" opacity="0.7"/>
+      
+      <path d="M -35 -25 L -55 -20 M -35 0 L -60 0 M -35 25 L -55 20" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+    </g>
+
+    
+    <g transform="translate(300, 180)" filter="url(#sharpGlow)">
+      <path d="M 0 0 L -20 15 M 5 2 L -15 25 M -10 5 L -35 10" stroke="#ffbe0b" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 2 3 L -10 20 M -5 8 L -25 22" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="-5" cy="12" r="3" fill="#ff7e39"/>
+      <circle cx="-18" cy="18" r="2" fill="#ffbe0b"/>
+    </g>
+
+    
+    <path d="M -50 120 L 150 120" stroke="url(#speedBlur)" stroke-width="3"/>
+    <path d="M 0 105 L 300 105" stroke="url(#speedBlur)" stroke-width="2"/>
+    <path d="M 120 190 L 350 190" stroke="url(#speedBlur)" stroke-width="4"/>
+  </g>
+
+
+  
+  
+  
+  
+  <g id="redbullCar" transform="translate(140, 360)">
+    
+    <ellipse cx="220" cy="160" rx="180" ry="50" fill="#ffbe0b" opacity="0.1" filter="url(#glow)"/>
+
+    
+    <path d="M 20 105 L 85 98 L 88 122 L 25 130 Z" fill="#0b1329" stroke="#ffbe0b" stroke-width="1"/>
+    
+
+    
+    <g transform="translate(85, 130)">
+      <ellipse cx="0" cy="0" rx="30" ry="42" fill="#0b0c10"/>
+      <ellipse cx="0" cy="0" rx="20" ry="30" fill="#1f242d"/>
+      <path d="M-3 -18 L3 18" stroke="#ffbe0b" stroke-width="1.5" opacity="0.6"/>
+    </g>
+
+    
+    <path d="M 70 145 C 110 135, 210 120, 320 130 C 370 136, 400 145, 420 158 C 400 163, 355 166, 300 165 C 180 162, 110 155, 70 145 Z" fill="url(#redBullNavy)"/>
+    
+    
+    <path d="M 100 143 C 150 137, 260 132, 360 144" stroke="url(#redBullYellow)" stroke-width="3" fill="none"/>
+    <path d="M 110 150 C 160 144, 250 140, 340 150" stroke="#e63946" stroke-width="2" fill="none"/>
+
+    
+    <path d="M 200 124 C 208 116, 235 116, 248 126 L 240 136 L 205 136 Z" fill="#0b0c10" stroke="#333" stroke-width="1"/>
+    
+    <path d="M 202 126 C 210 115, 235 115, 245 126" stroke="#1b2a4a" stroke-width="4" fill="none"/>
+    
+    
+    <g transform="translate(218, 108)">
+      <circle cx="0" cy="10" r="12" fill="#ffbe0b" stroke="#111" stroke-width="0.8"/>
+      
+      <path d="M -10 8 C -3 2, 8 4, 10 12 C 4 12, -4 12, -10 8 Z" fill="#ffffff"/>
+      <path d="M -8 10 C -2 6, 6 7, 8 11 C 4 11, -2 11, -8 10 Z" fill="#e63946"/>
+      
+      <path d="M -6 9 C -2 7, 2 7, 6 9 C 5 12, -5 12, -6 9 Z" fill="#111" stroke="#38b000" stroke-width="0.5"/>
+    </g>
+
+    
+    <path d="M 320 142 L 430 150 C 438 151, 438 154, 430 155 L 320 150 Z" fill="url(#redBullNavy)"/>
+    <path d="M 380 149 L 435 152 L 425 162 L 375 156 Z" fill="#111" stroke="#ffbe0b" stroke-width="1"/>
+
+    
+    <g transform="translate(370, 158)">
+      <ellipse cx="0" cy="0" rx="28" ry="38" fill="#0b0c10"/>
+      <ellipse cx="0" cy="0" rx="18" ry="26" fill="#1f242d"/>
+      <path d="M-3 -15 L3 15" stroke="#ffbe0b" stroke-width="1.5" opacity="0.6"/>
+    </g>
+
+    
+    <line x1="-30" y1="110" x2="80" y2="110" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-50" y1="135" x2="50" y2="135" stroke="url(#speedBlur)" stroke-width="2"/>
+  </g>
+
+  
+  
+  
+
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+    <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#05070c" stop-opacity="0.65"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none"/>
+
+  
+  <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+    <line x1="200" y1="0" x2="200" y2="675"/>
+    <line x1="600" y1="0" x2="600" y2="675"/>
+    <line x1="1000" y1="0" x2="1000" y2="675"/>
+  </g>
+
+</svg>
