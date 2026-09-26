@@ -1,11 +1,12 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildPublicDir } from './lib/paths.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
 const articlesDir = join(root, 'src', 'content', 'articles');
-const homePath = join(root, 'public', 'index.html');
+const homePath = join(buildPublicDir, 'index.html');
 
 function parseValue(value) {
   const v = String(value ?? '').trim();

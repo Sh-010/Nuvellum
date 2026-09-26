@@ -21,7 +21,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --no-fund
+      - run: npm ci --no-fund
       - run: npm audit --audit-level=high
       - run: npm run validate
       - run: npm run build
+      - name: Build must not modify tracked files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            echo "::error::The build changed or created files outside ignored build folders."
+            exit 1
+          fi

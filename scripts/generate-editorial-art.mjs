@@ -2,11 +2,12 @@ import { readdirSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { buildPublicDir } from './lib/paths.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
 const articlesDir = join(root, 'src', 'content', 'articles');
-const outDir = join(root, 'public', 'generated');
+const outDir = join(buildPublicDir, 'generated');
 mkdirSync(outDir, { recursive: true });
 
 function parseValue(value) {
