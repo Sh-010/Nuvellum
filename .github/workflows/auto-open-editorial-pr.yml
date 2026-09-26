@@ -70,10 +70,14 @@ jobs:
             const status = value('status') || 'review';
             const source = sourceMatch ? sourceMatch[1] : '';
 
-            const sensitive = risk === 'sensitive' || status === 'review';
-            const reviewNote = sensitive
-              ? '⚠️ Sensitive story: keep this PR unmerged until a human editor verifies the sourcing and approves publication.'
-              : 'Low-risk candidate: merging this PR publishes the article after repository checks pass.';
+            const verification = value('verification');
+            const reviewNote = status !== 'published'
+              ? '⛔ Not cleared for publication (status: ' + status + '). Do not merge.'
+              : risk === 'sensitive'
+                ? (verification === 'cleared'
+                    ? 'Sensitive story cleared by the Nuvellum Verification Pipeline; merging publishes it after repository checks pass.'
+                    : '⛔ Sensitive story without verification: "cleared". Do not merge; content validation will fail.')
+                : 'Low-risk candidate cleared by editorial review; merging publishes it after repository checks pass.';
 
             await github.rest.pulls.create({
               owner,

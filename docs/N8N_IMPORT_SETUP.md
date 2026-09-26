@@ -41,7 +41,7 @@ Select that credential on:
 4. Confirm duplicate/rejected stories are skipped.
 5. Confirm an accepted story creates an `incoming/...` branch and a pull request.
 6. Do not merge until the GitHub Build, Security checks and CodeQL checks pass.
-7. For a sensitive PR, fill `reviewedBy` and change `status` from `review` to `published` only after human source review.
+7. For a sensitive PR, confirm the article carries `verification: "cleared"` and `reviewedBy: "Nuvellum Verification Pipeline"`. Stories that fail verification never reach GitHub.
 
 ## Production activation
 

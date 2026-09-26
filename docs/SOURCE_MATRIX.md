@@ -57,7 +57,7 @@ Sensitive review is required for:
 - security/privacy breaches;
 - lawsuits and serious legal or reputational allegations.
 
-All Crime stories remain sensitive by default. Sensitive stories stay in review until a human editor approves them.
+All Crime stories remain sensitive by default. Sensitive stories are published only after they clear the automated second-pass verification (see docs/EDITORIAL_PIPELINE.md).
 
 ## Source policy
 

@@ -4,14 +4,14 @@
 
 The production intake should use the diversified source registry in `docs/SOURCE_MATRIX.md`, process up to three candidates per run, prefer different source domains and desks, and compare candidates with both published stories and open editorial pull requests.
 
-The risk classifier must not treat a routine mention of a government department, grant, public service or regulator as sensitive by itself. Politics/elections, conflict, crime, death/serious harm, security/privacy incidents, lawsuits and serious allegations remain human-review material.
+The risk classifier must not treat a routine mention of a government department, grant, public service or regulator as sensitive by itself. Politics/elections, conflict, crime, death/serious harm, security/privacy incidents, lawsuits and serious allegations are classified sensitive and must clear the automated second-pass verification before they can be committed.
 
 Crime is now a first-class Nuvellum section. Opinion & Ideas remains human-led rather than automatically rewritten from outside opinion feeds.
 
 
 Nuvellum is static-first. n8n does not need an admin password, CMS login, or public publishing API.
 
-The preferred production flow is now **source → n8n → GitHub review branch → pull request → checks → human merge → Vercel**.
+The production flow is **source → n8n (editorial review + sensitive verification) → GitHub review branch → pull request → checks → merge → Vercel**. Until `NUVELLUM_AUTOPUBLISH` is enabled, a maintainer performs the merge after checks pass.
 
 See `docs/EDITORIAL_PIPELINE.md` for the full architecture.
 
@@ -34,11 +34,11 @@ GitHub also runs a repository-level duplicate-source guard on editorial PRs, so 
 4. Classify as News / Analysis / Opinion / Review / Explainer / Essay / Ideas.
 5. Run duplicate, attribution, factual, legal-risk and quality checks.
 6. Build Markdown matching `docs/article-payload.schema.json`.
-7. Create a unique `incoming/<slug>-<timestamp>` GitHub branch.
-8. Commit only `src/content/articles/<slug>.md`.
+7. Create the deterministic `incoming/<slug up to 60 chars>-<8-hex source hash>` GitHub branch.
+8. Commit `public/generated/ai/<slug>.svg` (when generated) and `src/content/articles/<slug>.md`.
 9. Open a pull request against `main`.
-10. Let GitHub Actions run content validation, dependency audit, CodeQL and the production build.
-11. Merge only after review.
+10. Let GitHub Actions run content and SVG validation, the duplicate-source guard, dependency audit, CodeQL and the production build.
+11. Merge only when every check has passed on the exact head commit.
 
 ## Sensitive material
 
@@ -46,15 +46,12 @@ Politics/elections, allegations about identifiable people, crime accusations, ar
 
 - `origin: "automation"`
 - `risk: "sensitive"`
-- `status: "review"`
 
-Before publication, a human editor must add `reviewedBy` and change the status to `published`.
+They start as `status: "review"` and go to a separate, stricter verification pass. Only a clean, explicit pass promotes the story. It is then committed with `verification: "cleared"`, `reviewedBy: "Nuvellum Verification Pipeline"` and `status: "published"`. A failed, uncertain or unparseable verification is never committed. The repository validator rejects any published pipeline story that lacks this metadata. See `docs/EDITORIAL_PIPELINE.md`.
 
 ## Low-risk material
 
-Low-risk automated content may be prepared with `status: "published"`, but it still remains offline until the GitHub pull request is merged.
-
-This preserves a human merge gate without requiring WordPress.
+Low-risk stories that pass editorial review are committed with `editorialReview: "passed"` and `status: "published"`. They remain offline until the GitHub pull request is merged.
 
 ## GitHub credential
 
@@ -62,7 +59,7 @@ Use a fine-grained token limited to the Nuvellum repository. Grant only the perm
 
 ## Images
 
-At launch, use the existing section artwork or approved files under `public/uploads/YYYY/MM/`. Later, object storage can be added without changing article URLs.
+Automated stories get a story-specific SVG illustration, committed as `public/generated/ai/<slug>.svg` and referenced as `/generated/ai/<slug>.svg`. The workflow sanitizes it, and the repository validator re-checks it strictly. If generation or sanitizing fails, the story uses its section artwork under `/images/`. Manually uploaded images still go under `public/uploads/YYYY/MM/`.
 
 ## Failure behavior
 

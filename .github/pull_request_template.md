@@ -13,11 +13,15 @@
 
 ### Sensitive stories
 If `risk: "sensitive"`:
-- [ ] A human editor reviewed the full source material.
+- [ ] Automated stories: `verification: "cleared"` and `reviewedBy: "Nuvellum Verification Pipeline"` (set only by the second-pass verifier).
+- [ ] Manual stories: `reviewedBy` names the editor who reviewed the full source material.
 - [ ] Political/electoral coverage is neutral and descriptive.
 - [ ] Allegations and contested claims are attributed.
-- [ ] `reviewedBy` contains the reviewing editor's name.
-- [ ] `status` was changed from `review` to `published` only after review.
+
+### Automated metadata
+- [ ] `editorialReview: "passed"` and a `publishedAt` timestamp on the article date.
+- [ ] `sourceUrls` is the canonical source (no tracking parameters) and `sourceNote` names the real outlet.
+- [ ] The AI illustration (if any) is `public/generated/ai/<slug>.svg` and passes validation.
 
 ### Production
 - [ ] Content validation passes.

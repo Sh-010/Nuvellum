@@ -13,6 +13,7 @@ export type Article = {
   author: string;
   date: string;
   updated?: string;
+  publishedAt?: string;
   readingTime: string;
   image: string;
   imageAlt: string;
@@ -23,6 +24,8 @@ export type Article = {
   origin?: 'manual' | 'automation';
   risk?: 'low' | 'sensitive';
   reviewedBy?: string;
+  editorialReview?: 'pending' | 'passed' | 'failed';
+  verification?: 'cleared' | 'failed';
   Content: any;
   getHeadings?: () => ArticleHeading[] | Promise<ArticleHeading[]>;
 };
@@ -48,7 +51,8 @@ export async function getArticles(): Promise<Article[]> {
       return article;
     })
     .filter((a) => a.status === 'published')
-    .sort((a,b) => +new Date(b.date) - +new Date(a.date));
+    // Newest day first; within a day, newest publishedAt first (stories without one sort after timed ones).
+    .sort((a,b) => b.date.localeCompare(a.date) || String(b.publishedAt || '').localeCompare(String(a.publishedAt || '')) || a.slug.localeCompare(b.slug));
 }
 
 export function slugify(input: string) {

@@ -15,6 +15,12 @@ sourceNote: "Primary source or reporting note."
 origin: "manual"
 risk: "low"
 reviewedBy: ""
+# Automated (n8n v6.5) stories also carry:
+#   publishedAt: "2026-09-25T09:30:00.000Z"
+#   editorialReview: "passed"
+#   verification: "cleared"            (sensitive only)
+#   reviewedBy: "Nuvellum Verification Pipeline"  (sensitive only)
+#   image: "/generated/ai/<slug>.svg"   (story-specific illustration)
 ---
 
 Article body in Markdown.
