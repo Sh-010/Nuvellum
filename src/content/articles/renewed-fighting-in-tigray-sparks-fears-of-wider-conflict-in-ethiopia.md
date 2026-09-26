@@ -8,13 +8,13 @@ date: "2026-09-26"
 readingTime: "3 min"
 image: "/images/world.svg"
 imageAlt: "Editorial illustration representing renewed fighting in Ethiopia's Tigray region"
-status: "review"
+status: "published"
 tags: ["Ethiopia","Tigray","TPLF","African Union","Conflict"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/c6d94wywx0ypo","https://www.criticalthreats.org/analysis/ethiopia-tigray-tplf-fano-china-prc-djibouti-jnim-mali-sudan-saf-rsf-somalia-aussom"]
 sourceNote: "Prepared from BBC reporting and cross-checked against recent analysis of the northern Ethiopia escalation. Sensitive conflict coverage requires human editorial approval."
 origin: "automation"
 risk: "sensitive"
-reviewedBy: ""
+reviewedBy: "Sam Shehab"
 ---
 
 Fighting has intensified in Ethiopia's northern Tigray region between Tigrayan forces and the federal army, raising fears that the 2022 Pretoria Agreement could unravel.
