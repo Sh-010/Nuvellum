@@ -23,10 +23,12 @@ jobs:
             const repo = context.repo.repo;
             const branch = context.ref.replace('refs/heads/', '');
 
-            const files = [
-              ...(context.payload.head_commit?.added || []),
-              ...(context.payload.head_commit?.modified || [])
-            ];
+            const commit = await github.rest.repos.getCommit({
+              owner,
+              repo,
+              ref: context.sha
+            });
+            const files = (commit.data.files || []).map((f) => f.filename);
             const articlePath = files.find((p) => /^src\/content\/articles\/.*\.md$/.test(p));
 
             // Image-only commit in the same incoming branch: wait for the article commit.
