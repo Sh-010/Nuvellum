@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#080f1a"/>
+      <stop offset="40%" stop-color="#122033"/>
+      <stop offset="80%" stop-color="#1c2d42"/>
+      <stop offset="100%" stop-color="#223348"/>
+    </linearGradient>
+
+    <radialGradient id="stormGlow" cx="70%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#3a5270" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#1b2a3d" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0d1520" stop-opacity="0"/>
+    </radialGradient>
+
+    
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e2235"/>
+      <stop offset="30%" stop-color="#153650"/>
+      <stop offset="1000%" stop-color="#091826"/>
+    </linearGradient>
+
+    <linearGradient id="waterSurface" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2a5270" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#4e82a6" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1f3d54" stop-opacity="0.7"/>
+    </linearGradient>
+
+    
+    <linearGradient id="bgBuildings" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#142131"/>
+      <stop offset="100%" stop-color="#0b131c"/>
+    </linearGradient>
+
+    <linearGradient id="midBuildings" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18273a"/>
+      <stop offset="100%" stop-color="#0d1722"/>
+    </linearGradient>
+
+    
+    <radialGradient id="amberGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffb703" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#fb8500" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#d90429" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4d6d" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#c9184a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#590d22" stop-opacity="0"/>
+    </radialGradient>
+
+    
+    <linearGradient id="rainStreak" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.03"/>
+    </linearGradient>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050a10" stop-opacity="0.65"/>
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#skyGrad)" />
+  <rect width="1200" height="675" fill="url(#stormGlow)" />
+
+  
+  <path d="M-50 150 Q120 80 300 130 T700 100 T1100 140 T1250 110 L1250 0 L-50 0 Z" fill="#152438" opacity="0.7"/>
+  <path d="M-50 200 Q200 120 450 170 T950 140 T1250 180 L1250 0 L-50 0 Z" fill="#0d1824" opacity="0.8"/>
+
+  
+  <path d="M0 380 L0 340 L30 340 L30 360 L60 360 L60 310 L85 310 L85 380 L140 380 L140 290 L170 290 L170 380 L230 380 L230 330 L260 330 L260 380 L350 380 L350 270 L390 270 L390 380 L480 380 L480 320 L510 320 L510 380 L620 380 L620 280 L650 240 L680 280 L680 380 L800 380 L800 300 L840 300 L840 380 L950 380 L950 330 L980 330 L980 380 L1200 380 Z" fill="url(#bgBuildings)" opacity="0.9"/>
+
+  
+  <path d="M0 420 L150 420 L150 250 L170 250 L170 420 L280 420 L280 310 L300 310 L300 420 L500 420 L500 350 L530 350 L530 420 L720 420 L720 280 L760 220 L800 280 L800 420 L940 420 L940 340 L970 340 L970 420 L1200 420 Z" fill="url(#midBuildings)"/>
+
+  
+  <g stroke="#091119" stroke-width="3" fill="#0d1722">
+    <polygon points="120,420 135,260 145,260 160,420"/>
+    <line x1="124" y1="390" x2="156" y2="390"/>
+    <line x1="127" y1="350" x2="153" y2="350"/>
+    <line x1="130" y1="310" x2="150" y2="310"/>
+    
+    <line x1="105" y1="290" x2="175" y2="290" stroke-width="4"/>
+    <line x1="112" y1="330" x2="168" y2="330" stroke-width="4"/>
+    
+    <path d="M140 250 L130 230 L145 235 L135 215" stroke="#ffb703" stroke-width="2.5" fill="none"/>
+    <circle cx="138" cy="230" r="15" fill="url(#amberGlow)" opacity="0.8"/>
+  </g>
+
+  
+  <g fill="#21344c" opacity="0.4">
+    <rect x="200" y="340" width="8" height="12"/><rect x="215" y="340" width="8" height="12"/><rect x="230" y="340" width="8" height="12"/>
+    <rect x="200" y="365" width="8" height="12"/><rect x="215" y="365" width="8" height="12"/>
+    <rect x="330" y="330" width="10" height="15"/><rect x="350" y="330" width="10" height="15"/>
+    <rect x="740" y="300" width="12" height="18"/><rect x="770" y="300" width="12" height="18"/>
+  </g>
+
+  
+  <g stroke="url(#rainStreak)" stroke-width="1.5" stroke-linecap="round">
+    <line x1="100" y1="0" x2="0" y2="200"/>
+    <line x1="300" y1="0" x2="200" y2="200"/>
+    <line x1="500" y1="0" x2="400" y2="200"/>
+    <line x1="700" y1="0" x2="600" y2="200"/>
+    <line x1="900" y1="0" x2="800" y2="200"/>
+    <line x1="1100" y1="0" x2="1000" y2="200"/>
+    <line x1="1250" y1="0" x2="1150" y2="200"/>
+
+    <line x1="200" y1="100" x2="100" y2="300"/>
+    <line x1="400" y1="100" x2="300" y2="300"/>
+    <line x1="600" y1="100" x2="500" y2="300"/>
+    <line x1="800" y1="100" x2="700" y2="300"/>
+    <line x1="1000" y1="100" x2="900" y2="300"/>
+    <line x1="1200" y1="100" x2="1100" y2="300"/>
+
+    <line x1="50" y1="250" x2="-50" y2="450"/>
+    <line x1="250" y1="250" x2="150" y2="450"/>
+    <line x1="450" y1="250" x2="350" y2="450"/>
+    <line x1="650" y1="250" x2="550" y2="450"/>
+    <line x1="850" y1="250" x2="750" y2="450"/>
+    <line x1="1050" y1="250" x2="950" y2="450"/>
+    <line x1="1250" y1="250" x2="1150" y2="450"/>
+  </g>
+
+  
+  <rect x="0" y="420" width="1200" height="255" fill="url(#waterGrad)" />
+
+  
+  <g>
+    
+    <path d="M0 430 L1200 430 L1200 460 L0 460 Z" fill="#09131d"/>
+    
+    
+    <g transform="rotate(-4, 980, 430)">
+      <rect x="975" y="240" width="10" height="190" fill="#1b2a3a" stroke="#0a121a" stroke-width="2"/>
+      
+      <rect x="870" y="240" width="115" height="9" fill="#1b2a3a" stroke="#0a121a" stroke-width="2"/>
+      
+      
+      <rect x="885" y="255" width="35" height="90" rx="6" fill="#111a24" stroke="#253548" stroke-width="2"/>
+      <circle cx="902" cy="275" r="10" fill="#2d1519"/>
+      <circle cx="902" cy="300" r="10" fill="#362814"/>
+      <circle cx="902" cy="325" r="10" fill="#ff2a4d"/>
+      <circle cx="902" cy="325" r="18" fill="url(#redGlow)" opacity="0.9"/>
+    </g>
+
+    
+    <g transform="translate(680, 445)">
+      
+      <ellipse cx="90" cy="55" rx="85" ry="15" fill="#050a10" opacity="0.6"/>
+      
+      
+      <path d="M30 45 L55 25 L115 25 L145 45 L175 48 L175 60 L15 60 L15 48 Z" fill="#1d2d3e" stroke="#0e1722" stroke-width="2"/>
+      
+      <path d="M60 27 L110 27 L135 44 L45 44 Z" fill="#2c425c" opacity="0.7"/>
+      
+      
+      <circle cx="20" cy="52" r="5" fill="#ffb703"/>
+      <circle cx="20" cy="52" r="14" fill="url(#amberGlow)" opacity="0.7"/>
+      <path d="M20 52 L-30 65 L-25 75 Z" fill="#ffb703" opacity="0.15"/>
+      
+      
+      <rect x="35" y="50" width="22" height="18" rx="4" fill="#080e14"/>
+      <rect x="125" y="50" width="22" height="18" rx="4" fill="#080e14"/>
+    </g>
+
+    
+    <g transform="translate(400, 390)">
+      <rect x="48" y="0" width="5" height="80" fill="#2e3d50"/>
+      
+      <polygon points="50,15 70,35 50,55 30,35" fill="#ffb703" stroke="#251a03" stroke-width="2"/>
+      <path d="M46 30 L54 30 L54 45 L46 45 Z" fill="#1a1202"/>
+      <circle cx="50" cy="24" r="2" fill="#1a1202"/>
+    </g>
+  </g>
+
+  
+  <g fill="none" stroke="url(#waterSurface)" stroke-width="2" opacity="0.85">
+    <path d="M -50 470 Q 150 460 350 475 T 750 465 T 1150 475 Q 1250 470 1270 475" />
+    <path d="M 0 500 Q 200 485 450 505 T 900 495 T 1200 505" stroke-width="2.5" />
+    <path d="M -20 540 Q 250 525 500 545 T 1000 535 T 1220 545" stroke-width="3" />
+    <path d="M 0 590 Q 300 575 650 595 T 1100 585 T 1200 590" stroke-width="4" />
+    <path d="M -50 640 Q 200 625 550 645 T 1050 635 T 1250 640" stroke-width="5" />
+  </g>
+
+  
+  <path d="M0 450 Q300 430 600 460 T1200 440 L1200 675 L0 675 Z" fill="#1a324a" opacity="0.35"/>
+
+  
+  <g stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" opacity="0.25">
+    <line x1="150" y1="300" x2="0" y2="600"/>
+    <line x1="450" y1="300" x2="300" y2="600"/>
+    <line x1="750" y1="300" x2="600" y2="600"/>
+    <line x1="1050" y1="300" x2="900" y2="600"/>
+    <line x1="1250" y1="350" x2="1100" y2="650"/>
+  </g>
+
+  
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none"/>
+
+  
+  <rect x="0" y="0" width="1200" height="6" fill="#050a10" opacity="0.8"/>
+  <rect x="0" y="669" width="1200" height="6" fill="#050a10" opacity="0.8"/>
+</svg>
