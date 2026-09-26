@@ -8,13 +8,13 @@ date: "2026-09-26"
 readingTime: "2 min"
 image: "/images/world.svg"
 imageAlt: "Editorial illustration representing a police investigation in Jackson, Mississippi"
-status: "review"
+status: "published"
 tags: ["Mississippi","Crime","Policing","United States"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cwp933nzpp9ro","https://www.cbsnews.com/news/tasia-fortune-mississippi-death-hanging-staged-police-investigation/"]
 sourceNote: "Prepared from BBC reporting and cross-checked against Associated Press reporting carried by CBS News. Sensitive crime coverage requires human editorial approval."
 origin: "automation"
 risk: "sensitive"
-reviewedBy: ""
+reviewedBy: "Sam Shehab"
 ---
 
 **Content note: This story contains distressing details.**
