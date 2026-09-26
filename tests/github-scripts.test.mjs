@@ -38,8 +38,6 @@ function mockGitHub(state) {
     }
     if ((m = p.match(new RegExp(`^${base}/pulls/(\\d+)$`)))) return json(200, state.prs.find(x => x.number === +m[1]));
     if (req.method === 'DELETE' && (m = p.match(new RegExp(`^${base}/git/refs/heads/(.+)$`)))) { state.deleted.push(m[1]); return json(204); }
-      return;
-    }
     if (p === `${base}/actions/runs`) return json(200, { workflow_runs: state.runs[url.searchParams.get('head_sha')] || [] });
     if (p === `${base}/git/matching-refs/heads/incoming/`) return json(400, { message: 'Bad Request (real GitHub behaviour)' });
     if (p === `${base}/git/matching-refs/heads/incoming`) return json(200, [...Object.keys(state.branches).filter(b => b.startsWith('incoming/')), 'incoming-lookalike'].map(b => ({ ref: `refs/heads/${b}` })));
