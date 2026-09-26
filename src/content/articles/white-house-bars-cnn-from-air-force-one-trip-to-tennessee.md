@@ -8,13 +8,13 @@ date: "2026-09-26"
 readingTime: "2 min"
 image: "/images/world.svg"
 imageAlt: "Editorial illustration representing Air Force One and White House press access"
-status: "review"
+status: "published"
 tags: ["White House","CNN","Donald Trump","Press Access","Air Force One"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cxq633770y16o","https://www.reuters.com/legal/government/trumps-white-house-media-ban-faces-long-odds-court-legal-experts-say-2026-09-22/"]
 sourceNote: "Prepared from BBC reporting and cross-checked against Reuters reporting on the underlying White House media-access dispute. Sensitive political coverage requires human editorial approval."
 origin: "automation"
 risk: "sensitive"
-reviewedBy: ""
+reviewedBy: "Sam Shehab"
 ---
 
 CNN was left off the Air Force One media schedule for President Donald Trump's trip to Tennessee on Saturday, extending a dispute between the White House and several news organisations over press access.
