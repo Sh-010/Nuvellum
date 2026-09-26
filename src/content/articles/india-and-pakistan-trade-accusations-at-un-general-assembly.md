@@ -8,13 +8,13 @@ date: "2026-09-26"
 readingTime: "2 min"
 image: "/images/world.svg"
 imageAlt: "Editorial illustration representing India-Pakistan tensions at the United Nations"
-status: "review"
+status: "published"
 tags: ["India","Pakistan","UN General Assembly","Kashmir","Cross-border terrorism"]
 sourceUrls: ["https://www.dw.com/en/india-news-new-delhi-islamabad-trade-accusations-at-un-general-assembly/live-79440869","https://www.aljazeera.com/news/2026/9/25/houthi-attack-on-mecca-medina-would-cross-red-line-pakistan-pm-tells-un"]
 sourceNote: "Prepared from Deutsche Welle reporting and cross-checked against Al Jazeera coverage of Shehbaz Sharif's UN address. Sensitive political claims remain attributed and require human editorial approval."
 origin: "automation"
 risk: "sensitive"
-reviewedBy: ""
+reviewedBy: "Sam Shehab"
 ---
 Representatives from India and Pakistan traded mutual accusations at the United Nations General Assembly (UNGA). Pakistani Prime Minister Muhammad Shehbaz Sharif criticized India's policies regarding Kashmir and water resources, while New Delhi responded with allegations of cross-border terrorism and duplicity.
 
