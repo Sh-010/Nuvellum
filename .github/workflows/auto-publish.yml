@@ -37,7 +37,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write   # read check runs; dispatch the distribution workflow after a merge
+  actions: read    # read check runs
 
 concurrency:
   group: auto-publish

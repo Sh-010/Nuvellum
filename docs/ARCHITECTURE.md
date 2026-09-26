@@ -4,7 +4,6 @@ As of 2026-09-26. Companion documents:
 
 - `AGENTS.md`: rules and the repository map
 - `docs/EDITORIAL_PIPELINE.md`: publication policy
-- `docs/ENGINES.md`: distribution and Shorts
 - `docs/RECOVERY.md`: rollback procedures
 - `n8n/README.md`: the n8n workflow contract
 
@@ -38,8 +37,6 @@ auto-open-editorial-pr.yml (audit trail)
 auto-publish.yml ─ publication gate (scripts/lib/editorial.mjs), merge pinned to SHA
   ▼
 main ─▶ Vercel production deploy ─▶ homepage / latest / section / RSS / sitemap
-  ▼
-distribution.yml (after publication, never blocking): Shorts render → social adapters
 ```
 
 ## 2. Site
@@ -80,22 +77,16 @@ Main properties:
 - Its merge is pinned to the evaluated SHA.
 - Kill switches: the `NUVELLUM_AUTOPUBLISH` variable and the `hold` label.
 
-## 5. Multi-model design
+## 5. Models
 
-Model jobs ("roles") map to ordered provider chains through the `NUVELLUM_ROLE_<ROLE>` variables. Roles: draft, review, verify, social, shorts_script, shorts_verify. Providers: Gemini, Anthropic, OpenAI, and mock for tests.
-
-- If a provider is missing or failing, the next in the chain is tried. If none is available, callers fall back to deterministic behaviour (templates, extractive scripts) or fail closed (review and verification).
-- **Independence:** draft and verify should be served by different providers or models. `sameFirstProvider()` detects when they aren't.
-- **In n8n today:** Gemini drafts, reviews and makes the SVGs. Claude (or OpenAI) can be added as the reviewer or verifier by changing the model node and keeping the same prompt and parser (`n8n/prompts/`).
-- Nuvellum must not depend on any single vendor. Every model step has a deterministic fallback or a fail-closed outcome.
+The production newsroom uses Gemini inside n8n for drafting, duplicate judging, editorial review, sensitive verification and SVG art. A multi-provider layer (Gemini/Anthropic/OpenAI role chains) exists on branch `engines/distribution-shorts` and is not part of production.
 
 ## 6. Environment
 
 All names are in `.env.example`. Where each kind of value lives:
 
 - **n8n credential store:** Gemini key; GitHub fine-grained token (Nuvellum repo only, Contents read/write). Planned: Anthropic or OpenAI keys.
-- **GitHub Actions secrets:** model keys, TTS keys, social tokens.
-- **GitHub Actions variables:** `NUVELLUM_AUTOPUBLISH`, `DISTRIBUTION_LIVE`, the `NUVELLUM_ROLE_*` chains, `NUVELLUM_TTS`, and non-secret platform IDs.
+- **GitHub Actions variables:** `NUVELLUM_AUTOPUBLISH` (publication gate kill switch; off unless set to "on").
 - **Vercel:** `SITE_URL` (set it when a custom domain is added).
 
 ## 7. Deployment and branches
@@ -107,11 +98,4 @@ All names are in `.env.example`. Where each kind of value lives:
 ## 8. Adding things
 
 - **A new RSS source:** add it to the n8n RSS merge and to `docs/SOURCE_MATRIX.md` with its desk and a routing hint. Check that its article URLs are not live-blog, video or gallery pages (`isAggregatePage`), and that its tracking parameters are covered by `TRACKING_PARAM_RE` in `scripts/lib/newsroom.mjs`.
-- **A new social platform:**
-  1. Add `engines/distribution/adapters/<id>.mjs` with `{ id, needs, env, isConfigured, publish }`.
-  2. Register it in `adapters/index.mjs` and `platforms.mjs`.
-  3. Add a template in `copy.mjs`.
-  4. Add a mock-server test in `engines/tests/distribution.test.mjs`.
-  5. List its env names in `.env.example` and `distribution.yml`.
-- **A new model provider:** add `engines/shared/providers/<id>.mjs` with `{ isConfigured, defaultModel, complete }` and register it in `providers/index.mjs`. Add a request-shape test in `engines/tests/providers.test.mjs`. Document its env names.
-- **A new TTS voice:** add an entry to `TTS` in `engines/shorts/tts.mjs`.
+- **Social distribution, Shorts, extra model providers:** kept on branch `engines/distribution-shorts`; not part of the production site or newsroom.

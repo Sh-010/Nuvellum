@@ -8,10 +8,6 @@ Nothing here requires force-pushing or rewriting history.
 2. To stop a single story, label its PR `hold`.
 3. In n8n, deactivate the schedule trigger.
 
-## Stop social distribution
-
-Set the variable `DISTRIBUTION_LIVE` to `off`. Distribution never blocks publishing, so this is always safe.
-
 ## Remove a published story
 
 Open a normal PR that sets the article's `status` to `review`, or reverts the publishing commit (`git revert <sha>`), and merge it. Vercel redeploys `main`. If the URL was indexed, add a redirect in `vercel.json` or keep the page with a correction note, following the corrections policy.

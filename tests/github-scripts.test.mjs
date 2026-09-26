@@ -38,8 +38,6 @@ function mockGitHub(state) {
     }
     if ((m = p.match(new RegExp(`^${base}/pulls/(\\d+)$`)))) return json(200, state.prs.find(x => x.number === +m[1]));
     if (req.method === 'DELETE' && (m = p.match(new RegExp(`^${base}/git/refs/heads/(.+)$`)))) { state.deleted.push(m[1]); return json(204); }
-    if (req.method === 'POST' && p === `${base}/actions/workflows/distribution.yml/dispatches`) {
-      let body = ''; req.on('data', c => body += c); req.on('end', () => { (state.dispatched ||= []).push(JSON.parse(body)); json(204); });
       return;
     }
     if (p === `${base}/actions/runs`) return json(200, { workflow_runs: state.runs[url.searchParams.get('head_sha')] || [] });
@@ -115,7 +113,6 @@ test('auto-publish: merges only cleared stories with green checks, pinned to hea
       assert.equal(m.sha, state.prs.find(p => p.number === m.number).head.sha);
     }
     assert.deepEqual(state.deleted.sort(), ['incoming/low-1a2b3c4d', 'incoming/sens-ok-1a2b3c4d']);
-    assert.deepEqual((state.dispatched || []).map(d => d.inputs.slug).sort(), ['low', 'sens-ok']);
     assert.match(r.out, /HOLD {2}PR #3[\s\S]*uncertain/);
     assert.match(r.out, /HOLD {2}PR #4[\s\S]*CodeQL" is in_progress/);
   } finally { server.close(); }

@@ -26,9 +26,8 @@ Nuvellum (https://nuvellum.vercel.app, "Beyond the headline.") is an automated i
 | `scripts/lib/newsroom.mjs` | Helpers shared with n8n (URLs, branch names, review/verification parsers, article builder, quality checks). |
 | `scripts/lib/svg-safety.mjs` | Allowlist validator for AI editorial SVGs. |
 | `n8n/` | Canonical workflow export (sanitized), prompts, generated Code-node snippets. |
-| `engines/` | Separate package: Distribution Engine, Shorts Engine, multi-model providers. Never part of the site build. |
-| `.github/workflows/` | Checks, auto-open PR, publication gate, distribution, cleanup. |
-| `docs/` | Architecture, pipeline, recovery, engines, source matrix, baseline. |
+| `.github/workflows/` | Checks, auto-open PR, publication gate, cleanup. |
+| `docs/` | Architecture, pipeline, recovery, source matrix, baseline. (Distribution/Shorts engines live on branch `engines/distribution-shorts`, outside production.) |
 | `WORKLOG.md` | Chronological engineering log. Append to it. |
 
 ## Commands
@@ -39,9 +38,6 @@ npm run validate              # content + n8n export secret scan + snippet fresh
 npm run build                 # production build (57 pages as of 2026-09-26); must leave `git status` clean
 npm audit --audit-level=high
 npm run n8n:snippets          # regenerate n8n/snippets after changing scripts/lib/*.mjs
-cd engines && npm ci && npm test   # engines (needs ffmpeg; espeak-ng optional; Chromium via playwright-core)
-node engines/shorts/cli.mjs --slug <slug> [--preview]
-node engines/distribution/cli.mjs --slug <slug> [--live]
 ```
 
 ## How publication works (short version)
@@ -55,7 +51,7 @@ n8n drafts, reviews and verifies a story, then commits it to `incoming/<slug>-<h
 - Every required check is green on the exact head SHA.
 - The kill switch `NUVELLUM_AUTOPUBLISH` is `on`.
 
-Vercel then deploys `main`, and distribution runs afterwards without ever blocking publication. Details: `docs/EDITORIAL_PIPELINE.md`.
+Vercel then deploys `main`. Details: `docs/EDITORIAL_PIPELINE.md`.
 
 ## Before you finish any change
 
@@ -67,6 +63,5 @@ Vercel then deploys `main`, and distribution runs afterwards without ever blocki
 
 ## Known limitations (2026-09-26)
 
-- 18 of the 27 published articles are **seed placeholders**: two bodies duplicated 12 and 6 times. They are live and indexed. They need real content or `noindex`; the owner decides. The engines refuse to promote them.
+- 18 of the 27 published articles are **seed placeholders**: two bodies duplicated 12 and 6 times. They are live and indexed. They need real content or `noindex`; the owner decides.
 - The live n8n workflow is not yet exported into `n8n/workflows/`, and it does not yet emit `editorialReview`, `verification`, or the new quality fields. The gate therefore holds every new story. That is the intended fail-closed state.
-- No social accounts exist yet. Distribution runs as a dry run.
