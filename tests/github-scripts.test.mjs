@@ -173,3 +173,33 @@ test('duplicate guard: newer branch with the same source fails, older passes, pu
     assert.equal(unique.code, 0, unique.out);
   } finally { server.close(); }
 });
+
+test('auto-publish: GitHub API outage fails loudly and merges nothing', async () => {
+  const { createServer } = await import('node:http');
+  const s = createServer((req, res) => { res.writeHead(502, { 'content-type': 'application/json' }); res.end('{"message":"Bad gateway"}'); });
+  await new Promise(r => s.listen(0, '127.0.0.1', r));
+  try {
+    const r = await run('auto-publish.mjs', { GITHUB_API_URL: `http://127.0.0.1:${s.address().port}`, NUVELLUM_AUTOPUBLISH: 'on' });
+    assert.notEqual(r.code, 0);
+    assert.match(r.out, /502/);
+  } finally { s.close(); }
+});
+
+test('auto-publish: if the branch moved after evaluation, GitHub refuses the pinned merge and nothing is deleted', async () => {
+  const state = scenario();
+  state.prs = [state.prs[0]];
+  const { server, url } = await mockGitHub(state);
+  // Replace the merge handler: emulate GitHub's 409 "Head branch was modified".
+  const orig = server.listeners('request')[0];
+  server.removeAllListeners('request');
+  server.on('request', (req, res) => {
+    if (req.method === 'PUT' && req.url.includes('/merge')) { res.writeHead(409, { 'content-type': 'application/json' }); res.end('{"message":"Head branch was modified. Review and try the merge again."}'); return; }
+    orig(req, res);
+  });
+  try {
+    const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
+    assert.equal(r.code, 1);
+    assert.match(r.out, /FAILED to merge PR #1[\s\S]*409/);
+    assert.deepEqual(state.deleted, []);
+  } finally { server.close(); }
+});
