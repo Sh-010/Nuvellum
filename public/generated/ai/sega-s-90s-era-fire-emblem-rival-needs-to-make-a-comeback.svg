@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0c14"/>
+      <stop offset="40%" stop-color="#121829"/>
+      <stop offset="100%" stop-color="#1b1226"/>
+    </linearGradient>
+    
+    <radialGradient id="mistGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#3b2256" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#1f1432" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0a0c14" stop-opacity="0"/>
+    </radialGradient>
+    
+    
+    <linearGradient id="gridLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.05"/>
+      <stop offset="50%" stop-color="#e6c667" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <linearGradient id="portalGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#4facfe" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#7f00ff" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#aed9ff"/>
+      <stop offset="70%" stop-color="#4364f7"/>
+      <stop offset="100%" stop-color="#1b1942"/>
+    </linearGradient>
+
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffdf73"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8c6d15"/>
+    </linearGradient>
+
+    <linearGradient id="gemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff4e50"/>
+      <stop offset="100%" stop-color="#f9d423"/>
+    </linearGradient>
+
+    
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="blur1"/>
+      <feGaussianBlur stdDeviation="30" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+  <rect width="1200" height="675" fill="url(#mistGlow)"/>
+
+  
+  <g opacity="0.15">
+    <path d="M 150 450 L 220 300 L 290 450 Z" fill="#d4af37"/>
+    <path d="M 910 420 L 980 250 L 1050 420 Z" fill="#d4af37"/>
+    <rect x="200" y="450" width="40" height="150" fill="#d4af37"/>
+    <rect x="960" y="420" width="40" height="180" fill="#d4af37"/>
+    
+    <path d="M 350 200 L 370 170 L 390 220 Z" fill="#4facfe" filter="url(#softGlow)"/>
+    <path d="M 820 160 L 835 130 L 850 175 Z" fill="#ffdf73" filter="url(#softGlow)"/>
+  </g>
+
+  
+  <g opacity="0.4">
+    
+    <path d="M 100 600 L 500 380 L 700 380 L 1100 600 Z" fill="#121829" stroke="#d4af37" stroke-width="1.5" stroke-opacity="0.2"/>
+    
+    
+    <line x1="300" y1="490" x2="900" y2="490" stroke="url(#gridLineGrad)" stroke-width="1"/>
+    <line x1="200" y1="545" x2="1000" y2="545" stroke="url(#gridLineGrad)" stroke-width="1.5"/>
+    <line x1="150" y1="575" x2="1050" y2="575" stroke="url(#gridLineGrad)" stroke-width="1"/>
+    <line x1="390" y1="435" x2="810" y2="435" stroke="url(#gridLineGrad)" stroke-width="1"/>
+    
+    
+    <line x1="600" y1="380" x2="100" y2="600" stroke="url(#gridLineGrad)" stroke-width="1"/>
+    <line x1="600" y1="380" x2="300" y2="600" stroke="url(#gridLineGrad)" stroke-width="1.2"/>
+    <line x1="600" y1="380" x2="520" y2="600" stroke="url(#gridLineGrad)" stroke-width="1"/>
+    <line x1="600" y1="380" x2="680" y2="600" stroke="url(#gridLineGrad)" stroke-width="1"/>
+    <line x1="600" y1="380" x2="900" y2="600" stroke="url(#gridLineGrad)" stroke-width="1.2"/>
+    <line x1="600" y1="380" x2="1100" y2="600" stroke="url(#gridLineGrad)" stroke-width="1"/>
+  </g>
+
+  
+  <g transform="translate(600, 520)" filter="url(#softGlow)">
+    <ellipse cx="0" cy="0" rx="220" ry="60" fill="none" stroke="#4facfe" stroke-width="2" opacity="0.6"/>
+    <ellipse cx="0" cy="0" rx="160" ry="44" fill="none" stroke="url(#goldAcc)" stroke-width="1.5" opacity="0.8"/>
+    <ellipse cx="0" cy="0" rx="90" ry="25" fill="url(#portalGlow)" opacity="0.5"/>
+    
+    <path d="M -160 0 L -150 -10 M 160 0 L 150 10 M 0 -44 L 10 -38 M 0 44 L -10 38" stroke="#ffdf73" stroke-width="2"/>
+  </g>
+
+  
+  <g transform="translate(600, 260)">
+    
+    <ellipse cx="0" cy="40" rx="80" ry="180" fill="url(#portalGlow)" filter="url(#intenseGlow)"/>
+
+    
+    <g filter="url(#softGlow)">
+      <polygon points="-70,-40 -60,-55 -50,-40 -60,-25" fill="#4facfe"/>
+      <polygon points="60,-10 75,-25 90,-10 75,5" fill="#ffdf73"/>
+      <polygon points="-90,40 -75,25 -60,40 -75,55" fill="#d4af37"/>
+      <polygon points="85,80 95,65 105,80 95,95" fill="#00f2fe"/>
+      <rect x="-40" y="-90" width="6" height="6" transform="rotate(45)" fill="#ffffff"/>
+      <rect x="50" y="-120" width="8" height="8" transform="rotate(15)" fill="#ffdf73"/>
+    </g>
+
+    
+    <g>
+      
+      <polygon points="0,-220 22,60 0,90 -22,60" fill="#aed9ff" opacity="0.3" filter="url(#softGlow)"/>
+      
+      
+      <polygon points="0,-210 18,50 0,80 -18,50" fill="url(#bladeGrad)"/>
+      
+      <polygon points="0,-190 4,40 0,60 -4,40" fill="#0c0e17" opacity="0.6"/>
+      
+      <polygon points="0,-210 18,50 14,52 0,-195" fill="#ffffff" opacity="0.8"/>
+    </g>
+
+    
+    <g>
+      
+      <circle cx="0" cy="85" r="14" fill="url(#gemGrad)" filter="url(#softGlow)"/>
+      <circle cx="0" cy="85" r="14" fill="none" stroke="#d4af37" stroke-width="2"/>
+      
+      
+      <path d="M -90,75 C -50,65 -20,80 0,85 C -20,80 -50,65 -90,75 Z" fill="url(#goldAcc)" stroke="#59430c" stroke-width="1.5"/>
+      <path d="M 90,75 C 50,65 20,80 0,85 C 20,80 50,65 90,75 Z" fill="url(#goldAcc)" stroke="#59430c" stroke-width="1.5"/>
+      
+      
+      <path d="M -95,70 L -85,85 L -95,80 Z" fill="#ffdf73"/>
+      <path d="M 95,70 L 85,85 L 95,80 Z" fill="#ffdf73"/>
+    </g>
+
+    
+    <g>
+      
+      <rect x="-8" y="90" width="16" height="70" rx="4" fill="#2c241d" stroke="#120e0a" stroke-width="2"/>
+      
+      <line x1="-8" y1="105" x2="8" y2="110" stroke="url(#goldAcc)" stroke-width="3"/>
+      <line x1="-8" y1="120" x2="8" y2="125" stroke="url(#goldAcc)" stroke-width="3"/>
+      <line x1="-8" y1="135" x2="8" y2="140" stroke="url(#goldAcc)" stroke-width="3"/>
+      <line x1="-8" y1="150" x2="8" y2="155" stroke="url(#goldAcc)" stroke-width="3"/>
+
+      
+      <circle cx="0" cy="175" r="18" fill="url(#goldAcc)" stroke="#59430c" stroke-width="2"/>
+      <circle cx="0" cy="175" r="10" fill="#1b1226"/>
+      <circle cx="0" cy="175" r="5" fill="#4facfe" filter="url(#softGlow)"/>
+    </g>
+  </g>
+
+  
+  
+  <g transform="translate(320, 380)" opacity="0.85" filter="url(#softGlow)">
+    <path d="M 15 20 L 25 -20 L 35 20 Z" fill="#9d4edd" opacity="0.6"/>
+    <circle cx="25" cy="-25" r="8" fill="#e0aaff"/>
+    
+    <line x1="5" y1="40" x2="5" y2="-40" stroke="#d4af37" stroke-width="3"/>
+    <circle cx="5" cy="-45" r="6" fill="#00f2fe"/>
+  </g>
+
+  
+  <g transform="translate(840, 390)" opacity="0.85" filter="url(#softGlow)">
+    
+    <path d="M 20 0 L 40 10 L 40 50 L 20 70 L 0 50 L 0 10 Z" fill="#243b55" stroke="#4facfe" stroke-width="2"/>
+    <path d="M 20 15 L 30 30 L 20 45 L 10 30 Z" fill="#ffdf73"/>
+  </g>
+
+  
+  <g>
+    
+    <circle cx="200" cy="150" r="2" fill="#ffdf73" opacity="0.6" filter="url(#softGlow)"/>
+    <circle cx="350" cy="100" r="1.5" fill="#ffffff" opacity="0.8"/>
+    <circle cx="950" cy="180" r="2.5" fill="#4facfe" opacity="0.7" filter="url(#softGlow)"/>
+    <circle cx="880" cy="120" r="1.5" fill="#ffdf73" opacity="0.5"/>
+    <circle cx="500" cy="80" r="2" fill="#ffffff" opacity="0.7"/>
+    <circle cx="700" cy="110" r="1" fill="#ffdf73" opacity="0.9"/>
+    <circle cx="150" cy="300" r="1.5" fill="#00f2fe" opacity="0.6"/>
+    <circle cx="1050" cy="280" r="2" fill="#9d4edd" opacity="0.8"/>
+  </g>
+
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#050308" stop-opacity="0.85"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none"/>
+</svg>
