@@ -9,6 +9,7 @@ const dir = join(root, 'src', 'content', 'articles');
 
 const required = ['title','dek','section','type','author','date','readingTime','image','imageAlt','status','tags'];
 const statuses = new Set(['draft','review','published']);
+const sections = new Set(['World','Business','Technology','Science','Crime','Sports','Culture','Film & TV','Anime','Gaming','Opinion']);
 const types = new Set(['News','Analysis','Opinion','Review','Explainer','Essay','Ideas']);
 const risks = new Set(['low','sensitive']);
 const origins = new Set(['manual','automation']);
@@ -82,6 +83,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     for (const key of required) if (data[key] === undefined || data[key] === '') errors.push(`${name}: missing required frontmatter field "${key}"`);
 
     if (data.status && !statuses.has(data.status)) errors.push(`${name}: status must be draft, review or published`);
+    if (data.section && !sections.has(data.section)) errors.push(`${name}: unsupported section "${data.section}"`);
     if (data.type && !types.has(data.type)) errors.push(`${name}: unsupported type "${data.type}"`);
     if (data.origin && !origins.has(data.origin)) errors.push(`${name}: origin must be manual or automation`);
     if (data.risk && !risks.has(data.risk)) errors.push(`${name}: risk must be low or sensitive`);
@@ -124,6 +126,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     }
 
     if (data.origin === 'automation') {
+      if (data.section === 'Opinion' || ['Opinion','Essay','Ideas','Review'].includes(data.type)) errors.push(`${name}: automated intake cannot publish Opinion/Essay/Ideas/Review; those formats are human-led`);
       if (!Array.isArray(data.sourceUrls) || data.sourceUrls.length === 0) errors.push(`${name}: automated stories require at least one sourceUrls entry`);
       if (!data.risk) errors.push(`${name}: automated stories require risk: low or sensitive`);
       if (data.risk === 'sensitive' && data.status === 'published' && !String(data.reviewedBy || '').trim()) {
