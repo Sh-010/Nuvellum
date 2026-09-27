@@ -199,3 +199,22 @@ Checkpoint: `checkpoint/world-explorer-pre-interaction-rebuild` (e14b162).
 - Hover stress grids (7,776 points in Europe ×2 zooms, Caribbean, Persian Gulf, Southeast Asia, Pacific): no drift; 5 points show an islet stamped for sub-pixel islands where the analytic truth is sea (by design).
 - Hover sweep: 13.4 ms avg/p95 frame, ~1.1 ms per pick, 0 long tasks (old build: 26.6 ms avg, 66.6 ms p95).
 - Homepage and all 109 other non-explorer pages byte-identical to the checkpoint built at the same time (the homepage embeds `Date.now()` relative ages, so builds at different times differ).
+
+## 2026-09-28 — Homepage final polish, rebuilt (feat/homepage-final-polish, draft PR #70)
+
+### Why PR #70's first version broke the layout
+- It rendered 24 Latest rows and hid rows 6–24 with the HTML `hidden` attribute, but `.latest-row{display:grid}` overrides the browser's `[hidden]{display:none}`. All 24 rows rendered (and the filter script could not hide them either).
+- The right column is a grid with rows `auto auto minmax(0,1fr)`, so In Focus stretches to the left column's height: at 1440×900 the left column went from 1,166px to 2,842px and In Focus from 414px to 2,050px (page 2,731px → 4,407px).
+
+### Replacement (on top of PR #70, which is kept in history)
+- Renderer and build check restored from `main` (2636fb2, the approved baseline) and re-implemented.
+- Latest: ALL · WORLD · BUSINESS · TECH · CULTURE · SCREEN & PLAY · SPORTS as a keyboard-accessible tablist (arrows, Home/End). Only the five visible rows are in the DOM; other sets live in `<template>`s. The list reserves exactly five 83px slots (109px on mobile; one-line titles on desktop as in the baseline), so its height never changes. Shorter sets end with a quiet "Browse <section> →" note. Rows fade/glide on switch; rapid switching settles on the last choice.
+- Popular Reads: 31px serif heading, long thin rule, aligned tabs, numbered rows with slightly more air, right-aligned truthful reading-time column (no view counts).
+- Motion: one token family (`--ease`, `--t-quick/.24s`, `--t-base/.42s`, `--t-slow/.8s`, 10px rise). Section reveals use the CSS `translate` property so they never override hover transforms; stagger 70ms (max 210ms). Hero: 32s drift. Screen & Play slightly stronger. Reveal is enabled in `<head>` before first paint; jumps reveal skipped sections; a CSS failsafe shows everything after 2.5s if the page script fails; reduced motion and no-JS show everything immediately (ticker still moves).
+- Saves are delegated, so rows swapped in by filters work (same storage key and classes).
+- `check-build-output.mjs` fails the build if more or fewer than 5 Latest rows render outside templates, or if the fixed five-row list is removed.
+
+### Verification
+- Geometry (px) at 1440×900 — baseline / PR #70 / now: left 1166 / 2842 / 1187; right 1166 / 2842 / 1187; In Focus 414 / 2050 / 411. Same at 1536×1024; tablet and mobile In Focus heights equal the baseline. Heights are identical across every filter and Popular tab.
+- Browser QA: 79/79 interaction checks (every filter, keyboard, rapid switching, saves, Popular tabs, all 8 World Desk regions, map tooltip, ticker, logo animations, hover motion, night mode, reveal safety incl. End/anchor jumps, reduced motion, JS disabled, simulated script failure, tablet/mobile overflow); 0 console errors, 0 CSP violations.
+- Logo CSS and header markup, ticker CSS, save-icon SVG/rules and lower-page markup identical to the baseline; World Explorer, publication scripts and locked assets untouched.
