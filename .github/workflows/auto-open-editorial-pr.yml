@@ -14,8 +14,10 @@ permissions:
   contents: read
   pull-requests: write
 
+# One run per pushed commit (never cancelled); the script always reads the branch's current head,
+# so the last run to execute sees the article even if push events arrive out of order.
 concurrency:
-  group: open-editorial-pr-${{ github.ref }}
+  group: open-editorial-pr-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:

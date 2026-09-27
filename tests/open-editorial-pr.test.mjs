@@ -29,6 +29,9 @@ function mockGitHub(state) {
     const readBody = (cb) => { let b = ''; req.on('data', c => b += c); req.on('end', () => cb(JSON.parse(b || '{}'))); };
     const base = `/repos/${REPO}`;
     let m;
+    if (p.startsWith(`${base}/git/ref/heads/`)) {
+      return state.branchHead ? json(200, { object: { sha: state.branchHead } }) : json(404, { message: 'Not Found' });
+    }
     if ((m = p.match(new RegExp(`^${base}/compare/main\\.\\.\\.(.+)$`)))) {
       const c = state.commits[m[1]];
       return c ? json(200, { files: c.added.map(filename => ({ filename, status: 'added' })) }) : json(404, { message: 'Not Found' });
@@ -135,5 +138,19 @@ test('open-editorial-pr: refuses branches that add more than one article or are 
     r = await run({ GITHUB_API_URL: url, HEAD_BRANCH: 'feature/x', HEAD_SHA: 'withArticle' });
     assert.equal(r.code, 0, r.out);
     assert.equal(state.prs.length, 0);
+  } finally { server.close(); }
+});
+
+test('open-editorial-pr: uses the branch head when push events arrive out of order (run 907 race)', async () => {
+  const state = scenario();
+  state.branchHead = 'withArticle';
+  const { server, url } = await mockGitHub(state);
+  try {
+    // The event is for the image-only commit, but the branch already holds the article commit.
+    const r = await run({ GITHUB_API_URL: url, HEAD_BRANCH: BRANCH, HEAD_SHA: 'imageOnly' });
+    assert.equal(r.code, 0, r.out);
+    assert.match(r.out, /using the branch head/);
+    assert.equal(state.prs.length, 1);
+    assert.equal(state.prs[0].title, 'Editorial: Stallone says he became bulimic');
   } finally { server.close(); }
 });
