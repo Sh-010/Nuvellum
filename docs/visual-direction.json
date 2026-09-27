@@ -1,0 +1,61 @@
+{
+  "$comment": "Nuvellum visual direction (machine-readable). Feeds the visual brief, generation prompts and the QA scorer in scripts/visual/. Human-readable companion: docs/VISUAL_ENGINE.md. The website design (v5.1) is out of scope; this governs editorial artwork only.",
+  "version": 1,
+  "palette": {
+    "paper": "#fbf8f1",
+    "ivory": "#f2ede3",
+    "ink": "#11110f",
+    "oxblood": "#6d1720",
+    "muted": "#69635c",
+    "rule": "#d3ccbf",
+    "relationship": "Muted, natural palettes chosen for the story, with at most one restrained deep accent (Nuvellum oxblood or a story-appropriate equivalent). No neon, no saturated rainbow gradients."
+  },
+  "composition": [
+    "One strong visual idea with one obvious focal subject.",
+    "Intentional negative space (upper third or one side) so headlines and crops breathe.",
+    "Clear foreground, midground and background hierarchy.",
+    "Keep the focal subject inside the central 60% so 16:9, 4:3 and 1:1 crops all hold."
+  ],
+  "lighting": "Soft, directional, cinematic where it suits the story; restrained contrast; never glossy stock-photo lighting.",
+  "tone": "Serious international magazine: calm, intelligent, restrained. Illustrative, never sensational.",
+  "abstraction": {
+    "default": "conceptual-editorial",
+    "allowed": ["conceptual-editorial", "painterly-illustration", "graphic-editorial", "architectural-still-life", "landscape-illustration"],
+    "sensitive": "conceptual or symbolic only: places, objects, weather, architecture, empty spaces. No depiction of victims, injuries, violence, arrests, bodies, weapons in use, or identifiable people."
+  },
+  "sections": {
+    "World": "Places, landscapes, architecture, borders rendered symbolically; maps only if accurate; no flags unless certain and correct.",
+    "Business": "Objects, infrastructure, markets rendered as graphic still lifes; no fake logos or tickers.",
+    "Technology": "Devices and systems as clean conceptual forms; no real brand logos, no fake UI text.",
+    "Science": "Natural phenomena and instruments; accurate, calm, awe without spectacle.",
+    "Crime": "Always sensitive: empty places, weather, architecture; never scenes of crime, victims or suspects.",
+    "Sports": "Motion, venue, equipment; no identifiable athletes or team kits/logos.",
+    "Culture": "Texture, material, stagecraft; painterly allowed.",
+    "Film & TV": "Cinematic mood, stage and screen metaphors; no likeness of real actors, no fake posters.",
+    "Anime": "Respectful stylised illustration; never imitate a specific studio's characters.",
+    "Gaming": "Conceptual worlds and hardware silhouettes; no copyrighted characters or logos."
+  },
+  "typography_in_image": "None. No letters, numbers, captions, signage or UI text inside the artwork; the page supplies all type.",
+  "mark_usage": "The Nuvellum wordmark is never drawn into artwork. The page caption 'NUVELLUM · AI-generated editorial illustration' labels AI imagery.",
+  "real_people": "Never generate a recognisable likeness of a real person. Refer to people through setting, objects or silhouettes without identifying features.",
+  "unacceptable": [
+    "photorealistic depiction of an event that was not photographed",
+    "fake documentary or news-photo look",
+    "recognisable real people",
+    "text, lettering, numbers, logos, watermarks, flags or maps unless verified accurate",
+    "gore, injury, bodies, weapons in use",
+    "clickbait collage, explosions, sensational symbolism",
+    "generic stock-photo look",
+    "malformed anatomy, melted objects, obvious AI artifacts"
+  ],
+  "aspect_ratios": { "master": "16:9", "article_hero": "16:8", "homepage_hero": "16:10", "card": "4:3", "og": "1.91:1", "square": "1:1", "vertical": "9:16" },
+  "qa": {
+    "dimensions": ["relevance", "composition", "technical", "factual_safety", "brand", "artifacts", "headline_fit", "mobile_crop"],
+    "weights": { "relevance": 0.22, "composition": 0.14, "technical": 0.12, "factual_safety": 0.2, "brand": 0.1, "artifacts": 0.1, "headline_fit": 0.06, "mobile_crop": 0.06 },
+    "threshold": 7.2,
+    "sensitive_threshold": 7.8,
+    "hard_minimums": { "factual_safety": 7, "artifacts": 6, "relevance": 6 },
+    "max_photoreal_risk": 5,
+    "max_photoreal_risk_sensitive": 3
+  }
+}

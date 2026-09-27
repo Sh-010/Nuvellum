@@ -10,3 +10,4 @@ n8n/raw/
 *.raw.json
 .env.*
 !.env.example
+.visual-store/
