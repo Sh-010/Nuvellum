@@ -436,6 +436,49 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         globe = new THREE.Mesh(sphereGeometry, material);
         globeGroup.add(globe);
 
+        const globePosition = (lonDeg, latDeg, radius = 1.025) => {
+          const lon = lonDeg * Math.PI / 180;
+          const lat = latDeg * Math.PI / 180;
+          const cosLat = Math.cos(lat);
+          return new THREE.Vector3(
+            radius * cosLat * Math.cos(lon),
+            radius * Math.sin(lat),
+            -radius * cosLat * Math.sin(lon)
+          );
+        };
+
+        const targetGeometry = new THREE.SphereGeometry(1, 7, 5);
+        const targetMaterial = new THREE.MeshBasicMaterial({
+          transparent: true,
+          opacity: 0,
+          depthWrite: false,
+          color: 0xffffff
+        });
+        const markerGeometry = new THREE.SphereGeometry(.009, 8, 6);
+        const markerMaterial = new THREE.MeshBasicMaterial({
+          color: 0xa72f50,
+          transparent: true,
+          opacity: .82,
+          depthWrite: false
+        });
+
+        countryTargets = countries.map(country => {
+          const target = new THREE.Mesh(targetGeometry, targetMaterial);
+          target.scale.setScalar(country.pointOnly ? .045 : .021);
+          target.position.copy(globePosition(country.lon, country.lat, 1.028));
+          target.userData.countryId = country.id;
+          globeGroup.add(target);
+
+          if (country.pointOnly) {
+            const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+            marker.position.copy(globePosition(country.lon, country.lat, 1.018));
+            marker.userData.countryId = country.id;
+            globeGroup.add(marker);
+            microstateMarkers.push(marker);
+          }
+          return target;
+        });
+
         const wire = new THREE.Mesh(
           new THREE.SphereGeometry(1.007, 48, 32),
           new THREE.MeshBasicMaterial({ color: 0x8a2944, wireframe: true, transparent: true, opacity: .055 })
