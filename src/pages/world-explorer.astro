@@ -705,9 +705,9 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
 <style is:global>
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-normal-latin.woff2') format('woff2')}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-italic-latin.woff2') format('woff2')}
-:global(*){box-sizing:border-box}
-:global(html){background:#020305}
-:global(body){margin:0;background:#020305;color:#eee6db;font-family:'Newsreader',Georgia,serif}
+*{box-sizing:border-box}
+html{margin:0;background:#020305}
+body{margin:0;background:#020305;color:#eee6db;font-family:'Newsreader',Georgia,serif}
 .explorer-shell{min-height:100vh;background:
   radial-gradient(circle at 44% 40%,rgba(105,18,45,.18),transparent 31%),
   radial-gradient(circle at 50% 110%,rgba(81,16,35,.16),transparent 40%),
