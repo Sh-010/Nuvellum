@@ -81,3 +81,8 @@ test('injected Screen & Play production cards are labelled as article links', ()
   assert.match(injector, /<span class="quick-chip">Open story<\/span>/);
   assert.match(injector, /data-route="\$\{route\(a\)\}"/);
 });
+
+test('hidden story drawer and info modal are inert while aria-hidden', () => {
+  assert.ok(built.includes("['storyDrawer','infoModal'].forEach(id=>{"));
+  assert.ok(built.includes("if(el.getAttribute('aria-hidden')==='true')el.setAttribute('inert','');else el.removeAttribute('inert');"));
+});
