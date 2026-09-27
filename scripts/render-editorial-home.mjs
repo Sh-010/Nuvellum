@@ -3,6 +3,7 @@ import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildPublicDir } from './lib/paths.mjs';
 import { REGIONS, storiesByRegion } from '../src/lib/geography.js';
+import { WORLD_MAP_GROUPS } from '../src/lib/world-map-data.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
@@ -80,16 +81,6 @@ const regionMap = storiesByRegion(articles);
 const rankedRegions = [...REGIONS].sort((a,b) => (regionMap.get(b.slug)?.length || 0) - (regionMap.get(a.slug)?.length || 0));
 const defaultRegion = rankedRegions.find(r => (regionMap.get(r.slug)?.length || 0) > 0) || rankedRegions[0];
 
-const WORLD_MAP_PATHS = {
-  'north-america': 'M62 126 L83 107 L98 87 L126 72 L163 64 L203 68 L236 78 L265 95 L294 111 L318 133 L305 156 L281 168 L270 190 L246 204 L213 211 L183 204 L161 190 L132 188 L110 174 L91 165 L78 146 Z M283 71 L301 56 L320 61 L327 79 L313 92 L292 88 Z',
-  'latin-america-caribbean': 'M233 205 L254 210 L267 221 L282 226 L295 239 L299 256 L291 269 L282 267 L276 282 L280 300 L275 319 L267 339 L258 361 L246 388 L233 414 L222 391 L218 364 L218 336 L212 313 L214 288 L208 265 L214 242 L224 224 Z M304 229 L314 224 L324 226 L330 232 L320 237 L310 235 Z',
-  'europe-central-asia': 'M397 122 L415 105 L443 96 L468 82 L491 88 L507 102 L525 96 L554 91 L586 94 L614 88 L648 94 L674 102 L702 108 L726 120 L716 138 L694 145 L674 155 L652 160 L626 157 L604 166 L575 165 L551 172 L523 166 L498 158 L474 162 L448 153 L429 144 L410 142 Z',
-  'middle-east-north-africa': 'M396 177 L425 163 L456 158 L488 161 L514 170 L543 174 L571 181 L603 188 L629 198 L641 214 L627 230 L603 234 L586 247 L556 249 L529 242 L498 238 L468 229 L438 224 L415 211 L399 198 Z M620 212 L647 216 L668 229 L674 244 L660 252 L643 245 L629 232 Z',
-  'sub-saharan-africa': 'M423 231 L454 225 L486 233 L515 240 L543 249 L560 264 L556 286 L548 307 L538 329 L526 353 L513 379 L495 399 L474 408 L455 391 L446 370 L435 347 L427 322 L420 298 L414 274 L415 252 Z',
-  'south-asia': 'M636 202 L658 198 L680 204 L704 211 L721 225 L724 246 L715 266 L704 286 L691 306 L679 320 L665 307 L657 288 L649 269 L644 249 L638 229 Z',
-  'east-asia': 'M694 132 L716 121 L742 114 L771 116 L798 123 L825 130 L849 144 L870 160 L876 179 L864 197 L847 210 L826 219 L802 222 L780 214 L760 206 L745 191 L729 180 L716 163 L705 150 Z M879 164 L891 158 L899 165 L896 177 L887 183 L881 176 Z',
-  'southeast-asia-oceania': 'M743 221 L759 219 L776 226 L791 238 L804 252 L800 268 L787 279 L774 274 L764 262 L752 253 Z M799 281 L816 286 L831 297 L843 310 L835 321 L818 319 L807 308 Z M856 331 L879 326 L902 334 L927 348 L947 367 L960 390 L951 414 L925 426 L897 418 L875 404 L861 387 L851 367 Z'
-};
 
 function ageLabel(article) {
   const stamp = article.publishedAt || (article.date ? article.date + 'T12:00:00Z' : null);
@@ -145,7 +136,10 @@ function regionTemplate(region) {
 const mapRegions = REGIONS.map(region => {
   const count = regionMap.get(region.slug)?.length || 0;
   const active = region.slug === defaultRegion.slug ? ' is-active' : '';
-  return `<a class="map-region${active}" href="/world/${region.slug}" data-region="${region.slug}" aria-label="${attr(region.label)}, ${count} stories"><path d="${WORLD_MAP_PATHS[region.slug]}"></path></a>`;
+  const countries = (WORLD_MAP_GROUPS[region.slug] || []).map(country =>
+    `<path d="${country.d}" data-country="${attr(country.name)}"></path>`
+  ).join('');
+  return `<a class="map-region${active}" href="/world/${region.slug}" data-region="${region.slug}" aria-label="${attr(region.label)}, ${count} stories">${countries}</a>`;
 }).join('');
 
 const regionTabs = REGIONS.map(region => {
@@ -201,7 +195,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 .hero{position:relative;min-height:470px;overflow:hidden;background:#17120f}.hero img{width:100%;height:470px;object-fit:cover;filter:saturate(.82) contrast(1.02) brightness(.78)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.58) 0%,rgba(5,5,5,.14) 68%,rgba(5,5,5,.08)),linear-gradient(0deg,rgba(5,5,5,.68) 0%,transparent 58%)}.hero-copy{position:absolute;z-index:2;left:30px;right:32px;bottom:24px;color:#fff;max-width:770px}.hero-kicker{display:inline-block;background:rgba(118,19,43,.9);padding:5px 10px;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.12em}.hero h1{font-size:44px;line-height:1.04;font-weight:400;margin:14px 0 12px;max-width:750px}.hero-dek{font-size:17px;line-height:1.42;color:#ddd5cd;max-width:760px}.story-meta{font-family:var(--sans);font-size:10px;color:var(--muted);margin-top:12px}.hero .story-meta{color:#d9d0c7}.story-meta span{padding:0 5px}
 .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}.support-card{background:var(--paper2);border:1px solid var(--line)}.support-image img{height:125px;object-fit:cover}.support-body{padding:10px 13px 12px}.eyebrow{font-family:var(--sans);font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--burgundy);font-weight:700}.support-card h3{font-size:17px;line-height:1.08;margin:6px 0 0;font-weight:400}
 .panel{background:var(--paper2);border:1px solid var(--line);padding:12px 12px 10px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.panel-head h2{font-size:27px;line-height:1;color:var(--burgundy);margin:0;font-weight:400}.panel-head h2:before{content:"✦";font-size:20px;margin-right:8px}.panel-link{font-size:12px;color:var(--burgundy)}
-.world-map-wrap{position:relative;background:#141416;height:218px;overflow:hidden}.world-map{width:100%;height:100%;display:block}.world-map .atlas{fill:none;stroke:#47474a;stroke-width:1;opacity:.35}.map-region path{fill:#66615d;stroke:#958f89;stroke-width:.8;transition:fill .18s ease,opacity .18s ease}.map-region:hover path,.map-region:focus path,.map-region.is-active path{fill:var(--burgundy2);stroke:#b4465f}.map-region{outline:none}.map-tooltip{position:absolute;background:#1b1919;color:#fff;border:1px solid #6f6565;padding:8px 11px;font-family:var(--sans);font-size:11px;pointer-events:none;opacity:0;transform:translate(-50%,-115%);transition:opacity .12s}.map-tooltip strong{display:block;font-family:var(--serif);font-size:14px;font-weight:400}.map-tooltip span{display:block;color:#c8c0ba;margin-top:2px}
+.world-map-wrap{position:relative;background:#151517;height:218px;overflow:hidden}.world-map{width:100%;height:100%;display:block;padding:8px 10px}.world-map .atlas{fill:none;stroke:#4b4748;stroke-width:1;opacity:.25}.map-region path{fill:#6f6965;stroke:#a49d97;stroke-width:.55;vector-effect:non-scaling-stroke;transition:fill .18s ease,stroke .18s ease,opacity .18s ease}.map-region:hover path,.map-region:focus path,.map-region.is-active path{fill:var(--burgundy2);stroke:#d06a80}.map-region{outline:none}.map-region:hover path{opacity:.96}.map-tooltip{position:absolute;background:#1b1919;color:#fff;border:1px solid #6f6565;padding:8px 11px;font-family:var(--sans);font-size:11px;pointer-events:none;opacity:0;transform:translate(-50%,-115%);transition:opacity .12s}.map-tooltip strong{display:block;font-family:var(--serif);font-size:14px;font-weight:400}.map-tooltip span{display:block;color:#c8c0ba;margin-top:2px}
 .region-tabs{display:grid;grid-template-columns:repeat(8,1fr);border:1px solid var(--line);border-top:0}.region-tab{min-height:42px;border:0;border-right:1px solid var(--line);background:var(--paper2);color:inherit;padding:7px 5px;font-size:9px;line-height:1.05;cursor:pointer}.region-tab:last-child{border-right:0}.region-tab span{display:block;margin-top:2px;color:var(--muted);font-size:8px}.region-tab.is-active{background:var(--burgundy);color:#fff}.region-tab.is-active span{color:#f4dce3}
 .region-detail{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(170px,.85fr);gap:16px;padding:12px 8px 4px}.region-story-list{display:grid}.region-story{display:grid;grid-template-columns:95px 1fr;gap:11px;padding:9px 0;border-bottom:1px solid var(--line)}.region-story:last-child{border-bottom:0}.region-story img{height:58px;object-fit:cover}.region-story strong{display:block;font-size:14px;line-height:1.12;font-weight:400}.region-story small{display:block;font-family:var(--sans);font-size:9px;color:var(--muted);margin-top:6px}.region-summary{border-left:1px solid var(--line);padding-left:17px}.summary-kicker{font-family:var(--sans);font-size:10px;color:var(--burgundy);font-weight:700;letter-spacing:.08em}.region-summary>small{display:block;margin:6px 0 16px;color:var(--muted);font-size:10px}.region-summary p{color:var(--muted);font-size:14px;line-height:1.22}.region-summary a{display:flex;align-items:center;justify-content:space-between;background:var(--burgundy);color:#fff;padding:12px 15px;margin-top:18px;font-size:13px}.region-empty{font-size:14px;color:var(--muted);padding:28px 8px}
 .section-block{margin-top:14px;background:var(--paper2);border-top:1px solid var(--line)}.section-title{display:flex;align-items:center;gap:16px;padding:10px 2px 7px}.section-title h2{font-size:27px;color:var(--burgundy);font-weight:400;margin:0}.section-title .rule{height:1px;background:var(--burgundy);opacity:.6;flex:1}.section-title a{font-size:11px;color:var(--burgundy);white-space:nowrap}
@@ -267,8 +261,8 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
     <section class="panel world-desk-panel" id="world-desk">
       <div class="panel-head"><h2>World Desk</h2><a class="panel-link" href="/section/world">Explore the world &nbsp;→</a></div>
       <div class="world-map-wrap">
-        <svg class="world-map" viewBox="20 45 960 390" aria-label="Interactive World Desk map">
-          <g class="atlas"><path d="M30 160 C260 132 740 132 970 160 M30 300 C260 327 740 327 970 300"></path></g>
+        <svg class="world-map" viewBox="0 0 1000 500" aria-label="Interactive World Desk map">
+          <g class="atlas"><path d="M20 165 C260 140 740 140 980 165 M20 335 C260 360 740 360 980 335"></path></g>
           ${mapRegions}
         </svg>
         <div class="map-tooltip" id="mapTooltip"><strong></strong><span></span></div>
@@ -281,7 +275,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
     <section class="section-block popular">
       <div class="popular-head"><h2>Popular Reads</h2><div class="popular-tabs"><button class="active">Today</button><button>This Week</button><button>This Month</button></div></div>
       <div class="popular-list">
-        ${popular.map((article,i)=>`<a class="popular-item" href="${route(article)}"><span class="popular-rank">${i+1}</span><span>${esc(article.title)}</span><span class="popular-views">${(5.2-i*.45).toFixed(1)}K</span></a>`).join('')}
+        ${popular.map((article,i)=>`<a class="popular-item" href="${route(article)}"><span class="popular-rank">${i+1}</span><span>${esc(article.title)}</span><span class="popular-views">${esc(article.readingTime)} read</span></a>`).join('')}
       </div>
     </section>
 
@@ -355,7 +349,7 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
     link.addEventListener('mouseenter',e=>{activate(slug);if(tooltip){tooltip.querySelector('strong').textContent=regionLabels[slug]||slug;tooltip.querySelector('span').textContent=(regionCounts[slug]||0)+' stories';tooltip.style.opacity='1';const r=e.currentTarget.getBoundingClientRect();const p=document.querySelector('.world-map-wrap').getBoundingClientRect();tooltip.style.left=(r.left+r.width/2-p.left)+'px';tooltip.style.top=(r.top-p.top)+'px'}});
     link.addEventListener('mouseleave',()=>{if(tooltip)tooltip.style.opacity='0'});
     link.addEventListener('focus',()=>activate(slug));
-    link.addEventListener('click',e=>{e.preventDefault();activate(slug)});
+    link.addEventListener('click',e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();activate(slug)});
   });
   activate('${defaultRegion.slug}');
 
