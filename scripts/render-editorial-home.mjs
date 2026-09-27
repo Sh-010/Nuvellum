@@ -375,8 +375,8 @@ body{transition:background-color .38s ease,color .38s ease}.site-header,.section
   html{scroll-behavior:auto}
   .support-card,.latest-row,.popular-item,.screen-item,.opinion-col,.focus-card img,.focus-mini img,.support-image img,.latest-thumb img,.screen-item img,.save-icon svg{transition:none!important;animation:none!important}
   .region-detail.swap-in,.popular-list.panel-in{animation:none!important}
-  .ticker-track{animation:none!important;transform:none!important}
-  .ticker-group[aria-hidden="true"]{display:none}
+  /* Keep the explicitly requested Latest ticker moving even when the OS/browser
+     advertises reduced motion; other decorative motion remains reduced. */
 }
 </style>
 <script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Nuvellum',url:canonical,description})}</script>
