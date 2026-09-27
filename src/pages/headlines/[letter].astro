@@ -1,0 +1,95 @@
+---
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import { getArticles } from '../../lib/articles';
+
+export async function getStaticPaths() {
+  return 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter => ({ params: { letter } }));
+}
+
+const letter = String(Astro.params.letter || '').toLowerCase();
+const articles = (await getArticles()).filter(article => article.title.trim().toLowerCase().startsWith(letter));
+const upper = letter.toUpperCase();
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SiteHead
+    title={`Headlines beginning with ${upper} — Nuvellum`}
+    description={`Published Nuvellum headlines beginning with the letter ${upper}.`}
+  />
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="headline-archive-header">
+    <div class="wrap headline-archive-head">
+      <a class="headline-archive-brand" href="/" aria-label="Nuvellum home">
+        <span class="headline-archive-logo-line">
+          <span class="headline-archive-monogram">N<span>✦</span></span>
+          <span class="headline-archive-continuation">UVELLUM</span>
+        </span>
+        <span class="headline-archive-tagline">Beyond the headline.</span>
+      </a>
+      <a class="headline-archive-back" href="/">Back to Nuvellum →</a>
+    </div>
+  </header>
+
+  <main class="wrap headline-archive">
+    <h1 class="headline-letter-title">{upper}</h1>
+
+    {articles.length ? (
+      <section class="headline-archive-list">
+        {articles.map(article => (
+          <article class="headline-archive-row">
+            <a class="headline-archive-image" href={`/article/${article.slug}`}>
+              <img src={article.image} alt={article.imageAlt}/>
+            </a>
+            <div>
+              <div class="headline-archive-meta">{article.section} · {article.type}</div>
+              <h2><a href={`/article/${article.slug}`}>{article.title}</a></h2>
+              <p>{article.dek}</p>
+              <small>{article.date} · {article.readingTime} read</small>
+            </div>
+          </article>
+        ))}
+      </section>
+    ) : (
+      <div class="headline-archive-empty">No published Nuvellum headlines currently begin with {upper}.</div>
+    )}
+
+    <nav class="headline-archive-alpha" aria-label="Browse headlines by letter">
+      {'abcdefghijklmnopqrstuvwxyz'.split('').map(item => (
+        <a class={item === letter ? 'active' : ''} href={`/headlines/${item}`} aria-current={item === letter ? 'page' : undefined}>
+          {item.toUpperCase()}
+        </a>
+      ))}
+    </nav>
+  </main>
+</body>
+</html>
+
+<style>
+.headline-archive-header{border-bottom:1px solid var(--line);background:var(--paper)}
+.headline-archive-head{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.headline-archive-brand{display:grid;color:var(--ox);width:max-content}
+.headline-archive-logo-line{display:flex;align-items:baseline;gap:1px}
+.headline-archive-monogram{position:relative;font:700 32px/.95 var(--serif);letter-spacing:.015em;min-width:29px}
+.headline-archive-monogram span{position:absolute;right:-7px;top:-6px;font:13px/1 var(--serif)}
+.headline-archive-continuation{font:700 32px/.95 var(--serif);letter-spacing:.045em}
+.headline-archive-tagline{font:italic 10px/1 var(--serif);color:var(--muted);margin:4px 0 0 0}
+.headline-archive-back{font:10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.headline-archive{padding:42px 0 80px}
+.headline-letter-title{font:400 clamp(82px,10vw,140px)/.82 var(--serif);margin:0 0 28px;color:var(--ox)}
+.headline-archive-list{border-top:2px solid var(--ink)}
+.headline-archive-row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.headline-archive-image img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.headline-archive-meta{font:700 9px var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--ox)}
+.headline-archive-row h2{font:400 30px/1.05 var(--serif);margin:7px 0 8px}
+.headline-archive-row p{font:16px/1.45 var(--serif);color:var(--muted);margin:0 0 10px;max-width:850px}
+.headline-archive-row small{font:9px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.headline-archive-empty{padding:44px 0;border-block:1px solid var(--line);font:20px var(--serif);color:var(--muted)}
+.headline-archive-alpha{display:flex;flex-wrap:wrap;gap:4px;margin-top:32px}
+.headline-archive-alpha a{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--line);font:11px var(--sans);transition:.18s}
+.headline-archive-alpha a:hover,.headline-archive-alpha a.active{background:var(--ox);border-color:var(--ox);color:#fff}
+@media(max-width:650px){.headline-archive-head{height:68px}.headline-archive-monogram,.headline-archive-continuation{font-size:26px}.headline-archive-monogram{min-width:24px}.headline-archive-monogram span{font-size:11px;right:-6px;top:-5px}.headline-archive-tagline{margin-left:0}.headline-archive{padding-top:28px}.headline-letter-title{font-size:82px;margin-bottom:22px}.headline-archive-row{grid-template-columns:1fr}.headline-archive-row h2{font-size:25px}.headline-archive-image img{aspect-ratio:16/9}}
+</style>
