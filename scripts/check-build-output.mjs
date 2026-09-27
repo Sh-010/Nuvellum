@@ -17,6 +17,13 @@ if (!home.includes('data-home-version="nuvellum-editorial-home-v6"')) errors.pus
 if (!home.includes('id="world-desk"')) errors.push('index.html: World Desk missing');
 if (!home.includes('id="nuvellum-editorial-home-v6"')) errors.push('index.html: homepage interaction script missing');
 if (!home.includes('/article/')) errors.push('index.html: live article routes missing');
+if (!home.includes('id="brandZone"')) errors.push('index.html: interactive Nuvellum brand mark missing');
+if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter discovery links missing');
+
+for (const letter of ['n','u','v','e','l','m']) {
+  const file = join('headlines', letter, 'index.html');
+  if (!existsSync(join(dist, file))) errors.push(`${file}: missing headline archive route`);
+}
 
 // Every published article page.
 const published = readdirSync(articlesDir).filter((f) => f.endsWith('.md')).map((f) => {
