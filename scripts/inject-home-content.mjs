@@ -143,7 +143,7 @@ function worldDeskMarkup(articles) {
   const map = REGIONS.map(region => {
     const count = grouped.get(region.slug)?.length || 0;
     const path = WORLD_MAP_PATHS[region.slug];
-    return `<a href="/world/${region.slug}" data-world-region="${region.slug}" aria-label="${esc(region.label)}, ${count} ${count === 1 ? 'story' : 'stories'}"><path d="${path}"></path></a>`;
+    return `<a href="/world/${region.slug}" data-world-region="${region.slug}" class="${region.slug === initial.slug ? 'is-active' : ''}" aria-label="${esc(region.label)}, ${count} ${count === 1 ? 'story' : 'stories'}"><path d="${path}"></path></a>`;
   }).join('');
 
   const initialTemplateStories = (grouped.get(initial.slug) || []).slice(0, 2);
@@ -210,7 +210,7 @@ const WORLD_DESK_SCRIPT = `<script id="nuvellum-world-desk-script">
     link.addEventListener('mouseenter',()=>activate(link.dataset.worldRegion));
     link.addEventListener('focus',()=>activate(link.dataset.worldRegion));
   });
-  const first=links.find(link=>desk.querySelector('template[data-world-desk-template="'+link.dataset.worldRegion+'"]'));
+  const first=links.find(link=>link.classList.contains('is-active'))||links[0];
   if(first)activate(first.dataset.worldRegion);
 })();
 </script>`;
