@@ -3,9 +3,12 @@ import assert from 'node:assert/strict';
 import { COUNTRIES, articleMatchesCountry, countryBySlug, countrySlug, storiesForCountry } from '../src/lib/countries.js';
 
 test('country atlas exposes real named countries and stable slugs', () => {
-  assert.ok(COUNTRIES.length >= 180);
+  assert.equal(COUNTRIES.length, 238);
   assert.equal(countrySlug('United States of America'), 'united-states-of-america');
   assert.equal(countryBySlug('switzerland')?.name, 'Switzerland');
+  assert.equal(countryBySlug('vatican-city')?.pointOnly, true);
+  assert.equal(countryBySlug('san-marino')?.pointOnly, true);
+  assert.equal(countryBySlug('nauru')?.pointOnly, true);
 });
 
 test('World stories can be matched conservatively to countries', () => {
