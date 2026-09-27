@@ -198,64 +198,33 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 .site-header{background:var(--paper2);border-bottom:1px solid var(--line);position:relative;z-index:30}
 .header-row{height:88px;display:grid;grid-template-columns:300px 1fr 300px;align-items:center;gap:24px}
 .brand-zone{position:relative;width:286px;height:58px;display:flex;align-items:center;isolation:isolate}
-.brand-monogram-home{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;width:max-content;color:var(--burgundy);transition:opacity .22s ease,transform .32s cubic-bezier(.16,.8,.2,1);z-index:2}
-.brand-monogram-mark{position:relative;width:54px;height:54px;display:grid;place-items:center}
+.brand-monogram-home{position:absolute;left:0;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;width:max-content;color:var(--burgundy);transition:opacity .22s ease,transform .32s cubic-bezier(.16,.8,.2,1);z-index:2}
+.brand-monogram-mark{grid-row:1/3;position:relative;width:54px;height:54px;display:grid;place-items:center}
 .brand-monogram-n{font:700 52px/.9 var(--serif);letter-spacing:-.08em}
-.brand-monogram-star{position:absolute;right:-5px;top:0;font-size:17px;line-height:1;color:var(--burgundy);transform-origin:center}
-.brand-tagline{font:italic 12px/1.05 var(--serif);color:var(--muted);white-space:nowrap}
+.brand-monogram-star{position:absolute;right:-1px;top:1px;font-size:17px;line-height:1;color:var(--burgundy);transform-origin:center}
+.brand-tagline{font:italic 12px/1.05 var(--serif);color:var(--muted);align-self:start;margin-top:2px;white-space:nowrap}
+
 .brand-expanded{position:absolute;left:0;top:50%;transform:translateY(-50%) translateX(-6px) scale(.985);width:276px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,transform .36s cubic-bezier(.16,.8,.2,1),visibility .22s;z-index:3}
 .brand-wordmark{display:flex;align-items:flex-end;gap:1px;width:max-content;color:var(--burgundy)}
-.brand-letter,.brand-home-star{display:inline-grid;place-items:center;position:relative;min-width:23px;height:37px;color:var(--burgundy);transform-origin:50% 80%}
-.brand-letter{font:700 33px/.9 var(--serif)}
-.brand-home-star{font:18px/1 var(--serif);min-width:20px;align-self:start;margin-top:-3px}
-.brand-glyph{display:inline-block;transform-origin:50% 80%;will-change:transform;text-shadow:0 0 0 transparent}
+.brand-letter,.brand-home-star{display:inline-grid;place-items:center;position:relative;font:700 33px/.9 var(--serif);min-width:23px;height:37px;color:var(--burgundy);transform-origin:50% 80%;transition:color .18s ease,text-shadow .18s ease}
+.brand-home-star{font-size:18px;min-width:20px;align-self:start;margin-top:-3px}
 .brand-expanded-note{font:italic 10px/1 var(--serif);color:var(--muted);margin-top:5px;white-space:nowrap;letter-spacing:.01em}
-
-.brand-zone:hover .brand-expanded,.brand-zone:focus-within .brand-expanded,.brand-zone.is-open .brand-expanded{
-  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(-50%) translateX(0) scale(1)
-}
-.brand-zone:hover .brand-monogram-home,.brand-zone:focus-within .brand-monogram-home,.brand-zone.is-open .brand-monogram-home{
-  opacity:0;transform:translateY(-50%) translateX(-5px);pointer-events:none
-}
-.brand-zone:hover .brand-letter,.brand-zone:focus-within .brand-letter,.brand-zone.is-open .brand-letter{
-  animation:brandLetterReveal .45s cubic-bezier(.16,.8,.2,1) both;
-  animation-delay:calc(var(--i) * 28ms)
-}
-.brand-zone:hover .brand-home-star,.brand-zone:focus-within .brand-home-star,.brand-zone.is-open .brand-home-star{
-  animation:brandStarReveal .46s cubic-bezier(.16,.8,.2,1) both;
-  animation-delay:230ms
-}
-@keyframes brandLetterReveal{
-  0%{opacity:0;transform:translateY(8px) rotateX(-34deg)}
-  100%{opacity:1;transform:none}
-}
-@keyframes brandStarReveal{
-  0%{opacity:0;transform:translateY(7px) rotate(-22deg) scale(.88)}
-  100%{opacity:1;transform:none}
-}
+.brand-zone:hover .brand-expanded,.brand-zone:focus-within .brand-expanded,.brand-zone.is-open .brand-expanded{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(-50%) translateX(0) scale(1)}
+.brand-zone:hover .brand-monogram-home,.brand-zone:focus-within .brand-monogram-home,.brand-zone.is-open .brand-monogram-home{opacity:0;transform:translateY(-50%) translateX(-5px);pointer-events:none}
+.brand-zone:hover .brand-letter,.brand-zone:focus-within .brand-letter,.brand-zone.is-open .brand-letter{animation:brandLetterReveal .45s cubic-bezier(.16,.8,.2,1) both;animation-delay:calc(var(--i) * 28ms)}
+@keyframes brandLetterReveal{0%{opacity:0;transform:translateY(8px) rotateX(-34deg)}100%{opacity:1;transform:none}}
 .brand-letter:focus-visible,.brand-home-star:focus-visible,.brand-monogram-home:focus-visible{outline:1px solid var(--burgundy);outline-offset:3px}
+.brand-letter-n:hover{animation:brandN .28s ease both}.brand-letter-u1:hover{animation:brandU1 .3s ease both}.brand-letter-v:hover{animation:brandV .28s ease both}.brand-letter-e:hover{animation:brandE .3s ease both}.brand-letter-l1:hover{animation:brandL1 .3s ease both}.brand-letter-l2:hover{animation:brandL2 .3s ease both}.brand-letter-u2:hover{animation:brandU2 .32s ease both}.brand-letter-m:hover{animation:brandM .3s ease both}.brand-home-star:hover{animation:brandStar .36s ease both}
+@keyframes brandN{50%{transform:translateY(-2px) skewX(-5deg);text-shadow:6px 0 0 rgba(111,16,40,.12)}}
+@keyframes brandU1{50%{transform:translateY(-4px)}}
+@keyframes brandV{50%{transform:perspective(120px) rotateY(-12deg) translateY(-1px)}}
+@keyframes brandE{50%{transform:translateX(2px) scaleX(1.05);text-shadow:-4px 0 0 rgba(111,16,40,.10)}}
+@keyframes brandL1{50%{transform:translateY(-2px) rotate(-2deg)}}
+@keyframes brandL2{50%{transform:translateY(2px) rotate(2deg)}}
+@keyframes brandU2{50%{transform:translateY(-3px) rotateX(8deg)}}
+@keyframes brandM{50%{transform:scaleX(.94) translateY(-2px)}}
+@keyframes brandStar{50%{transform:rotate(38deg) scale(1.16)}}
 
-/* Reveal and letter-hover motion are intentionally separated:
-   anchors reveal smoothly; glyphs keep unique custom micro-animations. */
-.brand-letter-n:hover .brand-glyph,.brand-letter-n:focus-visible .brand-glyph{animation:brandN .34s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-u1:hover .brand-glyph,.brand-letter-u1:focus-visible .brand-glyph{animation:brandU1 .36s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-v:hover .brand-glyph,.brand-letter-v:focus-visible .brand-glyph{animation:brandV .36s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-e:hover .brand-glyph,.brand-letter-e:focus-visible .brand-glyph{animation:brandE .36s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-l1:hover .brand-glyph,.brand-letter-l1:focus-visible .brand-glyph{animation:brandL1 .36s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-l2:hover .brand-glyph,.brand-letter-l2:focus-visible .brand-glyph{animation:brandL2 .36s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-u2:hover .brand-glyph,.brand-letter-u2:focus-visible .brand-glyph{animation:brandU2 .38s cubic-bezier(.16,.8,.2,1) both}
-.brand-letter-m:hover .brand-glyph,.brand-letter-m:focus-visible .brand-glyph{animation:brandM .38s cubic-bezier(.16,.8,.2,1) both}
-.brand-home-star:hover .brand-glyph,.brand-home-star:focus-visible .brand-glyph{animation:brandStar .40s cubic-bezier(.16,.8,.2,1) both}
-
-@keyframes brandN{0%{transform:none}55%{transform:translateY(-4px) skewX(-5deg);text-shadow:5px 0 0 rgba(111,16,40,.12)}100%{transform:translateY(-2px) skewX(-1deg);text-shadow:2px 0 0 rgba(111,16,40,.06)}}
-@keyframes brandU1{0%{transform:none}52%{transform:translateY(-6px) scaleY(1.08)}100%{transform:translateY(-3px) scale(1.03)}}
-@keyframes brandV{0%{transform:none}52%{transform:perspective(120px) rotateY(-12deg) translateY(-5px) scale(1.05)}100%{transform:perspective(120px) rotateY(-3deg) translateY(-2px) scale(1.02)}}
-@keyframes brandE{0%{transform:none}50%{transform:translate(3px,-4px) scaleX(1.06);text-shadow:-4px 0 0 rgba(111,16,40,.10)}100%{transform:translate(1px,-2px) scaleX(1.02);text-shadow:-1px 0 0 rgba(111,16,40,.05)}}
-@keyframes brandL1{0%{transform:none}52%{transform:translateY(-6px) rotate(-3deg)}100%{transform:translateY(-3px) rotate(-1deg)}}
-@keyframes brandL2{0%{transform:none}52%{transform:translateY(-6px) rotate(3deg)}100%{transform:translateY(-3px) rotate(1deg)}}
-@keyframes brandU2{0%{transform:none}45%{transform:translate(2px,-6px) rotateX(10deg)}70%{transform:translate(-1px,-4px) rotateX(-4deg)}100%{transform:translateY(-2px) rotateX(0)}}
-@keyframes brandM{0%{transform:none}48%{transform:translateY(-5px) scaleX(.94) scaleY(1.08)}72%{transform:translateY(-4px) scaleX(1.05) scaleY(1.03)}100%{transform:translateY(-2px) scale(1.02)}}
-@keyframes brandStar{0%{transform:none}55%{transform:translateY(-5px) rotate(38deg) scale(1.14)}100%{transform:translateY(-2px) rotate(14deg) scale(1.05)}}
 .main-nav{display:flex;justify-content:center;gap:34px;font-size:15px}.main-nav a:hover{color:var(--burgundy)}
 .header-tools{display:flex;align-items:center;justify-content:flex-end;gap:19px}.icon-btn{border:0;background:transparent;color:inherit;font-size:21px;cursor:pointer;padding:6px}.subscribe{border:0;background:var(--burgundy);color:#fff;padding:14px 24px;font-size:14px;cursor:pointer}
 .news-ticker{height:38px;background:#111114;color:#eee;display:flex;align-items:center}.ticker-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;width:100%;font-size:12px}.latest-label{color:#d87387;text-transform:uppercase;letter-spacing:.12em;font-family:var(--sans);font-size:10px}.ticker-links{display:flex;align-items:center;gap:19px;overflow:hidden;white-space:nowrap}.ticker-links a{opacity:.88}.ticker-links a:hover{opacity:1;color:#fff}.ticker-dot{opacity:.45}.view-all{color:#ddd;white-space:nowrap}
@@ -291,8 +260,8 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
         <span class="brand-tagline">Beyond the headline.</span>
       </a>
       <div class="brand-expanded" id="brandExpanded" aria-label="Nuvellum headline discovery">
-        <div class="brand-wordmark"><a class="brand-letter brand-letter-n" style="--i:0" href="/headlines/n" aria-label="Browse headlines beginning with N"><span class="brand-glyph">N</span></a><a class="brand-letter brand-letter-u1" style="--i:1" href="/headlines/u" aria-label="Browse headlines beginning with U"><span class="brand-glyph">U</span></a><a class="brand-letter brand-letter-v" style="--i:2" href="/headlines/v" aria-label="Browse headlines beginning with V"><span class="brand-glyph">V</span></a><a class="brand-letter brand-letter-e" style="--i:3" href="/headlines/e" aria-label="Browse headlines beginning with E"><span class="brand-glyph">E</span></a><a class="brand-letter brand-letter-l1" style="--i:4" href="/headlines/l" aria-label="Browse headlines beginning with L"><span class="brand-glyph">L</span></a><a class="brand-letter brand-letter-l2" style="--i:5" href="/headlines/l" aria-label="Browse headlines beginning with L"><span class="brand-glyph">L</span></a><a class="brand-letter brand-letter-u2" style="--i:6" href="/headlines/u" aria-label="Browse headlines beginning with U"><span class="brand-glyph">U</span></a><a class="brand-letter brand-letter-m" style="--i:7" href="/headlines/m" aria-label="Browse headlines beginning with M"><span class="brand-glyph">M</span></a><a class="brand-home-star" href="/" aria-label="Nuvellum home"><span class="brand-glyph">✦</span></a></div>
-        <div class="brand-expanded-note">Beyond the headline.</div>
+        <div class="brand-wordmark"><a class="brand-letter brand-letter-n" style="--i:0" href="/headlines/n" aria-label="Browse headlines beginning with N">N</a><a class="brand-letter brand-letter-u1" style="--i:1" href="/headlines/u" aria-label="Browse headlines beginning with U">U</a><a class="brand-letter brand-letter-v" style="--i:2" href="/headlines/v" aria-label="Browse headlines beginning with V">V</a><a class="brand-letter brand-letter-e" style="--i:3" href="/headlines/e" aria-label="Browse headlines beginning with E">E</a><a class="brand-letter brand-letter-l1" style="--i:4" href="/headlines/l" aria-label="Browse headlines beginning with L">L</a><a class="brand-letter brand-letter-l2" style="--i:5" href="/headlines/l" aria-label="Browse headlines beginning with L">L</a><a class="brand-letter brand-letter-u2" style="--i:6" href="/headlines/u" aria-label="Browse headlines beginning with U">U</a><a class="brand-letter brand-letter-m" style="--i:7" href="/headlines/m" aria-label="Browse headlines beginning with M">M</a><a class="brand-home-star" href="/" aria-label="Nuvellum home">✦</a></div>
+        <div class="brand-expanded-note">Beyond the headline. · Browse reporting by initial</div>
       </div>
     </div>
     <nav class="main-nav" aria-label="Primary">
