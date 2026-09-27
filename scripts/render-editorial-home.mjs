@@ -83,8 +83,7 @@ for (const a of articles) {
   if (a.slug !== hero.slug && !supporting.includes(a)) supporting.push(a);
 }
 const onTop = new Set([hero.slug, ...supporting.map(a => a.slug)]);
-const latestPool = articles.filter(a => !onTop.has(a.slug));
-const latest = latestPool.slice(0, 8);
+const latest = articles.filter(a => !onTop.has(a.slug)).slice(0, 8);
 const focus = world.find(a => a.slug !== hero.slug && String(a.type).toLowerCase() === 'analysis')
   || world.find(a => a.slug !== hero.slug)
   || articles.find(a => a.slug !== hero.slug)
@@ -145,17 +144,8 @@ function card(article) {
   </article>`;
 }
 
-function latestCategory(article) {
-  const section = String(article.section || '').toLowerCase();
-  if (section === 'world') return 'world';
-  if (['technology','tech','science'].includes(section)) return 'tech';
-  if (section === 'culture') return 'culture';
-  if (['film & tv','film and tv','anime','gaming','entertainment','screen & play'].includes(section)) return 'screen-play';
-  if (section === 'sports' || section === 'sport') return 'sports';
-  return 'other';
-}
-function latestRow(article, index = 0) {
-  return `<article class="latest-row" data-latest-row data-latest-category="${latestCategory(article)}"${index < 5 ? '' : ' hidden'}>
+function latestRow(article) {
+  return `<article class="latest-row">
     <a class="latest-thumb" href="${route(article)}" tabindex="-1" aria-hidden="true">${img(article)}</a>
     <div class="latest-copy">
       <div class="eyebrow">${esc(article.section)}</div>
@@ -356,7 +346,7 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 .region-tabs{display:flex;border-bottom:1px solid var(--hair);margin-top:4px}.region-tab{flex:1 1 auto;min-height:31px;border:0;border-right:1px solid var(--hair);background:transparent;color:var(--tab-ink);padding:2px 6px;font-size:10.5px;line-height:1.1;white-space:nowrap;letter-spacing:0;cursor:pointer;display:grid;place-items:center;text-align:center;transition:background .18s,color .18s}.region-tab:last-child{border-right:0}.region-tab:hover{color:var(--wine-ink)}.region-tab.is-active{background:var(--wine);color:#f6efe4;border-radius:2px}.region-tab:focus-visible{outline:2px solid var(--wine);outline-offset:-2px}
 .region-detail{display:grid;grid-template-columns:minmax(0,1.78fr) minmax(160px,1fr);gap:20px;padding:10px 6px 0;min-height:222px}.region-story-list{display:grid;align-content:start}.region-story{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:5px 0 6px;border-bottom:1px solid var(--hair)}.region-story:last-child{border-bottom:0}.region-story img{width:92px;height:58px;object-fit:cover}.region-story strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.15;font-weight:400}.region-story:hover strong{color:var(--wine-ink)}.region-story small{display:block;font-size:11px;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.region-story>span{min-width:0}.region-summary{border-left:1px solid var(--hair);padding:4px 0 6px 20px;display:flex;flex-direction:column}.region-summary a{margin-top:auto!important}.region-summary p{margin-bottom:14px!important}.summary-kicker{display:grid;grid-template-columns:22px 1fr;font-family:var(--text);font-size:12.5px;line-height:1.3;color:var(--wine-ink);letter-spacing:.16em;font-weight:500}.region-summary>small{display:block;margin:3px 0 14px 22px;color:var(--muted);font-size:11.5px;font-style:italic}.region-summary p{color:var(--muted);font-size:14.5px;line-height:1.22;margin:0}.region-summary a{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--wine);color:#f6efe4;border-radius:2px;padding:9px 12px;margin-top:17px;white-space:nowrap;font-size:14px;letter-spacing:.02em;transition:background .18s}.region-summary a:hover{background:var(--wine2)}.region-empty{font-size:13px;color:var(--muted);padding:20px 6px}
 .section-block{margin-top:16px}.right-col .section-block{margin-top:0;background:var(--plate);border:1px solid var(--line);padding:4px 18px 8px}.right-col .section-title{padding:4px 0 6px}.section-title{display:flex;align-items:center;gap:18px;padding:6px 0 7px}.section-title h2{font-size:28px;line-height:1;color:var(--wine-ink);font-weight:500;letter-spacing:-.012em;margin:0}.section-title .rule{height:1px;background:var(--wine-soft);flex:1}.section-title a{font-size:12px;color:var(--wine-ink);white-space:nowrap}.section-title a:hover{text-decoration:underline}
-.latest-filters{display:flex;align-items:center;gap:18px;overflow-x:auto;scrollbar-width:none;margin:-1px 0 5px;padding:0 0 6px;border-bottom:1px solid var(--hair)}.latest-filters::-webkit-scrollbar{display:none}.latest-filters button{border:0;border-bottom:1px solid transparent;background:none;color:var(--muted);padding:5px 1px 4px;font-family:var(--text);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;cursor:pointer;transition:color .2s ease,border-color .2s ease,transform .2s ease}.latest-filters button:hover{color:var(--wine-ink);transform:translateY(-1px)}.latest-filters button.is-active{color:var(--wine-ink);border-bottom-color:var(--wine-ink)}.latest-list{min-height:0}.latest-empty{padding:18px 2px;color:var(--muted);font-size:13px;font-style:italic;border-bottom:1px solid var(--hair)}.latest-row{display:grid;grid-template-columns:162px 1fr auto;align-items:center;gap:17px;padding:6px 0;border-bottom:1px solid var(--hair)}.latest-thumb{overflow:hidden}.latest-thumb img{height:70px;object-fit:cover}.latest-copy h3{font-size:18px;font-weight:400;line-height:1.18;margin:4px 0 5px;letter-spacing:-.004em}.latest-copy .story-meta{margin-top:0;font-size:12.5px}.save-icon{border:0;background:none;color:inherit;cursor:pointer;padding:10px;line-height:0}.save-icon svg{width:16px;height:19px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linejoin:round}.save-icon:hover,.save-icon.saved{color:var(--wine-ink)}.save-icon.saved svg{fill:currentColor}
+.latest-row{display:grid;grid-template-columns:162px 1fr auto;align-items:center;gap:17px;padding:6px 0;border-bottom:1px solid var(--hair)}.latest-thumb{overflow:hidden}.latest-thumb img{height:70px;object-fit:cover}.latest-copy h3{font-size:18px;font-weight:400;line-height:1.18;margin:4px 0 5px;letter-spacing:-.004em}.latest-copy .story-meta{margin-top:0;font-size:12.5px}.save-icon{border:0;background:none;color:inherit;cursor:pointer;padding:10px;line-height:0}.save-icon svg{width:16px;height:19px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linejoin:round}.save-icon:hover,.save-icon.saved{color:var(--wine-ink)}.save-icon.saved svg{fill:currentColor}
 .popular-head{display:flex;align-items:center;gap:18px}.popular-head h2{font-size:29px;line-height:1;color:var(--wine-ink);font-weight:500;letter-spacing:-.012em;margin:0;white-space:nowrap}.popular-head .rule{height:1px;background:var(--wine-soft);flex:0 1 120px;min-width:20px;margin-right:auto}.popular-tabs{display:flex;gap:18px;font-size:13.5px;white-space:nowrap;flex:none}.popular-tabs button{border:0;border-bottom:1px solid transparent;background:none;color:inherit;padding:8px 6px 6px;cursor:pointer}.popular-tabs button[aria-selected="true"]{color:var(--wine-ink);border-bottom-color:var(--wine-ink)}.popular-list{margin-top:4px}.popular-item{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:4px 0 5px;border-top:1px solid var(--hair);font-size:15.5px;line-height:1.26}.popular-item:first-child{border-top:0}.popular-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.popular-rank{text-align:center;font-variant-numeric:oldstyle-nums;color:var(--wine-ink)}.popular-views{font-size:12px;color:var(--muted);white-space:nowrap}.popular-empty{font-size:13px;color:var(--muted);padding:10px 0}
 .in-focus-section{display:flex;flex-direction:column;min-height:0}.focus-card{display:grid;grid-template-columns:255fr 284fr;gap:15px;padding:2px 0 12px;min-height:138px}.focus-media,.focus-mini-media{overflow:hidden}.focus-card img{height:132px;object-fit:cover;transition:transform .7s cubic-bezier(.16,.8,.2,1),filter .35s ease}.focus-copy .chip{margin-right:6px;vertical-align:3px}.focus-copy h3{display:inline;font-size:17px;line-height:1.18;font-weight:400}.focus-copy p{font-size:13.5px;line-height:1.32;color:var(--muted);margin:8px 0 0}.focus-copy .story-meta{font-size:12px;margin-top:10px}.focus-secondary{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(2,minmax(72px,1fr));border-top:1px solid var(--hair);margin-top:2px;flex:1}.focus-mini{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:center;padding:10px 0;min-width:0}.focus-mini+ .focus-mini{border-left:0;border-top:1px solid var(--hair);padding-left:0;padding-right:0}.focus-mini img{height:72px;object-fit:cover;transition:transform .65s cubic-bezier(.16,.8,.2,1),filter .35s ease}.focus-mini .eyebrow{font-size:9px;letter-spacing:.13em;color:var(--wine-ink)}.focus-mini h4{font-size:14.5px;line-height:1.16;font-weight:400;margin:3px 0 0}.focus-mini .story-meta{font-size:10.5px;margin-top:5px}.focus-card:hover img,.focus-mini:hover img{transform:scale(1.035)}.focus-card:hover h3 a,.focus-mini:hover h4 a{color:var(--wine-ink)}
 .screen{background:#050505;color:#ece3d5;margin-top:30px;padding:26px 0 40px}.screen .section-title h2{color:#efe6d8}.screen .section-title .rule{background:rgba(190,110,128,.45)}.screen .section-title a{color:#cf9eaa}.screen-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:30px;margin-top:6px}.screen-lead-media{display:block;overflow:hidden}.screen-lead img{height:372px;object-fit:cover;filter:saturate(.9) brightness(.92);transition:transform .9s cubic-bezier(.16,.8,.2,1)}.screen-lead:hover img{transform:scale(1.012)}.screen .chip{background:var(--wine);margin-top:18px}.screen-lead h3{font-size:36px;line-height:1.06;font-weight:400;letter-spacing:-.012em;margin:12px 0 10px;max-width:780px}.screen-lead p{color:#bdb4aa;font-size:16px;line-height:1.45;max-width:700px;margin:0}.screen .story-meta{color:#9d948a}.screen .eyebrow{color:#d8a3b0}.screen-side{display:grid;align-content:start;border-left:1px solid rgba(230,210,180,.12);padding-left:30px}.screen-item{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid rgba(230,210,180,.12)}.screen-item:first-child{padding-top:0}.screen-item:last-child{border-bottom:0}.screen-item img{height:92px;object-fit:cover}.screen-item h4{font-size:19px;line-height:1.2;font-weight:400;margin:6px 0 0}.screen-item .story-meta{margin-top:8px;font-size:12px}.screen-lead h3 a:hover,.screen-item:hover h4{color:#fff;text-decoration:underline;text-decoration-color:#8a1b36;text-underline-offset:4px}
@@ -366,7 +356,7 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 .support-image img,.latest-thumb img,.region-story img,.focus-card img,.screen-item img{filter:sepia(.24) saturate(.74) contrast(1.03) brightness(.96)}.screen-lead img{filter:sepia(.26) saturate(.72) contrast(1.03) brightness(.9)!important}
 body{transition:background-color .38s ease,color .38s ease}.site-header,.section-block,.panel,.newsletter,.screen,.footer{transition:background-color .38s ease,color .38s ease,border-color .38s ease}
 .support-card{transition:transform .38s cubic-bezier(.16,.8,.2,1),box-shadow .38s ease}.support-image{overflow:hidden}.support-image img,.latest-thumb img,.screen-item img{transition:transform .65s cubic-bezier(.16,.8,.2,1),filter .35s ease}.support-card:hover{transform:translateY(-3px)}.support-card:hover .support-image img{transform:scale(1.025)}
-.latest-row{transition:transform .3s cubic-bezier(.16,.8,.2,1),background-color .3s ease}.latest-row.filter-in{animation:latestFilterIn .34s cubic-bezier(.16,.8,.2,1)}@keyframes latestFilterIn{from{transform:translateY(6px)}to{transform:none}}.latest-row:hover{transform:translateX(4px);background:rgba(102,18,39,.025)}.latest-row:hover .latest-thumb img{transform:scale(1.035)}.latest-row:hover h3 a{color:var(--wine-ink)}
+.latest-row{transition:transform .3s cubic-bezier(.16,.8,.2,1),background-color .3s ease}.latest-row:hover{transform:translateX(4px);background:rgba(102,18,39,.025)}.latest-row:hover .latest-thumb img{transform:scale(1.035)}.latest-row:hover h3 a{color:var(--wine-ink)}
 .popular-item{transition:transform .28s cubic-bezier(.16,.8,.2,1),color .22s ease,background-color .22s ease}.popular-item:hover{transform:translateX(4px);color:var(--wine-ink);background:rgba(102,18,39,.02)}
 .region-detail.swap-in{animation:regionSwap .34s cubic-bezier(.16,.8,.2,1)}@keyframes regionSwap{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:none}}
 .popular-list.panel-in{animation:panelIn .28s cubic-bezier(.16,.8,.2,1)}@keyframes panelIn{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
@@ -384,7 +374,7 @@ body{transition:background-color .38s ease,color .38s ease}.site-header,.section
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .support-card,.latest-row,.popular-item,.screen-item,.opinion-col,.focus-card img,.focus-mini img,.support-image img,.latest-thumb img,.screen-item img,.save-icon svg{transition:none!important;animation:none!important}
-  .region-detail.swap-in,.popular-list.panel-in,.latest-row.filter-in{animation:none!important}
+  .region-detail.swap-in,.popular-list.panel-in{animation:none!important}
   .ticker-track{animation:none!important;transform:none!important}
   .ticker-group[aria-hidden="true"]{display:none}
 }
@@ -438,18 +428,9 @@ body{transition:background-color .38s ease,color .38s ease}.site-header,.section
     </article>
     <div class="support-grid">${supporting.map(card).join('')}</div>
 
-    <section class="section-block latest-section" aria-labelledby="latest-heading">
-      <div class="section-title"><h2 id="latest-heading">Latest</h2><span class="rule"></span><a href="/latest">View all →</a></div>
-      <div class="latest-filters" role="toolbar" aria-label="Filter latest stories">
-        <button type="button" class="is-active" data-latest-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-latest-filter="world" aria-pressed="false">World</button>
-        <button type="button" data-latest-filter="tech" aria-pressed="false">Tech</button>
-        <button type="button" data-latest-filter="culture" aria-pressed="false">Culture</button>
-        <button type="button" data-latest-filter="screen-play" aria-pressed="false">Screen &amp; Play</button>
-        <button type="button" data-latest-filter="sports" aria-pressed="false">Sports</button>
-      </div>
-      <div class="latest-list" id="latestList">${latestPool.map(latestRow).join('')}</div>
-      <div class="latest-empty" id="latestEmpty" hidden>No stories in this desk yet.</div>
+    <section class="section-block">
+      <div class="section-title"><h2>Latest</h2><span class="rule"></span><a href="/latest">View all →</a></div>
+      ${latest.slice(0,5).map(latestRow).join('')}
     </section>
   </div>
 
@@ -614,32 +595,6 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     const hits=searchIndex.filter(x=>[x.title||'',x.section||'',x.dek||'',(x.tags||[]).join(' ')].join(' ').toLowerCase().includes(q)).slice(0,8);
     results.innerHTML=hits.length?hits.map(x=>'<a class="search-result" href="/article/'+encodeURIComponent(x.slug)+'"><small>'+escapeHtml(x.section||'Nuvellum')+'</small><strong>'+escapeHtml(x.title)+'</strong></a>').join(''):'<div class="region-empty">No matching stories.</div>';
   });
-
-  const latestButtons=[...document.querySelectorAll('[data-latest-filter]')];
-  const latestRows=[...document.querySelectorAll('[data-latest-row]')];
-  const latestEmpty=document.getElementById('latestEmpty');
-  const applyLatestFilter=filter=>{
-    let shown=0;
-    latestRows.forEach(row=>{
-      const matches=filter==='all'||row.dataset.latestCategory===filter;
-      const visible=matches&&shown<5;
-      row.hidden=!visible;
-      if(visible){
-        shown++;
-        row.classList.remove('filter-in');
-        void row.offsetWidth;
-        row.classList.add('filter-in');
-      }
-    });
-    latestButtons.forEach(btn=>{
-      const on=btn.dataset.latestFilter===filter;
-      btn.classList.toggle('is-active',on);
-      btn.setAttribute('aria-pressed',String(on));
-    });
-    if(latestEmpty)latestEmpty.hidden=shown!==0;
-  };
-  latestButtons.forEach(btn=>btn.addEventListener('click',()=>applyLatestFilter(btn.dataset.latestFilter)));
-  applyLatestFilter('all');
 
   const savedKey='nuvellum-saved-v2';
   document.querySelectorAll('[data-save]').forEach(btn=>{
