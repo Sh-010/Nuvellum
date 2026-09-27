@@ -105,3 +105,71 @@ This branch (`stabilize/newsroom`, PR #31) is now the single production PR.
 Still open: #26 and #29 must be regenerated, and #28 must be closed, as the reconciliation doc says.
 
 **n8n side (live, in place, no new versions):** Queue now also blocks DW `/live-<id>` pages and strips `maca=` and other trackers. The workflow is still **inactive**.
+
+## 2026-09-27: release stabilization (Claude Code, n8n MCP + GitHub API session)
+
+### Site (all merged, deployed, verified live)
+- **#47:** homepage story navigation, done properly.
+  - #46 had edited `public/index.html`, which the build replaces with the checksum-locked v5.1 archive, so it never shipped. A headless-Chrome audit of production scored 35/64.
+  - The v5.1 transforms now live in `scripts/lib/v51-bridge.mjs`. Every behaviour patch uses `mustReplace()`, which fails the build on baseline drift.
+  - Routed cards open `/article/<slug>` on click, Enter and Space. Saved stories link to real articles and escape stored text. Section toggles expose `aria-expanded` and a name.
+  - A test pins `public/index.html` to the archive copy.
+  - Production browser suite: **69/69**.
+- **#48:** source attribution and SEO.
+  - Articles never rendered `sourceNote` or `sourceUrls`. They now show a Sources note in the existing v5.1 `.context` style, with nofollow links to each original, plus JSON-LD `isBasedOn`.
+  - `<time datetime>` uses `publishedAt`; the sitemap has `<lastmod>`.
+  - New `scripts/check-build-output.mjs` runs in CI after the build and checks the files that actually deploy.
+- **#53:** CI push race (see run 907 below).
+  - `incoming/**` checks are grouped per commit and never cancelled.
+  - Auto-open resolves the branch's current head.
+- **#51:** committed n8n export synced to live v6.5 (`2b8eda07`).
+- The build/test-verified tooling used this session (browser suite, live verifier, pollers) lives outside the repo; the in-repo guardrails are the tests plus `check-build-output`.
+
+### Repository clean-up
+- Closed #26–#30 with reasons:
+  - #26, #29: fail the contract, so they are regenerated instead;
+  - #27, #30: superseded by #31;
+  - #28: live-blog mash-up.
+- Deleted 35 branches: merged PR heads, closed duplicates and superseded work. All are archived in `Nuvellum-handoff/archived-branches-2026-09-27.bundle`.
+- Kept:
+  - recovery points (`backup-*`, `checkpoint/*`, `nuvellum-v5.1-production-baseline`);
+  - `engines/distribution-shorts`;
+  - dependabot #2, #3, #4, still to evaluate.
+
+### n8n v6.5 (in place; still inactive, autopublish off)
+- Queue: up to 5 diverse candidates per run. Execution 908 produced nothing: the opinion column, the too-short newsletter and CNBC's unextractable page were all correctly rejected.
+- Earlier in-place fixes are listed in `n8n/README.md`: opinion guard, quoted titles, proper nouns, first-letter capitalisation.
+
+### Newsroom end-to-end runs (source → n8n → branch → PR → checks → gate dry-run → merge → Vercel → live)
+Run log (streak rules: a run counts only if every story it produced passes every live check):
+- **902 (#44)**, sensitive, TechCrunch *Musk* ads: merge `39c1db4`, live PASS → clean.
+- **906 (#49, #50)**, low risk, Deadline film tax credit and BBC Sport Robbie Ure: merges `b93a285` and `3ab901d`, live PASS → clean.
+- **907 (#52, #54)**, Pope (sensitive, DW) and McDonagh (low, Variety). Both are content-clean and live, but CI cancelled the McDonagh article commit's checks and no PR opened (push race). **Run failed; streak reset.** Fixed by #53.
+- **908:** nothing published (all rejections correct); not counted.
+- **909 (#55)**, sensitive, Al Jazeera India/Nepal floods: live PASS → clean (1/3 after the race fix).
+- **910 (#56)**, low risk, BBC Sport rugby: live PASS → clean (2/3).
+- **911 (#57)**: the Verge newsletter roundup was drafted into a three-story mash-up (Googlebooks, Meta glasses, Surface Mouse). Closed, not published. **Run failed; streak reset.** v6.5 now declines roundups (drafter `skip`) and review rejects multi-story articles.
+- **913:** nothing new (duplicates and correct rejections); not counted.
+
+**Final streak: 3/3 consecutive clean runs.** Each one covers the full path: source → n8n → branch → PR → all required checks → gate dry-run READY → merge → Vercel production → live 200 → correct homepage, /latest and section placement.
+
+| # | Exec | PR | Source | Risk | Head → merge | Live |
+|---|---|---|---|---|---|---|
+| 1 | 912 | #58 | BBC: Ten climbers missing after avalanche hits Himalayan base camp | sensitive, cleared | 374d3a3 → e594909 | homepage lead; #1 /latest, #1 World |
+| 2 | 914 | #60 | Al Jazeera: Swiss voters set to reject tighter neutrality rules in referendum | sensitive, cleared | c93ac9c → 98ced7e | homepage lead; #1 /latest, #1 World |
+| 3 | 915 | #61 | Variety: Naomi Watts reflects on early career struggles and menopause openness… | low | 512697e → 4739076 | homepage side and feature; #1 /latest, #1 Film & TV |
+
+Correct rejections seen across runs: opinion columns (Polygon, twice via the drafter and twice via review), newsletter roundups (The Verge), unextractable pages (CNBC, Anime News Network), and exact-source duplicates.
+
+### Other changes
+- **#59:** the hidden story drawer and info modal are `inert` (Lighthouse aria-hidden-focus).
+- Lighthouse, production mobile:
+  - homepage: Performance 98, Accessibility 84, Best Practices 100, SEO 100;
+  - article: Accessibility 100, SEO 100 (the performance trace failed on Windows, NO_NAVSTART).
+- Remaining a11y items are v5.1 design decisions: footer contrast 3.2:1, ticker button 18×21px target, footer heading order.
+
+### Open items
+- **`NUVELLUM_AUTOPUBLISH` and the n8n schedule are still OFF.** This is the owner's decision.
+- Known casing gap: "Control resonant" (game title *Control Resonant*, not quoted) was lower-cased in a draft that review rejected anyway. Unquoted multi-word titles whose second word also appears lower-case in the source are not restored yet.
+- Dependabot #2 (TypeScript 5→7, major), #3 and #4 (actions v4→v7): not evaluated this session.
+- `engines/distribution-shorts` (distribution, Shorts, provider layer) is still outside `main`; it belongs to the next milestones (M3/M4).
