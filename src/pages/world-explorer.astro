@@ -1,0 +1,529 @@
+---
+import SiteHead from '../components/SiteHead.astro';
+import { getArticles } from '../lib/articles';
+import { REGIONS } from '../lib/geography.js';
+import { COUNTRIES, countrySlug, storiesForCountry } from '../lib/countries.js';
+
+const articles = await getArticles();
+const regionLabels = Object.fromEntries(REGIONS.map(region => [region.slug, region.label]));
+const countries = COUNTRIES.map((country, index) => {
+  const stories = storiesForCountry(articles, country.name).slice(0, 4);
+  const nums = String(country.d || '').match(/-?\d+(?:\.\d+)?/g)?.map(Number) || [];
+  const xs = [], ys = [];
+  for (let i = 0; i + 1 < nums.length; i += 2) { xs.push(nums[i]); ys.push(nums[i + 1]); }
+  const cx = xs.length ? (Math.min(...xs) + Math.max(...xs)) / 2 : 500;
+  const cy = ys.length ? (Math.min(...ys) + Math.max(...ys)) / 2 : 197.2;
+  const lon = cx / 1000 * 360 - 180;
+  const lat = 84 - cy * (142 / 394.4);
+  return {
+    id: index + 1,
+    name: country.name,
+    slug: countrySlug(country.name),
+    region: country.region,
+    regionLabel: regionLabels[country.region] || country.region,
+    d: country.d,
+    lon,
+    lat,
+    stories: stories.map(story => ({
+      slug: story.slug,
+      title: story.title,
+      dek: story.dek,
+      section: story.section,
+      type: story.type,
+      date: story.date,
+      readingTime: story.readingTime,
+      image: story.image
+    }))
+  };
+});
+const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SiteHead
+    title="World Explorer — Nuvellum"
+    description="Explore Nuvellum's global coverage on an interactive 3D world."
+  />
+</head>
+<body>
+  <main class="explorer-shell">
+    <header class="explorer-header">
+      <a class="brand" href="/" aria-label="Nuvellum home">N<span>✦</span>UVELLUM</a>
+      <div class="header-copy">
+        <div class="eyebrow">WORLD EXPLORER</div>
+        <h1>A living atlas of the stories shaping the world.</h1>
+      </div>
+      <a class="home-link" href="/">Return home <span>→</span></a>
+    </header>
+
+    <section class="explorer-stage" aria-label="Interactive world explorer">
+      <div class="globe-column">
+        <div class="globe-frame" id="globeFrame">
+          <canvas id="globeCanvas" aria-label="Interactive 3D globe. Drag to rotate, scroll to zoom, and select a country."></canvas>
+          <div class="scanlines" aria-hidden="true"></div>
+          <div class="orbit-ring orbit-one" aria-hidden="true"></div>
+          <div class="orbit-ring orbit-two" aria-hidden="true"></div>
+          <div class="globe-loading" id="globeLoading">
+            <span></span>
+            <strong>Initializing global desk</strong>
+          </div>
+          <div class="globe-fallback" id="globeFallback" hidden>
+            3D rendering is unavailable in this browser. Use the country search to continue.
+          </div>
+          <div class="country-tooltip" id="countryTooltip" hidden>
+            <strong></strong><span></span>
+          </div>
+          <div class="globe-caption">
+            <span><i class="dot dot-live"></i> Nuvellum coverage</span>
+            <span><i class="dot dot-map"></i> World atlas</span>
+            <span>Drag to rotate · Wheel to zoom · Click to select</span>
+          </div>
+        </div>
+
+        <div class="explorer-controls">
+          <label class="country-search">
+            <span>Find a country</span>
+            <input id="countrySearch" list="countryList" autocomplete="off" placeholder="e.g. Switzerland">
+            <datalist id="countryList">
+              {countries.map(country => <option value={country.name} />)}
+            </datalist>
+          </label>
+          <button type="button" id="countryGo">Locate</button>
+          <button type="button" class="quiet" id="spinToggle" aria-pressed="true">Pause rotation</button>
+          <button type="button" class="quiet" id="resetGlobe">Reset view</button>
+        </div>
+      </div>
+
+      <aside class="country-panel" id="countryPanel" aria-live="polite">
+        <div class="panel-kicker">SELECT A COUNTRY</div>
+        <h2>Explore the world.</h2>
+        <p class="panel-intro">Choose a country on the globe to see its Nuvellum coverage, regional desk, and latest reporting.</p>
+        <div class="panel-rule"></div>
+        <div class="panel-placeholder">
+          <span class="crosshair" aria-hidden="true">⌖</span>
+          <p>Direct country coverage appears here.</p>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="explorer-footer">
+      <span>NUVELLUM · Beyond the headline.</span>
+      <a href="/section/world">World desk archive →</a>
+    </footer>
+  </main>
+
+  <script id="world-explorer-data" type="application/json" set:html={explorerJson}></script>
+  <script type="module" is:inline>
+    const root = document.querySelector('.explorer-shell');
+    const canvas = document.getElementById('globeCanvas');
+    const frame = document.getElementById('globeFrame');
+    const loading = document.getElementById('globeLoading');
+    const fallback = document.getElementById('globeFallback');
+    const panel = document.getElementById('countryPanel');
+    const tooltip = document.getElementById('countryTooltip');
+    const search = document.getElementById('countrySearch');
+    const go = document.getElementById('countryGo');
+    const spinToggle = document.getElementById('spinToggle');
+    const reset = document.getElementById('resetGlobe');
+    const payload = JSON.parse(document.getElementById('world-explorer-data').textContent || '{"countries":[]}');
+    const countries = payload.countries || [];
+    const byId = new Map(countries.map(country => [country.id, country]));
+    const byName = new Map(countries.map(country => [country.name.toLowerCase(), country]));
+
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const storyMarkup = story => `
+      <a class="panel-story" href="/article/${encodeURIComponent(story.slug)}">
+        <img src="${escapeHtml(story.image)}" alt="">
+        <span>
+          <small>${escapeHtml(story.section)} · ${escapeHtml(story.type)}</small>
+          <strong>${escapeHtml(story.title)}</strong>
+          <em>${escapeHtml(story.readingTime || '')}</em>
+        </span>
+      </a>`;
+
+    let selected = null;
+    let hovered = null;
+    let three = null;
+    let textureCanvas = null;
+    let hitCanvas = null;
+    let texture = null;
+    let globe = null;
+    let globeGroup = null;
+    let renderer = null;
+    let camera = null;
+    let scene = null;
+    let raycaster = null;
+    let pointer = null;
+    let spinning = true;
+    let dragging = false;
+    let moved = false;
+    let startX = 0, startY = 0, lastX = 0, lastY = 0;
+    let targetRotX = 0, targetRotY = -Math.PI / 2;
+    let targetCameraZ = 3.25;
+    let hoverRAF = 0;
+
+    function renderPanel(country) {
+      selected = country;
+      redrawTexture();
+      if (!country) return;
+      const stories = country.stories || [];
+      panel.innerHTML = `
+        <div class="panel-kicker">${escapeHtml(country.regionLabel)}</div>
+        <h2>${escapeHtml(country.name)}</h2>
+        <div class="country-stats">
+          <span><b>${stories.length}</b> direct stor${stories.length === 1 ? 'y' : 'ies'}</span>
+          <span>World Desk</span>
+        </div>
+        <div class="panel-rule"></div>
+        ${stories.length
+          ? `<div class="panel-stories">${stories.slice(0,3).map(storyMarkup).join('')}</div>`
+          : `<div class="panel-empty"><p>No direct Nuvellum story is currently tagged to this country.</p><p>The regional desk still tracks developments across ${escapeHtml(country.regionLabel)}.</p></div>`}
+        <div class="panel-actions">
+          <a class="primary-action" href="/country/${encodeURIComponent(country.slug)}">Open country desk <span>→</span></a>
+          <a href="/world/${encodeURIComponent(country.region)}">Regional desk</a>
+        </div>`;
+    }
+
+    function locateCountry(country) {
+      if (!country) return;
+      renderPanel(country);
+      search.value = country.name;
+      const lon = country.lon * Math.PI / 180;
+      const lat = country.lat * Math.PI / 180;
+      targetRotY = -Math.PI / 2 - lon;
+      targetRotX = Math.max(-1.0, Math.min(1.0, lat));
+      spinning = false;
+      spinToggle.textContent = 'Resume rotation';
+      spinToggle.setAttribute('aria-pressed', 'false');
+    }
+
+    go.addEventListener('click', () => {
+      const value = search.value.trim().toLowerCase();
+      const exact = byName.get(value);
+      const loose = countries.find(country => country.name.toLowerCase().includes(value));
+      locateCountry(exact || loose);
+    });
+    search.addEventListener('keydown', event => {
+      if (event.key === 'Enter') { event.preventDefault(); go.click(); }
+    });
+    spinToggle.addEventListener('click', () => {
+      spinning = !spinning;
+      spinToggle.textContent = spinning ? 'Pause rotation' : 'Resume rotation';
+      spinToggle.setAttribute('aria-pressed', String(spinning));
+    });
+    reset.addEventListener('click', () => {
+      selected = null;
+      hovered = null;
+      search.value = '';
+      targetRotX = 0;
+      targetRotY = -Math.PI / 2;
+      targetCameraZ = 3.25;
+      spinning = true;
+      spinToggle.textContent = 'Pause rotation';
+      spinToggle.setAttribute('aria-pressed', 'true');
+      redrawTexture();
+      panel.innerHTML = '<div class="panel-kicker">SELECT A COUNTRY</div><h2>Explore the world.</h2><p class="panel-intro">Choose a country on the globe to see its Nuvellum coverage, regional desk, and latest reporting.</p><div class="panel-rule"></div><div class="panel-placeholder"><span class="crosshair" aria-hidden="true">⌖</span><p>Direct country coverage appears here.</p></div>';
+    });
+
+    function colorForCountry(country) {
+      if (selected?.id === country.id) return '#f0e4d5';
+      if (hovered?.id === country.id) return '#a83352';
+      if ((country.stories || []).length) return '#761b36';
+      return '#37383b';
+    }
+
+    function redrawTexture() {
+      if (!textureCanvas) return;
+      const ctx = textureCanvas.getContext('2d');
+      const w = textureCanvas.width, h = textureCanvas.height;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.fillStyle = '#020406';
+      ctx.fillRect(0,0,w,h);
+
+      ctx.strokeStyle = 'rgba(181,139,151,.12)';
+      ctx.lineWidth = 1;
+      for (let lon = -150; lon <= 150; lon += 30) {
+        const x = (lon + 180) / 360 * w;
+        ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
+      }
+      for (let lat = -60; lat <= 60; lat += 30) {
+        const y = (90 - lat) / 180 * h;
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+      }
+
+      const scale = w / 1000;
+      const yOffset = (90 - 84) / 180 * h;
+      ctx.setTransform(scale,0,0,scale,0,yOffset);
+      for (const country of countries) {
+        const path = new Path2D(country.d);
+        ctx.fillStyle = colorForCountry(country);
+        ctx.strokeStyle = selected?.id === country.id ? '#fff5e8' : 'rgba(238,226,213,.34)';
+        ctx.lineWidth = selected?.id === country.id ? .62 : .25;
+        ctx.fill(path);
+        ctx.stroke(path);
+      }
+      ctx.setTransform(1,0,0,1,0,0);
+
+      const glow = ctx.createRadialGradient(w*.5,h*.43,w*.05,w*.5,h*.43,w*.7);
+      glow.addColorStop(0,'rgba(127,28,55,.10)');
+      glow.addColorStop(.7,'rgba(0,0,0,0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0,0,w,h);
+      if (texture) texture.needsUpdate = true;
+    }
+
+    function buildHitMap() {
+      const ctx = hitCanvas.getContext('2d', { willReadFrequently: true });
+      const w = hitCanvas.width, h = hitCanvas.height;
+      ctx.clearRect(0,0,w,h);
+      const scale = w / 1000;
+      const yOffset = (90 - 84) / 180 * h;
+      ctx.setTransform(scale,0,0,scale,0,yOffset);
+      for (const country of countries) {
+        const path = new Path2D(country.d);
+        const id = country.id;
+        ctx.fillStyle = `rgb(${id & 255},${(id >> 8) & 255},${(id >> 16) & 255})`;
+        ctx.fill(path);
+      }
+      ctx.setTransform(1,0,0,1,0,0);
+    }
+
+    function countryFromPointer(event) {
+      if (!renderer || !camera || !globe) return null;
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hit = raycaster.intersectObject(globe, false)[0];
+      if (!hit?.uv) return null;
+      const x = Math.max(0, Math.min(hitCanvas.width - 1, Math.floor(hit.uv.x * hitCanvas.width)));
+      const y = Math.max(0, Math.min(hitCanvas.height - 1, Math.floor((1 - hit.uv.y) * hitCanvas.height)));
+      const pixel = hitCanvas.getContext('2d', { willReadFrequently: true }).getImageData(x,y,1,1).data;
+      const id = pixel[0] | (pixel[1] << 8) | (pixel[2] << 16);
+      return byId.get(id) || null;
+    }
+
+    function setTooltip(country, event) {
+      if (!country) { tooltip.hidden = true; return; }
+      tooltip.querySelector('strong').textContent = country.name;
+      const count = (country.stories || []).length;
+      tooltip.querySelector('span').textContent = count ? `${count} direct stor${count === 1 ? 'y' : 'ies'}` : country.regionLabel;
+      const rect = frame.getBoundingClientRect();
+      tooltip.style.left = `${event.clientX - rect.left + 14}px`;
+      tooltip.style.top = `${event.clientY - rect.top + 14}px`;
+      tooltip.hidden = false;
+    }
+
+    canvas.addEventListener('pointerdown', event => {
+      dragging = true; moved = false; spinning = false;
+      startX = lastX = event.clientX; startY = lastY = event.clientY;
+      canvas.setPointerCapture(event.pointerId);
+    });
+    canvas.addEventListener('pointermove', event => {
+      if (dragging) {
+        const dx = event.clientX - lastX, dy = event.clientY - lastY;
+        if (Math.abs(event.clientX - startX) + Math.abs(event.clientY - startY) > 5) moved = true;
+        targetRotY += dx * .006;
+        targetRotX = Math.max(-1.15, Math.min(1.15, targetRotX + dy * .004));
+        lastX = event.clientX; lastY = event.clientY;
+        tooltip.hidden = true;
+        return;
+      }
+      if (hoverRAF) cancelAnimationFrame(hoverRAF);
+      hoverRAF = requestAnimationFrame(() => {
+        const country = countryFromPointer(event);
+        if (country?.id !== hovered?.id) {
+          hovered = country;
+          redrawTexture();
+        }
+        setTooltip(country, event);
+        canvas.style.cursor = country ? 'pointer' : 'grab';
+      });
+    });
+    canvas.addEventListener('pointerup', event => {
+      dragging = false;
+      try { canvas.releasePointerCapture(event.pointerId); } catch {}
+      if (!moved) {
+        const country = countryFromPointer(event);
+        if (country) locateCountry(country);
+      }
+    });
+    canvas.addEventListener('pointerleave', () => {
+      if (!dragging) {
+        hovered = null;
+        tooltip.hidden = true;
+        redrawTexture();
+      }
+    });
+    canvas.addEventListener('wheel', event => {
+      event.preventDefault();
+      targetCameraZ = Math.max(2.15, Math.min(5.2, targetCameraZ + event.deltaY * .0022));
+    }, { passive: false });
+
+    async function init() {
+      try {
+        three = await import('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm');
+        const THREE = three;
+        scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020305, .12);
+        camera = new THREE.PerspectiveCamera(36, 1, .1, 100);
+        camera.position.set(0,0,targetCameraZ);
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        textureCanvas = document.createElement('canvas');
+        textureCanvas.width = 2048; textureCanvas.height = 1024;
+        hitCanvas = document.createElement('canvas');
+        hitCanvas.width = 2048; hitCanvas.height = 1024;
+        buildHitMap();
+        redrawTexture();
+
+        texture = new THREE.CanvasTexture(textureCanvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+        texture.needsUpdate = true;
+
+        globeGroup = new THREE.Group();
+        globeGroup.rotation.y = targetRotY;
+        scene.add(globeGroup);
+
+        const sphereGeometry = new THREE.SphereGeometry(1, 96, 64);
+        const material = new THREE.MeshPhongMaterial({
+          map: texture,
+          emissive: 0x210711,
+          emissiveIntensity: .42,
+          shininess: 18,
+          specular: 0x5f4050
+        });
+        globe = new THREE.Mesh(sphereGeometry, material);
+        globeGroup.add(globe);
+
+        const wire = new THREE.Mesh(
+          new THREE.SphereGeometry(1.007, 48, 32),
+          new THREE.MeshBasicMaterial({ color: 0x8a2944, wireframe: true, transparent: true, opacity: .055 })
+        );
+        globeGroup.add(wire);
+
+        const atmosphere = new THREE.Mesh(
+          new THREE.SphereGeometry(1.05, 64, 40),
+          new THREE.MeshBasicMaterial({ color: 0x8c2a47, transparent: true, opacity: .065, side: THREE.BackSide })
+        );
+        globeGroup.add(atmosphere);
+
+        const halo = new THREE.Mesh(
+          new THREE.RingGeometry(1.12, 1.122, 128),
+          new THREE.MeshBasicMaterial({ color: 0xa34a62, transparent: true, opacity: .22, side: THREE.DoubleSide })
+        );
+        halo.rotation.x = Math.PI / 2;
+        globeGroup.add(halo);
+
+        scene.add(new THREE.AmbientLight(0xd9c9bd, 1.3));
+        const key = new THREE.DirectionalLight(0xffe7d7, 2.5);
+        key.position.set(3,2,4); scene.add(key);
+        const rim = new THREE.PointLight(0x8a1937, 8, 12);
+        rim.position.set(-3,1,-2); scene.add(rim);
+
+        const starCount = 700;
+        const pos = new Float32Array(starCount * 3);
+        for (let i=0;i<starCount;i++) {
+          const r = 7 + Math.random()*18;
+          const a = Math.random()*Math.PI*2;
+          const z = (Math.random()-.5)*16;
+          pos[i*3] = Math.cos(a)*r;
+          pos[i*3+1] = (Math.random()-.5)*14;
+          pos[i*3+2] = Math.sin(a)*r + z*.08;
+        }
+        const starGeo = new THREE.BufferGeometry();
+        starGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color:0x9d8a91, size:.018, transparent:true, opacity:.5 }));
+        scene.add(stars);
+
+        raycaster = new THREE.Raycaster();
+        pointer = new THREE.Vector2();
+
+        const resize = () => {
+          const rect = frame.getBoundingClientRect();
+          const width = Math.max(300, rect.width);
+          const height = Math.max(420, rect.height);
+          renderer.setSize(width,height,false);
+          camera.aspect = width/height;
+          camera.updateProjectionMatrix();
+        };
+        new ResizeObserver(resize).observe(frame);
+        resize();
+
+        const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) spinning = false;
+
+        const clock = new THREE.Clock();
+        function animate() {
+          const dt = Math.min(.05, clock.getDelta());
+          if (spinning && !dragging) targetRotY -= dt * .075;
+          globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x) * .075;
+          globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y) * .075;
+          camera.position.z += (targetCameraZ - camera.position.z) * .09;
+          renderer.render(scene,camera);
+          requestAnimationFrame(animate);
+        }
+        animate();
+        loading.hidden = true;
+        root.classList.add('is-ready');
+      } catch (error) {
+        console.error('World Explorer failed to initialize', error);
+        loading.hidden = true;
+        fallback.hidden = false;
+      }
+    }
+    init();
+  </script>
+</body>
+</html>
+
+<style>
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-normal-latin.woff2') format('woff2')}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-italic-latin.woff2') format('woff2')}
+:global(*){box-sizing:border-box}
+:global(html){background:#020305}
+:global(body){margin:0;background:#020305;color:#eee6db;font-family:'Newsreader',Georgia,serif}
+.explorer-shell{min-height:100vh;background:
+  radial-gradient(circle at 44% 40%,rgba(105,18,45,.18),transparent 31%),
+  radial-gradient(circle at 50% 110%,rgba(81,16,35,.16),transparent 40%),
+  #020305;color:#eee6db}
+.explorer-header{min-height:112px;display:grid;grid-template-columns:280px 1fr 220px;gap:28px;align-items:center;padding:20px clamp(24px,4vw,64px);border-bottom:1px solid rgba(235,220,205,.16);background:rgba(4,5,7,.82);backdrop-filter:blur(16px);position:relative;z-index:10}
+.brand{font-size:31px;letter-spacing:.08em;color:#f5ecdf;white-space:nowrap}.brand span{font-size:.5em;color:#8d1b3b;vertical-align:top;margin:0 3px}
+.header-copy{border-left:1px solid rgba(235,220,205,.14);padding-left:28px}.eyebrow,.panel-kicker{font-size:10px;letter-spacing:.2em;color:#b75a72;text-transform:uppercase}
+.header-copy h1{font-weight:300;font-size:clamp(20px,2vw,30px);line-height:1.04;margin:5px 0 0;max-width:720px}
+.home-link{justify-self:end;color:#d9cdc0;font-size:14px}.home-link span{color:#b24e67;margin-left:8px}
+.explorer-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,390px);gap:0;min-height:calc(100vh - 164px)}
+.globe-column{min-width:0;border-right:1px solid rgba(235,220,205,.15);display:flex;flex-direction:column}
+.globe-frame{position:relative;flex:1;min-height:650px;overflow:hidden;background:
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:48px 48px}
+#globeCanvas{display:block;width:100%;height:100%;position:absolute;inset:0;touch-action:none;cursor:grab}
+.scanlines{position:absolute;inset:0;pointer-events:none;opacity:.18;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px);mix-blend-mode:screen}
+.orbit-ring{position:absolute;left:50%;top:50%;border:1px solid rgba(157,56,82,.16);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%) rotateX(68deg)}
+.orbit-one{width:62%;aspect-ratio:1}.orbit-two{width:76%;aspect-ratio:1;transform:translate(-50%,-50%) rotateX(78deg) rotateZ(22deg);border-color:rgba(229,215,201,.08)}
+.globe-loading,.globe-fallback{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;color:#c8bdb2}
+.globe-loading span{display:block;width:28px;height:28px;border:1px solid #91324e;border-top-color:transparent;border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}.globe-loading strong{font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+.globe-fallback{max-width:340px;line-height:1.5}
+.country-tooltip{position:absolute;z-index:8;background:rgba(5,5,7,.94);border:1px solid rgba(227,211,196,.22);padding:9px 11px;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.34);min-width:130px}
+.country-tooltip strong{display:block;font-size:14px;font-weight:500}.country-tooltip span{display:block;color:#b8aca1;font-size:11px;margin-top:3px}
+.globe-caption{position:absolute;left:24px;right:24px;bottom:18px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;color:#8f8580;font-size:11px;letter-spacing:.04em;pointer-events:none}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}.dot-live{background:#8e2140;box-shadow:0 0 10px #9c2849}.dot-map{background:#78787c}
+.explorer-controls{display:flex;gap:9px;align-items:end;padding:16px 22px;border-top:1px solid rgba(235,220,205,.13);background:#060709}
+.country-search{display:grid;gap:5px;flex:1;min-width:180px}.country-search span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9e9290}.country-search input{height:40px;border:1px solid rgba(235,220,205,.18);background:#0b0c0f;color:#eee6db;padding:0 12px;outline:none}.country-search input:focus{border-color:#8f2946;box-shadow:0 0 0 1px #8f2946}
+.explorer-controls button{height:40px;border:1px solid #7b1d37;background:#751a35;color:#f7ede0;padding:0 16px;cursor:pointer;font-family:inherit}.explorer-controls button:hover{background:#8a2341}.explorer-controls .quiet{border-color:rgba(235,220,205,.18);background:transparent;color:#c9beb4}.explorer-controls .quiet:hover{border-color:#7b1d37;color:#fff}
+.country-panel{padding:clamp(26px,3vw,44px) clamp(24px,2.8vw,38px);background:linear-gradient(180deg,#090a0c,#050608);min-width:0}
+.country-panel h2{font-weight:300;font-size:clamp(38px,4vw,56px);line-height:.94;margin:10px 0 18px;letter-spacing:-.03em;color:#f4eadf}.panel-intro,.panel-empty p{font-size:16px;line-height:1.45;color:#ada198}.panel-rule{height:1px;background:linear-gradient(90deg,#7d1d39,rgba(255,255,255,.06));margin:22px 0}
+.panel-placeholder{min-height:250px;display:grid;place-items:center;align-content:center;text-align:center;color:#6f6967}.crosshair{font-size:54px;color:#722039}.country-stats{display:flex;gap:20px;color:#a89c94;font-size:12px}.country-stats b{font-size:20px;color:#e9ddd0;font-weight:400;margin-right:4px}
+.panel-stories{display:grid}.panel-story{display:grid;grid-template-columns:92px 1fr;gap:13px;padding:12px 0;border-bottom:1px solid rgba(235,220,205,.12);transition:transform .25s ease,color .2s}.panel-story:hover{transform:translateX(4px);color:#fff}.panel-story img{width:92px;height:66px;object-fit:cover;filter:saturate(.72) sepia(.2) brightness(.84)}.panel-story small{display:block;color:#b4526a;font-size:9px;letter-spacing:.11em;text-transform:uppercase}.panel-story strong{display:block;font-size:16px;line-height:1.08;font-weight:400;margin-top:4px}.panel-story em{display:block;color:#8f8580;font-size:10px;font-style:normal;margin-top:5px}
+.panel-actions{display:flex;gap:14px;align-items:center;margin-top:24px;flex-wrap:wrap}.panel-actions a{font-size:12px;color:#bfb2a8}.panel-actions .primary-action{background:#751a35;color:#f8eee2;padding:12px 14px}.panel-actions .primary-action:hover{background:#8b2442}.panel-actions span{margin-left:10px}
+.explorer-footer{min-height:52px;border-top:1px solid rgba(235,220,205,.13);display:flex;justify-content:space-between;gap:20px;align-items:center;padding:0 clamp(24px,4vw,64px);color:#776f6a;font-size:11px;background:#030406}.explorer-footer a{color:#a4928d}
+@media(max-width:980px){.explorer-header{grid-template-columns:1fr auto}.header-copy{grid-column:1/-1;grid-row:2;padding:12px 0 0;border-left:0;border-top:1px solid rgba(235,220,205,.12)}.explorer-stage{grid-template-columns:1fr}.globe-column{border-right:0}.globe-frame{min-height:600px}.country-panel{border-top:1px solid rgba(235,220,205,.13)}}
+@media(max-width:620px){.explorer-header{grid-template-columns:1fr;padding:18px 18px}.home-link{justify-self:start}.globe-frame{min-height:500px}.explorer-controls{align-items:stretch;flex-wrap:wrap;padding:12px}.country-search{flex-basis:100%}.explorer-controls button{flex:1}.globe-caption{left:14px;right:14px;bottom:12px;gap:10px}.country-panel{padding:28px 18px}.explorer-footer{padding:14px 18px;align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.globe-loading span{animation:none}.panel-story{transition:none}}
+</style>
