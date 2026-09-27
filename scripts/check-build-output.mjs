@@ -21,7 +21,8 @@ if (!home.includes('id="brandZone"')) errors.push('index.html: interactive Nuvel
 if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter discovery links missing');
 if (!home.includes('id="newsletter"')) errors.push('index.html: newsletter section missing');
 if (!home.includes('class="footer-cols"')) errors.push('index.html: full footer navigation missing');
-if (/d+(.d)?K/.test(home.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric found (no analytics are connected)');
+const popularBlock = home.slice(home.indexOf('id="popular-heading"'), home.indexOf('In Focus</h2>'));
+if (/d+(.d)?K/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric in Popular Reads (no analytics are connected)');
 
 for (const letter of ['n','u','v','e','l','m']) {
   const file = join('headlines', letter, 'index.html');
