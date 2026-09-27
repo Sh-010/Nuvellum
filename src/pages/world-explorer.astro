@@ -148,6 +148,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let three = null;
     let textureCanvas = null;
     let hitCanvas = null;
+    let hitCtx = null;
     let texture = null;
     let globe = null;
     let globeGroup = null;
@@ -157,6 +158,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let raycaster = null;
     let pointer = null;
     let countryTargets = [];
+    let microstateTargets = [];
     let microstateMarkers = [];
     let spinning = true;
     let dragging = false;
@@ -165,6 +167,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let targetRotX = 0, targetRotY = -Math.PI / 2;
     let targetCameraZ = 3.25;
     let hoverRAF = 0;
+    let lastHoverCheck = 0;
 
     function renderPanel(country) {
       selected = country;
@@ -235,7 +238,6 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
 
     function colorForCountry(country) {
       if (selected?.id === country.id) return '#f0e4d5';
-      if (hovered?.id === country.id) return '#a83352';
       if ((country.stories || []).length) return '#761b36';
       return '#37383b';
     }
@@ -282,7 +284,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     }
 
     function buildHitMap() {
-      const ctx = hitCanvas.getContext('2d', { willReadFrequently: true });
+      const ctx = hitCtx || hitCanvas.getContext('2d', { willReadFrequently: true });
       const w = hitCanvas.width, h = hitCanvas.height;
       ctx.clearRect(0,0,w,h);
       const scale = w / 1000;
@@ -298,21 +300,26 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       ctx.setTransform(1,0,0,1,0,0);
     }
 
-    function countryFromPointer(event) {
-      if (!renderer || !camera || !globe) return null;
-      const rect = canvas.getBoundingClientRect();
+    function countryFromPointer(event, fullTargets = false, rect = canvas.getBoundingClientRect()) {
+      if (!renderer || !camera || !globe || !hitCtx) return null;
       pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      const targetHit = raycaster.intersectObjects(countryTargets, false)[0];
-      const targetId = targetHit?.object?.userData?.countryId;
-      if (targetId) return byId.get(targetId) || null;
+
+      // Hover stays light: only test the small set of point-only microstates.
+      // Clicks use all country proxy targets to guarantee selection.
+      const targets = fullTargets ? countryTargets : microstateTargets;
+      if (targets.length) {
+        const targetHit = raycaster.intersectObjects(targets, false)[0];
+        const targetId = targetHit?.object?.userData?.countryId;
+        if (targetId) return byId.get(targetId) || null;
+      }
 
       const hit = raycaster.intersectObject(globe, false)[0];
       if (!hit?.uv) return null;
       const x = Math.max(0, Math.min(hitCanvas.width - 1, Math.floor(hit.uv.x * hitCanvas.width)));
       const y = Math.max(0, Math.min(hitCanvas.height - 1, Math.floor((1 - hit.uv.y) * hitCanvas.height)));
-      const ctx = hitCanvas.getContext('2d', { willReadFrequently: true });
+      const ctx = hitCtx;
       const pixel = ctx.getImageData(x,y,1,1).data;
       let id = pixel[0] | (pixel[1] << 8) | (pixel[2] << 16);
       if (id) return byId.get(id) || null;
@@ -348,12 +355,18 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       return byId.get(bestId) || null;
     }
 
-    function setTooltip(country, event) {
-      if (!country) { tooltip.hidden = true; return; }
-      tooltip.querySelector('strong').textContent = country.name;
-      const count = (country.stories || []).length;
-      tooltip.querySelector('span').textContent = count ? `${count} direct stor${count === 1 ? 'y' : 'ies'}` : country.regionLabel;
-      const rect = frame.getBoundingClientRect();
+    function setTooltip(country, event, rect = frame.getBoundingClientRect()) {
+      if (!country) {
+        tooltip.hidden = true;
+        tooltip.dataset.countryId = '';
+        return;
+      }
+      if (tooltip.dataset.countryId !== String(country.id)) {
+        tooltip.dataset.countryId = String(country.id);
+        tooltip.querySelector('strong').textContent = country.name;
+        const count = (country.stories || []).length;
+        tooltip.querySelector('span').textContent = count ? `${count} direct stor${count === 1 ? 'y' : 'ies'}` : country.regionLabel;
+      }
       tooltip.style.left = `${event.clientX - rect.left + 14}px`;
       tooltip.style.top = `${event.clientY - rect.top + 14}px`;
       tooltip.hidden = false;
@@ -375,13 +388,13 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         return;
       }
       if (hoverRAF) cancelAnimationFrame(hoverRAF);
-      hoverRAF = requestAnimationFrame(() => {
-        const country = countryFromPointer(event);
-        if (country?.id !== hovered?.id) {
-          hovered = country;
-          redrawTexture();
-        }
-        setTooltip(country, event);
+      hoverRAF = requestAnimationFrame((now) => {
+        if (now - lastHoverCheck < 32) return;
+        lastHoverCheck = now;
+        const rect = canvas.getBoundingClientRect();
+        const country = countryFromPointer(event, false, rect);
+        hovered = country;
+        setTooltip(country, event, rect);
         canvas.style.cursor = country ? 'pointer' : 'grab';
       });
     });
@@ -389,7 +402,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       dragging = false;
       try { canvas.releasePointerCapture(event.pointerId); } catch {}
       if (!moved) {
-        const country = countryFromPointer(event);
+        const country = countryFromPointer(event, true);
         if (country) locateCountry(country);
       }
     });
@@ -397,7 +410,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       if (!dragging) {
         hovered = null;
         tooltip.hidden = true;
-        redrawTexture();
+        tooltip.dataset.countryId = '';
       }
     });
     canvas.addEventListener('wheel', event => {
@@ -421,6 +434,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         textureCanvas.width = 2048; textureCanvas.height = 1024;
         hitCanvas = document.createElement('canvas');
         hitCanvas.width = 2048; hitCanvas.height = 1024;
+        hitCtx = hitCanvas.getContext('2d', { willReadFrequently: true });
         buildHitMap();
         redrawTexture();
 
@@ -478,6 +492,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           globeGroup.add(target);
 
           if (country.pointOnly) {
+            microstateTargets.push(target);
             const marker = new THREE.Mesh(markerGeometry, markerMaterial);
             marker.position.copy(globePosition(country.lon, country.lat, 1.018));
             marker.userData.countryId = country.id;
