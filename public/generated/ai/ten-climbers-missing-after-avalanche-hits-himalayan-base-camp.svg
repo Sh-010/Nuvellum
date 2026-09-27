@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="skyGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#0c1220"/>
+      <stop offset="40%" stop-color="#16223a"/>
+      <stop offset="100%" stop-color="#2d3748"/>
+    </linearGradient>
+
+    
+    <linearGradient id="avalancheGrad" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#edf2f7" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#cbd5e0" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#a0aec0" stop-opacity="0.1"/>
+    </linearGradient>
+
+    
+    <linearGradient id="peakDistant" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a5568"/>
+      <stop offset="100%" stop-color="#1a202c"/>
+    </linearGradient>
+    
+    <linearGradient id="peakMain" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#f7fafc"/>
+      <stop offset="35%" stop-color="#e2e8f0"/>
+      <stop offset="70%" stop-color="#cbd5e0"/>
+      <stop offset="100%" stop-color="#718096"/>
+    </linearGradient>
+
+    <linearGradient id="glacierShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2b6cb0" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1a365d" stop-opacity="0.8"/>
+    </linearGradient>
+
+    
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dd6b20" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#dd6b20" stop-opacity="0"/>
+    </linearGradient>
+
+    
+    <linearGradient id="tentYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d69e2e"/>
+      <stop offset="100%" stop-color="#975a16"/>
+    </linearGradient>
+
+    
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    <filter id="heavyBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#skyGrad)"/>
+
+  
+  <g opacity="0.6">
+    
+    <polygon points="-50,500 150,320 350,450 550,280 800,420 1050,300 1250,480 1250,675 -50,675" fill="url(#peakDistant)"/>
+    
+    <path d="M150,320 L250,390 L350,450 L450,360 L550,280 L680,360 L800,420 L930,350 L1050,300 L1150,400" fill="none" stroke="#cbd5e0" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  
+  <g>
+    
+    <polygon points="300,675 300,120 750,675" fill="#2d3748"/>
+    <polygon points="450,675 720,80 1100,675" fill="url(#peakMain)"/>
+    
+    
+    <polygon points="720,80 850,350 780,675 750,675" fill="url(#glacierShadow)"/>
+    <polygon points="720,80 620,300 650,675" fill="#4a5568" opacity="0.7"/>
+
+    
+    <path d="M720,80 L760,200 L730,350 L810,500 L780,675" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+    <path d="M720,80 L670,180 L690,300 L630,450 L650,675" fill="none" stroke="#e2e8f0" stroke-width="3" opacity="0.6"/>
+  </g>
+
+  
+  <g>
+    
+    <path d="M 680,250 Q 550,350 350,480 Q 200,570 50,650 L 750,675 Z" fill="url(#avalancheGrad)" filter="url(#softBlur)" opacity="0.7"/>
+    
+    
+    <path d="M 520,380 Q 400,450 220,530 Q 100,590 0,630 L 0,675 L 850,675 Q 650,550 520,380 Z" fill="url(#avalancheGrad)" opacity="0.9"/>
+    
+    
+    <circle cx="380" cy="500" r="120" fill="#edf2f7" filter="url(#softBlur)" opacity="0.5"/>
+    <circle cx="240" cy="560" r="90" fill="#e2e8f0" filter="url(#softBlur)" opacity="0.6"/>
+    <circle cx="120" cy="610" r="70" fill="#cbd5e0" filter="url(#softBlur)" opacity="0.7"/>
+  </g>
+
+  
+  <g>
+    
+    <polygon points="0,600 350,580 750,620 1200,590 1200,675 0,675" fill="#1a202c"/>
+    <path d="M0,600 L350,580 L750,620 L1200,590" fill="none" stroke="#4a5568" stroke-width="4"/>
+
+    
+    <g opacity="0.85">
+      <path d="M 150,560 Q 300,530 450,570" fill="none" stroke="#718096" stroke-width="1.5"/>
+      
+      <polygon points="190,547 210,550 205,570 185,567" fill="#e53e3e"/>
+      <polygon points="230,551 250,553 245,573 225,571" fill="#3182ce"/>
+      <polygon points="270,554 290,556 285,576 265,574" fill="#d69e2e"/>
+      <polygon points="310,557 330,558 325,578 305,576" fill="#ffffff"/>
+      <polygon points="350,558 370,558 365,578 345,578" fill="#38a169"/>
+    </g>
+
+    
+    
+    <g transform="translate(380, 535)">
+      <polygon points="0,50 40,15 80,50" fill="url(#tentYellow)"/>
+      <polygon points="40,15 40,50 80,50" fill="#b7791f"/>
+      <polygon points="0,50 40,15 40,50" fill="url(#tentYellow)" opacity="0.9"/>
+      
+      <ellipse cx="40" cy="52" rx="42" ry="6" fill="#000000" opacity="0.5"/>
+    </g>
+
+    
+    <g transform="translate(470, 545)">
+      <polygon points="0,40 30,10 60,40" fill="#c53030"/>
+      <polygon points="30,10 30,40 60,40" fill="#9b2c2c"/>
+      <ellipse cx="30" cy="42" rx="32" ry="5" fill="#000000" opacity="0.5"/>
+    </g>
+
+    
+    <g transform="translate(330, 555)" opacity="0.7">
+      <polygon points="0,30 20,8 40,30" fill="#718096"/>
+      <polygon points="20,8 20,30 40,30" fill="#4a5568"/>
+    </g>
+
+    
+    <g stroke="#cbd5e0" stroke-width="2">
+      <line x1="435" y1="585" x2="435" y2="550"/>
+      <path d="M435,550 L442,546" fill="none"/>
+      <line x1="535" y1="595" x2="530" y2="560"/>
+    </g>
+  </g>
+
+  
+  
+  <linearGradient id="sunRim" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#f6ad55" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#f6ad55" stop-opacity="0"/>
+  </linearGradient>
+  <polygon points="720,80 1100,675 750,675" fill="url(#sunRim)" style="mix-blend-mode: screen;" pointer-events="none"/>
+
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#090d16" stop-opacity="0.65"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none"/>
+
+</svg>
