@@ -20,6 +20,9 @@ export type Article = {
   imageAlt: string;
   status: string;
   tags: string[];
+  /** Optional World Desk metadata. Slugs use the canonical eight-region taxonomy. */
+  regions?: string[];
+  countries?: string[];
   sourceNote?: string;
   sourceUrls?: string[];
   origin?: 'manual' | 'automation';
