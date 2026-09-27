@@ -29,6 +29,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm test
       - run: npm run build
+      - name: Check the built site (what actually deploys)
+        run: node scripts/check-build-output.mjs
       - name: Build must not modify tracked files
         run: |
           if [ -n "$(git status --porcelain)" ]; then
