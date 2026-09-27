@@ -22,7 +22,7 @@ if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter dis
 if (!home.includes('id="newsletter"')) errors.push('index.html: newsletter section missing');
 if (!home.includes('class="footer-cols"')) errors.push('index.html: full footer navigation missing');
 const popularBlock = home.slice(home.indexOf('id="popular-heading"'), home.indexOf('In Focus</h2>'));
-if (/d+(.d)?K/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric in Popular Reads (no analytics are connected)');
+if (/\b\d+(\.\d)?K\b/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric in Popular Reads (no analytics are connected)');
 
 for (const letter of ['n','u','v','e','l','m']) {
   const file = join('headlines', letter, 'index.html');
