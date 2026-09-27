@@ -11,11 +11,12 @@ const errors = [];
 const read = (p) => readFileSync(join(dist, p), 'utf8');
 if (!existsSync(dist)) { console.error('dist/ is missing; run npm run build first.'); process.exit(1); }
 
-// Homepage: the v5.1 bridge must have patched story activation.
+// Homepage: editorial v6 must render from live published content and include the World Desk.
 const home = read('index.html');
-if (home.includes('openDrawer(storyDataFrom(el))});')) errors.push('index.html: story cards still use the drawer-only handler');
-if (!home.includes('const activate=()=>{const url=el.dataset.route;')) errors.push('index.html: routed story activation missing');
-if (!home.includes('nuvellum-production-bridge')) errors.push('index.html: production bridge missing');
+if (!home.includes('data-home-version="nuvellum-editorial-home-v6"')) errors.push('index.html: editorial homepage v6 marker missing');
+if (!home.includes('id="world-desk"')) errors.push('index.html: World Desk missing');
+if (!home.includes('id="nuvellum-editorial-home-v6"')) errors.push('index.html: homepage interaction script missing');
+if (!home.includes('/article/')) errors.push('index.html: live article routes missing');
 
 // Every published article page.
 const published = readdirSync(articlesDir).filter((f) => f.endsWith('.md')).map((f) => {
