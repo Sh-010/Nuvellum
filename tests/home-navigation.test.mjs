@@ -58,7 +58,20 @@ test('bridge patches fail the build if the baseline changes instead of silently 
 
 test('v5.1 markup and CSS are unchanged by the bridge (only scripts, head metadata and link targets differ)', () => {
   const styles = (h) => (h.match(/<style[\s\S]*?<\/style>/g) || []).join('\n');
-  const body = (h) => h.slice(h.indexOf('<body')).replace(/<script[\s\S]*?<\/script>/g, '').replace(/href="[^"]*"/g, 'href=""')
+  // Drop every <script>…</script> block by index (case-insensitive) before comparing markup.
+  const withoutScripts = (h) => {
+    const lower = h.toLowerCase();
+    let out = '', i = 0;
+    for (;;) {
+      const start = lower.indexOf('<script', i);
+      if (start < 0) return out + h.slice(i);
+      const end = lower.indexOf('</script>', start);
+      out += h.slice(i, start);
+      if (end < 0) return out;
+      i = end + '</script>'.length;
+    }
+  };
+  const body = (h) => withoutScripts(h.slice(h.indexOf('<body'))).replace(/href="[^"]*"/g, 'href=""')
     .replace(/<a href="" data-info="[a-z]+">/g, '<a href="">').replace(/\s+/g, ' ');
   assert.equal(styles(built), styles(baseline), 'CSS must be identical to v5.1');
   assert.equal(body(built), body(baseline), 'body markup must be identical to v5.1 apart from link destinations and scripts');
