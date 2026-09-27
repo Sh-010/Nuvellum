@@ -13,8 +13,8 @@ const countries = COUNTRIES.map((country, index) => {
   for (let i = 0; i + 1 < nums.length; i += 2) { xs.push(nums[i]); ys.push(nums[i + 1]); }
   const cx = xs.length ? (Math.min(...xs) + Math.max(...xs)) / 2 : 500;
   const cy = ys.length ? (Math.min(...ys) + Math.max(...ys)) / 2 : 197.2;
-  const lon = cx / 1000 * 360 - 180;
-  const lat = 84 - cy * (142 / 394.4);
+  const lon = Number.isFinite(country.lon) ? country.lon : cx / 1000 * 360 - 180;
+  const lat = Number.isFinite(country.lat) ? country.lat : 84 - cy * (142 / 394.4);
   return {
     id: index + 1,
     name: country.name,
@@ -22,6 +22,7 @@ const countries = COUNTRIES.map((country, index) => {
     region: country.region,
     regionLabel: regionLabels[country.region] || country.region,
     d: country.d,
+    pointOnly: Boolean(country.pointOnly),
     lon,
     lat,
     stories: stories.map(story => ({
@@ -155,6 +156,8 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let scene = null;
     let raycaster = null;
     let pointer = null;
+    let countryTargets = [];
+    let microstateMarkers = [];
     let spinning = true;
     let dragging = false;
     let moved = false;
