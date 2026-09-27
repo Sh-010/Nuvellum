@@ -436,7 +436,7 @@ body{transition:background-color .38s ease,color .38s ease}.site-header,.section
 
   <aside class="right-col">
     <section class="panel world-desk-panel" id="world-desk">
-      <div class="panel-head"><h2>World Desk</h2><a class="panel-link" href="/section/world">Explore the world &nbsp;→</a></div>
+      <div class="panel-head"><h2>World Desk</h2><a class="panel-link" href="/world-explorer">Explore the world &nbsp;→</a></div>
       <div class="world-map-wrap">
         <svg class="world-map" viewBox="${WORLD_MAP_VIEWBOX}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive World Desk map">
           
