@@ -1,0 +1,85 @@
+---
+import SiteHead from '../../components/SiteHead.astro';
+import '../../styles/global.css';
+import { getArticles } from '../../lib/articles';
+import { REGIONS, regionBySlug, regionsForArticle } from '../../lib/geography.js';
+
+export async function getStaticPaths() {
+  return REGIONS.map(region => ({ params: { region: region.slug } }));
+}
+
+const slug = Astro.params.region!;
+const region = regionBySlug(slug);
+if (!region) throw new Error(`Unknown World Desk region: ${slug}`);
+const articles = (await getArticles()).filter(article => regionsForArticle(article).includes(slug));
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SiteHead
+    title={`${region.label} — World Desk — Nuvellum`}
+    description={`Latest Nuvellum reporting connected to ${region.label}.`}
+  />
+</head>
+<body>
+<div class="topline"></div>
+<header>
+  <div class="mast wrap">
+    <a class="brand" href="/">NUVELLUM</a>
+    <div class="tag">Beyond the headline.</div>
+  </div>
+  <div class="nav-shell">
+    <nav class="nav wrap">
+      <a href="/section/world">World</a>
+      <a href="/section/business">Business</a>
+      <a href="/section/technology">Technology</a>
+      <a href="/section/science">Science</a>
+      <a href="/section/sports">Sports</a>
+      <a href="/section/culture">Culture</a>
+      <a href="/section/entertainment">Screen & Play</a>
+      <a href="/section/opinion">Opinion</a>
+    </nav>
+  </div>
+</header>
+
+<main class="section wrap world-region-page">
+  <div class="section-head">
+    <div>
+      <div class="kicker">WORLD DESK</div>
+      <h2>{region.label}</h2>
+    </div>
+    <a href="/#world-desk">All regions</a>
+  </div>
+
+  {articles.length > 0 ? (
+    <div class="cards">
+      {articles.map(article => (
+        <article class="card motion-story">
+          <a href={`/article/${article.slug}`}>
+            <img src={article.image} alt={article.imageAlt}/>
+            <div class="kicker">{article.section} · {article.type}</div>
+            <h3>{article.title}</h3>
+            <p>{article.dek}</p>
+          </a>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <p class="world-region-empty">No published Nuvellum stories are currently classified in this geographic desk.</p>
+  )}
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand">NUVELLUM</div>
+    <div class="tag">Beyond the headline.</div>
+  </div>
+</footer>
+</body>
+</html>
+
+<style>
+.world-region-page .section-head > div{display:grid;gap:4px}
+.world-region-page .section-head .kicker{margin:0}
+.world-region-empty{font-family:var(--serif);font-size:20px;color:var(--muted);padding:28px 0 60px}
+</style>
