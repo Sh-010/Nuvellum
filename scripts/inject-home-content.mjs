@@ -106,7 +106,7 @@ function screenMarkup(a, kind) {
   const cls = kind === 'feature' ? 'feature reveal interactive-story motion-story' : 'mini reveal interactive-story motion-story';
   const p = kind === 'feature' ? `<p>${esc(a.dek)}</p>` : '';
   const saveText = kind === 'feature' ? '♡ Save' : '♡';
-  return `<article class="${cls}" tabindex="0" data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}"><div class="media"><span class="quick-chip">Quick view</span><img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}"></div><div class="kicker">${esc(a.section.toUpperCase())}</div><h3>${esc(a.title)}</h3>${p}<button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">${saveText}</button></article>`;
+  return `<article class="${cls}" tabindex="0" data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}"><div class="media"><span class="quick-chip">Open story</span><img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}"></div><div class="kicker">${esc(a.section.toUpperCase())}</div><h3>${esc(a.title)}</h3>${p}<button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">${saveText}</button></article>`;
 }
 
 function opinionMarkup(a) {
