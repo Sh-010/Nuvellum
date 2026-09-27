@@ -29,6 +29,15 @@ for (const letter of ['n','u','v','e','l','m']) {
   if (!existsSync(join(dist, file))) errors.push(`${file}: missing headline archive route`);
 }
 
+if (!existsSync(join(dist, 'world-explorer', 'index.html'))) errors.push('world-explorer/index.html: missing interactive globe route');
+else {
+  const explorer = read(join('world-explorer', 'index.html'));
+  if (!explorer.includes('id="globeCanvas"')) errors.push('world-explorer/index.html: globe canvas missing');
+  if (!explorer.includes('world-explorer-data')) errors.push('world-explorer/index.html: country data payload missing');
+}
+if (!home.includes('href="/world-explorer"')) errors.push('index.html: World Desk CTA does not link to World Explorer');
+if (!existsSync(join(dist, 'country', 'switzerland', 'index.html'))) errors.push('country/switzerland/index.html: country desk route missing');
+
 // Every published article page.
 const published = readdirSync(articlesDir).filter((f) => f.endsWith('.md')).map((f) => {
   const src = readFileSync(join(articlesDir, f), 'utf8');
