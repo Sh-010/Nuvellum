@@ -198,24 +198,26 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 .site-header{background:var(--paper2);border-bottom:1px solid var(--line);position:relative;z-index:30}
 .header-row{height:88px;display:grid;grid-template-columns:300px 1fr 300px;align-items:center;gap:24px}
 .brand-zone{position:relative;width:286px;height:58px;display:flex;align-items:center;isolation:isolate}
-.brand-monogram-home{position:absolute;left:0;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:auto auto;align-items:center;column-gap:12px;width:max-content;color:var(--burgundy);z-index:4}
-.brand-monogram-mark{position:relative;width:58px;height:54px;display:grid;place-items:center;transform-origin:50% 55%;transition:transform .34s cubic-bezier(.16,.8,.2,1)}
-.brand-monogram-n{display:inline-grid;place-items:center;font:700 52px/.9 var(--serif);letter-spacing:-.08em;color:var(--burgundy);transform-origin:50% 72%;transition:transform .34s cubic-bezier(.16,.8,.2,1)}
-.brand-monogram-star{position:absolute;right:-16px;top:-2px;font-size:17px;line-height:1;color:var(--burgundy);transform-origin:center;transition:transform .38s cubic-bezier(.16,.8,.2,1)}
+.brand-monogram-home{position:absolute;left:0;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:auto auto;align-items:center;column-gap:10px;width:max-content;color:var(--burgundy);z-index:4;transition:opacity .22s ease,transform .34s cubic-bezier(.16,.8,.2,1)}
+.brand-monogram-mark{position:relative;width:56px;height:54px;display:grid;place-items:center;transform-origin:50% 55%}
+.brand-monogram-n{display:inline-grid;place-items:center;font:700 52px/.9 var(--serif);letter-spacing:-.08em;color:var(--burgundy);transform-origin:50% 72%}
+.brand-monogram-star{position:absolute;right:-9px;top:-2px;font-size:17px;line-height:1;color:var(--burgundy);transform-origin:center}
 .brand-tagline{font:italic 12px/1.05 var(--serif);color:var(--muted);white-space:nowrap;transition:opacity .18s ease,transform .28s cubic-bezier(.16,.8,.2,1)}
-.brand-expanded{position:absolute;left:84px;top:50%;transform:translateY(-50%) translateX(-8px);width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,transform .36s cubic-bezier(.16,.8,.2,1),visibility .22s;z-index:5}
+.brand-expanded{position:absolute;left:0;top:50%;transform:translateY(-50%) translateX(-6px) scale(.985);width:280px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,transform .36s cubic-bezier(.16,.8,.2,1),visibility .22s;z-index:5}
 .brand-wordmark{display:flex;align-items:flex-end;gap:1px;width:max-content;color:var(--burgundy)}
-.brand-letter{display:inline-grid;place-items:center;position:relative;font:700 33px/.9 var(--serif);min-width:23px;height:37px;color:var(--burgundy);transform-origin:50% 80%;will-change:transform}
+.brand-letter,.brand-home-star{display:inline-grid;place-items:center;position:relative;font:700 33px/.9 var(--serif);min-width:23px;height:37px;color:var(--burgundy);transform-origin:50% 80%;will-change:transform}
+.brand-home-star{font-size:18px;min-width:21px;align-self:start;margin-top:-3px}
 .brand-expanded-note{font:italic 10px/1 var(--serif);color:var(--muted);margin-top:5px;white-space:nowrap;letter-spacing:.01em}
-.brand-zone:hover .brand-expanded,.brand-zone:focus-within .brand-expanded,.brand-zone.is-open .brand-expanded{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(-50%) translateX(0)}
-.brand-zone:hover .brand-tagline,.brand-zone:focus-within .brand-tagline,.brand-zone.is-open .brand-tagline{opacity:0;transform:translateX(-4px);pointer-events:none}
-.brand-zone:hover .brand-monogram-mark,.brand-zone:focus-within .brand-monogram-mark,.brand-zone.is-open .brand-monogram-mark{transform:translateX(1px) scale(1.015)}
-.brand-zone:hover .brand-monogram-star,.brand-zone:focus-within .brand-monogram-star,.brand-zone.is-open .brand-monogram-star{transform:translate(2px,-2px) rotate(22deg) scale(1.08)}
+.brand-zone:hover .brand-expanded,.brand-zone:focus-within .brand-expanded,.brand-zone.is-open .brand-expanded{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(-50%) translateX(0) scale(1)}
+.brand-zone:hover .brand-monogram-home,.brand-zone:focus-within .brand-monogram-home,.brand-zone.is-open .brand-monogram-home{opacity:0;transform:translateY(-50%) translateX(-5px);pointer-events:none}
 .brand-zone:hover .brand-letter,.brand-zone:focus-within .brand-letter,.brand-zone.is-open .brand-letter{animation:brandLetterReveal .48s cubic-bezier(.16,.8,.2,1) both;animation-delay:calc(var(--i) * 34ms)}
+.brand-zone:hover .brand-home-star,.brand-zone:focus-within .brand-home-star,.brand-zone.is-open .brand-home-star{animation:brandStarReveal .5s cubic-bezier(.16,.8,.2,1) both;animation-delay:272ms}
 @keyframes brandLetterReveal{0%{opacity:0;transform:translateY(9px) scale(.92) rotateX(-34deg)}65%{opacity:1;transform:translateY(-2px) scale(1.03) rotateX(0)}100%{opacity:1;transform:none}}
-.brand-monogram-n:focus-visible,.brand-monogram-star:focus-visible,.brand-letter:focus-visible{outline:1px solid var(--burgundy);outline-offset:3px}
+@keyframes brandStarReveal{0%{opacity:0;transform:translateY(8px) rotate(-24deg) scale(.86)}70%{opacity:1;transform:translateY(-2px) rotate(8deg) scale(1.06)}100%{opacity:1;transform:none}}
+.brand-letter:focus-visible,.brand-home-star:focus-visible,.brand-monogram-home:focus-visible{outline:1px solid var(--burgundy);outline-offset:3px}
 
-/* Every letter gets a distinct, restrained "pop" motion. */
+/* Each wordmark letter keeps its own custom restrained motion. */
+.brand-letter-n:hover,.brand-letter-n:focus-visible{animation:brandN .38s cubic-bezier(.16,.8,.2,1) both!important}
 .brand-letter-u1:hover,.brand-letter-u1:focus-visible{animation:brandU1 .38s cubic-bezier(.16,.8,.2,1) both!important}
 .brand-letter-v:hover,.brand-letter-v:focus-visible{animation:brandV .40s cubic-bezier(.16,.8,.2,1) both!important}
 .brand-letter-e:hover,.brand-letter-e:focus-visible{animation:brandE .36s cubic-bezier(.16,.8,.2,1) both!important}
@@ -223,56 +225,16 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 .brand-letter-l2:hover,.brand-letter-l2:focus-visible{animation:brandL2 .38s cubic-bezier(.16,.8,.2,1) both!important}
 .brand-letter-u2:hover,.brand-letter-u2:focus-visible{animation:brandU2 .42s cubic-bezier(.16,.8,.2,1) both!important}
 .brand-letter-m:hover,.brand-letter-m:focus-visible{animation:brandM .40s cubic-bezier(.16,.8,.2,1) both!important}
-.brand-monogram-n:hover,.brand-monogram-n:focus-visible{animation:brandN .38s cubic-bezier(.16,.8,.2,1) both}
-.brand-monogram-star:hover,.brand-monogram-star:focus-visible{animation:brandStar .40s cubic-bezier(.16,.8,.2,1) both!important}
-
-@keyframes brandN{
-  0%{transform:translateY(0) scale(1) skewX(0)}
-  55%{transform:translateY(-6px) scale(1.075) skewX(-3deg)}
-  100%{transform:translateY(-3px) scale(1.045) skewX(-1deg)}
-}
-@keyframes brandU1{
-  0%{transform:translateY(0) scale(1)}
-  52%{transform:translateY(-8px) scaleX(1.04) scaleY(1.10)}
-  100%{transform:translateY(-4px) scale(1.055)}
-}
-@keyframes brandV{
-  0%{transform:translateY(0) scale(1) rotateY(0)}
-  52%{transform:translateY(-7px) scale(1.09) perspective(130px) rotateY(-14deg)}
-  100%{transform:translateY(-4px) scale(1.05) perspective(130px) rotateY(-5deg)}
-}
-@keyframes brandE{
-  0%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(3px,-6px) scale(1.09,1.04)}
-  100%{transform:translate(1px,-3px) scale(1.05)}
-}
-@keyframes brandL1{
-  0%{transform:translateY(0) scale(1) rotate(0)}
-  52%{transform:translateY(-8px) scale(1.08) rotate(-4deg)}
-  100%{transform:translateY(-4px) scale(1.045) rotate(-1deg)}
-}
-@keyframes brandL2{
-  0%{transform:translateY(0) scale(1) rotate(0)}
-  52%{transform:translateY(-8px) scale(1.08) rotate(4deg)}
-  100%{transform:translateY(-4px) scale(1.045) rotate(1deg)}
-}
-@keyframes brandU2{
-  0%{transform:translate(0,0) scale(1) rotateX(0)}
-  45%{transform:translate(2px,-8px) scale(1.08) rotateX(12deg)}
-  70%{transform:translate(-1px,-5px) scale(1.06) rotateX(-5deg)}
-  100%{transform:translateY(-4px) scale(1.045) rotateX(0)}
-}
-@keyframes brandM{
-  0%{transform:translateY(0) scale(1)}
-  48%{transform:translateY(-7px) scaleX(.94) scaleY(1.10)}
-  72%{transform:translateY(-5px) scaleX(1.07) scaleY(1.04)}
-  100%{transform:translateY(-4px) scale(1.045)}
-}
-@keyframes brandStar{
-  0%{transform:translate(0,0) rotate(0) scale(1)}
-  55%{transform:translate(3px,-7px) rotate(42deg) scale(1.16)}
-  100%{transform:translate(2px,-3px) rotate(20deg) scale(1.08)}
-}
+.brand-home-star:hover,.brand-home-star:focus-visible{animation:brandStar .40s cubic-bezier(.16,.8,.2,1) both!important}
+@keyframes brandN{0%{transform:translateY(0) scale(1) skewX(0)}55%{transform:translateY(-6px) scale(1.075) skewX(-3deg)}100%{transform:translateY(-3px) scale(1.045) skewX(-1deg)}}
+@keyframes brandU1{0%{transform:translateY(0) scale(1)}52%{transform:translateY(-8px) scaleX(1.04) scaleY(1.10)}100%{transform:translateY(-4px) scale(1.055)}}
+@keyframes brandV{0%{transform:translateY(0) scale(1) rotateY(0)}52%{transform:translateY(-7px) scale(1.09) perspective(130px) rotateY(-14deg)}100%{transform:translateY(-4px) scale(1.05) perspective(130px) rotateY(-5deg)}}
+@keyframes brandE{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3px,-6px) scale(1.09,1.04)}100%{transform:translate(1px,-3px) scale(1.05)}}
+@keyframes brandL1{0%{transform:translateY(0) scale(1) rotate(0)}52%{transform:translateY(-8px) scale(1.08) rotate(-4deg)}100%{transform:translateY(-4px) scale(1.045) rotate(-1deg)}}
+@keyframes brandL2{0%{transform:translateY(0) scale(1) rotate(0)}52%{transform:translateY(-8px) scale(1.08) rotate(4deg)}100%{transform:translateY(-4px) scale(1.045) rotate(1deg)}}
+@keyframes brandU2{0%{transform:translate(0,0) scale(1) rotateX(0)}45%{transform:translate(2px,-8px) scale(1.08) rotateX(12deg)}70%{transform:translate(-1px,-5px) scale(1.06) rotateX(-5deg)}100%{transform:translateY(-4px) scale(1.045) rotateX(0)}}
+@keyframes brandM{0%{transform:translateY(0) scale(1)}48%{transform:translateY(-7px) scaleX(.94) scaleY(1.10)}72%{transform:translateY(-5px) scaleX(1.07) scaleY(1.04)}100%{transform:translateY(-4px) scale(1.045)}}
+@keyframes brandStar{0%{transform:translateY(0) rotate(0) scale(1)}55%{transform:translateY(-7px) rotate(42deg) scale(1.16)}100%{transform:translateY(-3px) rotate(20deg) scale(1.08)}}
 .main-nav{display:flex;justify-content:center;gap:34px;font-size:15px}.main-nav a:hover{color:var(--burgundy)}
 .header-tools{display:flex;align-items:center;justify-content:flex-end;gap:19px}.icon-btn{border:0;background:transparent;color:inherit;font-size:21px;cursor:pointer;padding:6px}.subscribe{border:0;background:var(--burgundy);color:#fff;padding:14px 24px;font-size:14px;cursor:pointer}
 .news-ticker{height:38px;background:#111114;color:#eee;display:flex;align-items:center}.ticker-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;width:100%;font-size:12px}.latest-label{color:#d87387;text-transform:uppercase;letter-spacing:.12em;font-family:var(--sans);font-size:10px}.ticker-links{display:flex;align-items:center;gap:19px;overflow:hidden;white-space:nowrap}.ticker-links a{opacity:.88}.ticker-links a:hover{opacity:1;color:#fff}.ticker-dot{opacity:.45}.view-all{color:#ddd;white-space:nowrap}
@@ -291,9 +253,9 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 .search-sheet{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.55);display:none;place-items:start center;padding-top:110px}.search-sheet.open{display:grid}.search-box{width:min(800px,calc(100% - 30px));background:var(--paper2);padding:22px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.25)}.search-box input{width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;color:inherit;font-size:28px;padding:8px 0;outline:0}.search-results{margin-top:14px;display:grid;max-height:55vh;overflow:auto}.search-result{padding:11px 0;border-bottom:1px solid var(--line)}.search-result small{color:var(--burgundy);text-transform:uppercase;font-family:var(--sans);font-size:9px}.search-result strong{display:block;font-size:17px;font-weight:400;margin-top:3px}
 @media(max-width:1180px){.shell{width:min(100% - 32px,1500px)}.header-row{grid-template-columns:250px 1fr 240px}.main-nav{gap:20px}.home-layout{grid-template-columns:1.35fr .95fr}.hero h1{font-size:38px}.region-tabs{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:900px){.header-row{height:auto;grid-template-columns:minmax(190px,1fr) auto;padding:16px 0}.main-nav{grid-column:1/-1;order:3;justify-content:flex-start;overflow:auto;padding-top:12px}.home-layout{grid-template-columns:1fr}.right-col{border-left:0;padding-left:0}.region-tabs{grid-template-columns:repeat(4,1fr)}.support-grid{grid-template-columns:1fr 1fr}.support-card:last-child{grid-column:1/-1}.hero{min-height:430px}.hero img{height:430px}}
-@media(max-width:620px){.shell{width:min(100% - 20px,1500px)}.brand-zone{width:180px;height:52px}.brand-monogram-mark{width:45px;height:45px}.brand-monogram-n{font-size:44px}.brand-tagline{font-size:10px}.brand-expanded{left:72px;width:246px;background:var(--paper2);padding:8px 10px;border:1px solid var(--line);box-shadow:var(--shadow)}.brand-letter{font-size:29px;min-width:20px}.brand-monogram-star{font-size:16px;right:-13px}.brand-expanded-note{font-size:9px}.header-tools{gap:8px}.subscribe{padding:11px 13px}.main-nav{gap:17px;font-size:13px}.ticker-inner{grid-template-columns:auto 1fr}.view-all{display:none}.hero{min-height:420px}.hero img{height:420px}.hero-copy{left:18px;right:18px}.hero h1{font-size:33px}.hero-dek{font-size:15px}.support-grid{grid-template-columns:1fr}.support-card:last-child{grid-column:auto}.support-card{display:grid;grid-template-columns:130px 1fr}.support-image img{height:100%;min-height:105px}.region-detail{grid-template-columns:1fr}.region-summary{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}.region-tabs{grid-template-columns:repeat(2,1fr)}.latest-row{grid-template-columns:110px 1fr auto}.latest-thumb img{height:66px}.focus-card{grid-template-columns:1fr}.popular-tabs{gap:14px}.hero h1{font-size:31px}}
+@media(max-width:620px){.shell{width:min(100% - 20px,1500px)}.brand-zone{width:180px;height:52px}.brand-monogram-mark{width:45px;height:45px}.brand-monogram-n{font-size:44px}.brand-tagline{font-size:10px}.brand-expanded{left:0;width:246px;background:var(--paper2);padding:8px 10px;border:1px solid var(--line);box-shadow:var(--shadow)}.brand-letter,.brand-home-star{font-size:29px;min-width:20px}.brand-home-star{font-size:16px}.brand-monogram-star{font-size:16px;right:-7px}.brand-expanded-note{font-size:9px}.header-tools{gap:8px}.subscribe{padding:11px 13px}.main-nav{gap:17px;font-size:13px}.ticker-inner{grid-template-columns:auto 1fr}.view-all{display:none}.hero{min-height:420px}.hero img{height:420px}.hero-copy{left:18px;right:18px}.hero h1{font-size:33px}.hero-dek{font-size:15px}.support-grid{grid-template-columns:1fr}.support-card:last-child{grid-column:auto}.support-card{display:grid;grid-template-columns:130px 1fr}.support-image img{height:100%;min-height:105px}.region-detail{grid-template-columns:1fr}.region-summary{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}.region-tabs{grid-template-columns:repeat(2,1fr)}.latest-row{grid-template-columns:110px 1fr auto}.latest-thumb img{height:66px}.focus-card{grid-template-columns:1fr}.popular-tabs{gap:14px}.hero h1{font-size:31px}}
 @media(prefers-reduced-motion:reduce){
-  .brand-expanded,.brand-tagline,.brand-monogram-mark,.brand-monogram-n,.brand-monogram-star,.brand-letter{animation:none!important;transition:none!important}
+  .brand-expanded,.brand-tagline,.brand-monogram-home,.brand-monogram-mark,.brand-monogram-n,.brand-monogram-star,.brand-letter,.brand-home-star{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
 </style>
@@ -303,16 +265,13 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 <header class="site-header">
   <div class="shell header-row">
     <div class="brand-zone" id="brandZone">
-      <div class="brand-monogram-home" id="brandMonogram">
-        <span class="brand-monogram-mark">
-          <a class="brand-monogram-n" id="brandNLink" href="/headlines/n" aria-label="Browse headlines beginning with N">N</a>
-          <a class="brand-monogram-star" href="/" aria-label="Nuvellum home">✦</a>
-        </span>
+      <a class="brand-monogram-home" id="brandMonogram" href="/" aria-label="Nuvellum home">
+        <span class="brand-monogram-mark" aria-hidden="true"><span class="brand-monogram-n">N</span><span class="brand-monogram-star">✦</span></span>
         <span class="brand-tagline">Beyond the headline.</span>
-      </div>
+      </a>
       <div class="brand-expanded" id="brandExpanded" aria-label="Nuvellum headline discovery">
-        <div class="brand-wordmark"><a class="brand-letter brand-letter-u1" style="--i:1" href="/headlines/u" aria-label="Browse headlines beginning with U">U</a><a class="brand-letter brand-letter-v" style="--i:2" href="/headlines/v" aria-label="Browse headlines beginning with V">V</a><a class="brand-letter brand-letter-e" style="--i:3" href="/headlines/e" aria-label="Browse headlines beginning with E">E</a><a class="brand-letter brand-letter-l1" style="--i:4" href="/headlines/l" aria-label="Browse headlines beginning with L">L</a><a class="brand-letter brand-letter-l2" style="--i:5" href="/headlines/l" aria-label="Browse headlines beginning with L">L</a><a class="brand-letter brand-letter-u2" style="--i:6" href="/headlines/u" aria-label="Browse headlines beginning with U">U</a><a class="brand-letter brand-letter-m" style="--i:7" href="/headlines/m" aria-label="Browse headlines beginning with M">M</a></div>
-        <div class="brand-expanded-note">Beyond the headline. · Browse reporting by initial</div>
+        <div class="brand-wordmark"><a class="brand-letter brand-letter-n" style="--i:0" href="/headlines/n" aria-label="Browse headlines beginning with N">N</a><a class="brand-letter brand-letter-u1" style="--i:1" href="/headlines/u" aria-label="Browse headlines beginning with U">U</a><a class="brand-letter brand-letter-v" style="--i:2" href="/headlines/v" aria-label="Browse headlines beginning with V">V</a><a class="brand-letter brand-letter-e" style="--i:3" href="/headlines/e" aria-label="Browse headlines beginning with E">E</a><a class="brand-letter brand-letter-l1" style="--i:4" href="/headlines/l" aria-label="Browse headlines beginning with L">L</a><a class="brand-letter brand-letter-l2" style="--i:5" href="/headlines/l" aria-label="Browse headlines beginning with L">L</a><a class="brand-letter brand-letter-u2" style="--i:6" href="/headlines/u" aria-label="Browse headlines beginning with U">U</a><a class="brand-letter brand-letter-m" style="--i:7" href="/headlines/m" aria-label="Browse headlines beginning with M">M</a><a class="brand-home-star" href="/" aria-label="Nuvellum home">✦</a></div>
+        <div class="brand-expanded-note">Beyond the headline.</div>
       </div>
     </div>
     <nav class="main-nav" aria-label="Primary">
@@ -402,10 +361,10 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{display:block
 (()=>{
   const body=document.body;
   const brandZone=document.getElementById('brandZone');
-  const brandNLink=document.getElementById('brandNLink');
+  const brandMonogram=document.getElementById('brandMonogram');
   const coarsePointer=window.matchMedia?.('(hover: none), (pointer: coarse)');
   const closeBrand=()=>brandZone?.classList.remove('is-open');
-  brandNLink?.addEventListener('click',e=>{
+  brandMonogram?.addEventListener('click',e=>{
     if(coarsePointer?.matches && !brandZone?.classList.contains('is-open')){
       e.preventDefault();
       brandZone?.classList.add('is-open');
