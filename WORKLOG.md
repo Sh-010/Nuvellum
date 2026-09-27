@@ -146,4 +146,30 @@ Run log (streak rules: a run counts only if every story it produced passes every
 - **906 (#49, #50)**, low risk, Deadline film tax credit and BBC Sport Robbie Ure: merges `b93a285` and `3ab901d`, live PASS → clean.
 - **907 (#52, #54)**, Pope (sensitive, DW) and McDonagh (low, Variety). Both are content-clean and live, but CI cancelled the McDonagh article commit's checks and no PR opened (push race). **Run failed; streak reset.** Fixed by #53.
 - **908:** nothing published (all rejections correct); not counted.
-- Streak after #53: see the update below.
+- **909 (#55)**, sensitive, Al Jazeera India/Nepal floods: live PASS → clean (1/3 after the race fix).
+- **910 (#56)**, low risk, BBC Sport rugby: live PASS → clean (2/3).
+- **911 (#57)**: the Verge newsletter roundup was drafted into a three-story mash-up (Googlebooks, Meta glasses, Surface Mouse). Closed, not published. **Run failed; streak reset.** v6.5 now declines roundups (drafter `skip`) and review rejects multi-story articles.
+- **913:** nothing new (duplicates and correct rejections); not counted.
+
+**Final streak: 3/3 consecutive clean runs.** Each one covers the full path: source → n8n → branch → PR → all required checks → gate dry-run READY → merge → Vercel production → live 200 → correct homepage, /latest and section placement.
+
+| # | Exec | PR | Source | Risk | Head → merge | Live |
+|---|---|---|---|---|---|---|
+| 1 | 912 | #58 | BBC: Ten climbers missing after avalanche hits Himalayan base camp | sensitive, cleared | 374d3a3 → e594909 | homepage lead; #1 /latest, #1 World |
+| 2 | 914 | #60 | Al Jazeera: Swiss voters set to reject tighter neutrality rules in referendum | sensitive, cleared | c93ac9c → 98ced7e | homepage lead; #1 /latest, #1 World |
+| 3 | 915 | #61 | Variety: Naomi Watts reflects on early career struggles and menopause openness… | low | 512697e → 4739076 | homepage side and feature; #1 /latest, #1 Film & TV |
+
+Correct rejections seen across runs: opinion columns (Polygon, twice via the drafter and twice via review), newsletter roundups (The Verge), unextractable pages (CNBC, Anime News Network), and exact-source duplicates.
+
+### Other changes
+- **#59:** the hidden story drawer and info modal are `inert` (Lighthouse aria-hidden-focus).
+- Lighthouse, production mobile:
+  - homepage: Performance 98, Accessibility 84, Best Practices 100, SEO 100;
+  - article: Accessibility 100, SEO 100 (the performance trace failed on Windows, NO_NAVSTART).
+- Remaining a11y items are v5.1 design decisions: footer contrast 3.2:1, ticker button 18×21px target, footer heading order.
+
+### Open items
+- **`NUVELLUM_AUTOPUBLISH` and the n8n schedule are still OFF.** This is the owner's decision.
+- Known casing gap: "Control resonant" (game title *Control Resonant*, not quoted) was lower-cased in a draft that review rejected anyway. Unquoted multi-word titles whose second word also appears lower-case in the source are not restored yet.
+- Dependabot #2 (TypeScript 5→7, major), #3 and #4 (actions v4→v7): not evaluated this session.
+- `engines/distribution-shorts` (distribution, Shorts, provider layer) is still outside `main`; it belongs to the next milestones (M3/M4).
