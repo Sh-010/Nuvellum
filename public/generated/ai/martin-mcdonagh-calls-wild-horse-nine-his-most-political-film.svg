@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="bg-grad" cx="600" cy="250" r="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1f2636"/>
+      <stop offset="50%" stop-color="#0f131a"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </radialGradient>
+
+    
+    <radialGradient id="spotlight" cx="600" cy="-100" r="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e8a87c" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#c35c3d" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    
+    <linearGradient id="ground-grad" x1="600" y1="450" x2="600" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1c1824"/>
+      <stop offset="30%" stop-color="#141119"/>
+      <stop offset="100%" stop-color="#0a080c"/>
+    </linearGradient>
+
+    
+    <linearGradient id="film-frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2438"/>
+      <stop offset="100%" stop-color="#131018"/>
+    </linearGradient>
+
+    
+    <linearGradient id="moai-grad" x1="450" y1="200" x2="750" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5a5366"/>
+      <stop offset="40%" stop-color="#3d3647"/>
+      <stop offset="100%" stop-color="#221d28"/>
+    </linearGradient>
+
+    
+    <linearGradient id="folder-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4b483"/>
+      <stop offset="100%" stop-color="#997949"/>
+    </linearGradient>
+
+    
+    <linearGradient id="accent-red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e63946"/>
+      <stop offset="100%" stop-color="#8d0801"/>
+    </linearGradient>
+
+    
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bg-grad)"/>
+  <rect width="1200" height="675" fill="url(#spotlight)"/>
+
+  
+  <g opacity="0.12" stroke="#e8a87c" stroke-width="1">
+    <line x1="600" y1="0" x2="100" y2="675"/>
+    <line x1="600" y1="0" x2="300" y2="675"/>
+    <line x1="600" y1="0" x2="500" y2="675"/>
+    <line x1="600" y1="0" x2="700" y2="675"/>
+    <line x1="600" y1="0" x2="900" y2="675"/>
+    <line x1="600" y1="0" x2="1100" y2="675"/>
+  </g>
+
+  
+  <g opacity="0.25">
+    <rect x="80" y="50" width="1040" height="575" rx="12" fill="none" stroke="#6b5b7a" stroke-width="2" stroke-dasharray="20 10"/>
+    <rect x="100" y="70" width="1000" height="535" rx="8" fill="none" stroke="#6b5b7a" stroke-width="1"/>
+  </g>
+
+  
+  <rect x="0" y="460" width="1200" height="215" fill="url(#ground-grad)"/>
+  <path d="M0 460 Q 300 440, 600 455 T 1200 450 L 1200 675 L 0 675 Z" fill="url(#ground-grad)"/>
+
+  
+  <g transform="translate(680, 180)" filter="url(#soft-shadow)">
+    
+    <path d="M 50 300 L 90 180 L 140 100 L 180 80 L 220 100 L 250 180 L 300 300 Z" fill="url(#moai-grad)"/>
+    
+    <path d="M 100 130 Q 160 150 220 130 L 235 155 Q 160 175 85 155 Z" fill="#18141d"/>
+    
+    <path d="M 150 145 L 175 145 L 170 230 L 155 230 Z" fill="#4d4458"/>
+    
+    <path d="M 110 230 Q 160 245 210 230 L 220 280 L 100 280 Z" fill="#352e3e"/>
+    
+    <path d="M 120 75 L 200 75 L 210 35 L 110 35 Z" fill="#8c3b26" opacity="0.85"/>
+  </g>
+
+  
+  <polygon points="0,460 150,380 320,460" fill="#15121a"/>
+  <polygon points="250,460 420,340 600,460" fill="#110e14"/>
+  <polygon points="900,460 1050,360 1200,460" fill="#15121a"/>
+
+  
+  
+  
+  <g transform="translate(180, 220)">
+    
+    <path d="M 50 250 L 70 150 L 95 140 L 110 160 L 130 250 Z" fill="#0d0f14"/>
+    <circle cx="90" cy="115" r="22" fill="#0d0f14"/>
+    
+    <path d="M 20 260 Q 90 230 160 260 L 180 400 L 10 400 Z" fill="#161a22"/>
+    
+    <path d="M 80 250 L 90 310 L 100 250 Z" fill="#c35c3d" opacity="0.85"/>
+    
+    <circle cx="125" cy="300" r="18" fill="url(#folder-grad)"/>
+    <path d="M 110 295 L 140 295 L 140 330 L 110 330 Z" fill="url(#folder-grad)" transform="rotate(-15 125 310)"/>
+  </g>
+
+  
+  <g transform="translate(850, 240)">
+    <path d="M 40 230 L 60 130 L 90 120 L 110 140 L 130 230 Z" fill="#0d0f14"/>
+    <circle cx="85" cy="95" r="20" fill="#0d0f14"/>
+    <path d="M 10 240 Q 80 210 150 240 L 170 380 L 0 380 Z" fill="#1b202c"/>
+    
+    <path d="M 75 230 L 85 300 L 95 230 Z" fill="url(#accent-red)"/>
+  </g>
+
+  
+  <g transform="translate(480, 280)" filter="url(#soft-shadow)">
+    
+    <rect x="0" y="0" width="240" height="160" rx="4" fill="url(#folder-grad)" transform="rotate(-6 120 80)"/>
+    
+    <rect x="20" y="20" width="200" height="130" rx="2" fill="#f4f1ea" transform="rotate(-6 120 80)"/>
+    
+    <g transform="rotate(-6 120 80)" fill="#2b2623">
+      <rect x="40" y="45" width="120" height="8" rx="2"/>
+      <rect x="40" y="65" width="160" height="8" rx="2" opacity="0.3"/>
+      <rect x="40" y="85" width="90" height="8" rx="2"/>
+      <rect x="40" y="105" width="140" height="8" rx="2" opacity="0.6"/>
+      
+      <rect x="130" y="105" width="75" height="25" rx="3" fill="none" stroke="#e63946" stroke-width="3" opacity="0.85"/>
+      <path d="M 135 120 L 200 120" stroke="#e63946" stroke-width="2" opacity="0.4"/>
+    </g>
+  </g>
+
+  
+  <g transform="translate(330, 140) rotate(12)" filter="url(#soft-shadow)" opacity="0.9">
+    
+    <rect x="0" y="30" width="110" height="80" rx="4" fill="#1a1c23" stroke="#3d4455" stroke-width="2"/>
+    
+    <path d="M 0 25 L 115 5 L 115 25 L 0 45 Z" fill="#111317" stroke="#3d4455" stroke-width="2"/>
+    <path d="M 15 23 L 35 19 L 40 33 L 20 37 Z" fill="#f4f1ea"/>
+    <path d="M 50 16 L 70 12 L 75 26 L 55 30 Z" fill="#f4f1ea"/>
+    <path d="M 85 9 L 105 5 L 110 19 L 90 23 Z" fill="#f4f1ea"/>
+    
+    <line x1="20" y1="55" x2="90" y2="55" stroke="#f4f1ea" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+    <line x1="20" y1="75" x2="70" y2="75" stroke="#f4f1ea" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <line x1="20" y1="95" x2="50" y2="95" stroke="#e63946" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  
+  <rect width="1200" height="675" fill="none" stroke="#000000" stroke-width="24" opacity="0.6"/>
+  <rect width="1200" height="675" fill="none" stroke="#000000" stroke-width="12" opacity="0.8"/>
+
+</svg>
