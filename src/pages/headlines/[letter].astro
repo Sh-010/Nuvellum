@@ -25,16 +25,13 @@ const upper = letter.toUpperCase();
     <div class="wrap headline-archive-head">
       <a class="headline-archive-brand" href="/" aria-label="Nuvellum home">
         <span class="headline-archive-monogram">N<span>✦</span></span>
-        <span class="headline-archive-name">NUVELLUM</span>
       </a>
       <a class="headline-archive-back" href="/">Back to Nuvellum →</a>
     </div>
   </header>
 
   <main class="wrap headline-archive">
-    <div class="headline-archive-kicker">ALPHABETICAL DISCOVERY</div>
-    <h1>Headlines beginning with <span>{upper}</span></h1>
-    <p class="headline-archive-count">{articles.length} published {articles.length === 1 ? 'story' : 'stories'}</p>
+    <h1 class="headline-letter-title">{upper}</h1>
 
     {articles.length ? (
       <section class="headline-archive-list">
@@ -73,13 +70,9 @@ const upper = letter.toUpperCase();
 .headline-archive-brand{display:inline-flex;align-items:center;gap:12px;color:var(--ox)}
 .headline-archive-monogram{position:relative;font:700 46px/1 var(--serif);letter-spacing:-.08em}
 .headline-archive-monogram span{position:absolute;right:-14px;top:-3px;font:18px/1 var(--serif)}
-.headline-archive-name{font:700 25px/1 var(--serif);letter-spacing:.08em}
 .headline-archive-back{font:10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.headline-archive{padding:54px 0 80px}
-.headline-archive-kicker{font:700 10px var(--sans);letter-spacing:.15em;color:var(--ox)}
-.headline-archive h1{font:400 clamp(42px,6vw,74px)/.98 var(--serif);margin:10px 0 8px}
-.headline-archive h1 span{color:var(--ox)}
-.headline-archive-count{font:15px var(--serif);color:var(--muted);margin:0 0 30px}
+.headline-archive{padding:42px 0 80px}
+.headline-letter-title{font:400 clamp(82px,10vw,140px)/.82 var(--serif);margin:0 0 28px;color:var(--ox)}
 .headline-archive-list{border-top:2px solid var(--ink)}
 .headline-archive-row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
 .headline-archive-image img{width:100%;aspect-ratio:16/10;object-fit:cover}
@@ -91,5 +84,5 @@ const upper = letter.toUpperCase();
 .headline-archive-alpha{display:flex;flex-wrap:wrap;gap:4px;margin-top:32px}
 .headline-archive-alpha a{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--line);font:11px var(--sans);transition:.18s}
 .headline-archive-alpha a:hover,.headline-archive-alpha a.active{background:var(--ox);border-color:var(--ox);color:#fff}
-@media(max-width:650px){.headline-archive-head{height:68px}.headline-archive-name{display:none}.headline-archive{padding-top:36px}.headline-archive-row{grid-template-columns:1fr}.headline-archive-row h2{font-size:25px}.headline-archive-image img{aspect-ratio:16/9}}
+@media(max-width:650px){.headline-archive-head{height:68px}.headline-archive{padding-top:28px}.headline-letter-title{font-size:82px;margin-bottom:22px}.headline-archive-row{grid-template-columns:1fr}.headline-archive-row h2{font-size:25px}.headline-archive-image img{aspect-ratio:16/9}}
 </style>
