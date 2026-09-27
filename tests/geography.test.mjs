@@ -13,20 +13,24 @@ test('explicit region metadata wins over keyword inference', () => {
   assert.deepEqual(regionsForArticle(article), ['north-america']);
 });
 
-test('article geography can span multiple desks', () => {
-  const article = { title: 'Australia hold off late South Africa comeback', tags: ['rugby'] };
+test('explicit country metadata can span multiple desks', () => {
+  const article = { title: 'Australia hold off late South Africa comeback', countries: ['Australia','South Africa'] };
   assert.deepEqual(regionsForArticle(article).sort(), ['southeast-asia-oceania','sub-saharan-africa'].sort());
 });
 
-test('headline and tags classify current-style stories without mandatory new frontmatter', () => {
-  assert.deepEqual(regionsForArticle({ title: 'Swiss voters set to reject tighter neutrality rules', tags: [] }), ['europe-central-asia']);
-  assert.deepEqual(regionsForArticle({ title: 'Ten climbers missing after avalanche hits Himalayan base camp', dek: 'The expedition was near Nepal.', tags: [] }), ['south-asia']);
-  assert.deepEqual(regionsForArticle({ title: 'Japan unveils a new economic package', tags: [] }), ['east-asia']);
+test('existing World stories can be classified conservatively without new frontmatter', () => {
+  assert.deepEqual(regionsForArticle({ section: 'World', title: 'Swiss voters set to reject tighter neutrality rules', tags: [] }), ['europe-central-asia']);
+  assert.deepEqual(regionsForArticle({ section: 'World', title: 'Ten climbers missing after avalanche hits Himalayan base camp', dek: 'The expedition was near Nepal.', tags: [] }), ['south-asia']);
+  assert.deepEqual(regionsForArticle({ section: 'World', title: 'Japan unveils a new economic package', tags: [] }), ['east-asia']);
+});
+
+test('non-World headlines do not create false geographic desks from titles alone', () => {
+  assert.deepEqual(regionsForArticle({ section: 'Film & TV', title: "Hayley Kiyoko wants to make a lesbian 'Pirates of the Caribbean'", tags: [] }), []);
 });
 
 test('storiesByRegion keeps unclassified stories out of geographic desks', () => {
   const map = storiesByRegion([
-    { title: 'Japan changes policy' },
+    { section: 'World', title: 'Japan changes policy' },
     { title: 'An abstract technology story', tags: ['AI'] }
   ]);
   assert.equal(map.get('east-asia').length, 1);
