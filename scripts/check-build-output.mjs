@@ -19,6 +19,9 @@ if (!home.includes('id="nuvellum-editorial-home-v6"')) errors.push('index.html: 
 if (!home.includes('/article/')) errors.push('index.html: live article routes missing');
 if (!home.includes('id="brandZone"')) errors.push('index.html: interactive Nuvellum brand mark missing');
 if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter discovery links missing');
+if (!home.includes('id="newsletter"')) errors.push('index.html: newsletter section missing');
+if (!home.includes('class="footer-cols"')) errors.push('index.html: full footer navigation missing');
+if (/d+(.d)?K/.test(home.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric found (no analytics are connected)');
 
 for (const letter of ['n','u','v','e','l','m']) {
   const file = join('headlines', letter, 'index.html');
