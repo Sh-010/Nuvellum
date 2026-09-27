@@ -169,6 +169,9 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     function renderPanel(country) {
       selected = country;
       redrawTexture();
+      for (const marker of microstateMarkers) {
+        marker.scale.setScalar(marker.userData.countryId === country?.id ? 1.8 : 1);
+      }
       if (!country) return;
       const stories = country.stories || [];
       panel.innerHTML = `
@@ -218,6 +221,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     reset.addEventListener('click', () => {
       selected = null;
       hovered = null;
+      for (const marker of microstateMarkers) marker.scale.setScalar(1);
       search.value = '';
       targetRotX = 0;
       targetRotY = -Math.PI / 2;
@@ -300,6 +304,10 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
+      const targetHit = raycaster.intersectObjects(countryTargets, false)[0];
+      const targetId = targetHit?.object?.userData?.countryId;
+      if (targetId) return byId.get(targetId) || null;
+
       const hit = raycaster.intersectObject(globe, false)[0];
       if (!hit?.uv) return null;
       const x = Math.max(0, Math.min(hitCanvas.width - 1, Math.floor(hit.uv.x * hitCanvas.width)));
