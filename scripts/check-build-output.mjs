@@ -5,6 +5,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { root, articlesDir } from './lib/paths.mjs';
 import { parseFrontmatter } from './lib/editorial.mjs';
+import { COUNTRIES, countrySlug } from '../src/lib/countries.js';
 
 const dist = join(root, 'dist');
 const errors = [];
@@ -36,7 +37,10 @@ else {
   if (!explorer.includes('world-explorer-data')) errors.push('world-explorer/index.html: country data payload missing');
 }
 if (!home.includes('href="/world-explorer"')) errors.push('index.html: World Desk CTA does not link to World Explorer');
-if (!existsSync(join(dist, 'country', 'switzerland', 'index.html'))) errors.push('country/switzerland/index.html: country desk route missing');
+for (const country of COUNTRIES) {
+  const file = join('country', countrySlug(country.name), 'index.html');
+  if (!existsSync(join(dist, file))) errors.push(`${file}: country desk route missing for ${country.name}`);
+}
 
 // Every published article page.
 const published = readdirSync(articlesDir).filter((f) => f.endsWith('.md')).map((f) => {

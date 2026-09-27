@@ -16,7 +16,8 @@
     "check:build": "node scripts/check-build-output.mjs"
   },
   "dependencies": {
-    "astro": "7.3.4"
+    "astro": "7.3.4",
+    "three": "0.180.0"
   },
   "devDependencies": {
     "typescript": "5.9.2",

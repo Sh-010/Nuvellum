@@ -2,29 +2,26 @@
 import SiteHead from '../components/SiteHead.astro';
 import { getArticles } from '../lib/articles';
 import { REGIONS } from '../lib/geography.js';
-import { COUNTRIES, countrySlug, storiesForCountry } from '../lib/countries.js';
+import { COUNTRIES, countrySearchTerms, countrySlug, storiesForCountry } from '../lib/countries.js';
 
 const articles = await getArticles();
 const regionLabels = Object.fromEntries(REGIONS.map(region => [region.slug, region.label]));
+// `id` doubles as the value written into the globe's country-ID hit map, so it
+// must stay a small positive integer (0 means sea).
 const countries = COUNTRIES.map((country, index) => {
   const stories = storiesForCountry(articles, country.name).slice(0, 4);
-  const nums = String(country.d || '').match(/-?\d+(?:\.\d+)?/g)?.map(Number) || [];
-  const xs = [], ys = [];
-  for (let i = 0; i + 1 < nums.length; i += 2) { xs.push(nums[i]); ys.push(nums[i + 1]); }
-  const cx = xs.length ? (Math.min(...xs) + Math.max(...xs)) / 2 : 500;
-  const cy = ys.length ? (Math.min(...ys) + Math.max(...ys)) / 2 : 197.2;
-  const lon = Number.isFinite(country.lon) ? country.lon : cx / 1000 * 360 - 180;
-  const lat = Number.isFinite(country.lat) ? country.lat : 84 - cy * (142 / 394.4);
   return {
     id: index + 1,
     name: country.name,
     slug: countrySlug(country.name),
     region: country.region,
     regionLabel: regionLabels[country.region] || country.region,
+    status: country.status,
     d: country.d,
     pointOnly: Boolean(country.pointOnly),
-    lon,
-    lat,
+    lon: country.lon,
+    lat: country.lat,
+    terms: countrySearchTerms(country),
     stories: stories.map(story => ({
       slug: story.slug,
       title: story.title,
@@ -76,7 +73,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
             <strong></strong><span></span>
           </div>
           <div class="globe-caption">
-            <span><i class="dot dot-live"></i> Nuvellum coverage</span>
+            <span><i class="dot dot-live"></i> Selected country</span>
             <span><i class="dot dot-map"></i> World atlas</span>
             <span>Drag to rotate · Wheel to zoom · Click to select</span>
           </div>
@@ -115,7 +112,25 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
   </main>
 
   <script id="world-explorer-data" type="application/json" set:html={explorerJson}></script>
-  <script type="module" is:inline>
+  <script>
+    import {
+      ID_MAP_HEIGHT,
+      ID_MAP_WIDTH,
+      SMALL_TARGET_PIXELS,
+      lonLatToUv,
+      parseRings,
+      rasterizeIdMap,
+      textureTransform,
+      uvToPixel,
+      uvToSphere
+    } from '../lib/atlas-geometry.js';
+    import { normalizeCountry } from '../lib/country-text.js';
+
+    // Interaction model: one country-ID map (Uint16, 0 = sea) is rasterised from
+    // the same projected paths as the visible texture. Hover and click both
+    // resolve a Three.js raycast's hit.uv against it; the globe shader samples the
+    // same map on the GPU to paint the hovered and selected country. Hovering
+    // never repaints the texture or reads pixels back from a canvas.
     const root = document.querySelector('.explorer-shell');
     const canvas = document.getElementById('globeCanvas');
     const frame = document.getElementById('globeFrame');
@@ -123,6 +138,8 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     const fallback = document.getElementById('globeFallback');
     const panel = document.getElementById('countryPanel');
     const tooltip = document.getElementById('countryTooltip');
+    const tooltipName = tooltip.querySelector('strong');
+    const tooltipMeta = tooltip.querySelector('span');
     const search = document.getElementById('countrySearch');
     const go = document.getElementById('countryGo');
     const spinToggle = document.getElementById('spinToggle');
@@ -130,7 +147,16 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     const payload = JSON.parse(document.getElementById('world-explorer-data').textContent || '{"countries":[]}');
     const countries = payload.countries || [];
     const byId = new Map(countries.map(country => [country.id, country]));
-    const byName = new Map(countries.map(country => [country.name.toLowerCase(), country]));
+    const placeholderPanel = panel.innerHTML;
+    const qaMode = new URLSearchParams(location.search).has('qa');
+
+    // Invisible hit areas for entities too small to hover (CSS px around the
+    // anchor). Over land a small entity only wins very close to its anchor so it
+    // does not swallow its neighbour; over open water the area is generous.
+    const LAND_ASSIST_PX = 6;
+    const SEA_ASSIST_PX = 16;
+    const DEG = Math.PI / 180;
+    const MAX_TILT = 1.15;
 
     const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const storyMarkup = story => `
@@ -143,41 +169,32 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         </span>
       </a>`;
 
+    let THREE = null;
+    let renderer = null, camera = null, scene = null, globe = null, globeGroup = null;
+    let raycaster = null, ndc = null, scratch = null;
+    let highlight = null;
+    let hoverMarker = null, selectedMarker = null;
+    let idMap = null, pixelCounts = null;
+    const smallIds = new Set();
+    let smallTargets = [];
+    const hits = [];
+
     let selected = null;
-    let hovered = null;
-    let three = null;
-    let textureCanvas = null;
-    let hitCanvas = null;
-    let hitCtx = null;
-    let hitPixels = null;
-    let texture = null;
-    let hoverCanvas = null;
-    let hoverTexture = null;
-    let globe = null;
-    let globeGroup = null;
-    let renderer = null;
-    let camera = null;
-    let scene = null;
-    let raycaster = null;
-    let pointer = null;
-    let rayHitPoint = null;
-    let localHitPoint = null;
-    let microstateMarkers = [];
+    let hoveredId = 0;
     let spinning = true;
     let dragging = false;
     let moved = false;
     let startX = 0, startY = 0, lastX = 0, lastY = 0;
     let targetRotX = 0, targetRotY = -Math.PI / 2;
     let targetCameraZ = 3.25;
-    let hoverRAF = 0;
-    let canvasRect = null;
-    let frameRect = null;
+    const pointer = { x: 0, y: 0, inside: false, dirty: false };
+    let canvasRect = canvas.getBoundingClientRect();
+    let frameRect = frame.getBoundingClientRect();
+    let tooltipSize = { width: 0, height: 0 };
+    const stats = { picks: 0, pickMs: 0, maxPickMs: 0, idMapMs: 0, textureMs: 0 };
 
     function renderPanel(country) {
-      selected = country;
-      redrawTexture();
-      updateMicrostateMarkers();
-      if (!country) return;
+      if (!country) { panel.innerHTML = placeholderPanel; return; }
       const stories = country.stories || [];
       panel.innerHTML = `
         <div class="panel-kicker">${escapeHtml(country.regionLabel)}</div>
@@ -196,59 +213,193 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         </div>`;
     }
 
+    function anchorVector(country, radius = 1) {
+      const { u, v } = lonLatToUv(country.lon, country.lat);
+      const p = uvToSphere(u, v, radius);
+      return new THREE.Vector3(p.x, p.y, p.z);
+    }
+
+    // Small and point-only entities have no visible shape to tint, so they get
+    // a ring while hovered or selected (and nothing otherwise).
+    function placeMarker(marker, country) {
+      if (!marker) return;
+      if (!country || !smallIds.has(country.id)) { marker.visible = false; return; }
+      const normal = anchorVector(country);
+      marker.position.copy(normal).multiplyScalar(1.004);
+      marker.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal);
+      marker.visible = true;
+    }
+
+    function setHovered(id) {
+      if (id === hoveredId) return;
+      hoveredId = id;
+      if (highlight) highlight.hoverId.value = id;
+      placeMarker(hoverMarker, id && id !== selected?.id ? byId.get(id) : null);
+      canvas.style.cursor = id ? 'pointer' : 'grab';
+      const country = byId.get(id);
+      if (!country) { tooltip.hidden = true; return; }
+      const count = (country.stories || []).length;
+      tooltipName.textContent = country.name;
+      tooltipMeta.textContent = count ? `${count} direct stor${count === 1 ? 'y' : 'ies'}` : country.regionLabel;
+      tooltip.hidden = false;
+      tooltipSize = { width: tooltip.offsetWidth, height: tooltip.offsetHeight };
+    }
+
+    function positionTooltip() {
+      let x = pointer.x - frameRect.left + 14;
+      let y = pointer.y - frameRect.top + 14;
+      if (x + tooltipSize.width > frameRect.width - 8) x -= tooltipSize.width + 28;
+      if (y + tooltipSize.height > frameRect.height - 8) y -= tooltipSize.height + 28;
+      tooltip.style.transform = `translate3d(${Math.round(x)}px,${Math.round(y)}px,0)`;
+    }
+
+    function select(country) {
+      selected = country || null;
+      if (highlight) highlight.selectedId.value = selected ? selected.id : 0;
+      placeMarker(selectedMarker, selected);
+      if (selected && hoveredId === selected.id) placeMarker(hoverMarker, null);
+      renderPanel(selected);
+    }
+
+    function setSpinning(on) {
+      spinning = on;
+      spinToggle.textContent = on ? 'Pause rotation' : 'Resume rotation';
+      spinToggle.setAttribute('aria-pressed', String(on));
+    }
+
     function locateCountry(country) {
-      if (!country) return;
-      renderPanel(country);
+      if (!country) return false;
+      select(country);
       search.value = country.name;
-      const lon = country.lon * Math.PI / 180;
-      const lat = country.lat * Math.PI / 180;
-      targetRotY = -Math.PI / 2 - lon;
-      targetRotX = Math.max(-1.0, Math.min(1.0, lat));
-      spinning = false;
-      spinToggle.textContent = 'Resume rotation';
-      spinToggle.setAttribute('aria-pressed', 'false');
+      // Turn the shortest way round rather than unwinding accumulated spin.
+      const desiredY = -Math.PI / 2 - country.lon * DEG;
+      const currentY = globeGroup ? globeGroup.rotation.y : targetRotY;
+      targetRotY = currentY + Math.atan2(Math.sin(desiredY - currentY), Math.cos(desiredY - currentY));
+      targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, country.lat * DEG));
+      if (smallIds.has(country.id)) targetCameraZ = Math.min(targetCameraZ, 2.6);
+      setSpinning(false);
+      return true;
+    }
+
+    const searchIndex = countries.map(country => ({ country, name: normalizeCountry(country.name), terms: country.terms || [] }));
+    function findCountry(query) {
+      const q = normalizeCountry(query);
+      if (!q) return null;
+      const match = searchIndex.find(entry => entry.name === q)
+        || searchIndex.find(entry => entry.terms.includes(q))
+        || searchIndex.find(entry => entry.name.startsWith(q))
+        || searchIndex.find(entry => entry.terms.some(term => term.startsWith(q)))
+        || searchIndex.find(entry => entry.name.includes(q));
+      return match?.country || null;
     }
 
     go.addEventListener('click', () => {
-      const value = search.value.trim().toLowerCase();
-      const exact = byName.get(value);
-      const loose = countries.find(country => country.name.toLowerCase().includes(value));
-      locateCountry(exact || loose);
+      const found = locateCountry(findCountry(search.value));
+      search.setAttribute('aria-invalid', String(!found && Boolean(search.value.trim())));
     });
     search.addEventListener('keydown', event => {
       if (event.key === 'Enter') { event.preventDefault(); go.click(); }
     });
-    spinToggle.addEventListener('click', () => {
-      spinning = !spinning;
-      spinToggle.textContent = spinning ? 'Pause rotation' : 'Resume rotation';
-      spinToggle.setAttribute('aria-pressed', String(spinning));
-    });
+    spinToggle.addEventListener('click', () => setSpinning(!spinning));
     reset.addEventListener('click', () => {
-      selected = null;
-      hovered = null;
-      updateMicrostateMarkers();
+      select(null);
       search.value = '';
+      search.removeAttribute('aria-invalid');
       targetRotX = 0;
-      targetRotY = -Math.PI / 2;
+      targetRotY = globeGroup ? globeGroup.rotation.y + Math.atan2(Math.sin(-Math.PI / 2 - globeGroup.rotation.y), Math.cos(-Math.PI / 2 - globeGroup.rotation.y)) : -Math.PI / 2;
       targetCameraZ = 3.25;
-      spinning = true;
-      spinToggle.textContent = 'Pause rotation';
-      spinToggle.setAttribute('aria-pressed', 'true');
-      redrawTexture();
-      panel.innerHTML = '<div class="panel-kicker">SELECT A COUNTRY</div><h2>Explore the world.</h2><p class="panel-intro">Choose a country on the globe to see its Nuvellum coverage, regional desk, and latest reporting.</p><div class="panel-rule"></div><div class="panel-placeholder"><span class="crosshair" aria-hidden="true">⌖</span><p>Direct country coverage appears here.</p></div>';
+      setSpinning(true);
     });
 
-    function colorForCountry(country) {
-      if (selected?.id === country.id) return '#f0e4d5';
-      if ((country.stories || []).length) return '#761b36';
-      return '#37383b';
+    function pickAt(clientX, clientY) {
+      if (!globe || !idMap) return 0;
+      const started = qaMode ? performance.now() : 0;
+      ndc.set(((clientX - canvasRect.left) / canvasRect.width) * 2 - 1, -((clientY - canvasRect.top) / canvasRect.height) * 2 + 1);
+      raycaster.setFromCamera(ndc, camera);
+      hits.length = 0;
+      raycaster.intersectObject(globe, false, hits);
+      const hit = hits[0];
+      let id = 0;
+      if (hit?.uv) {
+        id = idMap[uvToPixel(hit.uv.x, hit.uv.y).index];
+        // Small entities compete by anchor distance, including when the pixel
+        // itself is one (Saint Martin and Sint Maarten share a texel).
+        id = nearestSmallTarget(clientX, clientY, id ? LAND_ASSIST_PX : SEA_ASSIST_PX) || id;
+      }
+      if (qaMode) {
+        const elapsed = performance.now() - started;
+        stats.picks++; stats.pickMs += elapsed; stats.maxPickMs = Math.max(stats.maxPickMs, elapsed);
+      }
+      return id;
     }
 
-    function redrawTexture() {
-      if (!textureCanvas) return;
+    function nearestSmallTarget(clientX, clientY, radius) {
+      let best = 0, bestDistance = radius * radius;
+      const { world, toCamera } = scratch;
+      for (const target of smallTargets) {
+        world.copy(target.local).applyMatrix4(globe.matrixWorld);
+        toCamera.copy(camera.position).sub(world);
+        if (world.dot(toCamera) <= 0) continue;
+        world.project(camera);
+        const dx = (world.x + 1) / 2 * canvasRect.width + canvasRect.left - clientX;
+        const dy = (1 - world.y) / 2 * canvasRect.height + canvasRect.top - clientY;
+        const distance = dx * dx + dy * dy;
+        if (distance < bestDistance) { bestDistance = distance; best = target.id; }
+      }
+      return best;
+    }
+
+    function updateHover() {
+      setHovered(pointer.inside && !dragging ? pickAt(pointer.x, pointer.y) : 0);
+      if (hoveredId) positionTooltip();
+    }
+
+    function refreshRects() {
+      canvasRect = canvas.getBoundingClientRect();
+      frameRect = frame.getBoundingClientRect();
+    }
+    window.addEventListener('scroll', refreshRects, { passive: true });
+
+    canvas.addEventListener('pointerdown', event => {
+      dragging = true; moved = false;
+      setSpinning(false);
+      startX = lastX = event.clientX; startY = lastY = event.clientY;
+      canvas.setPointerCapture(event.pointerId);
+      pointer.dirty = true;
+    });
+    canvas.addEventListener('pointermove', event => {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      pointer.inside = true;
+      pointer.dirty = true;
+      if (!dragging) return;
+      const dx = event.clientX - lastX, dy = event.clientY - lastY;
+      if (Math.abs(event.clientX - startX) + Math.abs(event.clientY - startY) > 5) moved = true;
+      targetRotY += dx * .006;
+      targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, targetRotX + dy * .004));
+      lastX = event.clientX; lastY = event.clientY;
+    });
+    canvas.addEventListener('pointerup', event => {
+      dragging = false;
+      try { canvas.releasePointerCapture(event.pointerId); } catch {}
+      if (!moved) {
+        const country = byId.get(pickAt(event.clientX, event.clientY));
+        if (country) locateCountry(country);
+      }
+      pointer.dirty = true;
+    });
+    canvas.addEventListener('pointercancel', () => { dragging = false; pointer.dirty = true; });
+    canvas.addEventListener('pointerleave', () => { pointer.inside = false; pointer.dirty = true; });
+    canvas.addEventListener('wheel', event => {
+      event.preventDefault();
+      targetCameraZ = Math.max(2.15, Math.min(5.2, targetCameraZ + event.deltaY * .0022));
+    }, { passive: false });
+
+    // Painted once. Hover and selection are applied by the shader, so the
+    // 2048×1024 atlas is never repainted during interaction.
+    function paintAtlas(textureCanvas) {
       const ctx = textureCanvas.getContext('2d');
       const w = textureCanvas.width, h = textureCanvas.height;
-      ctx.setTransform(1,0,0,1,0,0);
       ctx.fillStyle = '#020406';
       ctx.fillRect(0,0,w,h);
 
@@ -263,16 +414,15 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
       }
 
-      const scale = w / 1000;
-      const yOffset = (90 - 84) / 180 * h;
-      ctx.setTransform(scale,0,0,scale,0,yOffset);
+      const { scale, offsetY } = textureTransform(w, h);
+      ctx.setTransform(scale,0,0,scale,0,offsetY);
+      ctx.fillStyle = '#37383b';
+      ctx.strokeStyle = 'rgba(238,226,213,.34)';
+      ctx.lineWidth = .25;
       for (const country of countries) {
         if (!country.d) continue;
         const path = new Path2D(country.d);
-        ctx.fillStyle = colorForCountry(country);
-        ctx.strokeStyle = selected?.id === country.id ? '#fff5e8' : 'rgba(238,226,213,.34)';
-        ctx.lineWidth = selected?.id === country.id ? .62 : .25;
-        ctx.fill(path);
+        ctx.fill(path, 'evenodd');
         ctx.stroke(path);
       }
       ctx.setTransform(1,0,0,1,0,0);
@@ -282,218 +432,66 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       glow.addColorStop(.7,'rgba(0,0,0,0)');
       ctx.fillStyle = glow;
       ctx.fillRect(0,0,w,h);
-      if (texture) texture.needsUpdate = true;
     }
 
-    function updateMicrostateMarkers() {
-      for (const marker of microstateMarkers) {
-        const id = marker.userData.countryId;
-        marker.scale.setScalar(
-          selected?.id === id ? 1.9 :
-          hovered?.id === id ? 1.55 : 1
-        );
-      }
-    }
-
-    function redrawHoverOverlay(country) {
-      if (!hoverCanvas || !hoverTexture) {
-        updateMicrostateMarkers();
-        return;
-      }
-      const ctx = hoverCanvas.getContext('2d');
-      const w = hoverCanvas.width, h = hoverCanvas.height;
-      ctx.setTransform(1,0,0,1,0,0);
-      ctx.clearRect(0,0,w,h);
-      if (country?.d) {
-        const scale = w / 1000;
-        const yOffset = (90 - 84) / 180 * h;
-        ctx.setTransform(scale,0,0,scale,0,yOffset);
-        const path = new Path2D(country.d);
-        ctx.fillStyle = 'rgba(174,47,79,.78)';
-        ctx.strokeStyle = 'rgba(255,235,225,.82)';
-        ctx.lineWidth = .65;
-        ctx.fill(path);
-        ctx.stroke(path);
-        ctx.setTransform(1,0,0,1,0,0);
-      }
-      hoverTexture.needsUpdate = true;
-      updateMicrostateMarkers();
-    }
-
-    function buildHitMap() {
-      const ctx = hitCtx || hitCanvas.getContext('2d', { willReadFrequently: true });
-      const w = hitCanvas.width, h = hitCanvas.height;
-      ctx.clearRect(0,0,w,h);
-      const scale = w / 1000;
-      const yOffset = (90 - 84) / 180 * h;
-      ctx.setTransform(scale,0,0,scale,0,yOffset);
-      for (const country of countries) {
-        if (!country.d) continue;
-        const path = new Path2D(country.d);
-        const id = country.id;
-        ctx.fillStyle = `rgb(${id & 255},${(id >> 8) & 255},${(id >> 16) & 255})`;
-        ctx.fill(path);
-      }
-      ctx.setTransform(1,0,0,1,0,0);
-      hitPixels = ctx.getImageData(0,0,w,h).data;
-    }
-
-    function countryFromPointer(event, fullPick = false, rect = canvasRect || canvas.getBoundingClientRect()) {
-      if (!camera || !globeGroup || !raycaster || !pointer || !hitPixels || !rayHitPoint || !localHitPoint) return null;
-
-      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      raycaster.setFromCamera(pointer, camera);
-
-      // Fast analytical ray/sphere intersection. This avoids asking Three.js
-      // to test thousands of sphere triangles on every mouse move.
-      const ray = raycaster.ray;
-      const b = ray.origin.dot(ray.direction);
-      const c = ray.origin.lengthSq() - 1;
-      const disc = b * b - c;
-      if (disc < 0) return null;
-      const t = -b - Math.sqrt(disc);
-      if (t < 0) return null;
-
-      rayHitPoint.copy(ray.direction).multiplyScalar(t).add(ray.origin);
-      localHitPoint.copy(rayHitPoint);
-      globeGroup.worldToLocal(localHitPoint);
-      const length = localHitPoint.length();
-      if (!length) return null;
-
-      const theta = Math.acos(Math.max(-1, Math.min(1, localHitPoint.y / length)));
-      let phi = Math.atan2(localHitPoint.z, -localHitPoint.x);
-      if (phi < 0) phi += Math.PI * 2;
-      const u = phi / (Math.PI * 2);
-      const v = 1 - theta / Math.PI;
-
-      const w = hitCanvas.width, h = hitCanvas.height;
-      const x = Math.max(0, Math.min(w - 1, Math.floor(u * w)));
-      const y = Math.max(0, Math.min(h - 1, Math.floor((1 - v) * h)));
-
-      const readId = (px, py) => {
-        const offset = (py * w + px) * 4;
-        return hitPixels[offset] | (hitPixels[offset + 1] << 8) | (hitPixels[offset + 2] << 16);
+    function applyHighlightShader(material, idTexture) {
+      highlight = {
+        idMap: { value: idTexture },
+        idTexel: { value: new THREE.Vector2(1 / ID_MAP_WIDTH, 1 / ID_MAP_HEIGHT) },
+        hoverId: { value: 0 },
+        selectedId: { value: 0 },
+        hoverColor: { value: new THREE.Color('#8c2446') },
+        selectedColor: { value: new THREE.Color('#a8324f') },
+        edgeColor: { value: new THREE.Color('#f3e6d6') }
       };
-
-      let id = readId(x, y);
-      if (id) return byId.get(id) || null;
-
-      // Border / tiny-polygon tolerance uses the in-memory pixel buffer only;
-      // there is no synchronous canvas readback in the hover path.
-      const radius = fullPick ? 12 : 6;
-      let bestId = 0;
-      let bestDistance = Infinity;
-      const left = Math.max(0, x - radius);
-      const top = Math.max(0, y - radius);
-      const right = Math.min(w - 1, x + radius);
-      const bottom = Math.min(h - 1, y + radius);
-      for (let py = top; py <= bottom; py++) {
-        for (let px = left; px <= right; px++) {
-          const candidate = readId(px, py);
-          if (!candidate) continue;
-          const dx = px - x;
-          const dy = py - y;
-          const distance = dx * dx + dy * dy;
-          if (distance < bestDistance) {
-            bestDistance = distance;
-            bestId = candidate;
-          }
-        }
-      }
-      if (bestId) return byId.get(bestId) || null;
-
-      // Point-only microstates / islands are represented by geographic markers.
-      // Compare the pointer's globe coordinate directly to those points.
-      const hitLat = 90 - theta * 180 / Math.PI;
-      let hitLon = phi * 180 / Math.PI;
-      if (hitLon > 180) hitLon -= 360;
-      const threshold = fullPick ? 3.2 : 2.2;
-      let nearest = null;
-      let nearestDistance = Infinity;
-      for (const country of countries) {
-        if (!country.pointOnly) continue;
-        let dLon = Math.abs(hitLon - country.lon);
-        if (dLon > 180) dLon = 360 - dLon;
-        const dx = dLon * Math.cos(hitLat * Math.PI / 180);
-        const dy = hitLat - country.lat;
-        const distance = Math.hypot(dx, dy);
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearest = country;
-        }
-      }
-      return nearestDistance <= threshold ? nearest : null;
+      material.onBeforeCompile = shader => {
+        Object.assign(shader.uniforms, highlight);
+        shader.fragmentShader = shader.fragmentShader
+          .replace('#include <common>', `#include <common>
+            uniform sampler2D idMap;
+            uniform vec2 idTexel;
+            uniform float hoverId;
+            uniform float selectedId;
+            uniform vec3 hoverColor;
+            uniform vec3 selectedColor;
+            uniform vec3 edgeColor;
+            float countryAt(vec2 uv) {
+              vec2 rg = texture2D(idMap, vec2(uv.x, 1.0 - uv.y)).rg;
+              return floor(rg.r * 255.0 + 0.5) + floor(rg.g * 255.0 + 0.5) * 256.0;
+            }
+            float sameCountry(vec2 uv, float id) { return step(abs(countryAt(uv) - id), 0.5); }`)
+          .replace('#include <map_fragment>', `#include <map_fragment>
+            float countryId = countryAt(vMapUv);
+            float isSelected = (selectedId > 0.5 && abs(countryId - selectedId) < 0.5) ? 1.0 : 0.0;
+            float isHovered = (hoverId > 0.5 && abs(countryId - hoverId) < 0.5) ? 1.0 - isSelected : 0.0;
+            float selectedEdge = 0.0;
+            if (isSelected > 0.5) {
+              vec2 o = idTexel * 1.5;
+              selectedEdge = 1.0 - sameCountry(vMapUv + vec2(o.x, 0.0), selectedId) * sameCountry(vMapUv - vec2(o.x, 0.0), selectedId)
+                * sameCountry(vMapUv + vec2(0.0, o.y), selectedId) * sameCountry(vMapUv - vec2(0.0, o.y), selectedId);
+            }
+            diffuseColor.rgb = mix(diffuseColor.rgb, hoverColor, isHovered * 0.88);
+            diffuseColor.rgb = mix(diffuseColor.rgb, selectedColor, isSelected * 0.92);
+            diffuseColor.rgb = mix(diffuseColor.rgb, edgeColor, selectedEdge * 0.85);`)
+          .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+            totalEmissiveRadiance += hoverColor * isHovered * 0.35 + selectedColor * isSelected * 0.45;`);
+      };
     }
 
-    function setTooltip(country, event, rect = frameRect || frame.getBoundingClientRect()) {
-      if (!country) {
-        tooltip.hidden = true;
-        tooltip.dataset.countryId = '';
-        return;
-      }
-      if (tooltip.dataset.countryId !== String(country.id)) {
-        tooltip.dataset.countryId = String(country.id);
-        tooltip.querySelector('strong').textContent = country.name;
-        const count = (country.stories || []).length;
-        tooltip.querySelector('span').textContent = count ? `${count} direct stor${count === 1 ? 'y' : 'ies'}` : country.regionLabel;
-      }
-      tooltip.style.left = `${event.clientX - rect.left + 14}px`;
-      tooltip.style.top = `${event.clientY - rect.top + 14}px`;
-      tooltip.hidden = false;
+    function makeMarker(color, opacity) {
+      const marker = new THREE.Mesh(
+        new THREE.RingGeometry(.0105, .0155, 48),
+        new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide })
+      );
+      marker.visible = false;
+      marker.renderOrder = 2;
+      globeGroup.add(marker);
+      return marker;
     }
-
-    canvas.addEventListener('pointerdown', event => {
-      dragging = true; moved = false; spinning = false;
-      startX = lastX = event.clientX; startY = lastY = event.clientY;
-      canvas.setPointerCapture(event.pointerId);
-    });
-    canvas.addEventListener('pointermove', event => {
-      if (dragging) {
-        const dx = event.clientX - lastX, dy = event.clientY - lastY;
-        if (Math.abs(event.clientX - startX) + Math.abs(event.clientY - startY) > 5) moved = true;
-        targetRotY += dx * .006;
-        targetRotX = Math.max(-1.15, Math.min(1.15, targetRotX + dy * .004));
-        lastX = event.clientX; lastY = event.clientY;
-        tooltip.hidden = true;
-        return;
-      }
-      if (hoverRAF) cancelAnimationFrame(hoverRAF);
-      hoverRAF = requestAnimationFrame(() => {
-        const country = countryFromPointer(event, false);
-        if (country?.id !== hovered?.id) {
-          hovered = country;
-          redrawHoverOverlay(country);
-        }
-        setTooltip(country, event);
-        canvas.style.cursor = country ? 'pointer' : 'grab';
-      });
-    });
-    canvas.addEventListener('pointerup', event => {
-      dragging = false;
-      try { canvas.releasePointerCapture(event.pointerId); } catch {}
-      if (!moved) {
-        const country = countryFromPointer(event, true);
-        if (country) locateCountry(country);
-      }
-    });
-    canvas.addEventListener('pointerleave', () => {
-      if (!dragging) {
-        hovered = null;
-        redrawHoverOverlay(null);
-        tooltip.hidden = true;
-        tooltip.dataset.countryId = '';
-      }
-    });
-    canvas.addEventListener('wheel', event => {
-      event.preventDefault();
-      targetCameraZ = Math.max(2.15, Math.min(5.2, targetCameraZ + event.deltaY * .0022));
-    }, { passive: false });
 
     async function init() {
       try {
-        three = await import('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm');
-        const THREE = three;
+        THREE = await import('three');
         scene = new THREE.Scene();
         scene.fog = new THREE.FogExp2(0x020305, .12);
         camera = new THREE.PerspectiveCamera(36, 1, .1, 100);
@@ -502,24 +500,35 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
         renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-        textureCanvas = document.createElement('canvas');
-        textureCanvas.width = 2048; textureCanvas.height = 1024;
-        hitCanvas = document.createElement('canvas');
-        hitCanvas.width = 2048; hitCanvas.height = 1024;
-        hitCtx = hitCanvas.getContext('2d', { willReadFrequently: true });
-        buildHitMap();
-        redrawTexture();
+        let started = performance.now();
+        const raster = rasterizeIdMap(countries.map(country => ({
+          id: country.id, rings: parseRings(country.d), lon: country.lon, lat: country.lat
+        })));
+        idMap = raster.ids;
+        pixelCounts = raster.counts;
+        stats.idMapMs = performance.now() - started;
 
-        texture = new THREE.CanvasTexture(textureCanvas);
+        started = performance.now();
+        const textureCanvas = document.createElement('canvas');
+        textureCanvas.width = ID_MAP_WIDTH; textureCanvas.height = ID_MAP_HEIGHT;
+        paintAtlas(textureCanvas);
+        stats.textureMs = performance.now() - started;
+
+        const texture = new THREE.CanvasTexture(textureCanvas);
         texture.colorSpace = THREE.SRGBColorSpace;
         texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
-        texture.needsUpdate = true;
+
+        // The Uint16 IDs, read as two bytes per texel (little-endian: low byte in R).
+        const idTexture = new THREE.DataTexture(new Uint8Array(idMap.buffer), ID_MAP_WIDTH, ID_MAP_HEIGHT, THREE.RGFormat, THREE.UnsignedByteType);
+        idTexture.magFilter = THREE.NearestFilter;
+        idTexture.minFilter = THREE.NearestFilter;
+        idTexture.generateMipmaps = false;
+        idTexture.needsUpdate = true;
 
         globeGroup = new THREE.Group();
         globeGroup.rotation.y = targetRotY;
         scene.add(globeGroup);
 
-        const sphereGeometry = new THREE.SphereGeometry(1, 96, 64);
         const material = new THREE.MeshPhongMaterial({
           map: texture,
           emissive: 0x210711,
@@ -527,56 +536,17 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           shininess: 18,
           specular: 0x5f4050
         });
-        globe = new THREE.Mesh(sphereGeometry, material);
+        applyHighlightShader(material, idTexture);
+        globe = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 64), material);
         globeGroup.add(globe);
 
-        hoverCanvas = document.createElement('canvas');
-        hoverCanvas.width = 1024;
-        hoverCanvas.height = 512;
-        hoverTexture = new THREE.CanvasTexture(hoverCanvas);
-        hoverTexture.colorSpace = THREE.SRGBColorSpace;
-        const hoverSphere = new THREE.Mesh(
-          sphereGeometry,
-          new THREE.MeshBasicMaterial({
-            map: hoverTexture,
-            transparent: true,
-            depthWrite: false,
-            opacity: .95
-          })
-        );
-        hoverSphere.scale.setScalar(1.002);
-        globeGroup.add(hoverSphere);
-
-        rayHitPoint = new THREE.Vector3();
-        localHitPoint = new THREE.Vector3();
-
-        const globePosition = (lonDeg, latDeg, radius = 1.025) => {
-          const lon = lonDeg * Math.PI / 180;
-          const lat = latDeg * Math.PI / 180;
-          const cosLat = Math.cos(lat);
-          return new THREE.Vector3(
-            radius * cosLat * Math.cos(lon),
-            radius * Math.sin(lat),
-            -radius * cosLat * Math.sin(lon)
-          );
-        };
-
-        const markerGeometry = new THREE.SphereGeometry(.009, 8, 6);
-        const markerMaterial = new THREE.MeshBasicMaterial({
-          color: 0xa72f50,
-          transparent: true,
-          opacity: .82,
-          depthWrite: false
-        });
-
         for (const country of countries) {
-          if (!country.pointOnly) continue;
-          const marker = new THREE.Mesh(markerGeometry, markerMaterial);
-          marker.position.copy(globePosition(country.lon, country.lat, 1.018));
-          marker.userData.countryId = country.id;
-          globeGroup.add(marker);
-          microstateMarkers.push(marker);
+          if (pixelCounts[country.id] < SMALL_TARGET_PIXELS) smallIds.add(country.id);
         }
+        smallTargets = countries.filter(country => smallIds.has(country.id)).map(country => ({ id: country.id, local: anchorVector(country) }));
+        hoverMarker = makeMarker(0xb0385a, .95);
+        selectedMarker = makeMarker(0xf3e6d6, 1);
+        if (selected) select(selected);
 
         const wire = new THREE.Mesh(
           new THREE.SphereGeometry(1.007, 48, 32),
@@ -619,12 +589,9 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         scene.add(stars);
 
         raycaster = new THREE.Raycaster();
-        pointer = new THREE.Vector2();
+        ndc = new THREE.Vector2();
+        scratch = { world: new THREE.Vector3(), toCamera: new THREE.Vector3() };
 
-        const refreshRects = () => {
-          canvasRect = canvas.getBoundingClientRect();
-          frameRect = frame.getBoundingClientRect();
-        };
         const resize = () => {
           const rect = frame.getBoundingClientRect();
           const width = Math.max(300, rect.width);
@@ -633,32 +600,102 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           camera.aspect = width/height;
           camera.updateProjectionMatrix();
           refreshRects();
+          pointer.dirty = true;
         };
         new ResizeObserver(resize).observe(frame);
-        window.addEventListener('scroll', refreshRects, { passive: true });
         resize();
 
         const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) spinning = false;
+        if (reduce) setSpinning(false);
 
         const clock = new THREE.Clock();
         function animate() {
           const dt = Math.min(.05, clock.getDelta());
           if (spinning && !dragging) targetRotY -= dt * .075;
-          globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x) * .075;
-          globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y) * .075;
-          camera.position.z += (targetCameraZ - camera.position.z) * .09;
+          const stepX = (targetRotX - globeGroup.rotation.x) * .075;
+          const stepY = (targetRotY - globeGroup.rotation.y) * .075;
+          const stepZ = (targetCameraZ - camera.position.z) * .09;
+          globeGroup.rotation.x += stepX;
+          globeGroup.rotation.y += stepY;
+          camera.position.z += stepZ;
+          const moving = Math.abs(stepX) + Math.abs(stepY) + Math.abs(stepZ) > 1e-7;
+          // Re-pick once per frame when the pointer moved or the globe turned
+          // under a still pointer, against the transforms about to be drawn.
+          if (pointer.dirty || (moving && pointer.inside)) {
+            camera.updateMatrixWorld();
+            globeGroup.updateMatrixWorld();
+            updateHover();
+            pointer.dirty = false;
+          }
           renderer.render(scene,camera);
           requestAnimationFrame(animate);
         }
         animate();
         loading.hidden = true;
         root.classList.add('is-ready');
+        if (qaMode) window.__worldExplorerQA.ready = true;
       } catch (error) {
         console.error('World Explorer failed to initialize', error);
         loading.hidden = true;
         fallback.hidden = false;
       }
+    }
+
+    // Deterministic hooks for the exhaustive browser audit; only with ?qa.
+    if (qaMode) {
+      window.__worldExplorerQA = {
+        ready: false,
+        stats,
+        countries: countries.map(({ id, name, slug, region, status, pointOnly, lon, lat }) => ({ id, name, slug, region, status, pointOnly, lon, lat })),
+        pixelCount: id => pixelCounts?.[id] ?? 0,
+        isSmallTarget: id => smallIds.has(id),
+        settle() {
+          globeGroup.rotation.set(targetRotX, targetRotY, 0);
+          camera.position.z = targetCameraZ;
+          camera.updateMatrixWorld();
+          globeGroup.updateMatrixWorld();
+          renderer.render(scene, camera);
+        },
+        screenPoint(id) {
+          const country = byId.get(id);
+          const world = anchorVector(country).applyMatrix4(globe.matrixWorld);
+          const facing = world.dot(camera.position.clone().sub(world)) > 0;
+          world.project(camera);
+          return {
+            x: (world.x + 1) / 2 * canvasRect.width + canvasRect.left,
+            y: (1 - world.y) / 2 * canvasRect.height + canvasRect.top,
+            facing,
+            center: { x: canvasRect.left + canvasRect.width / 2, y: canvasRect.top + canvasRect.height / 2 }
+          };
+        },
+        pickAt,
+        // The ID-map pixel under a screen point, without small-target assistance.
+        rawAt(clientX, clientY) {
+          ndc.set(((clientX - canvasRect.left) / canvasRect.width) * 2 - 1, -((clientY - canvasRect.top) / canvasRect.height) * 2 + 1);
+          raycaster.setFromCamera(ndc, camera);
+          const hit = raycaster.intersectObject(globe, false)[0];
+          return hit?.uv ? idMap[uvToPixel(hit.uv.x, hit.uv.y).index] : -1;
+        },
+        clearSelection: () => select(null),
+        view(lon, lat, z = 3.25) {
+          targetRotY = -Math.PI / 2 - lon * DEG;
+          targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, lat * DEG));
+          targetCameraZ = z;
+          setSpinning(false);
+          this.settle();
+        },
+        state: () => ({
+          hoveredId,
+          selectedId: selected?.id || 0,
+          uniforms: highlight ? { hover: highlight.hoverId.value, selected: highlight.selectedId.value } : null,
+          tooltip: tooltip.hidden ? '' : tooltipName.textContent,
+          panel: panel.querySelector('h2')?.textContent || '',
+          href: panel.querySelector('.primary-action')?.getAttribute('href') || '',
+          hoverMarker: Boolean(hoverMarker?.visible),
+          selectedMarker: Boolean(selectedMarker?.visible)
+        }),
+        internals: () => ({ THREE, camera, globe, canvasRect })
+      };
     }
     init();
   </script>
@@ -694,7 +731,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
 .globe-loading span{display:block;width:28px;height:28px;border:1px solid #91324e;border-top-color:transparent;border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}.globe-loading strong{font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
 @keyframes spin{to{transform:rotate(360deg)}}
 .globe-fallback{max-width:340px;line-height:1.5}
-.country-tooltip{position:absolute;z-index:8;background:rgba(5,5,7,.94);border:1px solid rgba(227,211,196,.22);padding:9px 11px;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.34);min-width:130px}
+.country-tooltip{position:absolute;left:0;top:0;will-change:transform;z-index:8;background:rgba(5,5,7,.94);border:1px solid rgba(227,211,196,.22);padding:9px 11px;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.34);min-width:130px}
 .country-tooltip strong{display:block;font-size:14px;font-weight:500}.country-tooltip span{display:block;color:#b8aca1;font-size:11px;margin-top:3px}
 .globe-caption{position:absolute;left:24px;right:24px;bottom:18px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;color:#8f8580;font-size:11px;letter-spacing:.04em;pointer-events:none}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}.dot-live{background:#8e2140;box-shadow:0 0 10px #9c2849}.dot-map{background:#78787c}
