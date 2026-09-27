@@ -5,6 +5,7 @@ As of 2026-09-26. Companion documents:
 - `AGENTS.md`: rules and the repository map
 - `docs/EDITORIAL_PIPELINE.md`: publication policy
 - `docs/RECOVERY.md`: rollback procedures
+- `docs/ROADMAP.md`: milestones, including the AI Visual Engine
 - `n8n/README.md`: the n8n workflow contract
 
 ## 1. Overview
