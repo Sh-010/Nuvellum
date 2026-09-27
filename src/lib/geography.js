@@ -67,11 +67,24 @@ export function regionsForArticle(article) {
   const explicit = explicitRegionSlugs(article);
   if (explicit.length) return [...new Set(explicit)];
 
+  // Existing automated World stories predate explicit geographic metadata, so
+  // infer them conservatively. Other sections must provide regions/countries
+  // explicitly; this prevents titles such as "Pirates of the Caribbean" from
+  // being mistaken for geographic reporting.
+  const countries = Array.isArray(article?.countries) ? article.countries : [];
+  if (countries.length) {
+    const countryText = normalized(countries.join(' '));
+    return [...new Set(REGIONS
+      .filter(region => region.keywords.some(keyword => containsKeyword(countryText, keyword)))
+      .map(region => region.slug))];
+  }
+
+  if (normalized(article?.section).trim() !== 'world') return [];
+
   const text = normalized([
     article?.title,
     article?.dek,
-    ...(Array.isArray(article?.tags) ? article.tags : []),
-    ...(Array.isArray(article?.countries) ? article.countries : [])
+    ...(Array.isArray(article?.tags) ? article.tags : [])
   ].filter(Boolean).join(' '));
 
   const matches = REGIONS
