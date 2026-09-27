@@ -259,6 +259,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       const yOffset = (90 - 84) / 180 * h;
       ctx.setTransform(scale,0,0,scale,0,yOffset);
       for (const country of countries) {
+        if (!country.d) continue;
         const path = new Path2D(country.d);
         ctx.fillStyle = colorForCountry(country);
         ctx.strokeStyle = selected?.id === country.id ? '#fff5e8' : 'rgba(238,226,213,.34)';
@@ -284,6 +285,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       const yOffset = (90 - 84) / 180 * h;
       ctx.setTransform(scale,0,0,scale,0,yOffset);
       for (const country of countries) {
+        if (!country.d) continue;
         const path = new Path2D(country.d);
         const id = country.id;
         ctx.fillStyle = `rgb(${id & 255},${(id >> 8) & 255},${(id >> 16) & 255})`;
@@ -311,7 +313,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       // When the exact pixel is ocean/border, inspect a small neighborhood and
       // choose the nearest country pixel instead of making the country feel
       // impossible to select.
-      const radius = 8;
+      const radius = 12;
       const left = Math.max(0, x - radius);
       const top = Math.max(0, y - radius);
       const right = Math.min(hitCanvas.width - 1, x + radius);
