@@ -174,6 +174,15 @@ export function productionizeHome(html) {
   // The saved list is first rendered before this bridge runs; re-render it now that routes are known.
   const rerenderSaved=()=>{try{if(typeof renderSaved==='function')renderSaved()}catch(err){}};
   rerenderSaved();
+  // Hidden dialogs (story drawer, info modal) must not be reachable by keyboard: make them
+  // inert whenever the page marks them aria-hidden="true". No visual change.
+  ['storyDrawer','infoModal'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const sync=()=>{if(el.getAttribute('aria-hidden')==='true')el.setAttribute('inert','');else el.removeAttribute('inert');};
+    sync();
+    new MutationObserver(sync).observe(el,{attributes:true,attributeFilter:['aria-hidden']});
+  });
   // Section show/hide buttons expose their state to assistive technology.
   document.querySelectorAll('.section-toggle').forEach(btn=>{
     const section=btn.closest('.section');
