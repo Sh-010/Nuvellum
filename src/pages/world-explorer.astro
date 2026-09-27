@@ -149,7 +149,10 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let textureCanvas = null;
     let hitCanvas = null;
     let hitCtx = null;
+    let hitPixels = null;
     let texture = null;
+    let hoverCanvas = null;
+    let hoverTexture = null;
     let globe = null;
     let globeGroup = null;
     let renderer = null;
@@ -157,8 +160,8 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let scene = null;
     let raycaster = null;
     let pointer = null;
-    let countryTargets = [];
-    let microstateTargets = [];
+    let rayHitPoint = null;
+    let localHitPoint = null;
     let microstateMarkers = [];
     let spinning = true;
     let dragging = false;
@@ -167,14 +170,13 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let targetRotX = 0, targetRotY = -Math.PI / 2;
     let targetCameraZ = 3.25;
     let hoverRAF = 0;
-    let lastHoverCheck = 0;
+    let canvasRect = null;
+    let frameRect = null;
 
     function renderPanel(country) {
       selected = country;
       redrawTexture();
-      for (const marker of microstateMarkers) {
-        marker.scale.setScalar(marker.userData.countryId === country?.id ? 1.8 : 1);
-      }
+      updateMicrostateMarkers();
       if (!country) return;
       const stories = country.stories || [];
       panel.innerHTML = `
@@ -224,7 +226,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     reset.addEventListener('click', () => {
       selected = null;
       hovered = null;
-      for (const marker of microstateMarkers) marker.scale.setScalar(1);
+      updateMicrostateMarkers();
       search.value = '';
       targetRotX = 0;
       targetRotY = -Math.PI / 2;
@@ -283,6 +285,41 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       if (texture) texture.needsUpdate = true;
     }
 
+    function updateMicrostateMarkers() {
+      for (const marker of microstateMarkers) {
+        const id = marker.userData.countryId;
+        marker.scale.setScalar(
+          selected?.id === id ? 1.9 :
+          hovered?.id === id ? 1.55 : 1
+        );
+      }
+    }
+
+    function redrawHoverOverlay(country) {
+      if (!hoverCanvas || !hoverTexture) {
+        updateMicrostateMarkers();
+        return;
+      }
+      const ctx = hoverCanvas.getContext('2d');
+      const w = hoverCanvas.width, h = hoverCanvas.height;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.clearRect(0,0,w,h);
+      if (country?.d) {
+        const scale = w / 1000;
+        const yOffset = (90 - 84) / 180 * h;
+        ctx.setTransform(scale,0,0,scale,0,yOffset);
+        const path = new Path2D(country.d);
+        ctx.fillStyle = 'rgba(174,47,79,.78)';
+        ctx.strokeStyle = 'rgba(255,235,225,.82)';
+        ctx.lineWidth = .65;
+        ctx.fill(path);
+        ctx.stroke(path);
+        ctx.setTransform(1,0,0,1,0,0);
+      }
+      hoverTexture.needsUpdate = true;
+      updateMicrostateMarkers();
+    }
+
     function buildHitMap() {
       const ctx = hitCtx || hitCanvas.getContext('2d', { willReadFrequently: true });
       const w = hitCanvas.width, h = hitCanvas.height;
@@ -298,53 +335,65 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         ctx.fill(path);
       }
       ctx.setTransform(1,0,0,1,0,0);
+      hitPixels = ctx.getImageData(0,0,w,h).data;
     }
 
-    function countryFromPointer(event, fullTargets = false, rect = canvas.getBoundingClientRect()) {
-      if (!renderer || !camera || !globe || !hitCtx) return null;
+    function countryFromPointer(event, fullPick = false, rect = canvasRect || canvas.getBoundingClientRect()) {
+      if (!camera || !globeGroup || !raycaster || !pointer || !hitPixels || !rayHitPoint || !localHitPoint) return null;
+
       pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
 
-      // Hover stays light: only test the small set of point-only microstates.
-      // Clicks use all country proxy targets to guarantee selection.
-      const targets = fullTargets ? countryTargets : microstateTargets;
-      if (targets.length) {
-        const targetHit = raycaster.intersectObjects(targets, false)[0];
-        const targetId = targetHit?.object?.userData?.countryId;
-        if (targetId) return byId.get(targetId) || null;
-      }
+      // Fast analytical ray/sphere intersection. This avoids asking Three.js
+      // to test thousands of sphere triangles on every mouse move.
+      const ray = raycaster.ray;
+      const b = ray.origin.dot(ray.direction);
+      const c = ray.origin.lengthSq() - 1;
+      const disc = b * b - c;
+      if (disc < 0) return null;
+      const t = -b - Math.sqrt(disc);
+      if (t < 0) return null;
 
-      const hit = raycaster.intersectObject(globe, false)[0];
-      if (!hit?.uv) return null;
-      const x = Math.max(0, Math.min(hitCanvas.width - 1, Math.floor(hit.uv.x * hitCanvas.width)));
-      const y = Math.max(0, Math.min(hitCanvas.height - 1, Math.floor((1 - hit.uv.y) * hitCanvas.height)));
-      const ctx = hitCtx;
-      const pixel = ctx.getImageData(x,y,1,1).data;
-      let id = pixel[0] | (pixel[1] << 8) | (pixel[2] << 16);
+      rayHitPoint.copy(ray.direction).multiplyScalar(t).add(ray.origin);
+      localHitPoint.copy(rayHitPoint);
+      globeGroup.worldToLocal(localHitPoint);
+      const length = localHitPoint.length();
+      if (!length) return null;
+
+      const theta = Math.acos(Math.max(-1, Math.min(1, localHitPoint.y / length)));
+      let phi = Math.atan2(localHitPoint.z, -localHitPoint.x);
+      if (phi < 0) phi += Math.PI * 2;
+      const u = phi / (Math.PI * 2);
+      const v = 1 - theta / Math.PI;
+
+      const w = hitCanvas.width, h = hitCanvas.height;
+      const x = Math.max(0, Math.min(w - 1, Math.floor(u * w)));
+      const y = Math.max(0, Math.min(h - 1, Math.floor((1 - v) * h)));
+
+      const readId = (px, py) => {
+        const offset = (py * w + px) * 4;
+        return hitPixels[offset] | (hitPixels[offset + 1] << 8) | (hitPixels[offset + 2] << 16);
+      };
+
+      let id = readId(x, y);
       if (id) return byId.get(id) || null;
 
-      // Tiny countries and islands can occupy only a handful of texture pixels.
-      // When the exact pixel is ocean/border, inspect a small neighborhood and
-      // choose the nearest country pixel instead of making the country feel
-      // impossible to select.
-      const radius = 12;
-      const left = Math.max(0, x - radius);
-      const top = Math.max(0, y - radius);
-      const right = Math.min(hitCanvas.width - 1, x + radius);
-      const bottom = Math.min(hitCanvas.height - 1, y + radius);
-      const width = right - left + 1;
-      const height = bottom - top + 1;
-      const data = ctx.getImageData(left, top, width, height).data;
+      // Border / tiny-polygon tolerance uses the in-memory pixel buffer only;
+      // there is no synchronous canvas readback in the hover path.
+      const radius = fullPick ? 12 : 6;
       let bestId = 0;
       let bestDistance = Infinity;
-      for (let py = 0; py < height; py++) {
-        for (let px = 0; px < width; px++) {
-          const offset = (py * width + px) * 4;
-          const candidate = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16);
+      const left = Math.max(0, x - radius);
+      const top = Math.max(0, y - radius);
+      const right = Math.min(w - 1, x + radius);
+      const bottom = Math.min(h - 1, y + radius);
+      for (let py = top; py <= bottom; py++) {
+        for (let px = left; px <= right; px++) {
+          const candidate = readId(px, py);
           if (!candidate) continue;
-          const dx = left + px - x;
-          const dy = top + py - y;
+          const dx = px - x;
+          const dy = py - y;
           const distance = dx * dx + dy * dy;
           if (distance < bestDistance) {
             bestDistance = distance;
@@ -352,10 +401,32 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           }
         }
       }
-      return byId.get(bestId) || null;
+      if (bestId) return byId.get(bestId) || null;
+
+      // Point-only microstates / islands are represented by geographic markers.
+      // Compare the pointer's globe coordinate directly to those points.
+      const hitLat = 90 - theta * 180 / Math.PI;
+      let hitLon = phi * 180 / Math.PI;
+      if (hitLon > 180) hitLon -= 360;
+      const threshold = fullPick ? 3.2 : 2.2;
+      let nearest = null;
+      let nearestDistance = Infinity;
+      for (const country of countries) {
+        if (!country.pointOnly) continue;
+        let dLon = Math.abs(hitLon - country.lon);
+        if (dLon > 180) dLon = 360 - dLon;
+        const dx = dLon * Math.cos(hitLat * Math.PI / 180);
+        const dy = hitLat - country.lat;
+        const distance = Math.hypot(dx, dy);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearest = country;
+        }
+      }
+      return nearestDistance <= threshold ? nearest : null;
     }
 
-    function setTooltip(country, event, rect = frame.getBoundingClientRect()) {
+    function setTooltip(country, event, rect = frameRect || frame.getBoundingClientRect()) {
       if (!country) {
         tooltip.hidden = true;
         tooltip.dataset.countryId = '';
@@ -388,13 +459,13 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         return;
       }
       if (hoverRAF) cancelAnimationFrame(hoverRAF);
-      hoverRAF = requestAnimationFrame((now) => {
-        if (now - lastHoverCheck < 32) return;
-        lastHoverCheck = now;
-        const rect = canvas.getBoundingClientRect();
-        const country = countryFromPointer(event, false, rect);
-        hovered = country;
-        setTooltip(country, event, rect);
+      hoverRAF = requestAnimationFrame(() => {
+        const country = countryFromPointer(event, false);
+        if (country?.id !== hovered?.id) {
+          hovered = country;
+          redrawHoverOverlay(country);
+        }
+        setTooltip(country, event);
         canvas.style.cursor = country ? 'pointer' : 'grab';
       });
     });
@@ -409,6 +480,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     canvas.addEventListener('pointerleave', () => {
       if (!dragging) {
         hovered = null;
+        redrawHoverOverlay(null);
         tooltip.hidden = true;
         tooltip.dataset.countryId = '';
       }
@@ -458,6 +530,26 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         globe = new THREE.Mesh(sphereGeometry, material);
         globeGroup.add(globe);
 
+        hoverCanvas = document.createElement('canvas');
+        hoverCanvas.width = 1024;
+        hoverCanvas.height = 512;
+        hoverTexture = new THREE.CanvasTexture(hoverCanvas);
+        hoverTexture.colorSpace = THREE.SRGBColorSpace;
+        const hoverSphere = new THREE.Mesh(
+          sphereGeometry,
+          new THREE.MeshBasicMaterial({
+            map: hoverTexture,
+            transparent: true,
+            depthWrite: false,
+            opacity: .95
+          })
+        );
+        hoverSphere.scale.setScalar(1.002);
+        globeGroup.add(hoverSphere);
+
+        rayHitPoint = new THREE.Vector3();
+        localHitPoint = new THREE.Vector3();
+
         const globePosition = (lonDeg, latDeg, radius = 1.025) => {
           const lon = lonDeg * Math.PI / 180;
           const lat = latDeg * Math.PI / 180;
@@ -469,13 +561,6 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           );
         };
 
-        const targetGeometry = new THREE.SphereGeometry(1, 7, 5);
-        const targetMaterial = new THREE.MeshBasicMaterial({
-          transparent: true,
-          opacity: 0,
-          depthWrite: false,
-          color: 0xffffff
-        });
         const markerGeometry = new THREE.SphereGeometry(.009, 8, 6);
         const markerMaterial = new THREE.MeshBasicMaterial({
           color: 0xa72f50,
@@ -484,23 +569,14 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           depthWrite: false
         });
 
-        countryTargets = countries.map(country => {
-          const target = new THREE.Mesh(targetGeometry, targetMaterial);
-          target.scale.setScalar(country.pointOnly ? .045 : .021);
-          target.position.copy(globePosition(country.lon, country.lat, 1.028));
-          target.userData.countryId = country.id;
-          globeGroup.add(target);
-
-          if (country.pointOnly) {
-            microstateTargets.push(target);
-            const marker = new THREE.Mesh(markerGeometry, markerMaterial);
-            marker.position.copy(globePosition(country.lon, country.lat, 1.018));
-            marker.userData.countryId = country.id;
-            globeGroup.add(marker);
-            microstateMarkers.push(marker);
-          }
-          return target;
-        });
+        for (const country of countries) {
+          if (!country.pointOnly) continue;
+          const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+          marker.position.copy(globePosition(country.lon, country.lat, 1.018));
+          marker.userData.countryId = country.id;
+          globeGroup.add(marker);
+          microstateMarkers.push(marker);
+        }
 
         const wire = new THREE.Mesh(
           new THREE.SphereGeometry(1.007, 48, 32),
@@ -545,6 +621,10 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         raycaster = new THREE.Raycaster();
         pointer = new THREE.Vector2();
 
+        const refreshRects = () => {
+          canvasRect = canvas.getBoundingClientRect();
+          frameRect = frame.getBoundingClientRect();
+        };
         const resize = () => {
           const rect = frame.getBoundingClientRect();
           const width = Math.max(300, rect.width);
@@ -552,8 +632,10 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           renderer.setSize(width,height,false);
           camera.aspect = width/height;
           camera.updateProjectionMatrix();
+          refreshRects();
         };
         new ResizeObserver(resize).observe(frame);
+        window.addEventListener('scroll', refreshRects, { passive: true });
         resize();
 
         const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
