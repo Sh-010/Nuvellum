@@ -13,7 +13,7 @@ n8n/
 
 ## Live production workflow (v6.5)
 
-The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is its sanitized export at n8n version `b2693640-37ba-42f8-ac82-ec4b3452869c`. Fix it in place; do not create v6.6+ copies.
+The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is its sanitized export at n8n version `2b8eda07-7ea3-4860-8b78-b5cc1967a033` (synced 2026-09-27). Fix it in place; do not create v6.6+ copies.
 
 **The live Code nodes are the code in that export, not the generated snippets below.** v6.5 was stabilized directly in n8n and verified against real execution data. Its output (low-risk, sensitive-cleared and sensitive-failed cases) passes `scripts/validate-content.mjs` and `newStoryQualityProblems`. The snippets are an alternative, CI-tested implementation of the same contract. Before replacing any live node with a snippet, test it against a real execution, and never downgrade the live behaviour listed here.
 
@@ -22,8 +22,8 @@ The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n i
 | Queue Latest Candidates | Canonical https URLs without tracking params (utm_*, fbclid, gclid, __source, maca, …). Rejects live blogs (`/live/`, `/live-<id>`), video/av, audio, galleries, podcasts, newsletters and quizzes. Skips failed feeds. Takes up to 3 candidates across different outlets and desks. |
 | Prepare Source | Real outlet names. Story text from JSON-LD `articleBody` first, then `<article>`/`<main>`/RSS, with an on-topic guard so unrelated stories are never merged. |
 | Prepare Duplicate Context / Check Open PR Duplicates | Exact-source dedupe against the live search index and open PRs, by source URL or branch hash. |
-| Parse Draft & Build Markdown | Sentence-case headlines. `publishedAt`. Real outlet in `sourceNote`. No padding. Fails closed per story. |
-| Parse Editorial Review | `editorialReview: "passed"` only on a clean pass. Low-risk stories become `published`. |
+| Parse Draft & Build Markdown | Sentence-case headlines, with repairs for model casing errors: proper nouns the source only capitalises are restored, quoted titles of works keep the source's casing, and the first letter is always capitalised (brands like iPhone excepted). Rejects opinion/commentary sources (drafter `skip`, non-news `type`, or an unattributed "X needs to/should…" headline). "campaign" alone is not a politics signal. `publishedAt`. Real outlet in `sourceNote`. No padding. Fails closed per story. |
+| Parse Editorial Review | `editorialReview: "passed"` only on a clean pass. Low-risk stories become `published`. The review prompt also rejects opinion sources and unattributed value judgements for every story. |
 | Parse Sensitive Verification | Only a clean pass writes `verification: "cleared"`, `reviewedBy: "Nuvellum Verification Pipeline"` and `status: "published"`. Failed or uncertain stories are never committed. |
 | Sanitize Editorial SVG | Strips unsafe content, then re-checks against an element allowlist and blocked patterns. Anything left unsafe falls back to the section image. The repository validator re-checks the committed file with `svg-safety.mjs`. |
 | Build GitHub Payload | Final contract gate before any commit. Branch `incoming/<slug ≤60>-<8-hex FNV-1a of the normalized source URL>`. |
