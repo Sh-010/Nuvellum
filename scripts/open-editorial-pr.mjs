@@ -81,9 +81,22 @@ function prText(articlePath, data) {
   };
 }
 
+// The branch's current head. n8n pushes art and article within a second and GitHub can
+// deliver those push events out of order, so the event's own SHA may already be stale.
+async function currentHead() {
+  try {
+    const ref = await gh(`/repos/${repo}/git/ref/heads/${enc(branch)}`);
+    return ref?.object?.sha || sha;
+  } catch {
+    return sha;
+  }
+}
+
 async function main() {
-  // Files this branch adds relative to main, as of the pushed commit.
-  const compare = await gh(`/repos/${repo}/compare/main...${encodeURIComponent(sha)}`);
+  const head = await currentHead();
+  if (head !== sha) console.log(`Pushed ${sha.slice(0, 7)}, branch is now at ${head.slice(0, 7)}; using the branch head.`);
+  // Files this branch adds relative to main, as of its current head.
+  const compare = await gh(`/repos/${repo}/compare/main...${encodeURIComponent(head)}`);
   const articles = (compare.files || [])
     .filter(f => f.status === 'added' && /^src\/content\/articles\/[^/]+\.md$/.test(f.filename))
     .map(f => f.filename);
@@ -98,7 +111,7 @@ async function main() {
   }
 
   const articlePath = articles[0];
-  const file = await gh(`/repos/${repo}/contents/${enc(articlePath)}?ref=${encodeURIComponent(sha)}`);
+  const file = await gh(`/repos/${repo}/contents/${enc(articlePath)}?ref=${encodeURIComponent(head)}`);
   const data = parseFrontmatter(Buffer.from(file.content, 'base64').toString('utf8')) || {};
   const { title, body } = prText(articlePath, data);
 

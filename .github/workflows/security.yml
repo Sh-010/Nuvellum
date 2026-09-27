@@ -15,7 +15,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: security-${{ github.event_name }}-${{ github.ref }}
+  # incoming/** pushes are grouped per commit: n8n pushes art and article within a second,
+  # and a per-branch group could cancel the article commit's checks (the gate needs them).
+  group: security-${{ github.event_name }}-${{ startsWith(github.ref, 'refs/heads/incoming/') && github.sha || github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
