@@ -299,9 +299,40 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       if (!hit?.uv) return null;
       const x = Math.max(0, Math.min(hitCanvas.width - 1, Math.floor(hit.uv.x * hitCanvas.width)));
       const y = Math.max(0, Math.min(hitCanvas.height - 1, Math.floor((1 - hit.uv.y) * hitCanvas.height)));
-      const pixel = hitCanvas.getContext('2d', { willReadFrequently: true }).getImageData(x,y,1,1).data;
-      const id = pixel[0] | (pixel[1] << 8) | (pixel[2] << 16);
-      return byId.get(id) || null;
+      const ctx = hitCanvas.getContext('2d', { willReadFrequently: true });
+      const pixel = ctx.getImageData(x,y,1,1).data;
+      let id = pixel[0] | (pixel[1] << 8) | (pixel[2] << 16);
+      if (id) return byId.get(id) || null;
+
+      // Tiny countries and islands can occupy only a handful of texture pixels.
+      // When the exact pixel is ocean/border, inspect a small neighborhood and
+      // choose the nearest country pixel instead of making the country feel
+      // impossible to select.
+      const radius = 8;
+      const left = Math.max(0, x - radius);
+      const top = Math.max(0, y - radius);
+      const right = Math.min(hitCanvas.width - 1, x + radius);
+      const bottom = Math.min(hitCanvas.height - 1, y + radius);
+      const width = right - left + 1;
+      const height = bottom - top + 1;
+      const data = ctx.getImageData(left, top, width, height).data;
+      let bestId = 0;
+      let bestDistance = Infinity;
+      for (let py = 0; py < height; py++) {
+        for (let px = 0; px < width; px++) {
+          const offset = (py * width + px) * 4;
+          const candidate = data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16);
+          if (!candidate) continue;
+          const dx = left + px - x;
+          const dy = top + py - y;
+          const distance = dx * dx + dy * dy;
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            bestId = candidate;
+          }
+        }
+      }
+      return byId.get(bestId) || null;
     }
 
     function setTooltip(country, event) {
@@ -481,7 +512,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
 </body>
 </html>
 
-<style>
+<style is:global>
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-normal-latin.woff2') format('woff2')}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-italic-latin.woff2') format('woff2')}
 :global(*){box-sizing:border-box}
