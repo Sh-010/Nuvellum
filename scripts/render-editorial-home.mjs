@@ -363,7 +363,7 @@ body{transition:background-color .38s ease,color .38s ease}.site-header,.section
 .screen-item{transition:transform .32s cubic-bezier(.16,.8,.2,1),background-color .32s ease}.screen-item:hover{transform:translateX(5px);background:rgba(255,255,255,.018)}.screen-item:hover img{transform:scale(1.035)}
 .opinion-col{transition:transform .34s cubic-bezier(.16,.8,.2,1)}.opinion-col:hover{transform:translateY(-3px)}
 .save-icon svg{transition:transform .22s cubic-bezier(.16,.8,.2,1),fill .22s ease,stroke .22s ease}.save-icon:hover svg{transform:translateY(-1px) scale(1.06)}.save-icon.just-saved svg{animation:savePop .34s cubic-bezier(.2,.9,.2,1)}@keyframes savePop{0%{transform:scale(.92)}55%{transform:scale(1.16)}100%{transform:scale(1)}}
-.motion-ready .motion-reveal{transform:translateY(8px);transition:transform .7s cubic-bezier(.16,.8,.2,1)}.motion-ready .motion-reveal.is-visible{transform:none}
+.motion-ready .motion-reveal{transform:translateY(8px);transition:transform .7s cubic-bezier(.16,.8,.2,1)}.motion-ready .motion-reveal.is-visible{transform:none}.motion-ready .motion-reveal.is-visible.support-card:hover{transform:translateY(-3px)}.motion-ready .motion-reveal.is-visible.latest-row:hover{transform:translateX(4px)}.motion-ready .motion-reveal.is-visible.screen-item:hover{transform:translateX(5px)}.motion-ready .motion-reveal.is-visible.opinion-col:hover{transform:translateY(-3px)}
 .footer-cols a{transition:color .2s ease,transform .2s ease}.footer-cols a:hover{transform:translateX(3px)}
 
 .search-sheet{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.55);display:none;place-items:start center;padding-top:110px}.search-sheet.open{display:grid}.search-box{width:min(800px,calc(100% - 30px));background:var(--paper2);padding:22px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.25)}.search-box input{width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;color:inherit;font-size:28px;padding:8px 0;outline:0}.search-results{margin-top:14px;display:grid;max-height:55vh;overflow:auto}.search-result{padding:11px 0;border-bottom:1px solid var(--line)}.search-result small{color:var(--wine-ink);text-transform:uppercase;font-family:var(--text);font-size:9px}.search-result strong{display:block;font-size:17px;font-weight:400;margin-top:3px}
@@ -652,7 +652,7 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     body.classList.add('motion-ready');
     const revealTargets=[...document.querySelectorAll('.support-card,.latest-row,.world-desk-panel,.popular,.in-focus-section,.screen-lead,.screen-item,.opinion-col,.newsletter-in,.footer-top')];
     revealTargets.forEach((el,i)=>{el.classList.add('motion-reveal');el.style.transitionDelay=Math.min((i%5)*45,180)+'ms'});
-    const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+    const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');const el=entry.target;setTimeout(()=>{el.style.transitionDelay='0ms'},760);io.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
     revealTargets.forEach(el=>io.observe(el));
   }
 
