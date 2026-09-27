@@ -673,17 +673,12 @@ qs('#drawerRelated').addEventListener('click',e=>{
   openDrawer({title:b.dataset.relatedTitle,kicker:b.dataset.relatedKicker,dek:b.dataset.relatedDek});
 });
 
-function shouldActivateStory(target){
-  return !target.closest('a,button,input,form,.bookmark,.save-btn');
+function shouldOpenPreview(target){
+  return !target.closest('a[href="article.html"],button,input,form,.bookmark,.save-btn');
 }
 qsa('.interactive-story').forEach(el=>{
-  const activate=()=>{
-    const url=el.dataset.route;
-    if(url){goWithCurtain(url);return}
-    openDrawer(storyDataFrom(el));
-  };
-  el.addEventListener('click',e=>{if(shouldActivateStory(e.target))activate()});
-  el.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('a,button,input')){e.preventDefault();activate()}});
+  el.addEventListener('click',e=>{if(shouldOpenPreview(e.target))openDrawer(storyDataFrom(el))});
+  el.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('a,button,input')){e.preventDefault();openDrawer(storyDataFrom(el))}});
 });
 
 const infoContent={
@@ -750,7 +745,7 @@ function goWithCurtain(url){
 }
 
 /* Smooth same-site article navigation */
-qsa('a[href="article.html"],a[href^="/article/"]').forEach(a=>{
+qsa('a[href="article.html"]').forEach(a=>{
   a.addEventListener('click',e=>{
     if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
     e.preventDefault();goWithCurtain(a.getAttribute('href'));
