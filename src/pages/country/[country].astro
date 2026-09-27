@@ -1,0 +1,106 @@
+---
+import SiteHead from '../../components/SiteHead.astro';
+import { getArticles } from '../../lib/articles';
+import { COUNTRIES, countryBySlug, countrySlug, storiesForCountry } from '../../lib/countries.js';
+import { regionBySlug, regionsForArticle } from '../../lib/geography.js';
+
+export async function getStaticPaths() {
+  return COUNTRIES.map(country => ({ params: { country: countrySlug(country.name) } }));
+}
+
+const slug = Astro.params.country!;
+const country = countryBySlug(slug);
+if (!country) throw new Error(`Unknown country: ${slug}`);
+const region = regionBySlug(country.region);
+const articles = await getArticles();
+const direct = storiesForCountry(articles, country.name);
+const regional = articles
+  .filter(article => regionsForArticle(article).includes(country.region) && !direct.some(item => item.slug === article.slug))
+  .slice(0, 6);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SiteHead
+    title={`${country.name} — World Explorer — Nuvellum`}
+    description={`Nuvellum reporting connected to ${country.name} and ${region?.label || 'its region'}.`}
+  />
+</head>
+<body>
+  <div class="country-shell">
+    <header>
+      <a class="brand" href="/">N<span>✦</span>UVELLUM</a>
+      <nav>
+        <a href="/world-explorer">World Explorer</a>
+        <a href={`/world/${country.region}`}>Regional desk</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="country-hero">
+        <div class="kicker">{region?.label || 'World Desk'}</div>
+        <h1>{country.name}</h1>
+        <p>{direct.length
+          ? `${direct.length} direct Nuvellum stor${direct.length === 1 ? 'y' : 'ies'} currently connected to this country.`
+          : 'No direct story is tagged here yet. Regional coverage is shown below.'}</p>
+        <div class="hero-actions">
+          <a class="primary" href="/world-explorer">Return to globe →</a>
+          <a href={`/world/${country.region}`}>Explore {region?.label || 'region'}</a>
+        </div>
+      </section>
+
+      {direct.length > 0 && (
+        <section class="stories">
+          <div class="section-head"><h2>Direct coverage</h2><span>{direct.length}</span></div>
+          <div class="story-grid">
+            {direct.map(article => (
+              <article>
+                <a class="image" href={`/article/${article.slug}`}><img src={article.image} alt={article.imageAlt || ''}/></a>
+                <div class="meta">{article.section} · {article.type}</div>
+                <h3><a href={`/article/${article.slug}`}>{article.title}</a></h3>
+                <p>{article.dek}</p>
+                <small>{article.date} · {article.readingTime}</small>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section class="stories regional">
+        <div class="section-head"><h2>{direct.length ? 'More from the region' : 'Regional coverage'}</h2><span>{region?.label || ''}</span></div>
+        {regional.length ? (
+          <div class="story-grid">
+            {regional.map(article => (
+              <article>
+                <a class="image" href={`/article/${article.slug}`}><img src={article.image} alt={article.imageAlt || ''}/></a>
+                <div class="meta">{article.section} · {article.type}</div>
+                <h3><a href={`/article/${article.slug}`}>{article.title}</a></h3>
+                <p>{article.dek}</p>
+                <small>{article.date} · {article.readingTime}</small>
+              </article>
+            ))}
+          </div>
+        ) : <p class="empty">No regional stories are available yet.</p>}
+      </section>
+    </main>
+
+    <footer>
+      <span>NUVELLUM · Beyond the headline.</span>
+      <a href="/">Home</a>
+    </footer>
+  </div>
+</body>
+</html>
+
+<style is:global>
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-normal-latin.woff2') format('woff2')}
+*{box-sizing:border-box}html{background:#f8f4ec}body{margin:0;background:#f8f4ec;color:#1d1814;font-family:'Newsreader',Georgia,serif}a{color:inherit;text-decoration:none}
+.country-shell{min-height:100vh;background-image:radial-gradient(circle at 80% 0,rgba(102,18,39,.055),transparent 30%)}
+header{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 clamp(22px,4vw,64px);border-bottom:1px solid #d9cfbf}.brand{font-size:29px;letter-spacing:.08em}.brand span{font-size:.5em;color:#74152d;vertical-align:top;margin:0 3px}nav{display:flex;gap:24px;font-size:13px}nav a:hover{color:#74152d}
+main{width:min(1280px,calc(100% - 44px));margin:auto}.country-hero{padding:70px 0 54px;border-bottom:1px solid #d9cfbf}.kicker,.meta{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#74152d}.country-hero h1{font-size:clamp(58px,8vw,112px);font-weight:300;line-height:.84;letter-spacing:-.045em;margin:14px 0 24px}.country-hero p{font-size:20px;line-height:1.42;color:#6f655d;max-width:680px}.hero-actions{display:flex;gap:16px;align-items:center;margin-top:28px;flex-wrap:wrap}.hero-actions a{font-size:13px}.hero-actions .primary{background:#671329;color:#f7eee3;padding:12px 16px}
+.stories{padding:42px 0}.regional{border-top:1px solid #d9cfbf}.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:24px}.section-head h2{font-size:35px;font-weight:400;margin:0;color:#671329}.section-head span{font-size:11px;color:#7b7067;text-transform:uppercase;letter-spacing:.1em}.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}.story-grid article{border-top:1px solid #2c251f;padding-top:10px}.image{display:block;overflow:hidden;background:#ded6ca}.image img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:sepia(.18) saturate(.82);transition:transform .55s ease}.story-grid article:hover .image img{transform:scale(1.025)}.meta{margin-top:12px}.story-grid h3{font-size:26px;line-height:1.04;font-weight:400;margin:7px 0}.story-grid p{font-size:15px;line-height:1.4;color:#6d635b;margin:0 0 12px}.story-grid small{font-size:11px;color:#847970}.empty{color:#746960;font-size:17px;padding:18px 0 50px}
+footer{min-height:72px;background:#000;color:#b7aba0;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 clamp(22px,4vw,64px);font-size:11px}
+footer a{color:#eee4d8}
+@media(max-width:850px){.story-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){header{align-items:flex-start;flex-direction:column;padding-top:18px;padding-bottom:18px}nav{gap:14px;flex-wrap:wrap}.country-hero{padding-top:48px}.story-grid{grid-template-columns:1fr}.country-hero h1{font-size:58px}footer{padding-top:18px;padding-bottom:18px;align-items:flex-start;flex-direction:column}}
+</style>

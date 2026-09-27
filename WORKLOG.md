@@ -173,3 +173,29 @@ Correct rejections seen across runs: opinion columns (Polygon, twice via the dra
 - Known casing gap: "Control resonant" (game title *Control Resonant*, not quoted) was lower-cased in a draft that review rejected anyway. Unquoted multi-word titles whose second word also appears lower-case in the source are not restored yet.
 - Dependabot #2 (TypeScript 5→7, major), #3 and #4 (actions v4→v7): not evaluated this session.
 - `engines/distribution-shorts` (distribution, Shorts, provider layer) is still outside `main`; it belongs to the next milestones (M3/M4).
+
+## 2026-09-28 — World Explorer: interaction layer rebuilt (feat/world-explorer, draft PR #67)
+
+Checkpoint: `checkpoint/world-explorer-pre-interaction-rebuild` (e14b162).
+
+### Causes found
+- Three picking paths disagreed: click tested invisible proxy spheres at each country's *bounding-box centre* before the hit map (France/USA/Norway/Kiribati proxies sat in the sea or on other countries); hover used a different subset.
+- The hit map was an anti-aliased canvas fill of ID colours, so border pixels decoded to unrelated IDs; misses fell back to a 25×25 synchronous `getImageData` search.
+- Hover was rAF-debounced *and* dropped within 32 ms, so the resting pointer position was often never evaluated; nothing re-picked while the globe turned.
+- The wine hover needed a full 2048×1024 repaint, so e14b162 removed it. Coverage wine fills and permanent red markers made the atlas read as a heat map.
+- **The globe never ran under the production CSP**: `script-src 'self' 'unsafe-inline'` blocks the jsDelivr import of three.js (verified: the old build shows the fallback when served with vercel.json headers).
+
+### Fix
+- `src/lib/atlas-geometry.js`: exact even-odd scanline rasteriser for a Uint16 country-ID map from the same projected paths as the texture; shared by the browser and the tests. Every entity owns ≥1 pixel; anchors are interior points (not bbox centres).
+- Hover and click: Three.js `hit.uv` → ID-map lookup, one pick per frame when the pointer moves or the globe turns. Small/point-only entities (<40 px) get invisible screen-space hit areas (6 px over land, 16 px over sea) and a ring only while hovered/selected.
+- Highlight: the ID map is a GPU texture; the globe shader tints `hoverId` (wine) and `selectedId` (stronger wine + ivory edge). The atlas is painted once, neutral.
+- three.js 0.180.0 is now a pinned dependency bundled from `'self'`.
+- Data: canonical names instead of Natural Earth abbreviations (20 slugs changed; unmerged branch only), political status per entity, corrected point coordinates (Kiribati was at lon 0.12°), Tuvalu added (absent from NE 4.1.0 1:50m), UN aliases fixed (the `us` alias matched the pronoun).
+- `tests/world-explorer-atlas.test.mjs` audits every entity; `check-build-output.mjs` requires every `/country/<slug>` route.
+
+### Verification
+- `npm test` 162/162; build 347 pages; build-output check passed; `npm audit` clean.
+- Browser QA (Chrome, D3D11, served with vercel.json headers) over all 239 entities, with real Locate, hover and click: 239 passed, 0 failed; 0 CSP violations, 0 console errors.
+- Hover stress grids (7,776 points in Europe ×2 zooms, Caribbean, Persian Gulf, Southeast Asia, Pacific): no drift; 5 points show an islet stamped for sub-pixel islands where the analytic truth is sea (by design).
+- Hover sweep: 13.4 ms avg/p95 frame, ~1.1 ms per pick, 0 long tasks (old build: 26.6 ms avg, 66.6 ms p95).
+- Homepage and all 109 other non-explorer pages byte-identical to the checkpoint built at the same time (the homepage embeds `Date.now()` relative ages, so builds at different times differ).

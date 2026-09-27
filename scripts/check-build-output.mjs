@@ -5,6 +5,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { root, articlesDir } from './lib/paths.mjs';
 import { parseFrontmatter } from './lib/editorial.mjs';
+import { COUNTRIES, countrySlug } from '../src/lib/countries.js';
 
 const dist = join(root, 'dist');
 const errors = [];
@@ -27,6 +28,18 @@ if (/\b\d+(\.\d)?K\b/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('
 for (const letter of ['n','u','v','e','l','m']) {
   const file = join('headlines', letter, 'index.html');
   if (!existsSync(join(dist, file))) errors.push(`${file}: missing headline archive route`);
+}
+
+if (!existsSync(join(dist, 'world-explorer', 'index.html'))) errors.push('world-explorer/index.html: missing interactive globe route');
+else {
+  const explorer = read(join('world-explorer', 'index.html'));
+  if (!explorer.includes('id="globeCanvas"')) errors.push('world-explorer/index.html: globe canvas missing');
+  if (!explorer.includes('world-explorer-data')) errors.push('world-explorer/index.html: country data payload missing');
+}
+if (!home.includes('href="/world-explorer"')) errors.push('index.html: World Desk CTA does not link to World Explorer');
+for (const country of COUNTRIES) {
+  const file = join('country', countrySlug(country.name), 'index.html');
+  if (!existsSync(join(dist, file))) errors.push(`${file}: country desk route missing for ${country.name}`);
 }
 
 // Every published article page.

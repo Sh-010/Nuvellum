@@ -1,0 +1,750 @@
+---
+import SiteHead from '../components/SiteHead.astro';
+import { getArticles } from '../lib/articles';
+import { REGIONS } from '../lib/geography.js';
+import { COUNTRIES, countrySearchTerms, countrySlug, storiesForCountry } from '../lib/countries.js';
+
+const articles = await getArticles();
+const regionLabels = Object.fromEntries(REGIONS.map(region => [region.slug, region.label]));
+// `id` doubles as the value written into the globe's country-ID hit map, so it
+// must stay a small positive integer (0 means sea).
+const countries = COUNTRIES.map((country, index) => {
+  const stories = storiesForCountry(articles, country.name).slice(0, 4);
+  return {
+    id: index + 1,
+    name: country.name,
+    slug: countrySlug(country.name),
+    region: country.region,
+    regionLabel: regionLabels[country.region] || country.region,
+    status: country.status,
+    d: country.d,
+    pointOnly: Boolean(country.pointOnly),
+    lon: country.lon,
+    lat: country.lat,
+    terms: countrySearchTerms(country),
+    stories: stories.map(story => ({
+      slug: story.slug,
+      title: story.title,
+      dek: story.dek,
+      section: story.section,
+      type: story.type,
+      date: story.date,
+      readingTime: story.readingTime,
+      image: story.image
+    }))
+  };
+});
+const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SiteHead
+    title="World Explorer — Nuvellum"
+    description="Explore Nuvellum's global coverage on an interactive 3D world."
+  />
+</head>
+<body>
+  <main class="explorer-shell">
+    <header class="explorer-header">
+      <a class="brand" href="/" aria-label="Nuvellum home">N<span>✦</span>UVELLUM</a>
+      <div class="header-copy">
+        <div class="eyebrow">WORLD EXPLORER</div>
+        <h1>A living atlas of the stories shaping the world.</h1>
+      </div>
+      <a class="home-link" href="/">Return home <span>→</span></a>
+    </header>
+
+    <section class="explorer-stage" aria-label="Interactive world explorer">
+      <div class="globe-column">
+        <div class="globe-frame" id="globeFrame">
+          <canvas id="globeCanvas" aria-label="Interactive 3D globe. Drag to rotate, scroll to zoom, and select a country."></canvas>
+          <div class="scanlines" aria-hidden="true"></div>
+          <div class="orbit-ring orbit-one" aria-hidden="true"></div>
+          <div class="orbit-ring orbit-two" aria-hidden="true"></div>
+          <div class="globe-loading" id="globeLoading">
+            <span></span>
+            <strong>Initializing global desk</strong>
+          </div>
+          <div class="globe-fallback" id="globeFallback" hidden>
+            3D rendering is unavailable in this browser. Use the country search to continue.
+          </div>
+          <div class="country-tooltip" id="countryTooltip" hidden>
+            <strong></strong><span></span>
+          </div>
+          <div class="globe-caption">
+            <span><i class="dot dot-live"></i> Selected country</span>
+            <span><i class="dot dot-map"></i> World atlas</span>
+            <span>Drag to rotate · Wheel to zoom · Click to select</span>
+          </div>
+        </div>
+
+        <div class="explorer-controls">
+          <label class="country-search">
+            <span>Find a country</span>
+            <input id="countrySearch" list="countryList" autocomplete="off" placeholder="e.g. Switzerland">
+            <datalist id="countryList">
+              {countries.map(country => <option value={country.name} />)}
+            </datalist>
+          </label>
+          <button type="button" id="countryGo">Locate</button>
+          <button type="button" class="quiet" id="spinToggle" aria-pressed="true">Pause rotation</button>
+          <button type="button" class="quiet" id="resetGlobe">Reset view</button>
+        </div>
+      </div>
+
+      <aside class="country-panel" id="countryPanel" aria-live="polite">
+        <div class="panel-kicker">SELECT A COUNTRY</div>
+        <h2>Explore the world.</h2>
+        <p class="panel-intro">Choose a country on the globe to see its Nuvellum coverage, regional desk, and latest reporting.</p>
+        <div class="panel-rule"></div>
+        <div class="panel-placeholder">
+          <span class="crosshair" aria-hidden="true">⌖</span>
+          <p>Direct country coverage appears here.</p>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="explorer-footer">
+      <span>NUVELLUM · Beyond the headline.</span>
+      <a href="/section/world">World desk archive →</a>
+    </footer>
+  </main>
+
+  <script id="world-explorer-data" type="application/json" set:html={explorerJson}></script>
+  <script>
+    import {
+      ID_MAP_HEIGHT,
+      ID_MAP_WIDTH,
+      SMALL_TARGET_PIXELS,
+      lonLatToUv,
+      parseRings,
+      rasterizeIdMap,
+      textureTransform,
+      uvToPixel,
+      uvToSphere
+    } from '../lib/atlas-geometry.js';
+    import { normalizeCountry } from '../lib/country-text.js';
+
+    // Interaction model: one country-ID map (Uint16, 0 = sea) is rasterised from
+    // the same projected paths as the visible texture. Hover and click both
+    // resolve a Three.js raycast's hit.uv against it; the globe shader samples the
+    // same map on the GPU to paint the hovered and selected country. Hovering
+    // never repaints the texture or reads pixels back from a canvas.
+    const root = document.querySelector('.explorer-shell');
+    const canvas = document.getElementById('globeCanvas');
+    const frame = document.getElementById('globeFrame');
+    const loading = document.getElementById('globeLoading');
+    const fallback = document.getElementById('globeFallback');
+    const panel = document.getElementById('countryPanel');
+    const tooltip = document.getElementById('countryTooltip');
+    const tooltipName = tooltip.querySelector('strong');
+    const tooltipMeta = tooltip.querySelector('span');
+    const search = document.getElementById('countrySearch');
+    const go = document.getElementById('countryGo');
+    const spinToggle = document.getElementById('spinToggle');
+    const reset = document.getElementById('resetGlobe');
+    const payload = JSON.parse(document.getElementById('world-explorer-data').textContent || '{"countries":[]}');
+    const countries = payload.countries || [];
+    const byId = new Map(countries.map(country => [country.id, country]));
+    const placeholderPanel = panel.innerHTML;
+    const qaMode = new URLSearchParams(location.search).has('qa');
+
+    // Invisible hit areas for entities too small to hover (CSS px around the
+    // anchor). Over land a small entity only wins very close to its anchor so it
+    // does not swallow its neighbour; over open water the area is generous.
+    const LAND_ASSIST_PX = 6;
+    const SEA_ASSIST_PX = 16;
+    const DEG = Math.PI / 180;
+    const MAX_TILT = 1.15;
+
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const storyMarkup = story => `
+      <a class="panel-story" href="/article/${encodeURIComponent(story.slug)}">
+        <img src="${escapeHtml(story.image)}" alt="">
+        <span>
+          <small>${escapeHtml(story.section)} · ${escapeHtml(story.type)}</small>
+          <strong>${escapeHtml(story.title)}</strong>
+          <em>${escapeHtml(story.readingTime || '')}</em>
+        </span>
+      </a>`;
+
+    let THREE = null;
+    let renderer = null, camera = null, scene = null, globe = null, globeGroup = null;
+    let raycaster = null, ndc = null, scratch = null;
+    let highlight = null;
+    let hoverMarker = null, selectedMarker = null;
+    let idMap = null, pixelCounts = null;
+    const smallIds = new Set();
+    let smallTargets = [];
+    const hits = [];
+
+    let selected = null;
+    let hoveredId = 0;
+    let spinning = true;
+    let dragging = false;
+    let moved = false;
+    let startX = 0, startY = 0, lastX = 0, lastY = 0;
+    let targetRotX = 0, targetRotY = -Math.PI / 2;
+    let targetCameraZ = 3.25;
+    const pointer = { x: 0, y: 0, inside: false, dirty: false };
+    let canvasRect = canvas.getBoundingClientRect();
+    let frameRect = frame.getBoundingClientRect();
+    let tooltipSize = { width: 0, height: 0 };
+    const stats = { picks: 0, pickMs: 0, maxPickMs: 0, idMapMs: 0, textureMs: 0 };
+
+    function renderPanel(country) {
+      if (!country) { panel.innerHTML = placeholderPanel; return; }
+      const stories = country.stories || [];
+      panel.innerHTML = `
+        <div class="panel-kicker">${escapeHtml(country.regionLabel)}</div>
+        <h2>${escapeHtml(country.name)}</h2>
+        <div class="country-stats">
+          <span><b>${stories.length}</b> direct stor${stories.length === 1 ? 'y' : 'ies'}</span>
+          <span>World Desk</span>
+        </div>
+        <div class="panel-rule"></div>
+        ${stories.length
+          ? `<div class="panel-stories">${stories.slice(0,3).map(storyMarkup).join('')}</div>`
+          : `<div class="panel-empty"><p>No direct Nuvellum story is currently tagged to this country.</p><p>The regional desk still tracks developments across ${escapeHtml(country.regionLabel)}.</p></div>`}
+        <div class="panel-actions">
+          <a class="primary-action" href="/country/${encodeURIComponent(country.slug)}">Open country desk <span>→</span></a>
+          <a href="/world/${encodeURIComponent(country.region)}">Regional desk</a>
+        </div>`;
+    }
+
+    function anchorVector(country, radius = 1) {
+      const { u, v } = lonLatToUv(country.lon, country.lat);
+      const p = uvToSphere(u, v, radius);
+      return new THREE.Vector3(p.x, p.y, p.z);
+    }
+
+    // Small and point-only entities have no visible shape to tint, so they get
+    // a ring while hovered or selected (and nothing otherwise).
+    function placeMarker(marker, country) {
+      if (!marker) return;
+      if (!country || !smallIds.has(country.id)) { marker.visible = false; return; }
+      const normal = anchorVector(country);
+      marker.position.copy(normal).multiplyScalar(1.004);
+      marker.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal);
+      marker.visible = true;
+    }
+
+    function setHovered(id) {
+      if (id === hoveredId) return;
+      hoveredId = id;
+      if (highlight) highlight.hoverId.value = id;
+      placeMarker(hoverMarker, id && id !== selected?.id ? byId.get(id) : null);
+      canvas.style.cursor = id ? 'pointer' : 'grab';
+      const country = byId.get(id);
+      if (!country) { tooltip.hidden = true; return; }
+      const count = (country.stories || []).length;
+      tooltipName.textContent = country.name;
+      tooltipMeta.textContent = count ? `${count} direct stor${count === 1 ? 'y' : 'ies'}` : country.regionLabel;
+      tooltip.hidden = false;
+      tooltipSize = { width: tooltip.offsetWidth, height: tooltip.offsetHeight };
+    }
+
+    function positionTooltip() {
+      let x = pointer.x - frameRect.left + 14;
+      let y = pointer.y - frameRect.top + 14;
+      if (x + tooltipSize.width > frameRect.width - 8) x -= tooltipSize.width + 28;
+      if (y + tooltipSize.height > frameRect.height - 8) y -= tooltipSize.height + 28;
+      tooltip.style.transform = `translate3d(${Math.round(x)}px,${Math.round(y)}px,0)`;
+    }
+
+    function select(country) {
+      selected = country || null;
+      if (highlight) highlight.selectedId.value = selected ? selected.id : 0;
+      placeMarker(selectedMarker, selected);
+      if (selected && hoveredId === selected.id) placeMarker(hoverMarker, null);
+      renderPanel(selected);
+    }
+
+    function setSpinning(on) {
+      spinning = on;
+      spinToggle.textContent = on ? 'Pause rotation' : 'Resume rotation';
+      spinToggle.setAttribute('aria-pressed', String(on));
+    }
+
+    function locateCountry(country) {
+      if (!country) return false;
+      select(country);
+      search.value = country.name;
+      // Turn the shortest way round rather than unwinding accumulated spin.
+      const desiredY = -Math.PI / 2 - country.lon * DEG;
+      const currentY = globeGroup ? globeGroup.rotation.y : targetRotY;
+      targetRotY = currentY + Math.atan2(Math.sin(desiredY - currentY), Math.cos(desiredY - currentY));
+      targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, country.lat * DEG));
+      if (smallIds.has(country.id)) targetCameraZ = Math.min(targetCameraZ, 2.6);
+      setSpinning(false);
+      return true;
+    }
+
+    const searchIndex = countries.map(country => ({ country, name: normalizeCountry(country.name), terms: country.terms || [] }));
+    function findCountry(query) {
+      const q = normalizeCountry(query);
+      if (!q) return null;
+      const match = searchIndex.find(entry => entry.name === q)
+        || searchIndex.find(entry => entry.terms.includes(q))
+        || searchIndex.find(entry => entry.name.startsWith(q))
+        || searchIndex.find(entry => entry.terms.some(term => term.startsWith(q)))
+        || searchIndex.find(entry => entry.name.includes(q));
+      return match?.country || null;
+    }
+
+    go.addEventListener('click', () => {
+      const found = locateCountry(findCountry(search.value));
+      search.setAttribute('aria-invalid', String(!found && Boolean(search.value.trim())));
+    });
+    search.addEventListener('keydown', event => {
+      if (event.key === 'Enter') { event.preventDefault(); go.click(); }
+    });
+    spinToggle.addEventListener('click', () => setSpinning(!spinning));
+    reset.addEventListener('click', () => {
+      select(null);
+      search.value = '';
+      search.removeAttribute('aria-invalid');
+      targetRotX = 0;
+      targetRotY = globeGroup ? globeGroup.rotation.y + Math.atan2(Math.sin(-Math.PI / 2 - globeGroup.rotation.y), Math.cos(-Math.PI / 2 - globeGroup.rotation.y)) : -Math.PI / 2;
+      targetCameraZ = 3.25;
+      setSpinning(true);
+    });
+
+    function pickAt(clientX, clientY) {
+      if (!globe || !idMap) return 0;
+      const started = qaMode ? performance.now() : 0;
+      ndc.set(((clientX - canvasRect.left) / canvasRect.width) * 2 - 1, -((clientY - canvasRect.top) / canvasRect.height) * 2 + 1);
+      raycaster.setFromCamera(ndc, camera);
+      hits.length = 0;
+      raycaster.intersectObject(globe, false, hits);
+      const hit = hits[0];
+      let id = 0;
+      if (hit?.uv) {
+        id = idMap[uvToPixel(hit.uv.x, hit.uv.y).index];
+        // Small entities compete by anchor distance, including when the pixel
+        // itself is one (Saint Martin and Sint Maarten share a texel).
+        id = nearestSmallTarget(clientX, clientY, id ? LAND_ASSIST_PX : SEA_ASSIST_PX) || id;
+      }
+      if (qaMode) {
+        const elapsed = performance.now() - started;
+        stats.picks++; stats.pickMs += elapsed; stats.maxPickMs = Math.max(stats.maxPickMs, elapsed);
+      }
+      return id;
+    }
+
+    function nearestSmallTarget(clientX, clientY, radius) {
+      let best = 0, bestDistance = radius * radius;
+      const { world, toCamera } = scratch;
+      for (const target of smallTargets) {
+        world.copy(target.local).applyMatrix4(globe.matrixWorld);
+        toCamera.copy(camera.position).sub(world);
+        if (world.dot(toCamera) <= 0) continue;
+        world.project(camera);
+        const dx = (world.x + 1) / 2 * canvasRect.width + canvasRect.left - clientX;
+        const dy = (1 - world.y) / 2 * canvasRect.height + canvasRect.top - clientY;
+        const distance = dx * dx + dy * dy;
+        if (distance < bestDistance) { bestDistance = distance; best = target.id; }
+      }
+      return best;
+    }
+
+    function updateHover() {
+      setHovered(pointer.inside && !dragging ? pickAt(pointer.x, pointer.y) : 0);
+      if (hoveredId) positionTooltip();
+    }
+
+    function refreshRects() {
+      canvasRect = canvas.getBoundingClientRect();
+      frameRect = frame.getBoundingClientRect();
+    }
+    window.addEventListener('scroll', refreshRects, { passive: true });
+
+    canvas.addEventListener('pointerdown', event => {
+      dragging = true; moved = false;
+      setSpinning(false);
+      startX = lastX = event.clientX; startY = lastY = event.clientY;
+      canvas.setPointerCapture(event.pointerId);
+      pointer.dirty = true;
+    });
+    canvas.addEventListener('pointermove', event => {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      pointer.inside = true;
+      pointer.dirty = true;
+      if (!dragging) return;
+      const dx = event.clientX - lastX, dy = event.clientY - lastY;
+      if (Math.abs(event.clientX - startX) + Math.abs(event.clientY - startY) > 5) moved = true;
+      targetRotY += dx * .006;
+      targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, targetRotX + dy * .004));
+      lastX = event.clientX; lastY = event.clientY;
+    });
+    canvas.addEventListener('pointerup', event => {
+      dragging = false;
+      try { canvas.releasePointerCapture(event.pointerId); } catch {}
+      if (!moved) {
+        const country = byId.get(pickAt(event.clientX, event.clientY));
+        if (country) locateCountry(country);
+      }
+      pointer.dirty = true;
+    });
+    canvas.addEventListener('pointercancel', () => { dragging = false; pointer.dirty = true; });
+    canvas.addEventListener('pointerleave', () => { pointer.inside = false; pointer.dirty = true; });
+    canvas.addEventListener('wheel', event => {
+      event.preventDefault();
+      targetCameraZ = Math.max(2.15, Math.min(5.2, targetCameraZ + event.deltaY * .0022));
+    }, { passive: false });
+
+    // Painted once. Hover and selection are applied by the shader, so the
+    // 2048×1024 atlas is never repainted during interaction.
+    function paintAtlas(textureCanvas) {
+      const ctx = textureCanvas.getContext('2d');
+      const w = textureCanvas.width, h = textureCanvas.height;
+      ctx.fillStyle = '#020406';
+      ctx.fillRect(0,0,w,h);
+
+      ctx.strokeStyle = 'rgba(181,139,151,.12)';
+      ctx.lineWidth = 1;
+      for (let lon = -150; lon <= 150; lon += 30) {
+        const x = (lon + 180) / 360 * w;
+        ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
+      }
+      for (let lat = -60; lat <= 60; lat += 30) {
+        const y = (90 - lat) / 180 * h;
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+      }
+
+      const { scale, offsetY } = textureTransform(w, h);
+      ctx.setTransform(scale,0,0,scale,0,offsetY);
+      ctx.fillStyle = '#37383b';
+      ctx.strokeStyle = 'rgba(238,226,213,.34)';
+      ctx.lineWidth = .25;
+      for (const country of countries) {
+        if (!country.d) continue;
+        const path = new Path2D(country.d);
+        ctx.fill(path, 'evenodd');
+        ctx.stroke(path);
+      }
+      ctx.setTransform(1,0,0,1,0,0);
+
+      const glow = ctx.createRadialGradient(w*.5,h*.43,w*.05,w*.5,h*.43,w*.7);
+      glow.addColorStop(0,'rgba(127,28,55,.10)');
+      glow.addColorStop(.7,'rgba(0,0,0,0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0,0,w,h);
+    }
+
+    function applyHighlightShader(material, idTexture) {
+      highlight = {
+        idMap: { value: idTexture },
+        idTexel: { value: new THREE.Vector2(1 / ID_MAP_WIDTH, 1 / ID_MAP_HEIGHT) },
+        hoverId: { value: 0 },
+        selectedId: { value: 0 },
+        hoverColor: { value: new THREE.Color('#8c2446') },
+        selectedColor: { value: new THREE.Color('#a8324f') },
+        edgeColor: { value: new THREE.Color('#f3e6d6') }
+      };
+      material.onBeforeCompile = shader => {
+        Object.assign(shader.uniforms, highlight);
+        shader.fragmentShader = shader.fragmentShader
+          .replace('#include <common>', `#include <common>
+            uniform sampler2D idMap;
+            uniform vec2 idTexel;
+            uniform float hoverId;
+            uniform float selectedId;
+            uniform vec3 hoverColor;
+            uniform vec3 selectedColor;
+            uniform vec3 edgeColor;
+            float countryAt(vec2 uv) {
+              vec2 rg = texture2D(idMap, vec2(uv.x, 1.0 - uv.y)).rg;
+              return floor(rg.r * 255.0 + 0.5) + floor(rg.g * 255.0 + 0.5) * 256.0;
+            }
+            float sameCountry(vec2 uv, float id) { return step(abs(countryAt(uv) - id), 0.5); }`)
+          .replace('#include <map_fragment>', `#include <map_fragment>
+            float countryId = countryAt(vMapUv);
+            float isSelected = (selectedId > 0.5 && abs(countryId - selectedId) < 0.5) ? 1.0 : 0.0;
+            float isHovered = (hoverId > 0.5 && abs(countryId - hoverId) < 0.5) ? 1.0 - isSelected : 0.0;
+            float selectedEdge = 0.0;
+            if (isSelected > 0.5) {
+              vec2 o = idTexel * 1.5;
+              selectedEdge = 1.0 - sameCountry(vMapUv + vec2(o.x, 0.0), selectedId) * sameCountry(vMapUv - vec2(o.x, 0.0), selectedId)
+                * sameCountry(vMapUv + vec2(0.0, o.y), selectedId) * sameCountry(vMapUv - vec2(0.0, o.y), selectedId);
+            }
+            diffuseColor.rgb = mix(diffuseColor.rgb, hoverColor, isHovered * 0.88);
+            diffuseColor.rgb = mix(diffuseColor.rgb, selectedColor, isSelected * 0.92);
+            diffuseColor.rgb = mix(diffuseColor.rgb, edgeColor, selectedEdge * 0.85);`)
+          .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+            totalEmissiveRadiance += hoverColor * isHovered * 0.35 + selectedColor * isSelected * 0.45;`);
+      };
+    }
+
+    function makeMarker(color, opacity) {
+      const marker = new THREE.Mesh(
+        new THREE.RingGeometry(.0105, .0155, 48),
+        new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide })
+      );
+      marker.visible = false;
+      marker.renderOrder = 2;
+      globeGroup.add(marker);
+      return marker;
+    }
+
+    async function init() {
+      try {
+        THREE = await import('three');
+        scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020305, .12);
+        camera = new THREE.PerspectiveCamera(36, 1, .1, 100);
+        camera.position.set(0,0,targetCameraZ);
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        let started = performance.now();
+        const raster = rasterizeIdMap(countries.map(country => ({
+          id: country.id, rings: parseRings(country.d), lon: country.lon, lat: country.lat
+        })));
+        idMap = raster.ids;
+        pixelCounts = raster.counts;
+        stats.idMapMs = performance.now() - started;
+
+        started = performance.now();
+        const textureCanvas = document.createElement('canvas');
+        textureCanvas.width = ID_MAP_WIDTH; textureCanvas.height = ID_MAP_HEIGHT;
+        paintAtlas(textureCanvas);
+        stats.textureMs = performance.now() - started;
+
+        const texture = new THREE.CanvasTexture(textureCanvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+
+        // The Uint16 IDs, read as two bytes per texel (little-endian: low byte in R).
+        const idTexture = new THREE.DataTexture(new Uint8Array(idMap.buffer), ID_MAP_WIDTH, ID_MAP_HEIGHT, THREE.RGFormat, THREE.UnsignedByteType);
+        idTexture.magFilter = THREE.NearestFilter;
+        idTexture.minFilter = THREE.NearestFilter;
+        idTexture.generateMipmaps = false;
+        idTexture.needsUpdate = true;
+
+        globeGroup = new THREE.Group();
+        globeGroup.rotation.y = targetRotY;
+        scene.add(globeGroup);
+
+        const material = new THREE.MeshPhongMaterial({
+          map: texture,
+          emissive: 0x210711,
+          emissiveIntensity: .42,
+          shininess: 18,
+          specular: 0x5f4050
+        });
+        applyHighlightShader(material, idTexture);
+        globe = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 64), material);
+        globeGroup.add(globe);
+
+        for (const country of countries) {
+          if (pixelCounts[country.id] < SMALL_TARGET_PIXELS) smallIds.add(country.id);
+        }
+        smallTargets = countries.filter(country => smallIds.has(country.id)).map(country => ({ id: country.id, local: anchorVector(country) }));
+        hoverMarker = makeMarker(0xb0385a, .95);
+        selectedMarker = makeMarker(0xf3e6d6, 1);
+        if (selected) select(selected);
+
+        const wire = new THREE.Mesh(
+          new THREE.SphereGeometry(1.007, 48, 32),
+          new THREE.MeshBasicMaterial({ color: 0x8a2944, wireframe: true, transparent: true, opacity: .055 })
+        );
+        globeGroup.add(wire);
+
+        const atmosphere = new THREE.Mesh(
+          new THREE.SphereGeometry(1.05, 64, 40),
+          new THREE.MeshBasicMaterial({ color: 0x8c2a47, transparent: true, opacity: .065, side: THREE.BackSide })
+        );
+        globeGroup.add(atmosphere);
+
+        const halo = new THREE.Mesh(
+          new THREE.RingGeometry(1.12, 1.122, 128),
+          new THREE.MeshBasicMaterial({ color: 0xa34a62, transparent: true, opacity: .22, side: THREE.DoubleSide })
+        );
+        halo.rotation.x = Math.PI / 2;
+        globeGroup.add(halo);
+
+        scene.add(new THREE.AmbientLight(0xd9c9bd, 1.3));
+        const key = new THREE.DirectionalLight(0xffe7d7, 2.5);
+        key.position.set(3,2,4); scene.add(key);
+        const rim = new THREE.PointLight(0x8a1937, 8, 12);
+        rim.position.set(-3,1,-2); scene.add(rim);
+
+        const starCount = 700;
+        const pos = new Float32Array(starCount * 3);
+        for (let i=0;i<starCount;i++) {
+          const r = 7 + Math.random()*18;
+          const a = Math.random()*Math.PI*2;
+          const z = (Math.random()-.5)*16;
+          pos[i*3] = Math.cos(a)*r;
+          pos[i*3+1] = (Math.random()-.5)*14;
+          pos[i*3+2] = Math.sin(a)*r + z*.08;
+        }
+        const starGeo = new THREE.BufferGeometry();
+        starGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color:0x9d8a91, size:.018, transparent:true, opacity:.5 }));
+        scene.add(stars);
+
+        raycaster = new THREE.Raycaster();
+        ndc = new THREE.Vector2();
+        scratch = { world: new THREE.Vector3(), toCamera: new THREE.Vector3() };
+
+        const resize = () => {
+          const rect = frame.getBoundingClientRect();
+          const width = Math.max(300, rect.width);
+          const height = Math.max(420, rect.height);
+          renderer.setSize(width,height,false);
+          camera.aspect = width/height;
+          camera.updateProjectionMatrix();
+          refreshRects();
+          pointer.dirty = true;
+        };
+        new ResizeObserver(resize).observe(frame);
+        resize();
+
+        const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) setSpinning(false);
+
+        const clock = new THREE.Clock();
+        function animate() {
+          const dt = Math.min(.05, clock.getDelta());
+          if (spinning && !dragging) targetRotY -= dt * .075;
+          const stepX = (targetRotX - globeGroup.rotation.x) * .075;
+          const stepY = (targetRotY - globeGroup.rotation.y) * .075;
+          const stepZ = (targetCameraZ - camera.position.z) * .09;
+          globeGroup.rotation.x += stepX;
+          globeGroup.rotation.y += stepY;
+          camera.position.z += stepZ;
+          const moving = Math.abs(stepX) + Math.abs(stepY) + Math.abs(stepZ) > 1e-7;
+          // Re-pick once per frame when the pointer moved or the globe turned
+          // under a still pointer, against the transforms about to be drawn.
+          if (pointer.dirty || (moving && pointer.inside)) {
+            camera.updateMatrixWorld();
+            globeGroup.updateMatrixWorld();
+            updateHover();
+            pointer.dirty = false;
+          }
+          renderer.render(scene,camera);
+          requestAnimationFrame(animate);
+        }
+        animate();
+        loading.hidden = true;
+        root.classList.add('is-ready');
+        if (qaMode) window.__worldExplorerQA.ready = true;
+      } catch (error) {
+        console.error('World Explorer failed to initialize', error);
+        loading.hidden = true;
+        fallback.hidden = false;
+      }
+    }
+
+    // Deterministic hooks for the exhaustive browser audit; only with ?qa.
+    if (qaMode) {
+      window.__worldExplorerQA = {
+        ready: false,
+        stats,
+        countries: countries.map(({ id, name, slug, region, status, pointOnly, lon, lat }) => ({ id, name, slug, region, status, pointOnly, lon, lat })),
+        pixelCount: id => pixelCounts?.[id] ?? 0,
+        isSmallTarget: id => smallIds.has(id),
+        settle() {
+          globeGroup.rotation.set(targetRotX, targetRotY, 0);
+          camera.position.z = targetCameraZ;
+          camera.updateMatrixWorld();
+          globeGroup.updateMatrixWorld();
+          renderer.render(scene, camera);
+        },
+        screenPoint(id) {
+          const country = byId.get(id);
+          const world = anchorVector(country).applyMatrix4(globe.matrixWorld);
+          const facing = world.dot(camera.position.clone().sub(world)) > 0;
+          world.project(camera);
+          return {
+            x: (world.x + 1) / 2 * canvasRect.width + canvasRect.left,
+            y: (1 - world.y) / 2 * canvasRect.height + canvasRect.top,
+            facing,
+            center: { x: canvasRect.left + canvasRect.width / 2, y: canvasRect.top + canvasRect.height / 2 }
+          };
+        },
+        pickAt,
+        // The ID-map pixel under a screen point, without small-target assistance.
+        rawAt(clientX, clientY) {
+          ndc.set(((clientX - canvasRect.left) / canvasRect.width) * 2 - 1, -((clientY - canvasRect.top) / canvasRect.height) * 2 + 1);
+          raycaster.setFromCamera(ndc, camera);
+          const hit = raycaster.intersectObject(globe, false)[0];
+          return hit?.uv ? idMap[uvToPixel(hit.uv.x, hit.uv.y).index] : -1;
+        },
+        clearSelection: () => select(null),
+        view(lon, lat, z = 3.25) {
+          targetRotY = -Math.PI / 2 - lon * DEG;
+          targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, lat * DEG));
+          targetCameraZ = z;
+          setSpinning(false);
+          this.settle();
+        },
+        state: () => ({
+          hoveredId,
+          selectedId: selected?.id || 0,
+          uniforms: highlight ? { hover: highlight.hoverId.value, selected: highlight.selectedId.value } : null,
+          tooltip: tooltip.hidden ? '' : tooltipName.textContent,
+          panel: panel.querySelector('h2')?.textContent || '',
+          href: panel.querySelector('.primary-action')?.getAttribute('href') || '',
+          hoverMarker: Boolean(hoverMarker?.visible),
+          selectedMarker: Boolean(selectedMarker?.visible)
+        }),
+        internals: () => ({ THREE, camera, globe, canvasRect })
+      };
+    }
+    init();
+  </script>
+</body>
+</html>
+
+<style is:global>
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-normal-latin.woff2') format('woff2')}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-italic-latin.woff2') format('woff2')}
+:global(*){box-sizing:border-box}
+:global(html){background:#020305}
+:global(body){margin:0;background:#020305;color:#eee6db;font-family:'Newsreader',Georgia,serif}
+.explorer-shell{min-height:100vh;background:
+  radial-gradient(circle at 44% 40%,rgba(105,18,45,.18),transparent 31%),
+  radial-gradient(circle at 50% 110%,rgba(81,16,35,.16),transparent 40%),
+  #020305;color:#eee6db}
+.explorer-header{min-height:112px;display:grid;grid-template-columns:280px 1fr 220px;gap:28px;align-items:center;padding:20px clamp(24px,4vw,64px);border-bottom:1px solid rgba(235,220,205,.16);background:rgba(4,5,7,.82);backdrop-filter:blur(16px);position:relative;z-index:10}
+.brand{font-size:31px;letter-spacing:.08em;color:#f5ecdf;white-space:nowrap}.brand span{font-size:.5em;color:#8d1b3b;vertical-align:top;margin:0 3px}
+.header-copy{border-left:1px solid rgba(235,220,205,.14);padding-left:28px}.eyebrow,.panel-kicker{font-size:10px;letter-spacing:.2em;color:#b75a72;text-transform:uppercase}
+.header-copy h1{font-weight:300;font-size:clamp(20px,2vw,30px);line-height:1.04;margin:5px 0 0;max-width:720px}
+.home-link{justify-self:end;color:#d9cdc0;font-size:14px}.home-link span{color:#b24e67;margin-left:8px}
+.explorer-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,390px);gap:0;min-height:calc(100vh - 164px)}
+.globe-column{min-width:0;border-right:1px solid rgba(235,220,205,.15);display:flex;flex-direction:column}
+.globe-frame{position:relative;flex:1;min-height:650px;overflow:hidden;background:
+  linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:48px 48px}
+#globeCanvas{display:block;width:100%;height:100%;position:absolute;inset:0;touch-action:none;cursor:grab}
+.scanlines{position:absolute;inset:0;pointer-events:none;opacity:.18;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px);mix-blend-mode:screen}
+.orbit-ring{position:absolute;left:50%;top:50%;border:1px solid rgba(157,56,82,.16);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%) rotateX(68deg)}
+.orbit-one{width:62%;aspect-ratio:1}.orbit-two{width:76%;aspect-ratio:1;transform:translate(-50%,-50%) rotateX(78deg) rotateZ(22deg);border-color:rgba(229,215,201,.08)}
+.globe-loading,.globe-fallback{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;color:#c8bdb2}
+.globe-loading span{display:block;width:28px;height:28px;border:1px solid #91324e;border-top-color:transparent;border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}.globe-loading strong{font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+.globe-fallback{max-width:340px;line-height:1.5}
+.country-tooltip{position:absolute;left:0;top:0;will-change:transform;z-index:8;background:rgba(5,5,7,.94);border:1px solid rgba(227,211,196,.22);padding:9px 11px;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.34);min-width:130px}
+.country-tooltip strong{display:block;font-size:14px;font-weight:500}.country-tooltip span{display:block;color:#b8aca1;font-size:11px;margin-top:3px}
+.globe-caption{position:absolute;left:24px;right:24px;bottom:18px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;color:#8f8580;font-size:11px;letter-spacing:.04em;pointer-events:none}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}.dot-live{background:#8e2140;box-shadow:0 0 10px #9c2849}.dot-map{background:#78787c}
+.explorer-controls{display:flex;gap:9px;align-items:end;padding:16px 22px;border-top:1px solid rgba(235,220,205,.13);background:#060709}
+.country-search{display:grid;gap:5px;flex:1;min-width:180px}.country-search span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9e9290}.country-search input{height:40px;border:1px solid rgba(235,220,205,.18);background:#0b0c0f;color:#eee6db;padding:0 12px;outline:none}.country-search input:focus{border-color:#8f2946;box-shadow:0 0 0 1px #8f2946}
+.explorer-controls button{height:40px;border:1px solid #7b1d37;background:#751a35;color:#f7ede0;padding:0 16px;cursor:pointer;font-family:inherit}.explorer-controls button:hover{background:#8a2341}.explorer-controls .quiet{border-color:rgba(235,220,205,.18);background:transparent;color:#c9beb4}.explorer-controls .quiet:hover{border-color:#7b1d37;color:#fff}
+.country-panel{padding:clamp(26px,3vw,44px) clamp(24px,2.8vw,38px);background:linear-gradient(180deg,#090a0c,#050608);min-width:0}
+.country-panel h2{font-weight:300;font-size:clamp(38px,4vw,56px);line-height:.94;margin:10px 0 18px;letter-spacing:-.03em;color:#f4eadf}.panel-intro,.panel-empty p{font-size:16px;line-height:1.45;color:#ada198}.panel-rule{height:1px;background:linear-gradient(90deg,#7d1d39,rgba(255,255,255,.06));margin:22px 0}
+.panel-placeholder{min-height:250px;display:grid;place-items:center;align-content:center;text-align:center;color:#6f6967}.crosshair{font-size:54px;color:#722039}.country-stats{display:flex;gap:20px;color:#a89c94;font-size:12px}.country-stats b{font-size:20px;color:#e9ddd0;font-weight:400;margin-right:4px}
+.panel-stories{display:grid}.panel-story{display:grid;grid-template-columns:92px 1fr;gap:13px;padding:12px 0;border-bottom:1px solid rgba(235,220,205,.12);color:inherit;text-decoration:none;transition:transform .25s ease,color .2s}.panel-story:hover{transform:translateX(4px);color:#fff}.panel-story img{width:92px;height:66px;object-fit:cover;filter:saturate(.72) sepia(.2) brightness(.84)}.panel-story small{display:block;color:#b4526a;font-size:9px;letter-spacing:.11em;text-transform:uppercase}.panel-story strong{display:block;font-size:16px;line-height:1.08;font-weight:400;margin-top:4px}.panel-story em{display:block;color:#8f8580;font-size:10px;font-style:normal;margin-top:5px}
+.panel-actions{display:flex;gap:14px;align-items:center;margin-top:24px;flex-wrap:wrap}.panel-actions a{font-size:12px;color:#bfb2a8;text-decoration:none}.panel-actions .primary-action{background:#751a35;color:#f8eee2;padding:12px 14px}.panel-actions .primary-action:hover{background:#8b2442}.panel-actions span{margin-left:10px}
+.explorer-footer{min-height:52px;border-top:1px solid rgba(235,220,205,.13);display:flex;justify-content:space-between;gap:20px;align-items:center;padding:0 clamp(24px,4vw,64px);color:#776f6a;font-size:11px;background:#030406}.explorer-footer a{color:#a4928d}
+@media(max-width:980px){.explorer-header{grid-template-columns:1fr auto}.header-copy{grid-column:1/-1;grid-row:2;padding:12px 0 0;border-left:0;border-top:1px solid rgba(235,220,205,.12)}.explorer-stage{grid-template-columns:1fr}.globe-column{border-right:0}.globe-frame{min-height:600px}.country-panel{border-top:1px solid rgba(235,220,205,.13)}}
+@media(max-width:620px){.explorer-header{grid-template-columns:1fr;padding:18px 18px}.home-link{justify-self:start}.globe-frame{min-height:500px}.explorer-controls{align-items:stretch;flex-wrap:wrap;padding:12px}.country-search{flex-basis:100%}.explorer-controls button{flex:1}.globe-caption{left:14px;right:14px;bottom:12px;gap:10px}.country-panel{padding:28px 18px}.explorer-footer{padding:14px 18px;align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.globe-loading span{animation:none}.panel-story{transition:none}}
+</style>
