@@ -24,7 +24,11 @@ const upper = letter.toUpperCase();
   <header class="headline-archive-header">
     <div class="wrap headline-archive-head">
       <a class="headline-archive-brand" href="/" aria-label="Nuvellum home">
-        <span class="headline-archive-monogram">N<span>✦</span></span>
+        <span class="headline-archive-logo-line">
+          <span class="headline-archive-monogram">N<span>✦</span></span>
+          <span class="headline-archive-continuation">UVELLUM</span>
+        </span>
+        <span class="headline-archive-tagline">Beyond the headline.</span>
       </a>
       <a class="headline-archive-back" href="/">Back to Nuvellum →</a>
     </div>
@@ -67,9 +71,12 @@ const upper = letter.toUpperCase();
 <style>
 .headline-archive-header{border-bottom:1px solid var(--line);background:var(--paper)}
 .headline-archive-head{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.headline-archive-brand{display:inline-flex;align-items:center;gap:12px;color:var(--ox)}
-.headline-archive-monogram{position:relative;font:700 46px/1 var(--serif);letter-spacing:-.08em}
-.headline-archive-monogram span{position:absolute;right:-14px;top:-3px;font:18px/1 var(--serif)}
+.headline-archive-brand{display:grid;color:var(--ox);width:max-content}
+.headline-archive-logo-line{display:flex;align-items:flex-end;gap:12px}
+.headline-archive-monogram{position:relative;font:700 46px/1 var(--serif);letter-spacing:-.08em;min-width:46px}
+.headline-archive-monogram span{position:absolute;right:-9px;top:-3px;font:18px/1 var(--serif)}
+.headline-archive-continuation{font:700 28px/.95 var(--serif);letter-spacing:.07em}
+.headline-archive-tagline{font:italic 10px/1 var(--serif);color:var(--muted);margin:4px 0 0 58px}
 .headline-archive-back{font:10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .headline-archive{padding:42px 0 80px}
 .headline-letter-title{font:400 clamp(82px,10vw,140px)/.82 var(--serif);margin:0 0 28px;color:var(--ox)}
@@ -84,5 +91,5 @@ const upper = letter.toUpperCase();
 .headline-archive-alpha{display:flex;flex-wrap:wrap;gap:4px;margin-top:32px}
 .headline-archive-alpha a{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--line);font:11px var(--sans);transition:.18s}
 .headline-archive-alpha a:hover,.headline-archive-alpha a.active{background:var(--ox);border-color:var(--ox);color:#fff}
-@media(max-width:650px){.headline-archive-head{height:68px}.headline-archive{padding-top:28px}.headline-letter-title{font-size:82px;margin-bottom:22px}.headline-archive-row{grid-template-columns:1fr}.headline-archive-row h2{font-size:25px}.headline-archive-image img{aspect-ratio:16/9}}
+@media(max-width:650px){.headline-archive-head{height:68px}.headline-archive-continuation{font-size:22px}.headline-archive-tagline{margin-left:52px}.headline-archive{padding-top:28px}.headline-letter-title{font-size:82px;margin-bottom:22px}.headline-archive-row{grid-template-columns:1fr}.headline-archive-row h2{font-size:25px}.headline-archive-image img{aspect-ratio:16/9}}
 </style>
