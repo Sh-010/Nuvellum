@@ -22,6 +22,10 @@ if (!home.includes('id="brandZone"')) errors.push('index.html: interactive Nuvel
 if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter discovery links missing');
 if (!home.includes('id="newsletter"')) errors.push('index.html: newsletter section missing');
 if (!home.includes('class="footer-cols"')) errors.push('index.html: full footer navigation missing');
+if (!home.includes('data-latest-tab="all"') || !home.includes('data-latest-tab="world"') || !home.includes('data-latest-tab="screen"')) errors.push('index.html: Latest editorial filters missing');
+if (!home.includes('id="latestList"')) errors.push('index.html: Latest filtered list missing');
+if (!home.includes('data-popular-tab="today"') || !home.includes('data-popular-tab="week"') || !home.includes('data-popular-tab="month"')) errors.push('index.html: Popular Reads period tabs missing');
+if (!home.includes('@keyframes heroDrift')) errors.push('index.html: unified editorial motion hero treatment missing');
 const popularBlock = home.slice(home.indexOf('id="popular-heading"'), home.indexOf('In Focus</h2>'));
 if (/\b\d+(\.\d)?K\b/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric in Popular Reads (no analytics are connected)');
 
