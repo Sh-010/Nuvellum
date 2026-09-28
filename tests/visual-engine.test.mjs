@@ -5,7 +5,9 @@ import {
   chooseVisualMode,
   licenseAllowed,
   normalizeLicense,
-  visualCandidateProblems
+  visualCandidateProblems,
+  editorialVisualScore,
+  rankVisualCandidates
 } from '../scripts/visual/core.mjs';
 import { normalizeCommonsPage } from '../scripts/visual/wikimedia.mjs';
 
@@ -88,4 +90,21 @@ test('candidate QA rejects weak or unsafe candidates', () => {
     height:300
   });
   assert.ok(p.length >= 4);
+});
+
+
+test('editorial scoring prefers premium editorial composition over generic stock', () => {
+  const brief = { mode:'photo', title:'Global trade tensions deepen', entities:['Europe'] };
+  const premium = {
+    title:'European Parliament at dusk',
+    description:'Editorial photograph of institutional architecture under dramatic evening light.',
+    width:2000,height:1200,mime:'image/jpeg'
+  };
+  const generic = {
+    title:'Business handshake over laptop',
+    description:'Generic stock photo.',
+    width:2000,height:1200,mime:'image/jpeg'
+  };
+  assert.ok(editorialVisualScore(premium, brief) > editorialVisualScore(generic, brief));
+  assert.equal(rankVisualCandidates([generic,premium], brief)[0].title, premium.title);
 });
