@@ -64,6 +64,9 @@ function containsKeyword(text, keyword) {
 }
 
 export function regionsForArticle(article) {
+  // An explicit regions array is authoritative, including [] ("no World Desk region is
+  // material"): stories under the geography contract are never re-filed by headline keywords.
+  if (Array.isArray(article?.regions)) return [...new Set(explicitRegionSlugs(article))];
   const explicit = explicitRegionSlugs(article);
   if (explicit.length) return [...new Set(explicit)];
 

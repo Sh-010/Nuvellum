@@ -251,6 +251,28 @@ Profiled with Chrome performance traces (GPU/ANGLE D3D11, Intel HD Graphics), 6 
 - Visuals: day and night full-page renders match the previous build except 226 sub-pixel edge samples inside small thumbnails (fair comparison with the hero composited, as it always is live). Layout boxes identical at four viewports.
 - Note: two interaction-QA expectations (hero timing, reduced-motion "motion-soft") fail identically on 2d10249; they reflect bc82ad3's intentional motion changes, not this work.
 
+## 2026-09-28 — Independent review of #71, #73 and draft #74 (geography contract)
+
+Verified: schema/validator/gate/buildArticle agree on the eight region slugs and array limits; the #74 candidate's changed Code nodes, executed end to end on fixtures, carry `regions`/`countries` through review, verification and SVG nodes into the committed file (all intermediate nodes spread the item and edit frontmatter by key), which then passes the repository validator and publication gate; missing/unknown geography fails closed; empty arrays are accepted; old content is grandfathered; the parsers (repository, Astro YAML, homepage renderer) read the JSON-style arrays. #73: actions/checkout@v7 and setup-node@v7 exist; TypeScript 5.9.2 is required by @astrojs/check 0.9.10; World Explorer passes the 239-entity browser QA on three 0.186.1 with no console errors or CSP violations.
+
+Defects fixed (branch review/geography-contract-fixes, on top of #74):
+- Consumers ignored an explicit `[]`: `regionsForArticle` and `articleMatchesCountry` fell back to headline inference, so a story declaring no geography could still be filed on a region/country desk. An explicit array is now authoritative; stories without the fields keep inference.
+- Country names were only length-checked, so "US", "USA", "Gaza", "Bosnia" or "The Netherlands" passed every gate and silently never reached a country desk. `resolveCountry` maps names, aliases and Natural Earth labels to one World Explorer entity (320 terms, no collisions); the validator rejects names it cannot place and alias duplicates; the draft prompt names the canonical forms.
+- The repository branch helper disagreed with live v6.5 (SHA-256 over the canonical URL with a 72-character slug vs FNV-1a over host+path with a 60-character slug), contradicting the README's "same contract". The helper now ports the live logic; a test runs the live node code against it.
+- #74's contract test only matched source text; it now also executes the candidate's Code nodes end to end.
+
+Site output: all 349 built pages byte-identical to #74 (no current article carries geography). Tests 175/175, build, build-output, validate, audit clean. Live n8n not accessible from this session.
+
+## 2026-09-28: live v6.5 geography sync (PR #74, n8n MCP session)
+
+- Snapshot before the change: live `081d8faa` (inactive, 65 nodes), full definition saved. n8n version history also keeps it.
+- Three-way merge. Base `2b8eda07`, the version PR #74's candidate was cut from. Live-only changes since then: `c875619a` (Queue: `MAX_CANDIDATES = 5`) and `081d8faa` (Draft prompt roundup/newsletter skip; Review prompt multi-story rejection). PR #74 only changed Draft prompt, Parse Draft & Build Markdown and Build GitHub Payload. Only the Draft prompt was changed on both sides, and it was merged by hand (live prompt plus the two geography blocks).
+- Beyond the #74 candidate: Parse Draft resolves countries through the World Explorer index (320 terms from `src/lib/countries.js`), writes canonical names and fails closed on anything unplaceable. Build GitHub Payload rejects non-canonical or duplicate countries and duplicate regions before commit.
+- Live is now `bcf2474f-ad85-42d1-9881-d8f44d5670db`. Re-fetched and compared with the snapshot: same 65 nodes, identical connections and settings, and only those three nodes' parameters differ. Still inactive, no published version. `NUVELLUM_AUTOPUBLISH` was not touched.
+- `n8n/workflows/nuvellum-newsroom.json` is the sanitized export of `bcf2474f`, and its node parameters equal live's. New contract tests pin the live-only fixes and check that the embedded country tables match `src/lib/countries.js`. They also cover alias canonicalisation and fail-closed handling, plus the pre-commit gate refusing tampered geography. They fail on the old candidate.
+- `npm test` 180/180, `npm run validate`, `npm run build` (347 pages), `check-build-output`, `npm audit` (0 vulnerabilities): all pass.
+- Next: three real end-to-end verification runs (not started).
+
 ## 2026-09-28: live v6.5 end-to-end verification runs (n8n MCP session)
 
 Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merged onto `081d8faa`; export on PR #74). Three manual executions, one at a time. The workflow stayed inactive, the schedule off and `NUVELLUM_AUTOPUBLISH` untouched. Nothing was merged.
@@ -273,3 +295,9 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Person names were not verified against outside sources in these runs.
 - The pipeline cleared #77 and #80, but they must not be published as they stand. The owner decides after editorial fixes.
 - Also seen: run 2's headline "Vmi worldwide…" (source "VMI Worldwide"), a `north-america` region tagged from a film's fictional setting, and a slug cut mid-word by the 90-character limit.
+
+### Regression rerun after the concurrency fix (#81, main `6064e2b`)
+- Execution 924 on live `bcf2474f` (unchanged), manual, workflow still inactive. 5 candidates, 2 stopped for thin source text (CNBC, Anime News Network), 3 committed on branches cut from `6064e2b`.
+- Exactly one editorial PR per branch: #82 (sensitive, verification `cleared`, pipeline `reviewedBy`), #83 (low risk), #84 (low risk). For each branch the three pushes arrived within about 3 s. Auto-open ran once for the branch creation, the SVG commit's run was cancelled while still queued when the article push's run replaced it, and the article run then corrected the existing PR. No duplicate PR.
+- Push checks green on every head commit (Build, Security, CodeQL, Editorial duplicate guard, Auto-open). Geography contract valid, including the first real `[]`/`[]` story (#84). Branch names match `branchName`. Nothing merged.
+- More editorial follow-ups, again not stabilization work: #84's `[]` misses Anguilla and Antigua and Barbuda, which are material to the story. #82 over-tags Israel, Nigeria and `middle-east-north-africa` from passing mentions, its source is a France 24 TV-interview page (`/tv-shows/` is not blocked), and its headline keeps the source's all-caps "'RACE-BASED POLICY'". Hold #82 and #84 for editorial fixes, like #77 and #80.
