@@ -372,3 +372,6 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Text-led articles request a designed social card rather than receiving unrelated fallback art.
 - Added a separate GitHub workflow that tests the engine on PRs and produces JSON social-draft artifacts after new published articles reach `main`.
 - No social credentials, posting APIs or live-post switch exist in this version. Publication remains completely independent.
+
+- Expanded social draft targets to seven platforms: X, Threads, Facebook, LinkedIn, Instagram, TikTok and YouTube Shorts.
+- TikTok and YouTube are explicitly marked `video-needed`; they do not pretend that an article image is a video. YouTube gets separate title/description output.
