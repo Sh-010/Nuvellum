@@ -390,3 +390,14 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Feed drafts now reference generated cards: square for X/Threads/Facebook/LinkedIn, portrait for Instagram.
 - Distribution CLI renders the cards automatically; GitHub Actions uploads card assets and JSON drafts together.
 - Live posting remains disabled. SVG cards are the deterministic source assets; raster conversion will be added only when a platform adapter actually needs JPEG/PNG.
+
+## 2026-09-29 — zero-cost Shorts/Reels engine v1
+
+- Added a real 9:16 video pipeline for X video, Facebook Reels, Instagram Reels, TikTok and YouTube Shorts.
+- V1 is intentionally extractive: hook and beats are selected from the published article's own sentences and remain verbatim. No model paraphrase is used, including on sensitive stories.
+- Added free/local narration chain `piper -> espeak -> silent`; CI uses espeak-ng only to prove the pipeline at zero API cost.
+- Added deterministic 1080×1920 Chromium/ffmpeg rendering, timed captions, poster JPEG, SRT, script/plan/report JSON and a Nuvellum end card.
+- Image-led stories use their actual article image; text-led stories get a typographic vertical treatment rather than invented imagery.
+- Added a PR render smoke workflow that produces a real preview MP4 artifact. Nothing posts publicly and the publication gate does not depend on video generation.
+- espeak is explicitly a functional fallback, not the intended final public voice quality. A local Piper voice or another approved voice must be chosen before automatic public posting.
+- PR smoke run `36489556135` rendered the text-led Pokémon TCG story successfully: 34.87 s, 523 preview frames at 15 fps, extractive script, espeak narration, MP4 + poster + captions/script/plan/report artifact (~2.0 MB). Social distribution tests, Build, Security and CodeQL were green on the same head.

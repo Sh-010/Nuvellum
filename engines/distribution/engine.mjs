@@ -33,7 +33,7 @@ export function buildDistributionDraft(story, opts = {}) {
   }
   for (const platform of videoPlatforms) {
     if (!video.copy[platform]) continue;
-    tracks.video[platform] = draftValue(platform, video.copy[platform], { mode: 'video-needed', source: null });
+    tracks.video[platform] = draftValue(platform, video.copy[platform], { mode: 'video-needed', source: null, expectedPath: `engines/out/shorts/${story.slug}/short.mp4` });
   }
 
   return {

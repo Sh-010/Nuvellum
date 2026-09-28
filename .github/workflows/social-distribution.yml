@@ -33,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - run: cd engines && npm test
+      - run: cd engines && npm ci --no-audit --no-fund && npm test
 
   draft:
     if: github.event_name != 'pull_request'
