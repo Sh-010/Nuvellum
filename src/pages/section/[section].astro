@@ -1,17 +1,58 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import '../../styles/global.css';
+import InteriorShell from '../../components/InteriorShell.astro';
+import StoryCard from '../../components/StoryCard.astro';
 import { getArticles, slugify } from '../../lib/articles';
+
 export async function getStaticPaths(){
- const articles=await getArticles();
- const sections=[...new Set([...articles.map(a=>slugify(a.section)),'entertainment','crime'])];
- return sections.map(section=>({params:{section}}));
+  const articles = await getArticles();
+  const sections = [...new Set([...articles.map(a => slugify(a.section)), 'entertainment', 'crime'])];
+  return sections.map(section => ({ params: { section } }));
 }
-const key=Astro.params.section!;
-const articles=(await getArticles()).filter(a=>slugify(a.section)===key || (key==='entertainment' && ['anime','film-tv','gaming'].includes(slugify(a.section))));
-const label=key==='entertainment'?'Screen & Play':key==='crime'?'Crime':(articles[0]?.section || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()));
+
+const key = Astro.params.section!;
+const all = (await getArticles()).filter(a =>
+  slugify(a.section) === key || (key === 'entertainment' && ['anime','film-tv','gaming'].includes(slugify(a.section)))
+);
+const label = key === 'entertainment' ? 'Screen & Play' : key === 'crime' ? 'Crime' : (all[0]?.section || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()));
+const lead = all[0];
+const secondary = all.slice(1,3);
+const rest = all.slice(3);
 ---
-<!doctype html><html lang="en"><head><SiteHead title={`${label} — Nuvellum`} description={`Latest ${label} reporting and analysis from Nuvellum.`}/></head><body>
-<div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div><div class="nav-shell"><nav class="nav wrap"><a href="/section/world">World</a><a href="/section/business">Business</a><a href="/section/technology">Technology</a><a href="/section/science">Science</a><a href="/section/sports">Sports</a><a href="/section/culture">Culture</a><a href="/section/entertainment">Screen & Play</a><a href="/section/opinion">Opinion</a></nav></div></header>
-<main class="section wrap"><div class="section-head"><h2>{label}</h2><a href="/">Home</a></div><div class="cards">{articles.map(a=><article class="card motion-story"><a href={`/article/${a.slug}`}><img src={a.image} alt={a.imageAlt}/><div class="kicker">{a.type}</div><h3>{a.title}</h3><p>{a.dek}</p></a></article>)}</div>{articles.length===0 && <p>No published stories in this section yet.</p>}</main>
-<footer class="footer"><div class="wrap"><div class="footer-brand">NUVELLUM</div><div class="tag">Beyond the headline.</div></div></footer></body></html>
+<InteriorShell
+  title={`${label} — Nuvellum`}
+  description={`Latest ${label} reporting and analysis from Nuvellum.`}
+  active={key}
+>
+  <div class="int-wrap int-page">
+    <header class="int-page-head" data-reveal>
+      <div>
+        <div class="int-page-kicker">Section</div>
+        <h1 class="int-page-title">{label}</h1>
+        <p class="int-page-dek">Reporting, analysis and ideas from Nuvellum’s {label} desk, arranged as an inside page rather than a feed of identical cards.</p>
+      </div>
+      <div class="int-page-note">{all.length} published {all.length === 1 ? 'story' : 'stories'} currently filed in this section.</div>
+    </header>
+
+    {lead ? (
+      <>
+        <section class="int-feature-grid" aria-label={`${label} lead stories`}>
+          <StoryCard article={lead} variant="lead" />
+          <div class="int-feature-side">
+            {secondary.map(article => <StoryCard article={article} variant="compact" />)}
+          </div>
+        </section>
+
+        {rest.length > 0 && (
+          <section>
+            <div class="int-section-label"><h2>More from {label}</h2><span>{rest.length} more</span></div>
+            <div class="int-feed">
+              {rest.map((article, index) => <StoryCard article={article} variant="row" index={index + 1} />)}
+            </div>
+          </section>
+        )}
+      </>
+    ) : (
+      <div class="int-empty">No published Nuvellum stories are currently filed in {label}.</div>
+    )}
+  </div>
+</InteriorShell>
