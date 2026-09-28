@@ -41,7 +41,8 @@ export function plainText(markdown) {
 }
 
 export function sentences(text) {
-  return String(text).replace(/\s+/g, ' ').split(/(?<=[.!?][\"”’]?)\s+(?=[\"“‘A-Z0-9])/).map(s => s.trim()).filter(s => s.length > 20);
+  const normalized = String(text).replace(/\s+/g, ' ').trim();
+  return (normalized.match(/[^.!?]+[.!?][\"”’]?|[^.!?]+$/g) || []).map(s => s.trim()).filter(s => s.length > 20);
 }
 
 export function bodySentences(markdown) {
