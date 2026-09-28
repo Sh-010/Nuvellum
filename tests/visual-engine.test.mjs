@@ -7,7 +7,9 @@ import {
   normalizeLicense,
   visualCandidateProblems,
   editorialVisualScore,
-  rankVisualCandidates
+  rankVisualCandidates,
+  semanticVisualScore,
+  selectBestVisual
 } from '../scripts/visual/core.mjs';
 import { normalizeCommonsPage } from '../scripts/visual/wikimedia.mjs';
 
@@ -107,4 +109,38 @@ test('editorial scoring prefers premium editorial composition over generic stock
   };
   assert.ok(editorialVisualScore(premium, brief) > editorialVisualScore(generic, brief));
   assert.equal(rankVisualCandidates([generic,premium], brief)[0].title, premium.title);
+});
+
+
+test('semantic relevance prevents beautiful unrelated imagery from winning', () => {
+  const brief = { mode:'photo', title:'Swiss voters reject tighter neutrality rules', dek:'Referendum in Switzerland', entities:['Switzerland','referendum'] };
+  const related = {
+    title:'Federal Palace of Switzerland at night',
+    description:'The parliament building in Bern, Switzerland.',
+    width:2000,height:1200,mime:'image/jpeg',badges:['featured']
+  };
+  const unrelated = {
+    title:'Dramatic museum interior at dusk',
+    description:'Award-winning architectural photograph.',
+    width:2400,height:1350,mime:'image/jpeg',badges:['featured','quality']
+  };
+  assert.ok(semanticVisualScore(related, brief) > semanticVisualScore(unrelated, brief));
+  assert.equal(rankVisualCandidates([unrelated,related], brief)[0].title, related.title);
+});
+
+test('selector can decline weak candidates instead of forcing an image', () => {
+  const brief = { mode:'photo', title:'Specific named event', entities:['SpecificSubject'] };
+  const weak = {
+    provider:'wikimedia',
+    title:'Generic office',
+    description:'Generic stock photo with laptop.',
+    credit:'X',
+    license:'CC BY 4.0',
+    sourcePage:'https://commons.wikimedia.org/wiki/File:X.jpg',
+    url:'https://upload.wikimedia.org/x.jpg',
+    width:1400,height:900,mime:'image/jpeg'
+  };
+  const result = selectBestVisual([weak], brief, { minConfidence: 90 });
+  assert.equal(result.best, null);
+  assert.equal(result.needsReview, true);
 });
