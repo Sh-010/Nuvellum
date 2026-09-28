@@ -48,6 +48,10 @@ body.night .strip-mark{color:var(--wine-ink)}
 .lead-media img{aspect-ratio:16/9;max-height:78vh;object-fit:cover;filter:var(--img-filter)}
 .lead-figure figcaption{grid-column:2/4;font-size:13.5px;font-style:italic;color:var(--muted);padding:10px 0 11px;border-bottom:1px solid var(--hair)}
 .lead-figure figcaption .eyebrow{font-style:normal;font-size:10px;margin-right:8px}
+.visual-caption{margin-right:8px}
+.visual-credit{font-style:normal;font-size:11.5px;color:color-mix(in srgb,var(--muted) 82%,transparent);white-space:normal}
+.visual-credit a{text-decoration:none;border-bottom:1px solid var(--hair);transition:color .2s,border-color .2s}
+.visual-credit a:hover{color:var(--wine-ink);border-color:var(--wine-soft)}
 
 /* ---- Reading layout ---- */
 .reading{padding-top:46px;align-items:start}
