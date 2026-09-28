@@ -91,6 +91,17 @@ function slugify(input, max = 90) {
 
 const BRANCH_RE = /^incoming\/([a-z0-9]+(?:-[a-z0-9]+)*)-([0-9a-f]{8})$/;
 
+const WORLD_REGIONS = new Set([
+  'north-america',
+  'latin-america-caribbean',
+  'europe-central-asia',
+  'middle-east-north-africa',
+  'sub-saharan-africa',
+  'south-asia',
+  'east-asia',
+  'southeast-asia-oceania'
+]);
+
 /** Deterministic branch: the same source always maps to the same branch. */
 function branchName(slug, sourceUrl) {
   const hash = sha256Hex(canonicalSourceUrl(sourceUrl)).slice(0, 8);
@@ -229,6 +240,25 @@ function newStoryQualityProblems(data, body, { slug, branch, hasAiArt } = {}) {
     if (tp.length) p.push(`sourceUrl carries tracking parameters (${tp.join(', ')}): ${u}`);
     if (isAggregatePage(u)) p.push(`sourceUrl is a live blog/video/gallery page, which clusters unrelated stories: ${u}`);
   }
+  if (!Array.isArray(data.regions)) {
+    p.push('regions must be an explicit array (use [] when no World Desk region is material)');
+  } else {
+    if (data.regions.length > 4) p.push('regions has more than 4 entries');
+    if (new Set(data.regions).size !== data.regions.length) p.push('regions contains duplicates');
+    for (const region of data.regions) if (!WORLD_REGIONS.has(String(region))) p.push(`unsupported region "${region}"`);
+  }
+  if (!Array.isArray(data.countries)) {
+    p.push('countries must be an explicit array (use [] when no country is material)');
+  } else {
+    if (data.countries.length > 12) p.push('countries has more than 12 entries');
+    const countryKeys = data.countries.map(x => String(x).trim().toLowerCase());
+    if (new Set(countryKeys).size !== countryKeys.length) p.push('countries contains duplicates');
+    for (const country of data.countries) {
+      const c = String(country).trim();
+      if (c.length < 2 || c.length > 80) p.push(`invalid country "${country}"`);
+    }
+  }
+
   const words = wordCount(body);
   if (words < 120) p.push(`body is only ${words} words; skip thin sources rather than publish or pad`);
   if (data.publishedAt !== undefined && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/.test(String(data.publishedAt))) {
@@ -248,7 +278,7 @@ function newStoryQualityProblems(data, body, { slug, branch, hasAiArt } = {}) {
 // ---------------------------------------------------------------------------
 
 const VERIFICATION_REVIEWER_NAME = 'Nuvellum Verification Pipeline';
-const FRONTMATTER_ORDER = ['title', 'dek', 'section', 'type', 'author', 'date', 'publishedAt', 'readingTime', 'image', 'imageAlt', 'status', 'tags', 'sourceUrls', 'sourceNote', 'origin', 'risk', 'editorialReview', 'verification', 'reviewedBy'];
+const FRONTMATTER_ORDER = ['title', 'dek', 'section', 'type', 'author', 'date', 'publishedAt', 'readingTime', 'image', 'imageAlt', 'status', 'tags', 'regions', 'countries', 'sourceUrls', 'sourceNote', 'origin', 'risk', 'editorialReview', 'verification', 'reviewedBy'];
 
 function fmValue(v) {
   if (Array.isArray(v)) return JSON.stringify(v.map(x => String(x)));
@@ -260,8 +290,9 @@ function fmValue(v) {
  * Clearance (and therefore status) is derived here from the parsed review and
  * verification results, so n8n cannot mark an uncleared story "published".
  *
- * @param {object} s  { title, dek, section, type, date, publishedAt, bodyMarkdown, tags, sourceUrls, sourceOutlet,
- *                      aiArt: boolean, sectionImage, imageAlt, review: parseEditorialReview(...), verification?: parseVerification(...) }
+ * @param {object} s  { title, dek, section, type, date, publishedAt, bodyMarkdown, tags, regions, countries,
+ *                      sourceUrls, sourceOutlet, aiArt: boolean, sectionImage, imageAlt,
+ *                      review: parseEditorialReview(...), verification?: parseVerification(...) }
  * @returns {{ slug, path, branch, markdown, status, cleared, reasons }}
  */
 function buildArticle(s) {
@@ -278,6 +309,22 @@ function buildArticle(s) {
   }
   const cleared = reasons.length === 0;
   const sourceUrls = (s.sourceUrls || []).map(canonicalSourceUrl);
+  if (!Array.isArray(s.regions)) reasons.push('regions missing');
+  if (!Array.isArray(s.countries)) reasons.push('countries missing');
+  const rawRegions = Array.isArray(s.regions) ? s.regions.map(x => String(x).trim()).filter(Boolean) : [];
+  const invalidRegions = rawRegions.filter(x => !WORLD_REGIONS.has(x));
+  if (invalidRegions.length) reasons.push(`unsupported regions: ${invalidRegions.join(', ')}`);
+  if (rawRegions.length > 4) reasons.push('too many regions');
+  const regions = [...new Set(rawRegions.filter(x => WORLD_REGIONS.has(x)))].slice(0, 4);
+  const rawCountries = Array.isArray(s.countries) ? s.countries.map(x => String(x).trim()).filter(Boolean) : [];
+  if (rawCountries.some(x => x.length < 2 || x.length > 80)) reasons.push('invalid country metadata');
+  if (rawCountries.length > 12) reasons.push('too many countries');
+  const countries = [];
+  const countrySeen = new Set();
+  for (const country of rawCountries) {
+    const key = country.toLowerCase();
+    if (!countrySeen.has(key)) { countrySeen.add(key); countries.push(country); }
+  }
   const slug = slugify(s.slug || s.title);
   const outlet = String(s.sourceOutlet || '').trim();
   if (!outlet || /^source$/i.test(outlet)) reasons.push('sourceOutlet missing');
@@ -294,6 +341,8 @@ function buildArticle(s) {
     imageAlt: s.imageAlt || `Editorial illustration for ${String(s.title || '').trim()}`,
     status: cleared && reasons.length === 0 ? 'published' : 'review',
     tags: (s.tags || []).slice(0, 12),
+    regions,
+    countries: countries.slice(0, 12),
     sourceUrls,
     sourceNote: `Prepared from ${outlet || 'UNKNOWN OUTLET'} reporting.${risk === 'sensitive' ? ' Sensitive coverage cleared by the Nuvellum verification pipeline.' : ''}`,
     origin: 'automation',
