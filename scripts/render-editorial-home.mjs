@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { buildPublicDir } from './lib/paths.mjs';
 import { REGIONS, storiesByRegion } from '../src/lib/geography.js';
 import { WORLD_MAP_GROUPS, WORLD_MAP_VIEWBOX } from '../src/lib/world-map-data.js';
+import { THEME_HEAD, THEME_BODY } from '../src/lib/theme-boot.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
@@ -319,6 +320,7 @@ const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>${THEME_HEAD}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nuvellum — Beyond the headline.</title>
 <meta name="description" content="${description}">
@@ -457,6 +459,7 @@ ${REVEAL_CSS}
 <script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Nuvellum',url:canonical,description})}</script>
 </head>
 <body data-home-version="nuvellum-editorial-home-v6">
+<script>${THEME_BODY}</script>
 <header class="site-header">
   <div class="shell header-row">
     <div class="brand-zone" id="brandZone">
@@ -655,7 +658,6 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBrand()});
 
   const theme=document.getElementById('themeToggle');
-  try{if(localStorage.getItem('nuvellum-theme')==='night')body.classList.add('night')}catch{}
   const syncTheme=()=>theme?.setAttribute('aria-pressed',String(body.classList.contains('night')));syncTheme();
   // Reading mode flips in a single frame with transitions suppressed: colour transitions made
   // the browser restyle the whole document and re-rasterise the entire page every frame.
@@ -668,6 +670,7 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     const flip=()=>{
       body.classList.add('theme-switching');
       body.classList.toggle('night');
+      document.documentElement.style.colorScheme=body.classList.contains('night')?'dark':'light';
       syncTheme();
       try{localStorage.setItem('nuvellum-theme',body.classList.contains('night')?'night':'day')}catch{}
     };

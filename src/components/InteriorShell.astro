@@ -7,6 +7,7 @@ import SiteFooter from './SiteFooter.astro';
 import '../styles/interior.css';
 import { getArticles } from '../lib/articles';
 import { route } from '../lib/interior';
+import { THEME_HEAD, THEME_BODY } from '../lib/theme-boot.js';
 
 type Crumb = { label: string; href?: string };
 interface Props {
@@ -60,12 +61,13 @@ const ticker = (await getArticles()).slice(0, 8);
 <!doctype html>
 <html lang="en">
 <head>
+  <script is:inline set:html={THEME_HEAD}></script>
   <SiteHead title={title} description={description} image={image} canonical={canonical} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} author={author} />
   <slot name="head" />
   <script is:inline>try{if('IntersectionObserver' in window)document.documentElement.classList.add('motion-ready')}catch(e){}</script>
 </head>
 <body class:list={['interior', bodyClass]}>
-  <script is:inline>try{if(localStorage.getItem('nuvellum-theme')==='night')document.body.classList.add('night')}catch(e){}</script>
+  <script is:inline set:html={THEME_BODY}></script>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="shell header-row">
@@ -165,7 +167,7 @@ const ticker = (await getArticles()).slice(0, 8);
     let run=0;
     theme?.addEventListener('click',()=>{
       const mine=++run;theme.classList.remove('is-tapping');void theme.offsetWidth;theme.classList.add('is-tapping');
-      const flip=()=>{body.classList.add('theme-switching');body.classList.toggle('night');syncTheme();try{localStorage.setItem('nuvellum-theme',body.classList.contains('night')?'night':'day')}catch(e){}};
+      const flip=()=>{body.classList.add('theme-switching');body.classList.toggle('night');root.style.colorScheme=body.classList.contains('night')?'dark':'light';syncTheme();try{localStorage.setItem('nuvellum-theme',body.classList.contains('night')?'night':'day')}catch(e){}};
       const settle=()=>{if(mine===run)body.classList.remove('theme-switching')};
       if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(flip).finished.finally(settle);
       else{flip();requestAnimationFrame(()=>requestAnimationFrame(settle))}
