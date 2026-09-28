@@ -20,6 +20,8 @@ test('platform templates are within limits and contain tracked links where requi
   assert.match(copy.x, /utm_source=x/);
   assert.match(copy.linkedin, /utm_source=linkedin/);
   assert.ok(!copy.instagram.includes('utm_source=instagram'));
+  assert.ok(!copy.tiktok.includes('utm_source=tiktok'));
+  assert.match(copy.youtube.description, /utm_source=youtube/);
 });
 
 test('tracking links identify platform, social medium and article slug', () => {
@@ -34,5 +36,8 @@ test('text-led stories request a designed social card instead of fake story art'
   const r = buildDistributionDraft(story);
   assert.equal(r.drafts.x.media.mode, 'text-card-needed');
   assert.equal(r.drafts.instagram.media.mode, 'text-card-needed');
+  assert.equal(r.drafts.tiktok.media.mode, 'video-needed');
+  assert.equal(r.drafts.youtube.media.mode, 'video-needed');
+  assert.ok(r.drafts.youtube.title.length <= 100);
   assert.equal(r.mode, 'dry-run');
 });
