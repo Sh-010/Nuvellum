@@ -295,3 +295,9 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Person names were not verified against outside sources in these runs.
 - The pipeline cleared #77 and #80, but they must not be published as they stand. The owner decides after editorial fixes.
 - Also seen: run 2's headline "Vmi worldwide…" (source "VMI Worldwide"), a `north-america` region tagged from a film's fictional setting, and a slug cut mid-word by the 90-character limit.
+
+### Regression rerun after the concurrency fix (#81, main `6064e2b`)
+- Execution 924 on live `bcf2474f` (unchanged), manual, workflow still inactive. 5 candidates, 2 stopped for thin source text (CNBC, Anime News Network), 3 committed on branches cut from `6064e2b`.
+- Exactly one editorial PR per branch: #82 (sensitive, verification `cleared`, pipeline `reviewedBy`), #83 (low risk), #84 (low risk). For each branch the three pushes arrived within about 3 s. Auto-open ran once for the branch creation, the SVG commit's run was cancelled while still queued when the article push's run replaced it, and the article run then corrected the existing PR. No duplicate PR.
+- Push checks green on every head commit (Build, Security, CodeQL, Editorial duplicate guard, Auto-open). Geography contract valid, including the first real `[]`/`[]` story (#84). Branch names match `branchName`. Nothing merged.
+- More editorial follow-ups, again not stabilization work: #84's `[]` misses Anguilla and Antigua and Barbuda, which are material to the story. #82 over-tags Israel, Nigeria and `middle-east-north-africa` from passing mentions, its source is a France 24 TV-interview page (`/tv-shows/` is not blocked), and its headline keeps the source's all-caps "'RACE-BASED POLICY'". Hold #82 and #84 for editorial fixes, like #77 and #80.

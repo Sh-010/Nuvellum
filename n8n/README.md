@@ -13,7 +13,7 @@ n8n/
 
 ## Live production workflow (v6.5)
 
-The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is the sanitized export of live n8n version `bcf2474f-ad85-42d1-9881-d8f44d5670db` (2026-09-28). That version merged the explicit geography contract onto live `081d8faa`, keeping the five-candidate queue and the roundup/multi-story rejection. The geography contract is in live but has not yet been checked in a real end-to-end run. Do not create v6.6+ copies.
+The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is the sanitized export of live n8n version `bcf2474f-ad85-42d1-9881-d8f44d5670db` (2026-09-28). That version merged the explicit geography contract onto live `081d8faa`, keeping the five-candidate queue and the roundup/multi-story rejection. The geography contract was checked in real manual runs on 2026-09-28 (executions 921–924; see WORKLOG). Do not create v6.6+ copies.
 
 Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib/newsroom.mjs` are the live "Build GitHub Payload" logic (FNV-1a over the host + path key, 60-character slug cut), and `tests/n8n-workflow-contract.test.mjs` runs the live node code against them and executes the candidate's Code nodes end to end. Other helpers still differ: `canonicalSourceUrl` uses the `URL` global, which the live node notes the n8n Code sandbox does not expose, so confirm a snippet in a real execution before swapping it in.
 
