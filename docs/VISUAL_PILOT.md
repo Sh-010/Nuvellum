@@ -5,7 +5,7 @@ Five existing Nuvellum stories are used as the first visual QA set. The point is
 | Story | Visual | Why it was chosen | Public treatment |
 | --- | --- | --- | --- |
 | Swiss neutrality referendum | Federal Palace of Switzerland at night | Direct institutional/geographic context; neutral architecture rather than a staged political image | Caption identifies the Federal Palace; credit Megalesius, CC BY-SA 4.0 |
-| Europe's data centers / digital sovereignty | Server racks inside a data center | Concrete infrastructure subject; avoids generic “AI face” imagery | Explicitly captioned as an illustrative file photo; credit Carl Lender, CC BY 2.0 |
+| Europe's data centers / digital sovereignty | MareNostrum 4 at the Barcelona Supercomputing Center | Europe-specific computing infrastructure with stronger architecture, depth and editorial presence; avoids generic “AI face” imagery | Explicitly captioned as an illustrative file photo; credit Gemmaribasmaspoch, CC BY-SA 4.0 |
 | Martin McDonagh / Wild Horse Nine | Martin McDonagh at Venice Film Festival 2026 | Exact named subject and same film/festival season | Caption states event/date; credit Colleen Sturtevant, CC BY-SA 4.0 |
 | New generation of observatories | ESO Paranal Observatory at night | High-quality astronomical infrastructure with strong editorial atmosphere | Caption identifies Paranal; credit ESO/G. Brammer, CC BY 4.0 |
 | Jersey volunteer-delivery fuel costs | Grande Route des Mielles, Jersey | Direct place/road context for a story about volunteer driving costs | Explicitly captioned as an illustrative file photo; credit Florian Pépellin, CC BY-SA 4.0 |
