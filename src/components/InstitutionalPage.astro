@@ -1,0 +1,29 @@
+---
+import InteriorShell from './InteriorShell.astro';
+const {
+  title,
+  eyebrow = 'Nuvellum',
+  description,
+  intro,
+  note = 'Nuvellum · Beyond the headline.'
+} = Astro.props;
+---
+<InteriorShell title={`${title} — Nuvellum`} description={description}>
+  <div class="int-wrap int-page">
+    <header class="int-page-head" data-reveal>
+      <div>
+        <div class="int-page-kicker">{eyebrow}</div>
+        <h1 class="int-page-title">{title}</h1>
+        {intro && <p class="int-page-dek">{intro}</p>}
+      </div>
+      <div class="int-page-note">{note}</div>
+    </header>
+    <div class="int-institutional">
+      <article class="int-prose" data-reveal><slot /></article>
+      <aside class="int-aside" data-reveal>
+        <strong>Publication note</strong>
+        <slot name="aside">This page forms part of Nuvellum’s publication information and operating standards.</slot>
+      </aside>
+    </div>
+  </div>
+</InteriorShell>
