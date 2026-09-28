@@ -120,7 +120,15 @@ const tools = [
 
     <figure class="rgrid lead-figure" data-reveal style="--d:300ms">
       <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" style={focus} /></div>
-      <figcaption><span class="eyebrow">✦ Nuvellum</span> {caption}{credit?.kind === 'photo' && <span class="credit"> · Photo: <a href={credit.descriptionUrl} rel="noopener">{credit.author}</a> / {credit.source}, {/public domain|^pd/i.test(credit.license) ? 'public domain' : credit.licenseUrl ? <a href={credit.licenseUrl} rel="noopener license">{credit.license}</a> : credit.license}.</span>}</figcaption>
+      <figcaption>
+        <span class="eyebrow">✦ Nuvellum</span> {caption}
+        {credit?.kind === 'photo' && (
+          <details class="image-rights">
+            <summary>Image rights</summary>
+            <span>Photo: <a href={credit.descriptionUrl} rel="noopener">{credit.author}</a> / {credit.source}, {/public domain|^pd/i.test(credit.license) ? 'public domain' : credit.licenseUrl ? <a href={credit.licenseUrl} rel="noopener license">{credit.license}</a> : credit.license}.</span>
+          </details>
+        )}
+      </figcaption>
     </figure>
 
     <div class="rgrid reading">
