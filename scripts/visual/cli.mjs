@@ -27,7 +27,7 @@ function readArticle(path) {
 
 const [command = 'brief', path] = process.argv.slice(2);
 if (!path) {
-  console.error('Usage: node scripts/visual/cli.mjs <brief|wikimedia> src/content/articles/<slug>.md');
+  console.error('Usage: node scripts/visual/cli.mjs <brief|wikimedia|select> src/content/articles/<slug>.md');
   process.exit(2);
 }
 
@@ -36,9 +36,12 @@ const brief = buildVisualBrief(article);
 
 if (command === 'brief') {
   console.log(JSON.stringify(brief, null, 2));
-} else if (command === 'wikimedia') {
-  const results = await searchWikimedia(brief.photoQuery);
-  console.log(JSON.stringify({ brief, results }, null, 2));
+} else if (command === 'wikimedia' || command === 'select') {
+  const results = await searchWikimedia(brief.photoQuery, { brief });
+  const payload = command === 'select'
+    ? { brief, selected: results.find(r => r.selectionConfidence >= 58) || null, candidates: results.slice(0, 8) }
+    : { brief, results };
+  console.log(JSON.stringify(payload, null, 2));
 } else {
   console.error(`Unknown command: ${command}`);
   process.exit(2);
