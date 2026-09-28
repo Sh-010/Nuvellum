@@ -13,7 +13,7 @@ n8n/
 
 ## Live production workflow (v6.5)
 
-The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is its sanitized export at n8n version `2b8eda07-7ea3-4860-8b78-b5cc1967a033` (synced 2026-09-27). Fix it in place; do not create v6.6+ copies.
+The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. The repository candidate in `workflows/nuvellum-newsroom.json` is based on the sanitized live export at n8n version `2b8eda07-7ea3-4860-8b78-b5cc1967a033`, with the 2026-09-28 explicit geography contract patch applied. It is **not yet confirmed re-imported into the live n8n instance**. Re-import/patch v6.5 in place, run the real verification sequence, then replace this file with a fresh sanitized live export. Do not create v6.6+ copies.
 
 **The live Code nodes are the code in that export, not the generated snippets below.** v6.5 was stabilized directly in n8n and verified against real execution data. Its output (low-risk, sensitive-cleared and sensitive-failed cases) passes `scripts/validate-content.mjs` and `newStoryQualityProblems`. The snippets are an alternative, CI-tested implementation of the same contract. Before replacing any live node with a snippet, test it against a real execution, and never downgrade the live behaviour listed here.
 
