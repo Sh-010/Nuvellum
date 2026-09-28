@@ -416,7 +416,7 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 .newsletter{background:var(--wine2);color:#f6eee2;padding:40px 0}.newsletter-in{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}.newsletter .kicker{font-family:var(--text);font-size:10px;letter-spacing:.16em;color:#e8c3cc;text-transform:uppercase}.newsletter h2{font-size:40px;line-height:1.06;font-weight:400;letter-spacing:-.012em;margin:10px 0 0}.signup{display:grid;grid-template-columns:1fr auto;max-width:520px;width:100%;justify-self:end}.signup input{height:46px;border:1px solid rgba(255,255,255,.5);border-right:0;background:rgba(255,255,255,.06);color:#fff;padding:0 14px;font-size:15px;min-width:0}.signup input::placeholder{color:#e2c5cc}.signup input:focus{outline:2px solid #fff;outline-offset:-2px}.signup button{height:46px;border:0;background:#f3ede1;color:var(--wine2);padding:0 22px;font-size:15px;cursor:pointer}.signup button:hover{background:#fff}.signup-msg{grid-column:1/-1;font-size:13px;color:#ecd0d6;margin-top:10px;min-height:1.3em}
 .footer{background:#000;color:#e6dccd;padding:44px 0 22px}.footer-top{display:grid;grid-template-columns:1.1fr 3fr;gap:44px}.footer-brand{font-size:30px;letter-spacing:.05em;color:#fbf8f1}.footer-brand span{color:#a8455a;font-size:.55em;vertical-align:top;margin-left:6px}.footer-tag{font-style:italic;color:#a79d93;margin-top:6px;font-size:14px}.footer-about{color:#8f867d;font-size:13px;line-height:1.55;margin-top:16px;max-width:300px}.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.footer-cols h3{font-family:var(--text);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#b8677a;font-weight:400;margin:4px 0 10px;padding-bottom:9px;border-bottom:1px solid rgba(230,210,180,.12)}.footer-cols a{display:block;font-size:14px;padding:4px 0}.footer-cols a:hover{color:#fff;text-decoration:underline;text-decoration-color:#8a1b36;text-underline-offset:3px}.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;padding-top:16px;border-top:1px solid rgba(230,210,180,.12);font-size:12px;color:#8f867d}
 .support-image img,.latest-thumb img,.region-story img,.focus-card img,.screen-item img{filter:sepia(.24) saturate(.74) contrast(1.03) brightness(.96)}.screen-lead img{filter:sepia(.26) saturate(.72) contrast(1.03) brightness(.9)!important}
-body{transition:background-color .38s ease,color .38s ease}.site-header,.section-block,.panel,.newsletter,.screen,.footer{transition:background-color .38s ease,color .38s ease,border-color .38s ease}
+body{transition:background-color .18s ease,color .18s ease}.site-header{transition:background-color .18s ease,color .18s ease,border-color .18s ease}.theme-switching .section-block,.theme-switching .panel,.theme-switching .newsletter,.theme-switching .screen,.theme-switching .footer{transition:none!important}.theme-switching .support-image img,.theme-switching .latest-thumb img,.theme-switching .region-story img,.theme-switching .focus-card img,.theme-switching .focus-mini img,.theme-switching .screen-item img,.theme-switching .screen-lead img,.theme-switching .hero img{transition-property:transform!important}.theme-switching #themeToggle svg{animation:themeTap .2s var(--ease)}@keyframes themeTap{0%{transform:scale(.9) rotate(-8deg)}65%{transform:scale(1.08) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
 .support-card{transition:transform .38s cubic-bezier(.16,.8,.2,1),box-shadow .38s ease}.support-image{overflow:hidden}.support-image img,.latest-thumb img,.screen-item img{transition:transform .65s cubic-bezier(.16,.8,.2,1),filter .35s ease}.support-card:hover{transform:translateY(-3px)}.support-card:hover .support-image img{transform:scale(1.025)}
 .latest-row{transition:transform .3s cubic-bezier(.16,.8,.2,1),background-color .3s ease}.latest-row:hover{transform:translateX(4px);background:rgba(102,18,39,.025)}.latest-row:hover .latest-thumb img{transform:scale(1.035)}.latest-row:hover h3 a{color:var(--wine-ink)}
 .popular-item{transition:transform .28s cubic-bezier(.16,.8,.2,1),color .22s ease,background-color .22s ease}.popular-item:hover{transform:translateX(4px);color:var(--wine-ink);background:rgba(102,18,39,.02)}
@@ -657,7 +657,18 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
   const theme=document.getElementById('themeToggle');
   try{if(localStorage.getItem('nuvellum-theme')==='night')body.classList.add('night')}catch{}
   const syncTheme=()=>theme?.setAttribute('aria-pressed',String(body.classList.contains('night')));syncTheme();
-  theme?.addEventListener('click',()=>{body.classList.toggle('night');syncTheme();try{localStorage.setItem('nuvellum-theme',body.classList.contains('night')?'night':'day')}catch{}});
+  let themeTimer=0;
+  theme?.addEventListener('click',()=>{
+    clearTimeout(themeTimer);
+    body.classList.add('theme-switching');
+    // Flip the palette immediately; only the page background/header ease for ~180 ms.
+    // Large panels, borders and filtered images no longer run simultaneous colour/filter
+    // transitions, which was causing the heavy full-page repaint.
+    body.classList.toggle('night');
+    syncTheme();
+    try{localStorage.setItem('nuvellum-theme',body.classList.contains('night')?'night':'day')}catch{}
+    themeTimer=setTimeout(()=>body.classList.remove('theme-switching'),210);
+  });
 
   const sheet=document.getElementById('searchSheet');
   const input=document.getElementById('searchInput');
