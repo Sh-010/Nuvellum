@@ -14,10 +14,12 @@ permissions:
   contents: read
   pull-requests: write
 
-# One run per pushed commit (never cancelled); the script always reads the branch's current head,
-# so the last run to execute sees the article even if push events arrive out of order.
+# Serialised per incoming branch, never cancelled mid-run. n8n pushes the SVG and the article about a
+# second apart; with one group per commit both runs found no PR and each opened one (#78/#79).
+# Queued per branch, the second run sees the first run's PR and only corrects it. The script
+# always reads the branch's current head, so whichever run executes last sees the article.
 concurrency:
-  group: open-editorial-pr-${{ github.sha }}
+  group: open-editorial-pr-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
