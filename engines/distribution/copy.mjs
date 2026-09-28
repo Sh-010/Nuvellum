@@ -30,24 +30,37 @@ export function templateCopy(story) {
   const xBodyBudget = Math.max(40, PLATFORMS.x.maxChars - charCount(xTail));
   const xBodyCandidate = story.dek ? story.title + '\n\n' + story.dek : story.title;
   const x = truncate(xBodyCandidate, xBodyBudget) + xTail;
+
   return {
     x,
     threads: truncate(story.title + '\n\n' + story.dek + '\n\n' + links.threads, PLATFORMS.threads.maxChars),
     facebook: truncate(story.title + '\n\n' + story.dek + '\n\nRead: ' + links.facebook, PLATFORMS.facebook.maxChars),
     linkedin: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story: ' + links.linkedin + '\n\n#Nuvellum', PLATFORMS.linkedin.maxChars),
-    instagram: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '), PLATFORMS.instagram.maxChars)
+    instagram: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '), PLATFORMS.instagram.maxChars),
+    tiktok: truncate(story.title + '\n\n' + truncate(story.dek, 320) + '\n\n' + [...tags, '#Nuvellum', '#News'].join(' '), PLATFORMS.tiktok.maxChars),
+    youtube: {
+      title: truncate(story.title, PLATFORMS.youtube.titleMax),
+      description: truncate(story.dek + '\n\nRead the full story: ' + links.youtube + '\n\n#Shorts #Nuvellum', PLATFORMS.youtube.maxChars)
+    }
   };
 }
 
-export function validateCopy(platform, text, story) {
+function textForValidation(platform, value) {
+  if (platform === 'youtube') return String(value?.title || '') + '\n' + String(value?.description || '');
+  return String(value || '');
+}
+
+export function validateCopy(platform, value, story) {
   const spec = PLATFORMS[platform];
   const problems = [];
   if (!spec) return ['unknown platform'];
+  const text = textForValidation(platform, value);
   if (!clean(text)) problems.push('empty');
   if (charCount(text) > spec.maxChars) problems.push('over ' + spec.maxChars + ' characters');
+  if (platform === 'youtube' && charCount(value?.title) > spec.titleMax) problems.push('title over ' + spec.titleMax + ' characters');
   if (spec.linkInText) {
     const expected = trackedUrl(story, platform);
-    if (!String(text).includes(expected)) problems.push('missing tracked article link');
+    if (!text.includes(expected)) problems.push('missing tracked article link');
   }
   if (/\b(shocking|you won'?t believe|this changes everything|must see|game[- ]changer)\b/i.test(text)) problems.push('sensational phrasing');
   return problems;
