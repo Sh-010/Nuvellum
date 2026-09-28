@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="50%" stop-color="#112240"/>
+      <stop offset="100%" stop-color="#1d3557"/>
+    </linearGradient>
+
+    
+    <linearGradient id="floorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1b2a" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050c14" stop-opacity="0.9"/>
+    </linearGradient>
+
+    
+    <linearGradient id="lightBeam" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#64ffda" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#64ffda" stop-opacity="0.0"/>
+    </linearGradient>
+
+    
+    <linearGradient id="scrubTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a9d8f"/>
+      <stop offset="100%" stop-color="#1b4d3e"/>
+    </linearGradient>
+
+    
+    <linearGradient id="warmGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e9c46a"/>
+      <stop offset="100%" stop-color="#f4a261"/>
+    </linearGradient>
+
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+
+  
+  <g opacity="0.1" stroke="#ffffff" stroke-width="1.5">
+    <line x1="150" y1="0" x2="150" y2="675"/>
+    <line x1="1050" y1="0" x2="1050" y2="675"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="550" x2="1200" y2="550"/>
+  </g>
+
+  
+  <path d="M 600 70 L 600 220 L 450 220 L 450 320 L 600 320 L 600 470 L 700 470 L 700 320 L 850 320 L 850 220 L 700 220 L 700 70 Z" fill="#ffffff" opacity="0.02"/>
+
+  
+  <polygon points="600,0 250,675 950,675" fill="url(#lightBeam)"/>
+  <ellipse cx="600" cy="0" rx="200" ry="40" fill="#64ffda" opacity="0.1" filter="url(#glow)"/>
+
+  
+  <rect x="0" y="520" width="1200" height="155" fill="url(#floorGrad)"/>
+
+  
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="600" y1="520" x2="0" y2="675"/>
+    <line x1="600" y1="520" x2="200" y2="675"/>
+    <line x1="600" y1="520" x2="400" y2="675"/>
+    <line x1="600" y1="520" x2="800" y2="675"/>
+    <line x1="600" y1="520" x2="1000" y2="675"/>
+    <line x1="600" y1="520" x2="1200" y2="675"/>
+    <line x1="0" y1="570" x2="1200" y2="570"/>
+    <line x1="0" y1="620" x2="1200" y2="620"/>
+  </g>
+
+  
+  <g transform="translate(180, 180)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="220" height="140" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+    <path d="M 15 100 Q 40 40, 65 100 T 115 100 T 165 70 T 205 100" fill="none" stroke="#64ffda" stroke-width="3" filter="url(#glow)"/>
+    <circle cx="65" cy="70" r="4" fill="#64ffda"/>
+    
+  </g>
+
+  <g transform="translate(800, 150)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="240" height="160" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+    
+    <path d="M 15 90 L 50 90 L 65 50 L 80 130 L 95 70 L 110 90 L 225 90" fill="none" stroke="#e9c46a" stroke-width="3" filter="url(#glow)"/>
+    
+    <circle cx="210" cy="30" r="5" fill="#e9c46a"/>
+  </g>
+
+  
+
+  
+  <g transform="translate(320, 180)" filter="url(#softShadow)">
+    
+    <path d="M 60 120 L 30 180 L 0 350 L 160 350 L 130 180 L 100 120 Z" fill="url(#scrubTeal)"/>
+    
+    <path d="M 60 120 L 80 200 L 50 350 L 70 350 L 100 200 L 100 120 Z" fill="#ffffff" opacity="0.9"/>
+    
+    
+    <path d="M 50 240 C 30 260, 30 310, 60 320 C 90 310, 90 260, 70 240 Z" fill="#2a9d8f" stroke="#e9c46a" stroke-width="2"/>
+
+    
+    <path d="M 80 130 C 60 130, 40 150, 45 180 C 50 210, 60 230, 60 250" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+    <circle cx="60" cy="255" r="8" fill="#94a3b8"/>
+
+    
+    <rect x="65" y="70" width="30" height="60" fill="#fcd5ce" rx="10"/>
+    <path d="M 80 20 C 50 20, 40 50, 50 90 C 70 95, 90 95, 110 90 C 120 50, 110 20, 80 20 Z" fill="#264653"/> 
+    
+    
+    <circle cx="80" cy="70" r="22" fill="#fcd5ce"/>
+    
+    <rect x="68" y="60" width="24" height="12" rx="3" fill="none" stroke="#e9c46a" stroke-width="2"/>
+    <line x1="75" y1="66" x2="85" y2="66" stroke="#e9c46a" stroke-width="2"/>
+  </g>
+
+  
+  <g transform="translate(520, 160)" filter="url(#softShadow)">
+    
+    <path d="M 80 100 L 20 180 L 10 370 L 170 370 L 160 180 L 100 100 Z" fill="#1d3557" stroke="#457b9d" stroke-width="2"/>
+    <path d="M 60 140 L 90 220 L 120 140 Z" fill="#2a9d8f" opacity="0.6"/> 
+    
+    
+    <path d="M 20 220 C 50 210, 100 210, 160 220 L 150 270 C 100 250, 50 250, 20 270 Z" fill="#1d3557" stroke="#457b9d" stroke-width="2"/>
+    <rect x="60" y="230" width="60" height="30" rx="8" fill="#f5ebe0"/> 
+
+    
+    <rect x="75" y="50" width="30" height="60" fill="#e0a96d" rx="10"/>
+    
+    <circle cx="90" cy="55" r="24" fill="#e0a96d"/>
+    
+    <path d="M 66 50 C 68 30, 112 30, 114 50 C 100 45, 80 45, 66 50 Z" fill="#111111"/>
+    
+    
+    <line x1="82" y1="52" x2="90" y2="55" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+    <line x1="94" y1="55" x2="102" y2="52" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  
+  <g transform="translate(730, 170)" filter="url(#softShadow)">
+    
+    <path d="M 60 110 L 10 170 L 25 360 L 155 360 L 170 170 L 120 110 Z" fill="#457b9d"/>
+    <path d="M 90 110 L 70 200 L 110 200 Z" fill="#ffffff" opacity="0.9"/> 
+
+    
+    <rect x="75" y="60" width="30" height="60" fill="#fcd5ce" rx="10"/>
+    
+    <circle cx="90" cy="65" r="23" fill="#fcd5ce"/>
+    
+    <path d="M 65 65 C 65 35, 115 35, 115 65 C 105 45, 75 45, 65 65 Z" fill="#b08968"/>
+    
+    
+    <path d="M 82 72 Q 90 78 98 72" fill="none" stroke="#a3704c" stroke-width="2" stroke-linecap="round"/>
+    
+    
+    <path d="M 150 200 L 130 300 L 110 300 L 135 200 Z" fill="#457b9d"/>
+    <rect x="95" y="280" width="50" height="70" rx="4" fill="#f8f9fa" transform="rotate(15 95 280)"/>
+    <line x1="105" y1="295" x2="130" y2="295" stroke="#cbd5e1" stroke-width="3" transform="rotate(15 95 280)"/>
+    <line x1="105" y1="310" x2="125" y2="310" stroke="#cbd5e1" stroke-width="3" transform="rotate(15 95 280)"/>
+  </g>
+
+  
+  
+  <g transform="translate(100, 380)" opacity="0.4">
+    <rect x="0" y="15" width="50" height="20" rx="4" fill="#64ffda"/>
+    <rect x="15" y="0" width="20" height="50" rx="4" fill="#64ffda"/>
+  </g>
+
+  <g transform="translate(1080, 260)" opacity="0.3">
+    <rect x="0" y="10" width="35" height="15" rx="3" fill="#e9c46a"/>
+    <rect x="10" y="0" width="15" height="35" rx="3" fill="#e9c46a"/>
+  </g>
+
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#020617" stop-opacity="0.8"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none"/>
+
+  
+  <rect x="0" y="0" width="1200" height="8" fill="#050505"/>
+  <rect x="0" y="667" width="1200" height="8" fill="#050505"/>
+</svg>
