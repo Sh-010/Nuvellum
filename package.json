@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run validate && node scripts/prepare-public.mjs && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/render-editorial-home.mjs && astro dev",
-    "build": "npm run validate && node scripts/prepare-public.mjs && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/render-editorial-home.mjs && astro build",
+    "build": "npm run validate && node scripts/prepare-public.mjs && node scripts/restore-v5.mjs && node scripts/generate-editorial-art.mjs && node scripts/render-editorial-home.mjs && astro build && node scripts/instrument-analytics.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "validate": "node scripts/validate-content.mjs && node scripts/check-n8n-exports.mjs && node scripts/build-n8n-snippets.mjs --check",
@@ -16,7 +16,8 @@
     "check:build": "node scripts/check-build-output.mjs",
     "images:audit": "node scripts/backfill-article-images.mjs",
     "images:backfill": "node scripts/backfill-article-images.mjs --apply",
-    "visual:acquire": "node scripts/visual/acquire.mjs"
+    "visual:acquire": "node scripts/visual/acquire.mjs",
+    "ops:report": "node scripts/observability-report.mjs"
   },
   "dependencies": {
     "astro": "7.3.5",

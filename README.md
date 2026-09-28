@@ -26,6 +26,7 @@ Builds never modify tracked files. The served public assets are assembled in `.b
 
 - Start here (agents and engineers): `AGENTS.md`; architecture: `docs/ARCHITECTURE.md`
 - Publishing policy and automation: `docs/EDITORIAL_PIPELINE.md`
+- Analytics and newsroom health: `docs/OBSERVABILITY.md`
 - Roadmap (milestones, AI Visual Engine): `docs/ROADMAP.md`
 - Recovery: `docs/RECOVERY.md` (distribution and Shorts engines are kept on branch `engines/distribution-shorts`, not in production)
 - n8n workflow contract and version control: `n8n/README.md`

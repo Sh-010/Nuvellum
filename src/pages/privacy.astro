@@ -4,13 +4,17 @@ import InstitutionalPage from '../components/InstitutionalPage.astro';
 <InstitutionalPage
   title="Privacy"
   eyebrow="Legal"
-  description="Nuvellum’s privacy policy will be finalized around the analytics, newsletter and advertising tools actually deployed."
-  intro="The privacy policy should describe the systems that actually exist, not a hypothetical future stack."
-  note="This page is intentionally provisional while analytics, newsletter and advertising infrastructure are finalized."
+  description="How Nuvellum handles reader analytics and the publication services currently deployed."
+  intro="Nuvellum documents the systems it actually uses rather than publishing a generic privacy template."
+  note="Reader analytics remain disabled unless the production analytics measurement ID is explicitly configured."
 >
-  <p>The launch build intentionally avoids unnecessary trackers. This policy will be finalized around the analytics, newsletter, advertising and account tools that are actually deployed.</p>
+  <p>Nuvellum avoids unnecessary trackers. Reader analytics are disabled by default in the production build and are only activated when the publication explicitly configures its analytics measurement ID.</p>
+  <h2>Reader analytics</h2>
+  <p>If enabled, Nuvellum uses Google Analytics 4 to understand page views, broad traffic sources and product interactions such as article clicks, save actions and reading-depth milestones. Nuvellum’s custom event layer does not intentionally send names, email addresses, article-source URLs or URL query strings.</p>
+  <h2>Operational monitoring</h2>
+  <p>Internal newsroom health checks monitor publication output, repository checks and deployment state. These checks concern the publishing system rather than reader profiles.</p>
   <h2>Before additional services are enabled</h2>
-  <p>Any material collection of reader data should be documented here together with its purpose, retention and the service responsible for processing it.</p>
+  <p>Newsletter, advertising, account or other services that materially change reader-data collection should be documented here before they are enabled, together with their purpose and the service responsible for processing the data.</p>
   <h2>Changes to this page</h2>
-  <p>The final policy should be reviewed alongside the deployed production stack rather than copied from a generic publication template.</p>
+  <p>This policy should continue to be reviewed against the deployed production stack whenever analytics, newsletter, advertising or account infrastructure changes.</p>
 </InstitutionalPage>

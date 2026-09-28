@@ -7,6 +7,7 @@ As of 2026-09-26. Companion documents:
 - `docs/RECOVERY.md`: rollback procedures
 - `docs/ROADMAP.md`: milestones, including the AI Visual Engine
 - `n8n/README.md`: the n8n workflow contract
+- `docs/OBSERVABILITY.md`: reader analytics and newsroom health
 
 ## 1. Overview
 
@@ -52,6 +53,7 @@ main ─▶ Vercel production deploy ─▶ homepage / latest / section / RSS / 
   6. `generate-editorial-art.mjs`: deterministic fallback SVGs for automated stories.
   7. `inject-home-content.mjs`: fill the existing v5.1 homepage slots with published automated stories.
   8. `astro build` with `publicDir: .build/public`.
+  9. `instrument-analytics.mjs`: inject the reader analytics event layer only when `NUVELLUM_GA4_ID` is configured.
 - A build **never writes to tracked files**. CI fails if `git status` is dirty afterwards.
 - **v5.1 design lock:** see `docs/PRODUCTION_BASELINE.md`. The homepage is the archive's `index.html`, not an Astro page.
 - **Security:** CSP and security headers in `vercel.json`. Article bodies are Markdown only; raw HTML is rejected. AI SVGs pass an allowlist validator and render as `<img>`.
@@ -88,7 +90,7 @@ All names are in `.env.example`. Where each kind of value lives:
 
 - **n8n credential store:** Gemini key; GitHub fine-grained token (Nuvellum repo only, Contents read/write). Planned: Anthropic or OpenAI keys.
 - **GitHub Actions variables:** `NUVELLUM_AUTOPUBLISH` (publication gate kill switch; off unless set to "on").
-- **Vercel:** `SITE_URL` (set it when a custom domain is added).
+- **Vercel:** `SITE_URL` (set it when a custom domain is added); optional `NUVELLUM_GA4_ID` for reader analytics after privacy/consent treatment is ready.
 
 ## 7. Deployment and branches
 
