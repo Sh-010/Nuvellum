@@ -329,3 +329,13 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Exactly one editorial PR per branch: #82 (sensitive, verification `cleared`, pipeline `reviewedBy`), #83 (low risk), #84 (low risk). For each branch the three pushes arrived within about 3 s. Auto-open ran once for the branch creation, the SVG commit's run was cancelled while still queued when the article push's run replaced it, and the article run then corrected the existing PR. No duplicate PR.
 - Push checks green on every head commit (Build, Security, CodeQL, Editorial duplicate guard, Auto-open). Geography contract valid, including the first real `[]`/`[]` story (#84). Branch names match `branchName`. Nothing merged.
 - More editorial follow-ups, again not stabilization work: #84's `[]` misses Anguilla and Antigua and Barbuda, which are material to the story. #82 over-tags Israel, Nigeria and `middle-east-north-africa` from passing mentions, its source is a France 24 TV-interview page (`/tv-shows/` is not blocked), and its headline keeps the source's all-caps "'RACE-BASED POLICY'". Hold #82 and #84 for editorial fixes, like #77 and #80.
+
+
+## 2026-09-28 — analytics and observability foundation
+
+- Added an optional GA4 reader-analytics layer injected only when `NUVELLUM_GA4_ID` is configured in production. With no ID, the build output receives no analytics script.
+- Custom events are deliberately narrow: page views, 25/50/75/90% scroll depth, article clicks, save-story actions, newsletter interactions and outbound domains. Explicit event fields strip URL query strings and do not send ingestion/source URLs.
+- Added a six-hour + main-push newsroom health workflow reporting article output, section/risk/source diversity, visual-mode mix, incoming editorial PR backlog, core GitHub checks and deployment checks when available.
+- Alerting stays conservative: only concrete failed checks/deployments or an unheld incoming PR stuck >24h while autopublish is on fail the health job; publication inactivity is warning-only.
+- Added `npm run ops:report`, tests for analytics injection and report classification, `docs/OBSERVABILITY.md`, and updated the privacy/CSP/environment documentation.
+- n8n execution-level telemetry is intentionally left for a separate live-workflow pass because this repository session has no n8n connection.
