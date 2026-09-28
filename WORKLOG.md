@@ -199,3 +199,54 @@ Checkpoint: `checkpoint/world-explorer-pre-interaction-rebuild` (e14b162).
 - Hover stress grids (7,776 points in Europe ×2 zooms, Caribbean, Persian Gulf, Southeast Asia, Pacific): no drift; 5 points show an islet stamped for sub-pixel islands where the analytic truth is sea (by design).
 - Hover sweep: 13.4 ms avg/p95 frame, ~1.1 ms per pick, 0 long tasks (old build: 26.6 ms avg, 66.6 ms p95).
 - Homepage and all 109 other non-explorer pages byte-identical to the checkpoint built at the same time (the homepage embeds `Date.now()` relative ages, so builds at different times differ).
+
+## 2026-09-28 — Homepage final polish, rebuilt (feat/homepage-final-polish, draft PR #70)
+
+### Why PR #70's first version broke the layout
+- It rendered 24 Latest rows and hid rows 6–24 with the HTML `hidden` attribute, but `.latest-row{display:grid}` overrides the browser's `[hidden]{display:none}`. All 24 rows rendered (and the filter script could not hide them either).
+- The right column is a grid with rows `auto auto minmax(0,1fr)`, so In Focus stretches to the left column's height: at 1440×900 the left column went from 1,166px to 2,842px and In Focus from 414px to 2,050px (page 2,731px → 4,407px).
+
+### Replacement (on top of PR #70, which is kept in history)
+- Renderer and build check restored from `main` (2636fb2, the approved baseline) and re-implemented.
+- Latest: ALL · WORLD · BUSINESS · TECH · CULTURE · SCREEN & PLAY · SPORTS as a keyboard-accessible tablist (arrows, Home/End). Only the five visible rows are in the DOM; other sets live in `<template>`s. The list reserves exactly five 83px slots (109px on mobile; one-line titles on desktop as in the baseline), so its height never changes. Shorter sets end with a quiet "Browse <section> →" note. Rows fade/glide on switch; rapid switching settles on the last choice.
+- Popular Reads: 31px serif heading, long thin rule, aligned tabs, numbered rows with slightly more air, right-aligned truthful reading-time column (no view counts).
+- Motion: one token family (`--ease`, `--t-quick/.24s`, `--t-base/.42s`, `--t-slow/.8s`, 10px rise). Section reveals use the CSS `translate` property so they never override hover transforms; stagger 70ms (max 210ms). Hero: 32s drift. Screen & Play slightly stronger. Reveal is enabled in `<head>` before first paint; jumps reveal skipped sections; a CSS failsafe shows everything after 2.5s if the page script fails; reduced motion and no-JS show everything immediately (ticker still moves).
+- Saves are delegated, so rows swapped in by filters work (same storage key and classes).
+- `check-build-output.mjs` fails the build if more or fewer than 5 Latest rows render outside templates, or if the fixed five-row list is removed.
+
+### Verification
+- Geometry (px) at 1440×900 — baseline / PR #70 / now: left 1166 / 2842 / 1187; right 1166 / 2842 / 1187; In Focus 414 / 2050 / 411. Same at 1536×1024; tablet and mobile In Focus heights equal the baseline. Heights are identical across every filter and Popular tab.
+- Browser QA: 79/79 interaction checks (every filter, keyboard, rapid switching, saves, Popular tabs, all 8 World Desk regions, map tooltip, ticker, logo animations, hover motion, night mode, reveal safety incl. End/anchor jumps, reduced motion, JS disabled, simulated script failure, tablet/mobile overflow); 0 console errors, 0 CSP violations.
+- Logo CSS and header markup, ticker CSS, save-icon SVG/rules and lower-page markup identical to the baseline; World Explorer, publication scripts and locked assets untouched.
+
+### 2026-09-28 — Homepage motion refinement (motion only; layout unchanged)
+- Cause of the abrupt reveals: entrances used the crisp interaction curve `cubic-bezier(.16,.8,.2,1)`, which does ~80% of its movement in the first quarter, so an 800ms reveal read as a pop; fast scrolling also started full-length fades on content already on screen.
+- One ease-out family: `--ease` (interactions) and `--ease-enter` `cubic-bezier(.22,.61,.36,1)` (entrances). Entrances 0.72–0.9s, hovers 0.38s (`--t-hover`), image zooms 0.6s (`--t-media`).
+- Hero copy: one first-load entrance (kicker, headline, dek, metadata; 70ms apart, 8px rise); image drift kept.
+- World Desk: story rows and summary slide in individually (60ms stagger) on region change; no replay when moving within the active region; stories glide 3px with a slight image zoom on hover. Map transition unchanged.
+- Screen & Play: lead image settles from 1.05 over 1.8s on reveal and drifts slowly on hover (zoom + translate, 2.6s); lead copy staggers in; side stories glide in from the right on desktop (vertical below 900px) and respond with image drift and an eyebrow tint.
+- Per-child stagger (70ms) for Latest rows, Popular rows, In Focus, Screen & Play; Opinion unchanged apart from normalised timing.
+- Newsletter: kicker, headline (+140ms), then form (+280ms) with a left-to-right wipe.
+- Scroll-speed aware: fast flicks use a short 0.5s reveal with no stagger; sections jumped past appear immediately. Failsafe, print, reduced motion and no-JS keep everything visible. Entrance animations use `fill: backwards` so nothing is left on elements afterwards.
+- Verified: all 1,912 element layout boxes identical to 36817f2 at 1536×1024, 1440×900, 834×1112 and 390×844; motion QA 20/20; interaction QA 79/79.
+
+### 2026-09-28 — Homepage motion made perceptible (motion only; layout unchanged)
+Measured, not assumed: a reading-speed scroll sampled every animated element's opacity and position per frame, first loads were traced frame by frame, and the result was screen-recorded and inspected.
+- Why the previous pass was imperceptible:
+  1. The jump-safety sweep revealed anything whose top crossed the viewport's bottom edge, so every entrance played in the bottom sliver of the screen.
+  2. "Fast scroll" was judged per scroll event (>1.8px/ms); real wheel/trackpad scrolling crossed it constantly, so most reveals ran the short, unstaggered mode.
+  3. On load the browser painted only ~4 frames in the first second (initial layout/paint of a large page), so the hero entrance ran while frames were blocked.
+  4. Fading the World Desk panel re-rasterised the map's SVG texture filter every frame (>1s freeze).
+- Now: reveals start at ~15% above the viewport bottom; scroll speed is averaged over 120ms (short mode only above 4px/ms); every story/heading is its own unit, staggered 75ms in screen order; panels only fade briefly; all motion starts once three frames arrive under 50ms after load and fonts (cap 1.4s); the hero entrance class is set on the hero, not <html> (a root class change repainted the whole page); the World Desk panel is not faded.
+- Filter/tab swaps: rows exit, new rows are inserted hidden and enter two frames later; template thumbnails are fetched and decoded while idle. Thumbnail scale settles were dropped (scaling several sepia-filtered thumbnails produced 170–240ms frames); the hero and Screen & Play lead keep an image settle.
+- Results (1440×900): hero chip → headline → dek → meta complete at +0.92 / +1.00 / +1.09 / +1.19s with 48 painted frames (warm load); every section below the fold animates visibly (450–875ms of visible change) starting at 57–82% of viewport height; World Desk rows 80ms apart with the summary after; Latest rows 70ms; Popular rows 60ms.
+- Known limits: on a first visit in a slow/software-rendered browser, rasterising the ~20 illustrated SVG images can overlap the hero entrance (it then resolves in a frame or two by ~1.5–2s rather than hiding content longer); the first Latest switch in a session has one ~120ms frame (later switches 13–27ms).
+- Verified: all 1,912 element layout boxes identical to 4c8e721 at four viewports; interaction QA 79/79; reduced motion, no-JS and script-failure cases keep everything visible.
+
+### 2026-09-28 — Day/night switch: profiled and restructured (theme palettes unchanged)
+Profiled with Chrome performance traces (GPU/ANGLE D3D11, Intel HD Graphics), 6 toggles each at the top and middle of the page, plus DevTools screencast frame capture.
+- Real bottleneck: the page is a single paint layer (every paint was layer 0, 1440×2752), and colour transitions (body/header plus the reveal units' own colour/background transitions, which ran up to ~600ms) restyled the whole document every frame (inherited `color`; 2,700–4,800 element restyles, 81–148ms style per toggle) and re-rasterised the entire viewport each frame, filtered artwork included (999 saveLayer ops; GPU saturated). Layout was ~1ms, image decoding negligible, the paper grain and map were not the driver, and there are no backdrop filters in play. The page is otherwise idle (0 paints/s).
+- Fix: the palette flips in one frame (all transitions suppressed only during the switch); where supported a 180ms View Transition crossfades the two rendered states on the compositor; otherwise the switch is instant. Theme-invariant filtered thumbnails and the hero image get their own compositor layers so they are not re-rasterised on a switch. Support-card images and the World Desk map are deliberately not layered: layering the support images changed their rendering and the chip text anti-aliasing; the map layer gave no measured gain.
+- Before (2d10249) → after, top of page: style 81 → 39ms; restyled elements 2,774 → 1,526; tile raster 76 → 15ms; worst frame 116 → 91ms; frames >34ms 9 → 2. Mid-page: style 148 → 40ms; worst frame 67 → 34ms; frames >34ms 7 → 1. Screencast: before produced 15–16 frames in the 700ms after the click (70–119ms apart, dark only after ~410ms); after 47 frames, 8–16ms apart, crossfade complete by ~300–380ms. The crossfade starts ~100–130ms after the click (the View Transition waits for the GPU to snapshot the old page and raster the new one).
+- Visuals: day and night full-page renders match the previous build except 226 sub-pixel edge samples inside small thumbnails (fair comparison with the hero composited, as it always is live). Layout boxes identical at four viewports.
+- Note: two interaction-QA expectations (hero timing, reduced-motion "motion-soft") fail identically on 2d10249; they reflect bc82ad3's intentional motion changes, not this work.

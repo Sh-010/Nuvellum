@@ -22,6 +22,14 @@ if (!home.includes('id="brandZone"')) errors.push('index.html: interactive Nuvel
 if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter discovery links missing');
 if (!home.includes('id="newsletter"')) errors.push('index.html: newsletter section missing');
 if (!home.includes('class="footer-cols"')) errors.push('index.html: full footer navigation missing');
+// Latest: filters exist, and at most five rows are ever rendered. Candidate sets must stay in
+// inert <template>s; rendering them (PR #70) stretched both homepage columns.
+for (const key of ['all', 'world', 'business', 'tech', 'culture', 'screen', 'sports']) {
+  if (!home.includes(`data-latest-tab="${key}"`)) errors.push(`index.html: Latest filter "${key}" missing`);
+}
+const renderedLatestRows = (home.replace(/<template[\s\S]*?<\/template>/g, '').match(/class="latest-row"/g) || []).length;
+if (renderedLatestRows !== 5) errors.push(`index.html: ${renderedLatestRows} Latest rows rendered outside templates (expected exactly 5)`);
+if (!/\.latest-list\{--latest-slot:\d+px;display:grid;grid-template-rows:repeat\(5,var\(--latest-slot\)\)/.test(home)) errors.push('index.html: Latest list no longer reserves a fixed five-row height');
 const popularBlock = home.slice(home.indexOf('id="popular-heading"'), home.indexOf('In Focus</h2>'));
 if (/\b\d+(\.\d)?K\b/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric in Popular Reads (no analytics are connected)');
 
