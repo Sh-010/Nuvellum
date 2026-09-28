@@ -10,7 +10,7 @@ npm run images:backfill              # apply src/data/image-plan.json to article
 node scripts/backfill-article-images.mjs --apply --only slug-a,slug-b --refresh   # re-fetch specific entries
 ```
 
-Image classes: `real` (photo in `/uploads/articles/`), `illustration` (Nuvellum SVG in `/uploads/articles/`), `text-led` (no image: the story is set in type), `ai-svg` (newsroom `/generated/ai/`), `procedural` (automation fallback) and `section-placeholder` (`/images/<section>.svg`). `ai-svg`, `procedural` and `section-placeholder` count as weak and need a plan entry.
+Image classes: `real` (photo in `/uploads/articles/`), `illustration` (Nuvellum SVG in `/uploads/articles/`), `text-led` (no image: the story is set in type), `ai-svg` (newsroom `/generated/ai/`), `procedural` (automation fallback) and `section-placeholder` (`/images/<section>.svg`). `procedural` and `section-placeholder` count as weak and need a plan entry. `ai-svg` is acceptable: the newsroom commits one only after it passes the style gate.
 
 ## Order of preference
 
