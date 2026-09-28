@@ -26,6 +26,7 @@ Nuvellum (https://nuvellum.vercel.app, "Beyond the headline.") is an automated i
 | `scripts/lib/newsroom.mjs` | Helpers shared with n8n (URLs, branch names, review/verification parsers, article builder, quality checks). |
 | `scripts/lib/svg-safety.mjs` | Allowlist validator for AI editorial SVGs. |
 | `n8n/` | Canonical workflow export (sanitized), prompts, generated Code-node snippets. |
+| `engines/` | Non-blocking social/media engines. Social distribution is dry-run until explicitly promoted. |
 | `.github/workflows/` | Checks, auto-open PR, publication gate, cleanup. |
 | `docs/` | Architecture, pipeline, recovery, source matrix, baseline. (Distribution/Shorts engines live on branch `engines/distribution-shorts`, outside production.) |
 | `WORKLOG.md` | Chronological engineering log. Append to it. |
