@@ -30,7 +30,7 @@ Social distribution follows the production visual policy:
 real relevant photo -> approved story-specific illustration -> designed Nuvellum social card
 ```
 
-The social-card renderer is now implemented. Every published story gets a deterministic 1080×1080 square card and 1080×1350 portrait card in Nuvellum's ivory/charcoal/burgundy editorial system. When a real photo or approved illustration exists it is embedded into the card; text-led stories use typography, rules and the N✦ mark instead of fake imagery. Instagram uses the portrait card while the other feed targets use the square card. The short-video track for X, Facebook Reels, Instagram Reels, TikTok and YouTube Shorts remains `video-needed` until the Shorts engine supplies a vertical video.
+The social-card renderer is implemented. Every published story gets a deterministic 1080×1080 square card and 1080×1350 portrait card in Nuvellum's ivory/charcoal/burgundy editorial system. When a real photo or approved illustration exists it is embedded into the card; text-led stories use typography, rules and the N✦ mark instead of fake imagery. Instagram uses the portrait card while the other feed targets use the square card. The short-video track points to the Shorts/Reels engine described in `docs/SHORTS_ENGINE.md`; video rendering remains dry-run and is not auto-posted.
 
 ## Tracking
 
