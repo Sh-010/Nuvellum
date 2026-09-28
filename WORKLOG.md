@@ -4,6 +4,20 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-28 (night): image-quality correction pass
+
+- New rule: low-quality AI hero images are no longer acceptable. All nine articles still carrying generated `/generated/ai/` art (neon, hologram, HUD, particles) were replaced. Six now use real Commons photos: Anthropic/Amodei, Dave Franco, BalticServers data centre, Koshi river in Nepal, Elon Musk, and the Palais des Nations. Three use Nuvellum house plates: Pokémon (gaming), and Grey's Anatomy and Melissa Barrera (film-tv). All 21 unreferenced AI SVGs were deleted. The audit now shows 42 real, 3 house, 3 opinion illustrations and 0 weak.
+- House plates: `public/uploads/house/<section>.svg`, drawn by `scripts/visual/house-visuals.mjs` (paper, ink, burgundy engraving motifs).
+- Live n8n 8hXx6NuZuJU9dRR1 went from f8f72515 to **5574f940**, still inactive:
+  - `Gemini Editorial SVG` prompt rewritten to the house style, with the hard rejects from #95.
+  - `Sanitize Editorial SVG` gained `styleProblems()`, and every failure now falls back to the house plate (`imageGenerationMode: house-fallback`).
+  - No other nodes or connections changed. The sanitized export is synced.
+- Repo policy:
+  - `hasRealVisual` ignores house plates.
+  - Abstract news and analysis try a real photo first; only opinion, essay and ideas stay illustration-first.
+  - The backfill audit counts `ai-svg` as weak.
+- `NUVELLUM_AUTOPUBLISH` is still `off`.
+
 ## 2026-09-26 (evening): pushed, draft PRs opened, CI verified on GitHub
 
 - GitHub write access became available. Pushed `checkpoint/pre-stabilization-2026-09-26` (= `main` @ `c14b931`), `fix/ai-image-validation` and `stabilize/newsroom`. The git proxy refuses tag pushes, so the checkpoint exists as a branch only.

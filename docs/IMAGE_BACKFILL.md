@@ -10,14 +10,16 @@ npm run images:backfill              # apply src/data/image-plan.json to article
 node scripts/backfill-article-images.mjs --apply --only slug-a,slug-b --refresh   # re-fetch specific entries
 ```
 
-Image classes: `real` (photo in `/uploads/articles/`), `illustration` (Nuvellum SVG in `/uploads/articles/`), `ai-svg` (newsroom `/generated/ai/`), `procedural` (automation fallback) and `section-placeholder` (`/images/<section>.svg`). The last two count as weak.
+Image classes: `real` (photo in `/uploads/articles/`), `illustration` (Nuvellum SVG in `/uploads/articles/`), `house` (Nuvellum section plate in `/uploads/house/`), `ai-svg` (newsroom `/generated/ai/`), `procedural` (automation fallback) and `section-placeholder` (`/images/<section>.svg`). `ai-svg`, `procedural` and `section-placeholder` count as weak and need a plan entry.
 
 ## Order of preference
 
 1. An openly licensed real photograph from Wikimedia Commons: public domain, CC0, CC BY or CC BY-SA. Never NC or ND.
 2. The same photograph with a recorded focal point (`focus`, a CSS `object-position`) when the default crop fails.
-3. The newsroom's AI illustration, when it is stronger than any real candidate.
-4. A Nuvellum-drawn illustration. Opinion & Ideas uses these rather than stock-like photos.
+3. A Nuvellum-drawn illustration. Opinion & Ideas uses these rather than stock-like photos.
+4. The Nuvellum house plate for the section (`/uploads/house/<key>.svg`, plan `source: "illustration"`), when no real photo is strong or safe enough, for example when the only Commons match is a different person with the same name.
+
+Generated AI art is no longer kept as a hero: neon, hologram, HUD, particle and generic-AI illustrations are replaced. New generated art has to pass the newsroom style gate (`n8n/prompts/editorial-svg.md`). Regenerate the plates with `node scripts/visual/house-visuals.mjs`.
 
 ## What the script does
 

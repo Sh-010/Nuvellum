@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -172,4 +172,54 @@ test('an empty open-PR list keeps the candidate (and the loop) moving', () => {
   assert.equal(out.json.exactSourceMatch, false);
   assert.equal(out.json.openPrExactSourceMatch, false);
   assert.equal(out.json.sourceLink, context.sourceLink);
+});
+
+// ---- Image quality: real images first, then the Nuvellum house plate; generated art only past the style gate.
+const NEON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><defs><linearGradient id="bg"><stop offset="0" stop-color="#05060f"/><stop offset="1" stop-color="#120a2a"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="6"/></filter></defs><rect width="1200" height="675" fill="url(#bg)"/>
+${Array.from({ length: 24 }, (_, i) => `<circle cx="${40 + i * 45}" cy="${80 + (i % 5) * 90}" r="3" fill="#00f0ff" filter="url(#glow)"/>`).join('')}
+<rect x="380" y="180" width="440" height="300" rx="16" fill="none" stroke="#ff2bd6" filter="url(#glow)"/></svg>`;
+const HOUSE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><rect width="1200" height="675" fill="#efe8db"/>
+<g fill="none" stroke="#2a221c" stroke-width="2">${Array.from({ length: 18 }, (_, i) => `<path d="M${200 + i * 45} 520 L${230 + i * 45} ${260 + (i % 4) * 30}"/>`).join('')}</g>
+<rect x="160" y="520" width="880" height="6" fill="#661227"/><circle cx="600" cy="200" r="70" fill="none" stroke="#661227" stroke-width="3"/>
+<ellipse cx="600" cy="560" rx="420" ry="18" fill="#d9cfbf"/><line x1="140" y1="600" x2="1060" y2="600" stroke="#8a7f72"/></svg>`;
+
+function runImage(svg, section) {
+  const store = { 'Prepare Source': SOURCE };
+  runNode('Parse Draft & Build Markdown', gemini({ ...DRAFT, section }), store);
+  runNode('Parse Editorial Review', gemini({ approved: true, risk_score: 5, issues: [], sensitive: false, decision_reason: 'clean' }), store);
+  const out = runNode('Sanitize Editorial SVG', gemini(svg), store);
+  const payload = runNode('Build GitHub Payload', { object: { sha: 'a'.repeat(40) } }, store);
+  return { out, fm: parseFrontmatter(Buffer.from(payload.contentBase64, 'base64').toString('utf8')) };
+}
+
+test('execution: neon/glow/HUD generated art is rejected and the story commits the house plate', () => {
+  const { out, fm } = runImage(NEON_SVG, 'Gaming');
+  assert.equal(out.aiImageReady, false);
+  assert.equal(out.imageGenerationMode, 'house-fallback');
+  assert.match(out.aiImageError, /style gate: .*neon cyan\/magenta\/purple.*glow blur.*dark full-bleed canvas.*particle swarm/);
+  assert.equal(fm.image, '/uploads/house/gaming.svg');
+  assert.equal(fm.imageAlt, 'Nuvellum Gaming section illustration');
+});
+
+test('execution: restrained paper-and-ink generated art passes the style gate', () => {
+  const { out, fm } = runImage(HOUSE_SVG, 'World');
+  assert.equal(out.aiImageError, undefined);
+  assert.equal(out.imageGenerationMode, 'gemini-svg');
+  assert.equal(fm.image, `/generated/ai/${out.slug}.svg`);
+});
+
+test('every house plate the newsroom can commit exists, and Parse Draft sections all map to one', () => {
+  const code = node('Sanitize Editorial SVG').parameters.jsCode;
+  const map = new Function(`${code.match(/^const HOUSE_VISUALS=.*$/m)[0]}; return HOUSE_VISUALS;`)();
+  for (const key of Object.values(map)) assert.ok(existsSync(join(root, 'public', 'uploads', 'house', `${key}.svg`)), `missing house plate ${key}`);
+  const sections = Object.keys(new Function(`${node('Parse Draft & Build Markdown').parameters.jsCode.match(/^const imageMap=.*$/m)[0]}; return imageMap;`)());
+  assert.deepEqual(sections.filter(s => !map[s]), []);
+});
+
+test('SVG prompt carries the Nuvellum house style and the hard aesthetic rejects', () => {
+  const prompt = node('Gemini Editorial SVG').parameters.messages.values[0].content;
+  for (const re of [/NUVELLUM HOUSE STYLE/, /ivory, charcoal ink/, /dark burgundy/, /do NOT default to cyberpunk/, /HARD REJECTS/, /Neon cyan, magenta or purple/, /HUDs, scanner grids/, /particle swarms/, /Never a dark or black background/])
+    assert.match(prompt, re);
+  assert.doesNotMatch(prompt, /cinematic|Rich but restrained palette/);
 });

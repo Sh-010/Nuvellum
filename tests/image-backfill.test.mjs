@@ -31,8 +31,8 @@ test('every credited image exists, is the article image and is openly licensed',
   }
 });
 
-test('no published article shows placeholder or procedural art without a plan', () => {
-  const weak = articles.filter(a => ['section-placeholder', 'procedural'].includes(classify(a.data)) && !plan[a.slug]);
+test('no published article shows placeholder, procedural or AI-generated art without a plan', () => {
+  const weak = articles.filter(a => ['section-placeholder', 'procedural', 'ai-svg'].includes(classify(a.data)) && !plan[a.slug]);
   assert.deepEqual(weak.map(a => a.slug), []);
 });
 
@@ -40,6 +40,7 @@ test('classify recognises each image path family', () => {
   assert.equal(classify({ image: '/uploads/articles/x.jpg' }), 'real');
   assert.equal(classify({ image: '/uploads/articles/x.svg' }), 'illustration');
   assert.equal(classify({ image: '/generated/ai/x.svg' }), 'ai-svg');
+  assert.equal(classify({ image: '/uploads/house/world.svg', origin: 'automation' }), 'house');
   assert.equal(classify({ image: '/images/world.svg', origin: 'automation' }), 'procedural');
   assert.equal(classify({ image: '/images/world.svg' }), 'section-placeholder');
 });

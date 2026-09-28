@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T18:18:09.122Z"
 readingTime: "2 min"
-image: "/generated/ai/greys-anatomy-season-23-casts-sarah-levy-martin-martinez-and-trevor-tordjman.svg"
-imageAlt: "AI-generated editorial illustration for ‘Grey’s anatomy’ Season 23 casts Sarah Levy, Martin Martinez and Trevor Tordjman"
+image: "/uploads/house/film-tv.svg"
+imageAlt: "Nuvellum Film & TV section illustration: an engraved film strip"
 status: "published"
 tags: ["Grey's Anatomy","Sarah Levy","Martin Martinez","Trevor Tordjman","Television"]
 regions: []

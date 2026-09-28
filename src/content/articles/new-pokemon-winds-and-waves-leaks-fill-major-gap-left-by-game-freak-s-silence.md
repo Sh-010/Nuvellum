@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T17:44:15.753Z"
 readingTime: "2 min"
-image: "/generated/ai/new-pokemon-winds-and-waves-leaks-fill-major-gap-left-by-game-freak-s-silence.svg"
-imageAlt: "AI-generated editorial illustration for New 'Pokémon Winds and Waves' leaks fill major gap left by Game Freak's silence"
+image: "/uploads/house/gaming.svg"
+imageAlt: "Nuvellum Gaming section illustration: two engraved dice"
 status: "published"
 tags: ["Pokémon","Game Freak","Nintendo Switch 2","leaks"]
 regions: []

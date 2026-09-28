@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T18:15:27.254Z"
 readingTime: "2 min"
-image: "/generated/ai/anthropic-releases-sonnet-5-5-highlighting-speed-and-lower-costs.svg"
-imageAlt: "AI-generated editorial illustration for Anthropic releases Sonnet 5.5, highlighting speed and lower costs"
+image: "/uploads/articles/anthropic-releases-sonnet-5-5-highlighting-speed-and-lower-costs.jpg"
+imageAlt: "Anthropic chief executive Dario Amodei speaking on stage at TechCrunch Disrupt 2023"
 status: "published"
 tags: ["AI","Anthropic","Claude","Sonnet"]
 regions: []

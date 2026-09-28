@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T12:26:23.110Z"
 readingTime: "2 min"
-image: "/generated/ai/floods-and-landslides-kill-at-least-56-people-in-india-12-in-nepal.svg"
-imageAlt: "AI-generated editorial illustration for Floods and landslides kill at least 56 people in India, 12 in Nepal"
+image: "/uploads/articles/floods-and-landslides-kill-at-least-56-people-in-india-12-in-nepal.jpg"
+imageAlt: "People gathering driftwood from the swollen Koshi river in Nepal"
 status: "published"
 tags: ["floods","landslides","India","Nepal","weather"]
 sourceUrls: ["https://www.aljazeera.com/news/2026/9/27/floods-and-landslides-kill-at-least-56-people-in-india-12-in-nepal"]

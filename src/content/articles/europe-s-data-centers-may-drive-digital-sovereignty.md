@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T18:16:28.057Z"
 readingTime: "2 min"
-image: "/generated/ai/europe-s-data-centers-may-drive-digital-sovereignty.svg"
-imageAlt: "AI-generated editorial illustration for Europe's data centers may drive digital sovereignty"
+image: "/uploads/articles/europe-s-data-centers-may-drive-digital-sovereignty.jpg"
+imageAlt: "Rows of server racks inside a European data centre"
 status: "published"
 tags: ["Europe","Artificial Intelligence","Data Centers","Energy"]
 sourceUrls: ["https://www.dw.com/en/europe-s-data-centers-may-drive-digital-sovereignty/a-79419800"]
