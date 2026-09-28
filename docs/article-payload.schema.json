@@ -74,6 +74,34 @@
       "minLength": 3,
       "maxLength": 220
     },
+    "imageKind": {
+      "enum": ["photo", "illustration", "map"]
+    },
+    "imageProvider": {
+      "enum": ["wikimedia", "nuvellum-illustration", "manual"]
+    },
+    "imageCaption": {
+      "type": "string",
+      "maxLength": 280
+    },
+    "imageCredit": {
+      "type": "string",
+      "maxLength": 180
+    },
+    "imageLicense": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "imageLicenseUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "imageSourcePage": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
     "status": {
       "enum": [
         "draft",
