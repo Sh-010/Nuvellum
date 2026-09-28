@@ -94,6 +94,14 @@ test('blocked when the PR touches files outside articles/AI art', () => no(input
   { filename: `src/content/articles/${SLUG}.md`, status: 'added' },
   { filename: '.github/workflows/build.yml', status: 'modified' }
 ] }), /outside the automated publishing scope/));
+test('allows a same-slug acquired photo when its metadata is complete', () => ok(input({
+  files: [{ filename: `src/content/articles/${SLUG}.md`, status: 'added' }, { filename: `public/uploads/articles/${SLUG}.jpg`, status: 'added' }],
+  fields: { image:`/uploads/articles/${SLUG}.jpg`, imageProvider:'wikimedia', imageKind:'photo', imageCaption:'File photo: federal building', imageCredit:'Photographer', imageLicense:'CC BY 4.0', imageLicenseUrl:'https://creativecommons.org/licenses/by/4.0/', imageSourcePage:'https://commons.wikimedia.org/wiki/File:X.jpg' }
+})));
+test('blocks an acquired photo belonging to another slug', () => no(input({ files: [
+  { filename: `src/content/articles/${SLUG}.md`, status: 'added' },
+  { filename: 'public/uploads/articles/other.jpg', status: 'added' }
+] }), /outside/));
 test("blocked when AI art belongs to another slug", () => no(input({ files: [
   { filename: `src/content/articles/${SLUG}.md`, status: 'added' },
   { filename: 'public/generated/ai/other.svg', status: 'added' }
