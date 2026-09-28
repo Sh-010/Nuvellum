@@ -101,6 +101,9 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
 
     if (data.title && String(data.title).length > 180) errors.push(`${name}: title is over 180 characters`);
     if (data.dek && String(data.dek).length > 360) errors.push(`${name}: dek is over 360 characters`);
+    if (data.imageCaption && String(data.imageCaption).length > 280) errors.push(`${name}: imageCaption is over 280 characters`);
+    if (data.imageCredit && String(data.imageCredit).length > 180) errors.push(`${name}: imageCredit is over 180 characters`);
+    if (data.imageLicense && String(data.imageLicense).length > 80) errors.push(`${name}: imageLicense is over 80 characters`);
     if (!Array.isArray(data.tags) || data.tags.length === 0) errors.push(`${name}: tags must be a non-empty JSON-style array`);
     if (data.regions !== undefined) {
       if (!Array.isArray(data.regions)) errors.push(`${name}: regions must be a JSON-style array`);
@@ -129,7 +132,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       }
     }
 
-    for (const key of ['title','dek','section','type','author','imageAlt','reviewedBy']) {
+    for (const key of ['title','dek','section','type','author','imageAlt','imageCaption','imageCredit','imageLicense','reviewedBy']) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
@@ -144,8 +147,19 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
           if (!String(data[key] || '').trim()) errors.push(`${name}: Wikimedia image requires ${key}`);
         }
         if (!/^https:\/\//.test(String(data.image || ''))) errors.push(`${name}: Wikimedia image must use an https:// image URL`);
+        else {
+          try {
+            const host = new URL(String(data.image)).hostname.toLowerCase();
+            if (!['upload.wikimedia.org','thumb.wikimedia.org'].includes(host)) errors.push(`${name}: Wikimedia image URL must use a Wikimedia image host`);
+          } catch { errors.push(`${name}: Wikimedia image URL is invalid`); }
+        }
         if (!/^https:\/\//.test(String(data.imageLicenseUrl || ''))) errors.push(`${name}: imageLicenseUrl must use https://`);
         if (!/^https:\/\//.test(String(data.imageSourcePage || ''))) errors.push(`${name}: imageSourcePage must use https://`);
+        else {
+          try {
+            if (new URL(String(data.imageSourcePage)).hostname.toLowerCase() !== 'commons.wikimedia.org') errors.push(`${name}: Wikimedia imageSourcePage must be on commons.wikimedia.org`);
+          } catch { errors.push(`${name}: imageSourcePage is invalid`); }
+        }
       }
 
       if (data.imageProvider === 'nuvellum-illustration' && data.imageKind !== 'illustration') {
