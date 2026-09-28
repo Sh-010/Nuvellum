@@ -135,6 +135,23 @@ export function candidateUsable(candidate) {
 const GENERIC_STOCK_RE = /\b(handshake|laptop|keyboard|generic office|business meeting|stock photo|smiling business|call center|abstract network|glowing ai face|robot hand)\b/i;
 const PREMIUM_HINT_RE = /\b(architecture|cityscape|institution|parliament|cathedral|museum|factory|port|harbor|laboratory|observatory|stadium|portrait|sculpture|painting|landscape|night|dusk|dramatic light|cinematic|editorial)\b/i;
 
+function visualTerms(value) {
+  const stop = new Set(['the','and','for','with','from','this','that','into','over','amid','after','before','may','new','says','say','latest','story']);
+  return new Set(String(value || '').toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length >= 4 && !stop.has(w)));
+}
+
+export function semanticVisualScore(candidate, brief = {}) {
+  const wanted = visualTerms([brief?.title, brief?.dek, ...(brief?.entities || [])].filter(Boolean).join(' '));
+  const seen = visualTerms([candidate?.title, candidate?.description].filter(Boolean).join(' '));
+  if (!wanted.size || !seen.size) return 0;
+  let hits = 0;
+  for (const term of wanted) if (seen.has(term)) hits++;
+  return Math.min(30, hits * 6);
+}
+
 export function editorialVisualScore(candidate, brief = {}) {
   const text = [
     candidate?.title,
@@ -163,6 +180,15 @@ export function editorialVisualScore(candidate, brief = {}) {
   // Documentary images with useful descriptive context are preferable to bare file dumps.
   if (String(candidate?.description || '').trim().length >= 40) score += 6;
 
+  // Commons' own curation signals are useful quality hints, not proof of relevance.
+  const badges = Array.isArray(candidate?.badges) ? candidate.badges : [];
+  if (badges.includes('featured')) score += 10;
+  if (badges.includes('quality')) score += 6;
+  if (badges.includes('valued')) score += 4;
+
+  // Relevance is scored separately from aesthetics so a gorgeous but unrelated image cannot win.
+  score += semanticVisualScore(candidate, brief);
+
   // Prefer photographs unless the brief explicitly calls for illustration/map treatment.
   const mime = String(candidate?.mime || '').toLowerCase();
   if (brief?.mode === 'photo' && /^image\/(jpeg|jpg|png|webp)$/.test(mime)) score += 8;
@@ -173,9 +199,28 @@ export function editorialVisualScore(candidate, brief = {}) {
 
 export function rankVisualCandidates(candidates, brief) {
   return [...(candidates || [])]
-    .map(candidate => ({
-      ...candidate,
-      editorialScore: editorialVisualScore(candidate, brief)
-    }))
-    .sort((a,b) => b.editorialScore - a.editorialScore);
+    .map(candidate => {
+      const editorialScore = editorialVisualScore(candidate, brief);
+      const semanticScore = semanticVisualScore(candidate, brief);
+      return {
+        ...candidate,
+        semanticScore,
+        editorialScore,
+        selectionConfidence: Math.max(0, Math.min(100, Math.round(editorialScore * .72 + semanticScore * .93)))
+      };
+    })
+    .sort((a,b) => b.selectionConfidence - a.selectionConfidence || b.editorialScore - a.editorialScore);
+}
+
+export function selectBestVisual(candidates, brief, { minConfidence = 58 } = {}) {
+  const ranked = rankVisualCandidates(
+    (candidates || []).filter(candidate => visualCandidateProblems(candidate).length === 0),
+    brief
+  );
+  const best = ranked[0] || null;
+  return {
+    best: best && best.selectionConfidence >= minConfidence ? best : null,
+    ranked,
+    needsReview: !best || best.selectionConfidence < minConfidence || brief?.mode === 'map-review'
+  };
 }
