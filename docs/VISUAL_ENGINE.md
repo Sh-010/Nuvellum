@@ -69,18 +69,21 @@ Public-domain/CC0 images can use a quieter credit treatment, but their origin sh
 
 ## Phase 2: article visual metadata
 
-Do not change the publication contract until Phase 1 is reviewed.
+Implemented on the Visual Engine branch as an optional, backwards-compatible layer:
 
-Planned fields:
-
-- `imageProvider` — e.g. `wikimedia`, `nuvellum-illustration`, `manual`
+- `imageProvider` — `wikimedia`, `nuvellum-illustration`, or `manual`
+- `imageKind` — `photo`, `illustration`, or `map`
+- `imageCaption`
 - `imageCredit`
 - `imageLicense`
 - `imageLicenseUrl`
 - `imageSourcePage`
-- `imageKind` — `photo`, `illustration`, `map`
 
-These fields let the UI render a legally correct image credit without exposing article-ingestion sources.
+When `imageProvider: "wikimedia"` is present, validation requires the credit, license, license URL and Commons source page. The article page renders the credit quietly in the hero caption.
+
+These fields are intentionally separate from `sourceUrls` and `sourceNote`: visual licensing is not newsroom-source disclosure.
+
+The first five-story pilot is documented in `docs/VISUAL_PILOT.md`.
 
 ## Phase 3: newsroom integration
 
