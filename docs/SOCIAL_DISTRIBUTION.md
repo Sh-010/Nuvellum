@@ -10,8 +10,9 @@ published article
   -> generate platform-specific deterministic copy
   -> add per-platform UTM tracking
   -> validate length/link/sensational-language rules
-  -> describe the required media state
-  -> upload JSON drafts as a GitHub Actions artifact
+  -> render branded 1:1 and 4:5 social cards
+  -> attach the correct card to each feed draft
+  -> upload copy + card artifacts through GitHub Actions
 ```
 
 Nuvellum prepares two parallel distribution tracks:
@@ -29,7 +30,7 @@ Social distribution follows the production visual policy:
 real relevant photo -> approved story-specific illustration -> designed Nuvellum social card
 ```
 
-A text-led article never receives fake story art. Feed/static distribution uses `text-card-needed`; a later social-card renderer will turn that into a deliberate Nuvellum card. The short-video track for X, Facebook Reels, Instagram Reels, TikTok and YouTube Shorts is always `video-needed` until the Shorts engine supplies the vertical video.
+The social-card renderer is now implemented. Every published story gets a deterministic 1080×1080 square card and 1080×1350 portrait card in Nuvellum's ivory/charcoal/burgundy editorial system. When a real photo or approved illustration exists it is embedded into the card; text-led stories use typography, rules and the N✦ mark instead of fake imagery. Instagram uses the portrait card while the other feed targets use the square card. The short-video track for X, Facebook Reels, Instagram Reels, TikTok and YouTube Shorts remains `video-needed` until the Shorts engine supplies a vertical video.
 
 ## Tracking
 
@@ -48,7 +49,7 @@ This gives GA4 a clean platform-attribution contract once reader analytics are e
 node engines/distribution/cli.mjs --slug <published-slug>
 ```
 
-Outputs are written to `engines/out/distribution/<slug>.json`.
+Outputs are written to `engines/out/distribution/<slug>.json` and `engines/out/social-cards/<slug>/`.
 
 ## Automation
 
