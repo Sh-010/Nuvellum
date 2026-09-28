@@ -23,20 +23,28 @@ export function trackedUrl(story, platform) {
   return url.toString();
 }
 
-export function templateCopy(story) {
+export function templateFeedCopy(story) {
   const tags = story.tags.slice(0, 2).map(tag).filter(Boolean);
   const links = Object.fromEntries(Object.keys(PLATFORMS).map(p => [p, trackedUrl(story, p)]));
   const xTail = '\n\n' + links.x;
   const xBodyBudget = Math.max(40, PLATFORMS.x.maxChars - charCount(xTail));
   const xBodyCandidate = story.dek ? story.title + '\n\n' + story.dek : story.title;
-  const x = truncate(xBodyCandidate, xBodyBudget) + xTail;
-
   return {
-    x,
+    x: truncate(xBodyCandidate, xBodyBudget) + xTail,
     threads: truncate(story.title + '\n\n' + story.dek + '\n\n' + links.threads, PLATFORMS.threads.maxChars),
     facebook: truncate(story.title + '\n\n' + story.dek + '\n\nRead: ' + links.facebook, PLATFORMS.facebook.maxChars),
     linkedin: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story: ' + links.linkedin + '\n\n#Nuvellum', PLATFORMS.linkedin.maxChars),
-    instagram: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '), PLATFORMS.instagram.maxChars),
+    instagram: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '), PLATFORMS.instagram.maxChars)
+  };
+}
+
+export function templateVideoCopy(story) {
+  const tags = story.tags.slice(0, 2).map(tag).filter(Boolean);
+  const links = Object.fromEntries(Object.keys(PLATFORMS).map(p => [p, trackedUrl(story, p)]));
+  return {
+    x: truncate(story.title + '\n\nWatch the short, then read the full story: ' + links.x, PLATFORMS.x.maxChars),
+    facebook: truncate(story.title + '\n\nWatch the reel, then read the full story: ' + links.facebook, PLATFORMS.facebook.maxChars),
+    instagram: truncate(story.title + '\n\n' + [...tags, '#Nuvellum', '#Reels'].join(' '), PLATFORMS.instagram.maxChars),
     tiktok: truncate(story.title + '\n\n' + truncate(story.dek, 320) + '\n\n' + [...tags, '#Nuvellum', '#News'].join(' '), PLATFORMS.tiktok.maxChars),
     youtube: {
       title: truncate(story.title, PLATFORMS.youtube.titleMax),
@@ -66,18 +74,22 @@ export function validateCopy(platform, value, story) {
   return problems;
 }
 
-export function generateCopy(story, platforms = Object.keys(PLATFORMS)) {
-  const all = templateCopy(story);
+function checked(source, story, platforms) {
   const copy = {};
   const notes = [];
   for (const platform of platforms) {
-    const value = all[platform];
+    const value = source[platform];
     const problems = validateCopy(platform, value, story);
-    if (problems.length) {
-      notes.push(platform + ': skipped (' + problems.join('; ') + ')');
-      continue;
-    }
+    if (problems.length) { notes.push(platform + ': skipped (' + problems.join('; ') + ')'); continue; }
     copy[platform] = value;
   }
   return { copy, notes };
+}
+
+export function generateFeedCopy(story, platforms = Object.keys(PLATFORMS).filter(p => PLATFORMS[p].feed)) {
+  return checked(templateFeedCopy(story), story, platforms);
+}
+
+export function generateVideoCopy(story, platforms = Object.keys(PLATFORMS).filter(p => PLATFORMS[p].video)) {
+  return checked(templateVideoCopy(story), story, platforms);
 }
