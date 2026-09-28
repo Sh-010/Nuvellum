@@ -363,3 +363,20 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Alerting stays conservative: only concrete failed checks/deployments or an unheld incoming PR stuck >24h while autopublish is on fail the health job; publication inactivity is warning-only.
 - Added `npm run ops:report`, tests for analytics injection and report classification, `docs/OBSERVABILITY.md`, and updated the privacy/CSP/environment documentation.
 - n8n execution-level telemetry is intentionally left for a separate live-workflow pass because this repository session has no n8n connection.
+
+## 2026-09-29 — social distribution v1 extraction
+
+- Inspected the old `engines/distribution-shorts` branch instead of merging it: it had diverged heavily from current production, so only the useful distribution ideas were rebuilt on current `main`.
+- Added a zero-cost, dry-run social distribution engine for X, Threads, Facebook, LinkedIn and Instagram.
+- Copy is deterministic and article-grounded: headline/dek only, no paid model dependency. Platform links carry UTM source/medium/campaign/content fields for later GA4 attribution.
+- Text-led articles request a designed social card rather than receiving unrelated fallback art.
+- Added a separate GitHub workflow that tests the engine on PRs and produces JSON social-draft artifacts after new published articles reach `main`.
+- No social credentials, posting APIs or live-post switch exist in this version. Publication remains completely independent.
+
+- Expanded social draft targets to seven platforms: X, Threads, Facebook, LinkedIn, Instagram, TikTok and YouTube Shorts.
+- TikTok and YouTube are explicitly marked `video-needed`; they do not pretend that an article image is a video. YouTube gets separate title/description output.
+
+- Clarified distribution architecture after owner review: social output is not one format per platform. It now has parallel **feed/static** and **short-video** tracks.
+- Feed/static: X, Threads, Facebook, LinkedIn, Instagram.
+- Short video: X video, Facebook Reels, Instagram Reels, TikTok, YouTube Shorts.
+- This keeps the original card/link-post plan while making the upcoming Shorts engine reusable across every video-capable launch channel.

@@ -1,0 +1,80 @@
+name: Social distribution
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "engines/**"
+      - ".github/workflows/social-distribution.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/content/articles/**"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Published article slug to prepare"
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: social-distribution-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: cd engines && npm test
+
+  draft:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Find newly published article slugs
+        id: stories
+        env:
+          MANUAL_SLUG: ${{ inputs.slug }}
+        shell: bash
+        run: |
+          if [ -n "$MANUAL_SLUG" ]; then
+            if ! printf '%s' "$MANUAL_SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then
+              echo "::error::invalid slug"
+              exit 1
+            fi
+            echo "slugs=$MANUAL_SLUG" >> "$GITHUB_OUTPUT"
+          else
+            echo "slugs=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- src/content/articles | sed 's#.*/##;s#\.md$##' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Build platform-specific drafts
+        if: steps.stories.outputs.slugs != ''
+        env:
+          SITE_URL: https://nuvellum.vercel.app
+          SLUGS: ${{ steps.stories.outputs.slugs }}
+        shell: bash
+        run: |
+          for slug in $SLUGS; do
+            node engines/distribution/cli.mjs --slug "$slug"
+          done
+      - uses: actions/upload-artifact@v4
+        if: steps.stories.outputs.slugs != ''
+        with:
+          name: social-drafts-${{ github.run_id }}
+          path: engines/out/distribution/
+          if-no-files-found: error
+          retention-days: 30
