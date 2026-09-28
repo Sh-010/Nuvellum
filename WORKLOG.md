@@ -251,6 +251,18 @@ Profiled with Chrome performance traces (GPU/ANGLE D3D11, Intel HD Graphics), 6 
 - Visuals: day and night full-page renders match the previous build except 226 sub-pixel edge samples inside small thumbnails (fair comparison with the hero composited, as it always is live). Layout boxes identical at four viewports.
 - Note: two interaction-QA expectations (hero timing, reduced-motion "motion-soft") fail identically on 2d10249; they reflect bc82ad3's intentional motion changes, not this work.
 
+## 2026-09-28 — Independent review of #71, #73 and draft #74 (geography contract)
+
+Verified: schema/validator/gate/buildArticle agree on the eight region slugs and array limits; the #74 candidate's changed Code nodes, executed end to end on fixtures, carry `regions`/`countries` through review, verification and SVG nodes into the committed file (all intermediate nodes spread the item and edit frontmatter by key), which then passes the repository validator and publication gate; missing/unknown geography fails closed; empty arrays are accepted; old content is grandfathered; the parsers (repository, Astro YAML, homepage renderer) read the JSON-style arrays. #73: actions/checkout@v7 and setup-node@v7 exist; TypeScript 5.9.2 is required by @astrojs/check 0.9.10; World Explorer passes the 239-entity browser QA on three 0.186.1 with no console errors or CSP violations.
+
+Defects fixed (branch review/geography-contract-fixes, on top of #74):
+- Consumers ignored an explicit `[]`: `regionsForArticle` and `articleMatchesCountry` fell back to headline inference, so a story declaring no geography could still be filed on a region/country desk. An explicit array is now authoritative; stories without the fields keep inference.
+- Country names were only length-checked, so "US", "USA", "Gaza", "Bosnia" or "The Netherlands" passed every gate and silently never reached a country desk. `resolveCountry` maps names, aliases and Natural Earth labels to one World Explorer entity (320 terms, no collisions); the validator rejects names it cannot place and alias duplicates; the draft prompt names the canonical forms.
+- The repository branch helper disagreed with live v6.5 (SHA-256 over the canonical URL with a 72-character slug vs FNV-1a over host+path with a 60-character slug), contradicting the README's "same contract". The helper now ports the live logic; a test runs the live node code against it.
+- #74's contract test only matched source text; it now also executes the candidate's Code nodes end to end.
+
+Site output: all 349 built pages byte-identical to #74 (no current article carries geography). Tests 175/175, build, build-output, validate, audit clean. Live n8n not accessible from this session.
+
 ## 2026-09-28: live v6.5 end-to-end verification runs (n8n MCP session)
 
 Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merged onto `081d8faa`; export on PR #74). Three manual executions, one at a time. The workflow stayed inactive, the schedule off and `NUVELLUM_AUTOPUBLISH` untouched. Nothing was merged.

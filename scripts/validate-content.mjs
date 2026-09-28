@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { validateSvg } from './lib/svg-safety.mjs';
 import { contentPolicyErrors } from './lib/editorial.mjs';
+import { resolveCountry } from '../src/lib/countries.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
@@ -117,7 +118,11 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
         for (const country of data.countries) {
           const c = String(country).trim();
           if (c.length < 2 || c.length > 80) errors.push(`${name}: invalid country "${country}"`);
-          const key = c.toLowerCase();
+          // Names must be ones World Explorer can place; otherwise the story silently never
+          // reaches its country desk. Aliases ("UK", "Turkey") resolve to the same entity.
+          const entity = resolveCountry(c);
+          if (!entity) errors.push(`${name}: unrecognised country "${country}" (use the World Explorer name, e.g. "United States", "Palestine")`);
+          const key = entity ? entity.name : c.toLowerCase();
           if (seenCountry.has(key)) errors.push(`${name}: countries must not contain duplicates`);
           seenCountry.add(key);
         }

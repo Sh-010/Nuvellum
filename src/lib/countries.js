@@ -194,6 +194,18 @@ export function countrySearchTerms(country) {
   return [...new Set([...countryAliases(country.name), normalizeCountry(country.source)].filter(Boolean))];
 }
 
+// Resolves a country name from article metadata ("UK", "Turkey", "Dem. Rep. Congo") to its
+// World Explorer entity, or null when the site cannot place it. Every accepted term maps to
+// exactly one entity (asserted in tests).
+let countryIndex = null;
+export function resolveCountry(value) {
+  if (!countryIndex) {
+    countryIndex = new Map();
+    for (const country of COUNTRIES) for (const term of countrySearchTerms(country)) if (!countryIndex.has(term)) countryIndex.set(term, country);
+  }
+  return countryIndex.get(normalizeCountry(value)) || null;
+}
+
 function containsAlias(text, alias) {
   if (!alias) return false;
   const escaped = alias.replace(/[.*+?^$\{\}()|[\]\\]/g, '\\$&');
@@ -201,9 +213,9 @@ function containsAlias(text, alias) {
 }
 
 export function articleMatchesCountry(article, countryName) {
+  // An explicit countries array is authoritative, including [] ("no country is material").
+  if (Array.isArray(article?.countries)) return article.countries.some(value => resolveCountry(value)?.name === countryName);
   const aliases = countryAliases(countryName);
-  const explicit = Array.isArray(article?.countries) ? article.countries.map(normalizeCountry) : [];
-  if (explicit.length) return explicit.some(value => aliases.includes(value));
 
   if (normalizeCountry(article?.section) !== 'world') return false;
   const haystack = normalizeCountry([
