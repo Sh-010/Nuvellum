@@ -149,7 +149,8 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     }
     if (data.imageProvider === 'wikimedia') {
       if (data.imageKind !== 'photo') errors.push(`${name}: Wikimedia visuals must use imageKind: photo`);
-      if (!new RegExp(`^/uploads/articles/${slug}\\\\.(?:jpe?g|png|webp)$`, 'i').test(String(data.image || ''))) {
+      const expectedImagePrefix = `/uploads/articles/${slug}.`;
+      if (!String(data.image || '').startsWith(expectedImagePrefix) || !/\.(?:jpe?g|png|webp)$/i.test(String(data.image || ''))) {
         errors.push(`${name}: Wikimedia image must be /uploads/articles/${slug}.<jpg|png|webp>`);
       }
       for (const key of ['imageCaption','imageCredit','imageLicense','imageLicenseUrl','imageSourcePage']) {
