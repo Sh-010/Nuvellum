@@ -35,7 +35,7 @@ GitHub also runs a repository-level duplicate-source guard on every push to `inc
 3. Draft original copy; do not republish source text.
 4. Classify as News / Analysis / Opinion / Review / Explainer / Essay / Ideas.
 5. Run duplicate, attribution, factual, legal-risk and quality checks.
-6. Build Markdown matching `docs/article-payload.schema.json`.
+6. Build Markdown matching `docs/article-payload.schema.json`, including explicit `regions` and `countries` arrays (use `[]` when geography is not material).
 7. Create the `incoming/<slug>-<source-hash>` GitHub branch.
 8. Commit `src/content/articles/<slug>.md` and, optionally, `public/generated/ai/<slug>.svg`.
 9. GitHub Actions runs content validation, the SVG safety check, dependency audit, CodeQL, the duplicate guard and the production build on the pushed commit.
@@ -82,3 +82,12 @@ The workflow should fail closed:
 - build fails → the gate will not merge.
 
 The approved v5.1 homepage baseline remains checksum-protected and cannot be replaced by article automation.
+
+
+## Geographic metadata contract
+
+Every **new automated** article must carry both `regions` and `countries` in frontmatter. The arrays may be empty, but omission is not allowed. This makes World Desk and World Explorer updates deterministic instead of relying only on headline/tag inference.
+
+`regions` must use the eight canonical slugs defined in the article schema. `countries` must contain only country names directly supported by the source. Do not infer geography from a person's nationality, a company headquarters, or an incidental reference.
+
+The repository publication gate enforces this for new incoming stories. Older published automation is grandfathered so the stabilization change does not rewrite historical content.
