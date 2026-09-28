@@ -1,0 +1,125 @@
+---
+import SiteHead from './SiteHead.astro';
+import '../styles/global.css';
+import '../styles/interior.css';
+
+const {
+  title = 'Nuvellum',
+  description = 'Beyond the headline.',
+  image = '/images/world.svg',
+  canonical,
+  active = ''
+} = Astro.props;
+
+const nav = [
+  ['world', 'World', '/section/world'],
+  ['business', 'Business', '/section/business'],
+  ['technology', 'Technology', '/section/technology'],
+  ['science', 'Science', '/section/science'],
+  ['sports', 'Sports', '/section/sports'],
+  ['culture', 'Culture', '/section/culture'],
+  ['entertainment', 'Screen & Play', '/section/entertainment'],
+  ['opinion', 'Opinion', '/section/opinion']
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <SiteHead title={title} description={description} image={image} canonical={canonical} />
+</head>
+<body class="interior-body">
+  <script is:inline>
+    try { if (localStorage.getItem('nuvellum-theme') === 'night') document.body.classList.add('night'); } catch {}
+  </script>
+  <div class="int-progress" id="intProgress"></div>
+  <div class="topline"></div>
+
+  <header class="int-header">
+    <div class="int-utility int-wrap">
+      <a href="/" class="int-utility-home">Nuvellum Home</a>
+      <span>Independent international publication</span>
+      <button class="int-theme" id="intTheme" type="button" aria-pressed="false">Night</button>
+    </div>
+
+    <div class="int-mast int-wrap">
+      <a class="int-brand" href="/" aria-label="Nuvellum home">
+        <span class="int-brand-line">
+          <span class="int-brand-n">N<span>✦</span></span><span class="int-brand-rest">UVELLUM</span>
+        </span>
+        <span class="int-tag">Beyond the headline.</span>
+      </a>
+      <div class="int-edition">World edition <span>·</span> Inside Nuvellum</div>
+    </div>
+
+    <div class="int-nav-shell">
+      <nav class="int-nav int-wrap" aria-label="Primary">
+        {nav.map(([key, label, href]) => (
+          <a href={href} class:list={[active === key && 'active']} aria-current={active === key ? 'page' : undefined}>{label}</a>
+        ))}
+        <a href="/latest" class:list={[active === 'latest' && 'active']} aria-current={active === 'latest' ? 'page' : undefined}>Latest</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="int-main">
+    <slot />
+  </main>
+
+  <footer class="int-footer">
+    <div class="int-wrap">
+      <div class="int-footer-top">
+        <div>
+          <a class="int-footer-brand" href="/">N<span>✦</span>UVELLUM</a>
+          <p>Beyond the headline.</p>
+        </div>
+        <div class="int-footer-columns">
+          <div><strong>Read</strong><a href="/latest">Latest</a><a href="/section/world">World</a><a href="/world-explorer">World Explorer</a><a href="/headlines/a">A–Z Headlines</a></div>
+          <div><strong>Publication</strong><a href="/about">About</a><a href="/standards">Editorial Standards</a><a href="/corrections">Corrections</a><a href="/contact">Contact</a></div>
+          <div><strong>Business & legal</strong><a href="/advertise">Advertise</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/rss.xml">RSS</a></div>
+        </div>
+      </div>
+      <div class="int-footer-bottom"><span>NUVELLUM · Independent international digital publication</span><a href="/">Front page ↑</a></div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    (() => {
+      const body = document.body;
+      const theme = document.getElementById('intTheme');
+      const progress = document.getElementById('intProgress');
+      const syncTheme = () => {
+        const night = body.classList.contains('night');
+        theme?.setAttribute('aria-pressed', String(night));
+        if (theme) theme.textContent = night ? 'Day' : 'Night';
+      };
+      syncTheme();
+      theme?.addEventListener('click', () => {
+        body.classList.toggle('night');
+        syncTheme();
+        try { localStorage.setItem('nuvellum-theme', body.classList.contains('night') ? 'night' : 'day'); } catch {}
+      });
+
+      const updateProgress = () => {
+        if (!progress) return;
+        const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+        progress.style.width = Math.min(100, (scrollY / max) * 100) + '%';
+      };
+      addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      const items = [...document.querySelectorAll('[data-reveal]')];
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        items.forEach(el => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(entries => {
+          for (const entry of entries) if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        }, { rootMargin: '0px 0px -6% 0px', threshold: .08 });
+        items.forEach(el => io.observe(el));
+      }
+    })();
+  </script>
+</body>
+</html>
