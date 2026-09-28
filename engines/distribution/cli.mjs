@@ -21,9 +21,12 @@ const outDir = join(REPO_ROOT, 'engines', 'out', 'distribution');
 mkdirSync(outDir, { recursive: true });
 const out = join(outDir, slug + '.json');
 writeFileSync(out, JSON.stringify(report, null, 2) + '\n');
-for (const [platform, draft] of Object.entries(report.drafts)) {
-  const body = platform === 'youtube' ? draft.title + '\n\n' + draft.description : draft.text;
-  console.log('\n[' + platform + ']\n' + body + '\nmedia: ' + draft.media.mode);
+
+for (const [track, drafts] of Object.entries(report.tracks)) {
+  for (const [platform, draft] of Object.entries(drafts)) {
+    const body = platform === 'youtube' ? draft.title + '\n\n' + draft.description : draft.text;
+    console.log('\n[' + track + '/' + platform + ']\n' + body + '\nmedia: ' + draft.media.mode);
+  }
 }
 for (const note of report.notes) console.log('note: ' + note);
 console.log('\nreport: ' + out);
