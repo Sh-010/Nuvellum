@@ -219,7 +219,9 @@
       },
       "then": {
         "required": [
-          "editorialReview"
+          "editorialReview",
+          "regions",
+          "countries"
         ],
         "properties": {
           "editorialReview": {
