@@ -62,6 +62,6 @@ The first pass on this branch was replaced. Interior pages now reuse the approve
 - Bylines: monogram, counts, sections, chronological body of work.
 - Institutional pages: book-width prose, drop cap, numbered sections, margin rail with contents.
 - 404: "not in this edition", with a blank-column device.
-- Articles: reading layout, tools, sources, JSON-LD and `article.js` unchanged. Tokens, type, header styling and the footer are aligned, and the night preference now persists.
+- Articles: the interior shell in its quietest register (`ticker={false}`). The opening has a folio, section and format label, headline, italic standfirst, and a ruled byline row with tools. The lead figure and caption sit on one reading grid (TOC rail · 700px column · story file). A sticky reading strip carries progress and tools, and a double-ruled provenance section keeps every source URL (`rel="noopener nofollow"`). The story ending includes filing and correction links. Continue reading is a lead plus two secondary stories. The page script replaces `public/js/article.js` and uses the same storage keys (`nuvellum-font`, `nuvellum-saved-v2`, `nuvellum-theme`). JSON-LD, canonical and article meta are unchanged.
 
 All counts on these pages are real (stories filed, countries in a desk). No popularity or traffic figures are shown.

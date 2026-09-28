@@ -19,6 +19,13 @@ interface Props {
   folioNote?: string;
   masthead?: 'home' | 'archive';
   newsletter?: boolean;
+  /** Article variant: no ticker, reading chrome supplied by the page. */
+  ticker?: boolean;
+  bodyClass?: string;
+  type?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
 }
 const {
   title = 'Nuvellum',
@@ -29,7 +36,13 @@ const {
   folio = [],
   folioNote,
   masthead = 'home',
-  newsletter = true
+  newsletter = true,
+  ticker: showTicker = true,
+  bodyClass = '',
+  type,
+  publishedTime,
+  modifiedTime,
+  author
 } = Astro.props;
 
 const nav: [string, string, string][] = [
@@ -47,11 +60,13 @@ const ticker = (await getArticles()).slice(0, 8);
 <!doctype html>
 <html lang="en">
 <head>
-  <SiteHead title={title} description={description} image={image} canonical={canonical} />
+  <SiteHead title={title} description={description} image={image} canonical={canonical} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} author={author} />
+  <slot name="head" />
   <script is:inline>try{if('IntersectionObserver' in window)document.documentElement.classList.add('motion-ready')}catch(e){}</script>
 </head>
-<body class="interior">
+<body class:list={['interior', bodyClass]}>
   <script is:inline>try{if(localStorage.getItem('nuvellum-theme')==='night')document.body.classList.add('night')}catch(e){}</script>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="shell header-row">
       {masthead === 'archive' ? (
@@ -88,7 +103,7 @@ const ticker = (await getArticles()).slice(0, 8);
     </div>
   </header>
 
-  <div class="news-ticker">
+  {showTicker && <div class="news-ticker">
     <div class="shell ticker-inner">
       <div class="latest-label">Latest</div>
       <div class="ticker-links" aria-label="Latest headlines">
@@ -102,7 +117,7 @@ const ticker = (await getArticles()).slice(0, 8);
       </div>
       <a class="view-all" href="/latest">View all &nbsp;→</a>
     </div>
-  </div>
+  </div>}
 
   {folio.length > 0 && (
     <div class="shell folio">

@@ -1,8 +1,12 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
+// Article reading page: the interior publication system in its quietest register. Shares the
+// v6 masthead, folio, footer and night mode with the section and desk pages; drops the ticker
+// and adds reading chrome (progress, sticky reading strip, text size, save, share, TOC).
+import InteriorShell from '../../components/InteriorShell.astro';
+import Story from '../../components/Story.astro';
 import '../../styles/article.css';
 import { getArticles, slugify } from '../../lib/articles';
+import { initials, longDate } from '../../lib/interior';
 
 export async function getStaticPaths() {
   const articles = await getArticles();
@@ -44,22 +48,190 @@ const articleSchema = {
   image: [imageUrl],
   ...(sources.length ? { isBasedOn: sources.map((s) => s.url) } : {})
 };
+
+const sectionKey = slugify(article.section);
+const SCREEN = ['anime', 'film-tv', 'gaming'];
+const active = SCREEN.includes(sectionKey) ? 'entertainment' : sectionKey;
+const sectionHref = `/section/${sectionKey}`;
+const authorHref = `/author/${slugify(article.author)}`;
+const displayDate = longDate(article);
+const updatedDate = article.updated ? new Date(`${article.updated}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '';
+const caption = article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
+const hasSources = Boolean(article.sourceNote || sources.length > 0);
+const [leadRelated, ...moreRelated] = related;
+const tools = [
+  { action: 'smaller', label: 'A−', aria: 'Decrease text size' },
+  { action: 'larger', label: 'A+', aria: 'Increase text size' },
+  { action: 'save', label: 'Save', aria: 'Save this story' },
+  { action: 'share', label: 'Share', aria: 'Share this story' }
+];
 ---
-<!doctype html><html lang="en"><head>
-<SiteHead title={`${article.title} — Nuvellum`} description={article.dek} image={article.image} type="article" publishedTime={publishedTime} modifiedTime={modifiedTime} author={article.author} />
-<script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
-</head><body>
-<script is:inline>try{if(localStorage.getItem('nuvellum-theme')==='night')document.body.classList.add('night')}catch(e){}</script>
-<div class="article-curtain" id="articleCurtain"></div><div class="progress" id="progress"></div>
-<header class="site-header"><div class="head wrap"><a class="back" href="/">← Back to Nuvellum</a><a class="brand article-logo" id="articleLogo" href="/"><span>N</span><span>U</span><span>V</span><span>E</span><span>L</span><span>L</span><span>U</span><span>M</span></a><div class="head-actions"><button class="btn" id="fontBtn">Text +</button><button class="btn" id="saveBtn">Save</button><button class="btn" id="shareBtn">Share</button><button class="btn" id="themeBtn">Night</button></div></div></header>
-<main>
-<header class="article-head" data-title={article.title} data-kicker={`${article.section} · ${article.type}`}><div class="kicker"><a href={`/section/${slugify(article.section)}`}>{article.section.toUpperCase()}</a> · {article.type.toUpperCase()}</div><h1>{article.title}</h1><div class="dek">{article.dek}</div><div class="byline"><strong><a href={`/author/${slugify(article.author)}`}>{article.author}</a></strong><span><time datetime={publishedTime}>{new Date(article.date+'T00:00:00Z').toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'})}</time> · {article.readingTime} read</span></div></header>
-<figure class="hero"><img src={article.image} alt={article.imageAlt}/><figcaption class="caption">{article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'NUVELLUM · AI-generated editorial illustration' : article.origin === 'automation' ? 'NUVELLUM · Original editorial illustration' : 'NUVELLUM · Illustrative launch image'}</figcaption></figure>
-<div class="article-layout"><aside class="rail"><div class="rail-title">Reading tools</div><button class="btn" id="smaller">A−</button><button class="btn" id="larger">A+</button><button class="btn" id="copyBtn">Copy link</button></aside>
-<article class="body" id="articleBody"><Content />{(article.sourceNote || sources.length > 0) && <div class="context sources"><strong>Sources</strong>{article.sourceNote}{sources.map((s) => <> <a href={s.url} rel="noopener nofollow" target="_blank" style="text-decoration:underline">Original report: {s.host}</a></>)}</div>}<div class="end"><div class="kicker">NUVELLUM · BEYOND THE HEADLINE</div><p>News, analysis, opinion and review are labeled separately across Nuvellum.</p></div></article>
-<aside class="toc"><h3>In this story</h3>{tocHeadings.length ? tocHeadings.map((heading)=><a class:list={[heading.depth===3 && 'toc-sub']} href={`#${heading.slug}`}>{heading.text}</a>) : <span>No section headings.</span>}</aside></div>
-<section class="more"><div class="wrap"><div class="more-title"><h2>Continue reading</h2><span class="rule"></span><a href="/latest">The full edition →</a></div><div class="moregrid">{related.map((r)=><a href={`/article/${r.slug}`}><article tabindex="0" data-related={r.title}><div class="kicker">{r.section.toUpperCase()}</div><h3>{r.title}</h3><p>{r.dek}</p></article></a>)}</div></div></section>
-</main><SiteFooter /><div class="article-progress-label" id="progressLabel">0% read</div><div class="article-tools-pop" id="articlePop" aria-live="polite"></div><div class="share-toast" id="toast">Link copied.</div>
-<script is:inline src="/js/article.js"></script>
-<script is:inline>(()=>{const b=document.getElementById('themeBtn');if(!b)return;const sync=()=>{b.textContent=document.body.classList.contains('night')?'Day':'Night'};sync();b.addEventListener('click',()=>{sync();try{localStorage.setItem('nuvellum-theme',document.body.classList.contains('night')?'night':'day')}catch(e){}})})()</script>
-</body></html>
+<InteriorShell
+  title={`${article.title} — Nuvellum`}
+  description={article.dek}
+  image={article.image}
+  type="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  author={article.author}
+  active={active}
+  folio={[{ label: article.section, href: sectionHref }, { label: article.type || 'News' }]}
+  folioNote={`Filed ${displayDate}`}
+  ticker={false}
+  bodyClass="reading-page"
+>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
+
+  <div class="read-progress" aria-hidden="true"><span id="readProgress"></span></div>
+  <div class="reading-strip" id="readingStrip" aria-hidden="true">
+    <div class="shell strip-in">
+      <a class="strip-mark" href="/" tabindex="-1" aria-label="Nuvellum home">N<span>✦</span></a>
+      <span class="strip-section">{article.section}</span>
+      <span class="strip-title">{article.title}</span>
+      <span class="strip-pct" id="readPct">0%</span>
+      <div class="tools compact">{tools.map(t => <button type="button" class="tool" data-action={t.action} aria-label={t.aria} tabindex="-1">{t.label}</button>)}</div>
+    </div>
+  </div>
+
+  <article class="story-page" aria-labelledby="story-title">
+    <header class="rgrid opening">
+      <div class="opening-main">
+        <div class="opening-kicker" data-reveal><a class="eyebrow" href={sectionHref}>✦ {article.section}</a><span class="sep" aria-hidden="true">/</span><span class="type">{article.type || 'News'}</span></div>
+        <h1 id="story-title" data-reveal style="--d:80ms">{article.title}</h1>
+        <p class="standfirst" data-reveal style="--d:160ms">{article.dek}</p>
+        <div class="byline-row" id="bylineRow" data-reveal style="--d:240ms">
+          <a class="by-mark" href={authorHref} aria-hidden="true" tabindex="-1">{initials(article.author)}</a>
+          <div class="by-text">
+            <span class="by-name">By <a href={authorHref}>{article.author}</a></span>
+            <span class="by-meta"><time datetime={publishedTime}>{displayDate}</time>{updatedDate && <><span class="dot">●</span>Updated {updatedDate}</>}<span class="dot">●</span>{article.readingTime} read</span>
+          </div>
+          <div class="tools" role="toolbar" aria-label="Article tools">{tools.map(t => <button type="button" class="tool" data-action={t.action} aria-label={t.aria}>{t.label}</button>)}</div>
+        </div>
+      </div>
+    </header>
+
+    <figure class="rgrid lead-figure" data-reveal style="--d:300ms">
+      <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" /></div>
+      <figcaption><span class="eyebrow">✦ Nuvellum</span> {caption}</figcaption>
+    </figure>
+
+    <div class="rgrid reading">
+      <aside class="reading-rail">
+        {tocHeadings.length > 0 && (
+          <details class="toc" id="toc" open>
+            <summary><span class="eyebrow">In this story</span><span class="toc-count">{tocHeadings.length} {tocHeadings.length === 1 ? 'section' : 'sections'}</span></summary>
+            <nav aria-label="In this story">
+              <ol>{tocHeadings.map((h, i) => <li class:list={[h.depth === 3 && 'toc-sub']}><a href={`#${h.slug}`}><span class="toc-num">{String(i + 1).padStart(2, '0')}</span>{h.text}</a></li>)}</ol>
+            </nav>
+          </details>
+        )}
+      </aside>
+
+      <div class="reading-col">
+        <div class="body" id="articleBody"><Content /></div>
+
+        {hasSources && (
+          <section class="context sources" id="sources" aria-labelledby="sources-title">
+            <div class="src-head">
+              <span class="eyebrow">✦ Provenance</span>
+              <h2 id="sources-title">Sources</h2>
+            </div>
+            {article.sourceNote && <p class="src-note">{article.sourceNote}</p>}
+            {sources.length > 0 && (
+              <ol class="src-list">
+                {sources.map((s, i) => (
+                  <li><span class="src-num">{String(i + 1).padStart(2, '0')}</span><a href={s.url} rel="noopener nofollow" target="_blank"><span class="src-host">{s.host}</span><span class="src-label">Original report<span class="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">↗</span></span></a></li>
+                ))}
+              </ol>
+            )}
+            <p class="src-policy">How Nuvellum labels, attributes and verifies its reporting is set out in the <a href="/standards">Editorial Standards</a>.</p>
+          </section>
+        )}
+
+        <footer class="story-end">
+          <div class="end-mark" aria-hidden="true"><span>✦</span></div>
+          <div class="eyebrow">Nuvellum · Beyond the headline</div>
+          <p>News, analysis, opinion and review are labeled separately across Nuvellum.</p>
+          <div class="end-row">
+            <span>Filed under <a href={sectionHref}>{article.section}</a> · {article.type || 'News'}</span>
+            <span>By <a href={authorHref}>{article.author}</a></span>
+            <a href="/corrections">Report an error →</a>
+          </div>
+          <div class="tools" role="toolbar" aria-label="Article tools">{tools.filter(t => t.action === 'save' || t.action === 'share').map(t => <button type="button" class="tool" data-action={t.action} aria-label={t.aria}>{t.label}</button>)}</div>
+        </footer>
+      </div>
+
+      <aside class="reading-notes" aria-label="Story file">
+        <div class="story-file">
+          <span class="eyebrow">Story file</span>
+          <dl class="facts">
+            <div><dt>Section</dt><dd><a href={sectionHref}>{article.section}</a></dd></div>
+            <div><dt>Format</dt><dd>{article.type || 'News'}</dd></div>
+            <div><dt>Published</dt><dd>{displayDate}</dd></div>
+            <div><dt>Reading</dt><dd>{article.readingTime}</dd></div>
+            {sources.length > 0 && <div><dt>Sources</dt><dd><a href="#sources">{sources.length} cited</a></dd></div>}
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  {leadRelated && (
+    <section class="shell continue" aria-labelledby="continue-title">
+      <div class="section-title" data-reveal><h2 id="continue-title">Continue reading</h2><span class="rule"></span><a href="/latest">The full edition →</a></div>
+      <div class="pkg-desk">
+        <Story article={leadRelated} variant="lead" />
+        <div class="side">{moreRelated.map((a, i) => <Story article={a} variant="second" d={120 + i * 90} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script is:inline>
+  (()=>{
+    const body=document.getElementById('articleBody'),toast=document.getElementById('toast');
+    const say=m=>{toast.textContent=m;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),1700)};
+    const all=a=>[...document.querySelectorAll(`[data-action="${a}"]`)];
+
+    // Text size: 16–25px, remembered; the stylesheet default applies until the reader changes it.
+    let size=null;try{const s=+localStorage.getItem('nuvellum-font');if(s>=16&&s<=25)size=s}catch(e){}
+    const applySize=()=>{if(size)body.style.fontSize=size+'px';const cur=size||parseFloat(getComputedStyle(body).fontSize);all('smaller').forEach(b=>b.disabled=cur<=16);all('larger').forEach(b=>b.disabled=cur>=25)};
+    const step=d=>{size=Math.max(16,Math.min(25,Math.round((size||parseFloat(getComputedStyle(body).fontSize))+d)));try{localStorage.setItem('nuvellum-font',size)}catch(e){}applySize();say(`Text size ${size}px`)};
+    applySize();
+
+    // Save: same reading list as the homepage and earlier article pages.
+    const key='nuvellum-saved-v2',title=document.getElementById('story-title').textContent.trim();
+    const cat=document.querySelector('.opening-kicker .eyebrow').textContent.replace('✦','').trim()+' · '+document.querySelector('.opening-kicker .type').textContent.trim();
+    const read=()=>{try{const l=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(l)?l:[]}catch(e){return[]}};
+    const syncSave=()=>{const on=read().some(x=>x&&x.title===title);all('save').forEach(b=>{b.textContent=on?'Saved':'Save';b.setAttribute('aria-pressed',String(on));b.classList.toggle('on',on)})};
+    const toggleSave=()=>{let l=read();const on=l.some(x=>x&&x.title===title);l=on?l.filter(x=>x&&x.title!==title):[...l,{title,cat,url:location.pathname}];try{localStorage.setItem(key,JSON.stringify(l))}catch(e){}syncSave();say(on?'Removed from your reading list.':'Saved to your reading list.')};
+    syncSave();
+
+    const copy=async()=>{try{await navigator.clipboard.writeText(location.href);say('Link copied.')}catch(e){say('Copy the address from your browser to share.')}};
+    const share=async()=>{if(navigator.share){try{await navigator.share({title:document.title,url:location.href})}catch(e){}}else copy()};
+
+    document.addEventListener('click',e=>{const b=e.target.closest?.('[data-action]');if(!b)return;const a=b.dataset.action;if(a==='smaller')step(-1);else if(a==='larger')step(1);else if(a==='save')toggleSave();else if(a==='share')share()});
+
+    // Progress (article body to end of story), sticky reading strip after the byline.
+    const bar=document.getElementById('readProgress'),pct=document.getElementById('readPct'),strip=document.getElementById('readingStrip');
+    const end=document.querySelector('.story-end'),byline=document.getElementById('bylineRow');
+    let queued=false;
+    const update=()=>{queued=false;const top=body.getBoundingClientRect().top+scrollY,bottom=end.getBoundingClientRect().bottom+scrollY-innerHeight;const p=Math.max(0,Math.min(1,(scrollY-top+innerHeight*.35)/Math.max(1,bottom-top+innerHeight*.35)));bar.style.transform=`scaleX(${p})`;pct.textContent=Math.round(p*100)+'%';
+      const show=byline.getBoundingClientRect().bottom<0;strip.classList.toggle('show',show);strip.setAttribute('aria-hidden',String(!show));strip.querySelectorAll('button,a').forEach(el=>el.tabIndex=show?0:-1)};
+    addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',update);update();
+
+    // Table of contents: open beside the text on wide screens, collapsed above it on narrow ones.
+    const toc=document.getElementById('toc');
+    if(toc){
+      const wide=matchMedia('(min-width: 1101px)');const syncToc=()=>{toc.open=wide.matches};syncToc();wide.addEventListener('change',syncToc);
+      // The current section is the last heading above 35% of the viewport (works for short stories too).
+      const links=[...toc.querySelectorAll('a')].map(a=>({a,h:document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))})).filter(x=>x.h);
+      let tq=false;
+      const mark=()=>{tq=false;const line=innerHeight*.35;let cur=null;for(const x of links)if(x.h.getBoundingClientRect().top<line)cur=x;links.forEach(x=>{x.a.classList.toggle('active',x===cur);if(x===cur)x.a.setAttribute('aria-current','true');else x.a.removeAttribute('aria-current')})};
+      addEventListener('scroll',()=>{if(!tq){tq=true;requestAnimationFrame(mark)}},{passive:true});mark();
+      links.forEach(x=>x.a.addEventListener('click',()=>{if(!wide.matches)toc.open=false}));
+    }
+  })();
+  </script>
+</InteriorShell>
