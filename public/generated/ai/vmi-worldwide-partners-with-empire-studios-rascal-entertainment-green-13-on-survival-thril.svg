@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#030712" />
+      <stop offset="40%" stop-color="#0B132B" />
+      <stop offset="80%" stop-color="#1C2541" />
+      <stop offset="100%" stop-color="#24305E" />
+    </linearGradient>
+
+    
+    <linearGradient id="iceGlacier" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0" />
+      <stop offset="50%" stop-color="#93C5FD" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+
+    <linearGradient id="deepIce" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    
+    <radialGradient id="cabinGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#D97706" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#78350F" stop-opacity="0" />
+    </radialGradient>
+
+    
+    <radialGradient id="moonlight" cx="80%" cy="10%" r="70%">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0" />
+    </radialGradient>
+
+    
+    <linearGradient id="bearGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+
+    
+    <linearGradient id="vignette" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.4" />
+      <stop offset="50%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.7" />
+    </linearGradient>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bgGradient)" />
+  <rect width="1200" height="675" fill="url(#moonlight)" />
+
+  
+  <g fill="#0F172A" opacity="0.8">
+    <polygon points="0,450 150,280 320,410 480,250 650,390 820,220 1000,370 1200,260 1200,675 0,675" />
+  </g>
+  <g fill="#1E293B" opacity="0.9">
+    <polygon points="0,480 200,340 380,450 560,300 740,430 920,290 1100,410 1200,350 1200,675 0,675" />
+  </g>
+
+  
+  <g fill="#FFFFFF" opacity="0.4">
+    <circle cx="150" cy="120" r="2" />
+    <circle cx="280" cy="80" r="1.5" />
+    <circle cx="420" cy="160" r="2.5" />
+    <circle cx="590" cy="90" r="1" />
+    <circle cx="730" cy="140" r="2" />
+    <circle cx="880" cy="70" r="1.5" />
+    <circle cx="1020" cy="130" r="2.5" />
+    <circle cx="1150" cy="100" r="1" />
+    <circle cx="80" cy="220" r="1.5" />
+    <circle cx="220" cy="270" r="2" />
+    <circle cx="360" cy="210" r="1" />
+    <circle cx="510" cy="280" r="2.5" />
+    <circle cx="670" cy="230" r="1.5" />
+    <circle cx="810" cy="260" r="2" />
+    <circle cx="970" cy="200" r="1" />
+    <circle cx="1100" cy="250" r="2.5" />
+  </g>
+  <g fill="#FFFFFF" opacity="0.7">
+    <circle cx="100" cy="350" r="3" />
+    <circle cx="300" cy="320" r="2" />
+    <circle cx="500" cy="380" r="3.5" />
+    <circle cx="700" cy="330" r="2" />
+    <circle cx="900" cy="360" r="3" />
+    <circle cx="1100" cy="310" r="2.5" />
+  </g>
+
+  
+  <path d="M0 480 L180 430 L380 500 L600 420 L850 510 L1050 440 L1200 470 L1200 675 L0 675 Z" fill="url(#deepIce)" />
+  <path d="M0 530 L220 480 L450 560 L720 490 L980 570 L1200 520 L1200 675 L0 675 Z" fill="url(#iceGlacier)" opacity="0.9" />
+
+  
+  <g transform="translate(180, 310)">
+    
+    <polygon points="-20,170 180,170 160,190 -40,190" fill="#0A0F1D" />
+
+    
+    <polygon points="0,90 140,50 140,170 0,170" fill="#291A10" />
+    <polygon points="140,50 260,90 260,210 140,170" fill="#3D2616" />
+
+    
+    <polygon points="-20,90 140,40 300,90 140,105" fill="#1C140E" />
+    <polygon points="140,40 300,90 260,80 140,30" fill="#2C2016" />
+    
+    <path d="M-22 90 Q60 65 140 43 Q220 65 302 90 Q220 85 140 75 Q60 85 -22 90 Z" fill="#F1F5F9" />
+
+    
+    <polygon points="40,100 80,90 80,140 40,150" fill="#150E0A" />
+    <polygon points="45,107 75,98 75,135 45,144" fill="#F59E0B" />
+    <line x1="60" y1="102" x2="60" y2="140" stroke="#150E0A" stroke-width="3" />
+    <line x1="45" y1="121" x2="75" y2="117" stroke="#150E0A" stroke-width="3" />
+
+    
+    <circle cx="60" cy="120" r="90" fill="url(#cabinGlow)" style="mix-blend-mode: screen;" />
+
+    
+    <rect x="200" y="35" width="25" height="40" fill="#4B3621" />
+    <polygon points="195,35 230,35 225,25 200,25" fill="#6B4F33" />
+    <path d="M210 20 Q215 -10 195 -30 Q180 -45 190 -60" fill="none" stroke="#94A3B8" stroke-width="6" stroke-linecap="round" opacity="0.4" />
+  </g>
+
+  
+  <g transform="translate(850, 110)">
+    
+    <polygon points="40,30 -250,450 150,450" fill="#93C5FD" opacity="0.12" style="mix-blend-mode: screen;" />
+    <polygon points="40,30 -120,450 80,450" fill="#FFFFFF" opacity="0.18" style="mix-blend-mode: screen;" />
+
+    
+    <ellipse cx="40" cy="30" rx="45" ry="20" fill="#334155" />
+    <path d="M15 35 L-5 60 L25 60 Z" fill="#1E293B" />
+    
+    <line x1="-30" y1="15" x2="110" y2="15" stroke="#0F172A" stroke-width="4" stroke-linecap="round" />
+    <line x1="40" y1="5" x2="40" y2="20" stroke="#0F172A" stroke-width="6" />
+    
+    <path d="M80 30 L130 18 L130 25 L80 35 Z" fill="#334155" />
+    <line x1="125" y1="15" x2="135" y2="30" stroke="#0F172A" stroke-width="3" />
+    
+    <circle cx="30" cy="15" r="3" fill="#EF4444" />
+  </g>
+
+  
+  <g transform="translate(700, 280)">
+    
+    <ellipse cx="140" cy="240" rx="150" ry="30" fill="#020617" opacity="0.6" />
+
+    
+    <path d="M80 150 C70 120 90 80 130 70 C160 60 190 70 210 90 C230 110 250 100 270 80 C280 70 295 85 290 100 C280 130 250 170 220 190 C180 210 120 200 80 150 Z" fill="url(#bearGrad)" />
+
+    
+    <path d="M180 130 C220 120 280 140 320 180 C360 220 370 260 370 280 C370 290 300 290 240 260 C200 240 180 180 180 130 Z" fill="url(#bearGrad)" />
+
+    
+    <path d="M110 75 C95 70 70 80 60 95 C55 105 65 115 80 110 C95 105 105 95 110 75 Z" fill="url(#bearGrad)" />
+
+    
+    <ellipse cx="58" cy="98" rx="6" ry="4" fill="#1E293B" />
+
+    
+    <circle cx="85" cy="85" r="3.5" fill="#0EA5E9" />
+    <circle cx="86" cy="84" r="1.5" fill="#FFFFFF" />
+
+    
+    <path d="M190 90 C210 70 260 70 290 100 C270 95 230 95 190 90 Z" fill="#FFFFFF" opacity="0.5" />
+
+    
+    <path d="M140 70 Q160 65 180 75 Q170 85 140 70 Z" fill="#FFFFFF" opacity="0.7" />
+    <path d="M220 110 Q250 100 270 130 Q240 140 220 110 Z" fill="#FFFFFF" opacity="0.4" />
+  </g>
+
+  
+  <g transform="translate(420, 390)">
+    
+    <ellipse cx="0" cy="50" rx="8" ry="3" fill="#020617" opacity="0.5" />
+    
+    <line x1="-3" y1="35" x2="-6" y2="50" stroke="#334155" stroke-width="4" stroke-linecap="round" />
+    <line x1="3" y1="35" x2="6" y2="48" stroke="#334155" stroke-width="4" stroke-linecap="round" />
+    
+    <path d="M-6 15 L6 15 L8 38 L-8 38 Z" fill="#B91C1C" /> 
+    
+    <circle cx="0" cy="8" r="6" fill="#F1F5F9" />
+    <path d="M-7 5 Q0 -2 7 5 Q6 12 0 12 Q-6 12 -7 5 Z" fill="#991B1B" />
+
+    
+    <g transform="translate(35, 10)">
+      <ellipse cx="0" cy="45" rx="7" ry="2" fill="#020617" opacity="0.5" />
+      <line x1="-2" y1="30" x2="-4" y2="45" stroke="#334155" stroke-width="3.5" stroke-linecap="round" />
+      <line x1="2" y1="30" x2="5" y2="43" stroke="#334155" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M-5 12 L5 12 L7 32 L-7 32 Z" fill="#1E3A8A" />
+      <circle cx="0" cy="6" r="5.5" fill="#F1F5F9" />
+    </g>
+
+    
+    <g transform="translate(70, 20)">
+      <ellipse cx="0" cy="40" rx="6" ry="2" fill="#020617" opacity="0.5" />
+      <line x1="-2" y1="26" x2="-3" y2="40" stroke="#334155" stroke-width="3" stroke-linecap="round" />
+      <line x1="2" y1="26" x2="4" y2="38" stroke="#334155" stroke-width="3" stroke-linecap="round" />
+      <path d="M-4 10 L4 10 L6 28 L-6 28 Z" fill="#065F46" />
+      <circle cx="0" cy="5" r="5" fill="#F1F5F9" />
+    </g>
+  </g>
+
+  
+  
+  <g fill="#0B132B">
+    <polygon points="-20,675 -20,250 20,320 0,320 40,400 15,400 60,500 25,500 90,675" />
+    <polygon points="60,675 50,420 85,470 70,470 110,550 90,550 140,675" />
+  </g>
+  
+  <g fill="#93C5FD" opacity="0.3">
+    <polygon points="5,335 20,320 12,350" />
+    <polygon points="25,415 40,400 30,430" />
+    <polygon points="38,515 60,500 48,540" />
+  </g>
+
+  
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none" />
+
+  
+  <rect x="0" y="0" width="1200" height="25" fill="#000000" opacity="0.8" />
+  <rect x="0" y="650" width="1200" height="25" fill="#000000" opacity="0.8" />
+</svg>
