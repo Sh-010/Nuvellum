@@ -4,6 +4,30 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-28 (night): n8n execution telemetry, the last step of the observability phase
+
+- Live workflow `8hXx6NuZuJU9dRR1`, edited in place: 51c01d9f → **f67dcee5**. Still inactive; `NUVELLUM_AUTOPUBLISH` is still `off`. The graph has 67 nodes (+2); no gate, condition or decision node changed.
+  - **Queue Latest Candidates**: adds a `_queuedAt` stamp and feed-screening counts (`feedItems`, `feedErrors`, `aggregatePages`, `repeats`). The selection is proven identical.
+  - **Record GitHub Outcome** (new Code node): sits between the GitHub results (article commit; branch-creation error output) and the loop. It swaps the discarded API response for whitelisted fields: slug, section, risk, host, branch/commit status, HTTP status and the image decision.
+  - **Run Summary** (new Code node): reads the loop's "done" output and emits one `run_summary` with counts, fixed reason codes, image modes, duration and compact per-candidate events.
+  - Both new nodes are `continueRegularOutput` and catch their own errors.
+- **Smoke test, execution 939 (manual, success, 10m43s):**
+  - 1318 feed items were screened: 80 aggregate/live pages, 24 repeats, 1 feed error.
+  - 5 candidates, all accounted for:
+    - BBC Sport roundup: `draft_skip`
+    - CNBC (23 words): `thin_source`
+    - Polygon Pokémon TCG: published, **text-led**, `image_rejected_style` (UI panels)
+    - Deadline Diablo Cody and Al Jazeera Apple patent case: sensitive, verified, published with **approved illustrations**
+  - Every code matches the raw node outputs.
+  - A privacy scan compared 420 windows of the run's source and article text against the telemetry: the only match is the public slug. No URLs, tokens or error text.
+- **Publishing unchanged:** three incoming branches were created and PRs #100–102 opened automatically; the publish gate holds them (autopublish off). The photo pass found no photo for #100, so it stays text-led.
+- **Found by the smoke test:** a regression from #98. The backfill test counts gated AI illustrations as weak art, so Build Nuvellum fails on #101 and #102. The fix is **PR #103**, a separate branch (204/204 tests and the build pass with the #102 story added). #101 and #102 need an update-branch after #103 merges.
+- Repo: the sanitized export is synced, `tests/n8n-telemetry.test.mjs` is new (6 tests; the node code runs on fixtures; wiring, reason codes, image decisions, summary and leak checks), and `docs/OBSERVABILITY.md` and `n8n/README.md` are updated.
+- **Limits** (details in docs/OBSERVABILITY.md):
+  - Real-photo choice and PR open/merge happen in GitHub Actions, so n8n's `imageModes.photo` is always 0 and `published` means branch plus commit.
+  - Per-stage timings stay in n8n's execution view.
+  - Runs that fail outright, or queue zero candidates, produce no summary.
+
 ## 2026-09-28 (late night): text-led fallback replaces house plates (PR #98, not merged)
 
 - Owner review: generic house plates were being used as hero and card images for stories they don't depict. Withdrawn: the plates, `scripts/visual/house-visuals.mjs`, and their plan and credit entries were removed.
