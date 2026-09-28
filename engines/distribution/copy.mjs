@@ -1,12 +1,27 @@
 import { PLATFORMS, charCount } from './platforms.mjs';
 
-const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+// Collapse runs of spaces but keep paragraph breaks: collapsing every newline ran the headline into the dek
+// ("...infringement case A federal jury...") on every platform.
+const clean = (s) => String(s || '').replace(/[ \t]+/g, ' ').replace(/ *\n */g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+
+// X counts every link as 23 characters (t.co), whatever its real length.
+const X_LINK_LENGTH = 23;
+export function platformLength(platform, text) {
+  const s = String(text || '');
+  return platform === 'x' ? charCount(s.replace(/https?:\/\/\S+/g, 'x'.repeat(X_LINK_LENGTH))) : charCount(s);
+}
 
 function truncate(text, max) {
   const s = clean(text);
   if (charCount(s) <= max) return s;
   const chars = [...s].slice(0, Math.max(1, max - 1)).join('');
   return chars.replace(/\s+\S*$/, '') + '…';
+}
+
+// Body, then a tail (tracked link, hashtags) that is never truncated. Truncating the whole post cut the link
+// off long stories, and validation then dropped their X and Threads drafts entirely.
+function compose(platform, body, tail) {
+  return truncate(body, PLATFORMS[platform].maxChars - platformLength(platform, tail)) + tail;
 }
 
 function tag(value) {
@@ -26,31 +41,27 @@ export function trackedUrl(story, platform) {
 export function templateFeedCopy(story) {
   const tags = story.tags.slice(0, 2).map(tag).filter(Boolean);
   const links = Object.fromEntries(Object.keys(PLATFORMS).map(p => [p, trackedUrl(story, p)]));
-  const xTail = '\n\n' + links.x;
-  const xBodyBudget = Math.max(40, PLATFORMS.x.maxChars - charCount(xTail));
-  const xBodyCandidate = story.dek ? story.title + '\n\n' + story.dek : story.title;
+  const body = story.dek ? story.title + '\n\n' + story.dek : story.title;
   return {
-    x: truncate(xBodyCandidate, xBodyBudget) + xTail,
-    threads: truncate(story.title + '\n\n' + story.dek + '\n\n' + links.threads, PLATFORMS.threads.maxChars),
-    facebook: truncate(story.title + '\n\n' + story.dek + '\n\nRead: ' + links.facebook, PLATFORMS.facebook.maxChars),
-    linkedin: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story: ' + links.linkedin + '\n\n#Nuvellum', PLATFORMS.linkedin.maxChars),
-    instagram: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '), PLATFORMS.instagram.maxChars)
+    x: compose('x', body, '\n\n' + links.x),
+    threads: compose('threads', body, '\n\n' + links.threads),
+    facebook: compose('facebook', body, '\n\nRead: ' + links.facebook),
+    linkedin: compose('linkedin', body, '\n\nRead the full story: ' + links.linkedin + '\n\n#Nuvellum'),
+    instagram: compose('instagram', body, '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '))
   };
 }
 
 export function templateVideoCopy(story) {
   const tags = story.tags.slice(0, 2).map(tag).filter(Boolean);
   const links = Object.fromEntries(Object.keys(PLATFORMS).map(p => [p, trackedUrl(story, p)]));
-  const xVideoTail = '\n\n' + links.x;
-  const xVideoBody = truncate(story.title + '\n\nWatch the short, then read the full story.', Math.max(40, PLATFORMS.x.maxChars - charCount(xVideoTail)));
   return {
-    x: xVideoBody + xVideoTail,
-    facebook: truncate(story.title + '\n\nWatch the reel, then read the full story: ' + links.facebook, PLATFORMS.facebook.maxChars),
-    instagram: truncate(story.title + '\n\n' + [...tags, '#Nuvellum', '#Reels'].join(' '), PLATFORMS.instagram.maxChars),
-    tiktok: truncate(story.title + '\n\n' + truncate(story.dek, 320) + '\n\n' + [...tags, '#Nuvellum', '#News'].join(' '), PLATFORMS.tiktok.maxChars),
+    x: compose('x', story.title + '\n\nWatch the short, then read the full story.', '\n\n' + links.x),
+    facebook: compose('facebook', story.title, '\n\nWatch the reel, then read the full story: ' + links.facebook),
+    instagram: compose('instagram', story.title, '\n\n' + [...tags, '#Nuvellum', '#Reels'].join(' ')),
+    tiktok: compose('tiktok', story.title + '\n\n' + truncate(story.dek, 320), '\n\n' + [...tags, '#Nuvellum', '#News'].join(' ')),
     youtube: {
       title: truncate(story.title, PLATFORMS.youtube.titleMax),
-      description: truncate(story.dek + '\n\nRead the full story: ' + links.youtube + '\n\n#Shorts #Nuvellum', PLATFORMS.youtube.maxChars)
+      description: compose('youtube', story.dek, '\n\nRead the full story: ' + links.youtube + '\n\n#Shorts #Nuvellum')
     }
   };
 }
@@ -66,7 +77,7 @@ export function validateCopy(platform, value, story) {
   if (!spec) return ['unknown platform'];
   const text = textForValidation(platform, value);
   if (!clean(text)) problems.push('empty');
-  if (charCount(text) > spec.maxChars) problems.push('over ' + spec.maxChars + ' characters');
+  if (platformLength(platform, text) > spec.maxChars) problems.push('over ' + spec.maxChars + ' characters');
   if (platform === 'youtube' && charCount(value?.title) > spec.titleMax) problems.push('title over ' + spec.titleMax + ' characters');
   if (spec.linkInText) {
     const expected = trackedUrl(story, platform);
