@@ -109,7 +109,7 @@ function portrait(story, image) {
   const label = labelFor(story);
   if (imageLed) {
     const title = wrap(story.title, 31, 5);
-    const dek = wrap(story.dek, 62, 3);
+    const dek = wrap(story.dek, 62, 2);
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
       <rect width="${w}" height="${h}" fill="${COLORS.paper}"/>
       ${masthead(w)}
@@ -149,7 +149,7 @@ export function renderSocialCards(story, outBase) {
   const manifest = {
     slug: story.slug,
     sourceMode: image ? story.mediaMode : 'text-led',
-    square: relative(REPO_ROOT, squarePath).replaceAll('\\\\', '/'),
+    square: relative(REPO_ROOT, squarePath).replaceAll('\\', '/'),
     portrait: relative(REPO_ROOT, portraitPath).replaceAll('\\\\', '/'),
     rasterNeededForLivePosting: true
   };
