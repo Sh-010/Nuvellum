@@ -40,6 +40,23 @@ export function plainText(markdown) {
     .trim();
 }
 
+export function sentences(text) {
+  return String(text).replace(/\s+/g, ' ').split(/(?<=[.!?][\"”’]?)\s+(?=[\"“‘A-Z0-9])/).map(s => s.trim()).filter(s => s.length > 20);
+}
+
+export function bodySentences(markdown) {
+  const paras = String(markdown).split(/\n\s*\n/).map(p => p.trim()).filter(p => p && !/^#{1,6}\s/.test(p));
+  return paras.flatMap(p => sentences(plainText(p)));
+}
+
+function imageInfo(data) {
+  const src = String(data.image || '').trim();
+  const mode = mediaMode(data);
+  if (!src.startsWith('/')) return { path: null, kind: mode };
+  const path = join(REPO_ROOT, 'public', src.replace(/^\/+/, ''));
+  return { path: existsSync(path) ? path : null, kind: mode };
+}
+
 function bodyKey(md) {
   try { return parseArticle(md).body.replace(/\s+/g, ' ').trim(); } catch { return ''; }
 }
@@ -71,6 +88,8 @@ export function loadStory(slug, { allowPlaceholder = false } = {}) {
   const parsed = parseArticle(readFileSync(file, 'utf8'));
   const data = parsed.data;
   if (data.status !== 'published') throw new Error('article ' + slug + ' is not published');
+  const image = String(data.image || '').trim() || null;
+  const info = imageInfo(data);
   return {
     slug,
     url: BRAND.siteUrl + '/article/' + slug,
@@ -80,9 +99,13 @@ export function loadStory(slug, { allowPlaceholder = false } = {}) {
     type: String(data.type || '').trim(),
     risk: String(data.risk || 'low').trim(),
     tags: Array.isArray(data.tags) ? data.tags : [],
+    sourceUrls: Array.isArray(data.sourceUrls) ? data.sourceUrls : [],
     publishedAt: data.publishedAt || data.date || null,
     text: plainText(parsed.body),
-    image: String(data.image || '').trim() || null,
-    mediaMode: mediaMode(data)
+    sentences: bodySentences(parsed.body),
+    image,
+    imagePath: info.path,
+    imageKind: info.kind,
+    mediaMode: info.kind
   };
 }
