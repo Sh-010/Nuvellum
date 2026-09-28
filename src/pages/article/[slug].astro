@@ -56,7 +56,14 @@ const sectionHref = `/section/${sectionKey}`;
 const authorHref = `/author/${slugify(article.author)}`;
 const displayDate = longDate(article);
 const updatedDate = article.updated ? new Date(`${article.updated}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '';
-const caption = article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
+const caption = article.imageCaption
+  || (article.imageProvider === 'wikimedia' ? 'Editorial file photo'
+  : article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration'
+  : article.origin === 'automation' ? 'Original editorial illustration'
+  : 'Illustrative launch image');
+const visualCredit = article.imageProvider === 'wikimedia' && article.imageCredit && article.imageLicense && article.imageLicenseUrl && article.imageSourcePage
+  ? { credit: article.imageCredit, license: article.imageLicense, licenseUrl: article.imageLicenseUrl, sourcePage: article.imageSourcePage }
+  : null;
 const [leadRelated, ...moreRelated] = related;
 const tools = [
   { action: 'smaller', label: 'A−', aria: 'Decrease text size' },
@@ -111,7 +118,17 @@ const tools = [
 
     <figure class="rgrid lead-figure" data-reveal style="--d:300ms">
       <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" /></div>
-      <figcaption><span class="eyebrow">✦ Nuvellum</span> {caption}</figcaption>
+      <figcaption>
+        <span class="eyebrow">✦ Nuvellum</span>
+        <span class="visual-caption">{caption}</span>
+        {visualCredit && (
+          <span class="visual-credit">
+            Photo: <a href={visualCredit.sourcePage} target="_blank" rel="noopener noreferrer">{visualCredit.credit}</a>
+            <span aria-hidden="true"> · </span>
+            <a href={visualCredit.licenseUrl} target="_blank" rel="noopener noreferrer">{visualCredit.license}</a>
+          </span>
+        )}
+      </figcaption>
     </figure>
 
     <div class="rgrid reading">
