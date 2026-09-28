@@ -133,6 +133,26 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
+    if (data.imageProvider !== undefined) {
+      const providers = new Set(['wikimedia','nuvellum-illustration','manual']);
+      const kinds = new Set(['photo','illustration','map']);
+      if (!providers.has(String(data.imageProvider))) errors.push(`${name}: unsupported imageProvider "${data.imageProvider}"`);
+      if (!kinds.has(String(data.imageKind || ''))) errors.push(`${name}: imageKind must be photo, illustration or map when imageProvider is present`);
+
+      if (data.imageProvider === 'wikimedia') {
+        for (const key of ['imageCredit','imageLicense','imageLicenseUrl','imageSourcePage']) {
+          if (!String(data[key] || '').trim()) errors.push(`${name}: Wikimedia image requires ${key}`);
+        }
+        if (!/^https:\/\//.test(String(data.image || ''))) errors.push(`${name}: Wikimedia image must use an https:// image URL`);
+        if (!/^https:\/\//.test(String(data.imageLicenseUrl || ''))) errors.push(`${name}: imageLicenseUrl must use https://`);
+        if (!/^https:\/\//.test(String(data.imageSourcePage || ''))) errors.push(`${name}: imageSourcePage must use https://`);
+      }
+
+      if (data.imageProvider === 'nuvellum-illustration' && data.imageKind !== 'illustration') {
+        errors.push(`${name}: Nuvellum illustration provider requires imageKind: "illustration"`);
+      }
+    }
+
     if (data.image) {
       const image = String(data.image);
       const aiImage = image.match(AI_IMAGE_RE);
