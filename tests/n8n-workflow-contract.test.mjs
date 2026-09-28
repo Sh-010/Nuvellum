@@ -104,7 +104,7 @@ test('live branch identity equals the repository helper (hash and 60-character s
 test('live fixes survive: five-candidate queue, roundup/newsletter skip, multi-story rejection', () => {
   const queue = node('Queue Latest Candidates').parameters.jsCode;
   assert.match(queue, /const MAX_CANDIDATES = 5;/);
-  assert.match(queue, /return selected\.slice\(0, MAX_CANDIDATES\);/);
+  assert.match(queue, /return selected\.slice\(0, MAX_CANDIDATES\)/);
   const draft = node('Gemini Draft Article').parameters.messages.values[0].content;
   assert.match(draft, /If the SOURCE is a roundup, newsletter, digest, deals post, gift guide or list/);
   assert.match(draft, /"skip":true,"reason":"roundup: <one line>"/);

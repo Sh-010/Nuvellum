@@ -33,6 +33,10 @@ Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib
 
 The workflow is **inactive**. `NUVELLUM_AUTOPUBLISH` stays off until three real end-to-end runs have passed.
 
+### Execution telemetry
+
+Every run ends with a compact `run_summary` in the **Run Summary** node: candidate counts, a reason code per rejected candidate, image decisions, GitHub outcome and duration. **Record GitHub Outcome** turns the GitHub results into whitelisted fields before they return to the loop. Neither node can change what publishes. Reason codes, privacy rules and limits are in [`docs/OBSERVABILITY.md`](../docs/OBSERVABILITY.md#newsroom-execution-telemetry-n8n); the contract is `tests/n8n-telemetry.test.mjs`.
+
 ## Code-node snippets
 
 `n8n/snippets/*.js` are generated from `scripts/lib/newsroom.mjs` and `scripts/lib/svg-safety.mjs` by `npm run n8n:snippets`. CI fails if they are stale. `tests/n8n-snippets.test.mjs` executes each one in an n8n-like sandbox with no `require`.
