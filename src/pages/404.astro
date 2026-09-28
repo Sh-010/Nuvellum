@@ -1,4 +1,37 @@
 ---
-import SiteHead from '../components/SiteHead.astro';import '../styles/global.css';
+import InteriorShell from '../components/InteriorShell.astro';
+import Story from '../components/Story.astro';
+import { getArticles } from '../lib/articles';
+
+const today = (await getArticles()).slice(0, 4);
 ---
-<!doctype html><html lang="en"><head><SiteHead title="Page not found — Nuvellum" description="The requested page could not be found."/></head><body><div class="topline"></div><main class="section wrap"><div class="brand">NUVELLUM</div><div class="kicker">404</div><h1 style="font-size:72px">This headline went missing.</h1><p class="dek">The page may have moved, changed, or never existed.</p><a class="btn-outline" href="/">Return home</a></main></body></html>
+<InteriorShell title="Page not found — Nuvellum" description="The requested page could not be found." folio={[{ label: 'Page not found' }]} folioNote="Error 404" newsletter={false}>
+  <div class="shell page">
+    <section class="nf" aria-labelledby="nf-title">
+      <div data-reveal>
+        <div class="nf-kicker"><span>✦ Stop press</span><span class="rule"></span><span>Error 404</span></div>
+        <h1 id="nf-title">This story is <em>not in this edition.</em></h1>
+        <p>The page may have moved, been retitled, or never gone to press. Everything Nuvellum has published is still in the archive.</p>
+        <div class="nf-actions">
+          <a class="aside-link" href="/">Front page <span aria-hidden="true">→</span></a>
+          <a class="aside-link quiet" href="/latest">The latest edition <span aria-hidden="true">→</span></a>
+          <button class="aside-link quiet" type="button" data-search>Search Nuvellum</button>
+        </div>
+      </div>
+      <div class="nf-column" data-reveal style="--d:180ms" aria-hidden="true">
+        <span class="eyebrow">Column intentionally left blank</span>
+        <div class="nf-lines"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="nf-lines"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="caption">The column that should stand here was not found at this address.</div>
+      </div>
+    </section>
+
+    {today.length > 0 && (
+      <section class="block" aria-labelledby="edition">
+        <div class="section-title" data-reveal><h2 id="edition">In the current edition</h2><span class="rule"></span><a href="/latest">Everything published →</a></div>
+        <div class="rows">{today.map((a, i) => <Story article={a} variant="row" d={i * 60} />)}</div>
+      </section>
+    )}
+  </div>
+  <script is:inline>document.querySelector('[data-search]')?.addEventListener('click',()=>document.getElementById('searchOpen')?.click())</script>
+</InteriorShell>

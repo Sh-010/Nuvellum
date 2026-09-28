@@ -1,95 +1,80 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import '../../styles/global.css';
+// A–Z headline archive, reached from the letters of the NUVELLUM wordmark. Keeps the
+// established archive masthead (wine N✦UVELLUM wordmark) inside the interior system.
+import InteriorShell from '../../components/InteriorShell.astro';
 import { getArticles } from '../../lib/articles';
+import { route, shortDate, isoDate, plural } from '../../lib/interior';
 
 export async function getStaticPaths() {
   return 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter => ({ params: { letter } }));
 }
 
+const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const letter = String(Astro.params.letter || '').toLowerCase();
-const articles = (await getArticles()).filter(article => article.title.trim().toLowerCase().startsWith(letter));
+const all = await getArticles();
+const initial = (a: { title: string }) => a.title.trim().toLowerCase()[0];
+const counts = new Map(ALPHABET.map(l => [l, all.filter(a => initial(a) === l).length]));
+const articles = all.filter(article => article.title.trim().toLowerCase().startsWith(letter));
 const upper = letter.toUpperCase();
+const i = ALPHABET.indexOf(letter);
+const near = ALPHABET
+  .map((l, j) => ({ l, dist: Math.abs(j - i), n: counts.get(l) || 0 }))
+  .filter(x => x.n > 0 && x.l !== letter)
+  .sort((a, b) => a.dist - b.dist)
+  .slice(0, 4)
+  .sort((a, b) => a.l.localeCompare(b.l));
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <SiteHead
-    title={`Headlines beginning with ${upper} — Nuvellum`}
-    description={`Published Nuvellum headlines beginning with the letter ${upper}.`}
-  />
-</head>
-<body>
-  <div class="topline"></div>
-  <header class="headline-archive-header">
-    <div class="wrap headline-archive-head">
-      <a class="headline-archive-brand" href="/" aria-label="Nuvellum home">
-        <span class="headline-archive-logo-line">
-          <span class="headline-archive-monogram">N<span>✦</span></span>
-          <span class="headline-archive-continuation">UVELLUM</span>
-        </span>
-        <span class="headline-archive-tagline">Beyond the headline.</span>
-      </a>
-      <a class="headline-archive-back" href="/">Back to Nuvellum →</a>
-    </div>
-  </header>
-
-  <main class="wrap headline-archive">
-    <h1 class="headline-letter-title">{upper}</h1>
-
-    {articles.length ? (
-      <section class="headline-archive-list">
-        {articles.map(article => (
-          <article class="headline-archive-row">
-            <a class="headline-archive-image" href={`/article/${article.slug}`}>
-              <img src={article.image} alt={article.imageAlt}/>
-            </a>
-            <div>
-              <div class="headline-archive-meta">{article.section} · {article.type}</div>
-              <h2><a href={`/article/${article.slug}`}>{article.title}</a></h2>
-              <p>{article.dek}</p>
-              <small>{article.date} · {article.readingTime} read</small>
-            </div>
-          </article>
-        ))}
-      </section>
-    ) : (
-      <div class="headline-archive-empty">No published Nuvellum headlines currently begin with {upper}.</div>
-    )}
-
-    <nav class="headline-archive-alpha" aria-label="Browse headlines by letter">
-      {'abcdefghijklmnopqrstuvwxyz'.split('').map(item => (
-        <a class={item === letter ? 'active' : ''} href={`/headlines/${item}`} aria-current={item === letter ? 'page' : undefined}>
-          {item.toUpperCase()}
-        </a>
+<InteriorShell
+  title={`Headlines beginning with ${upper} — Nuvellum`}
+  description={`Published Nuvellum headlines beginning with the letter ${upper}.`}
+  masthead="archive"
+  folio={[{ label: 'A–Z headlines', href: '/headlines/a' }, { label: `Letter ${upper}` }]}
+  folioNote="Headline archive"
+>
+  <div class="shell page">
+    <nav class="az-nav" aria-label="Browse headlines by letter" data-reveal>
+      {ALPHABET.map(l => (
+        <a href={`/headlines/${l}`} class:list={[(counts.get(l) || 0) === 0 && 'is-empty']} aria-current={l === letter ? 'page' : undefined} title={plural(counts.get(l) || 0, 'headline')}>{l.toUpperCase()}</a>
       ))}
     </nav>
-  </main>
-</body>
-</html>
 
-<style>
-.headline-archive-header{border-bottom:1px solid var(--line);background:var(--paper)}
-.headline-archive-head{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.headline-archive-brand{display:grid;color:var(--ox);width:max-content}
-.headline-archive-logo-line{display:flex;align-items:baseline;gap:1px}
-.headline-archive-monogram{position:relative;font:700 32px/.95 var(--serif);letter-spacing:.015em;min-width:29px}
-.headline-archive-monogram span{position:absolute;right:-7px;top:-6px;font:13px/1 var(--serif)}
-.headline-archive-continuation{font:700 32px/.95 var(--serif);letter-spacing:.045em}
-.headline-archive-tagline{font:italic 10px/1 var(--serif);color:var(--muted);margin:4px 0 0 0}
-.headline-archive-back{font:10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.headline-archive{padding:42px 0 80px}
-.headline-letter-title{font:400 clamp(82px,10vw,140px)/.82 var(--serif);margin:0 0 28px;color:var(--ox)}
-.headline-archive-list{border-top:2px solid var(--ink)}
-.headline-archive-row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
-.headline-archive-image img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.headline-archive-meta{font:700 9px var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--ox)}
-.headline-archive-row h2{font:400 30px/1.05 var(--serif);margin:7px 0 8px}
-.headline-archive-row p{font:16px/1.45 var(--serif);color:var(--muted);margin:0 0 10px;max-width:850px}
-.headline-archive-row small{font:9px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.headline-archive-empty{padding:44px 0;border-block:1px solid var(--line);font:20px var(--serif);color:var(--muted)}
-.headline-archive-alpha{display:flex;flex-wrap:wrap;gap:4px;margin-top:32px}
-.headline-archive-alpha a{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--line);font:11px var(--sans);transition:.18s}
-.headline-archive-alpha a:hover,.headline-archive-alpha a.active{background:var(--ox);border-color:var(--ox);color:#fff}
-@media(max-width:650px){.headline-archive-head{height:68px}.headline-archive-monogram,.headline-archive-continuation{font-size:26px}.headline-archive-monogram{min-width:24px}.headline-archive-monogram span{font-size:11px;right:-6px;top:-5px}.headline-archive-tagline{margin-left:0}.headline-archive{padding-top:28px}.headline-letter-title{font-size:82px;margin-bottom:22px}.headline-archive-row{grid-template-columns:1fr}.headline-archive-row h2{font-size:25px}.headline-archive-image img{aspect-ratio:16/9}}
-</style>
+    <div class="az">
+      <div class="az-letter-col">
+        <span class="az-letter" data-reveal aria-hidden="true">{upper}</span>
+        <div class="az-letter-caption" data-reveal style="--d:200ms">
+          <span><strong>{articles.length}</strong> {articles.length === 1 ? 'headline' : 'headlines'}</span>
+          <span>beginning with {upper}</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="desk-kicker" data-reveal style="--d:120ms"><span>✦ A–Z headline archive</span></div>
+        <h1 class="sr-only">Headlines beginning with {upper}</h1>
+        {articles.length ? (
+          <ol class="az-list" style="list-style:none;margin:0;padding:0">
+            {articles.map((a, n) => (
+              <li class="story az-entry" data-reveal style={`--d:${160 + Math.min(n, 6) * 60}ms`}>
+                <span class="az-num">{String(n + 1).padStart(2, '0')}</span>
+                <div>
+                  <span class="eyebrow">{a.section}{a.type && a.type !== 'News' ? ` · ${a.type}` : ''}</span>
+                  <h2 class="headline"><a href={route(a)}><span class="initial">{a.title.trim()[0]}</span>{a.title.trim().slice(1)}</a></h2>
+                  <p>{a.dek}</p>
+                  <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+                </div>
+                <a class="media" href={route(a)} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading="lazy" /></a>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <div class="az-empty" data-reveal style="--d:160ms">
+            <h2>No published headline begins with {upper} yet.</h2>
+            <p>The archive grows with every edition. The nearest letters with published headlines:</p>
+            <div class="az-near">
+              {near.map(x => <a href={`/headlines/${x.l}`}>{x.l.toUpperCase()} <small>{plural(x.n, 'headline')}</small></a>)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</InteriorShell>

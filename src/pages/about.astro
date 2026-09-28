@@ -1,5 +1,17 @@
 ---
-import SiteHead from '../components/SiteHead.astro';
-import '../styles/global.css';
+import InstitutionalPage from '../components/InstitutionalPage.astro';
 ---
-<!doctype html><html lang="en"><head><SiteHead title="About Nuvellum — Nuvellum" description="Nuvellum is an independent international digital publication built around one promise: Beyond the headline. We publish reporting, analysis and culture coverage with clear labeling and source discipline."/></head><body><div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header><main class="section wrap"><div class="section-head"><h2>About Nuvellum</h2><a href="/">Home</a></div><div style="max-width:760px;font-family:Georgia,serif;font-size:21px;line-height:1.65"><p>Nuvellum is an independent international digital publication built around one promise: Beyond the headline. We publish reporting, analysis and culture coverage with clear labeling and source discipline.</p></div></main></body></html>
+<InstitutionalPage
+  title="About Nuvellum"
+  eyebrow="The publication"
+  description="Nuvellum is an independent international digital publication built around one promise: Beyond the headline."
+  intro="An independent international digital publication built around one promise: Beyond the headline."
+  note="Reporting, analysis, opinion and culture coverage live under one editorial identity, with clear labels between them."
+>
+  <p>Nuvellum publishes reporting, analysis and culture coverage with clear labeling, source discipline and a visual language designed to feel considered rather than disposable.</p>
+  <h2>What we publish</h2>
+  <p>News reporting, analysis, explainers, opinion, reviews and cultural coverage are treated as distinct formats. The label should tell the reader what kind of work they are entering before the first paragraph does.</p>
+  <h2>How we work</h2>
+  <p>Published reporting is expected to remain traceable to its sources. Higher-risk material is held to a separate verification step before publication, while corrections are surfaced when a factual change is material.</p>
+  <span slot="aside">Nuvellum’s editorial and technical systems are still being built in public. The publication’s standards pages describe the rules the product is expected to enforce.</span>
+</InstitutionalPage>

@@ -6,7 +6,7 @@ Non-negotiable across every milestone: **preserve the approved Nuvellum v5.1 vis
 |---|---|---|
 | **M1: Core stable** | Site works, story navigation, newsroom end-to-end, 3/3 clean production runs, no known release blocker | ✅ Met 2026-09-27 (runs 912, 914, 915 → #58, #60, #61). Autopublish is still OFF, pending the owner's decision. |
 | **MV: AI Visual Engine** | Premium, story-specific editorial imagery with safe fallback (spec below) | Planned; next after M1 |
-| **M2: Discovery ready** | SEO, RSS, sitemap, analytics, accessibility and performance | Partly done: canonical, OG/Twitter, Article JSON-LD, `isBasedOn`, sitemap `lastmod`, RSS, Lighthouse 98/84/100/100. Remaining: analytics, the v5.1 design-level a11y items. |
+| **M2: Discovery ready** | SEO, RSS, sitemap, analytics, accessibility and performance | Partly done: canonical, OG/Twitter, Article JSON-LD (ingestion sources deliberately not published), sitemap `lastmod`, RSS, Lighthouse 98/84/100/100. Remaining: analytics, the v5.1 design-level a11y items. |
 | **M3: Distribution ready** | Social engine, adapters, grounding, idempotency, dry-run default | Code exists on `engines/distribution-shorts`, not in main. Consumes MV assets. |
 | **M4: Video ready** | Shorts pipeline renders grounded, production-quality output | Prototype on `engines/distribution-shorts`. Consumes MV assets. |
 | **M5: Operations ready** | Monitoring, recovery, source management, provider fallback, security | Partly done: recovery docs, source matrix, CI gates, secret scan |

@@ -1,8 +1,71 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import '../../styles/global.css';
+import InteriorShell from '../../components/InteriorShell.astro';
+import Story from '../../components/Story.astro';
 import { getArticles, slugify } from '../../lib/articles';
-export async function getStaticPaths(){const a=await getArticles();return [...new Set(a.map(x=>slugify(x.author)))].map(author=>({params:{author}}));}
-const key=Astro.params.author!;const articles=(await getArticles()).filter(a=>slugify(a.author)===key);const name=articles[0]?.author||key;
+import { initials, longDate, plural, sectionHref } from '../../lib/interior';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return [...new Set(articles.map(article => slugify(article.author)))].map(author => ({ params: { author } }));
+}
+
+const key = Astro.params.author!;
+const everything = await getArticles();
+const articles = everything.filter(article => slugify(article.author) === key);
+const name = articles[0]?.author || key.replace(/-/g,' ');
+const sections = [...new Set(articles.map(article => article.section))];
+const isDesk = /desk|team|staff/i.test(name);
+const latest = articles[0];
+const earliest = articles[articles.length - 1];
+const body = articles.slice(1);
+const alongside = articles.length < 3
+  ? everything.filter(a => sections.includes(a.section) && slugify(a.author) !== key).slice(0, 4)
+  : [];
 ---
-<!doctype html><html lang="en"><head><SiteHead title={`${name} — Nuvellum`} description={`Stories by ${name}.`}/></head><body><div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header><main class="section wrap"><div class="section-head"><h2>{name}</h2><a href="/">Home</a></div><div class="cards">{articles.map(a=><article class="card"><a href={`/article/${a.slug}`}><img src={a.image} alt=""/><div class="kicker">{a.section} · {a.type}</div><h3>{a.title}</h3><p>{a.dek}</p></a></article>)}</div></main></body></html>
+<InteriorShell
+  title={`${name} — Nuvellum`}
+  description={`Stories filed by ${name} for Nuvellum.`}
+  folio={[{ label: isDesk ? 'Desks' : 'Bylines', href: '/latest' }, { label: name }]}
+  folioNote={isDesk ? 'Desk archive' : 'Byline archive'}
+>
+  <div class="shell page">
+    <header class="desk-head">
+      <div>
+        <div class="byline-mark" aria-hidden="true" data-reveal>{initials(name)}</div>
+        <div class="desk-kicker" data-reveal style="--d:60ms"><span>✦ {isDesk ? 'Nuvellum desk' : 'Byline'}</span></div>
+        <h1 class="desk-title" data-reveal style="--d:120ms">{name}</h1>
+        <p class="desk-dek" data-reveal style="--d:180ms">
+          {isDesk
+            ? `The ${name} files ${sections.length > 1 ? `reporting across ${sections.slice(0, -1).join(', ')} and ${sections.at(-1)}` : `${sections[0] || 'Nuvellum'} reporting`}, published under the desk’s byline.`
+            : `${plural(articles.length, 'piece')} for Nuvellum${sections.length ? ` in ${sections.join(' and ')}` : ''}, labelled separately from the newsroom’s reporting.`}
+        </p>
+      </div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <dl class="facts">
+          <div><dt>Stories filed</dt><dd>{articles.length}</dd></div>
+          {latest && <div><dt>Latest</dt><dd>{longDate(latest)}</dd></div>}
+          {earliest && earliest !== latest && <div><dt>Earliest</dt><dd>{longDate(earliest)}</dd></div>}
+          <div><dt>Sections</dt><dd><span class="sections-list">{sections.map(s => <a href={sectionHref(s)}>{s}</a>)}</span></dd></div>
+        </dl>
+      </aside>
+    </header>
+
+    <div class="desk-body">
+      {latest && <Story article={latest} variant="front" eager />}
+
+      {body.length > 0 && (
+        <section class="block" aria-labelledby="work">
+          <div class="section-title" data-reveal><h2 id="work">Body of work</h2><span class="rule"></span><span class="note">{plural(body.length, 'earlier story', 'earlier stories')}, newest first</span></div>
+          <div class="rows">{body.map((a, i) => <Story article={a} variant="row" d={Math.min(i, 5) * 60} />)}</div>
+        </section>
+      )}
+
+      {alongside.length > 0 && (
+        <section class="block" aria-labelledby="alongside">
+          <div class="section-title" data-reveal><h2 id="alongside">Also in {sections.join(' & ')}</h2><span class="rule"></span><a href={sectionHref(sections[0])}>{sections[0]} section →</a></div>
+          <div class="rows">{alongside.map((a, i) => <Story article={a} variant="row" d={i * 60} />)}</div>
+        </section>
+      )}
+    </div>
+  </div>
+</InteriorShell>

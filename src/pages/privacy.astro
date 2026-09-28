@@ -1,5 +1,16 @@
 ---
-import SiteHead from '../components/SiteHead.astro';
-import '../styles/global.css';
+import InstitutionalPage from '../components/InstitutionalPage.astro';
 ---
-<!doctype html><html lang="en"><head><SiteHead title="Privacy — Nuvellum" description="This policy will be finalized around the analytics, newsletter and advertising tools actually deployed. The launch build intentionally avoids unnecessary trackers."/></head><body><div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header><main class="section wrap"><div class="section-head"><h2>Privacy</h2><a href="/">Home</a></div><div style="max-width:760px;font-family:Georgia,serif;font-size:21px;line-height:1.65"><p>This policy will be finalized around the analytics, newsletter and advertising tools actually deployed. The launch build intentionally avoids unnecessary trackers.</p></div></main></body></html>
+<InstitutionalPage
+  title="Privacy"
+  eyebrow="Legal"
+  description="Nuvellum’s privacy policy will be finalized around the analytics, newsletter and advertising tools actually deployed."
+  intro="The privacy policy should describe the systems that actually exist, not a hypothetical future stack."
+  note="This page is intentionally provisional while analytics, newsletter and advertising infrastructure are finalized."
+>
+  <p>The launch build intentionally avoids unnecessary trackers. This policy will be finalized around the analytics, newsletter, advertising and account tools that are actually deployed.</p>
+  <h2>Before additional services are enabled</h2>
+  <p>Any material collection of reader data should be documented here together with its purpose, retention and the service responsible for processing it.</p>
+  <h2>Changes to this page</h2>
+  <p>The final policy should be reviewed alongside the deployed production stack rather than copied from a generic publication template.</p>
+</InstitutionalPage>

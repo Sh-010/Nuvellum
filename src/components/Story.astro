@@ -1,0 +1,84 @@
+---
+// One story, set in the rhythm its position calls for. Variants:
+//   lead   – desk lead: wide image, large headline, dek
+//   wide   – sparse-desk lead: image beside the copy; slotted extras sit under the copy
+//   front  – section-front lead: image beside a very large headline
+//   second – secondary package item: small image beside headline
+//   trio   – text-led column item (optional square thumb)
+//   row    – continuing feed: date column, headline + dek, thumbnail
+import type { Article } from '../lib/articles';
+import { route, shortDate, dayMonth, weekday, isoDate } from '../lib/interior';
+
+interface Props { article: Article; variant?: 'lead' | 'wide' | 'front' | 'second' | 'trio' | 'row'; d?: number; thumb?: boolean; eager?: boolean }
+const { article: a, variant = 'row', d = 0, thumb = false, eager = false } = Astro.props;
+const href = route(a);
+const kicker = a.type && a.type !== 'News' ? `${a.section} · ${a.type}` : a.section;
+const style = d ? `--d:${d}ms` : undefined;
+const loading = eager ? 'eager' : 'lazy';
+---
+{variant === 'lead' && (
+  <article class="story lead" data-reveal style={style}>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <span class="eyebrow">{kicker}</span>
+    <h2 class="headline"><a href={href}>{a.title}</a></h2>
+    <p>{a.dek}</p>
+    <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+  </article>
+)}
+{variant === 'wide' && (
+  <section class="story pkg-wide" aria-label="Lead reporting">
+    <a class="media" href={href} tabindex="-1" aria-hidden="true" data-reveal style={style}><img src={a.image} alt="" loading={loading} /></a>
+    <div class="lead-copy" data-reveal style={`--d:${d + 110}ms`}>
+      <span class="eyebrow">{kicker}</span>
+      <h2 class="headline"><a href={href}>{a.title}</a></h2>
+      <p>{a.dek}</p>
+      <div class="story-meta">{a.author}<span>●</span><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+      {Astro.slots.has('default') && <div class="more"><slot /></div>}
+    </div>
+  </section>
+)}
+{variant === 'front' && (
+  <article class="story pkg-front" data-reveal style={style}>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <div>
+      <span class="chip">{a.type || a.section}</span>
+      <h2 class="headline"><a href={href}>{a.title}</a></h2>
+      <p>{a.dek}</p>
+      <div class="story-meta">{a.author}<span>●</span><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+    </div>
+  </article>
+)}
+{variant === 'second' && (
+  <article class="story second" data-reveal style={style}>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <div>
+      <span class="eyebrow">{kicker}</span>
+      <h3 class="headline"><a href={href}>{a.title}</a></h3>
+      <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+    </div>
+  </article>
+)}
+{variant === 'trio' && (
+  <article class="story" data-reveal style={style}>
+    <div class:list={[thumb && 'thumb']}>
+      <div>
+        <span class="eyebrow">{kicker}</span>
+        <h3 class="headline"><a href={href}>{a.title}</a></h3>
+      </div>
+      {thumb && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>}
+    </div>
+    <p>{a.dek}</p>
+    <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+  </article>
+)}
+{variant === 'row' && (
+  <article class="story row" data-reveal style={style}>
+    <div class="row-date"><strong>{dayMonth(a)}</strong>{weekday(a)}</div>
+    <div>
+      <span class="eyebrow">{kicker}</span>
+      <h3 class="headline"><a href={href}>{a.title}</a></h3>
+      <p>{a.dek}</p>
+    </div>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+  </article>
+)}

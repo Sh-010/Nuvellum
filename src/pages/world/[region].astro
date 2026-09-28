@@ -1,8 +1,13 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import '../../styles/global.css';
+import InteriorShell from '../../components/InteriorShell.astro';
+import Story from '../../components/Story.astro';
+import Locator from '../../components/Locator.astro';
+import Gazetteer from '../../components/Gazetteer.astro';
+import ExplorerBand from '../../components/ExplorerBand.astro';
 import { getArticles } from '../../lib/articles';
 import { REGIONS, regionBySlug, regionsForArticle } from '../../lib/geography.js';
+import { COUNTRIES, countrySlug, storiesForCountry } from '../../lib/countries.js';
+import { plural } from '../../lib/interior';
 
 export async function getStaticPaths() {
   return REGIONS.map(region => ({ params: { region: region.slug } }));
@@ -11,75 +16,90 @@ export async function getStaticPaths() {
 const slug = Astro.params.region!;
 const region = regionBySlug(slug);
 if (!region) throw new Error(`Unknown World Desk region: ${slug}`);
-const articles = (await getArticles()).filter(article => regionsForArticle(article).includes(slug));
+const all = await getArticles();
+const articles = all.filter(article => regionsForArticle(article).includes(slug));
+const countries = COUNTRIES.filter(country => country.region === slug);
+const counts = new Map(countries.map(c => [c.name, storiesForCountry(all, c.name).length]));
+const covered = countries.filter(c => (counts.get(c.name) || 0) > 0).sort((a, b) => (counts.get(b.name)! - counts.get(a.name)!) || a.name.localeCompare(b.name));
+const lead = articles[0];
+const secondary = articles.slice(1, 4);
+const rest = articles.slice(4);
+const worldDesk = all.filter(a => a.section === 'World' && !articles.includes(a)).slice(0, 4);
+const [first, second] = region.label.split(' & ');
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <SiteHead
-    title={`${region.label} — World Desk — Nuvellum`}
-    description={`Latest Nuvellum reporting connected to ${region.label}.`}
+<InteriorShell
+  title={`${region.label} — World Desk — Nuvellum`}
+  description={`Nuvellum's regional desk for ${region.label}: reporting, country desks and the World Explorer atlas.`}
+  active="world"
+  folio={[{ label: 'World', href: '/section/world' }, { label: 'World Desk', href: '/section/world' }, { label: region.label }]}
+  folioNote="Regional bureau"
+>
+  <div class="shell page">
+    <header class="desk-head">
+      <div>
+        <div class="desk-kicker" data-reveal><span>✦ World Desk</span><span class="sep">/</span><span>Regional bureau</span></div>
+        <h1 class="desk-title" data-reveal style="--d:80ms">{second ? <>{first} <em>&amp;</em> {second}</> : region.label}</h1>
+        <p class="desk-dek" data-reveal style="--d:160ms">Reporting filed from {region.label}, organised by country and connected to the World Explorer atlas.</p>
+      </div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <Locator region={slug} label={`${region.label} on the Nuvellum atlas`} caption={`${region.label} · Natural Earth 1:50m`} />
+        <dl class="facts">
+          <div><dt>Reports on this desk</dt><dd>{articles.length}</dd></div>
+          <div><dt>Countries &amp; territories</dt><dd>{countries.length}</dd></div>
+          <div><dt>With direct reporting</dt><dd>{covered.length}</dd></div>
+        </dl>
+      </aside>
+    </header>
+
+    <div class="desk-body">
+      {lead && secondary.length >= 2 && (
+        <section class="pkg-desk" aria-label="Lead reporting">
+          <Story article={lead} variant="lead" eager />
+          <div class="side">{secondary.map((a, i) => <Story article={a} variant="second" d={120 + i * 90} />)}</div>
+        </section>
+      )}
+      {lead && secondary.length < 2 ? (
+        <Story article={lead} variant="wide" eager>
+          {secondary.map(a => <Story article={a} variant="second" d={200} />)}
+          <div class="side-note" data-reveal style="--d:260ms">
+                <span class="eyebrow">Bureau notes</span>
+                <p>{covered.length ? <>Direct reporting so far names {covered.slice(0, 5).map((c, i) => <>{i > 0 && (i === Math.min(covered.length, 5) - 1 ? ' and ' : ', ')}<a href={`/country/${countrySlug(c.name)}`}>{c.name}</a></>)}.</> : <>Country desks below collect reporting as it is filed.</>} Every country and territory in this bureau has its own desk.</p>
+              </div>
+        </Story>
+      ) : !lead && (
+        <div class="quiet-note" data-reveal>
+          <span class="mark" aria-hidden="true">✦</span>
+          <div>
+            <h2>No reporting has been filed to this bureau yet.</h2>
+            <p>Stories are placed here when their geography names {region.label}. Until then, follow the <a href="/section/world">World section</a> or explore the region on the <a href="/world-explorer">World Explorer globe</a>.</p>
+          </div>
+        </div>
+      )}
+
+      {rest.length > 0 && (
+        <section class="block" aria-labelledby="continuing">
+          <div class="section-title" data-reveal><h2 id="continuing">Continuing coverage</h2><span class="rule"></span><span class="note">{plural(rest.length, 'further report')}</span></div>
+          <div class="rows">{rest.map((a, i) => <Story article={a} variant="row" d={Math.min(i, 5) * 60} />)}</div>
+        </section>
+      )}
+
+      {!lead && worldDesk.length > 0 && (
+        <section class="block" aria-labelledby="world-desk">
+          <div class="section-title" data-reveal><h2 id="world-desk">From the World desk</h2><span class="rule"></span><a href="/section/world">World section →</a></div>
+          <div class="rows">{worldDesk.map((a, i) => <Story article={a} variant="row" d={i * 60} />)}</div>
+        </section>
+      )}
+
+      <section class="block" aria-labelledby="gazetteer">
+        <div class="section-title" data-reveal><h2 id="gazetteer">Countries &amp; territories</h2><span class="rule"></span><span class="note">✦ marks direct reporting</span></div>
+        <Gazetteer countries={countries} counts={counts} />
+      </section>
+    </div>
+  </div>
+
+  <ExplorerBand
+    region={slug}
+    title={`${region.label} on the globe`}
+    text="Turn the World Explorer to this bureau to see where reporting has been filed, then open any country desk from the map."
   />
-</head>
-<body>
-<div class="topline"></div>
-<header>
-  <div class="mast wrap">
-    <a class="brand" href="/">NUVELLUM</a>
-    <div class="tag">Beyond the headline.</div>
-  </div>
-  <div class="nav-shell">
-    <nav class="nav wrap">
-      <a href="/section/world">World</a>
-      <a href="/section/business">Business</a>
-      <a href="/section/technology">Technology</a>
-      <a href="/section/science">Science</a>
-      <a href="/section/sports">Sports</a>
-      <a href="/section/culture">Culture</a>
-      <a href="/section/entertainment">Screen & Play</a>
-      <a href="/section/opinion">Opinion</a>
-    </nav>
-  </div>
-</header>
-
-<main class="section wrap world-region-page">
-  <div class="section-head">
-    <div>
-      <div class="kicker">WORLD DESK</div>
-      <h2>{region.label}</h2>
-    </div>
-    <a href="/world-explorer">World Explorer</a>
-  </div>
-
-  {articles.length > 0 ? (
-    <div class="cards">
-      {articles.map(article => (
-        <article class="card motion-story">
-          <a href={`/article/${article.slug}`}>
-            <img src={article.image} alt={article.imageAlt}/>
-            <div class="kicker">{article.section} · {article.type}</div>
-            <h3>{article.title}</h3>
-            <p>{article.dek}</p>
-          </a>
-        </article>
-      ))}
-    </div>
-  ) : (
-    <p class="world-region-empty">No published Nuvellum stories are currently classified in this geographic desk.</p>
-  )}
-</main>
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-brand">NUVELLUM</div>
-    <div class="tag">Beyond the headline.</div>
-  </div>
-</footer>
-</body>
-</html>
-
-<style>
-.world-region-page .section-head > div{display:grid;gap:4px}
-.world-region-page .section-head .kicker{margin:0}
-.world-region-empty{font-family:var(--serif);font-size:20px;color:var(--muted);padding:28px 0 60px}
-</style>
+</InteriorShell>

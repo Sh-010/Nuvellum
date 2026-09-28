@@ -1,8 +1,14 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
+import InteriorShell from '../../components/InteriorShell.astro';
+import Story from '../../components/Story.astro';
+import Locator from '../../components/Locator.astro';
+import Gazetteer from '../../components/Gazetteer.astro';
+import ExplorerBand from '../../components/ExplorerBand.astro';
 import { getArticles } from '../../lib/articles';
+import type { Article } from '../../lib/articles';
 import { COUNTRIES, countryBySlug, countrySlug, storiesForCountry } from '../../lib/countries.js';
 import { regionBySlug, regionsForArticle } from '../../lib/geography.js';
+import { plural } from '../../lib/interior';
 
 export async function getStaticPaths() {
   return COUNTRIES.map(country => ({ params: { country: countrySlug(country.name) } }));
@@ -11,96 +17,104 @@ export async function getStaticPaths() {
 const slug = Astro.params.country!;
 const country = countryBySlug(slug);
 if (!country) throw new Error(`Unknown country: ${slug}`);
-const region = regionBySlug(country.region);
-const articles = await getArticles();
-const direct = storiesForCountry(articles, country.name);
-const regional = articles
+const region = regionBySlug(country.region)!;
+const all = await getArticles();
+const direct: Article[] = storiesForCountry(all, country.name);
+const regional = all
   .filter(article => regionsForArticle(article).includes(country.region) && !direct.some(item => item.slug === article.slug))
   .slice(0, 6);
+const bureau = COUNTRIES.filter(item => item.region === country.region);
+const counts = new Map(bureau.map(c => [c.name, storiesForCountry(all, c.name).length]));
+const lead = direct[0];
+const secondary = direct.slice(1, 3);
+const rest = direct.slice(3);
+
+const STATUS: Record<string, string> = {
+  'un-member': 'UN member state',
+  'un-observer': 'UN General Assembly observer state',
+  'partially-recognized': 'State recognised by some UN members',
+  'de-facto': 'Self-declared state without UN-member recognition',
+  'disputed-territory': 'Territory whose sovereignty is contested',
+  dependency: 'Territory'
+};
+const status = country.status === 'dependency' && country.parent ? `Territory of ${country.parent}` : STATUS[country.status] || 'Territory';
+const titleSize = country.name.length > 26 ? 'font-size:clamp(46px,5.6vw,88px)' : country.name.length > 16 ? 'font-size:clamp(52px,7vw,112px)' : 'font-size:clamp(64px,10.5vw,168px)';
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <SiteHead
-    title={`${country.name} — World Explorer — Nuvellum`}
-    description={`Nuvellum reporting connected to ${country.name} and ${region?.label || 'its region'}.`}
-  />
-</head>
-<body>
-  <div class="country-shell">
-    <header>
-      <a class="brand" href="/">N<span>✦</span>UVELLUM</a>
-      <nav>
-        <a href="/world-explorer">World Explorer</a>
-        <a href={`/world/${country.region}`}>Regional desk</a>
-      </nav>
+<InteriorShell
+  title={`${country.name} — Country desk — Nuvellum`}
+  description={`Nuvellum reporting from ${country.name}, with regional context from the ${region.label} desk.`}
+  active="world"
+  folio={[{ label: 'World', href: '/section/world' }, { label: region.label, href: `/world/${region.slug}` }, { label: country.name }]}
+  folioNote="Country desk"
+>
+  <div class="shell page">
+    <header class="desk-head">
+      <div>
+        <div class="desk-kicker" data-reveal><span>✦ Country desk</span><span class="sep">/</span><a href={`/world/${region.slug}`}>{region.label}</a></div>
+        <h1 class="desk-title" data-reveal style={`--d:80ms;${titleSize}`}>{country.name}</h1>
+        <p class="desk-dek" data-reveal style="--d:160ms">{status} on Nuvellum’s {region.label} desk. {direct.length ? `${plural(direct.length, 'report')} name ${country.name} directly.` : `No report has named ${country.name} directly yet.`}</p>
+      </div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <Locator region={country.region} country={country} label={`${country.name} located within ${region.label}`} caption={`${country.name} · ${region.label}`} />
+        <dl class="facts">
+          <div><dt>Direct reporting</dt><dd>{direct.length}</dd></div>
+          <div><dt>Regional desk</dt><dd><a href={`/world/${region.slug}`}>{region.label}</a></dd></div>
+          <div><dt>Status</dt><dd style="font-size:14px">{country.status === 'un-member' ? 'UN member' : status}</dd></div>
+        </dl>
+      </aside>
     </header>
 
-    <main>
-      <section class="country-hero">
-        <div class="kicker">{region?.label || 'World Desk'}</div>
-        <h1>{country.name}</h1>
-        <p>{direct.length
-          ? `${direct.length} direct Nuvellum stor${direct.length === 1 ? 'y' : 'ies'} currently connected to this country.`
-          : 'No direct story is tagged here yet. Regional coverage is shown below.'}</p>
-        <div class="hero-actions">
-          <a class="primary" href="/world-explorer">Return to globe →</a>
-          <a href={`/world/${country.region}`}>Explore {region?.label || 'region'}</a>
-        </div>
-      </section>
-
-      {direct.length > 0 && (
-        <section class="stories">
-          <div class="section-head"><h2>Direct coverage</h2><span>{direct.length}</span></div>
-          <div class="story-grid">
-            {direct.map(article => (
-              <article>
-                <a class="image" href={`/article/${article.slug}`}><img src={article.image} alt={article.imageAlt || ''}/></a>
-                <div class="meta">{article.section} · {article.type}</div>
-                <h3><a href={`/article/${article.slug}`}>{article.title}</a></h3>
-                <p>{article.dek}</p>
-                <small>{article.date} · {article.readingTime}</small>
-              </article>
-            ))}
+    <div class="desk-body">
+      {lead && secondary.length >= 2 && (
+        <section class="pkg-desk" aria-label={`Reporting from ${country.name}`}>
+          <Story article={lead} variant="lead" eager />
+          <div class="side">{secondary.map((a, i) => <Story article={a} variant="second" d={120 + i * 90} />)}</div>
+        </section>
+      )}
+      {lead && secondary.length < 2 && (
+        <Story article={lead} variant="wide" eager>
+          {secondary.map(a => <Story article={a} variant="second" d={200} />)}
+          <div class="side-note" data-reveal style="--d:260ms">
+            <span class="eyebrow">On this desk</span>
+            <p>Reporting is filed here when a story names {country.name}. Wider coverage from {region.label} follows below.</p>
           </div>
+        </Story>
+      )}
+      {!lead && (
+        <div class="quiet-note" data-reveal>
+          <span class="mark" aria-hidden="true">✦</span>
+          <div>
+            <h2>No reporting from {country.name} has been filed yet.</h2>
+            <p>When a Nuvellum story names {country.name}, it will lead this desk. Meanwhile, the <a href={`/world/${region.slug}`}>{region.label} bureau</a> carries the region’s reporting{regional.length ? ', with the latest below' : ''}.</p>
+          </div>
+        </div>
+      )}
+
+      {rest.length > 0 && (
+        <section class="block" aria-labelledby="more-direct">
+          <div class="section-title" data-reveal><h2 id="more-direct">More from {country.name}</h2><span class="rule"></span><span class="note">{plural(rest.length, 'further report')}</span></div>
+          <div class="rows">{rest.map((a, i) => <Story article={a} variant="row" d={Math.min(i, 5) * 60} />)}</div>
         </section>
       )}
 
-      <section class="stories regional">
-        <div class="section-head"><h2>{direct.length ? 'More from the region' : 'Regional coverage'}</h2><span>{region?.label || ''}</span></div>
-        {regional.length ? (
-          <div class="story-grid">
-            {regional.map(article => (
-              <article>
-                <a class="image" href={`/article/${article.slug}`}><img src={article.image} alt={article.imageAlt || ''}/></a>
-                <div class="meta">{article.section} · {article.type}</div>
-                <h3><a href={`/article/${article.slug}`}>{article.title}</a></h3>
-                <p>{article.dek}</p>
-                <small>{article.date} · {article.readingTime}</small>
-              </article>
-            ))}
-          </div>
-        ) : <p class="empty">No regional stories are available yet.</p>}
+      {regional.length > 0 && (
+        <section class="block" aria-labelledby="regional">
+          <div class="section-title" data-reveal><h2 id="regional">Regional context</h2><span class="rule"></span><a href={`/world/${region.slug}`}>{region.label} desk →</a></div>
+          <div class="rows">{regional.map((a, i) => <Story article={a} variant="row" d={Math.min(i, 5) * 60} />)}</div>
+        </section>
+      )}
+
+      <section class="block" aria-labelledby="bureau">
+        <div class="section-title" data-reveal><h2 id="bureau">Also on the {region.label} desk</h2><span class="rule"></span><span class="note">✦ marks direct reporting</span></div>
+        <Gazetteer countries={bureau} counts={counts} current={country.name} />
       </section>
-    </main>
-
-    <footer>
-      <span>NUVELLUM · Beyond the headline.</span>
-      <a href="/">Home</a>
-    </footer>
+    </div>
   </div>
-</body>
-</html>
 
-<style is:global>
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url('/fonts/newsreader-normal-latin.woff2') format('woff2')}
-*{box-sizing:border-box}html{background:#f8f4ec}body{margin:0;background:#f8f4ec;color:#1d1814;font-family:'Newsreader',Georgia,serif}a{color:inherit;text-decoration:none}
-.country-shell{min-height:100vh;background-image:radial-gradient(circle at 80% 0,rgba(102,18,39,.055),transparent 30%)}
-header{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 clamp(22px,4vw,64px);border-bottom:1px solid #d9cfbf}.brand{font-size:29px;letter-spacing:.08em}.brand span{font-size:.5em;color:#74152d;vertical-align:top;margin:0 3px}nav{display:flex;gap:24px;font-size:13px}nav a:hover{color:#74152d}
-main{width:min(1280px,calc(100% - 44px));margin:auto}.country-hero{padding:70px 0 54px;border-bottom:1px solid #d9cfbf}.kicker,.meta{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#74152d}.country-hero h1{font-size:clamp(58px,8vw,112px);font-weight:300;line-height:.84;letter-spacing:-.045em;margin:14px 0 24px}.country-hero p{font-size:20px;line-height:1.42;color:#6f655d;max-width:680px}.hero-actions{display:flex;gap:16px;align-items:center;margin-top:28px;flex-wrap:wrap}.hero-actions a{font-size:13px}.hero-actions .primary{background:#671329;color:#f7eee3;padding:12px 16px}
-.stories{padding:42px 0}.regional{border-top:1px solid #d9cfbf}.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:24px}.section-head h2{font-size:35px;font-weight:400;margin:0;color:#671329}.section-head span{font-size:11px;color:#7b7067;text-transform:uppercase;letter-spacing:.1em}.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}.story-grid article{border-top:1px solid #2c251f;padding-top:10px}.image{display:block;overflow:hidden;background:#ded6ca}.image img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:sepia(.18) saturate(.82);transition:transform .55s ease}.story-grid article:hover .image img{transform:scale(1.025)}.meta{margin-top:12px}.story-grid h3{font-size:26px;line-height:1.04;font-weight:400;margin:7px 0}.story-grid p{font-size:15px;line-height:1.4;color:#6d635b;margin:0 0 12px}.story-grid small{font-size:11px;color:#847970}.empty{color:#746960;font-size:17px;padding:18px 0 50px}
-footer{min-height:72px;background:#000;color:#b7aba0;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 clamp(22px,4vw,64px);font-size:11px}
-footer a{color:#eee4d8}
-@media(max-width:850px){.story-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){header{align-items:flex-start;flex-direction:column;padding-top:18px;padding-bottom:18px}nav{gap:14px;flex-wrap:wrap}.country-hero{padding-top:48px}.story-grid{grid-template-columns:1fr}.country-hero h1{font-size:58px}footer{padding-top:18px;padding-bottom:18px;align-items:flex-start;flex-direction:column}}
-</style>
+  <ExplorerBand
+    region={country.region}
+    country={country}
+    title={`Find ${country.name} on the globe`}
+    text={`The World Explorer places ${country.name} among the ${bureau.length} countries and territories of the ${region.label} desk. Turn the globe to move between neighbouring desks.`}
+  />
+</InteriorShell>

@@ -1,0 +1,25 @@
+---
+// The bridge from a desk into the World Explorer globe: a black band in the same register as
+// the homepage's Screen & Play, with the desk's locator and the eight bureaus.
+import Locator from './Locator.astro';
+import { REGIONS } from '../lib/geography.js';
+
+interface Props { region: string; country?: any; title: string; text: string }
+const { region, country = null, title, text } = Astro.props;
+---
+<section class="explorer-band" aria-labelledby="explorer-heading">
+  <div class="shell explorer-in">
+    <div data-reveal>
+      <span class="eyebrow">✦ World Explorer</span>
+      <h2 id="explorer-heading">{title}</h2>
+      <p>{text}</p>
+      <a class="aside-link" href="/world-explorer">Open the globe <span aria-hidden="true">→</span></a>
+      <nav class="explorer-regions" aria-label="Regional desks">
+        {REGIONS.map(r => <a href={`/world/${r.slug}`} aria-current={r.slug === region && !country ? 'page' : undefined}>{r.label}</a>)}
+      </nav>
+    </div>
+    <div class="explorer-map" data-reveal style="--d:120ms">
+      <Locator region={region} country={country} label={country ? `${country.name} within its regional desk` : 'Regional desk locator'} />
+    </div>
+  </div>
+</section>

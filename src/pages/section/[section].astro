@@ -1,17 +1,104 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import '../../styles/global.css';
+import InteriorShell from '../../components/InteriorShell.astro';
+import Story from '../../components/Story.astro';
 import { getArticles, slugify } from '../../lib/articles';
+import { REGIONS, storiesByRegion } from '../../lib/geography.js';
+import { SECTION_DEKS, longDate, plural } from '../../lib/interior';
+
 export async function getStaticPaths(){
- const articles=await getArticles();
- const sections=[...new Set([...articles.map(a=>slugify(a.section)),'entertainment','crime'])];
- return sections.map(section=>({params:{section}}));
+  const articles = await getArticles();
+  const sections = [...new Set([...articles.map(a => slugify(a.section)), 'entertainment', 'crime'])];
+  return sections.map(section => ({ params: { section } }));
 }
-const key=Astro.params.section!;
-const articles=(await getArticles()).filter(a=>slugify(a.section)===key || (key==='entertainment' && ['anime','film-tv','gaming'].includes(slugify(a.section))));
-const label=key==='entertainment'?'Screen & Play':key==='crime'?'Crime':(articles[0]?.section || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()));
+
+const key = Astro.params.section!;
+const everything = await getArticles();
+const SCREEN = ['anime', 'film-tv', 'gaming'];
+const all = everything.filter(a => slugify(a.section) === key || (key === 'entertainment' && SCREEN.includes(slugify(a.section))));
+const label = key === 'entertainment' ? 'Screen & Play' : key === 'crime' ? 'Crime' : (all[0]?.section || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()));
+const lead = all[0];
+const trio = all.slice(1, 4);
+const rest = all.slice(4);
+const elsewhere = all.length < 5 ? everything.filter(a => !all.includes(a)).slice(0, 5 - Math.min(all.length, 4) + 1) : [];
+const types = [...new Set(all.map(a => a.type).filter(Boolean))];
+const regionCounts = key === 'world' ? storiesByRegion(everything) : null;
+const subsections = key === 'entertainment'
+  ? [['Film & TV', '/section/film-tv'], ['Anime', '/section/anime'], ['Gaming', '/section/gaming']].map(([name, href]) => ({ name, href, n: everything.filter(a => a.section === name).length }))
+  : [];
+const active = ['world','business','technology','culture','sports','opinion'].includes(key) ? key : SCREEN.includes(key) || key === 'entertainment' ? 'entertainment' : '';
+const [first, second] = label.split(' & ');
 ---
-<!doctype html><html lang="en"><head><SiteHead title={`${label} — Nuvellum`} description={`Latest ${label} reporting and analysis from Nuvellum.`}/></head><body>
-<div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div><div class="nav-shell"><nav class="nav wrap"><a href="/section/world">World</a><a href="/section/business">Business</a><a href="/section/technology">Technology</a><a href="/section/science">Science</a><a href="/section/sports">Sports</a><a href="/section/culture">Culture</a><a href="/section/entertainment">Screen & Play</a><a href="/section/opinion">Opinion</a></nav></div></header>
-<main class="section wrap"><div class="section-head"><h2>{label}</h2><a href="/">Home</a></div><div class="cards">{articles.map(a=><article class="card motion-story"><a href={`/article/${a.slug}`}><img src={a.image} alt={a.imageAlt}/><div class="kicker">{a.type}</div><h3>{a.title}</h3><p>{a.dek}</p></a></article>)}</div>{articles.length===0 && <p>No published stories in this section yet.</p>}</main>
-<footer class="footer"><div class="wrap"><div class="footer-brand">NUVELLUM</div><div class="tag">Beyond the headline.</div></div></footer></body></html>
+<InteriorShell
+  title={`${label} — Nuvellum`}
+  description={SECTION_DEKS[key] || `${label} reporting from Nuvellum.`}
+  active={active}
+  folio={[{ label: 'Sections', href: '/latest' }, ...(SCREEN.includes(key) ? [{ label: 'Screen & Play', href: '/section/entertainment' }] : []), { label }]}
+  folioNote="Section front"
+>
+  <div class="shell page">
+    <header class="desk-head">
+      <div>
+        <div class="desk-kicker" data-reveal><span>✦ Section</span>{SCREEN.includes(key) && <><span class="sep">/</span><a href="/section/entertainment">Screen &amp; Play</a></>}</div>
+        <h1 class="desk-title" data-reveal style="--d:80ms">{second ? <>{first} <em>&amp;</em> {second}</> : label}</h1>
+        <p class="desk-dek" data-reveal style="--d:160ms">{SECTION_DEKS[key] || `${label} reporting from Nuvellum.`}</p>
+      </div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <dl class="facts">
+          <div><dt>In this section</dt><dd>{plural(all.length, 'story', 'stories')}</dd></div>
+          {lead && <div><dt>Latest filing</dt><dd>{longDate(lead)}</dd></div>}
+          {types.length > 0 && <div><dt>Formats</dt><dd style="font-size:15px">{types.join(' · ')}</dd></div>}
+          {subsections.map(s => <div><dt><a href={s.href}>{s.name}</a></dt><dd>{s.n}</dd></div>)}
+        </dl>
+        {key === 'world' && <a class="aside-link" href="/world-explorer">Open the World Explorer <span aria-hidden="true">→</span></a>}
+        {key === 'opinion' && <a class="aside-link quiet" href="/standards">How opinion is labelled <span aria-hidden="true">→</span></a>}
+      </aside>
+    </header>
+
+    <div class="desk-body">
+      {lead ? <Story article={lead} variant="front" eager /> : (
+        <div class="quiet-note" data-reveal>
+          <span class="mark" aria-hidden="true">✦</span>
+          <div>
+            <h2>Nothing has been published in {label} yet.</h2>
+            <p>This section front fills as stories are filed. The latest reporting from across Nuvellum follows, and the full edition is on the <a href="/latest">Latest</a> page.</p>
+          </div>
+        </div>
+      )}
+
+      {trio.length > 0 && (
+        <section class="trio" aria-label={`More from ${label}`}>
+          {trio.map((a, i) => <Story article={a} variant="trio" thumb={i === 0} d={i * 90} />)}
+        </section>
+      )}
+
+      {regionCounts && (
+        <section class="block" aria-labelledby="bureaus">
+          <div class="section-title" data-reveal><h2 id="bureaus">Regional bureaus</h2><span class="rule"></span><a href="/world-explorer">World Explorer →</a></div>
+          <div class="bureaus">
+            {REGIONS.map((r, i) => (
+              <a class="bureau" href={`/world/${r.slug}`} data-reveal style={`--d:${(i % 4) * 70}ms`}>
+                <span class="eyebrow">World Desk</span>
+                <h3>{r.label}</h3>
+                <span class="story-meta">{plural(regionCounts.get(r.slug)?.length || 0, 'report')}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {rest.length > 0 && (
+        <section class="block" aria-labelledby="continuing">
+          <div class="section-title" data-reveal><h2 id="continuing">Continuing coverage</h2><span class="rule"></span><span class="note">{plural(rest.length, 'further story', 'further stories')}</span></div>
+          <div class="rows">{rest.map((a, i) => <Story article={a} variant="row" d={Math.min(i, 5) * 60} />)}</div>
+        </section>
+      )}
+
+      {elsewhere.length > 0 && (
+        <section class="block" aria-labelledby="elsewhere">
+          <div class="section-title" data-reveal><h2 id="elsewhere">Elsewhere in Nuvellum</h2><span class="rule"></span><a href="/latest">The full edition →</a></div>
+          <div class="rows">{elsewhere.map((a, i) => <Story article={a} variant="row" d={i * 60} />)}</div>
+        </section>
+      )}
+    </div>
+  </div>
+</InteriorShell>

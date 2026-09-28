@@ -1,0 +1,25 @@
+---
+// Desk locator: a crop of the shared Natural Earth atlas (/atlas.svg). The desk's region is
+// set in a darker tint; a country, when given, in wine. Point-only entities get a marked dot.
+import { regionViewBox, graticule, project } from '../lib/interior';
+import { countrySlug } from '../lib/countries.js';
+
+interface Props { region: string; country?: { name: string; pointOnly?: boolean; lon: number; lat: number } | null; label?: string; caption?: string }
+const { region, country = null, label, caption } = Astro.props;
+const view = regionViewBox(region);
+const dot = country ? project(country.lon, country.lat) : null;
+const r = Math.max(view.w, view.h) / 90;
+---
+<figure class="locator-figure" style="margin:0">
+  <svg class="locator" viewBox={view.box} role="img" aria-label={label || 'Locator map'} preserveAspectRatio="xMidYMid meet">
+    <path class="l-grat" d={graticule(region)} />
+    <use class="l-world" href="/atlas.svg#world" />
+    <use class="l-region" href={`/atlas.svg#r-${region}`} />
+    {country && !country.pointOnly && <use class="l-focus" href={`/atlas.svg#c-${countrySlug(country.name)}`} />}
+    {dot && <>
+      <circle class="l-ring" cx={dot[0].toFixed(2)} cy={dot[1].toFixed(2)} r={(r * 2.6).toFixed(2)} />
+      {country?.pointOnly && <circle class="l-point" cx={dot[0].toFixed(2)} cy={dot[1].toFixed(2)} r={r.toFixed(2)} />}
+    </>}
+  </svg>
+  {caption && <figcaption class="locator-caption">{caption}</figcaption>}
+</figure>

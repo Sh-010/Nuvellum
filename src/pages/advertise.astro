@@ -1,5 +1,17 @@
 ---
-import SiteHead from '../components/SiteHead.astro';
-import '../styles/global.css';
+import InstitutionalPage from '../components/InstitutionalPage.astro';
 ---
-<!doctype html><html lang="en"><head><SiteHead title="Advertise — Nuvellum" description="Nuvellum is being designed for premium display placements, section sponsorships, newsletter sponsorships and clearly labeled branded content."/></head><body><div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header><main class="section wrap"><div class="section-head"><h2>Advertise</h2><a href="/">Home</a></div><div style="max-width:760px;font-family:Georgia,serif;font-size:21px;line-height:1.65"><p>Nuvellum is being designed for premium display placements, section sponsorships, newsletter sponsorships and clearly labeled branded content.</p></div></main></body></html>
+<InstitutionalPage
+  title="Advertise"
+  eyebrow="Commercial"
+  description="Nuvellum is being designed for premium display placements, sponsorships, newsletter sponsorships and clearly labeled branded content."
+  intro="Commercial products are being designed around clear placement, transparent labeling and separation from editorial judgment."
+  note="Availability, specifications, pricing and audience reporting will be published only when the corresponding products are live."
+>
+  <h2>Planned formats</h2>
+  <p>Nuvellum is being designed for premium display placements, section sponsorships, newsletter sponsorships and clearly labeled branded content.</p>
+  <h2>Editorial separation</h2>
+  <p>Payment does not buy favorable coverage, story suppression or undisclosed editorial treatment. Sponsored or branded material should be recognizable as commercial material before a reader engages with it.</p>
+  <h2>Measurement</h2>
+  <p>Commercial materials should describe the metrics the publication can actually measure. Nuvellum does not promise traffic, engagement or outcomes that cannot be supported by its analytics.</p>
+</InstitutionalPage>
