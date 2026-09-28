@@ -43,9 +43,11 @@ test('tracking links identify platform, social medium and article slug', () => {
 
 test('text-led story gets feed cards and parallel short-video requirements', () => {
   const r = buildDistributionDraft(story);
-  assert.equal(r.version, 2);
-  assert.equal(r.tracks.feed.x.media.mode, 'text-card-needed');
-  assert.equal(r.tracks.feed.instagram.media.mode, 'text-card-needed');
+  assert.equal(r.version, 3);
+  assert.equal(r.tracks.feed.x.media.mode, 'social-card');
+  assert.equal(r.tracks.feed.x.media.variant, 'square');
+  assert.equal(r.tracks.feed.instagram.media.mode, 'social-card');
+  assert.equal(r.tracks.feed.instagram.media.variant, 'portrait');
   assert.equal(r.tracks.video.x.media.mode, 'video-needed');
   assert.equal(r.tracks.video.facebook.media.mode, 'video-needed');
   assert.equal(r.tracks.video.instagram.media.mode, 'video-needed');
