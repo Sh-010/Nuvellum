@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { loadStory } from '../shared/article.mjs';
-import { templateCopy, trackedUrl, validateCopy } from '../distribution/copy.mjs';
+import { templateFeedCopy, templateVideoCopy, trackedUrl, validateCopy } from '../distribution/copy.mjs';
 import { buildDistributionDraft } from '../distribution/engine.mjs';
 
 const slug = 'pokemon-tcg-s-next-big-set-available-weeks-before-official-release';
@@ -14,14 +14,23 @@ test('published article loads into a safe distribution payload', () => {
   assert.ok(story.url.endsWith('/article/' + slug));
 });
 
-test('platform templates are within limits and contain tracked links where required', () => {
-  const copy = templateCopy(story);
-  for (const [platform, text] of Object.entries(copy)) assert.deepEqual(validateCopy(platform, text, story), [], platform + ': ' + text);
+test('feed templates are platform-specific, valid and tracked where links are supported', () => {
+  const copy = templateFeedCopy(story);
+  for (const [platform, value] of Object.entries(copy)) assert.deepEqual(validateCopy(platform, value, story), [], platform);
   assert.match(copy.x, /utm_source=x/);
   assert.match(copy.linkedin, /utm_source=linkedin/);
   assert.ok(!copy.instagram.includes('utm_source=instagram'));
-  assert.ok(!copy.tiktok.includes('utm_source=tiktok'));
+});
+
+test('video templates cover X, Facebook, Instagram, TikTok and YouTube Shorts', () => {
+  const copy = templateVideoCopy(story);
+  for (const [platform, value] of Object.entries(copy)) assert.deepEqual(validateCopy(platform, value, story), [], platform);
+  assert.deepEqual(Object.keys(copy), ['x','facebook','instagram','tiktok','youtube']);
+  assert.match(copy.x, /utm_source=x/);
+  assert.match(copy.facebook, /utm_source=facebook/);
   assert.match(copy.youtube.description, /utm_source=youtube/);
+  assert.ok(!copy.instagram.includes('utm_source=instagram'));
+  assert.ok(!copy.tiktok.includes('utm_source=tiktok'));
 });
 
 test('tracking links identify platform, social medium and article slug', () => {
@@ -32,12 +41,16 @@ test('tracking links identify platform, social medium and article slug', () => {
   assert.equal(u.searchParams.get('utm_content'), slug);
 });
 
-test('text-led stories request a designed social card instead of fake story art', () => {
+test('text-led story gets feed cards and parallel short-video requirements', () => {
   const r = buildDistributionDraft(story);
-  assert.equal(r.drafts.x.media.mode, 'text-card-needed');
-  assert.equal(r.drafts.instagram.media.mode, 'text-card-needed');
-  assert.equal(r.drafts.tiktok.media.mode, 'video-needed');
-  assert.equal(r.drafts.youtube.media.mode, 'video-needed');
-  assert.ok(r.drafts.youtube.title.length <= 100);
+  assert.equal(r.version, 2);
+  assert.equal(r.tracks.feed.x.media.mode, 'text-card-needed');
+  assert.equal(r.tracks.feed.instagram.media.mode, 'text-card-needed');
+  assert.equal(r.tracks.video.x.media.mode, 'video-needed');
+  assert.equal(r.tracks.video.facebook.media.mode, 'video-needed');
+  assert.equal(r.tracks.video.instagram.media.mode, 'video-needed');
+  assert.equal(r.tracks.video.tiktok.media.mode, 'video-needed');
+  assert.equal(r.tracks.video.youtube.media.mode, 'video-needed');
+  assert.ok(r.tracks.video.youtube.title.length <= 100);
   assert.equal(r.mode, 'dry-run');
 });
