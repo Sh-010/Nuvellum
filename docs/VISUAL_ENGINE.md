@@ -96,3 +96,21 @@ After repository policy is stable:
 8. Publication gate validates visual metadata before merge.
 
 The live n8n workflow stays untouched until this repository phase passes review.
+
+
+## Art-direction target
+
+The visual reference is not merely “relevant imagery.” Nuvellum should read as a premium editorial publication with deliberate art direction.
+
+Candidate ranking therefore favors:
+
+- strong wide composition suitable for lead crops;
+- institutional, architectural, geographic, industrial, cultural or human subjects with visual weight;
+- dramatic but credible natural light;
+- texture, depth and restrained atmosphere;
+- imagery that sits comfortably beside the ivory / wine / black editorial palette;
+- photographs that feel selected by an art desk rather than pulled from a generic stock library.
+
+The engine penalizes generic stock tropes such as handshakes, laptops, call-centre imagery, generic business meetings and glowing “AI face” visuals.
+
+Consistency should come from **editorial taste**, not from forcing every image into the same dark treatment.
