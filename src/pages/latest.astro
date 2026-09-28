@@ -1,45 +1,87 @@
 ---
 import InteriorShell from '../components/InteriorShell.astro';
-import StoryCard from '../components/StoryCard.astro';
 import { getArticles, slugify } from '../lib/articles';
+import { byDay, route, dayMonth, weekday, longDate, isoDate, plural } from '../lib/interior';
 
 const articles = await getArticles();
-const sections = [...new Map(articles.map(article => [slugify(article.section), article.section])).entries()];
+const days = byDay(articles);
+const sections = [...new Map(articles.map(a => [slugify(a.section), a.section])).entries()]
+  .map(([key, label]) => ({ key, label, n: articles.filter(a => slugify(a.section) === key).length }))
+  .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
 ---
-<InteriorShell title="Latest — Nuvellum" description="The latest published reporting, analysis and ideas from Nuvellum." active="latest">
-  <div class="int-wrap int-page">
-    <header class="int-page-head" data-reveal>
+<InteriorShell
+  title="Latest — Nuvellum"
+  description="Every published Nuvellum story, newest first, grouped by day of publication."
+  active="latest"
+  folio={[{ label: 'Latest' }]}
+  folioNote="Edition index"
+>
+  <div class="shell page">
+    <header class="desk-head">
       <div>
-        <div class="int-page-kicker">Chronological edition</div>
-        <h1 class="int-page-title">Latest</h1>
-        <p class="int-page-dek">Every published Nuvellum story in reverse chronological order, without popularity weighting.</p>
+        <div class="desk-kicker" data-reveal><span>✦ The edition index</span></div>
+        <h1 class="desk-title" data-reveal style="--d:80ms">Latest</h1>
+        <p class="desk-dek" data-reveal style="--d:160ms">Every published Nuvellum story, newest first, set out by the day it was filed.</p>
       </div>
-      <div class="int-page-note">{articles.length} published {articles.length === 1 ? 'story' : 'stories'} in the current archive.</div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <dl class="facts">
+          <div><dt>Stories in the index</dt><dd>{articles.length}</dd></div>
+          <div><dt>Days of publication</dt><dd>{days.length}</dd></div>
+          {articles[0] && <div><dt>Latest filing</dt><dd>{longDate(articles[0])}</dd></div>}
+        </dl>
+      </aside>
     </header>
 
-    <div class="int-filters" role="group" aria-label="Filter latest stories by section">
-      <button class="int-filter active" type="button" data-filter="all">All</button>
-      {sections.map(([key,label]) => <button class="int-filter" type="button" data-filter={key}>{label}</button>)}
-    </div>
+    <div class="desk-body">
+      <div class="filters" role="toolbar" aria-label="Filter by section" data-reveal>
+        <button type="button" data-filter="all" aria-pressed="true">All<sup>{articles.length}</sup></button>
+        {sections.map(s => <button type="button" data-filter={s.key} aria-pressed="false">{s.label}<sup>{s.n}</sup></button>)}
+      </div>
 
-    <div class="int-feed" id="latestFeed">
-      {articles.map((article,index) => (
-        <div class="int-latest-row" data-section={slugify(article.section)}>
-          <StoryCard article={article} variant="row" index={index + 1} />
-        </div>
+      {days.map(group => (
+        <section class="day" aria-label={longDate(group[0])}>
+          <div class="day-label" data-reveal>
+            <strong>{dayMonth(group[0])}</strong>
+            <span>{weekday(group[0])}</span>
+            <div class="day-count" data-count>{plural(group.length, 'story', 'stories')}</div>
+          </div>
+          <div>
+            {group.map((a, i) => (
+              <article class="story entry" data-section={slugify(a.section)} data-reveal style={`--d:${Math.min(i, 6) * 55}ms`}>
+                <span class="eyebrow">{a.section}</span>
+                <div>
+                  <h3 class="headline"><a href={route(a)}>{a.title}</a></h3>
+                  <p>{a.dek}</p>
+                </div>
+                <div class="entry-meta"><time datetime={isoDate(a)}>{a.type || 'News'}</time> · {a.readingTime}</div>
+              </article>
+            ))}
+          </div>
+        </section>
       ))}
     </div>
   </div>
 
   <script is:inline>
-    (() => {
-      const buttons = [...document.querySelectorAll('[data-filter]')];
-      const rows = [...document.querySelectorAll('.int-latest-row')];
-      buttons.forEach(button => button.addEventListener('click', () => {
-        const key = button.dataset.filter;
-        buttons.forEach(item => item.classList.toggle('active', item === button));
-        rows.forEach(row => { row.hidden = key !== 'all' && row.dataset.section !== key; });
-      }));
-    })();
+  (()=>{
+    const buttons=[...document.querySelectorAll('[data-filter]')];
+    const days=[...document.querySelectorAll('.day')];
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    buttons.forEach(btn=>btn.addEventListener('click',()=>{
+      const f=btn.dataset.filter;
+      buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+      days.forEach(day=>{
+        const entries=[...day.querySelectorAll('.entry')];
+        let shown=0;
+        entries.forEach(e=>{
+          const on=f==='all'||e.dataset.section===f;
+          e.classList.toggle('is-hidden',!on);
+          if(on){e.classList.add('is-visible');if(!reduce)e.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:520,delay:Math.min(shown,6)*45,easing:'cubic-bezier(.22,.61,.36,1)',fill:'backwards'});shown++}
+        });
+        day.classList.toggle('is-empty',!shown);
+        const c=day.querySelector('[data-count]');if(c)c.textContent=shown+(shown===1?' story':' stories');
+      });
+    }));
+  })();
   </script>
 </InteriorShell>

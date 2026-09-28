@@ -1,36 +1,80 @@
 ---
+// A–Z headline archive, reached from the letters of the NUVELLUM wordmark. Keeps the
+// established archive masthead (wine N✦UVELLUM wordmark) inside the interior system.
 import InteriorShell from '../../components/InteriorShell.astro';
-import StoryCard from '../../components/StoryCard.astro';
 import { getArticles } from '../../lib/articles';
+import { route, shortDate, isoDate, plural } from '../../lib/interior';
 
 export async function getStaticPaths() {
   return 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter => ({ params: { letter } }));
 }
 
+const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const letter = String(Astro.params.letter || '').toLowerCase();
-const articles = (await getArticles()).filter(article => article.title.trim().toLowerCase().startsWith(letter));
+const all = await getArticles();
+const initial = (a: { title: string }) => a.title.trim().toLowerCase()[0];
+const counts = new Map(ALPHABET.map(l => [l, all.filter(a => initial(a) === l).length]));
+const articles = all.filter(article => article.title.trim().toLowerCase().startsWith(letter));
 const upper = letter.toUpperCase();
+const i = ALPHABET.indexOf(letter);
+const near = ALPHABET
+  .map((l, j) => ({ l, dist: Math.abs(j - i), n: counts.get(l) || 0 }))
+  .filter(x => x.n > 0 && x.l !== letter)
+  .sort((a, b) => a.dist - b.dist)
+  .slice(0, 4)
+  .sort((a, b) => a.l.localeCompare(b.l));
 ---
 <InteriorShell
   title={`Headlines beginning with ${upper} — Nuvellum`}
   description={`Published Nuvellum headlines beginning with the letter ${upper}.`}
+  masthead="archive"
+  folio={[{ label: 'A–Z headlines', href: '/headlines/a' }, { label: `Letter ${upper}` }]}
+  folioNote="Headline archive"
 >
-  <div class="int-wrap int-page">
-    <header data-reveal>
-      <div class="int-page-kicker">A–Z headline archive</div>
-      <h1 class="int-letter">{upper}</h1>
-      <nav class="int-alpha" aria-label="Browse headlines by letter">
-        {'abcdefghijklmnopqrstuvwxyz'.split('').map(item => (
-          <a class:list={[item === letter && 'active']} href={`/headlines/${item}`} aria-current={item === letter ? 'page' : undefined}>{item.toUpperCase()}</a>
-        ))}
-      </nav>
-    </header>
+  <div class="shell page">
+    <nav class="az-nav" aria-label="Browse headlines by letter" data-reveal>
+      {ALPHABET.map(l => (
+        <a href={`/headlines/${l}`} class:list={[(counts.get(l) || 0) === 0 && 'is-empty']} aria-current={l === letter ? 'page' : undefined} title={plural(counts.get(l) || 0, 'headline')}>{l.toUpperCase()}</a>
+      ))}
+    </nav>
 
-    <div class="int-section-label"><h2>{articles.length ? `Headlines beginning with ${upper}` : `No ${upper} headlines yet`}</h2><span>{articles.length} results</span></div>
-    {articles.length ? (
-      <div class="int-feed">{articles.map((article,index)=><StoryCard article={article} variant="row" index={index+1}/>)}</div>
-    ) : (
-      <div class="int-empty">No published Nuvellum headlines currently begin with {upper}.</div>
-    )}
+    <div class="az">
+      <div class="az-letter-col">
+        <span class="az-letter" data-reveal aria-hidden="true">{upper}</span>
+        <div class="az-letter-caption" data-reveal style="--d:200ms">
+          <span><strong>{articles.length}</strong> {articles.length === 1 ? 'headline' : 'headlines'}</span>
+          <span>beginning with {upper}</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="desk-kicker" data-reveal style="--d:120ms"><span>✦ A–Z headline archive</span></div>
+        <h1 class="sr-only">Headlines beginning with {upper}</h1>
+        {articles.length ? (
+          <ol class="az-list" style="list-style:none;margin:0;padding:0">
+            {articles.map((a, n) => (
+              <li class="story az-entry" data-reveal style={`--d:${160 + Math.min(n, 6) * 60}ms`}>
+                <span class="az-num">{String(n + 1).padStart(2, '0')}</span>
+                <div>
+                  <span class="eyebrow">{a.section}{a.type && a.type !== 'News' ? ` · ${a.type}` : ''}</span>
+                  <h2 class="headline"><a href={route(a)}><span class="initial">{a.title.trim()[0]}</span>{a.title.trim().slice(1)}</a></h2>
+                  <p>{a.dek}</p>
+                  <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
+                </div>
+                <a class="media" href={route(a)} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading="lazy" /></a>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <div class="az-empty" data-reveal style="--d:160ms">
+            <h2>No published headline begins with {upper} yet.</h2>
+            <p>The archive grows with every edition. The nearest letters with published headlines:</p>
+            <div class="az-near">
+              {near.map(x => <a href={`/headlines/${x.l}`}>{x.l.toUpperCase()} <small>{plural(x.n, 'headline')}</small></a>)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   </div>
 </InteriorShell>

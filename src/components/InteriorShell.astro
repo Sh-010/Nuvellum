@@ -1,125 +1,194 @@
 ---
+// Shared frame for every interior page: the v6 homepage masthead, ticker and footer, a folio
+// (running head) and the motion/theme/search behaviour. The brand zone markup is the approved
+// homepage monogram with its letter reveal; A–Z archives use the established archive wordmark.
 import SiteHead from './SiteHead.astro';
-import '../styles/global.css';
+import SiteFooter from './SiteFooter.astro';
 import '../styles/interior.css';
+import { getArticles } from '../lib/articles';
+import { route } from '../lib/interior';
 
+type Crumb = { label: string; href?: string };
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  active?: string;
+  folio?: Crumb[];
+  folioNote?: string;
+  masthead?: 'home' | 'archive';
+  newsletter?: boolean;
+}
 const {
   title = 'Nuvellum',
   description = 'Beyond the headline.',
   image = '/images/world.svg',
   canonical,
-  active = ''
+  active = '',
+  folio = [],
+  folioNote,
+  masthead = 'home',
+  newsletter = true
 } = Astro.props;
 
-const nav = [
+const nav: [string, string, string][] = [
   ['world', 'World', '/section/world'],
   ['business', 'Business', '/section/business'],
   ['technology', 'Technology', '/section/technology'],
-  ['science', 'Science', '/section/science'],
-  ['sports', 'Sports', '/section/sports'],
   ['culture', 'Culture', '/section/culture'],
   ['entertainment', 'Screen & Play', '/section/entertainment'],
+  ['sports', 'Sports', '/section/sports'],
   ['opinion', 'Opinion', '/section/opinion']
 ];
+const letters: [string, string][] = [['n', 'N'], ['u1', 'U'], ['v', 'V'], ['e', 'E'], ['l1', 'L'], ['l2', 'L'], ['u2', 'U'], ['m', 'M']];
+const ticker = (await getArticles()).slice(0, 8);
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <SiteHead title={title} description={description} image={image} canonical={canonical} />
+  <script is:inline>try{if('IntersectionObserver' in window)document.documentElement.classList.add('motion-ready')}catch(e){}</script>
 </head>
-<body class="interior-body">
-  <script is:inline>
-    try { if (localStorage.getItem('nuvellum-theme') === 'night') document.body.classList.add('night'); } catch {}
-  </script>
-  <div class="int-progress" id="intProgress"></div>
-  <div class="topline"></div>
-
-  <header class="int-header">
-    <div class="int-utility int-wrap">
-      <a href="/" class="int-utility-home">Nuvellum Home</a>
-      <span>Independent international publication</span>
-      <button class="int-theme" id="intTheme" type="button" aria-pressed="false">Night</button>
-    </div>
-
-    <div class="int-mast int-wrap">
-      <a class="int-brand" href="/" aria-label="Nuvellum home">
-        <span class="int-brand-line">
-          <span class="int-brand-n">N<span>✦</span></span><span class="int-brand-rest">UVELLUM</span>
-        </span>
-        <span class="int-tag">Beyond the headline.</span>
-      </a>
-      <div class="int-edition">World edition <span>·</span> Inside Nuvellum</div>
-    </div>
-
-    <div class="int-nav-shell">
-      <nav class="int-nav int-wrap" aria-label="Primary">
-        {nav.map(([key, label, href]) => (
-          <a href={href} class:list={[active === key && 'active']} aria-current={active === key ? 'page' : undefined}>{label}</a>
-        ))}
-        <a href="/latest" class:list={[active === 'latest' && 'active']} aria-current={active === 'latest' ? 'page' : undefined}>Latest</a>
+<body class="interior">
+  <script is:inline>try{if(localStorage.getItem('nuvellum-theme')==='night')document.body.classList.add('night')}catch(e){}</script>
+  <header class="site-header">
+    <div class="shell header-row">
+      {masthead === 'archive' ? (
+        <a class="archive-brand" href="/" aria-label="Nuvellum home">
+          <span class="archive-logo-line"><span class="archive-monogram">N<span>✦</span></span><span class="archive-continuation">UVELLUM</span></span>
+          <span class="archive-tagline">Beyond the headline.</span>
+        </a>
+      ) : (
+        <div class="brand-zone" id="brandZone">
+          <a class="brand-monogram-home" id="brandMonogram" href="/" aria-label="Nuvellum home">
+            <span class="brand-monogram-mark" aria-hidden="true"><span class="brand-monogram-n">N</span><span class="brand-monogram-star">✦</span></span>
+            <span class="brand-tagline">Beyond the headline.</span>
+          </a>
+          <div class="brand-expanded" id="brandExpanded" aria-label="Nuvellum headline discovery">
+            <div class="brand-wordmark">
+              {letters.map(([key, glyph], i) => (
+                <a class={`brand-letter brand-letter-${key}`} style={`--i:${i}`} href={`/headlines/${glyph.toLowerCase()}`} aria-label={`Browse headlines beginning with ${glyph}`}><span class="brand-glyph">{glyph}</span></a>
+              ))}
+              <a class="brand-home-star" href="/" aria-label="Nuvellum home"><span class="brand-glyph">✦</span></a>
+            </div>
+            <div class="brand-expanded-note">Beyond the headline. · Browse reporting by initial</div>
+          </div>
+        </div>
+      )}
+      <nav class="main-nav" aria-label="Primary">
+        {nav.map(([key, label, href]) => <a href={href} aria-current={active === key ? 'page' : undefined}>{label}</a>)}
       </nav>
+      <div class="header-tools">
+        <button class="icon-btn" id="searchOpen" type="button" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
+        <a class="icon-btn" id="savedOpen" href="/latest" aria-label="Saved stories and latest reporting"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bookmark-shadow" transform="translate(1.35 1.55)" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/><path class="bookmark-face" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/></svg></a>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle night reading" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="solid" d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
+        <a class="subscribe" href="#newsletter">Subscribe</a>
+      </div>
     </div>
   </header>
 
-  <main class="int-main">
+  <div class="news-ticker">
+    <div class="shell ticker-inner">
+      <div class="latest-label">Latest</div>
+      <div class="ticker-links" aria-label="Latest headlines">
+        <div class="ticker-track">
+          {[0, 1].map(copy => (
+            <div class="ticker-group" aria-hidden={copy ? 'true' : undefined}>
+              {ticker.map((a, i) => <>{i > 0 && <span class="ticker-dot">●</span>}<a href={route(a)} tabindex={copy ? -1 : undefined}>{a.title}</a></>)}
+            </div>
+          ))}
+        </div>
+      </div>
+      <a class="view-all" href="/latest">View all &nbsp;→</a>
+    </div>
+  </div>
+
+  {folio.length > 0 && (
+    <div class="shell folio">
+      <nav aria-label="Breadcrumb"><ol>
+        <li><a href="/">Nuvellum</a></li>
+        {folio.map((c, i) => <li>{c.href && i < folio.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current={i === folio.length - 1 ? 'page' : undefined}>{c.label}</span>}</li>)}
+      </ol></nav>
+      {folioNote && <span class="folio-note">{folioNote}</span>}
+    </div>
+  )}
+
+  <main id="main">
     <slot />
   </main>
 
-  <footer class="int-footer">
-    <div class="int-wrap">
-      <div class="int-footer-top">
-        <div>
-          <a class="int-footer-brand" href="/">N<span>✦</span>UVELLUM</a>
-          <p>Beyond the headline.</p>
-        </div>
-        <div class="int-footer-columns">
-          <div><strong>Read</strong><a href="/latest">Latest</a><a href="/section/world">World</a><a href="/world-explorer">World Explorer</a><a href="/headlines/a">A–Z Headlines</a></div>
-          <div><strong>Publication</strong><a href="/about">About</a><a href="/standards">Editorial Standards</a><a href="/corrections">Corrections</a><a href="/contact">Contact</a></div>
-          <div><strong>Business & legal</strong><a href="/advertise">Advertise</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/rss.xml">RSS</a></div>
-        </div>
+  {newsletter && (
+    <section class="newsletter" id="newsletter" aria-labelledby="newsletter-heading">
+      <div class="shell newsletter-in">
+        <div><div class="kicker">The Nuvellum Brief</div><h2 id="newsletter-heading">One intelligent read of the world. Once a day.</h2></div>
+        <a class="newsletter-go" href="/#newsletter">Sign up on the front page <span aria-hidden="true">→</span></a>
       </div>
-      <div class="int-footer-bottom"><span>NUVELLUM · Independent international digital publication</span><a href="/">Front page ↑</a></div>
+    </section>
+  )}
+
+  <SiteFooter />
+
+  <div class="search-sheet" id="searchSheet" role="dialog" aria-label="Search Nuvellum">
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="Search Nuvellum…" autocomplete="off" aria-label="Search Nuvellum">
+      <div class="search-results" id="searchResults"></div>
     </div>
-  </footer>
+  </div>
 
   <script is:inline>
-    (() => {
-      const body = document.body;
-      const theme = document.getElementById('intTheme');
-      const progress = document.getElementById('intProgress');
-      const syncTheme = () => {
-        const night = body.classList.contains('night');
-        theme?.setAttribute('aria-pressed', String(night));
-        if (theme) theme.textContent = night ? 'Day' : 'Night';
-      };
-      syncTheme();
-      theme?.addEventListener('click', () => {
-        body.classList.toggle('night');
-        syncTheme();
-        try { localStorage.setItem('nuvellum-theme', body.classList.contains('night') ? 'night' : 'day'); } catch {}
-      });
+  (()=>{
+    const body=document.body,root=document.documentElement;
+    const brandZone=document.getElementById('brandZone'),brandMonogram=document.getElementById('brandMonogram');
+    const coarse=window.matchMedia?.('(hover: none), (pointer: coarse)');
+    brandMonogram?.addEventListener('click',e=>{if(coarse?.matches&&!brandZone.classList.contains('is-open')){e.preventDefault();brandZone.classList.add('is-open')}});
+    document.addEventListener('pointerdown',e=>{if(coarse?.matches&&brandZone?.classList.contains('is-open')&&!brandZone.contains(e.target))brandZone.classList.remove('is-open')});
 
-      const updateProgress = () => {
-        if (!progress) return;
-        const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-        progress.style.width = Math.min(100, (scrollY / max) * 100) + '%';
-      };
-      addEventListener('scroll', updateProgress, { passive: true });
-      updateProgress();
+    // Reading mode flips in one frame (as on the homepage), cross-faded where View Transitions exist.
+    const theme=document.getElementById('themeToggle');
+    const syncTheme=()=>theme?.setAttribute('aria-pressed',String(body.classList.contains('night')));syncTheme();
+    let run=0;
+    theme?.addEventListener('click',()=>{
+      const mine=++run;theme.classList.remove('is-tapping');void theme.offsetWidth;theme.classList.add('is-tapping');
+      const flip=()=>{body.classList.add('theme-switching');body.classList.toggle('night');syncTheme();try{localStorage.setItem('nuvellum-theme',body.classList.contains('night')?'night':'day')}catch(e){}};
+      const settle=()=>{if(mine===run)body.classList.remove('theme-switching')};
+      if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(flip).finished.finally(settle);
+      else{flip();requestAnimationFrame(()=>requestAnimationFrame(settle))}
+    });
 
-      const items = [...document.querySelectorAll('[data-reveal]')];
-      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        items.forEach(el => el.classList.add('is-visible'));
-      } else {
-        const io = new IntersectionObserver(entries => {
-          for (const entry of entries) if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        }, { rootMargin: '0px 0px -6% 0px', threshold: .08 });
-        items.forEach(el => io.observe(el));
-      }
-    })();
+    const sheet=document.getElementById('searchSheet'),input=document.getElementById('searchInput'),results=document.getElementById('searchResults');
+    const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    let index=null;
+    const load=()=>index||(index=fetch('/search-index.json').then(r=>r.ok?r.json():[]).catch(()=>[]));
+    const open=()=>{sheet.classList.add('open');load();setTimeout(()=>input.focus(),20)};
+    document.getElementById('searchOpen')?.addEventListener('click',open);
+    sheet?.addEventListener('click',e=>{if(e.target===sheet)sheet.classList.remove('open')});
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'){sheet?.classList.remove('open');brandZone?.classList.remove('is-open')}
+      if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement?.tagName||'')){e.preventDefault();open()}
+    });
+    input?.addEventListener('input',async()=>{
+      const q=input.value.trim().toLowerCase();if(!q){results.innerHTML='';return}
+      const data=await load();
+      const hits=(Array.isArray(data)?data:[]).filter(x=>[x.title,x.section,x.dek,(x.tags||[]).join(' ')].join(' ').toLowerCase().includes(q)).slice(0,8);
+      results.innerHTML=hits.length?hits.map(x=>'<a class="search-result" href="/article/'+encodeURIComponent(x.slug)+'"><small>'+esc(x.section||'Nuvellum')+'</small><strong>'+esc(x.title)+'</strong></a>').join(''):'<div class="search-empty">No matching stories.</div>';
+    });
+
+    // Entrances: opacity + a short rise, revealed as they enter the viewport, staggered by --d.
+    const items=[...document.querySelectorAll('[data-reveal]')];
+    if(!('IntersectionObserver' in window)){items.forEach(el=>el.classList.add('is-visible'));return}
+    root.classList.add('motion-live');
+    let pending=new Set(items);
+    const show=el=>{el.classList.add('is-visible');pending.delete(el);io.unobserve(el)};
+    const io=new IntersectionObserver(entries=>{for(const en of entries)if(en.isIntersecting)show(en.target)},{rootMargin:'0px 0px -7% 0px',threshold:.06});
+    // A jump (End key, anchor, fast fling) can carry items past the viewport between observer
+    // checks; anything already above the fold line is revealed so nothing stays blank.
+    let queued=false;
+    const sweep=()=>{queued=false;const fold=innerHeight*.93;for(const el of pending)if(el.getBoundingClientRect().top<fold)show(el);if(!pending.size)removeEventListener('scroll',onScroll)};
+    const onScroll=()=>{if(!queued){queued=true;requestAnimationFrame(sweep)}};
+    addEventListener('scroll',onScroll,{passive:true});
+    requestAnimationFrame(()=>items.forEach(el=>io.observe(el)));
+  })();
   </script>
 </body>
 </html>

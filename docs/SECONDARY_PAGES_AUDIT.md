@@ -38,3 +38,30 @@ Baseline: `main` after newsroom stabilization (`3a70e07`).
 3. Author and institutional pages + 404.
 4. Article-page consistency pass.
 5. Responsive/browser QA and production preview.
+
+## Implemented interior system
+
+The first pass on this branch was replaced. Interior pages now reuse the approved homepage chrome instead of a separate masthead.
+
+**Shared frame (`InteriorShell.astro`, `SiteFooter.astro`, `styles/interior.css`, `styles/footer.css`)**
+- Homepage v6 masthead: the locked N✦ monogram with its letter reveal, serif navigation with the active section marked, search, saved, night and Subscribe controls, and the charcoal Latest ticker.
+- A folio (breadcrumb running head), the wine Nuvellum Brief band and the black homepage footer.
+- Tokens, Newsreader typography, paper grain and the one-frame night flip are copied from `scripts/render-editorial-home.mjs`.
+- Motion: entrances of opacity plus a 10–14px rise over 0.82–0.9s with light stagger, and 0.38s hover glides. A scroll sweep reveals anything a jump carried past the viewport.
+
+**Story rhythms (`Story.astro`)**: `lead`, `wide` (sparse desks), `front` (section fronts), `second`, `trio` and `row` (continuing feed).
+
+**Geography**: `/atlas.svg` is a shared sprite built from the same Natural Earth data as the World Explorer. `Locator.astro` crops it per desk. `Gazetteer.astro` sets a desk's countries by initial, with status notes and a mark for reporting. `ExplorerBand.astro` links to `/world-explorer`, whose own behaviour is unchanged.
+
+**Families**
+- Section fronts: horizontal dominant lead, text-led trio, continuing feed. World adds the regional bureau index. Sparse sections add "Elsewhere in Nuvellum".
+- Region desks: bureau title, locator and counts, an adaptive lead package, the gazetteer and the Explorer band.
+- Country desks: very large name, direct reporting first, regional context, the bureau gazetteer and the Explorer band.
+- Latest: day-grouped edition index with section filters.
+- A–Z: keeps the archive wordmark masthead; enormous clipped-reveal letter, 26-letter navigator with empty letters muted, dense list, nearest-letter suggestions when empty.
+- Bylines: monogram, counts, sections, chronological body of work.
+- Institutional pages: book-width prose, drop cap, numbered sections, margin rail with contents.
+- 404: "not in this edition", with a blank-column device.
+- Articles: reading layout, tools, sources, JSON-LD and `article.js` unchanged. Tokens, type, header styling and the footer are aligned, and the night preference now persists.
+
+All counts on these pages are real (stories filed, countries in a desk). No popularity or traffic figures are shown.

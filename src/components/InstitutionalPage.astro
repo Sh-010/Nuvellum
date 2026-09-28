@@ -1,5 +1,8 @@
 ---
+// The quiet back pages (About, Standards, Corrections, Contact, Advertise, Privacy, Terms):
+// book-width prose with a drop cap, numbered sections, a margin rail and a publication note.
 import InteriorShell from './InteriorShell.astro';
+
 const {
   title,
   eyebrow = 'Nuvellum',
@@ -7,22 +10,71 @@ const {
   intro,
   note = 'Nuvellum · Beyond the headline.'
 } = Astro.props;
+
+const PAGES: [string, string][] = [
+  ['/about', 'About Nuvellum'],
+  ['/standards', 'Editorial Standards'],
+  ['/corrections', 'Corrections'],
+  ['/contact', 'Contact'],
+  ['/advertise', 'Advertise'],
+  ['/privacy', 'Privacy'],
+  ['/terms', 'Terms']
+];
+const here = Astro.url.pathname.replace(/\/$/, '');
+
+// Number the page's own section headings and list them in the margin.
+const toc: { id: string; text: string }[] = [];
+const raw = await Astro.slots.render('default');
+const html = raw.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/g, (_m, attrs, inner) => {
+  const text = inner.replace(/<[^>]+>/g, '').trim();
+  const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  toc.push({ id, text });
+  return `<h2 id="${id}"${attrs}><span class="num">${String(toc.length).padStart(2, '0')}</span>${inner}</h2>`;
+});
+const aside = Astro.slots.has('aside')
+  ? await Astro.slots.render('aside')
+  : here === '/corrections'
+    ? 'How stories are labelled, sourced and verified before publication is set out in the <a href="/standards">Editorial Standards</a>.'
+    : 'Found an error? The <a href="/corrections">corrections policy</a> explains how factual errors are reported, corrected and disclosed.';
 ---
-<InteriorShell title={`${title} — Nuvellum`} description={description}>
-  <div class="int-wrap int-page">
-    <header class="int-page-head" data-reveal>
+<InteriorShell
+  title={`${title} — Nuvellum`}
+  description={description}
+  folio={[{ label: 'The publication', href: '/about' }, { label: title }]}
+  folioNote="Publication information"
+>
+  <div class="shell page">
+    <header class="desk-head">
       <div>
-        <div class="int-page-kicker">{eyebrow}</div>
-        <h1 class="int-page-title">{title}</h1>
-        {intro && <p class="int-page-dek">{intro}</p>}
+        <div class="desk-kicker" data-reveal><span>✦ {eyebrow}</span></div>
+        <h1 class="desk-title" data-reveal style="--d:80ms;font-size:clamp(52px,6.6vw,104px)">{title}</h1>
+        {intro && <p class="desk-dek" data-reveal style="--d:160ms">{intro}</p>}
       </div>
-      <div class="int-page-note">{note}</div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <div class="inst-note" style="max-width:none"><strong>Publication note</strong>{note}</div>
+      </aside>
     </header>
-    <div class="int-institutional">
-      <article class="int-prose" data-reveal><slot /></article>
-      <aside class="int-aside" data-reveal>
-        <strong>Publication note</strong>
-        <slot name="aside">This page forms part of Nuvellum’s publication information and operating standards.</slot>
+
+    <div class="inst">
+      <aside class="inst-rail" data-reveal="glide">
+        {toc.length > 0 && (
+          <nav aria-label="On this page">
+            <span class="eyebrow">On this page</span>
+            {toc.map(t => <a href={`#${t.id}`}>{t.text}</a>)}
+          </nav>
+        )}
+        <nav aria-label="Publication pages">
+          <span class="eyebrow">The publication</span>
+          {PAGES.map(([href, label]) => <a href={href} aria-current={href === here ? 'page' : undefined} style={href === here ? 'color:var(--wine-ink)' : undefined}>{label}</a>)}
+        </nav>
+      </aside>
+      <article class="prose" data-reveal style="--d:120ms">
+        <Fragment set:html={html} />
+        <div class="inst-sign"><span>Nuvellum · Beyond the headline.</span><span>{title}</span></div>
+      </article>
+      <aside class="inst-note" data-reveal style="--d:240ms">
+        <strong>{Astro.slots.has('aside') ? 'In the margin' : here === '/corrections' ? 'See also' : 'Corrections'}</strong>
+        <Fragment set:html={aside} />
       </aside>
     </div>
   </div>

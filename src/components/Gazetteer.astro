@@ -1,0 +1,38 @@
+---
+// Countries & territories of a desk, set as a gazetteer: alphabetical, grouped by initial,
+// with political status in italics and a wine mark where Nuvellum has filed reporting.
+import { countrySlug } from '../lib/countries.js';
+
+type Entry = { name: string; status?: string; parent?: string };
+interface Props { countries: Entry[]; counts: Map<string, number>; current?: string }
+const { countries, counts, current } = Astro.props;
+const STATUS: Record<string, string> = {
+  'un-observer': 'UN observer state',
+  'partially-recognized': 'partially recognised',
+  'de-facto': 'de facto state',
+  'disputed-territory': 'disputed territory'
+};
+const note = (c: Entry) => c.status === 'dependency' ? (c.parent ? `territory · ${c.parent}` : 'territory') : STATUS[c.status || ''] || '';
+const groups = new Map<string, Entry[]>();
+for (const c of [...countries].sort((a, b) => a.name.localeCompare(b.name))) {
+  const letter = c.name.normalize('NFKD')[0].toUpperCase();
+  if (!groups.has(letter)) groups.set(letter, []);
+  groups.get(letter)!.push(c);
+}
+---
+<div class="gazetteer">
+  {[...groups].map(([letter, list], i) => (
+    <div class="gz-group" data-reveal style={`--d:${Math.min(i * 40, 320)}ms`}>
+      <div class="gz-letter" aria-hidden="true">{letter}</div>
+      {list.map(c => {
+        const n = counts.get(c.name) || 0;
+        return (
+          <a class:list={['gz-item', n > 0 && 'has-stories', c.name === current && 'is-current']} href={`/country/${countrySlug(c.name)}`} aria-current={c.name === current ? 'page' : undefined}>
+            <span>{c.name}{note(c) && <><br /><small>{note(c)}</small></>}</span>
+            {n > 0 && <span class="count" title={`${n} ${n === 1 ? 'report' : 'reports'}`}>{n}</span>}
+          </a>
+        );
+      })}
+    </div>
+  ))}
+</div>

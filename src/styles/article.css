@@ -63,3 +63,50 @@ blockquote:hover{transform:translateX(4px)}
 .more article:hover{transform:translateY(-5px);color:var(--ox)}
 .article-curtain{position:fixed;inset:0;z-index:200;background:var(--ox);transform:scaleY(0);transform-origin:bottom;pointer-events:none}
 .article-curtain.go{animation:acIn .5s var(--ease-spring) forwards}@keyframes acIn{to{transform:scaleY(1)}}
+
+
+/* === Interior system alignment: the article keeps its reading layout and tools; tokens, type
+   and chrome now match the inside pages (ivory / wine / black, Newsreader, hairline rules). === */
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url(/fonts/newsreader-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url(/fonts/newsreader-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:300 700;font-display:swap;src:url(/fonts/newsreader-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--paper:#f8f4ec;--ivory:#efe8db;--ink:#1f1a16;--ox:#661227;--muted:#6b6259;--line:#ddd3c3;--hair:rgba(96,74,52,.2);--plate:rgba(255,253,248,.62);--text:'Newsreader',Georgia,'Times New Roman',serif}
+body.night{--paper:#161412;--ivory:#1c1a17;--ink:#efe7da;--ox:#d496a3;--muted:#b3a797;--line:#3b352e;--hair:rgba(230,210,180,.14);--plate:rgba(255,248,236,.035)}
+body{font-family:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .27 0 0 0 0 .17 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.site-header{border-top:0;border-bottom:1px solid var(--hair);background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(10px)}
+.head{height:64px}
+.back{font-size:13.5px;letter-spacing:.01em;text-transform:none;font-style:italic;transition:color .2s}.back:hover{color:var(--ox)}
+.brand.article-logo{font:700 30px/1 Georgia,'Times New Roman',serif;letter-spacing:.045em;color:var(--ox)}
+.article-logo span:first-child{position:relative;margin-right:.08em}
+.article-logo span:first-child:after{content:"✦";position:absolute;right:-.36em;top:-.3em;font-size:.4em;letter-spacing:0}
+.btn{font-family:var(--text);font-size:13px;letter-spacing:.015em;text-transform:none;border-color:var(--hair);border-radius:2px;padding:7px 12px;transition:border-color .25s,color .25s,background-color .25s,transform .18s}
+.btn:hover,.btn.saved{border-color:var(--ox);color:var(--ox)}
+.btn.saved{background:rgba(102,18,39,.06)}
+.kicker{font-family:var(--text);font-weight:400;font-size:11px;letter-spacing:.16em}.kicker a:hover{text-decoration:underline}
+h1{font-family:var(--text);font-weight:400;font-size:clamp(46px,6vw,84px);line-height:.98;letter-spacing:-.028em;text-wrap:balance}
+.dek{font-family:var(--text);font-style:italic;font-size:22px;line-height:1.42}
+.byline{font-family:var(--text);font-size:12.5px;letter-spacing:.12em}.byline strong{font-weight:400;color:var(--ox)}.byline strong a:hover{text-decoration:underline}
+.hero img{filter:sepia(.14) saturate(.86)}
+.caption{font-family:var(--text);font-size:12.5px;font-style:italic;letter-spacing:.01em}
+.rail-title{font-size:10.5px;letter-spacing:.16em;color:var(--ox)}
+.toc{border-top:1px solid var(--ink)}.toc h3{font-family:var(--text);font-weight:400;font-size:22px;color:var(--ox)}.toc a{font-family:var(--text);font-size:14.5px;border-bottom:1px solid var(--hair)}
+.body{font-family:var(--text);line-height:1.7}
+.body h2{font-family:var(--text);font-weight:400;font-size:34px;letter-spacing:-.012em;padding-top:14px;border-top:1px solid var(--hair)}
+blockquote{font-family:var(--text);font-style:italic;border-left-color:var(--ox)}
+.context{background:var(--plate);border:1px solid var(--hair);border-left:3px solid var(--ox);font-size:17px;line-height:1.6}
+.context strong{font-family:var(--text);font-weight:400;font-size:10.5px;letter-spacing:.16em}
+.context a{color:var(--ox)}
+.end{border-top:1px solid var(--ink)}.end p{font-style:italic;color:var(--muted)}
+.more{background:transparent;border-top:1px solid var(--ink);padding:40px 0 60px}
+.more-title{display:flex;align-items:center;gap:18px;margin-bottom:16px}
+.more-title h2{font-family:var(--text);font-weight:500;font-size:28px;line-height:1;color:var(--ox);margin:0;white-space:nowrap;letter-spacing:-.012em}
+.more-title h2:before{content:"✦";font-size:15px;margin-right:10px;position:relative;top:-5px}
+.more-title .rule{flex:1;height:1px;background:rgba(102,18,39,.42)}
+.more-title a{font-size:12.5px;color:var(--ox);white-space:nowrap}.more-title a:hover{text-decoration:underline}
+.moregrid{gap:0}.moregrid>a+a{border-left:1px solid var(--hair)}.moregrid>a{padding:0 24px}.moregrid>a:first-child{padding-left:0}.moregrid>a:last-child{padding-right:0}
+.more article{border-top:0;padding-top:4px}
+.more h3{font-family:var(--text);font-weight:400;font-size:23px;line-height:1.14;letter-spacing:-.008em;transition:color .3s}
+.more p{font-size:15px;line-height:1.45;color:var(--muted);margin:6px 0 0}
+.more article:hover{transform:translateY(-3px);color:inherit}.more article:hover h3{color:var(--ox)}
+.share-toast,.article-tools-pop,.article-progress-label{font-family:var(--text);font-size:12px;letter-spacing:.02em;text-transform:none}
+@media(max-width:650px){.brand.article-logo{font-size:25px}.moregrid>a,.moregrid>a:first-child{padding:14px 0;border-left:0}.moregrid>a+a{border-left:0;border-top:1px solid var(--hair)}.body h2{font-size:28px}}

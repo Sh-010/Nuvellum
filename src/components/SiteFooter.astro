@@ -1,0 +1,23 @@
+---
+// Site footer (homepage v6 markup), shared by interior pages and articles.
+import '../styles/footer.css';
+const year = new Date().getUTCFullYear();
+---
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">NUVELLUM<span aria-hidden="true">✦</span></div>
+        <div class="footer-tag">Beyond the headline.</div>
+        <p class="footer-about">Independent international journalism, built for context.</p>
+      </div>
+      <nav class="footer-cols" aria-label="Footer">
+        <div><h3>Sections</h3><a href="/section/world">World</a><a href="/section/business">Business</a><a href="/section/technology">Technology</a><a href="/section/science">Science</a><a href="/section/sports">Sports</a></div>
+        <div><h3>Culture</h3><a href="/section/culture">Culture</a><a href="/section/entertainment">Screen &amp; Play</a><a href="/section/film-tv">Film &amp; TV</a><a href="/section/gaming">Gaming</a><a href="/section/opinion">Opinion</a></div>
+        <div><h3>Nuvellum</h3><a href="/about">About</a><a href="/standards">Editorial Standards</a><a href="/corrections">Corrections</a><a href="/contact">Contact</a><a href="/latest">Latest</a></div>
+        <div><h3>More</h3><a href="/world-explorer">World Explorer</a><a href="/advertise">Advertise &amp; Sponsorships</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/rss.xml">RSS</a></div>
+      </nav>
+    </div>
+    <div class="footer-bottom"><span>© {year} Nuvellum. Independent international media.</span><span>Browse by initial: <a href="/headlines/n">N</a> · <a href="/headlines/u">U</a> · <a href="/headlines/v">V</a> · <a href="/headlines/e">E</a> · <a href="/headlines/l">L</a> · <a href="/headlines/m">M</a></span></div>
+  </div>
+</footer>
