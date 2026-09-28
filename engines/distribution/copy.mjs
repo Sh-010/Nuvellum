@@ -41,8 +41,10 @@ export function templateFeedCopy(story) {
 export function templateVideoCopy(story) {
   const tags = story.tags.slice(0, 2).map(tag).filter(Boolean);
   const links = Object.fromEntries(Object.keys(PLATFORMS).map(p => [p, trackedUrl(story, p)]));
+  const xVideoTail = '\n\n' + links.x;
+  const xVideoBody = truncate(story.title + '\n\nWatch the short, then read the full story.', Math.max(40, PLATFORMS.x.maxChars - charCount(xVideoTail)));
   return {
-    x: truncate(story.title + '\n\nWatch the short, then read the full story: ' + links.x, PLATFORMS.x.maxChars),
+    x: xVideoBody + xVideoTail,
     facebook: truncate(story.title + '\n\nWatch the reel, then read the full story: ' + links.facebook, PLATFORMS.facebook.maxChars),
     instagram: truncate(story.title + '\n\n' + [...tags, '#Nuvellum', '#Reels'].join(' '), PLATFORMS.instagram.maxChars),
     tiktok: truncate(story.title + '\n\n' + truncate(story.dek, 320) + '\n\n' + [...tags, '#Nuvellum', '#News'].join(' '), PLATFORMS.tiktok.maxChars),
