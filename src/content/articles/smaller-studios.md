@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Culture Desk"
 date: "2026-09-24"
 readingTime: "6 min"
-image: "/images/gaming.svg"
-imageAlt: "Abstract gaming editorial image"
+image: "/uploads/articles/smaller-studios.jpg"
+imageAlt: "The entrance to the Game Developers Conference at the Moscone Center"
 status: "published"
 tags: ["gaming","studios","culture"]
 ---

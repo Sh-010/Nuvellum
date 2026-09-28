@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Sports Desk"
 date: "2026-09-23"
 readingTime: "6 min"
-image: "/images/sports.svg"
-imageAlt: "The business of sport is becoming a media war"
+image: "/uploads/articles/sports-media-war.jpg"
+imageAlt: "Commentators in a baseball broadcast booth"
 status: "published"
 tags: ["sports", "media rights", "streaming"]
 ---

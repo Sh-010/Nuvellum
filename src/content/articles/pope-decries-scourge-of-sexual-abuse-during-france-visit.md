@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T12:03:15.881Z"
 readingTime: "2 min"
-image: "/generated/ai/pope-decries-scourge-of-sexual-abuse-during-france-visit.svg"
-imageAlt: "AI-generated editorial illustration for Pope decries 'scourge' of sexual abuse during France visit"
+image: "/uploads/articles/pope-decries-scourge-of-sexual-abuse-during-france-visit.jpg"
+imageAlt: "Pope Leo XIV waving from the balcony of St Peter's Basilica"
 status: "published"
 tags: ["Pope Leo XIV","France","Catholic Church","abuse"]
 sourceUrls: ["https://www.dw.com/en/pope-decries-scourge-of-sexual-abuse-during-france-visit/a-79449335"]

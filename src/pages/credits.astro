@@ -1,0 +1,50 @@
+---
+// Image credits: attribution for every openly licensed photograph and Nuvellum illustration used
+// on article pages, cards and the front page (data: src/data/image-credits.json).
+import InteriorShell from '../components/InteriorShell.astro';
+import { getArticles } from '../lib/articles';
+import { imageCredit } from '../lib/image-credits.js';
+
+const rows = (await getArticles())
+  .map(article => ({ article, credit: imageCredit(article.slug, article.image) }))
+  .filter(r => r.credit)
+  .sort((a, b) => a.article.title.localeCompare(b.article.title));
+const photos = rows.filter(r => r.credit.kind === 'photo').length;
+const licence = (c: any) => (/public domain|^pd/i.test(c.license) ? 'Public domain' : c.license);
+---
+<InteriorShell
+  title="Image credits — Nuvellum"
+  description="Credits and licences for the photographs and illustrations used on Nuvellum."
+  folio={[{ label: 'The publication', href: '/about' }, { label: 'Image credits' }]}
+  folioNote="Publication information"
+>
+  <div class="shell page">
+    <header class="desk-head">
+      <div>
+        <div class="desk-kicker" data-reveal><span>✦ The publication</span></div>
+        <h1 class="desk-title" data-reveal style="--d:80ms;font-size:clamp(52px,6.6vw,104px)">Image credits</h1>
+        <p class="desk-dek" data-reveal style="--d:160ms">Photographs are used under open licences and credited to their authors; illustrations are Nuvellum’s own. File photos are labelled as such in each article’s caption.</p>
+      </div>
+      <aside class="desk-aside" data-reveal style="--d:220ms">
+        <dl class="facts">
+          <div><dt>Photographs</dt><dd>{photos}</dd></div>
+          <div><dt>Illustrations</dt><dd>{rows.length - photos}</dd></div>
+          <div><dt>Source</dt><dd style="font-size:15px">Wikimedia Commons</dd></div>
+        </dl>
+      </aside>
+    </header>
+
+    <div class="desk-body">
+      {rows.map(({ article, credit }, i) => (
+        <article class="story entry credit-entry" data-reveal style={`--d:${Math.min(i, 6) * 45}ms`}>
+          <span class="eyebrow">{article.section}</span>
+          <div>
+            <h3 class="headline"><a href={`/article/${article.slug}`}>{article.title}</a></h3>
+            <p style="-webkit-line-clamp:3">{credit.caption}{credit.kind === 'photo' ? <>. Photo: <a href={credit.descriptionUrl} rel="noopener">{credit.author}</a>, {credit.source}</> : '. Nuvellum editorial illustration'}</p>
+          </div>
+          <div class="entry-meta">{credit.kind === 'photo' ? (credit.licenseUrl && !/public domain|^pd/i.test(credit.license) ? <a href={credit.licenseUrl} rel="noopener license">{licence(credit)}</a> : licence(credit)) : 'Nuvellum'}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</InteriorShell>

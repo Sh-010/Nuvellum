@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "2 min"
-image: "/images/world.svg"
-imageAlt: "Damaged communications and data infrastructure in Ukraine"
+image: "/uploads/articles/russia-targeting-data-centres-and-internet-providers-in-ukraine-says-zelensky.jpg"
+imageAlt: "The Kyiv skyline at dusk"
 status: "published"
 tags: ["Ukraine","Russia","War in Ukraine","Internet","Technology"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/c84gkwgk7d06o","https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-september-23-2026"]

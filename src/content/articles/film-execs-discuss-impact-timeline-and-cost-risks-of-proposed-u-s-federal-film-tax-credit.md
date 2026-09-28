@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T11:49:49.945Z"
 readingTime: "2 min"
-image: "/generated/ai/film-execs-discuss-impact-timeline-and-cost-risks-of-proposed-u-s-federal-film-tax-credit.svg"
-imageAlt: "AI-generated editorial illustration for Film execs discuss impact, timeline and cost risks of proposed U.S. federal film tax credit"
+image: "/uploads/articles/film-execs-discuss-impact-timeline-and-cost-risks-of-proposed-u-s-federal-film-tax-credit.jpg"
+imageAlt: "The Zurich Film Festival venue at night"
 status: "published"
 tags: ["Film Tax Credits","Zurich Summit","Hollywood","Film Incentives"]
 sourceUrls: ["https://deadline.com/2026/09/federal-film-tax-incentives-impact-timeline-price-rises-1237114676"]

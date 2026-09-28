@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T17:54:09.961Z"
 readingTime: "2 min"
-image: "/generated/ai/nor-easter-storm-brings-coastal-flooding-as-new-york-and-new-jersey-declare-emergency.svg"
-imageAlt: "AI-generated editorial illustration for Nor'easter storm brings coastal flooding, as New York and New Jersey declare emergency"
+image: "/uploads/articles/nor-easter-storm-brings-coastal-flooding-as-new-york-and-new-jersey-declare-emergency.jpg"
+imageAlt: "A flooded street in Ocean City, New Jersey, after a nor'easter"
 status: "published"
 tags: ["New York","New Jersey","Severe Weather","Floods","Massachusetts"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/ck1wxxzn5jndo"]

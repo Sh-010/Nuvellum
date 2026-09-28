@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "2 min"
-image: "/images/business.svg"
-imageAlt: "Fuel pump representing rising diesel prices in Scotland"
+image: "/uploads/articles/scotland-diesel-prices-over-2-pounds.jpg"
+imageAlt: "A petrol station forecourt near Edinburgh"
 status: "published"
 tags: ["Scotland","Fuel Prices","Transport","Business"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cr86xn04gxj9o"]

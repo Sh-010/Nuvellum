@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Science Desk"
 date: "2026-09-24"
 readingTime: "5 min"
-image: "/images/technology.svg"
-imageAlt: "Abstract science editorial image"
+image: "/uploads/articles/observatories.jpg"
+imageAlt: "The Vera C. Rubin Observatory under a night sky"
 status: "published"
 tags: ["science","space","observatories"]
 ---

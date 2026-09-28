@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "2 min"
-image: "/images/business.svg"
-imageAlt: "Editorial illustration representing fuel costs and volunteer meal deliveries in Jersey"
+image: "/uploads/articles/fuel-costs-create-recruitment-hurdles-for-jersey-meal-delivery-service.jpg"
+imageAlt: "St Helier, Jersey, seen from Fort Regent"
 status: "published"
 tags: ["Jersey","Charities","Volunteering","Cost of Living"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/c6wyzkwnd258o?at_medium=RSS&at_campaign=rss"]

@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "2 min"
-image: "/images/world.svg"
-imageAlt: "Editorial illustration representing India-Pakistan tensions at the United Nations"
+image: "/uploads/articles/india-and-pakistan-trade-accusations-at-un-general-assembly.jpg"
+imageAlt: "The United Nations General Assembly Hall in New York"
 status: "published"
 tags: ["India","Pakistan","UN General Assembly","Kashmir","Cross-border terrorism"]
 sourceUrls: ["https://www.dw.com/en/india-news-new-delhi-islamabad-trade-accusations-at-un-general-assembly/live-79440869","https://www.aljazeera.com/news/2026/9/25/houthi-attack-on-mecca-medina-would-cross-red-line-pakistan-pm-tells-un"]

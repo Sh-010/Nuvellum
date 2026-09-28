@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T17:53:45.179Z"
 readingTime: "2 min"
-image: "/generated/ai/hayley-kiyoko-wants-to-make-a-lesbian-pirates-of-the-caribbean.svg"
-imageAlt: "AI-generated editorial illustration for Hayley Kiyoko wants to make a lesbian 'Pirates of the Caribbean'"
+image: "/uploads/articles/hayley-kiyoko-wants-to-make-a-lesbian-pirates-of-the-caribbean.jpg"
+imageAlt: "Hayley Kiyoko performing on stage"
 status: "published"
 tags: ["Hayley Kiyoko","Pirates of the Caribbean","Outfest","Film"]
 sourceUrls: ["https://variety.com/2026/film/columns/hayley-kiyoko-lesbian-pirates-of-the-caribbean-keira-knightley-gay-queer-1236875611"]

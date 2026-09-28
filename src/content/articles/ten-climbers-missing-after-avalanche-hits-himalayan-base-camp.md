@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T12:42:56.518Z"
 readingTime: "1 min"
-image: "/generated/ai/ten-climbers-missing-after-avalanche-hits-himalayan-base-camp.svg"
-imageAlt: "AI-generated editorial illustration for Ten climbers missing after avalanche hits Himalayan base camp"
+image: "/uploads/articles/ten-climbers-missing-after-avalanche-hits-himalayan-base-camp.jpg"
+imageAlt: "The snow-covered summit of Nemjung in Nepal's Manang district"
 status: "published"
 tags: ["Nepal","Himalayas","Mountaineering","Avalanche"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cwjdvml9e897o"]

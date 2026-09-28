@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "5 min"
-image: "/images/world.svg"
-imageAlt: "Abstract world editorial image"
+image: "/uploads/articles/industrial-race.jpg"
+imageAlt: "Steel mills on the Hamilton waterfront"
 status: "published"
 tags: ["Europe","industry","world"]
 ---

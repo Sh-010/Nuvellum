@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "2 min"
-image: "/images/world.svg"
-imageAlt: "Editorial illustration representing a police investigation in Jackson, Mississippi"
+image: "/uploads/articles/police-say-mississippi-woman-was-dead-before-body-was-staged-hanging-from-tree.jpg"
+imageAlt: "Downtown Jackson, Mississippi"
 status: "published"
 tags: ["Mississippi","Crime","Policing","United States"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cwp933nzpp9ro","https://www.cbsnews.com/news/tasia-fortune-mississippi-death-hanging-staged-police-investigation/"]

@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "6 min"
-image: "/images/world.svg"
-imageAlt: "Abstract world editorial image"
+image: "/uploads/articles/supply-chains-foreign-policy.jpg"
+imageAlt: "A container ship in the Mediterranean Sea"
 status: "published"
 tags: ["Asia","supply chains","world"]
 ---

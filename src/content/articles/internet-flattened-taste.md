@@ -6,8 +6,8 @@ type: "Essay"
 author: "A. Rahman"
 date: "2026-09-23"
 readingTime: "7 min"
-image: "/images/culture.svg"
-imageAlt: "Abstract culture editorial image"
+image: "/uploads/articles/internet-flattened-taste.svg"
+imageAlt: "Nuvellum Opinion & Ideas illustration: forms pressed into a single plane"
 status: "published"
 tags: ["culture","internet","essay"]
 ---

@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T17:04:41.049Z"
 readingTime: "2 min"
-image: "/generated/ai/levoit-s-new-air-purifier-is-for-the-pet-odors-that-have-taken-over-your-apartment.svg"
-imageAlt: "AI-generated editorial illustration for Levoit's new air purifier is for the pet odors that have taken over your apartment"
+image: "/uploads/articles/levoit-s-new-air-purifier-is-for-the-pet-odors-that-have-taken-over-your-apartment.jpg"
+imageAlt: "A Levoit air purifier in a living room"
 status: "published"
 tags: ["Gadgets","Hardware","pet tech"]
 sourceUrls: ["https://techcrunch.com/2026/09/26/levoits-new-air-purifier-is-for-the-pet-odors-that-have-taken-over-your-apartment"]

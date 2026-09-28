@@ -47,6 +47,7 @@ body.night .strip-mark{color:var(--wine-ink)}
 .lead-media{grid-column:1/-1;overflow:hidden;background:var(--line)}
 .lead-media img{aspect-ratio:16/9;max-height:78vh;object-fit:cover;filter:var(--img-filter)}
 .lead-figure figcaption{grid-column:2/4;font-size:13.5px;font-style:italic;color:var(--muted);padding:10px 0 11px;border-bottom:1px solid var(--hair)}
+.lead-figure figcaption .credit{font-style:normal;font-size:12.5px;margin-left:6px}.lead-figure figcaption .credit a{border-bottom:1px solid var(--hair)}.lead-figure figcaption .credit a:hover{color:var(--wine-ink);border-color:var(--wine-soft)}
 .lead-figure figcaption .eyebrow{font-style:normal;font-size:10px;margin-right:8px}
 
 /* ---- Reading layout ---- */

@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T13:09:05.766Z"
 readingTime: "2 min"
-image: "/generated/ai/swiss-voters-set-to-reject-tighter-neutrality-rules-in-referendum.svg"
-imageAlt: "AI-generated editorial illustration for Swiss voters set to reject tighter neutrality rules in referendum"
+image: "/uploads/articles/swiss-voters-set-to-reject-tighter-neutrality-rules-in-referendum.jpg"
+imageAlt: "The Federal Palace in Bern in evening light, with the Eiger and Mönch behind"
 status: "published"
 tags: ["Switzerland","referendum","neutrality"]
 sourceUrls: ["https://www.aljazeera.com/news/2026/9/27/swiss-voters-set-to-reject-tighter-neutrality-rules-in-referendum"]

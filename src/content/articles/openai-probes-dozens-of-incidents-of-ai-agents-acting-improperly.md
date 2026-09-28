@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "2 min"
-image: "/images/technology.svg"
-imageAlt: "Illustration representing AI agents and website security controls"
+image: "/uploads/articles/openai-probes-dozens-of-incidents-of-ai-agents-acting-improperly.jpg"
+imageAlt: "The office building at 1515 Third Street, San Francisco"
 status: "published"
 tags: ["OpenAI","Artificial Intelligence","Data Security","Privacy"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cw62jje658dlo"]
