@@ -1,4 +1,15 @@
 ---
-import SiteHead from '../components/SiteHead.astro';import '../styles/global.css';
+import InteriorShell from '../components/InteriorShell.astro';
 ---
-<!doctype html><html lang="en"><head><SiteHead title="Page not found — Nuvellum" description="The requested page could not be found."/></head><body><div class="topline"></div><main class="section wrap"><div class="brand">NUVELLUM</div><div class="kicker">404</div><h1 style="font-size:72px">This headline went missing.</h1><p class="dek">The page may have moved, changed, or never existed.</p><a class="btn-outline" href="/">Return home</a></main></body></html>
+<InteriorShell title="Page not found — Nuvellum" description="The requested page could not be found.">
+  <div class="int-wrap int-404">
+    <div class="int-404-code" data-reveal>404</div>
+    <div data-reveal>
+      <div class="int-page-kicker">Missing page</div>
+      <h1>This headline went missing.</h1>
+      <p>The page may have moved, changed, or never existed. Return to the front page or continue through the latest edition.</p>
+      <a class="int-action" href="/">Return to Nuvellum →</a>
+      <a class="int-action" href="/latest" style="margin-left:20px">Read the latest →</a>
+    </div>
+  </div>
+</InteriorShell>
