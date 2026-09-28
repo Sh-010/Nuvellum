@@ -28,7 +28,7 @@ const providers={
       const r=spawnSync(cmd,args,{input:text,encoding:'utf8'});
       if(r.status!==0) throw new Error('piper failed');
     }
-  }
+  },
   silent:{available:()=>true,async synth(){}}
 };
 
