@@ -229,3 +229,16 @@ Checkpoint: `checkpoint/world-explorer-pre-interaction-rebuild` (e14b162).
 - Newsletter: kicker, headline (+140ms), then form (+280ms) with a left-to-right wipe.
 - Scroll-speed aware: fast flicks use a short 0.5s reveal with no stagger; sections jumped past appear immediately. Failsafe, print, reduced motion and no-JS keep everything visible. Entrance animations use `fill: backwards` so nothing is left on elements afterwards.
 - Verified: all 1,912 element layout boxes identical to 36817f2 at 1536×1024, 1440×900, 834×1112 and 390×844; motion QA 20/20; interaction QA 79/79.
+
+### 2026-09-28 — Homepage motion made perceptible (motion only; layout unchanged)
+Measured, not assumed: a reading-speed scroll sampled every animated element's opacity and position per frame, first loads were traced frame by frame, and the result was screen-recorded and inspected.
+- Why the previous pass was imperceptible:
+  1. The jump-safety sweep revealed anything whose top crossed the viewport's bottom edge, so every entrance played in the bottom sliver of the screen.
+  2. "Fast scroll" was judged per scroll event (>1.8px/ms); real wheel/trackpad scrolling crossed it constantly, so most reveals ran the short, unstaggered mode.
+  3. On load the browser painted only ~4 frames in the first second (initial layout/paint of a large page), so the hero entrance ran while frames were blocked.
+  4. Fading the World Desk panel re-rasterised the map's SVG texture filter every frame (>1s freeze).
+- Now: reveals start at ~15% above the viewport bottom; scroll speed is averaged over 120ms (short mode only above 4px/ms); every story/heading is its own unit, staggered 75ms in screen order; panels only fade briefly; all motion starts once three frames arrive under 50ms after load and fonts (cap 1.4s); the hero entrance class is set on the hero, not <html> (a root class change repainted the whole page); the World Desk panel is not faded.
+- Filter/tab swaps: rows exit, new rows are inserted hidden and enter two frames later; template thumbnails are fetched and decoded while idle. Thumbnail scale settles were dropped (scaling several sepia-filtered thumbnails produced 170–240ms frames); the hero and Screen & Play lead keep an image settle.
+- Results (1440×900): hero chip → headline → dek → meta complete at +0.92 / +1.00 / +1.09 / +1.19s with 48 painted frames (warm load); every section below the fold animates visibly (450–875ms of visible change) starting at 57–82% of viewport height; World Desk rows 80ms apart with the summary after; Latest rows 70ms; Popular rows 60ms.
+- Known limits: on a first visit in a slow/software-rendered browser, rasterising the ~20 illustrated SVG images can overlap the hero entrance (it then resolves in a frame or two by ~1.5–2s rather than hiding content longer); the first Latest switch in a session has one ~120ms frame (later switches 13–27ms).
+- Verified: all 1,912 element layout boxes identical to 4c8e721 at four viewports; interaction QA 79/79; reduced motion, no-JS and script-failure cases keep everything visible.
