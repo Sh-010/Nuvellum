@@ -40,6 +40,7 @@ The gate ignores the parked `action_required` runs. It judges each required chec
 | `editorialReview` | `passed` | `passed` |
 | `verification` | absent or `cleared` | **`cleared`** |
 | `reviewedBy` | any | **`Nuvellum Verification Pipeline`** |
+| `regions` / `countries` | explicit arrays, `[]` allowed | explicit arrays, `[]` allowed |
 | Build, Security checks, CodeQL, Editorial duplicate guard | all `success` on the head commit | all `success` on the head commit |
 
 The gate also requires all of the following:
@@ -48,6 +49,7 @@ The gate also requires all of the following:
 - It adds exactly one **new** article, plus optionally that article's own `public/generated/ai/<slug>.svg`, and nothing else. Automation cannot edit published articles, workflows or scripts.
 - The PR has no `hold`, `do-not-publish` or `needs-human` label.
 - The format is not Opinion, Essay, Ideas or Review. Those stay human-led.
+- New automated stories explicitly declare `regions` and `countries`. Missing or malformed geography metadata is held before publication.
 
 Failed or uncertain stories never publish, and this is enforced in two places:
 
@@ -65,7 +67,7 @@ Articles published before these fields existed are unaffected. The new rules onl
 - To stop one story, add the `hold` label to its PR.
 - To stop everything, set `NUVELLUM_AUTOPUBLISH` to `off`.
 - Required repository setting: **Settings → Actions → General → Workflow permissions → "Allow GitHub Actions to create and approve pull requests"**. Auto-open needs it.
-- If `main` has branch protection, it must not require human approvals. Otherwise the gate's merge is refused. Listing the four checks as required status checks is recommended.
+- **Protect `main` with a branch protection rule or repository ruleset.** Require changes through pull requests and require Build Nuvellum, Security checks, CodeQL and Editorial duplicate guard. Do not require human approvals, because the publication gate is the automated approval policy.
 - The gate deletes an `incoming/**` branch only after it has merged that branch. The PR keeps the full history.
 
 ## Duplicate protection
