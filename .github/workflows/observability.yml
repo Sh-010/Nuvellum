@@ -1,0 +1,33 @@
+name: Nuvellum observability
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: nuvellum-observability
+  cancel-in-progress: true
+
+jobs:
+  newsroom-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Build newsroom health report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUVELLUM_AUTOPUBLISH: ${{ vars.NUVELLUM_AUTOPUBLISH }}
+        run: node scripts/observability-report.mjs
