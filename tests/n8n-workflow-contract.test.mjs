@@ -159,3 +159,17 @@ test('execution: the pre-commit gate refuses geography that bypassed the draft p
   assert.throws(attempt({ regions: ['east-asia', 'east-asia'] }), /regions metadata is invalid/);
   assert.doesNotThrow(attempt({}));
 });
+
+// Regression for execution 936: with no open GitHub PRs the open-PR fetch returned zero items, which
+// stopped the candidate before its duplicate check and ended the one-by-one loop early.
+test('an empty open-PR list keeps the candidate (and the loop) moving', () => {
+  assert.equal(node('Get Open Editorial PRs').alwaysOutputData, true, 'Get Open Editorial PRs must always output an item');
+  const context = { sourceLink: 'https://www.bbc.co.uk/sport/cricket/articles/ckddv8j94395o', sourceHash8: 'abcdef12', exactSourceMatch: false };
+  const fn = new Function('$input', '$', node('Check Open PR Duplicates').parameters.jsCode);
+  const $ = () => ({ item: { json: context } });
+  // What n8n passes on with alwaysOutputData when GitHub answers [] : one empty item.
+  const [out] = fn({ all: () => [{ json: {} }] }, $);
+  assert.equal(out.json.exactSourceMatch, false);
+  assert.equal(out.json.openPrExactSourceMatch, false);
+  assert.equal(out.json.sourceLink, context.sourceLink);
+});

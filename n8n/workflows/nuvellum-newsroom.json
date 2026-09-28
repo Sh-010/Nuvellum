@@ -3,12 +3,12 @@
   "name": "Nuvellum v6.5 — Fixed Source Resolution",
   "active": false,
   "isArchived": false,
-  "versionId": "bcf2474f-ad85-42d1-9881-d8f44d5670db",
+  "versionId": "f8f72515-b536-45e2-8b20-98d2e8ba7dbc",
   "activeVersionId": null,
   "triggerCount": 0,
   "nodeCount": 65,
   "createdAt": "2026-09-26T09:05:22.927Z",
-  "updatedAt": "2026-09-28T10:12:39.256Z",
+  "updatedAt": "2026-09-28T17:50:10.785Z",
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
@@ -1833,6 +1833,7 @@
       ],
       "id": "f390b3d7-3f02-4a90-9da7-5dbfd9ed9119",
       "name": "Get Open Editorial PRs",
+      "alwaysOutputData": true,
       "credentials": {
         "httpHeaderAuth": {
           "name": "Nuvellum GitHub"
