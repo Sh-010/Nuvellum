@@ -303,7 +303,7 @@ const REVEAL_CSS = `html.motion-ready :is(${REVEAL_FADES}){opacity:0;translate:v
 html.motion-ready :is(.latest-section,.popular,.in-focus-section){--from:0 6px;--dur:.7s}html.motion-ready :is(.opinion-col,.opinion-sec .section-title){--from:0 10px;--dur:.85s}html.motion-ready .screen-lead-media{--from:0 16px;--dur:1.15s}html.motion-ready .screen-item{--from:16px 0;--dur:1s}@media(max-width:900px){html.motion-ready .screen-item{--from:0 12px}}html.motion-ready :is(.footer-top>div:first-child,.footer-cols>div,.footer-bottom){--from:0 10px;--dur:.9s}
 html.motion-ready .screen-lead-media:not(.is-visible) img{scale:1.04}
 html.motion-ready .newsletter-in .kicker{opacity:0;translate:0 8px;transition:opacity .8s var(--ease-enter),translate .9s var(--ease-enter)}html.motion-ready .newsletter-in h2{opacity:0;translate:0 14px;transition:opacity .9s var(--ease-enter) .16s,translate 1.05s var(--ease-enter) .16s}html.motion-ready .newsletter-in .signup{opacity:0;translate:0 10px;clip-path:inset(-6px 100% -6px -6px);transition:opacity .8s var(--ease-enter) .38s,translate .95s var(--ease-enter) .38s,clip-path 1.2s var(--ease-enter) .38s}html.motion-ready .newsletter-in .signup-msg{opacity:0;translate:0 6px;transition:opacity .8s var(--ease-enter) .72s,translate .9s var(--ease-enter) .72s}html.motion-ready .newsletter-in.is-visible :is(.kicker,h2,.signup,.signup-msg){opacity:1;translate:none}html.motion-ready .newsletter-in.is-visible .signup{clip-path:inset(-6px)}
-html.motion-ready .hero:not(.hero-enter) .hero-copy>*{opacity:0;translate:0 12px}html.motion-ready .hero:not(.hero-enter) img{opacity:.6;scale:1.025}html.motion-ready .hero.hero-enter img{animation:heroSettle 1.2s var(--ease-enter) backwards,heroDrift 32s var(--ease-drift) 1.2s infinite alternate}@keyframes heroSettle{from{opacity:.6;scale:1.025}to{opacity:1;scale:1}}html.motion-ready .hero.hero-enter .hero-copy>*{animation:heroIn 1s var(--ease-enter) backwards}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(1){animation-delay:.15s}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(2){animation-delay:.24s}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(3){animation-delay:.33s}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(4){animation-delay:.42s}@keyframes heroIn{from{opacity:0;translate:0 12px}to{opacity:1;translate:none}}
+html.motion-ready .hero:not(.hero-enter) .hero-copy>*{opacity:0;transform:translateY(18px)}html.motion-ready .hero:not(.hero-enter) img{opacity:.42;transform:scale(1.045)}html.motion-ready .hero.hero-enter img{animation:heroSettle 1.15s var(--ease-enter) backwards,heroDrift 32s var(--ease-drift) 1.15s infinite alternate}@keyframes heroSettle{from{opacity:.42;transform:scale(1.045)}to{opacity:1;transform:scale(1)}}html.motion-ready .hero.hero-enter .hero-copy>*{animation:heroIn 1.02s var(--ease-enter) backwards}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(1){animation-delay:.12s}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(2){animation-delay:.23s}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(3){animation-delay:.34s}html.motion-ready .hero.hero-enter .hero-copy>:nth-child(4){animation-delay:.45s}@keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 html.motion-ready .rule{transform-origin:left center;scale:.35 1;opacity:0;transition:scale 1.1s var(--ease-enter) .15s,opacity var(--t-slow) ease .15s}html.motion-ready .is-visible .rule{scale:1 1;opacity:1}
 html.motion-ready .reveal-quick{--dur:.5s}html.motion-ready .reveal-instant,html.motion-ready .reveal-instant *{transition-duration:0s!important;transition-delay:0s!important}
 html.motion-ready:not(.motion-live) :is(${REVEAL_FADES},${REVEAL_PARTS},.rule,${REVEAL_IMAGES}){animation:revealFailsafe 0s 2.5s forwards}@keyframes revealFailsafe{to{opacity:1;translate:none;scale:1 1;clip-path:none}}
@@ -441,13 +441,17 @@ ${REVEAL_CSS}
 @media(max-width:620px){.shell{width:min(100% - 20px,1500px)}.brand-zone{width:180px;height:52px}.brand-monogram-mark{width:45px;height:45px}.brand-monogram-n{font-size:44px}.brand-tagline{font-size:10px}.brand-expanded{left:0;width:246px;background:var(--paper2);padding:8px 10px;border:1px solid var(--line);box-shadow:var(--shadow)}.brand-letter{font-size:29px;min-width:20px}.brand-home-star{font-size:16px;min-width:20px}.brand-monogram-star{font-size:16px;right:-8px}.brand-expanded-note{font-size:9px}}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .hero img,.screen-lead img,.support-card,.latest-row,.popular-item,.screen-item,.opinion-col,.focus-card img,.focus-mini img,.support-image img,.latest-thumb img,.screen-item img,.save-icon svg{transition:none!important;animation:none!important}
-  .region-detail.swap-in,.region-detail.swap-in *,.region-detail.swap-out>*,.popular-list.panel-in,.popular-list.panel-in *,.latest-list>*,.hero-copy>*,.region-story,.region-story img{animation:none!important;transition:none!important}
-  /* Keep the explicitly requested Latest ticker moving even when the OS/browser
-     advertises reduced motion; other decorative motion remains reduced. */
+  html.motion-ready :is(.support-card,.latest-section,.latest-row,.popular,.popular-item,.in-focus-section,.focus-card,.focus-mini,.screen .section-title,.screen-lead-media,.screen-lead>.chip,.screen-lead>h3,.screen-lead>p,.screen-lead>.story-meta,.screen-item,.opinion-sec .section-title,.opinion-col,.footer-top>div:first-child,.footer-cols>div,.footer-bottom){--from:0 5px;--dur:.58s}
+  html.motion-ready .screen-item{--from:6px 0}
+  html.motion-ready .hero:not(.hero-enter) .hero-copy>*{transform:translateY(7px)}
+  html.motion-ready .hero:not(.hero-enter) img{opacity:.72;transform:scale(1.015)}
+  html.motion-ready .hero.hero-enter img{animation:heroSettle .72s var(--ease-enter) backwards!important}
+  html.motion-ready .hero.hero-enter .hero-copy>*{animation-duration:.62s!important}
+  html.motion-ready .newsletter-in :is(.kicker,h2,.signup,.signup-msg){translate:0 4px}
+  .support-card,.latest-row,.popular-item,.screen-item,.opinion-col,.focus-card img,.focus-mini img,.support-image img,.latest-thumb img,.region-story,.region-story img,.save-icon svg{transition-duration:.24s!important}
 }
 </style>
-<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('motion-ready')}catch(e){}</script>
+<script>try{if('IntersectionObserver' in window)document.documentElement.classList.add('motion-ready')}catch(e){}</script>
 <script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Nuvellum',url:canonical,description})}</script>
 </head>
 <body data-home-version="nuvellum-editorial-home-v6">
@@ -669,7 +673,12 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     results.innerHTML=hits.length?hits.map(x=>'<a class="search-result" href="/article/'+encodeURIComponent(x.slug)+'"><small>'+escapeHtml(x.section||'Nuvellum')+'</small><strong>'+escapeHtml(x.title)+'</strong></a>').join(''):'<div class="region-empty">No matching stories.</div>';
   });
 
-  const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const systemReduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
+  // Nuvellum keeps its restrained editorial entrances enabled even when the OS advertises
+  // reduced motion; CSS below softens travel/continuous drift instead of deleting motion entirely.
+  // This also avoids Windows animation settings silently turning the whole homepage static.
+  const reduceMotion=false;
+  if(systemReduceMotion)document.documentElement.classList.add('motion-soft');
 
   // Saves are delegated so rows swapped in by the Latest filters work too.
   const savedKey='nuvellum-saved-v2';
@@ -812,12 +821,10 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
       const warm=()=>{const seen=new Set();document.querySelectorAll('template').forEach(t=>t.content.querySelectorAll('img[src]').forEach(img=>{const src=img.getAttribute('src');if(seen.has(src))return;seen.add(src);const i=new Image();i.decoding='async';i.src=src;i.decode?.().catch(()=>{})}))};
       ('requestIdleCallback' in window)?requestIdleCallback(warm,{timeout:3000}):setTimeout(warm,1500);
     };
-    // Start once three consecutive frames arrive under 50ms after load (the page's first paint
-    // blocks frames); never later than 1.4s.
-    const whenSmooth=fn=>{let last=performance.now(),good=0;const tick=now=>{good=now-last<50?good+1:0;last=now;if(good>=3)fn();else if(!started)requestAnimationFrame(tick)};requestAnimationFrame(tick)};
-    const ready=()=>(document.fonts?.ready||Promise.resolve()).then(()=>whenSmooth(begin));
-    if(document.readyState==='complete')ready();else addEventListener('load',ready);
-    setTimeout(begin,1400);
+    // Begin on the first stable painted frames so the hero entrance is visible instead of
+    // starting late enough to look like a static page. The timeout is only a safety fallback.
+    requestAnimationFrame(()=>requestAnimationFrame(begin));
+    setTimeout(begin,320);
   }
 
   // No newsletter backend is connected yet: say so plainly and store nothing.
