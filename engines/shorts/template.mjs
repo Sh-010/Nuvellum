@@ -9,7 +9,8 @@ export function frameHtml(plan, { imageDataUri } = {}) {
   const c = { ...BRAND.colors, ox: BRAND.colors.wine, muted: BRAND.colors.stone };
   const s = plan.story;
   const kicker = `${s.section} · ${s.type}`.toUpperCase();
-  const artLabel = s.imageKind === 'illustration' ? 'ILLUSTRATION' : '';
+  // Same labels as the social cards and the site: photos are file photos, never implied footage of the event.
+  const artLabel = s.imageKind === 'illustration' ? 'ILLUSTRATION' : s.imageKind === 'photo' ? 'FILE PHOTO' : '';
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:${plan.width}px;height:${plan.height}px;overflow:hidden;background:${c.paper};color:${c.ink};-webkit-font-smoothing:antialiased}
@@ -18,7 +19,7 @@ body{font-family:${BRAND.serif}}\nbody.no-art .art{display:none}body.no-art .hoo
 .mast{position:absolute;left:72px;right:72px;top:64px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid ${c.ink};padding-bottom:22px}
 .brand{font-size:46px;letter-spacing:14px;font-weight:700}
 .kick{font-family:${BRAND.sans};font-size:24px;letter-spacing:4px;font-weight:700;color:${c.ox}}
-.art{position:absolute;left:72px;right:72px;top:190px;height:585px;overflow:hidden;background:${c.night};box-shadow:0 18px 50px rgba(30,20,10,.18)}
+.art{position:absolute;left:72px;right:72px;top:190px;height:585px;overflow:hidden;background:${c.ivory};box-shadow:0 18px 50px rgba(30,20,10,.18)}
 .art img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 45%}
 .art .label{position:absolute;left:18px;bottom:16px;font-family:${BRAND.sans};font-size:18px;letter-spacing:3px;color:#fff;background:rgba(0,0,0,.55);padding:6px 10px}
 .hook{position:absolute;left:72px;right:72px;top:860px;font-size:66px;line-height:1.14;font-weight:700;letter-spacing:-.5px}
