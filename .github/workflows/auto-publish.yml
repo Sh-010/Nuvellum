@@ -15,6 +15,7 @@ name: Auto-publish verified editorial stories
 on:
   workflow_run:
     workflows:
+      - Acquire editorial visual
       - Build Nuvellum
       - Security checks
       - CodeQL

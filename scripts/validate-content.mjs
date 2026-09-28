@@ -129,7 +129,7 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       }
     }
 
-    for (const key of ['title','dek','section','type','author','imageAlt','reviewedBy']) {
+    for (const key of ['title','dek','section','type','author','imageAlt','reviewedBy','imageCaption','imageCredit','imageLicense']) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
@@ -142,6 +142,28 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
         else if (!existsSync(join(aiArtDir, `${slug}.svg`))) errors.push(`${name}: AI image file public/generated/ai/${slug}.svg is missing`);
       } else if (!/^(\/images\/|\/uploads\/|https:\/\/)/.test(image)) {
         errors.push(`${name}: image must use /images/, /uploads/, /generated/ai/ or https://`);
+      }
+      if (image.startsWith('/uploads/articles/') && data.origin === 'automation' && !existsSync(join(root, 'public', image))) {
+        errors.push(`${name}: local article image ${image} is missing`);
+      }
+    }
+    if (data.imageProvider === 'wikimedia') {
+      if (data.imageKind !== 'photo') errors.push(`${name}: Wikimedia visuals must use imageKind: photo`);
+      const expectedImagePrefix = `/uploads/articles/${slug}.`;
+      if (!String(data.image || '').startsWith(expectedImagePrefix) || !/\.(?:jpe?g|png|webp)$/i.test(String(data.image || ''))) {
+        errors.push(`${name}: Wikimedia image must be /uploads/articles/${slug}.<jpg|png|webp>`);
+      }
+      for (const key of ['imageCaption','imageCredit','imageLicense','imageLicenseUrl','imageSourcePage']) {
+        if (!String(data[key] || '').trim()) errors.push(`${name}: Wikimedia image is missing ${key}`);
+      }
+      if (data.origin === 'automation' && !/^File photo:/i.test(String(data.imageCaption || ''))) {
+        errors.push(`${name}: automated Wikimedia caption must begin "File photo:"`);
+      }
+      if (data.imageSourcePage && !/^https:\/\/commons\.wikimedia\.org\//i.test(String(data.imageSourcePage))) {
+        errors.push(`${name}: imageSourcePage must be a Wikimedia Commons page`);
+      }
+      if (data.imageLicenseUrl && !/^https:\/\//i.test(String(data.imageLicenseUrl))) {
+        errors.push(`${name}: imageLicenseUrl must use https://`);
       }
     }
     if (!body) errors.push(`${name}: article body is empty`);

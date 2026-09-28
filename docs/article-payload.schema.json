@@ -172,6 +172,43 @@
         "uncertain"
       ],
       "description": "Outcome of the dedicated verification pass. Required as \"cleared\" for sensitive stories to publish."
+    },
+    "imageProvider": {
+      "type": "string",
+      "enum": [
+        "wikimedia",
+        "nuvellum-illustration",
+        "manual",
+        "newsroom-ai"
+      ]
+    },
+    "imageKind": {
+      "type": "string",
+      "enum": [
+        "photo",
+        "illustration",
+        "map"
+      ]
+    },
+    "imageCaption": {
+      "type": "string",
+      "maxLength": 280
+    },
+    "imageCredit": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "imageLicense": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "imageLicenseUrl": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "imageSourcePage": {
+      "type": "string",
+      "pattern": "^https://commons\\\\.wikimedia\\\\.org/"
     }
   },
   "allOf": [

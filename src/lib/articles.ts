@@ -18,6 +18,13 @@ export type Article = {
   readingTime: string;
   image: string;
   imageAlt: string;
+  imageProvider?: 'wikimedia' | 'nuvellum-illustration' | 'manual' | 'newsroom-ai';
+  imageKind?: 'photo' | 'illustration' | 'map';
+  imageCaption?: string;
+  imageCredit?: string;
+  imageLicense?: string;
+  imageLicenseUrl?: string;
+  imageSourcePage?: string;
   status: string;
   tags: string[];
   /** Optional World Desk metadata. Slugs use the canonical eight-region taxonomy. */
