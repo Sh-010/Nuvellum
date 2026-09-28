@@ -1,6 +1,5 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, extname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { extname, join, relative } from 'node:path';
 import { REPO_ROOT } from '../shared/article.mjs';
 
 const COLORS = { paper:'#FAF7F2', ink:'#0F0F0F', wine:'#681F2D', stone:'#8D8A84', line:'#D8D0C4', soft:'#EFE8DE' };
@@ -150,8 +149,8 @@ export function renderSocialCards(story, outBase) {
   const manifest = {
     slug: story.slug,
     sourceMode: image ? story.mediaMode : 'text-led',
-    square: squarePath,
-    portrait: portraitPath,
+    square: relative(REPO_ROOT, squarePath).replaceAll('\\\\', '/'),
+    portrait: relative(REPO_ROOT, portraitPath).replaceAll('\\\\', '/'),
     rasterNeededForLivePosting: true
   };
   writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
