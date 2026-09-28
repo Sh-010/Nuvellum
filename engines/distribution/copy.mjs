@@ -1,0 +1,70 @@
+import { PLATFORMS, charCount } from './platforms.mjs';
+
+const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+
+function truncate(text, max) {
+  const s = clean(text);
+  if (charCount(s) <= max) return s;
+  const chars = [...s].slice(0, Math.max(1, max - 1)).join('');
+  return chars.replace(/\s+\S*$/, '') + '…';
+}
+
+function tag(value) {
+  const t = String(value || '').replace(/[^\p{L}\p{N}]/gu, '');
+  return t ? '#' + t : '';
+}
+
+export function trackedUrl(story, platform) {
+  const url = new URL(story.url);
+  url.searchParams.set('utm_source', platform);
+  url.searchParams.set('utm_medium', 'social');
+  url.searchParams.set('utm_campaign', 'article');
+  url.searchParams.set('utm_content', story.slug);
+  return url.toString();
+}
+
+export function templateCopy(story) {
+  const tags = story.tags.slice(0, 2).map(tag).filter(Boolean);
+  const links = Object.fromEntries(Object.keys(PLATFORMS).map(p => [p, trackedUrl(story, p)]));
+  const xTail = '\n\n' + links.x;
+  const xBodyBudget = Math.max(40, PLATFORMS.x.maxChars - charCount(xTail));
+  const xBodyCandidate = story.dek ? story.title + '\n\n' + story.dek : story.title;
+  const x = truncate(xBodyCandidate, xBodyBudget) + xTail;
+  return {
+    x,
+    threads: truncate(story.title + '\n\n' + story.dek + '\n\n' + links.threads, PLATFORMS.threads.maxChars),
+    facebook: truncate(story.title + '\n\n' + story.dek + '\n\nRead: ' + links.facebook, PLATFORMS.facebook.maxChars),
+    linkedin: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story: ' + links.linkedin + '\n\n#Nuvellum', PLATFORMS.linkedin.maxChars),
+    instagram: truncate(story.title + '\n\n' + story.dek + '\n\nRead the full story via Nuvellum.\n\n' + [...tags, '#Nuvellum'].join(' '), PLATFORMS.instagram.maxChars)
+  };
+}
+
+export function validateCopy(platform, text, story) {
+  const spec = PLATFORMS[platform];
+  const problems = [];
+  if (!spec) return ['unknown platform'];
+  if (!clean(text)) problems.push('empty');
+  if (charCount(text) > spec.maxChars) problems.push('over ' + spec.maxChars + ' characters');
+  if (spec.linkInText) {
+    const expected = trackedUrl(story, platform);
+    if (!String(text).includes(expected)) problems.push('missing tracked article link');
+  }
+  if (/\b(shocking|you won'?t believe|this changes everything|must see|game[- ]changer)\b/i.test(text)) problems.push('sensational phrasing');
+  return problems;
+}
+
+export function generateCopy(story, platforms = Object.keys(PLATFORMS)) {
+  const all = templateCopy(story);
+  const copy = {};
+  const notes = [];
+  for (const platform of platforms) {
+    const value = all[platform];
+    const problems = validateCopy(platform, value, story);
+    if (problems.length) {
+      notes.push(platform + ': skipped (' + problems.join('; ') + ')');
+      continue;
+    }
+    copy[platform] = value;
+  }
+  return { copy, notes };
+}
