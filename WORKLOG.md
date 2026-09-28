@@ -218,3 +218,14 @@ Checkpoint: `checkpoint/world-explorer-pre-interaction-rebuild` (e14b162).
 - Geometry (px) at 1440×900 — baseline / PR #70 / now: left 1166 / 2842 / 1187; right 1166 / 2842 / 1187; In Focus 414 / 2050 / 411. Same at 1536×1024; tablet and mobile In Focus heights equal the baseline. Heights are identical across every filter and Popular tab.
 - Browser QA: 79/79 interaction checks (every filter, keyboard, rapid switching, saves, Popular tabs, all 8 World Desk regions, map tooltip, ticker, logo animations, hover motion, night mode, reveal safety incl. End/anchor jumps, reduced motion, JS disabled, simulated script failure, tablet/mobile overflow); 0 console errors, 0 CSP violations.
 - Logo CSS and header markup, ticker CSS, save-icon SVG/rules and lower-page markup identical to the baseline; World Explorer, publication scripts and locked assets untouched.
+
+### 2026-09-28 — Homepage motion refinement (motion only; layout unchanged)
+- Cause of the abrupt reveals: entrances used the crisp interaction curve `cubic-bezier(.16,.8,.2,1)`, which does ~80% of its movement in the first quarter, so an 800ms reveal read as a pop; fast scrolling also started full-length fades on content already on screen.
+- One ease-out family: `--ease` (interactions) and `--ease-enter` `cubic-bezier(.22,.61,.36,1)` (entrances). Entrances 0.72–0.9s, hovers 0.38s (`--t-hover`), image zooms 0.6s (`--t-media`).
+- Hero copy: one first-load entrance (kicker, headline, dek, metadata; 70ms apart, 8px rise); image drift kept.
+- World Desk: story rows and summary slide in individually (60ms stagger) on region change; no replay when moving within the active region; stories glide 3px with a slight image zoom on hover. Map transition unchanged.
+- Screen & Play: lead image settles from 1.05 over 1.8s on reveal and drifts slowly on hover (zoom + translate, 2.6s); lead copy staggers in; side stories glide in from the right on desktop (vertical below 900px) and respond with image drift and an eyebrow tint.
+- Per-child stagger (70ms) for Latest rows, Popular rows, In Focus, Screen & Play; Opinion unchanged apart from normalised timing.
+- Newsletter: kicker, headline (+140ms), then form (+280ms) with a left-to-right wipe.
+- Scroll-speed aware: fast flicks use a short 0.5s reveal with no stagger; sections jumped past appear immediately. Failsafe, print, reduced motion and no-JS keep everything visible. Entrance animations use `fill: backwards` so nothing is left on elements afterwards.
+- Verified: all 1,912 element layout boxes identical to 36817f2 at 1536×1024, 1440×900, 834×1112 and 390×844; motion QA 20/20; interaction QA 79/79.
