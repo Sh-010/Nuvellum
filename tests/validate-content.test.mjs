@@ -14,6 +14,7 @@ function runValidator({ articles = {}, aiSvgs = {} }) {
   const dir = mkdtempSync(join(tmpdir(), 'nuvellum-validate-'));
   try {
     cpSync(join(root, 'scripts'), join(dir, 'scripts'), { recursive: true });
+    cpSync(join(root, 'src', 'lib'), join(dir, 'src', 'lib'), { recursive: true });
     mkdirSync(join(dir, 'src', 'content', 'articles'), { recursive: true });
     mkdirSync(join(dir, 'public', 'generated', 'ai'), { recursive: true });
     for (const [slug, text] of Object.entries(articles)) writeFileSync(join(dir, 'src', 'content', 'articles', `${slug}.md`), text);
@@ -115,6 +116,16 @@ test('geography: old articles may omit metadata, but present metadata must be va
   assert.equal(badRegion.code, 1); assert.match(badRegion.out, /unsupported region/);
   const duplicateCountry = runValidator({ articles: { 'a-story': article('a-story', { regions: [], countries: ['Egypt', 'egypt'] }) }, aiSvgs: svg });
   assert.equal(duplicateCountry.code, 1); assert.match(duplicateCountry.out, /countries must not contain duplicates/);
+});
+
+test('geography: countries must be names World Explorer can place', () => {
+  const svg = { 'a-story.svg': goodSvg };
+  const ok = runValidator({ articles: { 'a-story': article('a-story', { regions: ['europe-central-asia'], countries: ['UK', 'Türkiye'] }) }, aiSvgs: svg });
+  assert.equal(ok.code, 0, ok.out);
+  const unknown = runValidator({ articles: { 'a-story': article('a-story', { regions: ['north-america'], countries: ['USA'] }) }, aiSvgs: svg });
+  assert.equal(unknown.code, 1); assert.match(unknown.out, /unrecognised country "USA"/);
+  const aliasTwice = runValidator({ articles: { 'a-story': article('a-story', { regions: [], countries: ['UK', 'United Kingdom'] }) }, aiSvgs: svg });
+  assert.equal(aliasTwice.code, 1); assert.match(aliasTwice.out, /countries must not contain duplicates/);
 });
 
 test('policy: a published story whose verification failed is rejected', () => {

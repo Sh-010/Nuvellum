@@ -34,7 +34,7 @@ for (const item of $input.all()) {
   if (isAggregatePage(canonical)) continue;                                 // live blog / video / gallery
   if (seen.has(canonical)) continue;                                        // duplicate in this run
   seen.add(canonical);
-  out.push({ json: { ...j, canonicalUrl: canonical, sourceHash: sha256Hex(canonical).slice(0, 8) } });
+  out.push({ json: { ...j, canonicalUrl: canonical, sourceHash: sourceHash(canonical) } });
 }
 return out;`
   },

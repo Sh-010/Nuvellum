@@ -8,6 +8,13 @@ test('World Desk taxonomy is stable and unique', () => {
   assert.equal(regionBySlug('east-asia')?.label, 'East Asia');
 });
 
+test('an explicit regions array is authoritative, including []', () => {
+  const story = { section: 'World', title: 'Iran and Israel trade strikes as Pakistan urges calm', tags: ['Iran'] };
+  assert.deepEqual(regionsForArticle(story).sort(), ['middle-east-north-africa', 'south-asia'], 'legacy stories keep headline inference');
+  assert.deepEqual(regionsForArticle({ ...story, regions: [], countries: [] }), []);
+  assert.deepEqual(regionsForArticle({ ...story, regions: [], countries: ['France'] }), []);
+});
+
 test('explicit region metadata wins over keyword inference', () => {
   const article = { title: 'Japan and France discuss technology', regions: ['north-america'] };
   assert.deepEqual(regionsForArticle(article), ['north-america']);

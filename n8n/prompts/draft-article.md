@@ -9,5 +9,5 @@ Version: 2026-09-26.
 - Attribute claims ("the ministry said"). Keep material caveats and responses from the source.
 - Output JSON with `title`, `dek`, `section`, `type`, `tags`, `regions`, `countries`, `bodyMarkdown`.
 - `regions` is always an array using only these canonical slugs: `north-america`, `latin-america-caribbean`, `europe-central-asia`, `middle-east-north-africa`, `sub-saharan-africa`, `south-asia`, `east-asia`, `southeast-asia-oceania`. Use `[]` when no World Desk region is materially part of the story.
-- `countries` is always an array of country names explicitly supported by the source. Use `[]` when no country is materially part of the story. Do not infer a country from a company, person's nationality, or an incidental mention.
+- `countries` is always an array of country names explicitly supported by the source. Use `[]` when no country is materially part of the story. Do not infer a country from a company, person's nationality, or an incidental mention. Name countries as Nuvellum’s World Explorer does: United States (not US or USA), United Kingdom, Türkiye, Czechia, Netherlands, Bosnia and Herzegovina, Democratic Republic of the Congo, Palestine (for Gaza or the West Bank). A name the site cannot place holds the story.
 - Build the final file with `buildArticle` (snippet `build-article.js`), never by hand.

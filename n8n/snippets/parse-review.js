@@ -102,10 +102,29 @@ const WORLD_REGIONS = new Set([
   'southeast-asia-oceania'
 ]);
 
-/** Deterministic branch: the same source always maps to the same branch. */
+// Source identity for branch names. This is the live v6.5 "Build GitHub Payload" node's logic,
+// kept byte-compatible (tests/n8n-workflow-contract.test.mjs runs the live node code against it):
+// https, host lower-case without www, port/query/fragment ignored, trailing slash removed, which
+// is also how the repository duplicate guard compares sources. Parsed by hand because the n8n
+// Code sandbox does not expose the URL global.
+function sourceKey(value) {
+  const match = String(value || '').trim().match(/^(https?):\/\/([^\/?#\s]+)(\/[^?#\s]*)?(\?[^#\s]*)?(#[^\s]*)?$/i);
+  const host = match && !match[2].includes('@') ? match[2].toLowerCase().match(/^([a-z0-9.-]+)(?::(\d+))?$/i) : null;
+  if (!host) return String(value || '').trim().replace(/[?#].*$/, '').replace(/\/+$/, '').replace(/^http:/i, 'https:').replace(/:\/\/www\./i, '://');
+  return 'https://' + host[1].replace(/^www\./, '') + ((match[3] || '/').replace(/\/+$/, '') || '/');
+}
+
+/** 8-hex FNV-1a of sourceKey: the live v6.5 branch suffix. */
+function sourceHash(value) {
+  const str = sourceKey(value);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+  return (h >>> 0).toString(16).padStart(8, '0');
+}
+
+/** Deterministic branch: the same source always maps to the same branch (as live v6.5 names it). */
 function branchName(slug, sourceUrl) {
-  const hash = sha256Hex(canonicalSourceUrl(sourceUrl)).slice(0, 8);
-  return `incoming/${String(slug).slice(0, 72).replace(/-+$/, '')}-${hash}`;
+  return `incoming/${String(slug).slice(0, 60).replace(/-+$/, '')}-${sourceHash(sourceUrl)}`;
 }
 
 function wordCount(markdown) {
