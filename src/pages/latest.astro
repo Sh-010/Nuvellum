@@ -1,20 +1,45 @@
 ---
-import SiteHead from '../components/SiteHead.astro';
-import '../styles/global.css';
-import { getArticles } from '../lib/articles';
+import InteriorShell from '../components/InteriorShell.astro';
+import StoryCard from '../components/StoryCard.astro';
+import { getArticles, slugify } from '../lib/articles';
 
 const articles = await getArticles();
+const sections = [...new Map(articles.map(article => [slugify(article.section), article.section])).entries()];
 ---
-<!doctype html><html lang="en"><head>
-<SiteHead title="Latest — Nuvellum" description="The latest published reporting, analysis and ideas from Nuvellum." />
-</head><body>
-<div class="topline"></div>
-<header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header>
-<main class="section wrap">
-  <div class="section-head"><h2>Latest</h2><a href="/">Home</a></div>
-  <div class="cards">
-    {articles.map((a)=><article class="card motion-story"><a href={`/article/${a.slug}`}><img src={a.image} alt={a.imageAlt}/><div class="kicker">{a.section} · {a.type}</div><h3>{a.title}</h3><p>{a.dek}</p><div class="meta">{new Date(a.date+'T00:00:00Z').toLocaleDateString('en-GB',{year:'numeric',month:'short',day:'numeric',timeZone:'UTC'})} · {a.readingTime} read</div></a></article>)}
+<InteriorShell title="Latest — Nuvellum" description="The latest published reporting, analysis and ideas from Nuvellum." active="latest">
+  <div class="int-wrap int-page">
+    <header class="int-page-head" data-reveal>
+      <div>
+        <div class="int-page-kicker">Chronological edition</div>
+        <h1 class="int-page-title">Latest</h1>
+        <p class="int-page-dek">Every published Nuvellum story in reverse chronological order, without popularity weighting.</p>
+      </div>
+      <div class="int-page-note">{articles.length} published {articles.length === 1 ? 'story' : 'stories'} in the current archive.</div>
+    </header>
+
+    <div class="int-filters" role="group" aria-label="Filter latest stories by section">
+      <button class="int-filter active" type="button" data-filter="all">All</button>
+      {sections.map(([key,label]) => <button class="int-filter" type="button" data-filter={key}>{label}</button>)}
+    </div>
+
+    <div class="int-feed" id="latestFeed">
+      {articles.map((article,index) => (
+        <div class="int-latest-row" data-section={slugify(article.section)}>
+          <StoryCard article={article} variant="row" index={index + 1} />
+        </div>
+      ))}
+    </div>
   </div>
-</main>
-<footer class="footer"><div class="wrap"><div class="footer-brand">NUVELLUM</div><div class="tag">Beyond the headline.</div></div></footer>
-</body></html>
+
+  <script is:inline>
+    (() => {
+      const buttons = [...document.querySelectorAll('[data-filter]')];
+      const rows = [...document.querySelectorAll('.int-latest-row')];
+      buttons.forEach(button => button.addEventListener('click', () => {
+        const key = button.dataset.filter;
+        buttons.forEach(item => item.classList.toggle('active', item === button));
+        rows.forEach(row => { row.hidden = key !== 'all' && row.dataset.section !== key; });
+      }));
+    })();
+  </script>
+</InteriorShell>
