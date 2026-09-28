@@ -19,10 +19,17 @@ export function normalizeCommonsPage(page) {
   const credit = pick(meta, 'Artist') || pick(meta, 'Credit') || 'Unknown creator';
   const sourcePage = page.canonicalurl || `https://commons.wikimedia.org/wiki/${encodeURIComponent(String(page.title || '').replace(/ /g, '_'))}`;
 
+  const categoryText = (page?.categories || []).map(c => String(c?.title || '')).join(' ').toLowerCase();
+  const badges = [];
+  if (/featured picture/.test(categoryText)) badges.push('featured');
+  if (/quality image/.test(categoryText)) badges.push('quality');
+  if (/valued image/.test(categoryText)) badges.push('valued');
+
   return {
     provider: 'wikimedia',
     title: String(page.title || '').replace(/^File:/, ''),
     description: pick(meta, 'ImageDescription'),
+    badges,
     credit,
     license,
     licenseUrl: pick(meta, 'LicenseUrl'),
@@ -35,7 +42,7 @@ export function normalizeCommonsPage(page) {
   };
 }
 
-export async function searchWikimedia(query, { limit = 12, width = 1600, fetchImpl = fetch } = {}) {
+export async function searchWikimedia(query, { limit = 12, width = 1600, brief = null, fetchImpl = fetch } = {}) {
   const q = String(query || '').trim();
   if (!q) return [];
 
@@ -47,10 +54,11 @@ export async function searchWikimedia(query, { limit = 12, width = 1600, fetchIm
     gsrnamespace: '6',
     gsrsearch: q,
     gsrlimit: String(Math.max(1, Math.min(30, limit))),
-    prop: 'imageinfo|info',
+    prop: 'imageinfo|info|categories',
     inprop: 'url',
     iiprop: 'url|size|mime|extmetadata',
-    iiurlwidth: String(width)
+    iiurlwidth: String(width),
+    cllimit: 'max'
   });
 
   const res = await fetchImpl(`${API}?${params}`, { headers: { 'user-agent': 'Nuvellum-Visual-Engine/1.0' } });
@@ -64,5 +72,8 @@ export async function searchWikimedia(query, { limit = 12, width = 1600, fetchIm
     .filter(candidate => licenseAllowed(candidate.license))
     .map(candidate => ({ ...candidate, problems: visualCandidateProblems(candidate) }));
 
-  return rankVisualCandidates(candidates.filter(candidate => candidate.problems.length === 0), { mode: 'photo', title: q, entities: [] });
+  return rankVisualCandidates(
+    candidates.filter(candidate => candidate.problems.length === 0),
+    brief || { mode: 'photo', title: q, entities: [] }
+  );
 }
