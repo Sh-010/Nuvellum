@@ -10,11 +10,12 @@ export const HUMAN_LED_TYPES = new Set(['Opinion', 'Essay', 'Ideas', 'Review']);
 
 // Workflow names (the `name:` field) that must all be green on the exact
 // head commit before an incoming story may be merged automatically.
-export const REQUIRED_CHECKS = ['Build Nuvellum', 'Security checks', 'CodeQL', 'Editorial duplicate guard'];
+export const REQUIRED_CHECKS = ['Acquire editorial visual', 'Build Nuvellum', 'Security checks', 'CodeQL', 'Editorial duplicate guard'];
 export const HOLD_LABELS = new Set(['hold', 'do-not-publish', 'needs-human']);
 
 export const ARTICLE_PATH_RE = /^src\/content\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)\.md$/;
 export const AI_ART_PATH_RE = /^public\/generated\/ai\/([a-z0-9]+(?:-[a-z0-9]+)*)\.svg$/;
+export const PHOTO_PATH_RE = /^public\/uploads\/articles\/([a-z0-9]+(?:-[a-z0-9]+)*)\.(?:jpe?g|png|webp)$/i;
 
 function parseValue(value) {
   const v = String(value ?? '').trim();
@@ -115,7 +116,7 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
   const hold = labels.find(l => HOLD_LABELS.has(l));
   if (hold) fail(`PR carries the "${hold}" label`);
 
-  // --- Changed files: exactly one new article, optionally its own AI art --
+  // --- Changed files: exactly one new article, optionally its own AI art or acquired photo --
   const articleFiles = (files || []).filter(f => ARTICLE_PATH_RE.test(f.filename));
   let slug;
   if (articleFiles.length !== 1) {
@@ -128,6 +129,8 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
     if (ARTICLE_PATH_RE.test(f.filename)) continue;
     const art = f.filename.match(AI_ART_PATH_RE);
     if (art && slug && art[1] === slug && f.status === 'added') continue;
+    const photo = f.filename.match(PHOTO_PATH_RE);
+    if (photo && slug && photo[1] === slug && f.status === 'added') continue;
     fail(`file outside the automated publishing scope: ${f.filename} (${f.status})`);
   }
 
@@ -153,7 +156,8 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
     const text = String(article);
     const body = text.slice(text.indexOf('\n---', 3) + 4);
     const hasAiArt = (files || []).some(f => AI_ART_PATH_RE.test(f.filename));
-    for (const q of newStoryQualityProblems(data, body, { slug, branch: pr?.head?.ref, hasAiArt })) fail(`quality: ${q}`);
+    const hasPhoto = (files || []).some(f => PHOTO_PATH_RE.test(f.filename));
+    for (const q of newStoryQualityProblems(data, body, { slug, branch: pr?.head?.ref, hasAiArt, hasPhoto })) fail(`quality: ${q}`);
   }
 
   // --- Repository checks on this exact commit ----------------------------
