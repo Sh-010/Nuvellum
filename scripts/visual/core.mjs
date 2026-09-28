@@ -128,3 +128,54 @@ export function visualCandidateProblems(candidate) {
 export function candidateUsable(candidate) {
   return visualCandidateProblems(candidate).length === 0;
 }
+
+
+// Editorial art-direction scoring. This is deliberately independent from legal/license QA:
+// a candidate can be legally usable and still look cheap, generic, or visually weak.
+const GENERIC_STOCK_RE = /\b(handshake|laptop|keyboard|generic office|business meeting|stock photo|smiling business|call center|abstract network|glowing ai face|robot hand)\b/i;
+const PREMIUM_HINT_RE = /\b(architecture|cityscape|institution|parliament|cathedral|museum|factory|port|harbor|laboratory|observatory|stadium|portrait|sculpture|painting|landscape|night|dusk|dramatic light|cinematic|editorial)\b/i;
+
+export function editorialVisualScore(candidate, brief = {}) {
+  const text = [
+    candidate?.title,
+    candidate?.description,
+    brief?.title,
+    ...(brief?.entities || [])
+  ].filter(Boolean).join(' ');
+
+  let score = 50;
+  const width = Number(candidate?.width || 0);
+  const height = Number(candidate?.height || 0);
+  const ratio = width && height ? width / height : 0;
+
+  // Composition / crop suitability for Nuvellum's wide editorial cards.
+  if (ratio >= 1.35 && ratio <= 2.05) score += 12;
+  else if (ratio >= 1.15 && ratio <= 2.35) score += 5;
+  else if (ratio) score -= 8;
+
+  if (width >= 1800) score += 8;
+  else if (width >= 1400) score += 4;
+
+  // Editorial presence: reward subjects that read as place, institution, craft, or atmosphere.
+  if (PREMIUM_HINT_RE.test(text)) score += 12;
+  if (GENERIC_STOCK_RE.test(text)) score -= 22;
+
+  // Documentary images with useful descriptive context are preferable to bare file dumps.
+  if (String(candidate?.description || '').trim().length >= 40) score += 6;
+
+  // Prefer photographs unless the brief explicitly calls for illustration/map treatment.
+  const mime = String(candidate?.mime || '').toLowerCase();
+  if (brief?.mode === 'photo' && /^image\/(jpeg|jpg|png|webp)$/.test(mime)) score += 8;
+
+  // Keep the result bounded and easy to reason about.
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+export function rankVisualCandidates(candidates, brief) {
+  return [...(candidates || [])]
+    .map(candidate => ({
+      ...candidate,
+      editorialScore: editorialVisualScore(candidate, brief)
+    }))
+    .sort((a,b) => b.editorialScore - a.editorialScore);
+}
