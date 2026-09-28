@@ -250,3 +250,26 @@ Profiled with Chrome performance traces (GPU/ANGLE D3D11, Intel HD Graphics), 6 
 - Before (2d10249) → after, top of page: style 81 → 39ms; restyled elements 2,774 → 1,526; tile raster 76 → 15ms; worst frame 116 → 91ms; frames >34ms 9 → 2. Mid-page: style 148 → 40ms; worst frame 67 → 34ms; frames >34ms 7 → 1. Screencast: before produced 15–16 frames in the 700ms after the click (70–119ms apart, dark only after ~410ms); after 47 frames, 8–16ms apart, crossfade complete by ~300–380ms. The crossfade starts ~100–130ms after the click (the View Transition waits for the GPU to snapshot the old page and raster the new one).
 - Visuals: day and night full-page renders match the previous build except 226 sub-pixel edge samples inside small thumbnails (fair comparison with the hero composited, as it always is live). Layout boxes identical at four viewports.
 - Note: two interaction-QA expectations (hero timing, reduced-motion "motion-soft") fail identically on 2d10249; they reflect bc82ad3's intentional motion changes, not this work.
+
+## 2026-09-28: live v6.5 end-to-end verification runs (n8n MCP session)
+
+Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merged onto `081d8faa`; export on PR #74). Three manual executions, one at a time. The workflow stayed inactive, the schedule off and `NUVELLUM_AUTOPUBLISH` untouched. Nothing was merged.
+
+| Run | Execution | Candidates | Stopped | Committed | PRs | Geography |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 921 | 5 | CNBC (18-word source), Guardian film review (drafter skip), Variety list (>4 regions, failed closed) | 2 low-risk | #76 NASA robotics, #77 Klopp/Germany | `["north-america"]`/`["United States"]`; `["europe-central-asia"]`/`["Germany"]` |
+| 2 | 922 | 5 | CNBC (no text), NASA + DW (exact duplicates of open PRs), Guardian review (skip) | 1 low-risk | #78 and #79 (duplicate, see below) | `["europe-central-asia","north-america"]`/`["United Kingdom"]` |
+| 3 | 923 | 5 | CNBC (20 words), Deadline + NASA (exact duplicates), Guardian review (skip) | 1 sensitive | #80 Ben-Gvir/prisoner | `["middle-east-north-africa"]`/`["Israel","Palestine"]` |
+
+- n8n path clean in all three runs: no node errors or stalled branches, rejected candidates failed closed while processing continued, and duplicate sources were stopped at "Exact Source Duplicate?". Countries resolve through `resolveCountry`. Branch names equal `scripts/lib/newsroom.mjs` `branchName`. Each branch adds exactly `src/content/articles/<slug>.md` and `public/generated/ai/<slug>.svg`, and `newStoryQualityProblems` is empty for every story.
+- Low-risk stories carry `editorialReview: "passed"`. Sensitive #80 stayed `review` after editorial review and became `published` only with `verification: "cleared"` and `reviewedBy: "Nuvellum Verification Pipeline"`.
+- GitHub push checks on the incoming commits (Build, Security, CodeQL, Editorial duplicate guard, Auto-open) all passed, 9 of 9 each. The PR-event copies show `action_required` because the PRs are opened by `github-actions[bot]`. Auto-publish ran and merged nothing.
+- **Defect: duplicate editorial PR.** Run 2's branch got #78 and #79 (same head, base and second). `auto-open-editorial-pr.yml` grouped concurrency by `github.sha`, so the SVG and article pushes (about 1 s apart) ran in parallel, both found no PR, and both created one. Fixed by grouping on `github.ref` (`cancel-in-progress: false`), pinned in `tests/open-editorial-pr.test.mjs`. #79 closed as redundant; #78 kept as the audit copy.
+
+### Editorial-quality follow-ups (not part of stabilization)
+- #77 copies DW's question headline ("Will Jürgen Klopp's charisma be enough for Germany?") too closely.
+- #80 states settlements are "considered illegal under international law" in Nuvellum's voice; it needs attribution.
+- Candidate slots are sometimes spent on sources that then fail extraction (CNBC every run) or that are declined every run (the same Guardian film review).
+- Person names were not verified against outside sources in these runs.
+- The pipeline cleared #77 and #80, but they must not be published as they stand. The owner decides after editorial fixes.
+- Also seen: run 2's headline "Vmi worldwide…" (source "VMI Worldwide"), a `north-america` region tagged from a film's fictional setting, and a slug cut mid-word by the 90-character limit.

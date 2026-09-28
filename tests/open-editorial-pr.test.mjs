@@ -154,3 +154,15 @@ test('open-editorial-pr: uses the branch head when push events arrive out of ord
     assert.equal(state.prs[0].title, 'Editorial: Stallone says he became bulimic');
   } finally { server.close(); }
 });
+
+// Regression for #78/#79: the SVG and article pushes of one story ran concurrently (group keyed by
+// commit SHA), both found no PR, and GitHub accepted two identical PRs. Runs must queue per branch.
+test('auto-open workflow serialises runs per incoming branch, never per commit', async () => {
+  const { readFileSync } = await import('node:fs');
+  const yml = readFileSync(join(root, '.github', 'workflows', 'auto-open-editorial-pr.yml'), 'utf8');
+  const block = yml.match(/^concurrency:\n((?:[ \t]+.*\n)+)/m);
+  assert.ok(block, 'workflow-level concurrency block is missing');
+  assert.match(block[1], /^\s+group:\s*open-editorial-pr-\$\{\{\s*github\.ref\s*\}\}\s*$/m);
+  assert.match(block[1], /^\s+cancel-in-progress:\s*false\s*$/m);
+  assert.doesNotMatch(block[1], /github\.sha/);
+});
