@@ -13,7 +13,7 @@ n8n/
 
 ## Live production workflow (v6.5)
 
-The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. The repository candidate in `workflows/nuvellum-newsroom.json` is based on the sanitized live export at n8n version `2b8eda07-7ea3-4860-8b78-b5cc1967a033`, with the 2026-09-28 explicit geography contract patch applied. It is **not yet confirmed re-imported into the live n8n instance**. Re-import/patch v6.5 in place, run the real verification sequence, then replace this file with a fresh sanitized live export. Do not create v6.6+ copies.
+The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is the sanitized export of live n8n version `bcf2474f-ad85-42d1-9881-d8f44d5670db` (2026-09-28). That version merged the explicit geography contract onto live `081d8faa`, keeping the five-candidate queue and the roundup/multi-story rejection. The geography contract is in live but has not yet been checked in a real end-to-end run. Do not create v6.6+ copies.
 
 Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib/newsroom.mjs` are the live "Build GitHub Payload" logic (FNV-1a over the host + path key, 60-character slug cut), and `tests/n8n-workflow-contract.test.mjs` runs the live node code against them and executes the candidate's Code nodes end to end. Other helpers still differ: `canonicalSourceUrl` uses the `URL` global, which the live node notes the n8n Code sandbox does not expose, so confirm a snippet in a real execution before swapping it in.
 
@@ -21,14 +21,14 @@ Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib
 
 | Live node | Behaviour |
 | --- | --- |
-| Queue Latest Candidates | Canonical https URLs without tracking params (utm_*, fbclid, gclid, __source, maca, …). Rejects live blogs (`/live/`, `/live-<id>`), video/av, audio, galleries, podcasts, newsletters and quizzes. Skips failed feeds. Takes up to 3 candidates across different outlets and desks. |
+| Queue Latest Candidates | Canonical https URLs without tracking params (utm_*, fbclid, gclid, __source, maca, …). Rejects live blogs (`/live/`, `/live-<id>`), video/av, audio, galleries, podcasts, newsletters and quizzes. Skips failed feeds. Takes up to five candidates (`MAX_CANDIDATES`) across different outlets and desks, so a few rejected items don't empty a run. |
 | Prepare Source | Real outlet names. Story text from JSON-LD `articleBody` first, then `<article>`/`<main>`/RSS, with an on-topic guard so unrelated stories are never merged. |
 | Prepare Duplicate Context / Check Open PR Duplicates | Exact-source dedupe against the live search index and open PRs, by source URL or branch hash. |
-| Parse Draft & Build Markdown | Sentence-case headlines, with repairs for model casing errors: proper nouns the source only capitalises are restored, quoted titles of works keep the source's casing, and the first letter is always capitalised (brands like iPhone excepted). Rejects opinion/commentary sources (drafter `skip`, non-news `type`, or an unattributed "X needs to/should…" headline). "campaign" alone is not a politics signal. `publishedAt`. Real outlet in `sourceNote`. No padding. Fails closed per story. |
+| Parse Draft & Build Markdown | Sentence-case headlines, with repairs for model casing errors: proper nouns the source only capitalises are restored, quoted titles of works keep the source's casing, and the first letter is always capitalised (brands like iPhone excepted). Rejects opinion/commentary sources (drafter `skip`, non-news `type`, or an unattributed "X needs to/should…" headline). The drafter skips roundups, newsletters, digests, deals posts and lists (`roundup:` reason). "campaign" alone is not a politics signal. Explicit `regions`/`countries` arrays (`[]` allowed). Missing arrays, unknown regions and countries World Explorer cannot place fail closed. Aliases ("UK", "Turkey") are written canonically. `publishedAt`. Real outlet in `sourceNote`. No padding. Fails closed per story. |
 | Parse Editorial Review | `editorialReview: "passed"` only on a clean pass. Low-risk stories become `published`. The review prompt also rejects opinion sources and unattributed value judgements for every story. |
 | Parse Sensitive Verification | Only a clean pass writes `verification: "cleared"`, `reviewedBy: "Nuvellum Verification Pipeline"` and `status: "published"`. Failed or uncertain stories are never committed. |
 | Sanitize Editorial SVG | Strips unsafe content, then re-checks against an element allowlist and blocked patterns. Anything left unsafe falls back to the section image. The repository validator re-checks the committed file with `svg-safety.mjs`. |
-| Build GitHub Payload | Final contract gate before any commit. Branch `incoming/<slug ≤60>-<8-hex FNV-1a of the normalized source URL>`. |
+| Build GitHub Payload | Final contract gate before any commit. It also re-checks geography: arrays, canonical region slugs and World Explorer country names, no duplicates, and values matching the frontmatter. Branch `incoming/<slug ≤60>-<8-hex FNV-1a of the normalized source URL>`. |
 | Create Review Branch | An existing branch skips the story; the run continues. |
 
 The workflow is **inactive**. `NUVELLUM_AUTOPUBLISH` stays off until three real end-to-end runs have passed.
@@ -75,7 +75,7 @@ The repository enforces the rules below. A story that breaks them is not publish
 
 ### Branch and commits
 
-- Branch name: `incoming/<slug>-<8 hex deterministic source hash>`. Live v6.5 uses FNV-1a of the normalized source URL; `scripts/lib/newsroom.mjs` uses sha256. The gate checks the format and slug, so both are accepted. The same source always maps to the same branch.
+- Branch name: `incoming/<slug>-<8 hex deterministic source hash>`. Live v6.5 and `scripts/lib/newsroom.mjs` both use FNV-1a of the normalized host + path key, with a 60-character slug cut (pinned by `tests/n8n-workflow-contract.test.mjs`). The same source always maps to the same branch.
 - Commits: `src/content/articles/<slug>.md` and, optionally, `public/generated/ai/<slug>.svg`. Nothing else goes on the branch.
 - The article must be a **new** file. Automation never edits a published article.
 - Push with n8n's own GitHub credential (fine-grained token, Nuvellum repo only, Contents read/write). Those pushes start Build, Security, CodeQL and the duplicate guard. Work that GitHub starts with `GITHUB_TOKEN` does not trigger other workflows, so the pushes must not come from GitHub's token.

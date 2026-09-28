@@ -99,3 +99,63 @@ test('live branch identity equals the repository helper (hash and 60-character s
   const r = runChain({ ...DRAFT, title: 'Egypt says the long-awaited regional ceasefire talks will finally resume in Cairo on Thursday' });
   assert.equal(r.payload.branchName, branchName(r.payload.slug, SOURCE.sourceLink));
 });
+
+// ---- Live-only fixes (n8n versions c875619a, 081d8faa) must survive every geography sync.
+test('live fixes survive: five-candidate queue, roundup/newsletter skip, multi-story rejection', () => {
+  const queue = node('Queue Latest Candidates').parameters.jsCode;
+  assert.match(queue, /const MAX_CANDIDATES = 5;/);
+  assert.match(queue, /return selected\.slice\(0, MAX_CANDIDATES\);/);
+  const draft = node('Gemini Draft Article').parameters.messages.values[0].content;
+  assert.match(draft, /If the SOURCE is a roundup, newsletter, digest, deals post, gift guide or list/);
+  assert.match(draft, /"skip":true,"reason":"roundup: <one line>"/);
+  assert.match(draft, /Never combine separate stories into one article\./);
+  assert.match(draft, /If the SOURCE ITSELF is an opinion column/);
+  const review = node('Gemini Editorial Review').parameters.messages.values[0].content;
+  assert.match(review, /approved=false if the article combines two or more separate stories/);
+  assert.match(review, /roundup\/newsletter digest\)\. One story per article\./);
+});
+
+test('execution: queue selects up to five candidates across distinct outlets', () => {
+  const hosts = ['bbc.co.uk', 'aljazeera.com', 'theverge.com', 'espn.com', 'nasa.gov', 'variety.com', 'ign.com', 'cnbc.com'];
+  const items = hosts.map((h, i) => ({ json: { link: `https://www.${h}/news/story-${i}`, title: `Story ${i}`, isoDate: `2026-09-28T0${i}:00:00Z` } }));
+  const fn = new Function('$input', node('Queue Latest Candidates').parameters.jsCode);
+  const out = fn({ all: () => items });
+  assert.equal(out.length, 5);
+  assert.equal(new Set(out.map(x => x.json._sourceHost)).size, 5);
+});
+
+// ---- Canonical World Explorer countries: the live tables are exactly src/lib/countries.js.
+test('live country tables equal the World Explorer resolver', async () => {
+  const { COUNTRIES, countrySearchTerms, resolveCountry } = await import('../src/lib/countries.js');
+  const parse = node('Parse Draft & Build Markdown').parameters.jsCode;
+  const liveIndex = new Function(`${parse.split('\n').slice(1, 3).join('\n')}; return { COUNTRY_INDEX, normalizeCountry };`)();
+  const expected = {};
+  for (const c of COUNTRIES) for (const t of countrySearchTerms(c)) if (!(t in expected)) expected[t] = c.name;
+  assert.deepEqual(Object.fromEntries(liveIndex.COUNTRY_INDEX), expected);
+  for (const v of ['UK', 'Turkey', 'Türkiye', 'Dem. Rep. Congo', 'Côte d’Ivoire', 'U.S.', 'USA', 'Gaza', 'Bosnia'])
+    assert.equal(liveIndex.COUNTRY_INDEX.get(liveIndex.normalizeCountry(v)) ?? null, resolveCountry(v)?.name ?? null, v);
+  const payload = node('Build GitHub Payload').parameters.jsCode;
+  const names = new Function(`${payload.match(/^const COUNTRY_NAMES=.*$/m)[0]}; return COUNTRY_NAMES;`)();
+  assert.deepEqual([...names].sort(), [...new Set(COUNTRIES.map(c => c.name))].sort());
+});
+
+test('execution: country aliases are written in canonical form; unplaceable names fail closed', () => {
+  const r = runChain({ ...DRAFT, countries: ['UK', 'Turkey', 'United Kingdom'], regions: ['europe-central-asia'] });
+  assert.deepEqual(r.fm.countries, ['United Kingdom', 'Türkiye']);
+  for (const bad of ['USA', 'Gaza', 'Bosnia', 'Atlantis'])
+    assert.match(runChain({ ...DRAFT, countries: ['Egypt', bad] }).failedClosed, new RegExp(`site cannot place: ${bad}`));
+});
+
+test('execution: the pre-commit gate refuses geography that bypassed the draft parser', () => {
+  const store = { 'Prepare Source': SOURCE };
+  runNode('Parse Draft & Build Markdown', gemini(DRAFT), store);
+  runNode('Parse Editorial Review', gemini({ approved: true, risk_score: 5, issues: [], sensitive: false, decision_reason: 'clean' }), store);
+  runNode('Sanitize Editorial SVG', gemini('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10"/></svg>'), store);
+  const good = store['Sanitize Editorial SVG'];
+  const attempt = patch => { store['Sanitize Editorial SVG'] = { ...good, ...patch }; return () => runNode('Build GitHub Payload', { object: { sha: 'a'.repeat(40) } }, store); };
+  assert.throws(attempt({ countries: ['USA'], markdown: good.markdown.replace('countries: ["Egypt"]', 'countries: ["USA"]') }), /cannot place: USA/);
+  assert.throws(attempt({ countries: ['Egypt'], markdown: good.markdown.replace('countries: ["Egypt"]', 'countries: []') }), /countries frontmatter does not match/);
+  assert.throws(attempt({ regions: undefined }), /regions is not an array/);
+  assert.throws(attempt({ regions: ['east-asia', 'east-asia'] }), /regions metadata is invalid/);
+  assert.doesNotThrow(attempt({}));
+});

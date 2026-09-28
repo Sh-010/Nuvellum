@@ -263,6 +263,16 @@ Defects fixed (branch review/geography-contract-fixes, on top of #74):
 
 Site output: all 349 built pages byte-identical to #74 (no current article carries geography). Tests 175/175, build, build-output, validate, audit clean. Live n8n not accessible from this session.
 
+## 2026-09-28: live v6.5 geography sync (PR #74, n8n MCP session)
+
+- Snapshot before the change: live `081d8faa` (inactive, 65 nodes), full definition saved. n8n version history also keeps it.
+- Three-way merge. Base `2b8eda07`, the version PR #74's candidate was cut from. Live-only changes since then: `c875619a` (Queue: `MAX_CANDIDATES = 5`) and `081d8faa` (Draft prompt roundup/newsletter skip; Review prompt multi-story rejection). PR #74 only changed Draft prompt, Parse Draft & Build Markdown and Build GitHub Payload. Only the Draft prompt was changed on both sides, and it was merged by hand (live prompt plus the two geography blocks).
+- Beyond the #74 candidate: Parse Draft resolves countries through the World Explorer index (320 terms from `src/lib/countries.js`), writes canonical names and fails closed on anything unplaceable. Build GitHub Payload rejects non-canonical or duplicate countries and duplicate regions before commit.
+- Live is now `bcf2474f-ad85-42d1-9881-d8f44d5670db`. Re-fetched and compared with the snapshot: same 65 nodes, identical connections and settings, and only those three nodes' parameters differ. Still inactive, no published version. `NUVELLUM_AUTOPUBLISH` was not touched.
+- `n8n/workflows/nuvellum-newsroom.json` is the sanitized export of `bcf2474f`, and its node parameters equal live's. New contract tests pin the live-only fixes and check that the embedded country tables match `src/lib/countries.js`. They also cover alias canonicalisation and fail-closed handling, plus the pre-commit gate refusing tampered geography. They fail on the old candidate.
+- `npm test` 180/180, `npm run validate`, `npm run build` (347 pages), `check-build-output`, `npm audit` (0 vulnerabilities): all pass.
+- Next: three real end-to-end verification runs (not started).
+
 ## 2026-09-28: live v6.5 end-to-end verification runs (n8n MCP session)
 
 Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merged onto `081d8faa`; export on PR #74). Three manual executions, one at a time. The workflow stayed inactive, the schedule off and `NUVELLUM_AUTOPUBLISH` untouched. Nothing was merged.
