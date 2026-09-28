@@ -1,4 +1,4 @@
-import { licenseAllowed, visualCandidateProblems } from './core.mjs';
+import { licenseAllowed, visualCandidateProblems, rankVisualCandidates } from './core.mjs';
 
 const API = 'https://commons.wikimedia.org/w/api.php';
 
@@ -58,9 +58,11 @@ export async function searchWikimedia(query, { limit = 12, width = 1600, fetchIm
   const data = await res.json();
 
   const pages = Object.values(data?.query?.pages || {});
-  return pages
+  const candidates = pages
     .map(normalizeCommonsPage)
     .filter(Boolean)
     .filter(candidate => licenseAllowed(candidate.license))
     .map(candidate => ({ ...candidate, problems: visualCandidateProblems(candidate) }));
+
+  return rankVisualCandidates(candidates.filter(candidate => candidate.problems.length === 0), { mode: 'photo', title: q, entities: [] });
 }
