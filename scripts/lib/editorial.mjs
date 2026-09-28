@@ -157,7 +157,13 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
     const body = text.slice(text.indexOf('\n---', 3) + 4);
     const hasAiArt = (files || []).some(f => AI_ART_PATH_RE.test(f.filename));
     const hasPhoto = (files || []).some(f => PHOTO_PATH_RE.test(f.filename));
-    for (const q of newStoryQualityProblems(data, body, { slug, branch: pr?.head?.ref, hasAiArt, hasPhoto })) fail(`quality: ${q}`);
+    if (hasPhoto && slug) {
+      if (!new RegExp(`^/uploads/articles/${slug}\\\\.(?:jpe?g|png|webp)$`, 'i').test(String(data.image || ''))) fail(`quality: acquired photo was committed but image is "${data.image}"`);
+      if (data.imageProvider !== 'wikimedia' || data.imageKind !== 'photo') fail('quality: acquired photo requires imageProvider: wikimedia and imageKind: photo');
+      for (const k of ['imageCaption','imageCredit','imageLicense','imageLicenseUrl','imageSourcePage']) if (!String(data[k] || '').trim()) fail(`quality: acquired photo is missing ${k}`);
+      if (!/^File photo:/i.test(String(data.imageCaption || ''))) fail('quality: automated Wikimedia caption must begin "File photo:"');
+    }
+    for (const q of newStoryQualityProblems(data, body, { slug, branch: pr?.head?.ref, hasAiArt: hasAiArt && !hasPhoto })) fail(`quality: ${q}`);
   }
 
   // --- Repository checks on this exact commit ----------------------------
