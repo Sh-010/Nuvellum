@@ -1,32 +1,38 @@
 import { PLATFORMS } from './platforms.mjs';
-import { generateCopy } from './copy.mjs';
+import { generateFeedCopy, generateVideoCopy } from './copy.mjs';
 
-function mediaFor(platform, story) {
-  const spec = PLATFORMS[platform];
-  if (spec.media === 'video') return { mode: 'video-needed', source: null };
+function feedMedia(story) {
   if (story.mediaMode === 'text-led') return { mode: 'text-card-needed', source: null };
   return { mode: story.mediaMode, source: story.image };
 }
 
+function draftValue(platform, value, media) {
+  if (platform === 'youtube') return {
+    platform, label: PLATFORMS[platform].label, status: 'draft',
+    title: value.title, description: value.description, media
+  };
+  return { platform, label: PLATFORMS[platform].label, status: 'draft', text: value, media };
+}
+
 export function buildDistributionDraft(story, opts = {}) {
-  const platforms = opts.platforms || Object.keys(PLATFORMS);
-  const result = generateCopy(story, platforms);
-  const drafts = {};
-  for (const platform of platforms) {
-    if (!result.copy[platform]) continue;
-    const value = result.copy[platform];
-    drafts[platform] = {
-      platform,
-      label: PLATFORMS[platform].label,
-      status: 'draft',
-      media: mediaFor(platform, story),
-      ...(platform === 'youtube'
-        ? { title: value.title, description: value.description }
-        : { text: value })
-    };
+  const requested = opts.platforms || Object.keys(PLATFORMS);
+  const feedPlatforms = requested.filter(p => PLATFORMS[p]?.feed);
+  const videoPlatforms = requested.filter(p => PLATFORMS[p]?.video);
+  const feed = generateFeedCopy(story, feedPlatforms);
+  const video = generateVideoCopy(story, videoPlatforms);
+  const tracks = { feed: {}, video: {} };
+
+  for (const platform of feedPlatforms) {
+    if (!feed.copy[platform]) continue;
+    tracks.feed[platform] = draftValue(platform, feed.copy[platform], feedMedia(story));
   }
+  for (const platform of videoPlatforms) {
+    if (!video.copy[platform]) continue;
+    tracks.video[platform] = draftValue(platform, video.copy[platform], { mode: 'video-needed', source: null });
+  }
+
   return {
-    version: 1,
+    version: 2,
     generatedAt: new Date().toISOString(),
     slug: story.slug,
     articleUrl: story.url,
@@ -34,7 +40,7 @@ export function buildDistributionDraft(story, opts = {}) {
     risk: story.risk,
     mediaMode: story.mediaMode,
     mode: 'dry-run',
-    notes: result.notes,
-    drafts
+    notes: [...feed.notes.map(n => 'feed/' + n), ...video.notes.map(n => 'video/' + n)],
+    tracks
   };
 }
