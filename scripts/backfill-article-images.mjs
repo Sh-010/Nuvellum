@@ -32,8 +32,9 @@ const readJson = (p, fallback) => (existsSync(p) ? JSON.parse(readFileSync(p, 'u
 const plan = readJson(PLAN, {});
 const credits = readJson(CREDITS, {});
 
-// Generated AI art counts as weak: it stays only after passing review, and real photos come first.
-export const WEAK = ['procedural', 'section-placeholder', 'ai-svg'];
+// Weak = generic art standing in for a story. Newsroom AI illustrations (ai-svg) are not weak: they are only
+// committed after passing the n8n style gate, and visual-acquire still prefers a real photo.
+export const WEAK = ['procedural', 'section-placeholder'];
 
 export function classify(data) {
   const image = String(data.image || '').trim();

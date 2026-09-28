@@ -55,6 +55,61 @@ npm run ops:report
 
 Without a GitHub token the local report still provides all content/repository metrics; GitHub/deployment checks are omitted.
 
-## What this does not yet measure
+## Newsroom execution telemetry (n8n)
 
-n8n execution-level reasons (draft rejection, verification failure, image decision and per-node duration) live inside n8n and are not available to the GitHub-only reporter. The next observability increment should export a small redacted execution event from the live workflow without exposing source text, model prompts or credentials.
+Each run of the live workflow (`8hXx6NuZuJU9dRR1`) ends with one compact `run_summary` item in the **Run Summary** node. It is stored with the execution in n8n; open the execution and select Run Summary. It comes from three pieces:
+
+- **Queue Latest Candidates** stamps `_queuedAt` and feed-screening counts (`feedItems`, `feedErrors`, `aggregatePages`, `repeats`). The selection is unchanged.
+- **Record GitHub Outcome** sits between the GitHub results (article committed; branch creation failed) and the loop. It swaps the GitHub API response, which the loop discards, for whitelisted fields: slug, section, risk, source host, branch/commit status, HTTP status and the image decision.
+- **Run Summary** reads the loop's "done" output (every candidate's final item). It classifies each candidate with a fixed reason code and emits counts plus one compact event per candidate.
+
+Execution 939 (the first run with telemetry, 2026-09-28), with the events list shortened:
+
+```json
+{ "event": "run_summary", "telemetryVersion": 1, "runId": "939", "mode": "test",
+  "queue": { "feedItems": 1318, "feedErrors": 1, "aggregatePages": 80, "repeats": 24 },
+  "candidates": 5, "processed": 5, "unaccounted": 0, "reachedDrafting": 4,
+  "editorial": { "passed": 3, "failed": 0 }, "verification": { "passed": 2, "failed": 0 },
+  "github": { "branchCreated": 3, "pushFailed": 0 }, "published": 3, "rejected": 2,
+  "reasons": { "draft_skip": 1, "thin_source": 1 },
+  "imageModes": { "photo": 0, "illustration": 2, "textLed": 1 }, "durationMs": 624729,
+  "events": [
+    { "event": "candidate_rejected", "stage": "draft", "reason": "draft_skip", "slug": null, "section": "Sports", "sourceHost": "bbc.co.uk" },
+    { "event": "candidate_rejected", "stage": "source", "reason": "thin_source", "slug": null, "section": "Business", "sourceHost": "cnbc.com" },
+    { "event": "candidate_published", "stage": "github", "reason": "published", "slug": "pokemon-tcg-s-next-big-set-available-weeks-before-official-release",
+      "section": "Gaming", "sourceHost": "polygon.com", "image": { "mode": "text-led", "reason": "image_rejected_style" }, "risk": "low" } ] }
+```
+
+
+Reason codes, by stage:
+
+| Stage | Codes |
+| --- | --- |
+| `source` | `thin_source` |
+| `dedupe` | `duplicate_source` (`detail`: `open_pr` or `published`), `duplicate_story`, `duplicate_check_failed` |
+| `draft` | `draft_skip` (the drafter declined, or the source is opinion or another non-news format), `invalid_geography`, `thin_draft`, `draft_invalid` |
+| `editorial_review` | `editorial_failed`, `editorial_uncertain` (review unparseable, failed closed) |
+| `verification` | `verification_failed`, `verification_uncertain` |
+| `github` | `published` (branch created and article committed), `github_push_failed` (with `httpStatus`) |
+| (none) | `unclassified`: investigate |
+
+Image decisions on committed stories:
+
+| `image.mode` | `image.reason` |
+| --- | --- |
+| `illustration` | `approved` |
+| `text-led` | `image_rejected_style`, `image_rejected_safety`, or `image_no_candidate` |
+
+Aggregate, live, video and gallery pages are screened out before the loop, so they appear as `queue.aggregatePages` rather than as per-candidate events.
+
+**Privacy.** Telemetry holds only codes, counts, slugs, sections and source domains. It never includes source or article text, prompts, model output, full source URLs, error messages, headers or credentials. `tests/n8n-telemetry.test.mjs` enforces this against the exported node code.
+
+**Fail-safe.** Both telemetry nodes run with `onError: continueRegularOutput` and catch their own errors (`reason: "telemetry_error"`). Run Summary runs only after the loop has finished, and neither node feeds any gate.
+
+## Limits
+
+- **Real photos** are chosen after the run by `visual-acquire.yml` on the incoming branch, so `imageModes.photo` is always 0 in n8n. The GitHub reporter above counts the final photo, illustration and text-led mix.
+- **PR opening and merging** happen in GitHub Actions. n8n's `published` means its path completed: branch created and article committed. Open or held incoming PRs are reported by the GitHub reporter.
+- **Stage timings:** n8n records per-node timings in each execution, but Code nodes cannot read them. The summary reports the total `durationMs` from queue to summary. For per-stage times, open the execution in n8n.
+- **Hard failures:** a run that fails outright (for example a GitHub commit that fails after retries) stops before Run Summary and appears as a failed execution. A run with zero queued candidates never enters the loop, so it has no summary either.
+- **Retention:** summaries last as long as n8n's execution retention on the plan.
