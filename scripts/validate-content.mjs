@@ -12,7 +12,8 @@ const dir = join(root, 'src', 'content', 'articles');
 const aiArtDir = join(root, 'public', 'generated', 'ai');
 const AI_IMAGE_RE = /^\/generated\/ai\/([a-z0-9]+(?:-[a-z0-9]+)*)\.svg$/;
 
-const required = ['title','dek','section','type','author','date','readingTime','image','imageAlt','status','tags'];
+// image is optional: a story without an acceptable image is set text-led. When present it needs alt text.
+const required = ['title','dek','section','type','author','date','readingTime','status','tags'];
 const statuses = new Set(['draft','review','published']);
 const sections = new Set(['World','Business','Technology','Science','Crime','Sports','Culture','Film & TV','Anime','Gaming','Opinion']);
 const types = new Set(['News','Analysis','Opinion','Review','Explainer','Essay','Ideas']);
@@ -133,6 +134,8 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
+    if (data.image && !String(data.imageAlt || '').trim()) errors.push(`${name}: image needs imageAlt`);
+    if (data.image && /^\/uploads\/house\//.test(String(data.image))) errors.push(`${name}: generic house art does not depict the story; omit image so it is set text-led`);
     if (data.image) {
       const image = String(data.image);
       const aiImage = image.match(AI_IMAGE_RE);

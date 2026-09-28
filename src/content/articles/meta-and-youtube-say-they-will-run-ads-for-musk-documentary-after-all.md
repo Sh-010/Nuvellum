@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T18:21:39.789Z"
 readingTime: "2 min"
-image: "/generated/ai/meta-and-youtube-say-they-will-run-ads-for-musk-documentary-after-all.svg"
-imageAlt: "AI-generated editorial illustration for Meta and YouTube say they will run ads for 'Musk' documentary after all"
+image: "/uploads/articles/meta-and-youtube-say-they-will-run-ads-for-musk-documentary-after-all.jpg"
+imageAlt: "Elon Musk speaking at an event in Colorado in 2022"
 status: "published"
 tags: ["Meta","YouTube","Elon Musk","Alex Gibney","Advertising"]
 sourceUrls: ["https://techcrunch.com/2026/09/26/meta-says-it-will-run-ads-for-musk-documentary-after-all"]

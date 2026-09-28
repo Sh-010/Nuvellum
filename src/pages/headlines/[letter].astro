@@ -53,7 +53,7 @@ const near = ALPHABET
         {articles.length ? (
           <ol class="az-list" style="list-style:none;margin:0;padding:0">
             {articles.map((a, n) => (
-              <li class="story az-entry" data-reveal style={`--d:${160 + Math.min(n, 6) * 60}ms`}>
+              <li class:list={['story az-entry', !a.image && 'no-media']} data-reveal style={`--d:${160 + Math.min(n, 6) * 60}ms`}>
                 <span class="az-num">{String(n + 1).padStart(2, '0')}</span>
                 <div>
                   <span class="eyebrow">{a.section}{a.type && a.type !== 'News' ? ` · ${a.type}` : ''}</span>
@@ -61,7 +61,7 @@ const near = ALPHABET
                   <p>{a.dek}</p>
                   <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
                 </div>
-                <a class="media" href={route(a)} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading="lazy" /></a>
+                {a.image && <a class="media" href={route(a)} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading="lazy" /></a>}
               </li>
             ))}
           </ol>

@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T18:04:04.964Z"
 readingTime: "2 min"
-image: "/generated/ai/us-deportations-are-triggering-a-cascade-of-rights-abuses-un-experts-warn.svg"
-imageAlt: "AI-generated editorial illustration for US deportations are triggering a cascade of rights abuses, UN experts warn"
+image: "/uploads/articles/us-deportations-are-triggering-a-cascade-of-rights-abuses-un-experts-warn.jpg"
+imageAlt: "The Palais des Nations, the United Nations office in Geneva"
 status: "published"
 tags: ["deportations","immigration","United Nations","Donald Trump"]
 regions: ["north-america","sub-saharan-africa","middle-east-north-africa"]

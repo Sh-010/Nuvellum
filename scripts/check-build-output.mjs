@@ -27,9 +27,12 @@ if (!home.includes('class="footer-cols"')) errors.push('index.html: full footer 
 for (const key of ['all', 'world', 'business', 'tech', 'culture', 'screen', 'sports']) {
   if (!home.includes(`data-latest-tab="${key}"`)) errors.push(`index.html: Latest filter "${key}" missing`);
 }
-const renderedLatestRows = (home.replace(/<template[\s\S]*?<\/template>/g, '').match(/class="latest-row"/g) || []).length;
+const renderedLatestRows = (home.replace(/<template[\s\S]*?<\/template>/g, '').match(/class="latest-row(?: is-text)?"/g) || []).length;
 if (renderedLatestRows !== 5) errors.push(`index.html: ${renderedLatestRows} Latest rows rendered outside templates (expected exactly 5)`);
 if (!/\.latest-list\{--latest-slot:\d+px;display:grid;grid-template-rows:repeat\(5,var\(--latest-slot\)\)/.test(home)) errors.push('index.html: Latest list no longer reserves a fixed five-row height');
+// Generic section art never stands in for a story: stories without an acceptable image are set text-led.
+const GENERIC_ART_RE = /<img[^>]+src="(?:\/images\/[a-z-]+\.svg|\/uploads\/house\/[^"]*|\/generated\/(?!ai\/)[^"/]+\.svg)"/;
+if (GENERIC_ART_RE.test(home)) errors.push('index.html: generic section art is rendered as a story image');
 const popularBlock = home.slice(home.indexOf('id="popular-heading"'), home.indexOf('In Focus</h2>'));
 if (/\b\d+(\.\d)?K\b/.test(popularBlock.replace(/<[^>]+>/g, ' '))) errors.push('index.html: view-count style metric in Popular Reads (no analytics are connected)');
 
@@ -63,6 +66,7 @@ for (const { slug, data } of published) {
   if (!h.includes(`<link rel="canonical" href="https://nuvellum.vercel.app/article/${slug}"`)) errors.push(`${slug}: canonical URL`);
   if (!/<time datetime="\d{4}-\d{2}-\d{2}T[^"]+">/.test(h)) errors.push(`${slug}: <time datetime> missing`);
   if (!/"@type":"(News)?Article"/.test(h)) errors.push(`${slug}: Article JSON-LD missing`);
+  if (GENERIC_ART_RE.test(h)) errors.push(`${slug}: generic section art is rendered as a story image`);
   // Ingestion sources stay in the article metadata (newsroom, verification, duplicate checks) but are
   // not published: no sources block, no link to or mention of an ingestion URL, no JSON-LD isBasedOn,
   // and no internal sourceNote. Attribution a story needs is written into its text.

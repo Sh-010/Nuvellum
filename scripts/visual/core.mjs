@@ -2,6 +2,8 @@
 // Network access lives in wikimedia.mjs; these rules stay pure/testable.
 const PLACEHOLDER_RE = /^\/images\/(world|business|technology|sports|culture|film|anime|gaming)\.svg$/i;
 const AUTOMATION_SVG_RE = /^\/generated\/ai\/.+\.svg$/i;
+// Nuvellum house section plates are the fallback, not a real visual: acquisition should still try to replace them.
+const HOUSE_VISUAL_RE = /^\/uploads\/house\/[a-z-]+\.svg$/i;
 
 export const ALLOWED_LICENSES = Object.freeze([
   'public domain','cc0',
@@ -24,7 +26,7 @@ export function licenseAllowed(value) {
 }
 export function hasRealVisual(article) {
   const image = String(article?.image || '');
-  return Boolean(image && !PLACEHOLDER_RE.test(image) && !AUTOMATION_SVG_RE.test(image));
+  return Boolean(image && !PLACEHOLDER_RE.test(image) && !AUTOMATION_SVG_RE.test(image) && !HOUSE_VISUAL_RE.test(image));
 }
 
 const ABSTRACT_RE = /\b(infrastructure|sovereignty|power|capital|economy|markets?|supply chains?|artificial intelligence|ai|internet|digital|culture|media|information|policy|strategy|geopolitics?)\b/i;
@@ -37,8 +39,10 @@ export function chooseVisualMode(article) {
   const text = [article?.title, article?.dek, ...(article?.tags || [])].filter(Boolean).join(' ');
   const geoMaterial = (article?.countries?.length || 0) > 0 || (article?.regions?.length || 0) > 0;
   if (geoMaterial && MAP_RE.test(text)) return 'map-review';
-  if (['opinion','essay','ideas','analysis'].includes(type)) return 'illustration';
-  if (ABSTRACT_RE.test(text) && ['technology','business','science','world'].includes(section)) return 'illustration';
+  // Real images first: only argument pieces stay illustration-first. Abstract news and analysis try a photo,
+  // and keep the house fallback when nothing clears the threshold.
+  if (['opinion','essay','ideas'].includes(type)) return 'illustration';
+  if (ABSTRACT_RE.test(text) && ['technology','business','science','world'].includes(section)) return 'photo-or-illustration';
   if (['film & tv','anime','gaming','culture','sports'].includes(section)) return 'photo';
   if (type === 'news') return 'photo';
   return 'photo-or-illustration';

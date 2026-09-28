@@ -5,6 +5,7 @@ import { buildPublicDir } from './lib/paths.mjs';
 import { REGIONS, storiesByRegion } from '../src/lib/geography.js';
 import { WORLD_MAP_GROUPS, WORLD_MAP_VIEWBOX } from '../src/lib/world-map-data.js';
 import { THEME_HEAD, THEME_BODY } from '../src/lib/theme-boot.js';
+import { storyImage } from '../src/lib/story-image.js';
 
 // Crop focus for backfilled article images (scripts/backfill-article-images.mjs).
 const creditsFile = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', 'image-credits.json');
@@ -49,16 +50,9 @@ function esc(value) {
 const attr = esc;
 const route = article => `/article/${article.slug}`;
 
-function art(article) {
-  if (!article?.image) return '/images/world.svg';
-  const hasCustomEditorialImage = article.origin === 'automation'
-    && typeof article.image === 'string'
-    && article.image.trim()
-    && !article.image.startsWith('/images/');
-  return article.origin === 'automation' && !hasCustomEditorialImage
-    ? `/generated/${article.slug}.svg`
-    : article.image;
-}
+// The story's own image, or '' when it has none worth showing; such stories are set text-led
+// (see TEXT-LED below) rather than dressed in section art that does not depict them.
+const art = article => storyImage(article);
 
 const articles = readdirSync(articlesDir)
   .filter(name => name.endsWith('.md'))
@@ -156,7 +150,18 @@ function meta(article) {
 const img = (article, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${art(article)}" alt="${attr(article.imageAlt || article.title)}"${focusAttr(article)} loading="lazy" decoding="async">`;
 const BOOKMARK = '<svg viewBox="0 0 17 20" aria-hidden="true"><path d="M2 1.5h13v17l-6.5-5-6.5 5z"/></svg>';
 
+// TEXT-LED: a story without an acceptable image keeps its slot but is set in type (section label,
+// wine rule, standfirst) instead of a picture. Nothing stands in for the missing image.
+const MARK = '<span class="tl-mark" aria-hidden="true">✦</span>';
+
 function card(article) {
+  if (!art(article)) return `<article class="support-card is-text">
+    <a class="support-text" href="${route(article)}" tabindex="-1" aria-hidden="true"><span class="chip">${esc(article.section)}</span><span class="tl-dek">${esc(article.dek)}</span></a>
+    <div class="support-body">
+      <h3><a href="${route(article)}">${esc(article.title)}</a></h3>
+      ${meta(article)}
+    </div>
+  </article>`;
   return `<article class="support-card">
     <a class="support-image" href="${route(article)}" tabindex="-1" aria-hidden="true">${img(article)}<span class="chip">${esc(article.section)}</span></a>
     <div class="support-body">
@@ -167,6 +172,14 @@ function card(article) {
 }
 
 function latestRow(article) {
+  if (!art(article)) return `<article class="latest-row is-text">
+    <div class="latest-copy">
+      <div class="eyebrow">${esc(article.section)}<span class="tl-time"> · ${timeTag(article)}</span></div>
+      <h3><a href="${route(article)}">${esc(article.title)}</a></h3>
+      <p class="tl-dek">${esc(article.dek)}</p>
+    </div>
+    <button class="save-icon" type="button" data-save="${attr(article.title)}" data-url="${route(article)}" aria-pressed="false" aria-label="Save ${attr(article.title)}">${BOOKMARK}</button>
+  </article>`;
   return `<article class="latest-row">
     <a class="latest-thumb" href="${route(article)}" tabindex="-1" aria-hidden="true">${img(article)}</a>
     <div class="latest-copy">
@@ -233,8 +246,8 @@ const SHORT_REGION = {
   'southeast-asia-oceania': 'Southeast Asia'
 };
 const regionRow = (story, fromWorld = false) => `
-    <a class="region-story${fromWorld ? ' is-fill' : ''}" href="${route(story)}">
-      ${img(story)}
+    <a class="region-story${fromWorld ? ' is-fill' : ''}${art(story) ? '' : ' is-text'}" href="${route(story)}">
+      ${art(story) ? img(story) : ''}
       <span><strong>${esc(story.title)}</strong><small>${fromWorld ? 'World desk · ' : ''}${timeTag(story)}</small></span>
     </a>`;
 
@@ -300,7 +313,7 @@ const tickerClone = tickerItems.map(a => `<a href="${route(a)}" tabindex="-1" ar
 // fading it re-rasterises that filter every frame (a >1s freeze on load). Its stories animate instead.
 const REVEAL_CONTAINERS = ['.latest-section', '.popular', '.in-focus-section', '.newsletter-in'].join(',');
 const REVEAL_ITEMS = ['.support-card', '.latest-list .latest-row', '.popular-list .popular-item', '.focus-card', '.focus-mini',
-  '.screen .section-title', '.screen-lead-media', '.screen-lead>.chip', '.screen-lead>h3', '.screen-lead>p', '.screen-lead>.story-meta', '.screen-item',
+  '.screen .section-title', '.screen-lead-media', '.screen-lead-panel', '.screen-lead>.chip', '.screen-lead>h3', '.screen-lead>p', '.screen-lead>.story-meta', '.screen-item',
   '.opinion-sec .section-title', '.opinion-col', '.footer-top>div:first-child', '.footer-cols>div', '.footer-bottom'].join(',');
 // The newsletter band is observed but not faded: its parts run their own sequence.
 const REVEAL_FADES = ['.latest-section', '.popular', '.in-focus-section', REVEAL_ITEMS].join(',');
@@ -319,6 +332,11 @@ html.motion-ready:not(.motion-live) :is(${REVEAL_FADES},${REVEAL_PARTS},.rule,${
 @media print{html.motion-ready :is(${REVEAL_FADES},${REVEAL_PARTS},.rule,${REVEAL_IMAGES}){opacity:1!important;translate:none!important;scale:1 1!important;clip-path:none!important;animation:none!important}}`;
 
 const heroImage = art(hero);
+// Share card: the lead's photo, else the newest story that has one (never section art).
+const shareImage = heroImage || art(articles.find(a => art(a))) || '';
+const shareMeta = shareImage
+  ? `<meta property="og:image" content="${site}${shareImage}">\n<meta name="twitter:card" content="summary_large_image">`
+  : '<meta name="twitter:card" content="summary">';
 const canonical = `${site}/`;
 const description = 'Nuvellum is an independent international publication covering world affairs, business, technology, culture, film, sport and ideas.';
 
@@ -339,11 +357,9 @@ const html = `<!doctype html>
 <meta property="og:title" content="Nuvellum — Beyond the headline.">
 <meta property="og:description" content="${description}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:image" content="${site}${heroImage}">
-<meta name="twitter:card" content="summary_large_image">
+${shareMeta}
 <meta name="twitter:title" content="Nuvellum — Beyond the headline.">
-<meta name="twitter:description" content="${description}">
-<meta name="twitter:image" content="${site}${heroImage}">
+<meta name="twitter:description" content="${description}">${shareImage ? `\n<meta name="twitter:image" content="${site}${shareImage}">` : ''}
 <style>
 :root{
   --paper:#f8f4ec;--paper2:#fbf8f2;--ink:#1f1a16;--muted:#6b6259;--line:#ddd3c3;--hair:rgba(96,74,52,.2);
@@ -428,7 +444,20 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 .opinion-sec{padding:26px 0 40px}.opinion-grid{display:grid;grid-template-columns:repeat(3,1fr)}.opinion-col{padding:10px 26px 4px;border-left:1px solid var(--hair);display:grid;grid-template-columns:46px 1fr;gap:16px;align-content:start}.opinion-col:first-child{border-left:0;padding-left:0}.opinion-avatar{width:46px;height:46px;border-radius:50%;border:1px solid var(--wine);color:var(--wine-ink);display:grid;place-items:center;font-size:14px;letter-spacing:.05em}.opinion-col h3{font-size:22px;line-height:1.18;font-weight:400;margin:6px 0 8px}.opinion-col h3 a:hover{color:var(--wine-ink)}.opinion-col p{font-size:14px;line-height:1.42;color:var(--muted);margin:0 0 10px}.opinion-by{font-size:13px;font-style:italic}
 .newsletter{background:var(--wine2);color:#f6eee2;padding:40px 0}.newsletter-in{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}.newsletter .kicker{font-family:var(--text);font-size:10px;letter-spacing:.16em;color:#e8c3cc;text-transform:uppercase}.newsletter h2{font-size:40px;line-height:1.06;font-weight:400;letter-spacing:-.012em;margin:10px 0 0}.signup{display:grid;grid-template-columns:1fr auto;max-width:520px;width:100%;justify-self:end}.signup input{height:46px;border:1px solid rgba(255,255,255,.5);border-right:0;background:rgba(255,255,255,.06);color:#fff;padding:0 14px;font-size:15px;min-width:0}.signup input::placeholder{color:#e2c5cc}.signup input:focus{outline:2px solid #fff;outline-offset:-2px}.signup button{height:46px;border:0;background:#f3ede1;color:var(--wine2);padding:0 22px;font-size:15px;cursor:pointer}.signup button:hover{background:#fff}.signup-msg{grid-column:1/-1;font-size:13px;color:#ecd0d6;margin-top:10px;min-height:1.3em}
 .footer{background:#000;color:#e6dccd;padding:44px 0 22px}.footer-top{display:grid;grid-template-columns:1.1fr 3fr;gap:44px}.footer-brand{font-size:30px;letter-spacing:.05em;color:#fbf8f1}.footer-brand span{color:#a8455a;font-size:.55em;vertical-align:top;margin-left:6px}.footer-tag{font-style:italic;color:#a79d93;margin-top:6px;font-size:14px}.footer-about{color:#8f867d;font-size:13px;line-height:1.55;margin-top:16px;max-width:300px}.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.footer-cols h3{font-family:var(--text);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#b8677a;font-weight:400;margin:4px 0 10px;padding-bottom:9px;border-bottom:1px solid rgba(230,210,180,.12)}.footer-cols a{display:block;font-size:14px;padding:4px 0}.footer-cols a:hover{color:#fff;text-decoration:underline;text-decoration-color:#8a1b36;text-underline-offset:3px}.footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;padding-top:16px;border-top:1px solid rgba(230,210,180,.12);font-size:12px;color:#8f867d}
-.support-image img,.latest-thumb img,.region-story img,.focus-card img,.screen-item img{filter:sepia(.24) saturate(.74) contrast(1.03) brightness(.96)}.screen-lead img{filter:sepia(.26) saturate(.72) contrast(1.03) brightness(.9)!important}
+.support-image img,.latest-thumb img,.region-story img,.focus-card img,.screen-item img{filter:sepia(.24) saturate(.74) contrast(1.03) brightness(.96)}
+/* Text-led stories: no acceptable image, so type carries the slot — section label, wine rule, standfirst. Nothing imitates a picture. */
+.tl-mark{font-family:var(--serif);color:var(--wine-ink);line-height:1;pointer-events:none}.tl-dek{font-family:var(--text);font-style:italic;color:var(--muted)}
+.hero.is-text{background:var(--paper2);border:1px solid var(--line);border-top:3px solid var(--wine);box-shadow:inset 0 4px 0 var(--paper2),inset 0 5px 0 var(--hair);display:flex;flex-direction:column;justify-content:flex-end}.hero.is-text:after{display:none}.hero.is-text>.tl-mark{position:absolute;top:28px;right:32px;font-size:28px;opacity:.5}
+.hero.is-text .hero-copy{position:relative;left:auto;right:auto;bottom:auto;max-width:none;padding:0 44px 38px;color:var(--ink)}.hero.is-text h1{font-size:52px;line-height:1;letter-spacing:-.018em;max-width:760px;margin:24px 0 18px;color:var(--ink);text-wrap:balance}.hero.is-text .hero-dek{font-family:var(--text);font-style:italic;font-size:20px;line-height:1.38;color:var(--muted);max-width:640px;border-top:1px solid var(--hair);padding-top:16px}.hero.is-text .story-meta{color:var(--muted)}.hero.is-text h1 a:hover{color:var(--wine-ink)}
+.support-text{display:flex;flex-direction:column-reverse;justify-content:space-between;height:124px;padding:12px 12px 6px 10px;background:var(--plate);border-top:2px solid var(--wine);box-shadow:inset 0 0 0 1px var(--hair);transition:background-color var(--t-hover) ease}.support-text .chip{align-self:flex-start}.support-text .tl-dek{font-size:14.5px;line-height:1.34;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.support-card.is-text:hover .support-text{background:rgba(102,18,39,.035)}
+.latest-row.is-text{grid-template-columns:minmax(0,1fr) auto;position:relative;padding-left:17px}.latest-row.is-text:before{content:"";position:absolute;left:0;top:11px;bottom:11px;width:2px;background:var(--wine)}.latest-row.is-text .tl-time{text-transform:none;letter-spacing:.01em;color:var(--muted)}.latest-row.is-text .tl-dek{margin:0;font-size:13.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.latest-row.is-text h3{margin-bottom:3px}
+.region-story.is-text{grid-template-columns:1fr;position:relative;padding-left:12px;min-height:69px;align-content:center}.region-story.is-text:before{content:"";position:absolute;left:0;top:8px;bottom:9px;width:2px;background:var(--wine)}
+.focus-card.is-text{grid-template-columns:1fr;padding:13px 15px 14px;background:var(--plate);border-top:2px solid var(--wine);box-shadow:inset 0 0 0 1px var(--hair);margin-bottom:12px}.focus-card.is-text .focus-copy h3{font-size:21px;line-height:1.14}.focus-card.is-text .focus-copy p{font-family:var(--text);font-style:italic;font-size:14.5px}
+.focus-mini.is-text{grid-template-columns:1fr;position:relative;padding-left:12px}.focus-mini.is-text:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;background:var(--wine)}
+.screen-lead.is-text{display:flex}.screen-lead-panel{position:relative;flex:1;min-height:372px;display:flex;flex-direction:column;justify-content:flex-end;padding:40px 46px 38px;background:#0e0c0b;border:1px solid rgba(230,210,180,.14);border-top:3px solid var(--wine);box-shadow:inset 0 4px 0 #0e0c0b,inset 0 5px 0 rgba(230,210,180,.14)}.screen-lead-panel>.tl-mark{position:absolute;top:28px;right:32px;font-size:28px;color:#d8a3b0;opacity:.45}.screen-lead-panel .chip{align-self:flex-start;margin-top:0}.screen-lead.is-text h3{font-size:50px;line-height:1.02;letter-spacing:-.018em;margin:20px 0 18px;text-wrap:balance}.screen-lead.is-text p{font-family:var(--text);font-style:italic;font-size:19px;line-height:1.42;border-top:1px solid rgba(230,210,180,.14);padding-top:16px}
+.screen-item.is-text{grid-template-columns:1fr;position:relative;padding-left:18px}.screen-item.is-text:before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:2px;background:var(--wine)}.screen-item.is-text:first-child:before{top:0}.screen-item.is-text .tl-dek{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.36;color:#a89f95;margin-top:7px}
+@media(max-width:1180px){.hero.is-text h1{font-size:42px}.screen-lead.is-text h3{font-size:42px}}
+@media(max-width:620px){.support-grid .support-card.is-text{display:flex;flex-direction:column;position:relative;padding:12px 0 12px 16px}.support-grid .support-card.is-text:before{display:block;content:"";position:absolute;left:0;top:14px;bottom:14px;border:0;width:2px;background:var(--wine)}.support-card.is-text .support-text,.support-card.is-text .support-body{display:contents}.support-card.is-text .chip{order:1;align-self:flex-start;background:none;color:var(--wine-ink);padding:0}.support-card.is-text h3{order:2;margin:6px 0 0;-webkit-line-clamp:3}.support-card.is-text .tl-dek{order:3;margin-top:6px;font-size:14px;-webkit-line-clamp:2}.support-card.is-text .story-meta{order:4;margin-top:8px}.hero.is-text .hero-copy{padding:0 20px 24px}.hero.is-text h1{font-size:32px;margin:18px 0 12px}.hero.is-text .hero-dek{font-size:17px;padding-top:12px}.hero.is-text>.tl-mark{top:18px;right:20px;font-size:22px}.screen-lead-panel{min-height:0;padding:26px 20px 24px}.screen-lead-panel>.tl-mark{top:20px;right:20px;font-size:22px}.screen-lead.is-text h3{font-size:30px;margin:16px 0 12px}.screen-lead.is-text p{font-size:16.5px}}.screen-lead img{filter:sepia(.26) saturate(.72) contrast(1.03) brightness(.9)!important}
 /* Reading mode: the palette flips in one frame (see the toggle script); nothing transitions colour. Filtered artwork never changes with the theme, so it sits on its own compositor layers and is not re-rasterised when the theme flips. Support-card images are excluded (their chip text would lose subpixel anti-aliasing), and so is the World Desk map (measured: no gain). */.theme-switching,.theme-switching *,.theme-switching *::before,.theme-switching *::after{transition:none!important}.hero img,.latest-thumb img,.region-story img,.focus-card img,.focus-mini img,.screen-lead img,.screen-item img{will-change:transform}::view-transition-old(root),::view-transition-new(root){animation-duration:.18s;animation-timing-function:cubic-bezier(.4,0,.2,1)}#themeToggle.is-tapping svg{animation:themeTap .2s var(--ease)}@keyframes themeTap{0%{transform:scale(.9) rotate(-8deg)}65%{transform:scale(1.08) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
 .support-card{transition:transform .38s cubic-bezier(.16,.8,.2,1),box-shadow .38s ease}.support-image{overflow:hidden}.support-image img,.latest-thumb img,.screen-item img{transition:transform .65s cubic-bezier(.16,.8,.2,1),filter .35s ease}.support-card:hover{transform:translateY(-3px)}.support-card:hover .support-image img{transform:scale(1.025)}
 .latest-row{transition:transform .3s cubic-bezier(.16,.8,.2,1),background-color .3s ease}.latest-row:hover{transform:translateX(4px);background:rgba(102,18,39,.025)}.latest-row:hover .latest-thumb img{transform:scale(1.035)}.latest-row:hover h3 a{color:var(--wine-ink)}
@@ -506,8 +535,8 @@ ${REVEAL_CSS}
 
 <main class="shell home-layout">
   <div class="left-col">
-    <article class="hero">
-      <a href="${route(hero)}"><img src="${heroImage}" alt="${attr(hero.imageAlt || hero.title)}"${focusAttr(hero)}></a>
+    <article class="hero${heroImage ? '' : ' is-text'}">
+      ${heroImage ? `<a href="${route(hero)}"><img src="${heroImage}" alt="${attr(hero.imageAlt || hero.title)}"${focusAttr(hero)}></a>` : MARK}
       <div class="hero-copy">
         <div class="hero-kicker">${esc(hero.section)}</div>
         <h1><a href="${route(hero)}">${esc(hero.title)}</a></h1>
@@ -564,13 +593,13 @@ ${REVEAL_CSS}
 
     <section class="section-block in-focus-section">
       <div class="section-title"><h2>In Focus</h2><span class="rule"></span><a href="/section/world">View all →</a></div>
-      <article class="focus-card">
-        <a class="focus-media" href="${route(focusLead)}" tabindex="-1" aria-hidden="true">${img(focusLead)}</a>
+      <article class="focus-card${art(focusLead) ? '' : ' is-text'}">
+        ${art(focusLead) ? `<a class="focus-media" href="${route(focusLead)}" tabindex="-1" aria-hidden="true">${img(focusLead)}</a>` : ''}
         <div class="focus-copy"><span class="chip">${esc(focusLead.type)}</span><h3><a href="${route(focusLead)}">${esc(focusLead.title)}</a></h3><p>${esc(focusLead.dek)}</p>${meta(focusLead)}</div>
       </article>
       <div class="focus-secondary">${focusSide.map(a => `
-        <article class="focus-mini">
-          <a class="focus-mini-media" href="${route(a)}" tabindex="-1" aria-hidden="true">${img(a)}</a>
+        <article class="focus-mini${art(a) ? '' : ' is-text'}">
+          ${art(a) ? `<a class="focus-mini-media" href="${route(a)}" tabindex="-1" aria-hidden="true">${img(a)}</a>` : ''}
           <div><span class="eyebrow">${esc(a.type || a.section)}</span><h4><a href="${route(a)}">${esc(a.title)}</a></h4>${meta(a)}</div>
         </article>`).join('')}</div>
     </section>
@@ -581,15 +610,24 @@ ${screenLead ? `<section class="screen" id="screen-play" aria-labelledby="screen
   <div class="shell">
     <div class="section-title"><h2 id="screen-heading">Screen &amp; Play</h2><span class="rule"></span><a href="/section/entertainment">Film · Anime · Gaming &nbsp;→</a></div>
     <div class="screen-grid">
-      <article class="screen-lead">
+      ${art(screenLead) ? `<article class="screen-lead">
         <a class="screen-lead-media" href="${route(screenLead)}" tabindex="-1" aria-hidden="true">${img(screenLead)}</a>
         <span class="chip">${esc(screenLead.section)}</span>
         <h3><a href="${route(screenLead)}">${esc(screenLead.title)}</a></h3>
         <p>${esc(screenLead.dek)}</p>
         ${meta(screenLead)}
-      </article>
-      <div class="screen-side">${screenSide.map(a => `
-        <a class="screen-item" href="${route(a)}">${img(a)}<span><span class="eyebrow">${esc(a.section)}</span><h4>${esc(a.title)}</h4>${meta(a)}</span></a>`).join('')}
+      </article>` : `<article class="screen-lead is-text">
+        <div class="screen-lead-panel">
+          ${MARK}
+          <span class="chip">${esc(screenLead.section)}</span>
+          <h3><a href="${route(screenLead)}">${esc(screenLead.title)}</a></h3>
+          <p>${esc(screenLead.dek)}</p>
+          ${meta(screenLead)}
+        </div>
+      </article>`}
+      <div class="screen-side">${screenSide.map(a => art(a) ? `
+        <a class="screen-item" href="${route(a)}">${img(a)}<span><span class="eyebrow">${esc(a.section)}</span><h4>${esc(a.title)}</h4>${meta(a)}</span></a>` : `
+        <a class="screen-item is-text" href="${route(a)}"><span><span class="eyebrow">${esc(a.section)}</span><h4>${esc(a.title)}</h4><span class="tl-dek">${esc(a.dek)}</span>${meta(a)}</span></a>`).join('')}
       </div>
     </div>
   </div>

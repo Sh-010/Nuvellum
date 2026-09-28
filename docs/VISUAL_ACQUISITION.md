@@ -7,8 +7,8 @@ Nuvellum performs a conservative visual-acquisition pass on every `incoming/**` 
 1. Existing real visual already supplied to the article — leave it alone.
 2. For photo-class news/culture/sports stories, search Wikimedia Commons for an openly licensed documentary/editorial photograph.
 3. Automatically accept a photo only when deterministic relevance and composition thresholds are high enough.
-4. If no candidate clears the threshold, keep the newsroom's Nuvellum illustration.
-5. Opinion/analysis/abstract stories keep illustration by design. Geography-sensitive map stories are never auto-replaced with a map.
+4. If no candidate clears the threshold, keep what the newsroom committed: a generated SVG that passed the style gate, or no image at all (the story is set text-led). Acquisition still adds a photo to a text-led story when one clears the threshold.
+5. Only opinion/essay/ideas pieces keep illustration by design. Abstract news and analysis try a real photo first. House plates and generated SVGs never count as an existing real visual. Geography-sensitive map stories are never auto-replaced with a map.
 
 A wrong documentary image is worse than a clearly editorial illustration, so the automatic threshold is intentionally conservative and stricter for sensitive stories.
 

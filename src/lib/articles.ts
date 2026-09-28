@@ -1,3 +1,5 @@
+import { storyImage } from './story-image.js';
+
 export type ArticleHeading = {
   depth: number;
   slug: string;
@@ -16,6 +18,7 @@ export type Article = {
   publishedAt?: string;
   updated?: string;
   readingTime: string;
+  /** '' when the story has no acceptable image (see story-image.js); it is then set text-led. */
   image: string;
   imageAlt: string;
   imageProvider?: 'wikimedia' | 'nuvellum-illustration' | 'manual' | 'newsroom-ai';
@@ -52,13 +55,9 @@ export async function getArticles(): Promise<Article[]> {
         Content: mod.Content,
         getHeadings: mod.getHeadings
       } as Article;
-      if (article.origin === 'automation') {
-        const hasCustomEditorialImage = typeof article.image === 'string'
-          && article.image.trim()
-          && !article.image.startsWith('/images/');
-        if (!hasCustomEditorialImage) article.image = `/generated/${slug}.svg`;
-        if (!article.imageAlt) article.imageAlt = `Original Nuvellum editorial illustration for ${article.title}`;
-      }
+      // '' means no acceptable image: every surface then sets the story text-led.
+      article.image = storyImage(article);
+      if (!article.image) article.imageAlt = '';
       return article;
     })
     .filter((a) => a.status === 'published')

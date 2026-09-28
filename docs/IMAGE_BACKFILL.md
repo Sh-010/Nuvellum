@@ -10,14 +10,16 @@ npm run images:backfill              # apply src/data/image-plan.json to article
 node scripts/backfill-article-images.mjs --apply --only slug-a,slug-b --refresh   # re-fetch specific entries
 ```
 
-Image classes: `real` (photo in `/uploads/articles/`), `illustration` (Nuvellum SVG in `/uploads/articles/`), `ai-svg` (newsroom `/generated/ai/`), `procedural` (automation fallback) and `section-placeholder` (`/images/<section>.svg`). The last two count as weak.
+Image classes: `real` (photo in `/uploads/articles/`), `illustration` (Nuvellum SVG in `/uploads/articles/`), `text-led` (no image: the story is set in type), `ai-svg` (newsroom `/generated/ai/`), `procedural` (automation fallback) and `section-placeholder` (`/images/<section>.svg`). `ai-svg`, `procedural` and `section-placeholder` count as weak and need a plan entry.
 
 ## Order of preference
 
 1. An openly licensed real photograph from Wikimedia Commons: public domain, CC0, CC BY or CC BY-SA. Never NC or ND.
 2. The same photograph with a recorded focal point (`focus`, a CSS `object-position`) when the default crop fails.
-3. The newsroom's AI illustration, when it is stronger than any real candidate.
-4. A Nuvellum-drawn illustration. Opinion & Ideas uses these rather than stock-like photos.
+3. A Nuvellum-drawn illustration. Opinion & Ideas uses these rather than stock-like photos.
+4. **No image.** When no real photo is strong or safe enough (for example the only Commons match is a different person with the same name), remove `image`/`imageAlt` from the frontmatter. The site sets the story text-led on every surface: section label, wine rule and standfirst in place of a picture.
+
+Generic section art, house plates, placeholders and procedural art must never stand in for a story. `src/lib/story-image.js` treats them as no image, and `check-build-output` fails if one is rendered. Generated AI art is no longer kept as a hero: new generated art has to pass the newsroom style gate (`n8n/prompts/editorial-svg.md`).
 
 ## What the script does
 

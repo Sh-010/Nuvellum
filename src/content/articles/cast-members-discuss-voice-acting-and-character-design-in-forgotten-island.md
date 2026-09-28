@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T18:07:02.308Z"
 readingTime: "2 min"
-image: "/generated/ai/cast-members-discuss-voice-acting-and-character-design-in-forgotten-island.svg"
-imageAlt: "AI-generated editorial illustration for Cast members discuss voice acting and character design in Forgotten Island"
+image: "/uploads/articles/cast-members-discuss-voice-acting-and-character-design-in-forgotten-island.jpg"
+imageAlt: "Dave Franco at the 2025 Sundance Film Festival"
 status: "published"
 tags: ["Forgotten Island","DreamWorks","Dave Franco","Manny Jacinto","Jenny Slate","animation"]
 regions: []

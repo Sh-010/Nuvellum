@@ -32,10 +32,14 @@ const readJson = (p, fallback) => (existsSync(p) ? JSON.parse(readFileSync(p, 'u
 const plan = readJson(PLAN, {});
 const credits = readJson(CREDITS, {});
 
+// Generated AI art counts as weak: it stays only after passing review, and real photos come first.
+export const WEAK = ['procedural', 'section-placeholder', 'ai-svg'];
+
 export function classify(data) {
-  const image = String(data.image || '');
+  const image = String(data.image || '').trim();
   if (image.startsWith('/uploads/articles/') && /\.(jpe?g|png|webp)$/i.test(image)) return 'real';
   if (image.startsWith('/uploads/articles/') && image.endsWith('.svg')) return 'illustration';
+  if (!image) return 'text-led';
   if (image.startsWith('/generated/ai/')) return 'ai-svg';
   if (data.origin === 'automation') return 'procedural';
   return 'section-placeholder';
@@ -96,10 +100,10 @@ function audit(list) {
   const rows = list.map(a => ({ slug: a.slug, section: a.data.section, kind: classify(a.data), planned: plan[a.slug]?.source || '' }));
   const counts = rows.reduce((c, r) => ((c[r.kind] = (c[r.kind] || 0) + 1), c), {});
   for (const r of rows.sort((x, y) => x.kind.localeCompare(y.kind) || x.section.localeCompare(y.section))) {
-    const weak = r.kind === 'procedural' || r.kind === 'section-placeholder';
+    const weak = WEAK.includes(r.kind);
     console.log(`${weak ? 'WEAK ' : '     '}${r.kind.padEnd(20)} ${String(r.section).padEnd(11)} ${r.planned ? `[plan: ${r.planned}] ` : ''}${r.slug}`);
   }
-  console.log('\n', counts, `\n ${rows.filter(r => r.kind === 'procedural' || r.kind === 'section-placeholder').length} weak of ${rows.length} published`);
+  console.log('\n', counts, `\n ${rows.filter(r => WEAK.includes(r.kind)).length} weak of ${rows.length} published`);
 }
 
 async function run() {

@@ -25,7 +25,7 @@ const headings = article.getHeadings ? await article.getHeadings() : [];
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const site = Astro.site ?? new URL('https://nuvellum.vercel.app');
 const articleUrl = new URL(`/article/${article.slug}`, site).toString();
-const imageUrl = new URL(article.image, site).toString();
+const imageUrl = article.image ? new URL(article.image, site).toString() : '';
 // publishedAt (automated stories) is the real publication time; older stories only have a date.
 const publishedTime = article.publishedAt && article.publishedAt.startsWith(article.date) ? article.publishedAt : `${article.date}T00:00:00Z`;
 const modifiedDate = article.updated || article.date;
@@ -47,7 +47,7 @@ const articleSchema = {
   },
   publisher: {'@type':'Organization','name':'Nuvellum','url':site.toString()},
   mainEntityOfPage: articleUrl,
-  image: [imageUrl]
+  ...(imageUrl ? { image: [imageUrl] } : {})
 };
 
 const sectionKey = slugify(article.section);
@@ -65,7 +65,7 @@ const inlineCredit = article.imageProvider === 'wikimedia' ? {
 } : null;
 const credit = inlineCredit || storedCredit;
 const focus = imageFocus(article.slug, article.image);
-const caption = credit?.caption ? credit.caption : article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
+const caption = credit?.caption ? credit.caption : article.origin === 'automation' && String(article.image).startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
 const [leadRelated, ...moreRelated] = related;
 const tools = [
   { action: 'smaller', label: 'A−', aria: 'Decrease text size' },
@@ -118,7 +118,7 @@ const tools = [
       </div>
     </header>
 
-    <figure class="rgrid lead-figure" data-reveal style="--d:300ms">
+    {article.image ? <figure class="rgrid lead-figure" data-reveal style="--d:300ms">
       <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" style={focus} /></div>
       <figcaption>
         <span class="eyebrow">✦ Nuvellum</span> {caption}
@@ -129,7 +129,7 @@ const tools = [
           </details>
         )}
       </figcaption>
-    </figure>
+    </figure> : <div class="rgrid text-led-rule" aria-hidden="true"><span>✦</span></div>}
 
     <div class="rgrid reading">
       <aside class="reading-rail">

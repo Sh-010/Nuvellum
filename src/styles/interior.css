@@ -182,6 +182,15 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 .row .media img{aspect-ratio:16/10}
 .row.no-media{grid-template-columns:118px minmax(0,1fr)}
 
+/* Text-led stories (no acceptable image): type and rules carry the slot; nothing imitates a picture. */
+.lead.is-text{border-top:3px solid var(--wine);box-shadow:inset 0 4px 0 var(--paper),inset 0 5px 0 var(--hair);padding-top:22px}.lead.is-text .eyebrow{margin-top:0}.lead.is-text h2{font-size:clamp(38px,4vw,58px);margin:14px 0 18px}.lead.is-text p{font-family:var(--text);font-style:italic;font-size:20px;border-top:1px solid var(--hair);padding-top:14px}
+.pkg-wide.is-text{grid-template-columns:1fr;border-top:3px solid var(--wine);box-shadow:inset 0 4px 0 var(--paper),inset 0 5px 0 var(--hair);padding-top:24px}.pkg-wide.is-text .lead-copy h2{font-size:clamp(40px,4.6vw,66px);max-width:20ch}.pkg-wide.is-text .lead-copy>p{font-family:var(--text);font-style:italic;max-width:44em}.pkg-wide.is-text .more{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));column-gap:32px}
+.pkg-front.is-text{grid-template-columns:1fr;border-top:3px solid var(--wine);box-shadow:inset 0 4px 0 var(--paper),inset 0 5px 0 var(--hair);padding-top:26px}.pkg-front.is-text>div{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);grid-template-areas:"chip chip" "head dek" "head meta";grid-template-rows:auto 1fr auto;column-gap:56px;align-items:end}.pkg-front.is-text .chip{grid-area:chip;justify-self:start}.pkg-front.is-text h2{grid-area:head;font-size:clamp(40px,5vw,72px);margin-bottom:4px}.pkg-front.is-text p{grid-area:dek;font-family:var(--text);font-style:italic;border-top:1px solid var(--hair);padding-top:16px}.pkg-front.is-text .story-meta{grid-area:meta;padding-bottom:10px}
+@media(max-width:900px){.pkg-front.is-text>div{display:block}.pkg-front.is-text p{margin-top:14px}}
+.second.is-text{grid-template-columns:1fr;position:relative;padding-left:16px}.second.is-text:before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:2px;background:var(--wine)}.second.is-text:first-child:before{top:0}.pkg-wide .more .second.is-text:before{top:0;bottom:14px}
+.row.no-media>div:last-child{padding-left:16px;border-left:2px solid var(--wine)}
+.az-entry.no-media{grid-template-columns:44px minmax(0,1fr)}
+
 /* ---- Gazetteer: countries & territories index ---- */
 .gazetteer{columns:4 220px;column-gap:34px;column-rule:1px solid var(--hair)}
 .gz-group{break-inside:avoid;padding:0 0 14px}

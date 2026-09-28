@@ -4,6 +4,34 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-28 (late night): text-led fallback replaces house plates (PR #98, not merged)
+
+- Owner review: generic house plates were being used as hero and card images for stories they don't depict. Withdrawn: the plates, `scripts/visual/house-visuals.mjs`, and their plan and credit entries were removed.
+- Policy: (1) a real, relevant photo first; (2) a story-specific generated SVG only if it passes the style gate; (3) otherwise no image, and the story is set text-led.
+- Data: `image`/`imageAlt` are optional. `src/lib/story-image.js` treats `/images/<section>.svg`, `/uploads/house/` and procedural `/generated/<slug>.svg` as "no image"; procedural art is no longer substituted. The validator requires `imageAlt` whenever `image` is set and rejects house art.
+- Text-led layouts, in the v5.1 tokens (paper, wine rule, serif, italic standfirst, a single ✦ mark), in both themes and at mobile width:
+  - homepage: hero, support card, Latest row, World Desk row, In Focus lead and mini, Screen & Play lead and side item;
+  - interior: desk lead, sparse-desk wide lead, section-front lead (headline left, standfirst and meta right), secondary item, continuing-feed row and A–Z entry;
+  - article opening (an ✦ ornament instead of a picture), World Explorer panel rows.
+- Share metadata: no og:image and `twitter:card=summary` for text-led stories. The homepage share image is the newest real photo.
+- Now text-led: the Pokémon Winds and Waves leaks, Grey's Anatomy season 23 casting, and Melissa Barrera. The other six stories from the pass keep their real photos.
+- Live n8n **51c01d9f** (from 5574f940, still inactive): Sanitize Editorial SVG's fallback removes `image`/`imageAlt` (`imageGenerationMode: text-led`), and the prompt says a rejected image means no image. Only these two nodes changed; the export is synced.
+- Guards: `check-build-output` fails if generic art is rendered as an `<img>` on the homepage or any article; the contract tests cover neon art and empty responses resolving to text-led.
+
+## 2026-09-28 (night): image-quality correction pass
+
+- New rule: low-quality AI hero images are no longer acceptable. All nine articles still carrying generated `/generated/ai/` art (neon, hologram, HUD, particles) were replaced. Six now use real Commons photos: Anthropic/Amodei, Dave Franco, BalticServers data centre, Koshi river in Nepal, Elon Musk, and the Palais des Nations. Three use Nuvellum house plates: Pokémon (gaming), and Grey's Anatomy and Melissa Barrera (film-tv). All 21 unreferenced AI SVGs were deleted. The audit now shows 42 real, 3 house, 3 opinion illustrations and 0 weak.
+- House plates: `public/uploads/house/<section>.svg`, drawn by `scripts/visual/house-visuals.mjs` (paper, ink, burgundy engraving motifs).
+- Live n8n 8hXx6NuZuJU9dRR1 went from f8f72515 to **5574f940**, still inactive:
+  - `Gemini Editorial SVG` prompt rewritten to the house style, with the hard rejects from #95.
+  - `Sanitize Editorial SVG` gained `styleProblems()`, and every failure now falls back to the house plate (`imageGenerationMode: house-fallback`).
+  - No other nodes or connections changed. The sanitized export is synced.
+- Repo policy:
+  - `hasRealVisual` ignores house plates.
+  - Abstract news and analysis try a real photo first; only opinion, essay and ideas stay illustration-first.
+  - The backfill audit counts `ai-svg` as weak.
+- `NUVELLUM_AUTOPUBLISH` is still `off`.
+
 ## 2026-09-26 (evening): pushed, draft PRs opened, CI verified on GitHub
 
 - GitHub write access became available. Pushed `checkpoint/pre-stabilization-2026-09-26` (= `main` @ `c14b931`), `fix/ai-image-validation` and `stabilize/newsroom`. The git proxy refuses tag pushes, so the checkpoint exists as a branch only.
