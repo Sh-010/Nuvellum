@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T20:46:42.083Z"
 readingTime: "2 min"
-image: "/generated/ai/apple-ordered-to-pay-5-7bn-in-patent-infringement-case.svg"
-imageAlt: "AI-generated editorial illustration for Apple ordered to pay $5.7bn in patent infringement case"
 status: "published"
 tags: ["Apple","Taction Technology","lawsuit","patents","courts"]
 regions: ["north-america"]
