@@ -6,7 +6,7 @@ import { getArticles } from '../lib/articles';
 import { imageCredit } from '../lib/image-credits.js';
 
 const rows = (await getArticles())
-  .map(article => ({ article, credit: imageCredit(article.slug, article.image) }))
+  .map(article => ({ article, credit: article.imageProvider === 'wikimedia' ? { kind:'photo', source:'Wikimedia Commons', caption:article.imageCaption || 'File photo', author:article.imageCredit || 'Unknown creator', license:article.imageLicense || '', licenseUrl:article.imageLicenseUrl || '', descriptionUrl:article.imageSourcePage || '', path:article.image } : imageCredit(article.slug, article.image) }))
   .filter(r => r.credit)
   .sort((a, b) => a.article.title.localeCompare(b.article.title));
 const photos = rows.filter(r => r.credit.kind === 'photo').length;
