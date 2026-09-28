@@ -7,6 +7,7 @@ on:
       - "incoming/**"
   pull_request:
     branches: [main]
+  workflow_dispatch:
   schedule:
     - cron: "41 3 * * 3"
 
