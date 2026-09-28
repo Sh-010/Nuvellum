@@ -375,3 +375,8 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 
 - Expanded social draft targets to seven platforms: X, Threads, Facebook, LinkedIn, Instagram, TikTok and YouTube Shorts.
 - TikTok and YouTube are explicitly marked `video-needed`; they do not pretend that an article image is a video. YouTube gets separate title/description output.
+
+- Clarified distribution architecture after owner review: social output is not one format per platform. It now has parallel **feed/static** and **short-video** tracks.
+- Feed/static: X, Threads, Facebook, LinkedIn, Instagram.
+- Short video: X video, Facebook Reels, Instagram Reels, TikTok, YouTube Shorts.
+- This keeps the original card/link-post plan while making the upcoming Shorts engine reusable across every video-capable launch channel.
