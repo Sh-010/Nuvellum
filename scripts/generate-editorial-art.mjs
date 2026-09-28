@@ -117,6 +117,11 @@ for (const name of readdirSync(articlesDir).filter(x => x.endsWith('.md'))) {
   const fm = parseFrontmatter(readFileSync(join(articlesDir, name), 'utf8'));
   if (fm.status !== 'published' || fm.origin !== 'automation') continue;
 
+  // A selected Visual Engine image is authoritative. Do not waste build time generating
+  // a fallback illustration that no page will use.
+  const selectedVisual = String(fm.image || '');
+  if (fm.imageProvider || (selectedVisual && !selectedVisual.startsWith('/images/') && !selectedVisual.startsWith('/generated/ai/'))) continue;
+
   const p = palette(fm.section, slug);
   const seed = hashInt(slug);
   const section = String(fm.section || 'Nuvellum').toUpperCase();
