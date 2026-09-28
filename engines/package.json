@@ -1,0 +1,11 @@
+{
+  "name": "nuvellum-engines",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Non-blocking Nuvellum distribution and media engines.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "social": "node distribution/cli.mjs"
+  }
+}
