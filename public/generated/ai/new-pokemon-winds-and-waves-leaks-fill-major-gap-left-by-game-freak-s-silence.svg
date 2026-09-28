@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="bg-glow" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#141a29"/>
+      <stop offset="60%" stop-color="#0a0e17"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </radialGradient>
+
+    
+    <linearGradient id="beam-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.8"/>
+      <stop offset="30%" stop-color="#00bcd4" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00bcd4" stop-opacity="0"/>
+    </linearGradient>
+
+    
+    <linearGradient id="map-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff"/>
+      <stop offset="50%" stop-color="#7928ca"/>
+      <stop offset="100%" stop-color="#ff007a"/>
+    </linearGradient>
+
+    
+    <linearGradient id="model-grad" x1="0%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#38ef7d"/>
+      <stop offset="100%" stop-color="#11998e"/>
+    </linearGradient>
+
+    
+    <linearGradient id="hardware-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a324b"/>
+      <stop offset="100%" stop-color="#151922"/>
+    </linearGradient>
+
+    
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#bg-glow)"/>
+
+  
+  <g opacity="0.1" stroke="#00f3ff" stroke-width="1">
+    <path d="M0 112.5 H1200 M0 225 H1200 M0 337.5 H1200 M0 450 H1200 M0 562.5 H1200" />
+    <path d="M200 0 V675 M400 0 V675 M600 0 V675 M800 0 V675 M1000 0 V675" />
+  </g>
+
+  
+  <polygon points="400,0 800,0 1000,675 200,675" fill="url(#beam-grad)" opacity="0.15" />
+
+  
+  <path d="M-100 580 L1300 580 L1300 680 L-100 680 Z" fill="#080c14" stroke="#1f293d" stroke-width="2"/>
+  <line x1="-100" y1="580" x2="1300" y2="580" stroke="#00f3ff" stroke-opacity="0.4" stroke-width="2" filter="url(#neon-glow)"/>
+
+  
+
+  
+  <g transform="translate(680, 290) rotate(-10)" filter="url(#neon-glow)">
+    
+    <ellipse cx="0" cy="0" rx="220" ry="90" fill="none" stroke="url(#map-grad)" stroke-width="1.5" opacity="0.4"/>
+    
+    
+    
+    <path d="M -120 -20 C -90 -50, -40 -40, -10 -20 C 20 0, 50 -30, 80 -10 C 110 10, 90 50, 40 40 C -10 30, -80 50, -120 -20 Z" 
+          fill="#00f3ff" fill-opacity="0.15" stroke="#00f3ff" stroke-width="2"/>
+    
+    <path d="M -100 -15 C -80 -35, -40 -30, -20 -15 C 0 0, 30 -20, 60 -5 C 80 10, 60 35, 30 30 C -10 20, -60 35, -100 -15 Z" 
+          fill="none" stroke="#00f3ff" stroke-width="1" opacity="0.6" stroke-dasharray="4,2"/>
+
+    
+    <path d="M 100 -40 C 130 -60, 170 -40, 160 -10 C 150 20, 110 10, 100 -40 Z" 
+          fill="#ff007a" fill-opacity="0.2" stroke="#ff007a" stroke-width="2"/>
+
+    
+    <path d="M -160 10 C -140 0, -120 20, -130 40 C -150 50, -170 30, -160 10 Z" 
+          fill="#7928ca" fill-opacity="0.3" stroke="#7928ca" stroke-width="2"/>
+
+    
+    <path d="M-140 25 L-65 -20 L 20 10 L 130 -25" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.8"/>
+    <circle cx="-140" cy="25" r="4" fill="#ffffff" filter="url(#neon-glow)"/>
+    <circle cx="-65" cy="-20" r="4" fill="#00f3ff" filter="url(#neon-glow)"/>
+    <circle cx="20" cy="10" r="4" fill="#ff007a" filter="url(#neon-glow)"/>
+    <circle cx="130" cy="-25" r="4" fill="#ffffff" filter="url(#neon-glow)"/>
+  </g>
+
+  
+  <g transform="translate(320, 340)">
+    
+    <ellipse cx="0" cy="160" rx="140" ry="45" fill="none" stroke="#38ef7d" stroke-width="1" stroke-dasharray="6,3" opacity="0.3"/>
+    
+    
+    <g transform="translate(-90, 20) scale(0.65)" opacity="0.4" stroke="#38ef7d" fill="none" stroke-width="1.5">
+      
+      <path d="M0 -120 C20 -120, 30 -100, 30 -80 C30 -60, 45 -40, 40 -10 C35 20, 50 60, 40 120 L-40 120 C-50 60, -35 20, -40 -10 C-45 -40, -30 -60, -30 -80 C-30 -100, -20 -120, 0 -120 Z"/>
+      <circle cx="0" cy="-90" r="18"/>
+      
+      <path d="M-30 -60 Q0 -40 30 -60"/>
+      <path d="M-38 0 Q0 20 38 0"/>
+      <path d="M-42 60 Q0 80 42 60"/>
+    </g>
+
+    
+    <g transform="translate(0, -10) scale(0.9)" filter="url(#neon-glow)" stroke="url(#model-grad)" fill="#11998e" fill-opacity="0.1" stroke-width="2">
+      
+      <path d="M0 -140 
+               C25 -135, 45 -110, 35 -85 
+               C50 -70, 70 -40, 55 10 
+               C70 50, 85 110, 65 160 
+               L-65 160 
+               C-85 110, -70 50, -55 10 
+               C-70 -40, -50 -70, -35 -85 
+               C-45 -110, -25 -135, 0 -140 Z"/>
+      
+      
+      <circle cx="0" cy="-105" r="22" fill="#0a0e17"/>
+      <path d="M-22 -105 C-25 -135, 25 -135, 22 -105 C25 -95, 15 -85, 0 -85 C-15 -85, -25 -95, -22 -105 Z"/>
+
+      
+      <path d="M-35 -50 L35 -50 M-45 0 L45 0 M-55 50 L55 50 M-62 110 L62 110" stroke-width="1" stroke-dasharray="4,4" opacity="0.7"/>
+      <path d="M0 -140 L0 160" stroke-width="1" opacity="0.3"/>
+      <path d="M-20 -85 C-30 -20, -35 40, -55 130" stroke-width="1" opacity="0.5"/>
+      <path d="M20 -85 C30 -20, 35 40, 55 130" stroke-width="1" opacity="0.5"/>
+    </g>
+
+    
+    <g transform="translate(90, 20) scale(0.65)" opacity="0.4" stroke="#38ef7d" fill="none" stroke-width="1.5">
+      <path d="M0 -120 C20 -120, 30 -100, 30 -80 C30 -60, 45 -40, 40 -10 C35 20, 50 60, 40 120 L-40 120 C-50 60, -35 20, -40 -10 C-45 -40, -30 -60, -30 -80 C-30 -100, -20 -120, 0 -120 Z"/>
+      <circle cx="0" cy="-90" r="18"/>
+      <path d="M-30 -50 Q0 -30 30 -50"/>
+      <path d="M-38 10 Q0 30 38 10"/>
+      <path d="M-42 70 Q0 90 42 70"/>
+    </g>
+  </g>
+
+  
+  <g transform="translate(600, 540)">
+    
+    <path d="M-180 20 L180 20 L140 -20 L-140 -20 Z" fill="url(#hardware-grad)" stroke="#3a4a6b" stroke-width="2"/>
+    
+    
+    <path d="M-100 0 L100 0" stroke="#00f3ff" stroke-width="3" filter="url(#neon-glow)"/>
+    
+    
+    <circle cx="-140" cy="0" r="4" fill="#ff007a" filter="url(#neon-glow)"/>
+    <circle cx="-125" cy="0" r="4" fill="#38ef7d" filter="url(#neon-glow)"/>
+    <circle cx="125" cy="0" r="4" fill="#00f3ff" filter="url(#neon-glow)"/>
+    <circle cx="140" cy="0" r="4" fill="#00f3ff" filter="url(#neon-glow)"/>
+
+    
+    <rect x="-35" y="-35" width="70" height="20" fill="#151922" stroke="#00f3ff" stroke-width="1.5"/>
+  </g>
+
+  
+  <g fill="#00f3ff" opacity="0.7" filter="url(#neon-glow)">
+    <circle cx="480" cy="250" r="3"/>
+    <circle cx="530" cy="180" r="2"/>
+    <circle cx="420" cy="140" r="4"/>
+    <circle cx="750" cy="180" r="2"/>
+    <circle cx="820" cy="240" r="3.5"/>
+    <circle cx="650" cy="120" r="2"/>
+  </g>
+  <g fill="#ff007a" opacity="0.6" filter="url(#neon-glow)">
+    <circle cx="380" cy="220" r="2.5"/>
+    <circle cx="780" cy="130" r="3"/>
+    <circle cx="580" cy="90" r="2"/>
+  </g>
+  <g fill="#38ef7d" opacity="0.6" filter="url(#neon-glow)">
+    <circle cx="450" cy="300" r="2"/>
+    <circle cx="710" cy="210" r="3"/>
+    <circle cx="500" cy="130" r="2.5"/>
+  </g>
+
+  
+  <path d="M600 505 C 550 400, 400 350, 320 330" fill="none" stroke="#00f3ff" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6" filter="url(#neon-glow)"/>
+  <path d="M600 505 C 650 400, 750 350, 810 290" fill="none" stroke="#ff007a" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.6" filter="url(#neon-glow)"/>
+
+  
+  <path d="M0 0 L1200 0 L1200 675 L0 675 Z" fill="none" stroke="#00f3ff" stroke-width="4" opacity="0.05"/>
+</svg>
