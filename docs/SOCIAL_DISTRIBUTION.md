@@ -21,6 +21,8 @@ Current draft targets:
 - Facebook
 - LinkedIn
 - Instagram
+- TikTok
+- YouTube Shorts
 
 The same text is **not** copied everywhere. Each platform gets a separate format and tracked link where appropriate.
 
@@ -32,7 +34,7 @@ Social distribution follows the production visual policy:
 real relevant photo -> approved story-specific illustration -> designed Nuvellum social card
 ```
 
-A text-led article never receives fake story art. Its distribution report uses `text-card-needed`; a later social-card renderer will turn that into a deliberate Nuvellum card.
+A text-led article never receives fake story art. Its distribution report uses `text-card-needed`; a later social-card renderer will turn that into a deliberate Nuvellum card. TikTok and YouTube Shorts are marked `video-needed` until the Shorts engine supplies a vertical video.
 
 ## Tracking
 
