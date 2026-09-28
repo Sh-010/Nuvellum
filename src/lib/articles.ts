@@ -27,6 +27,8 @@ export type Article = {
   sourceUrls?: string[];
   origin?: 'manual' | 'automation';
   risk?: 'low' | 'sensitive';
+  editorialReview?: 'passed' | 'failed' | 'uncertain';
+  verification?: 'cleared' | 'failed' | 'uncertain';
   reviewedBy?: string;
   Content: any;
   getHeadings?: () => ArticleHeading[] | Promise<ArticleHeading[]>;

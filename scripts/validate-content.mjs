@@ -17,6 +17,7 @@ const sections = new Set(['World','Business','Technology','Science','Crime','Spo
 const types = new Set(['News','Analysis','Opinion','Review','Explainer','Essay','Ideas']);
 const risks = new Set(['low','sensitive']);
 const origins = new Set(['manual','automation']);
+const worldRegions = new Set(['north-america','latin-america-caribbean','europe-central-asia','middle-east-north-africa','sub-saharan-africa','south-asia','east-asia','southeast-asia-oceania']);
 const dangerous = [
   /<\s*script\b/i,
   /<\s*iframe\b/i,
@@ -100,6 +101,28 @@ for (const name of readdirSync(dir).filter(x => x.endsWith('.md')).sort()) {
     if (data.title && String(data.title).length > 180) errors.push(`${name}: title is over 180 characters`);
     if (data.dek && String(data.dek).length > 360) errors.push(`${name}: dek is over 360 characters`);
     if (!Array.isArray(data.tags) || data.tags.length === 0) errors.push(`${name}: tags must be a non-empty JSON-style array`);
+    if (data.regions !== undefined) {
+      if (!Array.isArray(data.regions)) errors.push(`${name}: regions must be a JSON-style array`);
+      else {
+        if (data.regions.length > 4) errors.push(`${name}: regions may contain at most 4 entries`);
+        if (new Set(data.regions).size !== data.regions.length) errors.push(`${name}: regions must not contain duplicates`);
+        for (const region of data.regions) if (!worldRegions.has(String(region))) errors.push(`${name}: unsupported region "${region}"`);
+      }
+    }
+    if (data.countries !== undefined) {
+      if (!Array.isArray(data.countries)) errors.push(`${name}: countries must be a JSON-style array`);
+      else {
+        if (data.countries.length > 12) errors.push(`${name}: countries may contain at most 12 entries`);
+        const seenCountry = new Set();
+        for (const country of data.countries) {
+          const c = String(country).trim();
+          if (c.length < 2 || c.length > 80) errors.push(`${name}: invalid country "${country}"`);
+          const key = c.toLowerCase();
+          if (seenCountry.has(key)) errors.push(`${name}: countries must not contain duplicates`);
+          seenCountry.add(key);
+        }
+      }
+    }
 
     for (const key of ['title','dek','section','type','author','imageAlt','reviewedBy']) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);

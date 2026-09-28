@@ -74,10 +74,13 @@ test('build-article: produces a gate-compatible file inside n8n', () => {
   const [o] = runSnippet('build-article.js', [{
     title: 'Diesel tops £2 at hundreds of Scottish forecourts', dek: 'Rural drivers are paying most.', section: 'Business',
     date: '2026-09-25', publishedAt: '2026-09-25T08:00:00Z', bodyMarkdown: 'Diesel prices rose again this week. '.repeat(30),
-    tags: ['Fuel'], sourceUrls: ['https://www.bbc.co.uk/news/articles/cr86xn04gxj9o?at_medium=RSS'], sourceOutlet: 'BBC',
+    tags: ['Fuel'], regions: ['europe-central-asia'], countries: ['United Kingdom'],
+    sourceUrls: ['https://www.bbc.co.uk/news/articles/cr86xn04gxj9o?at_medium=RSS'], sourceOutlet: 'BBC',
     aiArt: false, sectionImage: '/images/business.svg', review: { editorialReview: 'passed', risk: 'low' }
   }]);
   assert.equal(o.json.article.status, 'published');
   assert.match(o.json.article.branch, /^incoming\/diesel-tops-2-at-hundreds-of-scottish-forecourts-[0-9a-f]{8}$/);
   assert.match(o.json.article.markdown, /editorialReview: "passed"/);
+  assert.match(o.json.article.markdown, /regions: \["europe-central-asia"\]/);
+  assert.match(o.json.article.markdown, /countries: \["United Kingdom"\]/);
 });

@@ -12,6 +12,7 @@ function md(fields = {}) {
   const base = {
     title: 'A new story', dek: 'Standfirst', section: 'World', type: 'News',
     status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed',
+    regions: ['north-america'], countries: ['United States'],
     sourceUrls: ['https://example.com/a'], sourceNote: 'Prepared from Example News reporting.', image: '/generated/ai/a-new-story.svg', ...fields
   };
   const fm = Object.entries(base).filter(([, v]) => v !== undefined)
@@ -177,6 +178,11 @@ test('action_required runs alone never count as passing', () => {
 });
 
 // ---- Quality rules for new automated stories (real defects seen in PRs #26/#28/#29)
+test('quality: geography arrays are mandatory for new automated stories', () => {
+  no(input({ fields: { regions: undefined } }), /regions must be an explicit array/);
+  no(input({ fields: { countries: undefined } }), /countries must be an explicit array/);
+  no(input({ fields: { regions: ['moon'] } }), /unsupported region/);
+});
 test('quality: Title Case headline is held', () => no(input({ fields: { title: 'Pope Leo XIV Visits France, Meeting Migrants and Marginalised Communities' } }), /Title Case/));
 test('quality: sentence-case headline with proper nouns passes', () => ok(input({ fields: { title: 'India and Pakistan trade accusations at UN General Assembly' } })));
 test('quality: "Prepared from Source reporting" placeholder is held', () => no(input({ fields: { sourceNote: 'Prepared from Source reporting and subject to Nuvellum editorial review.' } }), /placeholder/));

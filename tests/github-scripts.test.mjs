@@ -12,7 +12,8 @@ const REPO = 'Sh-010/Nuvellum';
 const b64 = (s) => Buffer.from(s).toString('base64');
 
 function md(fields) {
-  const fm = Object.entries(fields).map(([k, v]) => `${k}: ${JSON.stringify(v)}`).join('\n');
+  const normalized = { regions: [], countries: [], ...fields };
+  const fm = Object.entries(normalized).map(([k, v]) => `${k}: ${JSON.stringify(v)}`).join('\n');
   return `---\n${fm}\n---\n\n${'A measured, sourced paragraph of reporting with names and figures. '.repeat(20)}\n`;
 }
 

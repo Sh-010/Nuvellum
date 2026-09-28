@@ -101,7 +101,8 @@ const story = (over = {}) => ({
   title: 'Iran says Strait of Hormuz could reopen within seven days', dek: 'Tehran set out conditions through Qatar.',
   section: 'World', date: '2026-09-26', publishedAt: '2026-09-26T10:05:00Z',
   bodyMarkdown: 'Iran says it has proposed an agreement to the United States. '.repeat(25),
-  tags: ['Iran'], sourceUrls: ['https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko?at_medium=RSS'], sourceOutlet: 'BBC', aiArt: true,
+  tags: ['Iran'], regions: ['middle-east-north-africa'], countries: ['Iran'],
+  sourceUrls: ['https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko?at_medium=RSS'], sourceOutlet: 'BBC', aiArt: true,
   review: { editorialReview: 'passed', risk: 'sensitive' }, verification: { verification: 'cleared' }, ...over
 });
 
@@ -117,6 +118,8 @@ test('buildArticle: cleared sensitive story passes the real gate and validator p
   const fm = parseFrontmatter(b.markdown);
   assert.equal(fm.verification, 'cleared');
   assert.equal(fm.reviewedBy, 'Nuvellum Verification Pipeline');
+  assert.deepEqual(fm.regions, ['middle-east-north-africa']);
+  assert.deepEqual(fm.countries, ['Iran']);
   assert.deepEqual(fm.sourceUrls, ['https://bbc.co.uk/news/articles/cqgmrr9ekr7ko']);
   assert.equal(fm.sourceNote.startsWith('Prepared from BBC reporting.'), true);
   assert.deepEqual(contentPolicyErrors(fm, 'x'), []);
@@ -130,7 +133,10 @@ test('buildArticle: uncleared stories are written as review and never pass the g
     { verification: undefined },
     { review: { editorialReview: 'uncertain', risk: 'low' } },
     { review: { editorialReview: 'passed', risk: null } },
-    { sourceOutlet: 'Source' }
+    { sourceOutlet: 'Source' },
+    { regions: undefined },
+    { countries: undefined },
+    { regions: ['not-a-region'] }
   ]) {
     const b = buildArticle(story(over));
     assert.equal(b.status, 'review', JSON.stringify(over));

@@ -89,7 +89,11 @@ The repository enforces the rules below. A story that breaks them is not publish
 | `verification` | Sensitive stories only: `"cleared"` only if the dedicated verification pass explicitly cleared the story. Otherwise `"failed"` or `"uncertain"`. |
 | `reviewedBy` | Sensitive and cleared: `"Nuvellum Verification Pipeline"`. Otherwise `""`. |
 | `status` | `"published"` only when the story is cleared (see below). Otherwise `"review"`. |
+| `regions` | Always present. Array of canonical World Desk region slugs; use `[]` when geography is not material. |
+| `countries` | Always present. Array of country names explicitly supported by the source; use `[]` when no country is material. |
 | `image` | `/generated/ai/<slug>.svg` when AI art was committed; otherwise the section image, e.g. `/images/world.svg`. |
+
+For new automated stories, missing or malformed `regions` / `countries` metadata is a publication-gate failure. Existing pre-contract articles are grandfathered and are not retroactively blocked.
 
 A story is cleared when:
 

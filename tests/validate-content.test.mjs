@@ -108,6 +108,15 @@ test('policy: explicitly cleared sensitive story passes validation', () => {
   assert.equal(r.code, 0, r.out);
 });
 
+test('geography: old articles may omit metadata, but present metadata must be valid', () => {
+  const svg = { 'a-story.svg': goodSvg };
+  assert.equal(runValidator({ articles: { 'a-story': article('a-story') }, aiSvgs: svg }).code, 0);
+  const badRegion = runValidator({ articles: { 'a-story': article('a-story', { regions: ['moon'], countries: ['Egypt'] }) }, aiSvgs: svg });
+  assert.equal(badRegion.code, 1); assert.match(badRegion.out, /unsupported region/);
+  const duplicateCountry = runValidator({ articles: { 'a-story': article('a-story', { regions: [], countries: ['Egypt', 'egypt'] }) }, aiSvgs: svg });
+  assert.equal(duplicateCountry.code, 1); assert.match(duplicateCountry.out, /countries must not contain duplicates/);
+});
+
 test('policy: a published story whose verification failed is rejected', () => {
   const r = runValidator({
     articles: { 'a-story': article('a-story', { risk: 'sensitive', reviewedBy: 'X', verification: 'failed' }) },

@@ -10,6 +10,8 @@ image: "/images/world.svg"
 imageAlt: "Descriptive alt text"
 status: "review"
 tags: ["topic", "topic two"]
+regions: []
+countries: []
 sourceUrls: ["https://example.com/source"]
 sourceNote: "Primary source or reporting note."
 origin: "manual"
