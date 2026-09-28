@@ -1,0 +1,55 @@
+name: Shorts preview
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "engines/shorts/**"
+      - "engines/shared/**"
+      - "engines/tests/shorts.test.mjs"
+      - "engines/package.json"
+      - "engines/package-lock.json"
+      - ".github/workflows/shorts-preview.yml"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Published article slug to render"
+        required: false
+        default: "pokemon-tcg-s-next-big-set-available-weeks-before-official-release"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shorts-preview-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Install free rendering tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg espeak-ng
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
+      - name: Render short preview
+        env:
+          SITE_URL: https://nuvellum.vercel.app
+          NUVELLUM_TTS: espeak,silent
+          SLUG: ${{ github.event_name == 'workflow_dispatch' && inputs.slug || 'pokemon-tcg-s-next-big-set-available-weeks-before-official-release' }}
+        run: node engines/shorts/cli.mjs --slug "$SLUG" --preview
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shorts-preview-${{ github.run_id }}
+          path: engines/out/shorts/
+          if-no-files-found: error
+          retention-days: 7
+
