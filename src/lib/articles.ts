@@ -18,6 +18,14 @@ export type Article = {
   readingTime: string;
   image: string;
   imageAlt: string;
+  /** Visual Engine metadata. Kept separate from reporting-source metadata. */
+  imageKind?: 'photo' | 'illustration' | 'map';
+  imageProvider?: 'wikimedia' | 'nuvellum-illustration' | 'manual';
+  imageCaption?: string;
+  imageCredit?: string;
+  imageLicense?: string;
+  imageLicenseUrl?: string;
+  imageSourcePage?: string;
   status: string;
   tags: string[];
   /** Optional World Desk metadata. Slugs use the canonical eight-region taxonomy. */
