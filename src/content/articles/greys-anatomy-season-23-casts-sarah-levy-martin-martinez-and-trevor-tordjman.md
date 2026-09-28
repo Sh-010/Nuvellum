@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T18:18:09.122Z"
 readingTime: "2 min"
-image: "/uploads/house/film-tv.svg"
-imageAlt: "Nuvellum Film & TV section illustration: an engraved film strip"
 status: "published"
 tags: ["Grey's Anatomy","Sarah Levy","Martin Martinez","Trevor Tordjman","Television"]
 regions: []

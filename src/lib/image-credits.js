@@ -4,10 +4,10 @@ import credits from '../data/image-credits.json' with { type: 'json' };
 
 export const IMAGE_CREDITS = credits;
 
-/** Credit entry for an article's current image, or null (e.g. AI or section art). */
+/** Credit entry for an article's current image, or null (AI art, or a text-led story with no image). */
 export function imageCredit(slug, image) {
   const c = credits[slug];
-  return c && (!image || c.path === image) ? c : null;
+  return c && image && c.path === image ? c : null;
 }
 
 /** CSS object-position for the image's focal point, when one was recorded. */

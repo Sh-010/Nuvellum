@@ -36,10 +36,10 @@ const credits = readJson(CREDITS, {});
 export const WEAK = ['procedural', 'section-placeholder', 'ai-svg'];
 
 export function classify(data) {
-  const image = String(data.image || '');
+  const image = String(data.image || '').trim();
   if (image.startsWith('/uploads/articles/') && /\.(jpe?g|png|webp)$/i.test(image)) return 'real';
   if (image.startsWith('/uploads/articles/') && image.endsWith('.svg')) return 'illustration';
-  if (image.startsWith('/uploads/house/')) return 'house';
+  if (!image) return 'text-led';
   if (image.startsWith('/generated/ai/')) return 'ai-svg';
   if (data.origin === 'automation') return 'procedural';
   return 'section-placeholder';

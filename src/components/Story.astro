@@ -6,6 +6,7 @@
 //   second – secondary package item: small image beside headline
 //   trio   – text-led column item (optional square thumb)
 //   row    – continuing feed: date column, headline + dek, thumbnail
+// A story without an acceptable image (image === '') drops its media and is set text-led (.is-text).
 import type { Article } from '../lib/articles';
 import { route, shortDate, dayMonth, weekday, isoDate } from '../lib/interior';
 import { imageFocus } from '../lib/image-credits.js';
@@ -17,10 +18,11 @@ const kicker = a.type && a.type !== 'News' ? `${a.section} · ${a.type}` : a.sec
 const style = d ? `--d:${d}ms` : undefined;
 const loading = eager ? 'eager' : 'lazy';
 const focus = imageFocus(a.slug, a.image);
+const pic = Boolean(a.image);
 ---
 {variant === 'lead' && (
-  <article class="story lead" data-reveal style={style}>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
+  <article class:list={['story lead', !pic && 'is-text']} data-reveal style={style}>
+    {pic && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
     <span class="eyebrow">{kicker}</span>
     <h2 class="headline"><a href={href}>{a.title}</a></h2>
     <p>{a.dek}</p>
@@ -28,8 +30,8 @@ const focus = imageFocus(a.slug, a.image);
   </article>
 )}
 {variant === 'wide' && (
-  <section class="story pkg-wide" aria-label="Lead reporting">
-    <a class="media" href={href} tabindex="-1" aria-hidden="true" data-reveal style={style}><img src={a.image} alt="" loading={loading} style={focus} /></a>
+  <section class:list={['story pkg-wide', !pic && 'is-text']} aria-label="Lead reporting">
+    {pic && <a class="media" href={href} tabindex="-1" aria-hidden="true" data-reveal style={style}><img src={a.image} alt="" loading={loading} style={focus} /></a>}
     <div class="lead-copy" data-reveal style={`--d:${d + 110}ms`}>
       <span class="eyebrow">{kicker}</span>
       <h2 class="headline"><a href={href}>{a.title}</a></h2>
@@ -40,8 +42,8 @@ const focus = imageFocus(a.slug, a.image);
   </section>
 )}
 {variant === 'front' && (
-  <article class="story pkg-front" data-reveal style={style}>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
+  <article class:list={['story pkg-front', !pic && 'is-text']} data-reveal style={style}>
+    {pic && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
     <div>
       <span class="chip">{a.type || a.section}</span>
       <h2 class="headline"><a href={href}>{a.title}</a></h2>
@@ -51,8 +53,8 @@ const focus = imageFocus(a.slug, a.image);
   </article>
 )}
 {variant === 'second' && (
-  <article class="story second" data-reveal style={style}>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
+  <article class:list={['story second', !pic && 'is-text']} data-reveal style={style}>
+    {pic && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
     <div>
       <span class="eyebrow">{kicker}</span>
       <h3 class="headline"><a href={href}>{a.title}</a></h3>
@@ -62,25 +64,25 @@ const focus = imageFocus(a.slug, a.image);
 )}
 {variant === 'trio' && (
   <article class="story" data-reveal style={style}>
-    <div class:list={[thumb && 'thumb']}>
+    <div class:list={[thumb && pic && 'thumb']}>
       <div>
         <span class="eyebrow">{kicker}</span>
         <h3 class="headline"><a href={href}>{a.title}</a></h3>
       </div>
-      {thumb && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
+      {thumb && pic && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
     </div>
     <p>{a.dek}</p>
     <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
   </article>
 )}
 {variant === 'row' && (
-  <article class="story row" data-reveal style={style}>
+  <article class:list={['story row', !pic && 'no-media']} data-reveal style={style}>
     <div class="row-date"><strong>{dayMonth(a)}</strong>{weekday(a)}</div>
     <div>
       <span class="eyebrow">{kicker}</span>
       <h3 class="headline"><a href={href}>{a.title}</a></h3>
       <p>{a.dek}</p>
     </div>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
+    {pic && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
   </article>
 )}

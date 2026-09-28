@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T18:16:02.588Z"
 readingTime: "2 min"
-image: "/uploads/house/film-tv.svg"
-imageAlt: "Nuvellum Film & TV section illustration: an engraved film strip"
 status: "published"
 tags: ["Melissa Barrera","Scream","Spyglass Media Group","Film"]
 sourceUrls: ["https://variety.com/2026/film/news/melissa-barrera-scream-return-spyglass-1236876458"]

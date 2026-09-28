@@ -6,7 +6,7 @@ Version: 2026-09-28. Validator: `scripts/lib/svg-safety.mjs` (snippet `validate-
 - Output one `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">` document.
 - Allowed: shapes, paths, gradients, patterns, clip paths, masks, filters (feGaussianBlur, feTurbulence and similar), `<text>`, `<style>` with local rules only.
 - Forbidden: `<script>`, event attributes, `<foreignObject>`, `<image>`, `<a>`, `<iframe>`, animation elements, any `http(s)://`, `//`, `data:` or `javascript:` value, `url()` pointing anywhere except `#id`, DOCTYPE, entities.
-- If validation or the style gate fails, **commit no art** and use the Nuvellum house plate `/uploads/house/<section>.svg`. Do not try to repair the SVG.
+- If validation or the style gate fails, **commit no art and no image**: `image`/`imageAlt` are removed and the site sets the story text-led. Never substitute section art. Do not try to repair the SVG.
 
 ## Nuvellum house style
 
@@ -36,8 +36,7 @@ The visual should still feel appropriate beside Nuvellum's cream paper, serif ty
 Live in the `Gemini Editorial SVG` prompt and the `Sanitize Editorial SVG` node (workflow 8hXx6NuZuJU9dRR1).
 
 1. **Real image first.** `visual-acquire.yml` runs on every `incoming/**` branch and replaces the story image with an openly licensed Commons photo when one clears the threshold (`docs/VISUAL_ACQUISITION.md`).
-2. **House plate.** Otherwise the story keeps `/uploads/house/<section>.svg` (drawn by `scripts/visual/house-visuals.mjs`). The imageAlt is `Nuvellum <Section> section illustration`, and `imageGenerationMode` is `house-fallback`.
-3. **Generated SVG** replaces the plate only when it passes the safety checks and `styleProblems()`, which rejects:
+2. **Generated SVG**, story-specific, only when it passes the safety checks and `styleProblems()`, which rejects:
    - any saturated cyan, magenta or purple;
    - `feGaussianBlur` alongside bright saturated colour (glow);
    - a dark full-bleed canvas (solid or gradient, mean lightness < 25%);
@@ -48,5 +47,6 @@ Live in the `Gemini Editorial SVG` prompt and the `Sanitize Editorial SVG` node 
    - a palette where under 60% of colours sit in the ivory/charcoal/stone/burgundy range.
 
    The rejection reason is kept in `aiImageError`.
+3. **No image.** Otherwise `image`/`imageAlt` are removed from the frontmatter (`imageGenerationMode: text-led`) and the site renders the story text-led on every surface. Generic section art never stands in for a story.
 
-Calibration (2026-09-28): the gate rejected all 21 AI SVGs the newsroom had committed and passed every Nuvellum illustration and house plate except the sparse science plate (detail count only; plates are fixed assets and never gated).
+Calibration (2026-09-28): the gate rejected all 21 AI SVGs the newsroom had committed and passed every Nuvellum illustration and house plate except the sparse science plate (detail count only). House plates were withdrawn on 2026-09-28: generic section art must not stand in for a story.

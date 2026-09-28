@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -174,7 +174,8 @@ test('an empty open-PR list keeps the candidate (and the loop) moving', () => {
   assert.equal(out.json.sourceLink, context.sourceLink);
 });
 
-// ---- Image quality: real images first, then the Nuvellum house plate; generated art only past the style gate.
+// ---- Image quality: real images first; generated art only past the style gate; otherwise no image at all
+// (the site sets the story text-led). Generic section art must never stand in for a story.
 const NEON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><defs><linearGradient id="bg"><stop offset="0" stop-color="#05060f"/><stop offset="1" stop-color="#120a2a"/></linearGradient>
 <filter id="glow"><feGaussianBlur stdDeviation="6"/></filter></defs><rect width="1200" height="675" fill="url(#bg)"/>
 ${Array.from({ length: 24 }, (_, i) => `<circle cx="${40 + i * 45}" cy="${80 + (i % 5) * 90}" r="3" fill="#00f0ff" filter="url(#glow)"/>`).join('')}
@@ -193,13 +194,22 @@ function runImage(svg, section) {
   return { out, fm: parseFrontmatter(Buffer.from(payload.contentBase64, 'base64').toString('utf8')) };
 }
 
-test('execution: neon/glow/HUD generated art is rejected and the story commits the house plate', () => {
+test('execution: neon/glow/HUD generated art is rejected and the story commits with no image (text-led)', () => {
   const { out, fm } = runImage(NEON_SVG, 'Gaming');
   assert.equal(out.aiImageReady, false);
-  assert.equal(out.imageGenerationMode, 'house-fallback');
+  assert.equal(out.imageGenerationMode, 'text-led');
   assert.match(out.aiImageError, /style gate: .*neon cyan\/magenta\/purple.*glow blur.*dark full-bleed canvas.*particle swarm/);
-  assert.equal(fm.image, '/uploads/house/gaming.svg');
-  assert.equal(fm.imageAlt, 'Nuvellum Gaming section illustration');
+  assert.equal(fm.image, undefined);
+  assert.equal(fm.imageAlt, undefined);
+  assert.deepEqual(contentPolicyErrors(fm, out.slug), []);
+});
+
+test('execution: an empty or unusable SVG response also leaves the story text-led, never section art', () => {
+  for (const svg of ['', 'no svg here']) {
+    const { out, fm } = runImage(svg, 'Film & TV');
+    assert.equal(out.imageGenerationMode, 'text-led');
+    assert.equal(fm.image, undefined);
+  }
 });
 
 test('execution: restrained paper-and-ink generated art passes the style gate', () => {
@@ -209,17 +219,13 @@ test('execution: restrained paper-and-ink generated art passes the style gate', 
   assert.equal(fm.image, `/generated/ai/${out.slug}.svg`);
 });
 
-test('every house plate the newsroom can commit exists, and Parse Draft sections all map to one', () => {
-  const code = node('Sanitize Editorial SVG').parameters.jsCode;
-  const map = new Function(`${code.match(/^const HOUSE_VISUALS=.*$/m)[0]}; return HOUSE_VISUALS;`)();
-  for (const key of Object.values(map)) assert.ok(existsSync(join(root, 'public', 'uploads', 'house', `${key}.svg`)), `missing house plate ${key}`);
-  const sections = Object.keys(new Function(`${node('Parse Draft & Build Markdown').parameters.jsCode.match(/^const imageMap=.*$/m)[0]}; return imageMap;`)());
-  assert.deepEqual(sections.filter(s => !map[s]), []);
+test('the newsroom never commits generic house or section art', () => {
+  assert.doesNotMatch(node('Sanitize Editorial SVG').parameters.jsCode, /uploads\/house|houseFallback|HOUSE_VISUALS/);
 });
 
 test('SVG prompt carries the Nuvellum house style and the hard aesthetic rejects', () => {
   const prompt = node('Gemini Editorial SVG').parameters.messages.values[0].content;
-  for (const re of [/NUVELLUM HOUSE STYLE/, /ivory, charcoal ink/, /dark burgundy/, /do NOT default to cyberpunk/, /HARD REJECTS/, /Neon cyan, magenta or purple/, /HUDs, scanner grids/, /particle swarms/, /Never a dark or black background/])
+  for (const re of [/NUVELLUM HOUSE STYLE/, /ivory, charcoal ink/, /dark burgundy/, /do NOT default to cyberpunk/, /HARD REJECTS/, /Neon cyan, magenta or purple/, /HUDs, scanner grids/, /particle swarms/, /Never a dark or black background/, /runs without an image/, /never a generic emblem of its section/])
     assert.match(prompt, re);
   assert.doesNotMatch(prompt, /cinematic|Rich but restrained palette/);
 });
