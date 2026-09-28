@@ -400,3 +400,4 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Image-led stories use their actual article image; text-led stories get a typographic vertical treatment rather than invented imagery.
 - Added a PR render smoke workflow that produces a real preview MP4 artifact. Nothing posts publicly and the publication gate does not depend on video generation.
 - espeak is explicitly a functional fallback, not the intended final public voice quality. A local Piper voice or another approved voice must be chosen before automatic public posting.
+- PR smoke run `36489556135` rendered the text-led Pokémon TCG story successfully: 34.87 s, 523 preview frames at 15 fps, extractive script, espeak narration, MP4 + poster + captions/script/plan/report artifact (~2.0 MB). Social distribution tests, Build, Security and CodeQL were green on the same head.
