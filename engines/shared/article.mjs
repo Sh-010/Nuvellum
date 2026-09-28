@@ -73,9 +73,11 @@ export function placeholderSlugs() {
   return new Set([...byBody.values()].filter(v => v.length > 1).flat());
 }
 
-function mediaMode(data) {
+export function mediaMode(data) {
   const image = String(data.image || '').trim();
   if (!image) return 'text-led';
+  // Nuvellum-drawn SVGs also live in /uploads/articles/; they are illustrations, never "FILE PHOTO".
+  if (data.imageKind === 'illustration' || /^\/uploads\/articles\/.+\.svg$/i.test(image)) return 'illustration';
   if (data.imageKind === 'photo' || /^\/uploads\/articles\//i.test(image)) return 'photo';
   if (/^\/generated\/ai\//i.test(image)) return 'illustration';
   return 'other';
