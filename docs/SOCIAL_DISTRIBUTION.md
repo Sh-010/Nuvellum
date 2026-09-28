@@ -14,17 +14,12 @@ published article
   -> upload JSON drafts as a GitHub Actions artifact
 ```
 
-Current draft targets:
+Nuvellum prepares two parallel distribution tracks:
 
-- X
-- Threads
-- Facebook
-- LinkedIn
-- Instagram
-- TikTok
-- YouTube Shorts
+- **Feed/static:** X, Threads, Facebook, LinkedIn and Instagram.
+- **Short video:** X video, Facebook Reels, Instagram Reels, TikTok and YouTube Shorts.
 
-The same text is **not** copied everywhere. Each platform gets a separate format and tracked link where appropriate.
+The same text is **not** copied everywhere. Each platform and track gets its own format and tracked link where appropriate.
 
 ## Visual rule
 
@@ -34,7 +29,7 @@ Social distribution follows the production visual policy:
 real relevant photo -> approved story-specific illustration -> designed Nuvellum social card
 ```
 
-A text-led article never receives fake story art. Its distribution report uses `text-card-needed`; a later social-card renderer will turn that into a deliberate Nuvellum card. TikTok and YouTube Shorts are marked `video-needed` until the Shorts engine supplies a vertical video.
+A text-led article never receives fake story art. Feed/static distribution uses `text-card-needed`; a later social-card renderer will turn that into a deliberate Nuvellum card. The short-video track for X, Facebook Reels, Instagram Reels, TikTok and YouTube Shorts is always `video-needed` until the Shorts engine supplies the vertical video.
 
 ## Tracking
 
