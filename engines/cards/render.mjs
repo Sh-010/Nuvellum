@@ -150,7 +150,7 @@ export function renderSocialCards(story, outBase) {
     slug: story.slug,
     sourceMode: image ? story.mediaMode : 'text-led',
     square: relative(REPO_ROOT, squarePath).replaceAll('\\', '/'),
-    portrait: relative(REPO_ROOT, portraitPath).replaceAll('\\\\', '/'),
+    portrait: relative(REPO_ROOT, portraitPath).replaceAll('\\', '/'),
     rasterNeededForLivePosting: true
   };
   writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
