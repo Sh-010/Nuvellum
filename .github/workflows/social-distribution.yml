@@ -75,6 +75,8 @@ jobs:
         if: steps.stories.outputs.slugs != ''
         with:
           name: social-drafts-${{ github.run_id }}
-          path: engines/out/distribution/
+          path: |
+            engines/out/distribution/
+            engines/out/social-cards/
           if-no-files-found: error
           retention-days: 30

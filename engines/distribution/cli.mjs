@@ -3,6 +3,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadStory, REPO_ROOT } from '../shared/article.mjs';
 import { buildDistributionDraft } from './engine.mjs';
+import { renderSocialCards, SOCIAL_CARD_DIR } from '../cards/render.mjs';
 
 const argv = process.argv.slice(2);
 const value = (name) => {
@@ -16,7 +17,8 @@ if (!slug) {
 }
 const platforms = value('platforms')?.split(',').map(x => x.trim()).filter(Boolean);
 const story = loadStory(slug);
-const report = buildDistributionDraft(story, { platforms });
+const cards = renderSocialCards(story, SOCIAL_CARD_DIR);
+const report = { ...buildDistributionDraft(story, { platforms }), cards };
 const outDir = join(REPO_ROOT, 'engines', 'out', 'distribution');
 mkdirSync(outDir, { recursive: true });
 const out = join(outDir, slug + '.json');

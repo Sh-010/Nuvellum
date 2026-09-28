@@ -380,3 +380,13 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Feed/static: X, Threads, Facebook, LinkedIn, Instagram.
 - Short video: X video, Facebook Reels, Instagram Reels, TikTok, YouTube Shorts.
 - This keeps the original card/link-post plan while making the upcoming Shorts engine reusable across every video-capable launch channel.
+
+## 2026-09-29 — Nuvellum social-card renderer
+
+- Added a deterministic zero-cost social-card renderer for the feed/static distribution track.
+- Produces 1080×1080 square and 1080×1350 portrait SVG cards per published story.
+- Image-led cards embed the article's actual photo or approved illustration and preserve the Nuvellum editorial identity; approved AI art is explicitly labelled `ILLUSTRATION`.
+- Text-led cards use typography, wine rules, the N✦ mark and negative space instead of inventing imagery.
+- Feed drafts now reference generated cards: square for X/Threads/Facebook/LinkedIn, portrait for Instagram.
+- Distribution CLI renders the cards automatically; GitHub Actions uploads card assets and JSON drafts together.
+- Live posting remains disabled. SVG cards are the deterministic source assets; raster conversion will be added only when a platform adapter actually needs JPEG/PNG.
