@@ -1,9 +1,14 @@
 import { PLATFORMS } from './platforms.mjs';
 import { generateFeedCopy, generateVideoCopy } from './copy.mjs';
 
-function feedMedia(story) {
-  if (story.mediaMode === 'text-led') return { mode: 'text-card-needed', source: null };
-  return { mode: story.mediaMode, source: story.image };
+function feedMedia(platform, story) {
+  const variant = platform === 'instagram' ? 'portrait' : 'square';
+  return {
+    mode: 'social-card',
+    variant,
+    path: `engines/out/social-cards/${story.slug}/${variant}.svg`,
+    sourceMode: story.mediaMode
+  };
 }
 
 function draftValue(platform, value, media) {
@@ -24,7 +29,7 @@ export function buildDistributionDraft(story, opts = {}) {
 
   for (const platform of feedPlatforms) {
     if (!feed.copy[platform]) continue;
-    tracks.feed[platform] = draftValue(platform, feed.copy[platform], feedMedia(story));
+    tracks.feed[platform] = draftValue(platform, feed.copy[platform], feedMedia(platform, story));
   }
   for (const platform of videoPlatforms) {
     if (!video.copy[platform]) continue;
@@ -32,7 +37,7 @@ export function buildDistributionDraft(story, opts = {}) {
   }
 
   return {
-    version: 2,
+    version: 3,
     generatedAt: new Date().toISOString(),
     slug: story.slug,
     articleUrl: story.url,
