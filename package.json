@@ -15,7 +15,8 @@
     "n8n:snippets": "node scripts/build-n8n-snippets.mjs",
     "check:build": "node scripts/check-build-output.mjs",
     "images:audit": "node scripts/backfill-article-images.mjs",
-    "images:backfill": "node scripts/backfill-article-images.mjs --apply"
+    "images:backfill": "node scripts/backfill-article-images.mjs --apply",
+    "visual:acquire": "node scripts/visual/acquire.mjs"
   },
   "dependencies": {
     "astro": "7.3.5",
