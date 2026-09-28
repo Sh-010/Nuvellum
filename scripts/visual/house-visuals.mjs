@@ -24,7 +24,7 @@ function frame(label, inner) {
     + `<defs><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .36 0 0 0 0 .27 0 0 0 0 .17 0 0 0 .06 0"/></filter></defs>`
     + `<rect width="${W}" height="${H}" fill="${PAPER}"/>${inner}`
     + `<line x1="64" y1="${H - 88}" x2="${W - 64}" y2="${H - 88}" stroke="${HAIR}" stroke-width="1"/>`
-    + `<text x="64" y="${H - 52}" font-family="Georgia,serif" font-size="22" letter-spacing="6" fill="${WINE}">✦ NUVELLUM · ${label.toUpperCase().replace('&', '&amp;')}</text>`
+    + `<text x="64" y="${H - 52}" font-family="Georgia,serif" font-size="22" letter-spacing="6" fill="${WINE}">✦ NUVELLUM · ${label.toUpperCase().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</text>`
     + `<rect width="${W}" height="${H}" filter="url(#g)"/></svg>`;
 }
 
