@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Culture Desk"
 date: "2026-09-24"
 readingTime: "7 min"
-image: "/images/anime.svg"
-imageAlt: "Anime’s global audience no longer needs an introduction"
+image: "/uploads/articles/global-anime.jpg"
+imageAlt: "Akihabara, Tokyo, lit up at night"
 status: "published"
 tags: ["anime", "streaming", "culture"]
 ---

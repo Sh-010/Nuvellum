@@ -356,3 +356,4 @@ html.motion-ready:not(.motion-live) [data-reveal]{animation:revealFailsafe 0s 2.
   .newsletter h2{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation-duration:70s}html.motion-ready [data-reveal]{--rise:5px}}
+.credit-entry p a{color:var(--wine-ink);border-bottom:1px solid var(--wine-soft)}.credit-entry .entry-meta a{color:var(--wine-ink)}

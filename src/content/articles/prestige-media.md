@@ -6,8 +6,8 @@ type: "Essay"
 author: "Nuvellum Culture Desk"
 date: "2026-09-23"
 readingTime: "5 min"
-image: "/images/culture.svg"
-imageAlt: "Prestige media is rediscovering restraint"
+image: "/uploads/articles/prestige-media.jpg"
+imageAlt: "The auditorium of the Lichtburg cinema in Essen, with its red curtain"
 status: "published"
 tags: ["media", "design", "culture"]
 ---

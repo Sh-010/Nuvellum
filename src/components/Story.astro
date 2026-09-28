@@ -8,6 +8,7 @@
 //   row    – continuing feed: date column, headline + dek, thumbnail
 import type { Article } from '../lib/articles';
 import { route, shortDate, dayMonth, weekday, isoDate } from '../lib/interior';
+import { imageFocus } from '../lib/image-credits.js';
 
 interface Props { article: Article; variant?: 'lead' | 'wide' | 'front' | 'second' | 'trio' | 'row'; d?: number; thumb?: boolean; eager?: boolean }
 const { article: a, variant = 'row', d = 0, thumb = false, eager = false } = Astro.props;
@@ -15,10 +16,11 @@ const href = route(a);
 const kicker = a.type && a.type !== 'News' ? `${a.section} · ${a.type}` : a.section;
 const style = d ? `--d:${d}ms` : undefined;
 const loading = eager ? 'eager' : 'lazy';
+const focus = imageFocus(a.slug, a.image);
 ---
 {variant === 'lead' && (
   <article class="story lead" data-reveal style={style}>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
     <span class="eyebrow">{kicker}</span>
     <h2 class="headline"><a href={href}>{a.title}</a></h2>
     <p>{a.dek}</p>
@@ -27,7 +29,7 @@ const loading = eager ? 'eager' : 'lazy';
 )}
 {variant === 'wide' && (
   <section class="story pkg-wide" aria-label="Lead reporting">
-    <a class="media" href={href} tabindex="-1" aria-hidden="true" data-reveal style={style}><img src={a.image} alt="" loading={loading} /></a>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true" data-reveal style={style}><img src={a.image} alt="" loading={loading} style={focus} /></a>
     <div class="lead-copy" data-reveal style={`--d:${d + 110}ms`}>
       <span class="eyebrow">{kicker}</span>
       <h2 class="headline"><a href={href}>{a.title}</a></h2>
@@ -39,7 +41,7 @@ const loading = eager ? 'eager' : 'lazy';
 )}
 {variant === 'front' && (
   <article class="story pkg-front" data-reveal style={style}>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
     <div>
       <span class="chip">{a.type || a.section}</span>
       <h2 class="headline"><a href={href}>{a.title}</a></h2>
@@ -50,7 +52,7 @@ const loading = eager ? 'eager' : 'lazy';
 )}
 {variant === 'second' && (
   <article class="story second" data-reveal style={style}>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
     <div>
       <span class="eyebrow">{kicker}</span>
       <h3 class="headline"><a href={href}>{a.title}</a></h3>
@@ -65,7 +67,7 @@ const loading = eager ? 'eager' : 'lazy';
         <span class="eyebrow">{kicker}</span>
         <h3 class="headline"><a href={href}>{a.title}</a></h3>
       </div>
-      {thumb && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>}
+      {thumb && <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>}
     </div>
     <p>{a.dek}</p>
     <div class="story-meta"><time datetime={isoDate(a)}>{shortDate(a)}</time><span>●</span>{a.readingTime} read</div>
@@ -79,6 +81,6 @@ const loading = eager ? 'eager' : 'lazy';
       <h3 class="headline"><a href={href}>{a.title}</a></h3>
       <p>{a.dek}</p>
     </div>
-    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} /></a>
+    <a class="media" href={href} tabindex="-1" aria-hidden="true"><img src={a.image} alt="" loading={loading} style={focus} /></a>
   </article>
 )}

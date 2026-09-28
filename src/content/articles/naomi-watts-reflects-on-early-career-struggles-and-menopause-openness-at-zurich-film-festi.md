@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T13:15:39.301Z"
 readingTime: "2 min"
-image: "/generated/ai/naomi-watts-reflects-on-early-career-struggles-and-menopause-openness-at-zurich-film-festi.svg"
-imageAlt: "AI-generated editorial illustration for Naomi Watts reflects on early career struggles and menopause openness at Zurich Film Festival"
+image: "/uploads/articles/naomi-watts-reflects-on-early-career-struggles-and-menopause-openness-at-zurich-film-festi.jpg"
+imageAlt: "Naomi Watts speaking at a panel"
 status: "published"
 tags: ["Naomi Watts","Zurich Film Festival","Mulholland Drive","Menopause"]
 sourceUrls: ["https://variety.com/2026/film/awards/naomi-watts-mullholland-drive-early-career-menopause-1236876797"]

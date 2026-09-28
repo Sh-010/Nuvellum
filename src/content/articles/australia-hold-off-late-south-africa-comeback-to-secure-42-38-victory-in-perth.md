@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T12:31:43.147Z"
 readingTime: "2 min"
-image: "/generated/ai/australia-hold-off-late-south-africa-comeback-to-secure-42-38-victory-in-perth.svg"
-imageAlt: "AI-generated editorial illustration for Australia hold off late South Africa comeback to secure 42-38 victory in Perth"
+image: "/uploads/articles/australia-hold-off-late-south-africa-comeback-to-secure-42-38-victory-in-perth.jpg"
+imageAlt: "A lineout during a Wallabies v Springboks match"
 status: "published"
 tags: ["Rugby Union","Australia","South Africa"]
 sourceUrls: ["https://www.bbc.co.uk/sport/rugby-union/articles/cx05r4gg209ro"]

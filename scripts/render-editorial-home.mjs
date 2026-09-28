@@ -6,6 +6,12 @@ import { REGIONS, storiesByRegion } from '../src/lib/geography.js';
 import { WORLD_MAP_GROUPS, WORLD_MAP_VIEWBOX } from '../src/lib/world-map-data.js';
 import { THEME_HEAD, THEME_BODY } from '../src/lib/theme-boot.js';
 
+// Crop focus for backfilled article images (scripts/backfill-article-images.mjs).
+const creditsFile = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', 'image-credits.json');
+let IMAGE_CREDITS = {};
+try { IMAGE_CREDITS = JSON.parse(readFileSync(creditsFile, 'utf8')); } catch {}
+const focusAttr = (article) => { const c = IMAGE_CREDITS[article?.slug]; return c?.focus && c.path === article.image ? ` style="object-position:${c.focus}"` : ''; };
+
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
 const articlesDir = join(root, 'src', 'content', 'articles');
@@ -147,7 +153,7 @@ function meta(article) {
   const parts = [timeTag(article), article.readingTime ? `${esc(article.readingTime)} read` : ''].filter(Boolean);
   return `<div class="story-meta">${parts.join(' <span>•</span> ')}</div>`;
 }
-const img = (article, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${art(article)}" alt="${attr(article.imageAlt || article.title)}" loading="lazy" decoding="async">`;
+const img = (article, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${art(article)}" alt="${attr(article.imageAlt || article.title)}"${focusAttr(article)} loading="lazy" decoding="async">`;
 const BOOKMARK = '<svg viewBox="0 0 17 20" aria-hidden="true"><path d="M2 1.5h13v17l-6.5-5-6.5 5z"/></svg>';
 
 function card(article) {
@@ -274,7 +280,7 @@ const TAB_LABELS = {
 };
 const regionTabs = rankedRegions.map(region => {
   const active = region.slug === defaultRegion.slug ? ' is-active' : '';
-  return `<button class="region-tab${active}" type="button" data-region-tab="${region.slug}" aria-label="${attr(region.label)}">${TAB_LABELS[region.slug] || esc(region.label)}</button>`;
+  return `<button class="region-tab${active}" type="button" data-region-tab="${region.slug}" aria-label="${attr(region.label)}" aria-pressed="${active ? 'true' : 'false'}">${TAB_LABELS[region.slug] || esc(region.label)}</button>`;
 }).join('');
 
 const tickerItems = articles.slice(0,4);
@@ -406,6 +412,11 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 .world-map-wrap{position:relative;isolation:isolate;background:radial-gradient(ellipse at 50% 45%,#191717 0%,#121112 60%,#0c0b0c 100%);height:228px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.4)}.world-map{width:100%;height:100%;display:block;padding:9px 18px 7px}.world-map-wrap:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.2;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .8 0 0 0 0 .76 0 0 0 0 .7 0 0 0 .42 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}.world-map-wrap:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 62%,rgba(0,0,0,.45) 100%)}.world-map .atlas{fill:none;stroke:#4a4647;stroke-width:1;opacity:.2}.map-region path{fill:var(--land);stroke:rgba(244,236,224,.3);stroke-width:.28;stroke-linejoin:round;}.map-region path:nth-child(3n+1){fill:var(--land-a)}.map-region path:nth-child(3n+2){fill:var(--land-b)}.map-region{--land:#7d7671;--land-a:#857e78;--land-b:#766f6a}.map-region[data-region="europe-central-asia"]{--land:#8a837d;--land-a:#928b85;--land-b:#827b75}.map-region[data-region="sub-saharan-africa"],.map-region[data-region="middle-east-north-africa"]{--land:#6a6460;--land-a:#716b66;--land-b:#645e5a}.map-region[data-region="latin-america-caribbean"]{--land:#6f6964;--land-a:#77716c;--land-b:#69635e}.map-region.heat-2{--land:#827c77;--land-a:#89837e;--land-b:#7b7570}.map-region.heat-3{--land:#87817b;--land-a:#8e8882;--land-b:#807a74}.map-region path{vector-effect:non-scaling-stroke;transition:fill .18s ease,stroke .18s ease}.map-region:hover path,.map-region:focus path{fill:#5c2230!important;stroke:rgba(246,214,220,.34)}.map-region.is-active path{fill:#6c182d!important;stroke:rgba(236,176,188,.38)}.map-region.is-active path:nth-child(3n+1){fill:#771c33!important}.map-region.is-active path:nth-child(3n+2){fill:#611428!important}.map-region{outline:none;cursor:pointer}.map-tooltip{position:absolute;z-index:3;background:rgba(11,10,10,.94);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);color:#f3ece1;border:1px solid rgba(236,226,212,.13);border-radius:3px;padding:5px 10px 5px 9px;font-family:var(--text);font-size:10.5px;line-height:1.25;pointer-events:none;opacity:0;transform:translate(-18px,calc(-100% - 12px));transition:opacity .16s ease;box-shadow:0 6px 16px rgba(0,0,0,.5);white-space:nowrap}.map-tooltip:after{content:"";position:absolute;left:15px;bottom:-4px;width:6px;height:6px;background:#0c0b0b;border-right:1px solid rgba(236,226,212,.13);border-bottom:1px solid rgba(236,226,212,.13);transform:rotate(45deg)}.map-tooltip strong{display:block;font-size:12.5px;font-weight:500;color:#f3ece1;letter-spacing:.01em}.map-tooltip span{display:block;color:#9d9387;margin-top:1px;font-size:10.5px}
 .region-tabs{display:flex;border-bottom:1px solid var(--hair);margin-top:4px}.region-tab{flex:1 1 auto;min-height:31px;border:0;border-right:1px solid var(--hair);background:transparent;color:var(--tab-ink);padding:2px 6px;font-size:10.5px;line-height:1.1;white-space:nowrap;letter-spacing:0;cursor:pointer;display:grid;place-items:center;text-align:center;transition:background .18s,color .18s}.region-tab:last-child{border-right:0}.region-tab:hover{color:var(--wine-ink)}.region-tab.is-active{background:var(--wine);color:#f6efe4;border-radius:2px}.region-tab:focus-visible{outline:2px solid var(--wine);outline-offset:-2px}
 .region-detail{display:grid;grid-template-columns:minmax(0,1.78fr) minmax(160px,1fr);gap:20px;padding:10px 6px 0;min-height:222px}.region-story-list{display:grid;align-content:start}.region-story{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:5px 0 6px;border-bottom:1px solid var(--hair)}.region-story:last-child{border-bottom:0}.region-story img{width:92px;height:58px;object-fit:cover}.region-story strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.15;font-weight:400}.region-story:hover strong{color:var(--wine-ink)}.region-story small{display:block;font-size:11px;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.region-story>span{min-width:0}.region-summary{border-left:1px solid var(--hair);padding:4px 0 6px 20px;display:flex;flex-direction:column}.region-summary a{margin-top:auto!important}.region-summary p{margin-bottom:14px!important}.summary-kicker{display:grid;grid-template-columns:22px 1fr;font-family:var(--text);font-size:12.5px;line-height:1.3;color:var(--wine-ink);letter-spacing:.16em;font-weight:500}.region-summary>small{display:block;margin:3px 0 14px 22px;color:var(--muted);font-size:11.5px;font-style:italic}.region-summary p{color:var(--muted);font-size:14.5px;line-height:1.22;margin:0}.region-summary a{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--wine);color:#f6efe4;border-radius:2px;padding:9px 12px;margin-top:17px;white-space:nowrap;font-size:14px;letter-spacing:.02em;transition:background .18s}.region-summary a:hover{background:var(--wine2)}.region-empty{font-size:13px;color:var(--muted);padding:20px 6px}
+/* World Desk polish: active tab points at the desk it opened; description sits close to its button; long desk names fit. */
+.region-tab{position:relative}.region-tab.is-active{font-weight:500;box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)}.region-tab.is-active:after{content:"";position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:var(--wine);transform:translateX(-50%) rotate(45deg);border-radius:1px;z-index:1}
+@media(max-width:1180px){.region-tab.is-active:after{display:none}}
+.region-summary{padding-top:2px}.region-summary>small{margin:2px 0 10px 22px}.region-summary p{line-height:1.36!important;margin-bottom:0!important}
+.region-summary a{margin-top:16px!important;white-space:normal;text-align:center;line-height:1.2;padding:9px 12px;font-size:13.5px;gap:8px}
 .section-block{margin-top:16px}.right-col .section-block{margin-top:0;background:var(--plate);border:1px solid var(--line);padding:4px 18px 8px}.right-col .section-title{padding:4px 0 6px}.section-title{display:flex;align-items:center;gap:18px;padding:6px 0 7px}.section-title h2{font-size:28px;line-height:1;color:var(--wine-ink);font-weight:500;letter-spacing:-.012em;margin:0}.section-title .rule{height:1px;background:var(--wine-soft);flex:1}.section-title a{font-size:12px;color:var(--wine-ink);white-space:nowrap}.section-title a:hover{text-decoration:underline}
 .latest-filters{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;border-bottom:1px solid var(--hair);margin:-1px 0 0}.latest-filters::-webkit-scrollbar{display:none}.latest-filters button{flex:none;border:0;border-bottom:1px solid transparent;margin-bottom:-1px;background:none;color:var(--muted);font-family:var(--text);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 0 6px;cursor:pointer;transition:color var(--t-quick) ease,border-color var(--t-base) var(--ease)}.latest-filters button:hover{color:var(--ink)}.latest-filters button[aria-selected="true"]{color:var(--wine-ink);border-bottom-color:var(--wine-ink)}.latest-filters button:focus-visible{outline:1px solid var(--wine-ink);outline-offset:2px}
 .latest-list{--latest-slot:83px;display:grid;grid-template-rows:repeat(5,var(--latest-slot));overflow:hidden}.latest-list .latest-copy{min-width:0}.latest-list .latest-copy h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.latest-empty{margin:0;align-self:center;font-size:13.5px;font-style:italic;color:var(--muted)}.latest-empty a{font-style:normal;color:var(--wine-ink);margin-left:6px;border-bottom:1px solid transparent;transition:border-color var(--t-quick) ease}.latest-empty a:hover{border-bottom-color:currentColor}.latest-empty:first-child{grid-row:1/-1;text-align:center}
@@ -496,7 +507,7 @@ ${REVEAL_CSS}
 <main class="shell home-layout">
   <div class="left-col">
     <article class="hero">
-      <a href="${route(hero)}"><img src="${heroImage}" alt="${attr(hero.imageAlt || hero.title)}"></a>
+      <a href="${route(hero)}"><img src="${heroImage}" alt="${attr(hero.imageAlt || hero.title)}"${focusAttr(hero)}></a>
       <div class="hero-copy">
         <div class="hero-kicker">${esc(hero.section)}</div>
         <h1><a href="${route(hero)}">${esc(hero.title)}</a></h1>
@@ -625,7 +636,7 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
         <div><h3>Sections</h3><a href="/section/world">World</a><a href="/section/business">Business</a><a href="/section/technology">Technology</a><a href="/section/science">Science</a><a href="/section/sports">Sports</a></div>
         <div><h3>Culture</h3><a href="/section/culture">Culture</a><a href="/section/entertainment">Screen &amp; Play</a><a href="/section/film-tv">Film &amp; TV</a><a href="/section/gaming">Gaming</a><a href="/section/opinion">Opinion</a></div>
         <div><h3>Nuvellum</h3><a href="/about">About</a><a href="/standards">Editorial Standards</a><a href="/corrections">Corrections</a><a href="/contact">Contact</a><a href="/latest">Latest</a></div>
-        <div><h3>More</h3><a href="/advertise">Advertise &amp; Sponsorships</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/rss.xml">RSS</a></div>
+        <div><h3>More</h3><a href="/advertise">Advertise &amp; Sponsorships</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/credits">Image credits</a><a href="/rss.xml">RSS</a></div>
       </nav>
     </div>
     <div class="footer-bottom"><span>© ${new Date().getUTCFullYear()} Nuvellum. Independent international media.</span><span>Browse by initial: <a href="/headlines/n">N</a> · <a href="/headlines/u">U</a> · <a href="/headlines/v">V</a> · <a href="/headlines/e">E</a> · <a href="/headlines/l">L</a> · <a href="/headlines/m">M</a></span></div>
@@ -727,7 +738,7 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     if(slug===activeRegion)return;
     activeRegion=slug;
     mapLinks.forEach(el=>el.classList.toggle('is-active',el.dataset.region===slug));
-    tabs.forEach(el=>el.classList.toggle('is-active',el.dataset.regionTab===slug));
+    tabs.forEach(el=>{const on=el.dataset.regionTab===slug;el.classList.toggle('is-active',on);el.setAttribute('aria-pressed',String(on))});
     const template=document.querySelector('template[data-region-template="'+slug+'"]');
     if(!template||!detail)return;
     const token=++regionSwap;

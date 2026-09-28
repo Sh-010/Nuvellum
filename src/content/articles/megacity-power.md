@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "7 min"
-image: "/images/business.svg"
-imageAlt: "Abstract city and business editorial image"
+image: "/uploads/articles/megacity-power.jpg"
+imageAlt: "Aerial view across the city of Osaka"
 status: "published"
 tags: ["cities","infrastructure","world"]
 ---

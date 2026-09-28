@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-09-24"
 readingTime: "6 min"
-image: "/images/business.svg"
-imageAlt: "Abstract business editorial image"
+image: "/uploads/articles/young-cities-investment.jpg"
+imageAlt: "The Nairobi city skyline"
 status: "published"
 tags: ["Africa","cities","investment"]
 ---

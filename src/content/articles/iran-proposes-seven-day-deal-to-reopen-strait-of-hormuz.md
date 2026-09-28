@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "3 min"
-image: "/images/world.svg"
-imageAlt: "Editorial illustration representing shipping through the Strait of Hormuz"
+image: "/uploads/articles/iran-proposes-seven-day-deal-to-reopen-strait-of-hormuz.jpg"
+imageAlt: "Satellite view of the Strait of Hormuz and the Musandam Peninsula"
 status: "published"
 tags: ["Iran","United States","Strait of Hormuz","Oil","Middle East"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko","https://www.reuters.com/world/middle-east/iran-ready-reopen-strait-hormuz-if-us-eases-military-pressure-lifts-blockade-2026-09-22/"]

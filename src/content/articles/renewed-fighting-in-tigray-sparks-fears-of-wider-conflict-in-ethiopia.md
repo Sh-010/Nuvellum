@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "3 min"
-image: "/images/world.svg"
-imageAlt: "Editorial illustration representing renewed fighting in Ethiopia's Tigray region"
+image: "/uploads/articles/renewed-fighting-in-tigray-sparks-fears-of-wider-conflict-in-ethiopia.jpg"
+imageAlt: "Mountains and cloud over the Tigray region of northern Ethiopia"
 status: "published"
 tags: ["Ethiopia","Tigray","TPLF","African Union","Conflict"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/c6d94wywx0ypo","https://www.criticalthreats.org/analysis/ethiopia-tigray-tplf-fano-china-prc-djibouti-jnim-mali-sudan-saf-rsf-somalia-aussom"]

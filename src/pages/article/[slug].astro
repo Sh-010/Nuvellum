@@ -7,6 +7,7 @@ import Story from '../../components/Story.astro';
 import '../../styles/article.css';
 import { getArticles, slugify } from '../../lib/articles';
 import { initials, longDate } from '../../lib/interior';
+import { imageCredit, imageFocus } from '../../lib/image-credits.js';
 
 export async function getStaticPaths() {
   const articles = await getArticles();
@@ -56,7 +57,9 @@ const sectionHref = `/section/${sectionKey}`;
 const authorHref = `/author/${slugify(article.author)}`;
 const displayDate = longDate(article);
 const updatedDate = article.updated ? new Date(`${article.updated}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '';
-const caption = article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
+const credit = imageCredit(article.slug, article.image);
+const focus = imageFocus(article.slug, article.image);
+const caption = credit?.caption ? credit.caption : article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
 const [leadRelated, ...moreRelated] = related;
 const tools = [
   { action: 'smaller', label: 'A−', aria: 'Decrease text size' },
@@ -110,8 +113,8 @@ const tools = [
     </header>
 
     <figure class="rgrid lead-figure" data-reveal style="--d:300ms">
-      <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" /></div>
-      <figcaption><span class="eyebrow">✦ Nuvellum</span> {caption}</figcaption>
+      <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" style={focus} /></div>
+      <figcaption><span class="eyebrow">✦ Nuvellum</span> {caption}{credit?.kind === 'photo' && <span class="credit"> · Photo: <a href={credit.descriptionUrl} rel="noopener">{credit.author}</a> / {credit.source}, {/public domain|^pd/i.test(credit.license) ? 'public domain' : credit.licenseUrl ? <a href={credit.licenseUrl} rel="noopener license">{credit.license}</a> : credit.license}.</span>}</figcaption>
     </figure>
 
     <div class="rgrid reading">

@@ -6,8 +6,8 @@ type: "Ideas"
 author: "L. Moreau"
 date: "2026-09-23"
 readingTime: "6 min"
-image: "/images/culture.svg"
-imageAlt: "Abstract culture editorial image"
+image: "/uploads/articles/seriousness-fashionable.svg"
+imageAlt: "Nuvellum Opinion & Ideas illustration: a single classical column in hairline"
 status: "published"
 tags: ["ideas","culture","opinion"]
 ---

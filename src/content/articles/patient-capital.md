@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Business Desk"
 date: "2026-09-24"
 readingTime: "6 min"
-image: "/images/business.svg"
-imageAlt: "Why patient capital is quietly returning"
+image: "/uploads/articles/patient-capital.jpg"
+imageAlt: "The trading hall of the Frankfurt Stock Exchange"
 status: "published"
 tags: ["markets", "capital", "business"]
 ---

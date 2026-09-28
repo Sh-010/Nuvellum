@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "12 min"
-image: "/images/world.svg"
-imageAlt: "A world in motion: the forces quietly redrawing the global order"
+image: "/uploads/articles/world-in-motion.jpg"
+imageAlt: "An engraved world map in two hemispheres, from 1700"
 status: "published"
 tags: ["geopolitics", "global order", "trade"]
 ---

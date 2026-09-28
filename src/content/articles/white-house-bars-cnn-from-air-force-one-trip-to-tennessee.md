@@ -6,8 +6,8 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-09-26"
 readingTime: "2 min"
-image: "/images/world.svg"
-imageAlt: "Editorial illustration representing Air Force One and White House press access"
+image: "/uploads/articles/white-house-bars-cnn-from-air-force-one-trip-to-tennessee.jpg"
+imageAlt: "Air Force One, a Boeing VC-25A, taking off"
 status: "published"
 tags: ["White House","CNN","Donald Trump","Press Access","Air Force One"]
 sourceUrls: ["https://www.bbc.co.uk/news/articles/cxq633770y16o","https://www.reuters.com/legal/government/trumps-white-house-media-ban-faces-long-odds-court-legal-experts-say-2026-09-22/"]

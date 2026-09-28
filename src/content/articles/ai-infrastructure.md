@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Technology Desk"
 date: "2026-09-25"
 readingTime: "8 min"
-image: "/images/technology.svg"
-imageAlt: "AI is becoming infrastructure, not merely a product"
+image: "/uploads/articles/ai-infrastructure.jpg"
+imageAlt: "Aerial view of a data centre campus at sunset"
 status: "published"
 tags: ["AI", "infrastructure", "technology"]
 ---

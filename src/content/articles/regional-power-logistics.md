@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-09-24"
 readingTime: "5 min"
-image: "/images/world.svg"
-imageAlt: "Abstract world editorial image"
+image: "/uploads/articles/regional-power-logistics.jpg"
+imageAlt: "Container cranes at the Bremerhaven terminal"
 status: "published"
 tags: ["Middle East","logistics","world"]
 ---

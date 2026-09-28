@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-09-25"
 readingTime: "10 min"
-image: "/images/world.svg"
-imageAlt: "Abstract world editorial image"
+image: "/uploads/articles/power-distributed.jpg"
+imageAlt: "The hemicycle of the European Parliament in Brussels"
 status: "published"
 tags: ["geopolitics","power","world"]
 ---

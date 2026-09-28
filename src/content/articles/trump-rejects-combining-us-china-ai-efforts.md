@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-26"
 publishedAt: "2026-09-26T17:47:38.014Z"
 readingTime: "2 min"
-image: "/generated/ai/trump-rejects-combining-us-china-ai-efforts.svg"
-imageAlt: "AI-generated editorial illustration for Trump rejects combining US-China AI efforts"
+image: "/uploads/articles/trump-rejects-combining-us-china-ai-efforts.jpg"
+imageAlt: "Donald Trump and Xi Jinping at a welcome ceremony in Beijing"
 status: "published"
 tags: ["Artificial Intelligence","United States","China","Donald Trump","Xi Jinping"]
 sourceUrls: ["https://www.aljazeera.com/news/2026/9/26/trump-rejects-combining-us-china-ai-efforts"]

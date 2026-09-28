@@ -6,8 +6,8 @@ type: "Analysis"
 author: "Nuvellum Culture Desk"
 date: "2026-09-25"
 readingTime: "8 min"
-image: "/images/film.svg"
-imageAlt: "Abstract film and television editorial image"
+image: "/uploads/articles/film-spectacle.jpg"
+imageAlt: "A large IMAX cinema auditorium facing the screen"
 status: "published"
 tags: ["film","television","entertainment"]
 ---

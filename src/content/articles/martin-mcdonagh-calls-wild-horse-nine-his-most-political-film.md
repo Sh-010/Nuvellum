@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T12:01:31.146Z"
 readingTime: "2 min"
-image: "/generated/ai/martin-mcdonagh-calls-wild-horse-nine-his-most-political-film.svg"
-imageAlt: "AI-generated editorial illustration for Martin McDonagh calls 'Wild Horse Nine' his most political film"
+image: "/uploads/articles/martin-mcdonagh-calls-wild-horse-nine-his-most-political-film.jpg"
+imageAlt: "Martin McDonagh at the Venice International Film Festival"
 status: "published"
 tags: ["Martin McDonagh","Wild Horse Nine","Zurich Film Festival","John Malkovich"]
 sourceUrls: ["https://variety.com/2026/film/awards/martin-mcdonagh-wild-horse-nine-political-john-malkovich-1236876794"]

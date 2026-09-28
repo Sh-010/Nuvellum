@@ -7,8 +7,8 @@ author: "Nuvellum Global Desk"
 date: "2026-09-27"
 publishedAt: "2026-09-27T11:50:14.335Z"
 readingTime: "2 min"
-image: "/generated/ai/why-does-robbie-ure-have-robbie-ure-on-his-scotland-shirt.svg"
-imageAlt: "AI-generated editorial illustration for Why does Robbie Ure have Robbie Ure on his Scotland shirt?"
+image: "/uploads/articles/why-does-robbie-ure-have-robbie-ure-on-his-scotland-shirt.jpg"
+imageAlt: "Hampden Park before a match"
 status: "published"
 tags: ["Robbie Ure","Scotland","Football","Slovenia"]
 sourceUrls: ["https://www.bbc.co.uk/sport/football/articles/c5gmrrl0dvrdo"]
