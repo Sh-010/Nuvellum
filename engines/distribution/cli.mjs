@@ -11,7 +11,7 @@ const value = (name) => {
 };
 const slug = value('slug');
 if (!slug) {
-  console.error('Usage: node distribution/cli.mjs --slug <article-slug> [--platforms x,threads,facebook,linkedin,instagram]');
+  console.error('Usage: node distribution/cli.mjs --slug <article-slug> [--platforms x,threads,facebook,linkedin,instagram,tiktok,youtube]');
   process.exit(1);
 }
 const platforms = value('platforms')?.split(',').map(x => x.trim()).filter(Boolean);
@@ -22,7 +22,8 @@ mkdirSync(outDir, { recursive: true });
 const out = join(outDir, slug + '.json');
 writeFileSync(out, JSON.stringify(report, null, 2) + '\n');
 for (const [platform, draft] of Object.entries(report.drafts)) {
-  console.log('\n[' + platform + ']\n' + draft.text + '\nmedia: ' + draft.media.mode);
+  const body = platform === 'youtube' ? draft.title + '\n\n' + draft.description : draft.text;
+  console.log('\n[' + platform + ']\n' + body + '\nmedia: ' + draft.media.mode);
 }
 for (const note of report.notes) console.log('note: ' + note);
 console.log('\nreport: ' + out);
