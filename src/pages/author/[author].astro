@@ -1,8 +1,31 @@
 ---
-import SiteHead from '../../components/SiteHead.astro';
-import '../../styles/global.css';
+import InteriorShell from '../../components/InteriorShell.astro';
+import StoryCard from '../../components/StoryCard.astro';
 import { getArticles, slugify } from '../../lib/articles';
-export async function getStaticPaths(){const a=await getArticles();return [...new Set(a.map(x=>slugify(x.author)))].map(author=>({params:{author}}));}
-const key=Astro.params.author!;const articles=(await getArticles()).filter(a=>slugify(a.author)===key);const name=articles[0]?.author||key;
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return [...new Set(articles.map(article => slugify(article.author)))].map(author => ({ params: { author } }));
+}
+
+const key = Astro.params.author!;
+const articles = (await getArticles()).filter(article => slugify(article.author) === key);
+const name = articles[0]?.author || key.replace(/-/g,' ');
+const sections = [...new Set(articles.map(article => article.section))];
 ---
-<!doctype html><html lang="en"><head><SiteHead title={`${name} — Nuvellum`} description={`Stories by ${name}.`}/></head><body><div class="topline"></div><header><div class="mast wrap"><a class="brand" href="/">NUVELLUM</a><div class="tag">Beyond the headline.</div></div></header><main class="section wrap"><div class="section-head"><h2>{name}</h2><a href="/">Home</a></div><div class="cards">{articles.map(a=><article class="card"><a href={`/article/${a.slug}`}><img src={a.image} alt=""/><div class="kicker">{a.section} · {a.type}</div><h3>{a.title}</h3><p>{a.dek}</p></a></article>)}</div></main></body></html>
+<InteriorShell title={`${name} — Nuvellum`} description={`Stories by ${name}.`}>
+  <div class="int-wrap int-page">
+    <header class="int-page-head" data-reveal>
+      <div>
+        <div class="int-page-kicker">Byline archive</div>
+        <h1 class="int-page-title">{name}</h1>
+        <p class="int-page-dek">Published Nuvellum work carrying this byline.</p>
+      </div>
+      <div class="int-page-note">{articles.length} {articles.length === 1 ? 'story' : 'stories'} · {sections.length ? sections.join(' · ') : 'No section history yet'}</div>
+    </header>
+
+    {articles.length ? (
+      <div class="int-feed">{articles.map((article,index)=><StoryCard article={article} variant="row" index={index+1}/>)}</div>
+    ) : <div class="int-empty">No published stories are currently attached to this byline.</div>}
+  </div>
+</InteriorShell>
