@@ -154,3 +154,38 @@ test('duplicate title and duplicate source are rejected; malformed frontmatter i
   const html = runValidator({ articles: { a: article('a').replace('Body paragraph', '<script>alert(1)</script> Body') }, aiSvgs: svg });
   assert.equal(html.code, 1);
 });
+
+
+test('visual metadata: Wikimedia photo requires complete license metadata', () => {
+  const fields = {
+    image: 'https://upload.wikimedia.org/example.jpg',
+    imageAlt: 'Example documentary photograph',
+    imageKind: 'photo',
+    imageProvider: 'wikimedia',
+    imageCaption: 'Illustrative file photo.',
+    imageCredit: 'Example Photographer',
+    imageLicense: 'CC BY 4.0',
+    imageLicenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    imageSourcePage: 'https://commons.wikimedia.org/wiki/File:Example.jpg'
+  };
+  const ok = runValidator({ articles: { 'a-story': article('a-story', fields) } });
+  assert.equal(ok.code, 0, ok.out);
+
+  const missingCredit = runValidator({ articles: { 'a-story': article('a-story', { ...fields, imageCredit: '' }) } });
+  assert.equal(missingCredit.code, 1);
+  assert.match(missingCredit.out, /requires imageCredit/);
+});
+
+test('visual metadata: Nuvellum illustration provider must be an illustration', () => {
+  const r = runValidator({
+    articles: {
+      'a-story': article('a-story', {
+        imageKind: 'photo',
+        imageProvider: 'nuvellum-illustration'
+      })
+    },
+    aiSvgs: { 'a-story.svg': goodSvg }
+  });
+  assert.equal(r.code, 1);
+  assert.match(r.out, /requires imageKind/);
+});
