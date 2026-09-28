@@ -29,7 +29,8 @@ const imageUrl = new URL(article.image, site).toString();
 const publishedTime = article.publishedAt && article.publishedAt.startsWith(article.date) ? article.publishedAt : `${article.date}T00:00:00Z`;
 const modifiedDate = article.updated || article.date;
 const modifiedTime = article.updated ? `${modifiedDate}T00:00:00Z` : publishedTime;
-const sources = (article.sourceUrls || []).filter((u) => /^https:\/\//.test(u)).map((u) => ({ url: u, host: new URL(u).hostname.replace(/^www\./, '') }));
+// sourceUrls / sourceNote stay in the content metadata for the newsroom, verification and duplicate
+// checks; they are not published on the page. Attribution belongs in the story text where the reporting needs it.
 const authorIsDesk = /desk|team|staff/i.test(article.author);
 const articleSchema = {
   '@context':'https://schema.org',
@@ -45,8 +46,7 @@ const articleSchema = {
   },
   publisher: {'@type':'Organization','name':'Nuvellum','url':site.toString()},
   mainEntityOfPage: articleUrl,
-  image: [imageUrl],
-  ...(sources.length ? { isBasedOn: sources.map((s) => s.url) } : {})
+  image: [imageUrl]
 };
 
 const sectionKey = slugify(article.section);
@@ -57,7 +57,6 @@ const authorHref = `/author/${slugify(article.author)}`;
 const displayDate = longDate(article);
 const updatedDate = article.updated ? new Date(`${article.updated}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '';
 const caption = article.origin === 'automation' && article.image.startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
-const hasSources = Boolean(article.sourceNote || sources.length > 0);
 const [leadRelated, ...moreRelated] = related;
 const tools = [
   { action: 'smaller', label: 'A−', aria: 'Decrease text size' },
@@ -130,24 +129,6 @@ const tools = [
       <div class="reading-col">
         <div class="body" id="articleBody"><Content /></div>
 
-        {hasSources && (
-          <section class="context sources" id="sources" aria-labelledby="sources-title">
-            <div class="src-head">
-              <span class="eyebrow">✦ Provenance</span>
-              <h2 id="sources-title">Sources</h2>
-            </div>
-            {article.sourceNote && <p class="src-note">{article.sourceNote}</p>}
-            {sources.length > 0 && (
-              <ol class="src-list">
-                {sources.map((s, i) => (
-                  <li><span class="src-num">{String(i + 1).padStart(2, '0')}</span><a href={s.url} rel="noopener nofollow" target="_blank"><span class="src-host">{s.host}</span><span class="src-label">Original report<span class="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">↗</span></span></a></li>
-                ))}
-              </ol>
-            )}
-            <p class="src-policy">How Nuvellum labels, attributes and verifies its reporting is set out in the <a href="/standards">Editorial Standards</a>.</p>
-          </section>
-        )}
-
         <footer class="story-end">
           <div class="end-mark" aria-hidden="true"><span>✦</span></div>
           <div class="eyebrow">Nuvellum · Beyond the headline</div>
@@ -169,7 +150,6 @@ const tools = [
             <div><dt>Format</dt><dd>{article.type || 'News'}</dd></div>
             <div><dt>Published</dt><dd>{displayDate}</dd></div>
             <div><dt>Reading</dt><dd>{article.readingTime}</dd></div>
-            {sources.length > 0 && <div><dt>Sources</dt><dd><a href="#sources">{sources.length} cited</a></dd></div>}
           </dl>
         </div>
       </aside>

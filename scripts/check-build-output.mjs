@@ -63,12 +63,14 @@ for (const { slug, data } of published) {
   if (!h.includes(`<link rel="canonical" href="https://nuvellum.vercel.app/article/${slug}"`)) errors.push(`${slug}: canonical URL`);
   if (!/<time datetime="\d{4}-\d{2}-\d{2}T[^"]+">/.test(h)) errors.push(`${slug}: <time datetime> missing`);
   if (!/"@type":"(News)?Article"/.test(h)) errors.push(`${slug}: Article JSON-LD missing`);
-  if (data.origin === 'automation' && Array.isArray(data.sourceUrls)) {
-    for (const u of data.sourceUrls) {
-      if (!h.includes(`href="${String(u).replace(/&/g, '&amp;')}"`)) errors.push(`${slug}: source ${u} not linked`);
-    }
-    if (!h.includes('class="context sources"')) errors.push(`${slug}: sources block missing`);
+  // Ingestion sources stay in the article metadata (newsroom, verification, duplicate checks) but are
+  // not published: no sources block, no link to or mention of an ingestion URL, no JSON-LD isBasedOn,
+  // and no internal sourceNote. Attribution a story needs is written into its text.
+  for (const u of Array.isArray(data.sourceUrls) ? data.sourceUrls : []) {
+    if (h.includes(String(u).replace(/&/g, '&amp;'))) errors.push(`${slug}: ingestion source ${u} is exposed on the page`);
   }
+  if (h.includes('class="context sources"') || h.includes('"isBasedOn"')) errors.push(`${slug}: public sources block or isBasedOn present`);
+  if (data.sourceNote && h.includes(String(data.sourceNote).replace(/&/g, '&amp;'))) errors.push(`${slug}: internal sourceNote is exposed on the page`);
 }
 
 // Sitemap: every published article, each with lastmod.
