@@ -39,12 +39,13 @@ export function chooseVisualMode(article) {
   const text = [article?.title, article?.dek, ...(article?.tags || [])].filter(Boolean).join(' ');
   const geoMaterial = (article?.countries?.length || 0) > 0 || (article?.regions?.length || 0) > 0;
   if (geoMaterial && MAP_RE.test(text)) return 'map-review';
-  // Real images first: only argument pieces stay illustration-first. Abstract news and analysis try a photo,
-  // and keep the house fallback when nothing clears the threshold.
+  // Real images first. Argument/ideas pieces may be illustration-first, but ordinary news never
+  // keeps generated art merely because photo acquisition failed. News with identifiable people,
+  // companies, films, products, sports or events should resolve to a real photo or text-led layout.
   if (['opinion','essay','ideas'].includes(type)) return 'illustration';
-  if (ABSTRACT_RE.test(text) && ['technology','business','science','world'].includes(section)) return 'photo-or-illustration';
-  if (['film & tv','anime','gaming','culture','sports'].includes(section)) return 'photo';
   if (type === 'news') return 'photo';
+  if (['film & tv','anime','gaming','culture','sports'].includes(section)) return 'photo';
+  if (ABSTRACT_RE.test(text) && ['technology','business','science','world'].includes(section)) return 'photo-or-illustration';
   return 'photo-or-illustration';
 }
 function compact(value, max = 180) {

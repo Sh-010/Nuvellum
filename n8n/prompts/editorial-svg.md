@@ -35,7 +35,7 @@ The visual should still feel appropriate beside Nuvellum's cream paper, serif ty
 
 Live in the `Gemini Editorial SVG` prompt and the `Sanitize Editorial SVG` node (workflow 8hXx6NuZuJU9dRR1).
 
-1. **Real image first.** `visual-acquire.yml` runs on every `incoming/**` branch and replaces the story image with an openly licensed Commons photo when one clears the threshold (`docs/VISUAL_ACQUISITION.md`).
+1. **Real image first.** `visual-acquire.yml` runs on every `incoming/**` branch and replaces the story image with an openly licensed Commons photo when one clears the threshold (`docs/VISUAL_ACQUISITION.md`). For ordinary **News** stories, failure to find a strong real photo now means **text-led**, not “keep whatever generated illustration exists.” AI illustration is reserved for opinion/essay/ideas and genuinely abstract analysis where the visual adds a specific editorial metaphor.
 2. **Generated SVG**, story-specific, only when it passes the safety checks and `styleProblems()`, which rejects:
    - any saturated cyan, magenta or purple;
    - `feGaussianBlur` alongside bright saturated colour (glow);
