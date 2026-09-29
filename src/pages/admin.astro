@@ -271,6 +271,8 @@ table.list{width:100%;border-collapse:collapse}
 .tb-group button:active{background:var(--ring)}
 .tb-group button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
 .tb-count{margin-left:auto;letter-spacing:.04em}
+.tb-group[aria-label=History] button{font-size:15px;line-height:1}
+.tb-group button[disabled]{opacity:.4;cursor:not-allowed}
 textarea#f-body{display:block;width:100%;min-height:64vh;border:0;background:transparent;padding:18px 0 12px;font-family:var(--serif);font-size:19px;line-height:1.72;color:var(--ink);resize:vertical;outline:none}
 .writing-foot{border-top:1px solid var(--hair);padding-top:10px;margin:4px 0 0}
 .workspace[data-mode=split] .compose{padding:22px 24px 16px}
@@ -458,14 +460,15 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
               <div class="field dek-field"><label for="f-dek">Dek (standfirst) <span class="count" id="c-dek"></span></label><textarea id="f-dek" rows="2" maxlength="800" placeholder="One or two sentences that frame the story"></textarea></div>
               <div class="writing">
                 <div class="toolbar" role="toolbar" aria-label="Formatting">
-                  <div class="tb-group"><button type="button" data-md="h2" title="Section heading">H2</button></div>
-                  <div class="tb-group"><button type="button" data-md="bold" title="Bold"><b>B</b></button><button type="button" data-md="italic" title="Italic"><i>I</i></button><button type="button" data-md="link" title="Link">Link</button></div>
-                  <div class="tb-group"><button type="button" data-md="quote" title="Quotation">“ Quote</button><button type="button" data-md="ul" title="Bulleted list">• List</button><button type="button" data-md="ol" title="Numbered list">1. List</button></div>
+                  <div class="tb-group" role="group" aria-label="Headings"><button type="button" data-md="h2" data-tip="Section heading (H2)">H2</button><button type="button" data-md="h3" data-tip="Subheading (H3)">H3</button></div>
+                  <div class="tb-group" role="group" aria-label="Text style"><button type="button" data-md="bold" data-tip="Bold" data-key="B" aria-label="Bold"><b>B</b></button><button type="button" data-md="italic" data-tip="Italic" data-key="I" aria-label="Italic"><i>I</i></button><button type="button" data-md="code" data-tip="Inline code" aria-label="Inline code"><span class="mono">&lt;/&gt;</span></button><button type="button" data-md="link" data-tip="Link" data-key="K">Link</button></div>
+                  <div class="tb-group" role="group" aria-label="Blocks"><button type="button" data-md="quote" data-tip="Quotation">“ Quote</button><button type="button" data-md="ul" data-tip="Bulleted list">• List</button><button type="button" data-md="ol" data-tip="Numbered list">1. List</button><button type="button" data-md="hr" data-tip="Divider (horizontal rule)" aria-label="Divider">— Rule</button></div>
+                  <div class="tb-group" role="group" aria-label="History"><button type="button" data-hist="undo" data-tip="Undo" aria-label="Undo">↶</button><button type="button" data-hist="redo" data-tip="Redo" aria-label="Redo">↷</button></div>
                   <span class="hint tb-count" id="c-body"></span>
                 </div>
                 <label for="f-body" class="sr-only">Body</label>
                 <textarea id="f-body" spellcheck="true" placeholder="Write the story…"></textarea>
-                <p class="hint writing-foot">Formatting buttons insert simple markup. Raw HTML is not allowed; links must start with https://.</p>
+                <p class="hint writing-foot">Stored as Markdown: the buttons add the marks for you, and pressing one again removes them. Preview shows the finished article. Raw HTML is not allowed; links must start with https://.</p>
               </div>
             </div>
             <div id="preview-pane" class="preview-wrap" hidden>
@@ -584,6 +587,7 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
 </dialog>
 
 <script>
+import { formatMarkdown, linkIntent, isSafeLinkUrl, narrowEdit } from '../lib/markdown-format.js';
 const API = '/api/admin';
 const $ = (id) => document.getElementById(id);
 const el = (tag, attrs = {}, ...kids) => {
@@ -834,9 +838,15 @@ $('tab-write').addEventListener('click', () => { S.editMode = 'write'; subtab('w
 $('tab-split').addEventListener('click', () => { S.editMode = 'split'; subtab('split'); autosize($('f-dek')); runCheck(true); });
 $('tab-preview').addEventListener('click', () => { subtab('preview'); runCheck(true); });
 // Write, side by side (wide screens only; CSS falls back to Write below 1280px) or Preview.
+let writeView = null;
 function subtab(which) {
+  if (which === 'preview' && $('workspace').dataset.mode !== 'preview' && S.view === 'editor') writeView = { ...bodyState(), winY: window.scrollY };
   for (const [id, mode] of [['tab-write', 'write'], ['tab-split', 'split'], ['tab-preview', 'preview']]) $(id).setAttribute('aria-selected', String(which === mode));
   $('workspace').dataset.mode = which;
+  if (which !== 'preview' && writeView) {
+    const v = writeView; writeView = null;
+    requestAnimationFrame(() => { restoreView(v, { x: window.scrollX, y: v.winY }); });
+  }
   $('write-pane').hidden = which === 'preview'; $('preview-pane').hidden = which === 'write'; $('meta-pane').hidden = which === 'preview';
 }
 
@@ -886,7 +896,7 @@ async function openEditor(target, previewFirst = false) {
   $('view-queue').hidden = true; $('view-list').hidden = true; $('view-editor').hidden = false; S.view = 'editor';
   reveal($('view-editor')); window.scrollTo({ top: 0, behavior: 'auto' });
   subtab(previewFirst ? 'preview' : S.editMode);
-  S.lastPreview = null;
+  S.lastPreview = null; writeView = null; bodySel = { start: 0, end: 0, scrollTop: 0 };
   let d = {}, body = '';
   if (target) {
     try {
@@ -979,30 +989,90 @@ function renderSources() {
   $('source-links').replaceChildren(...urls.map((u) => /^https:\/\//.test(u) ? el('div', {}, el('a', { href: u, target: '_blank', rel: 'noopener noreferrer', text: u })) : el('div', { text: `✗ not https: ${u}` })));
 }
 
-// Markdown toolbar: wraps or prefixes the current selection.
-for (const b of document.querySelectorAll('[data-md]')) b.addEventListener('click', () => {
-  const ta = $('f-body'), s = ta.selectionStart, e = ta.selectionEnd, v = ta.value, sel = v.slice(s, e);
-  const lineStart = v.lastIndexOf('\n', s - 1) + 1;
-  let out, cs, ce;
-  const wrap = (a, z, ph) => { const text = sel || ph; out = v.slice(0, s) + a + text + z + v.slice(e); cs = s + a.length; ce = cs + text.length; };
-  // Prefix the current line(s). On an empty line only the placeholder is selected, so typing replaces it and keeps the marker.
-  const prefix = (fn) => {
-    const had = v.slice(lineStart, e);
-    const text = (had || 'Text').split('\n').map(fn).join('\n');
-    out = v.slice(0, lineStart) + text + v.slice(e);
-    ce = lineStart + text.length;
-    cs = had ? ce : ce - 'Text'.length;
+// ---- Body formatting (Markdown) ----
+// The toolbar and shortcuts never rebuild the whole body: formatMarkdown (src/lib/markdown-format.js) returns
+// one edit, only the characters that change are replaced (insertText keeps the browser's own undo history;
+// setRangeText is the fallback), and the selection, the textarea's scroll and the page's scroll are put back
+// exactly, so formatting leaves the writer looking at the same place.
+const bodyEl = $('f-body');
+const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '');
+let bodySel = { start: 0, end: 0, scrollTop: 0 };
+const rememberBody = () => { bodySel = { start: bodyEl.selectionStart, end: bodyEl.selectionEnd, scrollTop: bodyEl.scrollTop }; };
+for (const ev of ['blur', 'select', 'keyup', 'mouseup', 'input']) bodyEl.addEventListener(ev, rememberBody);
+bodyEl.addEventListener('scroll', () => { bodySel.scrollTop = bodyEl.scrollTop; }, { passive: true });
+const bodyState = () => (document.activeElement === bodyEl ? { start: bodyEl.selectionStart, end: bodyEl.selectionEnd, scrollTop: bodyEl.scrollTop } : { ...bodySel });
+
+function restoreView(sel, win) {
+  const put = () => {
+    bodyEl.setSelectionRange(sel.start, sel.end);
+    bodyEl.scrollTop = sel.scrollTop;
+    if (window.scrollX !== win.x || window.scrollY !== win.y) window.scrollTo(win.x, win.y);
   };
-  switch (b.dataset.md) {
-    case 'bold': wrap('**', '**', 'bold text'); break;
-    case 'italic': wrap('*', '*', 'italic text'); break;
-    case 'link': { const url = prompt('Link address (must start with https://)', 'https://'); if (!url || !/^https:\/\/\S+$/.test(url)) return; wrap('[', `](${url})`, 'link text'); break; }
-    case 'h2': prefix((l) => `## ${l.replace(/^#+\s*/, '')}`); break;
-    case 'quote': prefix((l) => `> ${l.replace(/^>\s?/, '')}`); break;
-    case 'ul': prefix((l) => `- ${l.replace(/^([-*+]|\d+\.)\s+/, '')}`); break;
-    case 'ol': { let i = 0; prefix((l) => `${++i}. ${l.replace(/^([-*+]|\d+\.)\s+/, '')}`); break; }
+  put(); requestAnimationFrame(put); // browsers may scroll to the caret after the edit lands
+  bodySel = { ...sel };
+}
+
+function applyBodyEdit(edit, saved, win) {
+  const old = bodyEl.value;
+  const { from, to, text } = narrowEdit(old, edit);
+  bodyEl.focus({ preventScroll: true });
+  if (from !== to || text) {
+    bodyEl.setSelectionRange(from, to);
+    let done = false;
+    try { done = document.execCommand(text ? 'insertText' : 'delete', false, text); } catch {}
+    if (!done || bodyEl.value !== old.slice(0, from) + text + old.slice(to)) {
+      bodyEl.value = old; // execCommand unavailable or partial: fall back to a targeted in-place replacement
+      bodyEl.setRangeText(text, from, to, 'end');
+      bodyEl.dispatchEvent(new Event('input', { bubbles: true }));
+    }
   }
-  ta.value = out; ta.focus(); ta.setSelectionRange(cs, ce); updateCounts(); scheduleCheck();
+  restoreView({ start: edit.selStart, end: edit.selEnd, scrollTop: saved.scrollTop }, win);
+}
+
+async function runFormat(action) {
+  const saved = bodyState(), win = { x: window.scrollX, y: window.scrollY };
+  const opts = {};
+  if (action === 'link' && linkIntent(bodyEl.value, saved.start, saved.end) === 'link') {
+    const url = await ask('Add a link', 'Paste the full address. Links must start with https://.', 'Link address', 'https://');
+    if (url === false) { bodyEl.focus({ preventScroll: true }); restoreView(saved, win); return; }
+    const clean = String(url).replace(/\s+/g, '');
+    if (!isSafeLinkUrl(clean)) {
+      $('action-msg').className = 'msg bad'; $('action-msg').textContent = 'That link was not added: links must start with https://.';
+      bodyEl.focus({ preventScroll: true }); restoreView(saved, win); return;
+    }
+    opts.url = clean;
+  }
+  const edit = formatMarkdown(bodyEl.value, saved.start, saved.end, action, opts);
+  if (edit) applyBodyEdit(edit, saved, win);
+  else { bodyEl.focus({ preventScroll: true }); restoreView(saved, win); }
+}
+
+function runHistory(cmd) {
+  const win = { x: window.scrollX, y: window.scrollY };
+  bodyEl.focus({ preventScroll: true });
+  let ok = false;
+  try { ok = document.execCommand(cmd); } catch {}
+  if (window.scrollX !== win.x || window.scrollY !== win.y) window.scrollTo(win.x, win.y);
+  rememberBody();
+  if (!ok) for (const b of document.querySelectorAll('[data-hist]')) { b.disabled = true; b.title = isMac ? 'Use ⌘Z / ⌘⇧Z in the text' : 'Use Ctrl+Z / Ctrl+Y in the text'; }
+}
+
+// Buttons keep the caret where it is: pressing one must not move focus or the selection out of the body.
+for (const b of document.querySelectorAll('.toolbar [data-md], .toolbar [data-hist]')) {
+  const key = b.dataset.hist === 'redo' ? (isMac ? '⌘⇧Z' : 'Ctrl+Y') : b.dataset.hist === 'undo' ? (isMac ? '⌘Z' : 'Ctrl+Z') : b.dataset.key ? `${isMac ? '⌘' : 'Ctrl+'}${b.dataset.key}` : '';
+  b.title = key ? `${b.dataset.tip} (${key})` : b.dataset.tip;
+  b.addEventListener('mousedown', (ev) => ev.preventDefault());
+  b.addEventListener('click', () => (b.dataset.hist ? runHistory(b.dataset.hist) : runFormat(b.dataset.md)));
+}
+
+// Editor-local shortcuts, only with the platform's own modifier and only inside the body.
+const SHORTCUTS = { b: 'bold', i: 'italic', k: 'link' };
+bodyEl.addEventListener('keydown', (ev) => {
+  if (ev.altKey || ev.shiftKey || !(isMac ? ev.metaKey && !ev.ctrlKey : ev.ctrlKey && !ev.metaKey)) return;
+  const action = SHORTCUTS[String(ev.key).toLowerCase()];
+  if (!action) return;
+  ev.preventDefault();
+  runFormat(action);
 });
 
 function payload(intent) {
@@ -1164,10 +1234,10 @@ async function unpublish() {
 }
 
 // Confirmation dialog: resolves true/false, or the typed text when a field is shown.
-function ask(title, text, fieldLabel = '') {
+function ask(title, text, fieldLabel = '', initial = '') {
   return new Promise((resolve) => {
     const d = $('dlg');
-    $('dlg-title').textContent = title; $('dlg-text').textContent = text; $('dlg-field').hidden = !fieldLabel; $('dlg-label').textContent = fieldLabel; $('dlg-input').value = '';
+    $('dlg-title').textContent = title; $('dlg-text').textContent = text; $('dlg-field').hidden = !fieldLabel; $('dlg-label').textContent = fieldLabel; $('dlg-input').value = initial;
     d.onclose = () => resolve(d.returnValue === 'ok' ? (fieldLabel ? $('dlg-input').value.trim() : true) : false);
     d.showModal();
   });
