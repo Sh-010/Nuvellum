@@ -47,33 +47,108 @@ button,input,select,textarea{font:inherit;color:inherit}
 .login h1{font-weight:400;font-size:28px;margin:12px 0 4px}
 .msg{font-family:var(--sans);font-size:13px;margin-top:10px;min-height:18px}
 .msg.bad{color:var(--bad)}.msg.ok{color:var(--ok)}
-/* app */
-.bar{position:sticky;top:0;z-index:5;background:var(--paper2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:10px 20px;flex-wrap:wrap}
-.bar .brand{display:flex;align-items:baseline;gap:10px;font-size:22px}
-.bar .brand .mark{font-size:28px}
-.tabs{display:flex;gap:4px;flex-wrap:wrap}
-.tab{border:0;background:none;padding:8px 12px;font-family:var(--sans);font-size:13px;letter-spacing:.04em;cursor:pointer;border-bottom:2px solid transparent}
-.tab[aria-selected=true]{border-color:var(--wine);color:var(--wine)}
-.bar .spacer{flex:1}
-.who{font-family:var(--sans);font-size:12px;color:var(--muted)}
-main.wrap{max-width:1500px;margin:0 auto;padding:22px 20px 60px}
-h2.view-title{font-weight:400;font-size:30px;margin:0 0 4px}
-.view-intro{color:var(--muted);margin:0 0 18px}
-/* queue */
-.columns{display:grid;grid-template-columns:repeat(5,minmax(230px,1fr));gap:14px;overflow-x:auto;padding-bottom:6px}
-.col{background:var(--paper2);border:1px solid var(--line);border-top:3px solid var(--ink);min-height:120px}
-.col[data-b="Ready to Publish"]{border-top-color:var(--ok)}.col[data-b="Held / Rejected"]{border-top-color:var(--bad)}.col[data-b="Pending Review"]{border-top-color:var(--wine)}
-.col h3{margin:0;padding:10px 12px;font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
-.card{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--hair);background:none;padding:12px;cursor:pointer}
-.card:hover{background:rgba(102,18,39,.035)}
-.card .t{font-size:17px;line-height:1.2;margin:4px 0 6px}
-.card .d{font-size:13.5px;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* app: the desk masthead */
+:root{--ease:cubic-bezier(.2,.7,.2,1);--shadow:0 1px 0 rgba(56,39,25,.05),0 1px 3px rgba(56,39,25,.05);--shadow-lift:0 1px 0 rgba(56,39,25,.06),0 8px 22px -10px rgba(56,39,25,.28)}
+.desk{position:sticky;top:0;z-index:5;background:rgba(251,248,242,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:3px double rgba(31,26,22,.5)}
+.desk-top,.desk nav{max-width:1500px;margin:0 auto;padding:0 28px}
+.desk-top{display:flex;align-items:center;gap:16px;padding-top:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:12px;min-width:0}
+.brand .mark{font-size:30px}
+.wordmark{font-size:25px;font-weight:600;letter-spacing:-.01em}
+.desk-name{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--wine);padding-left:12px;border-left:1px solid var(--line);align-self:center;white-space:nowrap}
+.private{font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:2px 6px;align-self:center}
+.spacer{flex:1}
+.dateline{font-style:italic;color:var(--muted);font-size:15px;white-space:nowrap}
+.who{font-family:var(--sans);font-size:12px;color:var(--muted);padding-left:14px;border-left:1px solid var(--line);white-space:nowrap}
+.tabs{display:flex;gap:26px}
+.tab{position:relative;border:0;background:none;padding:12px 0 11px;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s var(--ease)}
+.tab::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--wine);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected=true]{color:var(--ink);font-weight:700}
+.tab[aria-selected=true]::after{transform:scaleX(1)}
+.tab-count{display:inline-block;min-width:18px;margin-left:7px;padding:1px 5px;background:var(--wine);color:#f6efe4;font-size:10px;font-weight:700;letter-spacing:0;text-align:center;border-radius:1px;vertical-align:1px}
+.subtabs .tab{padding:8px 0;margin-right:22px}
+main.wrap{max-width:1500px;margin:0 auto;padding:26px 28px 70px}
+.view.enter{animation:viewIn .32s var(--ease) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.view-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}
+.view-head .eyebrow{display:block;margin-bottom:5px}
+h2.view-title{font-weight:400;font-size:34px;line-height:1.05;margin:0 0 6px;letter-spacing:-.01em}
+.view-intro{color:var(--muted);margin:0 0 18px;max-width:68ch}
+.view-head .view-intro{margin:0}
+.view-tools{display:flex;align-items:center;gap:12px;white-space:nowrap}
+/* queue: overview figures */
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin:0 0 28px}
+.stat{display:flex;align-items:baseline;gap:10px;border:0;border-left:1px solid var(--line);background:none;padding:12px 18px;cursor:pointer;text-align:left;min-width:0;transition:background .2s var(--ease)}
+.stat:first-child{border-left:0;padding-left:2px}
+.stat:hover{background:rgba(102,18,39,.035)}
+.stat .n{font-size:32px;line-height:1;font-variant-numeric:lining-nums tabular-nums;transition:color .2s}
+.stat .l{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.stat.zero .n{color:#b3a898}
+.stat.hot .n{color:var(--wine)}
+/* queue: the three active lanes */
+.board{display:grid;gap:28px;transition:opacity .25s var(--ease)}
+.board.loading,.secondary.loading{opacity:.5}
+.lane,.shelf{scroll-margin-top:120px}
+.lane-head{display:flex;align-items:baseline;gap:12px;padding-bottom:9px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.lane-head h3{margin:0;font-weight:400;font-size:22px;letter-spacing:-.005em;white-space:nowrap}
+.lane-count{font-family:var(--sans);font-size:11px;color:var(--muted);border:1px solid var(--line);padding:1px 7px;border-radius:1px}
+.lane-note{font-family:var(--sans);font-size:12px;color:var(--muted);margin-left:auto;text-align:right}
+.lane .lane-head h3::before{content:'';display:inline-block;width:7px;height:7px;margin:0 9px 3px 0;border-radius:50%;background:var(--wine)}
+.lane-checks .lane-head h3::before{background:#b98a2c}
+.lane-ready .lane-head h3::before{background:var(--ok)}
+.lane.is-empty{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.lane.is-empty .lane-head{margin-bottom:0;padding-bottom:0;border-bottom:0}
+.lane.is-empty .lane-note{display:none}
+.lane.is-empty .lane-head h3{color:var(--muted)}
+.empty{margin:0;color:var(--muted);font-size:15px;font-style:italic}
+.empty::before{content:'✦';font-style:normal;color:#c8b9a6;font-size:10px;margin-right:8px;vertical-align:2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:14px}
+/* queue: story cards */
+.card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"main thumb" "meta meta";gap:10px 16px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-left:2px solid var(--wine);border-radius:2px;padding:14px 16px 12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s var(--ease);animation:cardIn .38s var(--ease) both;animation-delay:calc(var(--i,0) * 35ms)}
+@keyframes cardIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);border-top-color:#cdbda6;border-right-color:#cdbda6;border-bottom-color:#cdbda6}
+.card:focus-visible{outline:2px solid rgba(102,18,39,.45);outline-offset:2px}
+.card.tone-wait{border-left-color:#b98a2c}.card.tone-ok{border-left-color:var(--ok)}.card.tone-bad{border-left-color:var(--bad)}.card.tone-hold{border-left-color:#8b8176}
+.card-main{grid-area:main;min-width:0}
+.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.card-top .eyebrow{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.when{font-family:var(--sans);font-size:11px;color:var(--muted);white-space:nowrap}
+.card .t{font-size:19px;line-height:1.2;margin:5px 0;letter-spacing:-.005em;text-wrap:balance;transition:color .2s var(--ease)}
+.card:hover .t{color:var(--wine2)}
+.card .d{font-size:14px;color:var(--muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.thumb{grid-area:thumb;width:104px;height:78px;object-fit:cover;border:1px solid var(--line);background:var(--paper);filter:saturate(.92);align-self:start;margin-top:3px}
+.card-meta{grid-area:meta;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding-top:9px;border-top:1px solid var(--hair)}
+.fact{font-family:var(--sans);font-size:11px;letter-spacing:.03em;color:var(--muted);display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.fact::before{content:'';width:6px;height:6px;border-radius:50%;background:#c8bcad}
+.fact.ok{color:var(--ok)}.fact.ok::before{background:var(--ok)}
+.fact.bad{color:var(--bad)}.fact.bad::before{background:var(--bad)}
+.fact.wait{color:var(--warn)}.fact.wait::before{background:#c79a3c}
+.fact.now{color:var(--ink);font-weight:700;white-space:normal}
+.fact.now::before{display:none}
+.fact.plain::before{display:none}
+.tag{font-family:var(--sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border:1px solid var(--line);color:var(--muted);border-radius:1px;white-space:nowrap}
+.tag.sensitive{border-color:#d9a5b2;background:#f7e9ec;color:var(--bad)}
+.tag.manual{border-color:rgba(102,18,39,.45);color:var(--wine)}
+/* queue: secondary shelves (published, held) */
+.secondary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;margin-top:38px;padding-top:22px;border-top:3px double rgba(31,26,22,.35);transition:opacity .25s var(--ease)}
+.shelf .lane-head h3{font-size:19px}
+.rows{list-style:none;margin:0;padding:0}
+.row{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px;width:100%;border:0;border-bottom:1px solid var(--hair);background:none;padding:9px 2px;cursor:pointer;text-align:left;transition:background .2s var(--ease),padding .2s var(--ease)}
+.row:hover{background:rgba(102,18,39,.035);padding-left:8px}
+.row:hover .row-t{color:var(--wine2)}
+.row-t{flex:1 1 60%;min-width:0;font-size:16px;line-height:1.25;transition:color .2s var(--ease)}
+.row-m{font-family:var(--sans);font-size:11px;color:var(--muted)}
+.more{margin-top:12px;border:0;background:none;padding:0;font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);cursor:pointer}
+.more:hover{text-decoration:underline;text-underline-offset:3px}
+.shelf .empty{padding:2px 0}
+/* shared badges (editor, articles) */
 .badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .badge{font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);padding:2px 6px;border-radius:2px;background:var(--card)}
 .badge.newsroom{border-color:#6b6259}.badge.manual{border-color:var(--wine);color:var(--wine)}
 .badge.sensitive{background:#f3e3e6;border-color:#d9a5b2;color:var(--bad)}
 .badge.ok{color:var(--ok);border-color:#9fc0a8}.badge.bad{color:var(--bad);border-color:#d9a5b2}.badge.wait{color:var(--warn);border-color:#e0c68f}
-.empty{padding:14px 12px;color:var(--muted);font-size:14px;font-style:italic}
+
 /* list */
 .filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px;align-items:end}
 .filters .field{margin:0;min-width:150px}
@@ -85,7 +160,7 @@ table.list{width:100%;border-collapse:collapse;background:var(--card);border:1px
 .list .actions{white-space:nowrap}
 /* editor */
 .editor{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
-.panel{background:var(--card);border:1px solid var(--line);padding:18px 18px 8px;margin-bottom:16px}
+.panel{background:var(--card);border:1px solid var(--line);padding:18px 18px 8px;margin-bottom:16px;box-shadow:var(--shadow)}
 .panel>h3{margin:0 0 12px;font-weight:400;font-size:20px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
@@ -97,7 +172,7 @@ textarea#f-body{min-height:420px;font-family:var(--serif);font-size:17px;line-he
 .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper2);padding:3px 8px;font-family:var(--sans);font-size:12.5px}
 .chip button{border:0;background:none;cursor:pointer;color:var(--bad);padding:0 2px}
 .regions{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-family:var(--sans);font-size:13px}
-.side{position:sticky;top:70px}
+.side{position:sticky;top:118px}
 .state{font-size:22px;margin:2px 0 10px}
 .checks{list-style:none;margin:0 0 10px;padding:0;font-family:var(--sans);font-size:13px}
 .checks li{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--hair)}
@@ -117,8 +192,10 @@ iframe.preview{width:100%;height:78vh;border:1px solid var(--line);background:va
 dialog{border:1px solid var(--line);border-top:3px solid var(--wine);padding:22px;max-width:520px;width:calc(100% - 32px);background:var(--card)}
 dialog::backdrop{background:rgba(20,15,10,.45)}
 .sources a{word-break:break-all}
-@media (max-width:1100px){.editor{grid-template-columns:1fr}.side{position:static}.columns{grid-template-columns:repeat(5,minmax(240px,1fr))}}
-@media (max-width:640px){.row2,.row3{grid-template-columns:1fr}.bar{padding:8px 12px;gap:10px}main.wrap{padding:16px 12px 50px}.list thead{display:none}.list tr{display:block;border-bottom:1px solid var(--line)}.list td{display:block;border:0;padding:4px 10px}.list td.title{padding-top:12px}.columns{grid-template-columns:repeat(5,86vw)}}
+@media (max-width:1100px){.editor{grid-template-columns:1fr}.side{position:static}.dateline{display:none}}
+@media (max-width:860px){.secondary{grid-template-columns:1fr;gap:26px}.who{display:none}.view-head{flex-wrap:wrap;align-items:flex-start}.lane-note{display:none}}
+@media (max-width:640px){.row2,.row3{grid-template-columns:1fr}.desk-top,.desk nav{padding-left:16px;padding-right:16px}.desk-top{gap:10px}.brand{gap:9px}.wordmark{font-size:21px}.brand .mark{font-size:25px}.private{display:none}.desk-name{font-size:9.5px;letter-spacing:.14em;padding-left:9px}.tabs{gap:18px}.tab{font-size:11px;letter-spacing:.09em}main.wrap{padding:18px 16px 50px}h2.view-title{font-size:28px}.stats{margin-bottom:22px}.stat{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 4px 10px 9px}.stat:first-child{padding-left:0}.stat .n{font-size:24px}.stat .l{font-size:8.5px;letter-spacing:.06em}.lane-head h3{font-size:20px}.card{padding:12px 13px 11px;gap:8px 12px}.thumb{width:76px;height:57px}.card .t{font-size:17.5px}.list thead{display:none}.list tr{display:block;border-bottom:1px solid var(--line)}.list td{display:block;border:0;padding:4px 10px}.list td.title{padding-top:12px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -136,31 +213,46 @@ dialog::backdrop{background:rgba(20,15,10,.45)}
 </section>
 
 <div id="app" hidden>
-  <header class="bar">
-    <div class="brand"><span class="mark">N<span>✦</span></span> Editorial desk</div>
-    <nav class="tabs" role="tablist">
-      <button class="tab" role="tab" data-view="queue" aria-selected="true">Review Queue</button>
+  <header class="desk">
+    <div class="desk-top">
+      <div class="brand"><span class="mark" aria-hidden="true">N<span>✦</span></span><span class="wordmark">Nuvellum</span><span class="desk-name">Editorial desk</span><span class="private">Private</span></div>
+      <span class="spacer"></span>
+      <span class="dateline" id="dateline"></span>
+      <span class="who" id="session-note"></span>
+      <button class="btn small" id="logout">Log out</button>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Desk sections">
+      <button class="tab" role="tab" data-view="queue" aria-selected="true">Review Queue<span class="tab-count" id="queue-count" hidden></span></button>
       <button class="tab" role="tab" data-view="list" aria-selected="false">Articles</button>
       <button class="tab" role="tab" data-view="new" aria-selected="false">+ New article</button>
     </nav>
-    <span class="spacer"></span>
-    <span class="who" id="session-note"></span>
-    <button class="btn small" id="logout">Log out</button>
   </header>
 
   <main class="wrap">
     <div class="notice bad" id="global-error" hidden role="alert"></div>
 
-    <section id="view-queue">
-      <h2 class="view-title">Review Queue</h2>
-      <p class="view-intro">Every story waiting for a decision: newsroom intake and manual drafts. Nothing publishes until its gates and all required checks pass.</p>
-      <p><button class="btn small" id="queue-refresh">Refresh</button> <span class="hint" id="queue-note"></span></p>
-      <div class="columns" id="queue-columns"></div>
+    <section id="view-queue" class="view">
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">The desk</span>
+          <h2 class="view-title">Review Queue</h2>
+          <p class="view-intro">Newsroom intake and manual drafts awaiting a decision. Nothing publishes until its gates and every required check pass.</p>
+        </div>
+        <div class="view-tools"><span class="hint" id="queue-note" role="status"></span><button class="btn small" id="queue-refresh">Refresh</button></div>
+      </div>
+      <div class="stats" id="queue-stats" aria-label="Queue overview"></div>
+      <div class="board" id="queue-board"></div>
+      <div class="secondary" id="queue-secondary"></div>
     </section>
 
-    <section id="view-list" hidden>
-      <h2 class="view-title">Articles</h2>
-      <p class="view-intro">Everything on the site's main branch, plus manual drafts in progress.</p>
+    <section id="view-list" class="view" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">The archive</span>
+          <h2 class="view-title">Articles</h2>
+          <p class="view-intro">Everything on the site's main branch, plus manual drafts in progress.</p>
+        </div>
+      </div>
       <div class="filters">
         <div class="field grow"><label for="q">Search</label><input type="text" id="q" placeholder="Title, author or slug" /></div>
         <div class="field"><label for="fs">Section</label><select id="fs"><option value="">All</option></select></div>
@@ -172,7 +264,7 @@ dialog::backdrop{background:rgba(20,15,10,.45)}
       <table class="list"><thead><tr><th>Title</th><th>Date</th><th>Section</th><th>Author</th><th>Status</th><th>Risk</th><th>Origin</th><th></th></tr></thead><tbody id="list-body"></tbody></table>
     </section>
 
-    <section id="view-editor" hidden>
+    <section id="view-editor" class="view" hidden>
       <p><button class="btn small" id="back">← Back</button></p>
       <div class="notice" id="editor-notice" hidden></div>
       <div class="editor">
@@ -345,6 +437,7 @@ $('login-form').addEventListener('submit', async (ev) => {
 async function enter(expires) {
   $('login-screen').hidden = true; $('app').hidden = false;
   $('session-note').textContent = `Session until ${new Date(expires).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+  $('dateline').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   S.meta = await api('meta');
   fillSelect($('fs'), S.meta.sections, true); fillSelect($('ft'), S.meta.types, true);
   fillSelect($('f-section'), S.meta.sections); fillSelect($('f-type'), S.meta.types);
@@ -361,44 +454,122 @@ function fillSelect(sel, values, keepFirst = false) {
   sel.replaceChildren(...first, ...values.map((v) => el('option', { value: v, text: v })));
 }
 
-for (const t of document.querySelectorAll('.bar .tab')) t.addEventListener('click', () => (t.dataset.view === 'new' ? openEditor(null) : show(t.dataset.view)));
+for (const t of document.querySelectorAll('.desk .tab')) t.addEventListener('click', () => (t.dataset.view === 'new' ? openEditor(null) : show(t.dataset.view)));
 function show(view) {
   S.view = view; clearInterval(S.pollTimer); showError('');
-  for (const t of document.querySelectorAll('.bar .tab')) t.setAttribute('aria-selected', String(t.dataset.view === view));
+  for (const t of document.querySelectorAll('.desk .tab')) t.setAttribute('aria-selected', String(t.dataset.view === view));
   $('view-queue').hidden = view !== 'queue'; $('view-list').hidden = view !== 'list'; $('view-editor').hidden = view !== 'editor';
+  const v = $(`view-${view}`); if (v) reveal(v);
   if (view === 'queue') loadQueue(); if (view === 'list') loadList();
 }
+// Restrained motion: re-run the entrance animation on the view being shown (disabled for reduced motion in CSS).
+function reveal(node) { node.classList.remove('enter'); void node.offsetWidth; node.classList.add('enter'); }
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const originBadge = (o) => el('span', { class: `badge ${o === 'automation' ? 'newsroom' : o === 'manual' ? 'manual' : ''}`, text: o === 'automation' ? 'Newsroom' : o === 'manual' ? 'Manual' : 'Launch' });
 
 // ---- Review Queue ----
+// The three active states lead; Published and Held / Rejected sit below as compact shelves.
+const LANES = [
+  { bucket: 'Pending Review', key: 'pending', note: 'Needs an editor’s decision', empty: 'No stories awaiting review.' },
+  { bucket: 'Checks Running', key: 'checks', note: 'Approved · GitHub checks in progress', empty: 'Nothing is in checks right now.' },
+  { bucket: 'Ready to Publish', key: 'ready', note: 'Gates met · every required check green', empty: 'Nothing is cleared to publish yet.' }
+];
+function ago(iso) {
+  const t = Date.parse(iso || ''); if (!t) return '';
+  const m = Math.round((Date.now() - t) / 60000);
+  if (m < 1) return 'just now'; if (m < 60) return `${m} min ago`;
+  const h = Math.round(m / 60); if (h < 24) return `${h} h ago`;
+  const d = Math.round(h / 24); if (d < 7) return `${d} d ago`;
+  return new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+}
+// Only site paths and https images are shown as thumbnails.
+const thumbSrc = (src) => { const s = String(src || ''); return /^https:\/\/\S+$/.test(s) || /^\/(?!\/)\S+$/.test(s) ? s : ''; };
+const tone = (state = '') => (/Ready|Merged|Published/i.test(state) ? 'ok' : /Reject|fail/i.test(state) ? 'bad' : /hold|back/i.test(state) ? 'hold' : /running|created/i.test(state) ? 'wait' : 'pending');
+
 $('queue-refresh').addEventListener('click', () => loadQueue());
 async function loadQueue() {
-  const cols = $('queue-columns'); $('queue-note').textContent = 'Loading…';
+  const board = $('queue-board'), shelves = $('queue-secondary');
+  board.classList.add('loading'); shelves.classList.add('loading'); $('queue-note').textContent = 'Refreshing…';
   try {
-    const q = await api('queue');
-    cols.replaceChildren(...S.meta.buckets.map((b) => {
-      const items = q.columns[b] || [];
-      return el('div', { class: 'col', 'data-b': b }, el('h3', {}, b, el('span', { text: String(items.length) })),
-        items.length ? items.map(queueCard) : el('div', { class: 'empty', text: 'Nothing here.' }));
-    }));
-    $('queue-note').textContent = `Updated ${new Date().toLocaleTimeString()}`;
+    const { columns } = await api('queue');
+    const get = (b) => columns[b] || [];
+    const when = (it) => String(it.closedAt || it.pr?.updatedAt || '');
+    const published = get('Published').slice().sort((a, b) => when(b).localeCompare(when(a)));
+    const held = get('Held / Rejected');
+    renderStats([['Pending', get('Pending Review').length, 'lane-pending', true], ['In checks', get('Checks Running').length, 'lane-checks'],
+      ['Ready', get('Ready to Publish').length, 'lane-ready', true], ['Published', published.length, 'shelf-published'], ['Held', held.length, 'shelf-held']]);
+    board.replaceChildren(...LANES.map((l) => lane(l, get(l.bucket))));
+    shelves.replaceChildren(publishedShelf(published), heldShelf(held));
+    const waiting = get('Pending Review').length + get('Ready to Publish').length;
+    $('queue-count').textContent = String(waiting); $('queue-count').hidden = !waiting;
+    $('queue-note').textContent = `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
   } catch (e) { $('queue-note').textContent = ''; showError(e.message); }
+  finally { board.classList.remove('loading'); shelves.classList.remove('loading'); }
 }
-function queueCard(it) {
-  const gateBadges = (it.gates?.gates || []).map((g) => el('span', { class: `badge ${g.ok ? 'ok' : 'bad'}`, text: `${g.ok ? '✓' : '✗'} ${g.id === 'editorialReview' ? 'review' : g.id === 'verification' ? 'verified' : g.id === 'reviewedBy' ? 'reviewer' : g.id}` }));
-  const open = () => {
-    if (it.pr && it.pr.state === 'open' && !it.foreign) return openEditor({ pr: it.pr.number });
-    if (it.pr?.merged && it.slug) return window.open(`/article/${it.slug}`, '_blank', 'noopener');
-    if (it.pr?.url) window.open(it.pr.url, '_blank', 'noopener');
-  };
-  return el('button', { class: 'card', type: 'button', onclick: open },
-    el('span', { class: 'eyebrow', text: [it.section, it.type].filter(Boolean).join(' · ') || 'Story' }),
-    el('div', { class: 't', text: it.title || it.pr?.branch || 'Untitled' }),
-    it.dek ? el('div', { class: 'd', text: it.dek }) : null,
-    el('div', { class: 'badges' }, it.origin ? originBadge(it.origin) : null, it.risk === 'sensitive' ? el('span', { class: 'badge sensitive', text: 'Sensitive' }) : null,
-      el('span', { class: `badge ${/Ready/.test(it.state) ? 'ok' : /fail|Reject|hold|back/i.test(it.state) ? 'bad' : 'wait'}`, text: it.state }), ...gateBadges,
-      it.pr ? el('span', { class: 'badge', text: `PR #${it.pr.number}` }) : null));
+function renderStats(stats) {
+  $('queue-stats').replaceChildren(...stats.map(([label, n, target, hot]) => el('button', { class: `stat${n ? (hot ? ' hot' : '') : ' zero'}`, type: 'button', 'aria-label': `${n} ${label}`,
+    onclick: () => $(target)?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' }) },
+  el('span', { class: 'n', text: String(n) }), el('span', { class: 'l', text: label }))));
+}
+function lane(l, items) {
+  return el('section', { class: `lane lane-${l.key}${items.length ? '' : ' is-empty'}`, id: `lane-${l.key}`, 'aria-label': l.bucket },
+    el('div', { class: 'lane-head' }, el('h3', { text: l.bucket }), el('span', { class: 'lane-count', text: String(items.length) }), el('span', { class: 'lane-note', text: l.note })),
+    items.length ? el('div', { class: 'cards' }, items.map((it, i) => queueCard(it, i))) : el('p', { class: 'empty', text: l.empty }));
+}
+function openItem(it) {
+  if (it.pr && it.pr.state === 'open' && !it.foreign) return openEditor({ pr: it.pr.number });
+  if (it.pr?.merged && it.slug) return window.open(`/article/${it.slug}`, '_blank', 'noopener');
+  if (it.pr?.url) window.open(it.pr.url, '_blank', 'noopener');
+}
+function checksFact(checks) {
+  if (!checks?.length) return null;
+  const done = checks.filter((c) => c.status === 'completed');
+  if (done.some((c) => c.conclusion !== 'success')) return ['Checks failed', 'bad'];
+  if (done.length < checks.length) return [`Checks ${done.length}/${checks.length}`, 'wait'];
+  return ['Checks green', 'ok'];
+}
+function queueCard(it, i = 0) {
+  const fact = (text, cls = '') => el('span', { class: `fact ${cls}`, text });
+  const gate = (id) => (it.gates?.gates || []).find((g) => g.id === id);
+  const review = gate('editorialReview'), verify = gate('verification');
+  const checks = checksFact(it.checks);
+  const time = it.closedAt || it.pr?.updatedAt;
+  const thumb = thumbSrc(it.image);
+  const origin = it.origin === 'automation' ? 'Newsroom' : it.origin === 'manual' ? 'Manual' : it.origin ? 'Launch' : '';
+  return el('button', { class: `card tone-${tone(it.state)}`, type: 'button', style: `--i:${Math.min(i, 8)}`, onclick: () => openItem(it) },
+    el('div', { class: 'card-main' },
+      el('div', { class: 'card-top' }, el('span', { class: 'eyebrow', text: [it.section, it.type].filter(Boolean).join(' · ') || 'Story' }),
+        time ? el('time', { class: 'when', datetime: time, title: `Last updated ${new Date(time).toLocaleString()}`, text: ago(time) }) : null),
+      el('div', { class: 't', text: it.title || it.pr?.branch || 'Untitled' }),
+      it.dek ? el('div', { class: 'd', text: it.dek }) : null),
+    thumb ? el('img', { class: 'thumb', src: thumb, alt: '', loading: 'lazy', decoding: 'async', onerror: (ev) => ev.target.remove() }) : null,
+    el('div', { class: 'card-meta' },
+      it.state ? fact(it.state, 'now') : null,
+      origin ? el('span', { class: `tag${origin === 'Manual' ? ' manual' : ''}`, text: origin }) : null,
+      it.risk === 'sensitive' ? el('span', { class: 'tag sensitive', text: 'Sensitive' }) : it.risk ? el('span', { class: 'tag', text: 'Low risk' }) : null,
+      review ? fact(`Review ${review.ok ? 'passed' : review.value || 'pending'}`, review.ok ? 'ok' : review.value ? 'bad' : 'wait') : null,
+      verify ? fact(`Verification ${verify.ok ? 'cleared' : verify.value || 'pending'}${verify.ok && it.reviewedBy ? ` · ${it.reviewedBy}` : ''}`, verify.ok ? 'ok' : verify.value ? 'bad' : 'wait') : null,
+      checks && checks[0].toLowerCase() !== String(it.state).toLowerCase() ? fact(checks[0], checks[1]) : null,
+      it.pr ? fact(`PR #${it.pr.number}`, 'plain') : null));
+}
+function shelf(id, title, count, ...kids) {
+  return el('section', { class: 'shelf', id, 'aria-label': title },
+    el('div', { class: 'lane-head' }, el('h3', { text: title }), el('span', { class: 'lane-count', text: String(count) })), ...kids);
+}
+const row = (it, meta) => el('li', {}, el('button', { class: 'row', type: 'button', onclick: () => openItem(it) },
+  el('span', { class: 'row-t', text: it.title || it.pr?.branch || 'Untitled' }), el('span', { class: 'row-m', text: meta })));
+function publishedShelf(items) {
+  const latest = items.slice(0, 5);
+  return shelf('shelf-published', 'Recently published', items.length,
+    latest.length ? el('ol', { class: 'rows' }, latest.map((it) => row(it, [ago(it.closedAt || it.pr?.updatedAt), it.pr ? `PR #${it.pr.number}` : ''].filter(Boolean).join(' · '))))
+      : el('p', { class: 'empty', text: 'Nothing published recently.' }),
+    el('button', { class: 'more', type: 'button', onclick: () => { $('fst').value = 'published'; show('list'); } }, 'View all published articles →'));
+}
+function heldShelf(items) {
+  return shelf('shelf-held', 'Held / Rejected', items.length,
+    items.length ? el('ol', { class: 'rows' }, items.map((it) => row(it, [it.state, ago(it.closedAt || it.pr?.updatedAt)].filter(Boolean).join(' · '))))
+      : el('p', { class: 'empty', text: 'No stories on hold.' }));
 }
 
 // ---- Articles ----
@@ -451,8 +622,9 @@ async function openEditor(target, previewFirst = false) {
   clearInterval(S.pollTimer); showError('');
   S.ed = { slug: null, branch: null, expectedSha: null, mainSha: null, mainStatus: null, origin: 'manual', newsroom: false, pr: null, currentImage: null, fromQueue: S.view === 'queue' };
   S.upload = null; S.uploadDataUrl = ''; $('f-file').value = '';
-  for (const t of document.querySelectorAll('.bar .tab')) t.setAttribute('aria-selected', String(!target && t.dataset.view === 'new'));
+  for (const t of document.querySelectorAll('.desk .tab')) t.setAttribute('aria-selected', String(!target && t.dataset.view === 'new'));
   $('view-queue').hidden = true; $('view-list').hidden = true; $('view-editor').hidden = false; S.view = 'editor';
+  reveal($('view-editor')); window.scrollTo({ top: 0, behavior: 'auto' });
   subtab(previewFirst ? 'preview' : 'write');
   let d = {}, body = '';
   if (target) {
