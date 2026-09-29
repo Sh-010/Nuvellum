@@ -59,4 +59,4 @@ Outputs are written to `engines/out/distribution/<slug>.json` and `engines/out/s
 - after a new article reaches `main`, prepares drafts and uploads them as a 30-day artifact;
 - supports manual dispatch for a specific slug.
 
-There are intentionally **no social API tokens or live adapters yet**. Live posting should only be added after Nuvellum's accounts exist and at least one batch of generated drafts has been reviewed.
+There are intentionally **no social API tokens or live adapters yet**. Live posting should only be added after Nuvellum's accounts exist and at least one batch of generated drafts has been reviewed. Per-platform account, app, credential and API-restriction requirements: [`SOCIAL_PLATFORM_SETUP.md`](SOCIAL_PLATFORM_SETUP.md).

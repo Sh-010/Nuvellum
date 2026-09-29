@@ -49,6 +49,30 @@ piper -> espeak -> silent
 
 Piper is used only when `PIPER_MODEL` points to a local voice model. GitHub's smoke test uses `espeak-ng` so the whole render can be proven without a paid API. **espeak is functional validation, not the intended final public voice quality.** A better local Piper voice or an approved provider should be chosen before automatic public posting.
 
+### Recommended free local voice (Piper)
+
+**`en_GB-cori-high`**:
+
+- **Voice:** single-speaker British English (female), trained from scratch on about 24 hours of **public-domain** LibriVox recordings. Of the British Piper voices, this has the cleanest licence.
+- **Size:** 114 MB (`.onnx`) plus a 5 kB `.onnx.json`. `en_GB-cori-medium` is 63.5 MB if size matters.
+- **Software licence:** Piper itself (`piper1-gpl`) is GPL-3.0. It runs as a separate local program and isn't vendored here.
+- **Voices to avoid for publication use:**
+  - `en_US-lessac-*`: its Blizzard 2013 data licence is **research-only, no commercial use**.
+  - `alba`, `jenny_dioco` and `northern_english_male`: they are **fine-tuned from lessac**, so they carry its weights.
+
+Do not commit voice models to the repository.
+
+```bash
+python3 -m pip install piper-tts
+python3 -m piper.download_voices --download-dir "$HOME/piper-voices" en_GB-cori-high
+export PIPER_MODEL="$HOME/piper-voices/en_GB-cori-high.onnx"   # PowerShell: $env:PIPER_MODEL = "$HOME\piper-voices\en_GB-cori-high.onnx"
+NUVELLUM_TTS=piper,espeak,silent node engines/shorts/cli.mjs --slug <slug> --preview
+```
+
+The engine calls `piper --model "$PIPER_MODEL" --output_file line.wav` (or `python3 -m piper …`) with the text on stdin. The current `piper-tts` CLI accepts both. The `.onnx.json` must sit next to the `.onnx`.
+
+Cori's source recordings are audiobook narration: calm, clear and unhurried, which suits restrained news reading better than espeak. Listen to the samples on the voice page before approving it for public posting.
+
 Optional settings:
 
 - `NUVELLUM_TTS`
