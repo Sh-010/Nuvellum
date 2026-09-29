@@ -58,7 +58,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     <section class="explorer-stage" aria-label="Interactive world explorer">
       <div class="globe-column">
         <div class="globe-frame" id="globeFrame">
-          <canvas id="globeCanvas" aria-label="Interactive 3D globe. Drag to rotate, scroll to zoom, and select a country."></canvas>
+          <canvas id="globeCanvas" aria-label="Interactive 3D globe. Drag to rotate, pinch or scroll to zoom, and select a country."></canvas>
           <div class="scanlines" aria-hidden="true"></div>
           <div class="orbit-ring orbit-one" aria-hidden="true"></div>
           <div class="orbit-ring orbit-two" aria-hidden="true"></div>
@@ -72,10 +72,15 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
           <div class="country-tooltip" id="countryTooltip" hidden>
             <strong></strong><span></span>
           </div>
+          <div class="globe-zoom" role="group" aria-label="Globe zoom">
+            <button type="button" id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button>
+            <button type="button" id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button>
+          </div>
           <div class="globe-caption">
             <span><i class="dot dot-live"></i> Selected country</span>
             <span><i class="dot dot-map"></i> World atlas</span>
-            <span>Drag to rotate · Wheel to zoom · Click to select</span>
+            <span class="hint-pointer">Drag to rotate · Wheel to zoom · Click to select</span>
+            <span class="hint-touch">Drag to rotate · Pinch to zoom · Tap to select</span>
           </div>
         </div>
 
@@ -125,6 +130,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       uvToSphere
     } from '../lib/atlas-geometry.js';
     import { normalizeCountry } from '../lib/country-text.js';
+    import { CAMERA_DEFAULT_Z, clampCameraZ, createGlobeGesture, stepCameraZ, wheelCameraZ, CAMERA_MIN_Z, CAMERA_MAX_Z } from '../lib/globe-gestures.js';
 
     // Interaction model: one country-ID map (Uint16, 0 = sea) is rasterised from
     // the same projected paths as the visible texture. Hover and click both
@@ -144,6 +150,8 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     const go = document.getElementById('countryGo');
     const spinToggle = document.getElementById('spinToggle');
     const reset = document.getElementById('resetGlobe');
+    const zoomInButton = document.getElementById('zoomIn');
+    const zoomOutButton = document.getElementById('zoomOut');
     const payload = JSON.parse(document.getElementById('world-explorer-data').textContent || '{"countries":[]}');
     const countries = payload.countries || [];
     const byId = new Map(countries.map(country => [country.id, country]));
@@ -183,10 +191,9 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     let hoveredId = 0;
     let spinning = true;
     let dragging = false;
-    let moved = false;
-    let startX = 0, startY = 0, lastX = 0, lastY = 0;
+    const gesture = createGlobeGesture();
     let targetRotX = 0, targetRotY = -Math.PI / 2;
-    let targetCameraZ = 3.25;
+    let targetCameraZ = CAMERA_DEFAULT_Z;
     const pointer = { x: 0, y: 0, inside: false, dirty: false };
     let canvasRect = canvas.getBoundingClientRect();
     let frameRect = frame.getBoundingClientRect();
@@ -276,9 +283,16 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       const currentY = globeGroup ? globeGroup.rotation.y : targetRotY;
       targetRotY = currentY + Math.atan2(Math.sin(desiredY - currentY), Math.cos(desiredY - currentY));
       targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, country.lat * DEG));
-      if (smallIds.has(country.id)) targetCameraZ = Math.min(targetCameraZ, 2.6);
+      if (smallIds.has(country.id)) setCameraZ(Math.min(targetCameraZ, 2.6));
       setSpinning(false);
       return true;
+    }
+
+    // Every zoom path (wheel, pinch, buttons, locate, reset) goes through the same camera limits.
+    function setCameraZ(z) {
+      targetCameraZ = clampCameraZ(z);
+      zoomInButton.disabled = targetCameraZ <= CAMERA_MIN_Z + 1e-3;
+      zoomOutButton.disabled = targetCameraZ >= CAMERA_MAX_Z - 1e-3;
     }
 
     const searchIndex = countries.map(country => ({ country, name: normalizeCountry(country.name), terms: country.terms || [] }));
@@ -307,9 +321,11 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       search.removeAttribute('aria-invalid');
       targetRotX = 0;
       targetRotY = globeGroup ? globeGroup.rotation.y + Math.atan2(Math.sin(-Math.PI / 2 - globeGroup.rotation.y), Math.cos(-Math.PI / 2 - globeGroup.rotation.y)) : -Math.PI / 2;
-      targetCameraZ = 3.25;
+      setCameraZ(CAMERA_DEFAULT_Z);
       setSpinning(true);
     });
+    zoomInButton.addEventListener('click', () => setCameraZ(stepCameraZ(targetCameraZ, 1)));
+    zoomOutButton.addEventListener('click', () => setCameraZ(stepCameraZ(targetCameraZ, -1)));
 
     function pickAt(clientX, clientY) {
       if (!globe || !idMap) return 0;
@@ -360,11 +376,15 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
     }
     window.addEventListener('scroll', refreshRects, { passive: true });
 
+    // One pointer rotates, two pointers pinch-zoom, a still pointer taps to select
+    // (see src/lib/globe-gestures.js). touch-action:none on the canvas keeps the
+    // browser from scrolling or zooming the page while a gesture is on the globe.
     canvas.addEventListener('pointerdown', event => {
-      dragging = true; moved = false;
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      gesture.down(event.pointerId, event.clientX, event.clientY, targetCameraZ);
+      dragging = true;
       setSpinning(false);
-      startX = lastX = event.clientX; startY = lastY = event.clientY;
-      canvas.setPointerCapture(event.pointerId);
+      try { canvas.setPointerCapture(event.pointerId); } catch {}
       pointer.dirty = true;
     });
     canvas.addEventListener('pointermove', event => {
@@ -372,27 +392,37 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
       pointer.y = event.clientY;
       pointer.inside = true;
       pointer.dirty = true;
-      if (!dragging) return;
-      const dx = event.clientX - lastX, dy = event.clientY - lastY;
-      if (Math.abs(event.clientX - startX) + Math.abs(event.clientY - startY) > 5) moved = true;
-      targetRotY += dx * .006;
-      targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, targetRotX + dy * .004));
-      lastX = event.clientX; lastY = event.clientY;
+      const step = gesture.move(event.pointerId, event.clientX, event.clientY);
+      if (step?.type === 'rotate') {
+        targetRotY += step.dx * .006;
+        targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, targetRotX + step.dy * .004));
+      } else if (step?.type === 'zoom') {
+        setCameraZ(step.z);
+      }
     });
     canvas.addEventListener('pointerup', event => {
-      dragging = false;
+      const tap = gesture.up(event.pointerId, event.clientX, event.clientY, targetCameraZ);
+      dragging = gesture.active;
       try { canvas.releasePointerCapture(event.pointerId); } catch {}
-      if (!moved) {
-        const country = byId.get(pickAt(event.clientX, event.clientY));
+      if (tap) {
+        const country = byId.get(pickAt(tap.x, tap.y));
         if (country) locateCountry(country);
       }
       pointer.dirty = true;
     });
-    canvas.addEventListener('pointercancel', () => { dragging = false; pointer.dirty = true; });
+    const dropPointer = event => {
+      gesture.cancel(event.pointerId, targetCameraZ);
+      dragging = gesture.active;
+      pointer.dirty = true;
+    };
+    canvas.addEventListener('pointercancel', dropPointer);
+    canvas.addEventListener('lostpointercapture', dropPointer);
     canvas.addEventListener('pointerleave', () => { pointer.inside = false; pointer.dirty = true; });
+    // Safari's legacy gesture events: never let a pinch on the globe zoom the page.
+    canvas.addEventListener('gesturestart', event => event.preventDefault());
     canvas.addEventListener('wheel', event => {
       event.preventDefault();
-      targetCameraZ = Math.max(2.15, Math.min(5.2, targetCameraZ + event.deltaY * .0022));
+      setCameraZ(wheelCameraZ(targetCameraZ, event.deltaY));
     }, { passive: false });
 
     // Painted once. Hover and selection are applied by the shader, so the
@@ -680,7 +710,7 @@ const explorerJson = JSON.stringify({ countries }).replace(/</g, '\\u003c');
         view(lon, lat, z = 3.25) {
           targetRotY = -Math.PI / 2 - lon * DEG;
           targetRotX = Math.max(-MAX_TILT, Math.min(MAX_TILT, lat * DEG));
-          targetCameraZ = z;
+          setCameraZ(z);
           setSpinning(false);
           this.settle();
         },
@@ -734,6 +764,18 @@ body{margin:0;background:#020305;color:#eee6db;font-family:'Newsreader',Georgia,
 .country-tooltip{position:absolute;left:0;top:0;will-change:transform;z-index:8;background:rgba(5,5,7,.94);border:1px solid rgba(227,211,196,.22);padding:9px 11px;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.34);min-width:130px}
 .country-tooltip strong{display:block;font-size:14px;font-weight:500}.country-tooltip span{display:block;color:#b8aca1;font-size:11px;margin-top:3px}
 .globe-caption{position:absolute;left:24px;right:24px;bottom:18px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;color:#8f8580;font-size:11px;letter-spacing:.04em;pointer-events:none}
+.hint-touch{display:none}
+@media (hover:none) and (pointer:coarse){.hint-pointer{display:none}.hint-touch{display:inline}}
+.globe-zoom{position:absolute;top:18px;right:18px;z-index:6;display:flex;flex-direction:column;border:1px solid rgba(235,220,205,.18);background:rgba(5,5,7,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.explorer-shell:not(.is-ready) .globe-zoom{display:none}
+.globe-zoom button{width:38px;height:38px;border:0;background:transparent;color:#d9cdc0;font:300 22px/1 'Newsreader',Georgia,serif;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
+.globe-zoom button+button{border-top:1px solid rgba(235,220,205,.14)}
+.globe-zoom button:hover:not(:disabled){background:rgba(117,26,53,.55);color:#fff}
+.globe-zoom button:active:not(:disabled){background:#751a35}
+.globe-zoom button:focus-visible{outline:1px solid #b24e67;outline-offset:-4px}
+.globe-zoom button:disabled{color:#58514d;cursor:default}
+@media (pointer:coarse){.globe-zoom button{width:44px;height:44px}}
+@media(max-width:620px){.globe-zoom{top:12px;right:12px}}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}.dot-live{background:#8e2140;box-shadow:0 0 10px #9c2849}.dot-map{background:#78787c}
 .explorer-controls{display:flex;gap:9px;align-items:end;padding:16px 22px;border-top:1px solid rgba(235,220,205,.13);background:#060709}
 .country-search{display:grid;gap:5px;flex:1;min-width:180px}.country-search span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9e9290}.country-search input{height:40px;border:1px solid rgba(235,220,205,.18);background:#0b0c0f;color:#eee6db;padding:0 12px;outline:none}.country-search input:focus{border-color:#8f2946;box-shadow:0 0 0 1px #8f2946}
