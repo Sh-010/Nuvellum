@@ -1,7 +1,8 @@
 {
   "git": {
     "deploymentEnabled": {
-      "incoming/**": false
+      "incoming/**": false,
+      "manual/**": false
     }
   },
   "headers": [
@@ -77,6 +78,40 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/api/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -85,5 +120,10 @@
       "destination": "/article/scotland-diesel-prices-over-2-pounds",
       "permanent": true
     }
-  ]
+  ],
+  "functions": {
+    "api/admin.js": {
+      "maxDuration": 30
+    }
+  }
 }

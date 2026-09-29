@@ -33,6 +33,13 @@ jobs:
         id: article
         shell: bash
         run: |
+          # An editor reviewed this story in the admin dashboard (commit subject "editor: ..."). The visual
+          # decision in that commit is the editor's, so the automated image pass must not overwrite it.
+          if git log -1 --format=%s | grep -q '^editor: '; then
+            echo "Editor-reviewed commit: keeping the editor's visual decision."
+            echo "path=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           git fetch origin main --depth=1
           mapfile -t files < <(git diff --name-only --diff-filter=A origin/main...HEAD | grep -E '^src/content/articles/[a-z0-9-]+\.md$' || true)
           if [ "${#files[@]}" -eq 0 ]; then

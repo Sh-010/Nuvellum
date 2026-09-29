@@ -51,7 +51,7 @@ main ─▶ Vercel production deploy ─▶ homepage / latest / section / RSS / 
   4. `prepare-public.mjs`: copy tracked `public/` to the gitignored `.build/public/`.
   5. `restore-v5.mjs`: checksum-verify and extract the v5.1 zip into `.build/public/`, then add routing and SEO bridges only.
   6. `generate-editorial-art.mjs`: deterministic fallback SVGs for automated stories.
-  7. `inject-home-content.mjs`: fill the existing v5.1 homepage slots with published automated stories.
+  7. `render-editorial-home.mjs`: render the homepage from all published stories, manual and automated alike (placement rules in `scripts/lib/home-selection.mjs`).
   8. `astro build` with `publicDir: .build/public`.
   9. `instrument-analytics.mjs`: inject the reader analytics event layer only when `NUVELLUM_GA4_ID` is configured.
 - A build **never writes to tracked files**. CI fails if `git status` is dirty afterwards.

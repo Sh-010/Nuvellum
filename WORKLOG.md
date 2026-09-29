@@ -4,6 +4,148 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: write-first editor pass (PR #121)
+
+No change to auth, GitHub flow, schema, gates or the newsroom. One additive, read-only field was added: the `check` response now carries `draftBlockers`, the problems that would stop even a draft from saving (the same list `save()` already used).
+
+- **Quiet while writing, strict on publish:**
+  - While drafting, only duplicates and draft-blocking problems (for example raw HTML or an unsafe link) are marked. Tab counts are hidden, and the readiness pill reads "N to do" in amber.
+  - Submit for review, Prepare publication and Publish switch to strict. The Checks panel opens with a "N things to fix" list of plain, clickable sentences, fields are marked, and tabs are counted. Each item clears as soon as it is fixed.
+  - The requirements themselves are unchanged. Save draft still accepts incomplete stories.
+- **Web address:**
+  - It is made from the headline, kept distinct from known articles and desk drafts, and shown as `nuvellum.news/article/…` under Story → Advanced.
+  - Hand edits are tidied into a valid address when the field is left; clearing the field hands it back to the headline.
+  - Locked once the story is saved, as before.
+- **Duplicates:**
+  - A calm "This story already exists." notice under the headline, with "Open existing article" (after confirming if there are unsaved changes) and "Create as a different story". The latter keeps the draft, gives it its own address and selects the headline to be rewritten.
+  - A saved story shows "Another story already has this headline" and never flags itself (tested).
+  - The server still refuses to save a new story over an existing one.
+- **Local recovery:**
+  - Unsaved writing is kept in this browser (localStorage) 0.7 s after each change: the story's fields only, never session data or files, for at most 7 days. It is cleared after a successful save and on log out.
+  - After a reload the editor offers "Restore it" or "Discard". The command bar shows Saving… / Saved on this device / Saved just now.
+  - No GitHub calls are made for recovery.
+- **Command bar:**
+  - Every action has a tooltip saying what it does.
+  - The status texts have fixed widths, so buttons never move under the finger. This fixed a real missed tap on tablets.
+- **QA:**
+  - Write-first scenarios 37/37 at 1440, 820 (touch), 390 (touch) and 360 (touch).
+  - Redesign suite 45/45 at 1920, 1280 (dark), 820 (touch, dark) and 360 (touch).
+  - Toolbar and scroll preservation 70/70 at 1440 and 390.
+  - `npm test` 294/294; `validate`, `build`, `check:build` and `security:audit` all pass.
+
+---
+
+## 2026-09-29 (night): Editorial Desk UX redesign (PR #121)
+
+Frontend only (`src/pages/admin.astro`). Auth, the API, GitHub, gates, schema, validation, n8n and the public site are unchanged.
+
+- **Shell and Articles:**
+  - The masthead is one 56 px line: brand, tabs, date, day/night switch and an account menu.
+  - Articles is an archive of compact rows: a thumbnail only for a story's own picture, headline, section · type · byline, date, and state/risk/origin chips. Drafts in progress sit above the list.
+  - The Queue is kept, with only its spacing aligned.
+- **Editor:**
+  - A persistent command bar: back, headline, state, save status, a readiness pill, Write / Side by side / Preview, and the publishing actions. Hold, send back, reject, discard and unpublish sit in a separate More menu.
+  - A writing canvas: large headline, a standfirst tied to it by a crimson rule, a borderless 20 px body, and the sticky grouped toolbar (behaviour unchanged).
+  - A tabbed Inspector (Story, Media, Editorial, Checks) with per-tab issue counts. Secondary fields are folded; verification only appears for Sensitive stories.
+  - Images: text-led, current, upload (choose or drop) or address, with preview, Replace and Remove; alt text, caption and credit beside the image; licensing folded.
+  - The Checks tab shows a readiness checklist over the translated blockers, with warnings apart and GitHub details folded.
+  - Clicking an issue opens its tab and focuses the field without moving the article.
+- **Responsive:**
+  - Side by side from 1200 px.
+  - The Inspector docks from 1680 px beside Side by side (and at 1100 px and up in Write and Preview), and is otherwise a slide-in drawer. The closed drawer is clipped, not moved off-screen, which previously widened the page on phones.
+  - The command bar wraps below 1100 px, and its measured height positions the sticky toolbar.
+- **QA:**
+  - Browser QA of the redesigned flow at 1920, 1440, 1280, 820 (touch), 390 (touch) and 360 (touch), in light and dark: 44/44 each.
+  - Toolbar and scroll preservation 70/70 at 1440, 820 and 390.
+  - `npm test` 290/290; `validate`, `build`, `check:build` and `security:audit` all pass.
+
+---
+
+## 2026-09-29 (evening): Editorial Desk integration pass (PR #121)
+
+- **Homepage and manual stories.** Traced after the first real manual publication (#123, a Science essay).
+  - The production homepage is rendered by `scripts/render-editorial-home.mjs`, which already took every published story, whatever its origin.
+  - #123 is live on the homepage as the first card under the hero. It isn't the hero because the hero is the newest *World* story, and it isn't in Latest because Latest deliberately skips stories already shown above.
+  - The `origin === "automation"` filter was in `scripts/inject-home-content.mjs`, the older v5.1 slot filler, which is not part of `npm run build`. It is fixed anyway: all origins, and manual images are the story's own image or none, never generated art or an empty `<img>`.
+  - Placement rules moved unchanged into `scripts/lib/home-selection.mjs` so they can be tested. The built homepage is byte-identical except the build-time "n hours ago" labels.
+  - `check-build-output` now also fails on an empty or undefined `<img src>` on the homepage, and when the newest story of any origin among the four newest is missing from the homepage.
+  - Docs corrected.
+- **Validation wording.** `src/lib/admin-messages.js` translates every validator, gate and image message into editorial language and names its field and group. The rules are unchanged.
+  - In the editor, blockers are listed under "Must fix before publishing" and mark their field and group, opening the group if it is collapsed. Clicking one scrolls to the field and focuses it, and the mark clears as soon as the field is edited.
+  - Warnings, such as "No image: the story will be set text-led", sit apart under "won't block" and never mark, open or block anything.
+- **Tests:**
+  - `npm test` 290/290 (new: `home-selection`, `admin-messages`); `validate`, `build`, `check:build` and `security:audit` all pass.
+  - Browser QA: editor flow 31/31 at 1440 px, 820 px (touch) and 390 px (touch); toolbar and scroll preservation 70/70 at each of the three sizes; end-to-end draft → PR → checks → publish; layouts and dark mode.
+  - The built homepage was inspected with temporary manual fixtures: a manual World story took the hero (text-led), a manual photo story took a card under the hero with its own image, and a manual story reached Latest. The fixtures were removed afterwards.
+
+---
+
+## 2026-09-29: Admin dashboard and Editorial Review Queue (`/admin`)
+
+Branch `feat/admin-dashboard`, PR open and **not merged**. Operator guide: `docs/ADMIN.md`.
+
+- **Architecture**
+  - `/admin` is a static Astro page: noindex, not linked, excluded from the sitemap, disallowed in robots, no analytics.
+  - The API is one Vercel Function, `api/admin.js` (`/api/admin?action=…`). The rest of the site stays static.
+  - Stories are still Markdown in Git; there is no database.
+  - Every write goes through a branch and a PR, is merged only when the required checks pass on the exact head, and then deploys through Vercel.
+- **Shared contract**
+  - The validator's rules were moved verbatim into `scripts/lib/article-rules.mjs`. `validate-content.mjs` and the dashboard both use it.
+  - On the clean repository and 40 of 41 mutation cases the output is identical to before. The one difference is the first new rule below.
+  - New rule for all articles: links must be `http(s)`, `mailto:`, site-relative or `#`.
+  - New rule for `origin: "manual"`: `risk` is required. Publishing needs `editorialReview: passed`; sensitive stories also need `verification: cleared` and a named `reviewedBy`. `Nuvellum Verification Pipeline` is reserved.
+- **Branches**
+  - Manual stories use `manual/<slug>-<yyyymmddhhmmss>`. They never touch `incoming/**`, so auto-open, visual-acquire and auto-publish are unaffected. Vercel branch deploys are disabled for `manual/**`.
+  - Newsroom stories are reviewed and edited on their own `incoming/**` PR.
+- **Review Queue**
+  - Five columns: Pending Review, Checks Running, Ready to Publish, Published, Held / Rejected.
+  - Actions: approve, clear verification, hold/release, send back, reject, and publish once green.
+  - Held stories use the existing hold labels, which auto-publish already honours.
+- **Proven compatibility fixes**
+  - `visual-acquire.yml` skips commits whose message starts with `editor: `, so it no longer overwrites an editor's image or text-led decision.
+  - `article/[slug].astro` no longer shows "Illustrative launch image" for manual images; image-rights details show only the recorded fields. All 358 existing pages are byte-identical to main.
+  - `instrument-analytics.mjs` skips `/admin`.
+- **Files**
+  - New:
+    - `api/admin.js`
+    - `scripts/lib/article-rules.mjs`
+    - `scripts/lib/admin/{auth,github,editor,images,render,handler}.mjs`
+    - `src/pages/admin.astro`
+    - `tests/admin-fixtures.mjs`
+    - `tests/admin.test.mjs`
+    - `docs/ADMIN.md`
+  - Changed:
+    - `scripts/validate-content.mjs`
+    - `scripts/check-build-output.mjs` (admin noindex, no analytics or credentials, sitemap, robots)
+    - `src/pages/robots.txt.ts`
+    - `vercel.json`
+    - `.github/workflows/visual-acquire.yml`
+    - `scripts/instrument-analytics.mjs`
+    - `src/pages/article/[slug].astro`
+    - `.env.example`
+    - `README.md`
+- **New Vercel env vars** (values are never in the repo):
+  - `NUVELLUM_ADMIN_PASSWORD` (at least 16 characters)
+  - `NUVELLUM_ADMIN_SESSION_SECRET` (at least 32 characters)
+  - `NUVELLUM_GITHUB_TOKEN`: fine-grained, `Sh-010/Nuvellum` only, with Contents RW, Pull requests RW, Actions R and Metadata R
+- **Tests**
+  - `npm test`: 247/247 (34 new admin tests).
+  - CodeQL (first run) flagged two issues in the new code, both fixed in the PR rather than dismissed: the password comparison now uses scrypt instead of SHA-256, and heading-id tag stripping repeats until stable. After the fix, every PR check is green.
+  - `npm run validate`: pass. `npm run build`: 357 pages. `check-build-output`: pass. `npm audit`: 0 vulnerabilities.
+  - Local HTTPS browser end-to-end run in Chrome against an in-memory GitHub loaded with the real articles:
+    - login (wrong, then right)
+    - approve and clear a newsroom story
+    - list and filter articles
+    - a new story with an uploaded image: draft → PR → green → publish
+    - mobile layout: no horizontal overflow; no JS errors
+- **Limitations / owner actions**
+  - Set the three env vars in Vercel, then do a first real run (a draft, then publish a low-risk test story, then unpublish it). The Vercel Function has only been exercised locally.
+  - The login throttle is per function instance. Sessions are stateless: to revoke all of them, rotate the secret.
+  - The preview uses a strict Markdown subset renderer that matches the house article layout; it is not the Astro build itself.
+  - If `NUVELLUM_AUTOPUBLISH` is turned on, auto-publish can still merge pipeline-cleared newsroom stories that are not held.
+
+---
+
 ## 2026-09-28 (night): n8n execution telemetry, the last step of the observability phase
 
 - Live workflow `8hXx6NuZuJU9dRR1`, edited in place: 51c01d9f → **f67dcee5**. Still inactive; `NUVELLUM_AUTOPUBLISH` is still `off`. The graph has 67 nodes (+2); no gate, condition or decision node changed.
