@@ -4,6 +4,32 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 7: Shorts with the free Piper voice
+
+Branch `feat/shorts-piper` (stacked on `feat/social-publish`).
+
+- **Existing engine confirmed against the brief:**
+  - extractive, verbatim article sentences only (no paraphrase model);
+  - a Piper → espeak → silent narration chain;
+  - word-timed captions plus SRT;
+  - visuals only from the story's own licensed photo (labelled FILE PHOTO), approved illustration, or typography. **No stock or generated footage.**
+- **Piper in CI:** this machine has no ffmpeg or Python, and none was installed. Instead, `shorts-preview.yml` dispatch gains `voice` (piper by default, or espeak) and `full` inputs.
+  - Piper and the public-domain-trained `en_GB-cori-high` voice are installed at run time and cached, never committed.
+  - A verify step fails the run if narration fell back from the requested voice, the MP4 lacks an AAC track, or `captions.srt` is missing.
+- **Real renders** (full 1080×1920, US deportations story, photo-led), run in sequence:
+
+| Run | tts | Length | Result |
+| --- | --- | --- | --- |
+| 36645418033 | piper | 34.6 s, 1039 frames | Rendered. **Defect:** the hook opened "The UN panel noted that the United States has signed **such deals**…", which refers to context the viewer never heard. |
+| 36645907964 | piper | 44.4 s | Back-reference penalty added; the hook became "According to the experts, **the practice**…", still dependent on context. |
+| 36646197539 | piper | 44.6 s, 1338 frames | The lead now opens: "A panel of independent United Nations experts warned…". Then the risks, then non-refoulement, then the CTA. ✔ |
+
+- **Frames checked in Chrome** (1 s to 33 s): the ivory ground, the Nuvellum masthead, the real photo labelled FILE PHOTO, large readable captions, and the burgundy end card with the headline and www.nuvellum.news.
+- **Hook rule:** lines pointing back ("such", "these", "those"…) are penalised, and the article's self-contained lead is favoured up to 320 characters. Across all 33 published stories the lead now opens 30 shorts; the longest script is 40.9 s (limit 45).
+- **Tests:** the engines suite 29/29 (plus a regression test: this story must open on its lead).
+- **Posting stays manual.** YouTube stays `skipped` until a reviewed Short exists, and TikTok `awaiting_approval` (Phase 6 ledger).
+- **Owner:** listen to a render before any public posting (Actions → Shorts preview → Run workflow, then the artifact). Choosing Piper Cori as the public voice is your call.
+
 ## 2026-09-30: v1 launch programme, Phase 6: social distribution (Telegram first)
 
 Branch `feat/social-publish` (stacked on `content/unpublish-launch-filler`).
