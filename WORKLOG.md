@@ -401,3 +401,10 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Added a PR render smoke workflow that produces a real preview MP4 artifact. Nothing posts publicly and the publication gate does not depend on video generation.
 - espeak is explicitly a functional fallback, not the intended final public voice quality. A local Piper voice or another approved voice must be chosen before automatic public posting.
 - PR smoke run `36489556135` rendered the text-led Pokémon TCG story successfully: 34.87 s, 523 preview frames at 15 fps, extractive script, espeak narration, MP4 + poster + captions/script/plan/report artifact (~2.0 MB). Social distribution tests, Build, Security and CodeQL were green on the same head.
+
+## 2026-09-29 — visual eligibility gate tightened
+
+- Tightened the post-newsroom GitHub visual pass so ordinary `News` stories resolve to **real photo or text-led**, not generic generated illustration.
+- `Opinion` / `Essay` / `Ideas` remain illustration-first; genuinely abstract `Analysis` may still keep a story-specific illustration after the real-photo pass.
+- When a News story arrives with only `/generated/ai/<slug>.svg` (or a retired house plate) and no sufficiently relevant Commons photo clears the threshold, the visual pass now removes image metadata and the unused generated SVG, producing an intentional text-led article.
+- Added regression tests for technology/film news classification and text-led metadata cleanup. This change does not alter article copy, editorial clearance, or publication gates.
