@@ -85,3 +85,13 @@ test('artwork sits on the ivory ground and photos carry the FILE PHOTO label', (
   assert.match(ill, /ILLUSTRATION/);
   assert.ok(!ill.includes('FILE PHOTO'));
 });
+
+test('the hook never opens on a line that points back to something the viewer has not heard', async () => {
+  const { hookScore } = await import('../shorts/script.mjs');
+  const lead = 'A panel of independent United Nations experts warned that the administration is fuelling a cascade of rights violations.';
+  const backRef = 'The UN panel noted that the United States has signed such deals with more than 35 nations, including Burundi and Libya.';
+  assert.ok(hookScore(lead, 0) > hookScore(backRef, 4), 'regression: "such deals" was chosen as the hook of the US deportations short');
+  const s = loadStory('us-deportations-are-triggering-a-cascade-of-rights-abuses-un-experts-warn');
+  const hook = extractiveScript(s).lines.find((l) => l.role === 'hook').text;
+  assert.doesNotMatch(hook, /\b(such|these|those)\b/i, hook);
+});
