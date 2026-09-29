@@ -49,6 +49,8 @@ function addHomeMetadata(html) {
   const meta = `
 <link rel="canonical" href="${url}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/nuvellum-apple-180.png" sizes="180x180">
+<meta name="apple-mobile-web-app-title" content="Nuvellum">
 <link rel="manifest" href="/manifest.webmanifest">\n<link rel="alternate" type="application/rss+xml" title="Nuvellum RSS" href="/rss.xml">
 <meta name="theme-color" content="#6d1720">
 <meta property="og:type" content="website">

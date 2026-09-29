@@ -271,9 +271,11 @@ const html = `<!doctype html>
 <link rel="canonical" href="${canonical}">
 <link rel="icon" href="/favicon.svg?v=5" type="image/svg+xml" sizes="any">
 <link rel="shortcut icon" href="/favicon.svg?v=5">
-<link rel="apple-touch-icon" href="/icon-180.png?v=1" sizes="180x180">
+<link rel="apple-touch-icon" href="/icons/nuvellum-apple-180.png" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Nuvellum">
 <link rel="alternate" type="application/rss+xml" title="Nuvellum RSS" href="/rss.xml">
-<meta name="theme-color" content="#6d1026">
+<meta name="theme-color" content="#6d1720">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nuvellum">
 <meta property="og:title" content="Nuvellum — Beyond the headline.">
