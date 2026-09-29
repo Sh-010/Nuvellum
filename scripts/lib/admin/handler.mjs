@@ -11,10 +11,13 @@ import { checkUpload, checkImageUrl, MAX_IMAGE_BYTES } from './images.mjs';
 import { renderPreview } from './render.mjs';
 import { parseArticle, SECTIONS, TYPES, STATUSES, RISKS, WORLD_REGIONS, TITLE_MAX, DEK_MAX, SLUG_RE } from '../article-rules.mjs';
 import { COUNTRIES } from '../../../src/lib/countries.js';
+import { briefFromEnv } from '../brief/handler.mjs';
+import { BriefError } from '../brief/brief.mjs';
+import { StoreError } from '../brief/store.mjs';
 
 const MAX_BODY_BYTES = 4_500_000;
-const GET_ACTIONS = new Set(['session', 'meta', 'list', 'queue', 'article', 'status']);
-const POST_ACTIONS = new Set(['login', 'logout', 'check', 'save', 'merge', 'discard', 'review']);
+const GET_ACTIONS = new Set(['session', 'meta', 'list', 'queue', 'article', 'status', 'brief', 'brief-export']);
+const POST_ACTIONS = new Set(['login', 'logout', 'check', 'save', 'merge', 'discard', 'review', 'brief-unsubscribe']);
 const REVIEW_ACTIONS = new Set(['hold', 'release', 'sendback', 'reject']);
 const REGION_LABELS = { 'north-america': 'North America', 'latin-america-caribbean': 'Latin America & Caribbean', 'europe-central-asia': 'Europe & Central Asia', 'middle-east-north-africa': 'Middle East & North Africa', 'sub-saharan-africa': 'Sub-Saharan Africa', 'south-asia': 'South Asia', 'east-asia': 'East Asia', 'southeast-asia-oceania': 'Southeast Asia & Oceania' };
 
@@ -43,7 +46,7 @@ const prInfo = (pr) => (pr ? { number: pr.number, url: pr.html_url, state: pr.st
  * createAdminHandler({ env, githubFactory, now, delay, log, throttle }) -> (Request) => Promise<Response>
  * githubFactory(token) defaults to the real client; tests inject a fake.
  */
-export function createAdminHandler({ env = process.env, githubFactory = (token) => createGitHub({ token }), now = () => Date.now(), delay = sleep, log = console, throttle = createThrottle() } = {}) {
+export function createAdminHandler({ env = process.env, githubFactory = (token) => createGitHub({ token }), now = () => Date.now(), delay = sleep, log = console, throttle = createThrottle(), briefStoreFactory } = {}) {
   return async function handle(request) {
     try {
       const url = new URL(request.url);
@@ -91,6 +94,17 @@ export function createAdminHandler({ env = process.env, githubFactory = (token) 
       if (method === 'POST' && !csrfMatches(request.headers.get('x-nuvellum-csrf'), cfg.secret, session.nonce)) throw new HttpError(403, 'Security token missing or expired. Reload the page.');
       if (action === 'logout') return respond(200, { ok: true }, { 'Set-Cookie': clearedCookie() });
       if (action === 'meta') return respond(200, meta());
+      // The Nuvellum Brief subscriber list: only ever served here, behind the same login and CSRF checks.
+      if (action.startsWith('brief')) {
+        const brief = briefFromEnv(env, { storeFactory: briefStoreFactory, now });
+        if (!brief) return action === 'brief' ? respond(200, { configured: false }) : respond(409, { error: 'The Brief subscriber store is not connected on this deployment.' });
+        if (action === 'brief') return respond(200, { configured: true, ...(await brief.list({ q: url.searchParams.get('q') || '', status: url.searchParams.get('status') || '', limit: url.searchParams.get('limit') || 200 })) });
+        if (action === 'brief-export') {
+          const csv = await brief.exportCsv({ status: url.searchParams.get('status') === 'all' ? '' : 'active' });
+          return new Response(csv, { status: 200, headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': `attachment; filename="nuvellum-brief-${new Date(now()).toISOString().slice(0, 10)}.csv"`, 'Cache-Control': 'no-store, max-age=0', 'X-Robots-Tag': 'noindex, nofollow', 'X-Content-Type-Options': 'nosniff' } });
+        }
+        if (action === 'brief-unsubscribe') return respond(200, { ok: true, ...(await brief.adminUnsubscribe(body.id)) });
+      }
 
       const gh = githubFactory(env.NUVELLUM_GITHUB_TOKEN);
       const at = new Date(now());
@@ -109,6 +123,8 @@ export function createAdminHandler({ env = process.env, githubFactory = (token) 
     } catch (err) {
       if (err instanceof HttpError) return respond(err.status, { error: err.message, ...(err.extra || {}) });
       if (err instanceof GitHubError) return respond(err.status, { error: err.message });
+      if (err instanceof BriefError) return respond(err.status, { error: err.message });
+      if (err instanceof StoreError) return respond(503, { error: 'The subscriber store could not be reached. Try again in a minute.' });
       log.error?.('[admin] unexpected error: ' + (err?.name || 'Error'));
       return respond(500, { error: 'Something went wrong. Nothing was published.' });
     }

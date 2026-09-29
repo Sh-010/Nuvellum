@@ -1,0 +1,56 @@
+---
+// Unsubscribe from the Nuvellum Brief. The link in each Brief carries an opaque subscriber key (s) and a signed
+// token (t), never the address. Nothing happens on page load (mail scanners follow links); the reader confirms
+// with one button, which POSTs to /api/brief. Not indexed and not in the sitemap.
+import InteriorShell from '../../components/InteriorShell.astro';
+---
+<InteriorShell title="Unsubscribe — Nuvellum" description="Stop receiving the Nuvellum Brief." folio={[{ label: 'The Nuvellum Brief' }, { label: 'Unsubscribe' }]} folioNote="Your subscription" newsletter={false} noindex>
+  <div class="shell page">
+    <section class="nf" aria-labelledby="unsub-title">
+      <div data-reveal>
+        <div class="nf-kicker"><span>✦ The Nuvellum Brief</span><span class="rule"></span><span>Unsubscribe</span></div>
+        <h1 id="unsub-title">Stop receiving <em>the Brief?</em></h1>
+        <p id="unsubText">Confirm below and Nuvellum will stop sending the Brief to your address. You can sign up again at any time from the front page.</p>
+        <div class="nf-actions">
+          <button class="aside-link" type="button" id="unsubGo">Unsubscribe <span aria-hidden="true">→</span></button>
+          <a class="aside-link quiet" href="/">Keep my subscription <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="caption" id="unsubMsg" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </div>
+</InteriorShell>
+
+<script is:inline>
+(() => {
+  const q = new URLSearchParams(location.search), s = q.get('s'), t = q.get('t');
+  const go = document.getElementById('unsubGo'), msg = document.getElementById('unsubMsg'), text = document.getElementById('unsubText');
+  if (!go || !msg) return;
+  if (!s || !t) {
+    text.textContent = 'This page needs the unsubscribe link from a Nuvellum Brief email. Use the link at the foot of your most recent Brief.';
+    go.style.display = 'none';
+    return;
+  }
+  go.addEventListener('click', async () => {
+    go.disabled = true;
+    msg.textContent = 'Unsubscribing…';
+    try {
+      const res = await fetch('/api/brief?action=unsubscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ s, t }) });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        text.textContent = data.message || 'You have been unsubscribed from the Nuvellum Brief.';
+        msg.textContent = '';
+        go.style.display = 'none';
+        // Drop the signed link from the address bar and history once it has been used.
+        history.replaceState(null, '', location.pathname);
+      } else {
+        msg.textContent = data.error || 'Something went wrong. Please try again.';
+        go.disabled = false;
+      }
+    } catch {
+      msg.textContent = 'Could not reach Nuvellum. Check your connection and try again.';
+      go.disabled = false;
+    }
+  });
+})();
+</script>

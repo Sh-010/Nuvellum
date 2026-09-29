@@ -4,6 +4,63 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 2: the Nuvellum Brief as a real subscription
+
+Branch `feat/nuvellum-brief`. Phase 1 merged as PR #125 and is verified live: Chrome on www.nuvellum.news parses the manifest, all four icons decode, and the Apple icon and theme colour are correct. A physical-phone home-screen install is still owed by the owner.
+
+- **Storage:** Upstash Redis (free plan, via Vercel Marketplace), spoken to over its REST API with no SDK (`scripts/lib/brief/store.mjs`). Nothing is stored in GitHub, public JSON, static files or browser storage. Until `NUVELLUM_BRIEF_SECRET` and `KV_REST_API_URL`/`KV_REST_API_TOKEN` are set, the endpoint answers 503 "not open for sign-ups yet" and stores nothing. It is therefore safe to deploy first.
+- **Public endpoint** `api/brief.js` (`scripts/lib/brief/{brief,handler}.mjs`):
+  - Sign-up requires same-origin JSON.
+  - Addresses are normalised (trim, lower-case, IDNA) and strictly validated.
+  - Explicit consent is required and recorded with its time and wording version.
+  - Honeypot plus a 2.5 s minimum fill time.
+  - Rate limits: 5 per client per 10 min and 300 per hour overall, keyed by an expiring HMAC of the IP; no IP is stored.
+  - Duplicate sign-ups create no second record. Unsubscribed readers are reactivated.
+  - The response is identical in every case, so the form cannot reveal who subscribes.
+- **Unsubscribe:**
+  - Links carry an opaque HMAC subscriber key plus a separate signed token, never the address. Forged and cross-subscriber tokens are refused, and repeating an unsubscribe is harmless.
+  - `/brief/unsubscribe` confirms with one button (nothing happens on load, because mail scanners follow links), then removes the signed link from the address bar. It is noindex, has no canonical and is not in the sitemap. It serves `Referrer-Policy: no-referrer` and `no-store`.
+  - RFC 8058 one-click unsubscribe is supported for email headers.
+- **Admin:** a new **Brief** tab in /admin shows active/unsubscribed/total counts, the signup date, status and source, plus search and a status filter. It also offers a manual unsubscribe (with confirmation) and a CSV export of active subscribers with consent data and personal unsubscribe URLs. Formula-injection-safe cells.
+  - The data is served only by `/api/admin` behind the existing session, CSRF and origin checks.
+  - With a fourth tab, the desk bar overflowed at 320, 390, 414 and 641–768 px. Tab spacing was tightened at ≤460 and ≤340 px, and long labels are hidden at 641–860 px. The bar now fits at every width from 320 to 1280, measured in Chrome.
+- **Front page:**
+  - consent checkbox (with a link to /privacy), hidden honeypot;
+  - POST to `/api/brief`, with success/error states and a disabled button in flight;
+  - form reset on success. The address is never stored in the browser.
+- **Privacy page:** documents what is stored, where, the hashed rate-limit key, unsubscribe/erasure, and that the sending provider will be named before the first issue.
+- **Docs:** `docs/BRIEF.md` covers setup (env names only), the rules, the data layout, erasure, and campaign providers with their reported free tiers (Kit, Brevo, MailerLite, Buttondown, listmonk; marked "verify"). It recommends Kit's free plan. `.env.example` lists the three names.
+- **Tests:** `tests/brief.test.mjs` (14 tests):
+  - valid sign-up, malformed email, duplicate, unsubscribe, repeated unsubscribe, resubscribe;
+  - rate limits (per client, window reset, global ceiling);
+  - unauthorised access (admin brief actions without a session → 401, without CSRF → 403, cross-origin sign-up → 403, forged tokens → 403, list/export absent from the public endpoint → 404);
+  - not-configured 503 and the admin "not connected" state;
+  - honeypot, too-fast and no-consent submissions;
+  - RFC 8058 one-click unsubscribe, no address in links, CSV escaping;
+  - the Upstash request format, and store errors not echoing credentials.
+
+  `check-build-output` now also checks the consent form, the honeypot, the unsubscribe page's noindex and its absence from the sitemap.
+- **Results:**
+  - `npm test` 313/313; `validate`, `build` (358 pages), `check:build` and `security:audit` (0 vulnerabilities) all pass.
+  - Real Chrome against the built site, with the real handlers and an in-memory store, at 1440 and 360 px:
+    - missing consent → prompt;
+    - invalid address → prompt;
+    - valid sign-up → thank-you, with the form reset and nothing in localStorage;
+    - duplicate → the identical thank-you;
+    - admin list, search, CSV download (2 rows) and manual unsubscribe (counts 1/1/2);
+    - the unsubscribe page with no link, a forged link (refused), and a valid link (unsubscribed, query removed);
+    - no horizontal overflow.
+- **Needs the owner** (names only, never paste values in chat):
+  - `KV_REST_API_URL` and `KV_REST_API_TOKEN`: from Vercel → Storage/Marketplace → Upstash for Redis (free), connected to the project. Vercel adds them.
+  - `NUVELLUM_BRIEF_SECRET`: 32+ random characters, placed in Vercel → Settings → Environment Variables (Production). Keep it stable.
+  - Redeploy afterwards.
+  - Choosing a sending provider is a later decision; no email is sent yet.
+- **Noted for Phase 4:**
+  - The sitemap and canonical URLs are built from `https://nuvellum.vercel.app` (`astro.config` `site`/fallbacks), not `https://www.nuvellum.news`.
+  - When GA4 is enabled it must not run on `/brief/unsubscribe` (signed query) or `/admin`.
+
+---
+
 ## 2026-09-30: v1 launch programme, Phase 1: mobile/PWA branding
 
 Branch `fix/pwa-icons`.
