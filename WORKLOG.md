@@ -414,3 +414,11 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Fixed the homepage `In Focus` responsive grid after a real-phone QA recording showed secondary cards crushed into narrow columns with a large blank area before `Screen & Play`.
 - At tablet/mobile widths the inherited desktop row sizing is now reset; text-led mini stories use a single text column.
 - At phone widths secondary stories stack vertically with readable image/text proportions and no phantom empty grid row.
+
+
+## 2026-09-29 — mobile browser/PWA chrome repair
+
+- Real-device screenshots exposed two metadata regressions from the favicon pass: a literal `\\n` was rendering above interior pages, and the web manifest itself ended with literal `\\n`, making it invalid JSON.
+- Removed the stray text from both shared/interior head markup and the generated homepage head.
+- Repaired `manifest.webmanifest` and added dedicated 192px/512px PNG app icons plus a 180px touch icon so Android/Samsung recents and launch surfaces do not fall back to a generic grey tile or unrelated page art.
+- Added a maskable 512px icon entry and regression tests for manifest validity, PNG signatures and literal-newline leakage.
