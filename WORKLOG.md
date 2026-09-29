@@ -4,6 +4,32 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-29 (night): Editorial Desk UX redesign (PR #121)
+
+Frontend only (`src/pages/admin.astro`). Auth, the API, GitHub, gates, schema, validation, n8n and the public site are unchanged.
+
+- **Shell and Articles:**
+  - The masthead is one 56 px line: brand, tabs, date, day/night switch and an account menu.
+  - Articles is an archive of compact rows: a thumbnail only for a story's own picture, headline, section · type · byline, date, and state/risk/origin chips. Drafts in progress sit above the list.
+  - The Queue is kept, with only its spacing aligned.
+- **Editor:**
+  - A persistent command bar: back, headline, state, save status, a readiness pill, Write / Side by side / Preview, and the publishing actions. Hold, send back, reject, discard and unpublish sit in a separate More menu.
+  - A writing canvas: large headline, a standfirst tied to it by a crimson rule, a borderless 20 px body, and the sticky grouped toolbar (behaviour unchanged).
+  - A tabbed Inspector (Story, Media, Editorial, Checks) with per-tab issue counts. Secondary fields are folded; verification only appears for Sensitive stories.
+  - Images: text-led, current, upload (choose or drop) or address, with preview, Replace and Remove; alt text, caption and credit beside the image; licensing folded.
+  - The Checks tab shows a readiness checklist over the translated blockers, with warnings apart and GitHub details folded.
+  - Clicking an issue opens its tab and focuses the field without moving the article.
+- **Responsive:**
+  - Side by side from 1200 px.
+  - The Inspector docks from 1680 px beside Side by side (and at 1100 px and up in Write and Preview), and is otherwise a slide-in drawer. The closed drawer is clipped, not moved off-screen, which previously widened the page on phones.
+  - The command bar wraps below 1100 px, and its measured height positions the sticky toolbar.
+- **QA:**
+  - Browser QA of the redesigned flow at 1920, 1440, 1280, 820 (touch), 390 (touch) and 360 (touch), in light and dark: 44/44 each.
+  - Toolbar and scroll preservation 70/70 at 1440, 820 and 390.
+  - `npm test` 290/290; `validate`, `build`, `check:build` and `security:audit` all pass.
+
+---
+
 ## 2026-09-29 (evening): Editorial Desk integration pass (PR #121)
 
 - **Homepage and manual stories.** Traced after the first real manual publication (#123, a Science essay).
