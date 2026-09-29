@@ -54,6 +54,7 @@ Branch `feat/admin-dashboard`, PR open and **not merged**. Operator guide: `docs
   - `NUVELLUM_GITHUB_TOKEN`: fine-grained, `Sh-010/Nuvellum` only, with Contents RW, Pull requests RW, Actions R and Metadata R
 - **Tests**
   - `npm test`: 247/247 (34 new admin tests).
+  - CodeQL (first run) flagged two issues in the new code, both fixed in the PR rather than dismissed: the password comparison now uses scrypt instead of SHA-256, and heading-id tag stripping repeats until stable. After the fix, every PR check is green.
   - `npm run validate`: pass. `npm run build`: 357 pages. `check-build-output`: pass. `npm audit`: 0 vulnerabilities.
   - Local HTTPS browser end-to-end run in Chrome against an in-memory GitHub loaded with the real articles:
     - login (wrong, then right)
