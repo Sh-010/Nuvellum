@@ -56,7 +56,7 @@ Branch `feat/nuvellum-brief`. Phase 1 merged as PR #125 and is verified live: Ch
   - Redeploy afterwards.
   - Choosing a sending provider is a later decision; no email is sent yet.
 - **Noted for Phase 4:**
-  - The sitemap and canonical URLs are built from `https://nuvellum.vercel.app` (`astro.config` `site`/fallbacks), not `https://www.nuvellum.news`.
+  - Production sets `SITE_URL`, so the live canonical, sitemap and RSS URLs use `https://www.nuvellum.news` (checked). The `nuvellum.vercel.app` fallbacks only apply to builds without it.
   - When GA4 is enabled it must not run on `/brief/unsubscribe` (signed query) or `/admin`.
 
 ---
