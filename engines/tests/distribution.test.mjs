@@ -56,3 +56,30 @@ test('text-led story gets feed cards and parallel short-video requirements', () 
   assert.ok(r.tracks.video.youtube.title.length <= 100);
   assert.equal(r.mode, 'dry-run');
 });
+
+// Regressions from the pre-connection QA pass (main @ 58adf50): 14/33 stories had no X draft, 6 had no Threads
+// draft (the tracked link was truncated away), and every draft ran the headline into the dek.
+import { readdirSync } from 'node:fs';
+import { generateFeedCopy, generateVideoCopy, platformLength } from '../distribution/copy.mjs';
+
+test('X counts links as 23 characters (t.co)', () => {
+  assert.equal(platformLength('x', 'Hi https://nuvellum.vercel.app/article/' + 'a'.repeat(200) + '?utm_source=x'), 3 + 23);
+  assert.equal(platformLength('threads', 'Hi https://x.y/z'), 16);
+});
+
+test('every distributable story gets every feed and video draft, link intact, headline and dek as separate paragraphs', () => {
+  const long = loadStory('diablo-cody-reteaming-with-nathan-kahane-and-mason-novick-on-next-film-always-roxanne');
+  const feed = generateFeedCopy(long);
+  assert.deepEqual(feed.notes, []);
+  assert.ok(feed.copy.x.startsWith(long.title + '\n\n' + long.dek.slice(0, 40)), feed.copy.x);
+  assert.ok(feed.copy.threads.endsWith(trackedUrl(long, 'threads')));
+  let stories = 0;
+  for (const f of readdirSync(new URL('../../src/content/articles/', import.meta.url))) {
+    let s; try { s = loadStory(f.replace(/\.md$/, '')); } catch { continue; }
+    stories++;
+    const fc = generateFeedCopy(s), vc = generateVideoCopy(s);
+    assert.deepEqual([...fc.notes, ...vc.notes], [], s.slug);
+    for (const [p, v] of Object.entries(fc.copy)) if (s.dek) assert.ok(v.startsWith(s.title + '\n\n'), `${p}: ${s.slug}`);
+  }
+  assert.ok(stories >= 30, 'fixture corpus unexpectedly small');
+});
