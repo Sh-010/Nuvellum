@@ -57,7 +57,10 @@ const RULES = [
   [/^reviewedBy ".*" is reserved/, () => ({ text: '“Nuvellum Verification Pipeline” is reserved for the automated checks. Enter the name of the person who verified the story.', field: 'f-reviewer' })],
   [/^invalid slug/, () => ({ text: 'Fix the web address: lowercase words joined by hyphens.', field: 'f-slug' })],
   [/^Slug must be/, (m, raw) => ({ text: raw, field: 'f-slug' })],
-  [/^The slug ".*" is already/, (m, raw) => ({ text: raw, field: 'f-slug' })],
+  // Duplicates name the existing story (existing: its slug) so the editor can offer to open it; a clash of web
+  // address can also be solved with a distinct one (distinct: true). Both are shown under the headline.
+  [/^The slug "(.*)" is already used by a published or saved story/, (m) => ({ text: 'This story already exists.', field: 'f-title', existing: m[1], distinct: true })],
+  [/^The slug "(.*)" is already being worked on/, (m) => ({ text: 'This story is already being drafted on the desk.', field: 'f-title', existing: m[1], distinct: true })],
   [/^date must be/, () => ({ text: 'Set a valid story date.', field: 'f-date' })],
   [/^publishedAt must be/, () => ({ text: 'Set a valid publish time, or leave it empty to use the moment of publication.', field: 'f-published' })],
   [/^publishedAt does not match date/, () => ({ text: 'The publish time falls on a different day from the story date. Make them match.', field: 'f-published' })],
@@ -87,7 +90,7 @@ const RULES = [
   [/^raw HTML is blocked/, () => ({ text: 'Remove the HTML from the article. Use the formatting buttons instead.', field: 'f-body' })],
   [/^blocked unsafe markup or URL pattern/, () => ({ text: 'The article contains something that is never allowed (for example a script or a javascript: link). Remove it.', field: 'f-body' })],
   [/^link target "(.*)" is not allowed/, (m) => ({ text: `The link ${quote(m[1])} is not allowed. Links must start with https://.`, field: 'f-body' })],
-  [/^duplicate title also used by (.*)/, (m) => ({ text: `Another story (${m[1].replace(/\.md$/, '')}) already uses this headline. Make it distinct.`, field: 'f-title' })],
+  [/^duplicate title also used by (.*)/, (m) => ({ text: 'This story already exists.', field: 'f-title', existing: m[1].replace(/\.md$/, '') })],
   [/^source URL must use/, () => ({ text: 'Source links must start with https://.', field: 'f-sources' })],
   [/^source URL already used by (.*)/, (m) => ({ text: `A source is already cited by another story (${m[1].replace(/\.md$/, '')}). Check this is not a duplicate story.`, field: 'f-sources' })],
   [/^sourceUrls must be/, () => ({ text: 'List the sources one https:// address per line.', field: 'f-sources' })],
@@ -115,21 +118,24 @@ export function describeIssue(message) {
   for (const [re, build] of RULES) {
     const m = msg.match(re);
     if (m) {
-      const { text, field } = build(m, msg);
-      return { text, field: field || null, group: (field && GROUP[field]) || null, raw };
+      const { text, field, existing = null, distinct = false } = build(m, msg);
+      return { text, field: field || null, group: (field && GROUP[field]) || null, raw, existing, distinct };
     }
   }
   const text = msg ? msg[0].toUpperCase() + msg.slice(1) + (/[.!?]$/.test(msg) ? '' : '.') : '';
-  return { text, field: null, group: null, raw };
+  return { text, field: null, group: null, raw, existing: null, distinct: false };
 }
 
-/** Translate a list, dropping exact repeats (two raw messages can say the same thing). */
+/** Translate a list, dropping repeats: the same instruction, or a second message about the same existing story
+ *  (a reused headline usually also clashes on web address: one note, offering both remedies). */
 export function describeIssues(messages) {
-  const seen = new Set(), out = [];
+  const seen = new Set(), byExisting = new Map(), out = [];
   for (const m of messages || []) {
     const d = describeIssue(m);
     if (!d.text || seen.has(d.text)) continue;
+    if (d.existing && byExisting.has(d.existing)) { const first = byExisting.get(d.existing); first.distinct ||= d.distinct; continue; }
     seen.add(d.text); out.push(d);
+    if (d.existing) byExisting.set(d.existing, d);
   }
   return out;
 }

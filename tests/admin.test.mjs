@@ -123,6 +123,23 @@ test('slug validation and suggestion', async () => {
   assert.equal(ok.data.suggestedSlug, 'ceasefire-talks-will-resume-on-thursday');
 });
 
+test('check reports which problems would block even a draft, separately from publication requirements', async () => {
+  const { handle } = makeHandler();
+  const auth = await login(handle);
+  // Incomplete but safe: publication requirements are reported, nothing blocks a draft.
+  const incomplete = await call(handle, auth, 'check', { method: 'POST', body: { slug: 'half-written', intent: 'review', form: form({ dek: '', tags: [] }) } });
+  assert.equal(incomplete.status, 200);
+  assert.ok(incomplete.data.errors.length >= 2, 'dek and tags are still required for publication');
+  assert.deepEqual(incomplete.data.draftBlockers, [], 'an incomplete story can still be saved as a draft');
+  // Unsafe markup blocks drafts too, and is reported as such.
+  const unsafe = await call(handle, auth, 'check', { method: 'POST', body: { slug: 'unsafe-body', intent: 'review', form: form({ body: 'Hello <script>alert(1)</script>' }) } });
+  assert.ok(unsafe.data.draftBlockers.some((e) => /raw HTML|unsafe/.test(e)), JSON.stringify(unsafe.data.draftBlockers));
+  assert.ok(unsafe.data.draftBlockers.every((e) => unsafe.data.errors.includes(e) || /image/i.test(e)), 'draft blockers are a subset of the reported problems');
+  // And the draft save really is refused for it, while the incomplete story saves.
+  assert.equal((await call(handle, auth, 'save', { method: 'POST', body: { slug: 'unsafe-body', intent: 'draft', isNew: true, form: form({ body: 'Hello <script>alert(1)</script>' }), image: { mode: 'none' } } })).status, 422);
+  assert.equal((await call(handle, auth, 'save', { method: 'POST', body: { slug: 'half-written', intent: 'draft', isNew: true, form: form({ dek: '', tags: [] }), image: { mode: 'none' } } })).status, 200);
+});
+
 test('serialization: dashboard articles are valid Nuvellum Markdown with origin manual', () => {
   const now = new Date('2026-09-30T10:15:00Z');
   const { markdown, data } = buildArticle(form(), { intent: 'publish', now });

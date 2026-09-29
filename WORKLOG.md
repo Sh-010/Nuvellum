@@ -4,6 +4,37 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: write-first editor pass (PR #121)
+
+No change to auth, GitHub flow, schema, gates or the newsroom. One additive, read-only field was added: the `check` response now carries `draftBlockers`, the problems that would stop even a draft from saving (the same list `save()` already used).
+
+- **Quiet while writing, strict on publish:**
+  - While drafting, only duplicates and draft-blocking problems (for example raw HTML or an unsafe link) are marked. Tab counts are hidden, and the readiness pill reads "N to do" in amber.
+  - Submit for review, Prepare publication and Publish switch to strict. The Checks panel opens with a "N things to fix" list of plain, clickable sentences, fields are marked, and tabs are counted. Each item clears as soon as it is fixed.
+  - The requirements themselves are unchanged. Save draft still accepts incomplete stories.
+- **Web address:**
+  - It is made from the headline, kept distinct from known articles and desk drafts, and shown as `nuvellum.news/article/…` under Story → Advanced.
+  - Hand edits are tidied into a valid address when the field is left; clearing the field hands it back to the headline.
+  - Locked once the story is saved, as before.
+- **Duplicates:**
+  - A calm "This story already exists." notice under the headline, with "Open existing article" (after confirming if there are unsaved changes) and "Create as a different story". The latter keeps the draft, gives it its own address and selects the headline to be rewritten.
+  - A saved story shows "Another story already has this headline" and never flags itself (tested).
+  - The server still refuses to save a new story over an existing one.
+- **Local recovery:**
+  - Unsaved writing is kept in this browser (localStorage) 0.7 s after each change: the story's fields only, never session data or files, for at most 7 days. It is cleared after a successful save and on log out.
+  - After a reload the editor offers "Restore it" or "Discard". The command bar shows Saving… / Saved on this device / Saved just now.
+  - No GitHub calls are made for recovery.
+- **Command bar:**
+  - Every action has a tooltip saying what it does.
+  - The status texts have fixed widths, so buttons never move under the finger. This fixed a real missed tap on tablets.
+- **QA:**
+  - Write-first scenarios 37/37 at 1440, 820 (touch), 390 (touch) and 360 (touch).
+  - Redesign suite 45/45 at 1920, 1280 (dark), 820 (touch, dark) and 360 (touch).
+  - Toolbar and scroll preservation 70/70 at 1440 and 390.
+  - `npm test` 294/294; `validate`, `build`, `check:build` and `security:audit` all pass.
+
+---
+
 ## 2026-09-29 (night): Editorial Desk UX redesign (PR #121)
 
 Frontend only (`src/pages/admin.astro`). Auth, the API, GitHub, gates, schema, validation, n8n and the public site are unchanged.

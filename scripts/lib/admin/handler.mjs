@@ -281,6 +281,9 @@ async function check(gh, body, now) {
   return {
     slug: p.slug, suggestedSlug: suggestSlug(p.built.data.title || ''), readingTime: p.built.data.readingTime, words: p.result.words,
     errors: p.result.errors, warnings: p.result.warnings, gates: p.result.gates, isNew: p.isNew,
+    // The subset that would stop even a draft from saving (the same list save() uses for intent 'draft'),
+    // so the editor can stay quiet about publication requirements while the writer is drafting.
+    draftBlockers: [...new Set(p.result.safetyErrors.concat(p.img.errors))],
     preview: renderPreview(p.built.data, p.built.body, { imageSrc: p.img.previewSrc || null, pendingUpload: Boolean(p.img.pendingUpload) })
   };
 }

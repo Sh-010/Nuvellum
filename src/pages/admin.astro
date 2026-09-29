@@ -317,6 +317,10 @@ main.wrap.editing>.notice{margin:12px 24px}
 .more-sep{border-top:1px dashed var(--line2);margin:4px 0 2px}
 .more-label{font-family:var(--sans);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--bad)}
 .insp-toggle{display:none}
+/* Status texts change as the writer works; fixed widths keep every button in the bar where the finger expects it. */
+.save-state{display:inline-block;width:10.5em;overflow:hidden;text-overflow:ellipsis}
+.ready-pill{min-width:9.5em}
+.insp-toggle{margin-left:auto}
 .toast{position:fixed;left:50%;bottom:24px;z-index:60;max-width:min(560px,calc(100% - 32px));padding:11px 16px;background:var(--ink);color:var(--paper);border-radius:2px;box-shadow:var(--shadow-lift);font-family:var(--sans);font-size:13px;line-height:1.4;opacity:0;transform:translate(-50%,10px);pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .toast.bad{background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line)}
@@ -457,6 +461,17 @@ html[data-theme=dark] .badge-n{color:#1a1110}
 .issues-h.bad{color:var(--bad)}.issues-h.note{color:var(--warn)}
 .issue-link{margin:0;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px;transition:text-decoration-color .2s var(--ease)}
 .issue-link:hover,.issue-link:focus-visible{text-decoration-color:currentColor;outline:none}
+.issue-actions{display:flex;flex-wrap:wrap;gap:4px 16px;margin:4px 0 0}
+.field-issue.calm{margin-top:10px;padding:9px 12px;border-left:2px solid var(--wine);background:var(--paper2);color:var(--ink);font-size:13px}
+.field-issue.calm .issue-actions .lnk:last-child:not(:first-child){color:var(--muted)}
+.url-preview{margin:6px 0 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--muted);word-break:break-all}
+.recover{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;margin:-18px 0 26px;padding:10px 14px;border-left:3px solid var(--gold);background:var(--paper2);font-family:var(--sans);font-size:13px;animation:rise .3s var(--ease) both}
+.recover-actions{display:flex;gap:8px}
+.ready-pill.quiet{color:var(--muted)}.ready-pill.quiet::before{background:var(--gold)}
+.ready-head.quiet .ready-mark{border-color:var(--line2);color:var(--muted)}
+.ready-list li.todo{grid-column:1/-1}
+.ready-list .done-line{grid-column:1/-1;padding-top:6px;color:var(--muted);font-size:11.5px;line-height:1.5}
+.issue-actions .lnk{font-size:10.5px}
 .field-issue{margin:6px 0 0;font-family:var(--sans);font-size:12px;line-height:1.4;color:var(--bad);animation:rise .25s var(--ease) both}
 .field.has-issue>label,.field.has-issue>.label{color:var(--bad)}
 .field.has-issue input[type=text],.field.has-issue input[type=url],.field.has-issue input[type=date],.field.has-issue input[type=datetime-local],.field.has-issue select,.field.has-issue textarea{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad-bg)}
@@ -650,6 +665,7 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
           <div class="workspace" id="workspace" data-mode="write">
             <div id="write-pane" class="compose">
               <div class="notice" id="editor-notice" hidden></div>
+              <div class="recover" id="recover" role="status" hidden><span id="recover-text"></span><span class="recover-actions"><button class="btn small primary" type="button" id="recover-restore">Restore it</button><button class="btn small quiet" type="button" id="recover-discard">Discard</button></span></div>
               <div class="field headline-field"><label for="f-title" class="sr-only">Headline</label><textarea id="f-title" rows="1" maxlength="400" placeholder="Headline" spellcheck="true"></textarea><span class="count" id="c-title"></span></div>
               <div class="field dek-field"><label for="f-dek" class="sr-only">Dek (standfirst)</label><textarea id="f-dek" rows="1" maxlength="800" placeholder="Standfirst: one or two sentences that frame the story"></textarea><span class="count" id="c-dek"></span></div>
               <div class="writing">
@@ -697,8 +713,8 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
                 <div class="field"><span class="label">Regions</span><div class="regions" id="regions"></div></div>
               </details>
               <details class="more-fields" id="g-web">
-                <summary>Web address &amp; timing<span class="sum" id="gs-web"></span></summary>
-                <div class="field"><label for="f-slug">Web address (slug) <span class="hint" id="slug-note"></span></label><input type="text" id="f-slug" maxlength="90" spellcheck="false" /></div>
+                <summary>Advanced<span class="sum" id="gs-web"></span></summary>
+                <div class="field"><label for="f-slug">Web address <span class="hint" id="slug-note"></span></label><input type="text" id="f-slug" maxlength="90" spellcheck="false" autocapitalize="off" autocomplete="off" /><p class="url-preview" id="url-preview"></p></div>
                 <div class="row2">
                   <div class="field"><label for="f-date">Date</label><input type="date" id="f-date" /></div>
                   <div class="field"><label for="f-published">Publish time <span class="hint">UTC</span></label><input type="datetime-local" id="f-published" step="1" /></div>
@@ -765,10 +781,13 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
             <section class="ipanel" data-panel="checks" id="panel-checks" role="tabpanel" aria-labelledby="itab-checks" hidden>
               <div class="ready-head" id="ready-head"><span class="ready-mark" id="ready-mark" aria-hidden="true">·</span><div><div class="ready-title" id="ready-title">Not checked yet</div><div class="ready-sub" id="ready-sub"></div></div></div>
               <ul class="ready-list" id="ready-list"></ul>
-              <p class="issues-h bad" id="errors-h" hidden>Must fix before publishing</p>
-              <ul class="issues errors" id="errors"></ul>
-              <p class="issues-h note" id="warnings-h" hidden>Worth a look · won’t block</p>
-              <ul class="issues warnings" id="warnings"></ul>
+              <details class="more-fields" id="g-all">
+                <summary>Every check, in detail<span class="sum" id="gs-all"></span></summary>
+                <p class="issues-h bad" id="errors-h" hidden>Must fix before publishing</p>
+                <ul class="issues errors" id="errors"></ul>
+                <p class="issues-h note" id="warnings-h" hidden>Worth a look · won’t block</p>
+                <ul class="issues warnings" id="warnings"></ul>
+              </details>
               <details class="more-fields" id="g-tech">
                 <summary>Publication &amp; GitHub<span class="sum" id="gs-tech">No pull request yet</span></summary>
                 <div class="hint" id="ed-meta"></div>
@@ -887,7 +906,7 @@ async function enter(expires) {
   show('queue');
 }
 
-$('logout').addEventListener('click', async () => { try { await api('logout', { method: 'POST' }); } catch {} S.csrf = ''; showLogin('Logged out.'); });
+$('logout').addEventListener('click', async () => { try { await api('logout', { method: 'POST' }); } catch {} S.csrf = ''; clearAllLocal(); showLogin('Logged out.'); });
 
 function fillSelect(sel, values, keepFirst = false) {
   const first = keepFirst ? [sel.options[0]] : [];
@@ -1113,7 +1132,8 @@ const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 function syncInspector() {
   const countries = chipsState.countries.length, regions = document.querySelectorAll('.region:checked').length;
   $('gs-geo').textContent = countries || regions ? [countries ? plural(countries, 'country', 'countries') : '', regions ? plural(regions, 'region') : ''].filter(Boolean).join(' · ') : 'Optional';
-  $('gs-web').textContent = `/${$('f-slug').value || '…'} · ${$('f-date').value ? fmtDate($('f-date').value) : 'no date'}`;
+  const url = `nuvellum.news/article/${$('f-slug').value || '…'}`;
+  $('gs-web').textContent = url; $('url-preview').textContent = url;
   const m = imageMode();
   $('media-state').textContent = { none: 'Text-led', current: 'Current image', upload: 'Upload', url: 'Image address' }[m];
   $('img-none-note').hidden = m !== 'none';
@@ -1133,21 +1153,31 @@ function readinessItems() {
   const risk = document.querySelector('input[name=risk]:checked')?.value || '';
   const words = (bodyEl.value.match(/[A-Za-z0-9][\w'’-]*/g) || []).length;
   const items = [
-    { label: 'Headline', ok: Boolean(v('f-title')), field: 'f-title' },
-    { label: 'Dek', ok: Boolean(v('f-dek')), field: 'f-dek' },
-    { label: 'Article text', ok: words > 0, field: 'f-body' },
-    { label: 'Byline', ok: Boolean(v('f-author')), field: 'f-author' },
-    { label: 'Tags', ok: chipsState.tags.length > 0, field: 'tag-in' },
-    { label: 'Risk level', ok: Boolean(risk), field: 'risk' },
-    { label: 'Editorial review', ok: v('f-review') === 'passed', field: 'f-review' }
+    { label: 'Headline', todo: 'Add a headline', ok: Boolean(v('f-title')), field: 'f-title' },
+    { label: 'Dek', todo: 'Add a dek', ok: Boolean(v('f-dek')), field: 'f-dek' },
+    { label: 'Body', todo: 'Write the article', ok: words > 0, field: 'f-body' },
+    { label: 'Byline', todo: 'Add a byline', ok: Boolean(v('f-author')), field: 'f-author' },
+    { label: 'Tags', todo: 'Add at least one tag', ok: chipsState.tags.length > 0, field: 'tag-in' },
+    { label: 'Risk level', todo: 'Choose a risk level: Low or Sensitive', ok: Boolean(risk), field: 'risk' },
+    { label: 'Editorial review', todo: 'Record editorial review as Passed', ok: v('f-review') === 'passed', field: 'f-review' }
   ];
   if (risk === 'sensitive') items.push(
-    { label: 'Verification', ok: v('f-verify') === 'cleared', field: 'f-verify' },
-    { label: 'Reviewer named', ok: Boolean(v('f-reviewer')) && (S.ed?.origin === 'automation' || v('f-reviewer') !== RESERVED_REVIEWER), field: 'f-reviewer' });
+    { label: 'Verification', todo: 'Record verification as Cleared', ok: v('f-verify') === 'cleared', field: 'f-verify' },
+    { label: 'Reviewer named', todo: 'Name the person who verified the story', ok: Boolean(v('f-reviewer')) && (S.ed?.origin === 'automation' || v('f-reviewer') !== RESERVED_REVIEWER), field: 'f-reviewer' });
   items.push(imageMode() === 'none'
-    ? { label: 'No image: the story will publish text-led', warn: true, field: 'img-mode', wide: true }
-    : { label: 'Image alt text', ok: Boolean(v('f-alt')), field: 'f-alt' });
+    ? { label: 'No image: this story will publish text-led', warn: true, field: 'img-mode', wide: true }
+    : { label: 'Image alt text', todo: 'Add alt text for the image', ok: Boolean(v('f-alt')), field: 'f-alt' });
   return items;
+}
+// While drafting the editor stays quiet: only problems that would stop even a draft from saving (and
+// duplicates) are marked. Everything else waits until the writer asks to submit or publish; then the
+// readiness list becomes the focus. The requirements themselves never change.
+const quietOk = (it) => Boolean(it.existing) || (S.lastCheck?.draftBlockers || []).includes(it.raw);
+function goStrict() {
+  if (S.strict) return;
+  S.strict = true;
+  markIssues(describeIssues(S.lastErrors || []));
+  updateReadiness();
 }
 function tabOf(field) { return fieldTarget(field)?.box?.closest('[data-panel]')?.dataset.panel || null; }
 function updateReadiness() {
@@ -1158,18 +1188,36 @@ function updateReadiness() {
   const serverIssues = describeIssues(S.lastErrors || []);
   const extra = serverIssues.filter((i) => !i.field || !covered.has(i.field));
   const n = unmet.length + extra.length;
-  $('ready-list').replaceChildren(...items.map((i) => el('li', { class: `${i.warn ? 'warn' : i.ok ? 'ok' : 'no'}${i.wide ? ' wide' : ''}` },
-    el('button', { type: 'button', onclick: () => goToField({ field: i.field, text: i.label }) },
-      el('span', { class: 'mk', 'aria-hidden': 'true', text: i.warn ? '◦' : i.ok ? '✓' : '✕' }), el('span', { text: i.label }),
-      el('span', { class: 'sr-only', text: i.warn ? ' (worth a look)' : i.ok ? ' (done)' : ' (to do)' })))));
+  const strict = Boolean(S.strict);
+  const row = (cls, mark, text, field) => el('li', { class: cls },
+    el('button', { type: 'button', onclick: () => goToField({ field, text }) },
+      el('span', { class: 'mk', 'aria-hidden': 'true', text: mark }), el('span', { text }),
+      el('span', { class: 'sr-only', text: mark === '✓' ? ' (done)' : mark === '⚠' ? ' (worth a look, will not block)' : ' (to do)' })));
+  const warnings = items.filter((i) => i.warn);
+  const serverWarnings = describeIssues(S.lastWarnings || []).filter((w) => !/text-led/.test(w.text));
+  let rows;
+  if (n === 0) {
+    rows = [...items.filter((i) => i.ok).map((i) => row('ok', '✓', i.label, i.field)),
+      ...warnings.map((i) => row('warn wide', '⚠', i.label, i.field)), ...serverWarnings.map((w) => row('warn wide', '⚠', w.text, w.field))];
+  } else {
+    const done = items.filter((i) => i.ok).map((i) => i.label);
+    rows = [...unmet.map((i) => row('no todo', '✕', i.todo, i.field)), ...extra.map((i) => row('no todo', '✕', i.text.replace(/\.$/, ''), i.field)),
+      ...warnings.map((i) => row('warn wide', '⚠', i.label, i.field)),
+      done.length ? el('li', { class: 'done-line', text: `Done: ${done.join(' · ')}` }) : null].filter(Boolean);
+  }
+  $('ready-list').replaceChildren(...rows);
   const head = $('ready-head');
-  head.classList.toggle('ok', n === 0); head.classList.toggle('bad', n > 0);
+  head.classList.toggle('ok', n === 0); head.classList.toggle('bad', n > 0 && strict); head.classList.toggle('quiet', n > 0 && !strict);
   $('ready-mark').textContent = n ? String(n) : '✓';
-  $('ready-title').textContent = n === 0 ? 'Ready to publish' : `${n} ${n === 1 ? 'thing' : 'things'} to fix before publishing`;
-  $('ready-sub').textContent = n === 0 ? 'Every editorial gate is met. GitHub’s required checks run when you prepare publication.' : 'You can save a draft at any time.';
-  const rp = $('ready-pill'); rp.className = `ready-pill ${n ? 'bad' : 'ok'}`; rp.textContent = n ? `${n} to fix` : 'Ready';
-  const counts = { story: 0, media: 0, editorial: 0, checks: n };
-  for (const f of new Set([...unmet.map((i) => i.field), ...serverIssues.map((i) => i.field)])) { const t = tabOf(f); if (t && t !== 'checks') counts[t]++; }
+  $('ready-title').textContent = n === 0 ? 'Ready to publish' : strict ? `${n} ${n === 1 ? 'thing' : 'things'} to fix` : `Before publishing · ${n} to do`;
+  $('ready-sub').textContent = n === 0 ? 'Every editorial gate is met. GitHub’s required checks run when you prepare publication.'
+    : strict ? 'Each item takes you straight to the right place.' : 'Keep writing: a draft can be saved at any time. These only matter when you submit or publish.';
+  const rp = $('ready-pill'); rp.className = `ready-pill ${n ? (strict ? 'bad' : 'quiet') : 'ok'}`; rp.textContent = n ? (strict ? `${n} to fix` : `${n} to do`) : 'Ready to publish';
+  rp.title = n ? (strict ? 'Things to fix before this story can be published. Click for the list.' : 'Things to do before publishing. They do not stop you saving a draft. Click for the list.') : 'Every editorial gate is met.';
+  $('gs-all').textContent = `${describeIssues(S.lastErrors || []).length} blocking · ${describeIssues(S.lastWarnings || []).length} to note`;
+  const counts = { story: 0, media: 0, editorial: 0, checks: strict ? n : 0 };
+  const flagged = strict ? [...unmet.map((i) => i.field), ...serverIssues.map((i) => i.field)] : serverIssues.filter(quietOk).map((i) => i.field);
+  for (const f of new Set(flagged)) { const t = tabOf(f); if (t && t !== 'checks') counts[t]++; }
   for (const [k, c] of Object.entries(counts)) { const b = $(`badge-${k}`); b.textContent = String(c); b.hidden = !c; }
 }
 
@@ -1177,18 +1225,76 @@ function updateReadiness() {
 function renderSaveState() {
   if (!S.ed) return;
   const n = $('save-state');
-  n.classList.toggle('dirty', Boolean(S.dirty));
-  n.textContent = S.dirty ? 'Unsaved changes' : S.savedAt ? `Saved ${ago(new Date(S.savedAt).toISOString())}` : S.ed.slug ? 'No changes' : 'Not saved yet';
+  n.classList.toggle('dirty', Boolean(S.dirty) && S.localState !== 'local');
+  n.textContent = S.dirty
+    ? (S.localState === 'saving' ? 'Saving…' : S.localState === 'local' ? 'Saved on this device' : 'Unsaved changes')
+    : S.savedAt ? `Saved ${ago(new Date(S.savedAt).toISOString())}` : S.ed.slug ? 'No changes' : 'Not saved yet';
+  n.title = S.dirty && S.localState === 'local' ? 'Kept in this browser in case of a refresh or crash. Save a draft to put it on the desk.' : '';
 }
 setInterval(renderSaveState, 30000);
-for (const ev of ['input', 'change']) $('view-editor').addEventListener(ev, (e) => { if (e.target.closest?.('.compose, .inspector') && S.ed) { S.dirty = true; renderSaveState(); } });
-window.addEventListener('beforeunload', (ev) => { if (S.view === 'editor' && S.dirty) { ev.preventDefault(); ev.returnValue = ''; } });
+function markDirty() { if (!S.ed) return; S.dirty = true; scheduleLocalSave(); renderSaveState(); }
+for (const ev of ['input', 'change']) $('view-editor').addEventListener(ev, (e) => { if (e.target.closest?.('.compose, .inspector') && S.ed) markDirty(); });
+window.addEventListener('beforeunload', (ev) => { if (S.view === 'editor' && S.dirty && S.localState !== 'local') { ev.preventDefault(); ev.returnValue = ''; } });
+
+// Local recovery: while a story has unsaved changes, the editor keeps a copy in this browser, so a refresh,
+// crash or expired session does not lose writing. It never talks to GitHub; saving a draft (or publishing) is
+// still the only way work reaches the desk, and a successful save clears the local copy. Only the story's own
+// fields are kept (no session, password or token), for at most a week, and they are removed on log out. An
+// uploaded image file is not kept; it has to be attached again after a restore.
+const RECOVERY_PREFIX = 'nuvellum-admin-draft:';
+const RECOVERY_TTL_MS = 7 * 24 * 3600e3;
+const recoveryKey = (slug = S.ed?.slug) => `${RECOVERY_PREFIX}${slug || 'new'}`;
+const FORM_FIELDS = ['f-title', 'f-dek', 'f-body', 'f-slug', 'f-section', 'f-type', 'f-author', 'f-date', 'f-published', 'f-sources', 'f-sourcenote', 'f-review', 'f-verify', 'f-reviewer', 'f-imgurl', 'f-alt', 'f-caption', 'f-credit', 'f-provider', 'f-kind', 'f-license', 'f-licenseurl', 'f-sourcepage'];
+function formSnapshot() {
+  const f = Object.fromEntries(FORM_FIELDS.map((id) => [id, $(id).value]));
+  return { ...f, tags: [...chipsState.tags], countries: [...chipsState.countries], regions: [...document.querySelectorAll('.region:checked')].map((c) => c.value),
+    risk: document.querySelector('input[name=risk]:checked')?.value || '', imgmode: imageMode() === 'upload' ? 'none' : imageMode(), hadUpload: imageMode() === 'upload' };
+}
+let localTimer = 0;
+function scheduleLocalSave() { clearTimeout(localTimer); S.localState = 'saving'; localTimer = setTimeout(saveLocal, 700); }
+function saveLocal() {
+  if (!S.ed || !S.dirty) return;
+  try { localStorage.setItem(recoveryKey(), JSON.stringify({ v: 1, at: Date.now(), base: S.ed.expectedSha || null, form: formSnapshot() })); S.localState = 'local'; }
+  catch { S.localState = 'none'; }
+  renderSaveState();
+}
+function readLocal(key) {
+  try {
+    const r = JSON.parse(localStorage.getItem(key) || 'null');
+    if (!r || r.v !== 1 || !r.form || Date.now() - r.at > RECOVERY_TTL_MS) { localStorage.removeItem(key); return null; }
+    return r;
+  } catch { return null; }
+}
+function clearLocal(...keys) { for (const k of keys) try { localStorage.removeItem(k); } catch {} }
+function clearAllLocal() { try { for (const k of Object.keys(localStorage)) if (k.startsWith(RECOVERY_PREFIX)) localStorage.removeItem(k); } catch {} }
+try { for (const k of Object.keys(localStorage)) if (k.startsWith(RECOVERY_PREFIX)) readLocal(k); } catch {} // drop expired copies
+function offerRecovery() {
+  const rec = readLocal(recoveryKey());
+  const now = formSnapshot();
+  const same = rec && JSON.stringify({ ...rec.form, hadUpload: false }) === JSON.stringify({ ...now, hadUpload: false });
+  if (!rec || same) { $('recover').hidden = true; if (same) clearLocal(recoveryKey()); return; }
+  const changed = S.ed.expectedSha && rec.base && rec.base !== S.ed.expectedSha;
+  $('recover-text').textContent = `Unsaved writing from ${ago(new Date(rec.at).toISOString())} was kept on this device.${changed ? ' The saved story has changed since then; restoring replaces what is in the editor.' : ''}${rec.form.hadUpload ? ' Attach the uploaded image again after restoring.' : ''}`;
+  $('recover').hidden = false;
+  $('recover-restore').onclick = () => { applySnapshot(rec.form); $('recover').hidden = true; setMsg('Restored the writing kept on this device. Save a draft to put it on the desk.', 'ok'); };
+  $('recover-discard').onclick = () => { clearLocal(recoveryKey()); $('recover').hidden = true; };
+}
+function applySnapshot(f) {
+  for (const id of FORM_FIELDS) if (typeof f[id] === 'string' && !(id === 'f-slug' && S.ed.slug)) $(id).value = f[id];
+  if (!S.ed.slug) $('f-slug').dataset.touched = f['f-slug'] && f['f-slug'] !== slugify(f['f-title'] || '') ? '1' : '';
+  chipsState.tags = [...(f.tags || [])]; chipsState.countries = [...(f.countries || [])];
+  for (const c of document.querySelectorAll('.region')) c.checked = (f.regions || []).includes(c.value);
+  for (const r of document.querySelectorAll('input[name=risk]')) r.checked = r.value === f.risk;
+  renderChips('tags'); renderChips('countries'); renderSources();
+  setImageMode(f.imgmode === 'current' && !S.ed.currentImage ? 'none' : f.imgmode || 'none');
+  updateCounts(); markDirty(); scheduleCheck();
+}
 function setState(text) { const n = $('ed-state'); n.textContent = text; n.className = `state-pill tone-${tone(text)}`; }
 
 const chipsState = { tags: [], countries: [] };
 function renderChips(kind) {
   $(kind === 'tags' ? 'tag-chips' : 'country-chips').replaceChildren(...chipsState[kind].map((v, i) => el('span', { class: 'chip' }, v,
-    el('button', { type: 'button', 'aria-label': `Remove ${v}`, text: '×', onclick: () => { chipsState[kind].splice(i, 1); renderChips(kind); scheduleCheck(); } }))));
+    el('button', { type: 'button', 'aria-label': `Remove ${v}`, text: '×', onclick: () => { chipsState[kind].splice(i, 1); renderChips(kind); markDirty(); scheduleCheck(); } }))));
   syncInspector();
   if (chipsState[kind].length) clearIssueBox($(kind === 'tags' ? 'tag-in' : 'country-in').closest('.field'));
 }
@@ -1197,7 +1303,7 @@ function chipInput(inputId, kind) {
     if (ev.key !== 'Enter' && ev.key !== ',') return;
     ev.preventDefault();
     const v = ev.target.value.trim().replace(/,$/, '');
-    if (v && !chipsState[kind].includes(v)) { chipsState[kind].push(v); renderChips(kind); scheduleCheck(); }
+    if (v && !chipsState[kind].includes(v)) { chipsState[kind].push(v); renderChips(kind); markDirty(); scheduleCheck(); }
     ev.target.value = '';
   });
 }
@@ -1206,7 +1312,8 @@ chipInput('tag-in', 'tags'); chipInput('country-in', 'countries');
 async function openEditor(target, previewFirst = false) {
   clearInterval(S.pollTimer); showError('');
   S.ed = { slug: null, branch: null, expectedSha: null, mainSha: null, mainStatus: null, origin: 'manual', newsroom: false, pr: null, currentImage: null, fromQueue: S.view === 'queue' };
-  S.upload = null; S.uploadDataUrl = ''; $('f-file').value = ''; S.lastErrors = []; S.dirty = false; S.savedAt = null;
+  S.upload = null; S.uploadDataUrl = ''; $('f-file').value = ''; S.lastErrors = []; S.lastWarnings = []; S.lastCheck = null; S.dirty = false; S.savedAt = null; S.localState = null; S.strict = false;
+  clearTimeout(localTimer); $('recover').hidden = true;
   for (const t of document.querySelectorAll('.desk .tab')) t.setAttribute('aria-selected', String(!target && t.dataset.view === 'new'));
   $('view-queue').hidden = true; $('view-list').hidden = true; $('view-editor').hidden = false; S.view = 'editor';
   document.querySelector('main.wrap').classList.add('editing');
@@ -1229,7 +1336,8 @@ async function openEditor(target, previewFirst = false) {
   $('editor-notice').hidden = !(e.branch);
   $('editor-notice').textContent = e.branch ? (e.newsroom ? `Reviewing the newsroom’s pull request #${e.pr?.number}. Edits are committed to that pull request; the site changes only when you publish.` : `Continuing unpublished work${e.pr ? ` (pull request #${e.pr.number})` : ''}. The live story is unchanged until you publish.`) : '';
   $('f-title').value = d.title || ''; $('f-dek').value = d.dek || ''; $('f-slug').value = e.slug || '';
-  $('f-slug').readOnly = Boolean(e.slug); $('slug-note').textContent = e.slug ? 'fixed for existing stories' : 'set from the headline';
+  $('f-slug').readOnly = Boolean(e.slug); $('slug-note').textContent = e.slug ? 'fixed once a story is saved' : 'made from the headline';
+  S.strict = e.newsroom; // reviewing newsroom intake: show everything from the start
   $('f-section').value = d.section || S.meta.sections[0]; $('f-type').value = d.type || 'News'; $('f-author').value = d.author || '';
   $('f-date').value = d.date || new Date().toISOString().slice(0, 10);
   $('f-published').value = d.publishedAt ? String(d.publishedAt).replace(/Z$/, '').slice(0, 19) : '';
@@ -1254,7 +1362,8 @@ async function openEditor(target, previewFirst = false) {
   $('ed-meta').textContent = e.slug ? `/${e.slug}` : ''; $('ed-checks').replaceChildren(); $('ed-pr').replaceChildren(); $('gs-tech').textContent = e.pr ? `Pull request #${e.pr.number}` : 'No pull request yet';
   if (e.branch) pollStatus();
   runCheck(true);
-  if (!target) requestAnimationFrame(() => $('f-title').focus({ preventScroll: true }));
+  if (!target) { requestAnimationFrame(() => $('f-title').focus({ preventScroll: true })); ensureSlugIndex(); delete $('f-slug').dataset.touched; }
+  offerRecovery();
 }
 
 // Images: text-led, the current image, an upload (choose or drop) or an address.
@@ -1303,8 +1412,63 @@ function slugify(input) {
 // The headline is one line of text: Enter moves on to the dek, pasted line breaks become spaces.
 $('f-title').addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); $('f-dek').focus(); } });
 $('f-title').addEventListener('input', () => { const t = $('f-title'); if (/\n/.test(t.value)) t.value = t.value.replace(/\s*\n+\s*/g, ' '); });
-$('f-title').addEventListener('input', () => { if (!S.ed.slug && !$('f-slug').dataset.touched) $('f-slug').value = slugify($('f-title').value); });
+$('f-title').addEventListener('input', () => { if (!S.ed.slug && !$('f-slug').dataset.touched) $('f-slug').value = distinctSlug(slugify($('f-title').value)); });
+
+// Duplicates. A new story never takes a web address already in use: its address is generated distinct from
+// every known article and desk draft (and any address the server has reported as taken), so changing a reused
+// headline gives it a fresh address automatically. When a headline or address clashes, the note offers to open
+// the existing story instead, or to switch to a distinct address. The server still refuses to save a new story
+// over an existing one, and a story is never compared with itself.
+const takenSlugs = new Set();
+const knownSlugs = () => new Set([...S.articles.map((a) => a.slug), ...S.work.map((w) => w.slug), ...takenSlugs].filter(Boolean));
+function distinctSlug(base, taken = knownSlugs()) {
+  if (!base || !taken.has(base)) return base;
+  const stem = base.slice(0, 86).replace(/-+$/, '');
+  for (let n = 2; n < 1000; n++) if (!taken.has(`${stem}-${n}`)) return `${stem}-${n}`;
+  return base;
+}
+async function ensureSlugIndex() {
+  if (S.articles.length) return;
+  try { const r = await api('list'); S.articles = r.articles; S.work = r.work; } catch {}
+}
+const isNewStory = () => !S.ed?.branch && !S.ed?.mainSha;
+// For a saved story the clash is with some other story, never itself.
+const issueText = (it) => (it.existing && !isNewStory() ? 'Another story already has this headline.' : it.text);
+function issueActions(it) {
+  if (!it.existing) return null;
+  const isSelf = it.existing === S.ed?.slug;
+  return el('span', { class: 'issue-actions' },
+    isSelf ? null : el('button', { type: 'button', class: 'lnk', text: 'Open existing article', onclick: () => openExisting(it.existing) }),
+    isNewStory() ? el('button', { type: 'button', class: 'lnk', text: 'Create as a different story', onclick: () => createAsDifferent(it.existing) }) : null);
+}
+async function openExisting(slug) {
+  if (S.dirty && !(await ask('Open the existing article?', 'This new story has unsaved changes. They will be lost if you open the existing article now. Save a draft first to keep them.'))) return;
+  S.dirty = false;
+  openEditor({ slug });
+}
+// Keep this draft as a new, different story: it gets a web address of its own at once, and the writer is
+// taken to the headline to make it distinct (the address follows the headline from then on).
+async function createAsDifferent(taken) {
+  takenSlugs.add(taken);
+  await ensureSlugIndex();
+  $('f-slug').dataset.touched = '';
+  $('f-slug').value = distinctSlug(slugify($('f-title').value) || taken);
+  const note = $('f-title').closest('.field').querySelector('.field-issue');
+  if (note) note.replaceChildren('Give this story a headline of its own. Its web address will follow the new headline.');
+  const t = $('f-title'); t.focus({ preventScroll: true }); t.select();
+  updateCounts(); scheduleCheck();
+}
+// The web address is made from the headline and kept valid: typing in it by hand is allowed (Story → Advanced),
+// and whatever is typed is turned into lowercase words joined by hyphens when the field is left. Clearing it
+// hands it back to the headline.
 $('f-slug').addEventListener('input', () => { $('f-slug').dataset.touched = '1'; });
+$('f-slug').addEventListener('change', () => {
+  if ($('f-slug').readOnly) return;
+  const typed = slugify($('f-slug').value);
+  if (!typed) { $('f-slug').dataset.touched = ''; $('f-slug').value = distinctSlug(slugify($('f-title').value)); }
+  else $('f-slug').value = typed;
+  updateCounts(); scheduleCheck();
+});
 for (const id of ['f-title', 'f-dek', 'f-slug', 'f-section', 'f-type', 'f-author', 'f-date', 'f-published', 'f-body', 'f-sources', 'f-sourcenote', 'f-review', 'f-verify', 'f-reviewer', 'f-alt', 'f-caption', 'f-credit', 'f-provider', 'f-kind', 'f-license', 'f-licenseurl', 'f-sourcepage']) {
   $(id).addEventListener('input', () => { updateCounts(); scheduleCheck(); });
 }
@@ -1444,6 +1608,7 @@ async function runCheck(immediate) {
     const r = await api('check', { method: 'POST', body: { ...payload(intent), intent } });
     S.lastCheck = r;
     $('rt').textContent = `· ${r.readingTime} read`;
+    S.lastWarnings = r.warnings || [];
     list('errors', r.errors); list('warnings', r.warnings);
     $('gates').replaceChildren(...r.gates.gates.map((g) => el('li', { class: g.ok ? 'ok' : '' }, g.label, g.value && !g.ok ? el('span', { class: 'hint', text: ` (${g.value})` }) : null)));
     renderPreview(r.preview);
@@ -1456,8 +1621,9 @@ async function runCheck(immediate) {
 function list(id, items) {
   const issues = describeIssues(items);
   $(id).replaceChildren(...issues.map((it) => el('li', { 'data-field': it.field || undefined },
-    it.field ? el('button', { type: 'button', class: 'issue-link', text: it.text, title: 'Go to the field', onclick: () => goToField(it) }) : it.text)));
+    it.field ? el('button', { type: 'button', class: 'issue-link', text: issueText(it), title: 'Go to the field', onclick: () => goToField(it) }) : it.text, issueActions(it))));
   $(`${id}-h`).hidden = !issues.length;
+  if (id === 'errors') for (const it of issues) if (it.existing) takenSlugs.add(it.existing);
   if (id === 'errors') S.lastErrors = items || [];
   if (id === 'errors') markIssues(issues);
   updateReadiness();
@@ -1475,10 +1641,11 @@ function markIssues(issues) {
   for (const n of document.querySelectorAll('#view-editor .has-issue')) n.classList.remove('has-issue');
   for (const n of document.querySelectorAll('#view-editor .field-issue')) n.remove();
   for (const it of issues) {
+    if (!S.strict && !quietOk(it)) continue; // while drafting, only what would block a draft (or a duplicate)
     const t = fieldTarget(it.field);
     if (!t?.box) continue;
-    t.box.classList.add('has-issue');
-    if (t.box.id !== 'f-body' && t.box.id !== 'img-mode' && !t.box.querySelector('.field-issue')) t.box.append(el('p', { class: 'field-issue', text: it.text }));
+    if (!it.existing) t.box.classList.add('has-issue');
+    if (t.box.id !== 'f-body' && t.box.id !== 'img-mode' && !t.box.querySelector('.field-issue')) t.box.append(el('p', { class: `field-issue${it.existing ? ' calm' : ''}` }, issueText(it), issueActions(it)));
     for (let d = t.box.closest('details'); d; d = d.parentElement?.closest('details')) d.open = true;
   }
   syncGroupIssues();
@@ -1556,15 +1723,15 @@ function renderActions(st = null) {
   const flow = [], review = [], danger = [];
   const open = st?.pr && st.pr.state === 'open';
   if (!e.newsroom) {
-    if (!open) flow.push(btn('Save draft', () => save('draft'), 'btn quiet'));
-    flow.push(btn(open ? 'Save changes for review' : 'Submit for review', () => save('review'), 'btn quiet'));
-    flow.push(btn(e.mainStatus === 'published' ? 'Prepare update for publication' : 'Prepare publication', () => save('publish'), 'btn primary'));
+    if (!open) flow.push(btn('Save draft', () => save('draft'), 'btn quiet', false, 'Saves the story to a private working copy on GitHub. Nothing is public, and it can be incomplete.'));
+    flow.push(btn(open ? 'Save changes for review' : 'Submit for review', () => save('review'), 'btn quiet', false, 'Saves and opens a pull request so the required checks run. Nothing is public yet.'));
+    flow.push(btn(e.mainStatus === 'published' ? 'Prepare update for publication' : 'Prepare publication', () => save('publish'), 'btn primary', false, 'Marks the story ready to publish once every gate is met, and runs the required checks. You publish in the next step.'));
   } else {
-    flow.push(btn('Save edits (keep in review)', () => save('review'), 'btn quiet'));
-    flow.push(btn('Approve & prepare publication', () => save('publish'), 'btn primary'));
+    flow.push(btn('Save edits (keep in review)', () => save('review'), 'btn quiet', false, 'Commits your edits to the newsroom’s pull request. Nothing is public yet.'));
+    flow.push(btn('Approve & prepare publication', () => save('publish'), 'btn primary', false, 'Records your approval on the newsroom’s pull request and runs the required checks. You publish in the next step.'));
   }
-  if (st?.canMerge) flow.push(btn(st.state === 'Ready to unpublish' ? 'Unpublish now' : 'Publish now', () => mergeNow(st), 'btn go'));
-  else if (open) flow.push(btn('Publish now', null, 'btn go', true, 'Waiting for the editorial gates and every required check'));
+  if (st?.canMerge) flow.push(btn(st.state === 'Ready to unpublish' ? 'Unpublish now' : 'Publish now', () => mergeNow(st), 'btn go', false, st.state === 'Ready to unpublish' ? 'Takes the story off the live site.' : 'Puts the story on the live site. Vercel deploys it within a few minutes.'));
+  else if (open) flow.push(btn('Publish now', null, 'btn go', true, 'Available once the editorial gates are met and every required check has passed.'));
   if (open) {
     const held = (st.pr.labels || []).some((l) => ['hold', 'needs-human'].includes(l));
     review.push(held ? btn('Release hold', () => reviewAction('release'), 'btn quiet') : btn('Hold', () => reviewAction('hold'), 'btn quiet'));
@@ -1591,19 +1758,25 @@ function setMsg(text, kind = '') {
 }
 
 async function save(intent) {
+  if (intent !== 'draft') goStrict(); // asking to submit or publish: the requirements come forward
   setMsg('Saving…');
   try {
     const r = await api('save', { method: 'POST', body: payload(intent) });
+    clearLocal(recoveryKey(), recoveryKey(r.slug)); clearTimeout(localTimer); S.localState = null;
     Object.assign(S.ed, { slug: r.slug, branch: r.branch, expectedSha: r.articleSha, pr: r.pr || S.ed.pr });
-    $('f-slug').value = r.slug; $('f-slug').readOnly = true;
+    $('f-slug').value = r.slug; $('f-slug').readOnly = true; $('slug-note').textContent = 'fixed once a story is saved';
     if (imageMode() === 'upload' && S.upload) { S.ed.currentImage = null; }
-    S.dirty = false; S.savedAt = Date.now(); renderSaveState();
+    S.dirty = false; S.savedAt = Date.now(); $('recover').hidden = true; renderSaveState();
     setMsg(intent === 'draft' ? 'Draft saved. Nothing is public.' : r.pr ? `Saved to pull request #${r.pr.number}. Required checks are running.` : 'Saved.', 'ok');
     $('editor-notice').hidden = false; $('editor-notice').textContent = `Working copy saved${r.pr ? ` in pull request #${r.pr.number}` : ''}. The live site is unchanged until you publish.`;
     pollStatus();
   } catch (e) {
-    setMsg(e.message, 'bad');
-    if (e.data?.errors) { list('errors', e.data.errors); if (describeIssues(e.data.errors).some((i) => !i.field || tabOf(i.field))) openInspector('checks'); }
+    const issues = describeIssues(e.data?.errors || []);
+    const clash = issues.find((i) => i.existing && i.distinct);
+    setMsg(clash ? 'Not saved: this story already exists. Open it, or create this as a different story.'
+      : intent === 'draft' && issues.length ? 'Not saved: something in the story would be unsafe to store. See the note in the editor.'
+      : issues.length ? `Not ready yet: ${issues.length === 1 ? 'one thing needs' : `${issues.length} things need`} attention. The list shows where.` : e.message, 'bad');
+    if (e.data?.errors) { list('errors', e.data.errors); if (!clash) openInspector('checks'); }
   }
 }
 
@@ -1629,6 +1802,7 @@ async function pollStatus() {
 }
 
 async function mergeNow(st) {
+  goStrict();
   const verb = st.state === 'Ready to unpublish' ? 'unpublish' : 'publish';
   if (!(await ask(`${verb === 'publish' ? 'Publish' : 'Unpublish'} this story?`, `This merges pull request #${st.pr.number} into main. Vercel then deploys the site. All required checks passed on commit ${st.headSha.slice(0, 7)}.`))) return;
   setMsg('Merging…');
