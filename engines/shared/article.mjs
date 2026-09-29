@@ -40,9 +40,21 @@ export function plainText(markdown) {
     .trim();
 }
 
+// Abbreviations and initials whose full stop does not end a sentence ("Dr. Smith", "the U.S. market", "Magnum P.I.").
+const NO_BREAK = /(?:\b(?:Mr|Mrs|Ms|Dr|Prof|St|Mt|Jr|Sr|Gen|Sen|Rep|Gov|Lt|Col|Sgt|Capt|No|vs|Inc|Ltd|Co|Corp|Jan|Feb|Aug|Sept|Oct|Nov|Dec|e\.g|i\.e)|(?:^|[\s("“‘])(?:[A-Z]\.)*[A-Z])\.$/;
+
+// Sentences break only at a terminator followed by a space and a capitalised (or quoted/numeric) start. The
+// previous pattern broke at every full stop, so "$5.7bn" became "...more than $5." + "7bn for..." and
+// "Sonnet 5.5" became "Sonnet 5." + "5, the newest..." in rendered Shorts.
 export function sentences(text) {
   const normalized = String(text).replace(/\s+/g, ' ').trim();
-  return (normalized.match(/[^.!?]+[.!?][\"”’]?|[^.!?]+$/g) || []).map(s => s.trim()).filter(s => s.length > 20);
+  const parts = normalized.split(/(?<=[.!?]["”’)]?)\s+(?=["“‘(]?[A-Z0-9])/);
+  const out = [];
+  for (const part of parts) {
+    if (out.length && NO_BREAK.test(out[out.length - 1])) out[out.length - 1] += ' ' + part;
+    else out.push(part);
+  }
+  return out.map(s => s.trim()).filter(s => s.length > 20);
 }
 
 export function bodySentences(markdown) {
