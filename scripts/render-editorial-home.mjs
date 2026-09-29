@@ -1,11 +1,12 @@
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join, dirname, basename } from 'node:path';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildPublicDir } from './lib/paths.mjs';
 import { REGIONS, storiesByRegion } from '../src/lib/geography.js';
 import { WORLD_MAP_GROUPS, WORLD_MAP_VIEWBOX } from '../src/lib/world-map-data.js';
 import { THEME_HEAD, THEME_BODY } from '../src/lib/theme-boot.js';
 import { storyImage } from '../src/lib/story-image.js';
+import { selectHome, loadPublished, LATEST_ROWS } from './lib/home-selection.mjs';
 
 // Crop focus for backfilled article images (scripts/backfill-article-images.mjs).
 const creditsFile = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', 'image-credits.json');
@@ -19,29 +20,6 @@ const articlesDir = join(root, 'src', 'content', 'articles');
 const homePath = join(buildPublicDir, 'index.html');
 const site = (process.env.SITE_URL || 'https://nuvellum.vercel.app').replace(/\/$/, '');
 
-function parseValue(value) {
-  const v = String(value ?? '').trim();
-  if (v.startsWith('[') && v.endsWith(']')) {
-    try { return JSON.parse(v); } catch {}
-  }
-  if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) return v.slice(1, -1);
-  if (v === 'true') return true;
-  if (v === 'false') return false;
-  return v;
-}
-
-function parseFrontmatter(src) {
-  if (!src.startsWith('---')) return {};
-  const end = src.indexOf('\n---', 3);
-  if (end < 0) return {};
-  const data = {};
-  for (const line of src.slice(3, end).trim().split(/\r?\n/)) {
-    const m = line.match(/^([A-Za-z][A-Za-z0-9]*):\s*(.*)$/);
-    if (m) data[m[1]] = parseValue(m[2]);
-  }
-  return data;
-}
-
 function esc(value) {
   return String(value ?? '').replace(/[&<>"']/g, ch => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -54,67 +32,9 @@ const route = article => `/article/${article.slug}`;
 // (see TEXT-LED below) rather than dressed in section art that does not depict them.
 const art = article => storyImage(article);
 
-const articles = readdirSync(articlesDir)
-  .filter(name => name.endsWith('.md'))
-  .map(name => {
-    const slug = basename(name, '.md');
-    const fm = parseFrontmatter(readFileSync(join(articlesDir, name), 'utf8'));
-    return { slug, ...fm };
-  })
-  .filter(article => article.status === 'published')
-  .sort((a,b) => String(b.date||'').localeCompare(String(a.date||''))
-    || String(b.publishedAt||'').localeCompare(String(a.publishedAt||''))
-    || a.slug.localeCompare(b.slug));
-
-if (!articles.length) throw new Error('Editorial homepage requires at least one published story.');
-
-const world = articles.filter(a => String(a.section).toLowerCase() === 'world');
-const hero = world[0] || articles[0];
-// Supporting stories: the newest story from each of three different sections (not the hero's),
-// topped up with the newest remaining stories if fewer sections are available.
-const supporting = [];
-for (const a of articles) {
-  if (supporting.length === 3) break;
-  if (a.slug === hero.slug) continue;
-  if ([hero, ...supporting].some(s => s.section === a.section)) continue;
-  supporting.push(a);
-}
-for (const a of articles) {
-  if (supporting.length === 3) break;
-  if (a.slug !== hero.slug && !supporting.includes(a)) supporting.push(a);
-}
-const onTop = new Set([hero.slug, ...supporting.map(a => a.slug)]);
-// Latest filters. Each set holds at most five real stories that are not already on the page
-// above (hero and supporting cards). Only the visible set is in the DOM; the others live in
-// <template> elements, so candidate rows can never render or add height.
-const LATEST_ROWS = 5;
-const latestFilters = [
-  { key: 'all', label: 'All', href: '/latest', match: () => true },
-  { key: 'world', label: 'World', href: '/section/world', match: s => s === 'world' },
-  { key: 'business', label: 'Business', href: '/section/business', match: s => s === 'business' },
-  { key: 'tech', label: 'Tech', href: '/section/technology', match: s => s === 'technology' },
-  { key: 'culture', label: 'Culture', href: '/section/culture', match: s => s === 'culture' },
-  { key: 'screen', label: 'Screen & Play', href: '/section/entertainment', match: s => ['film & tv', 'anime', 'gaming'].includes(s) },
-  { key: 'sports', label: 'Sports', href: '/section/sports', match: s => s === 'sports' }
-].map(filter => ({
-  ...filter,
-  items: articles.filter(a => !onTop.has(a.slug) && filter.match(String(a.section || '').toLowerCase())).slice(0, LATEST_ROWS)
-}));
-const focus = world.find(a => a.slug !== hero.slug && String(a.type).toLowerCase() === 'analysis')
-  || world.find(a => a.slug !== hero.slug)
-  || articles.find(a => a.slug !== hero.slug)
-  || hero;
-const focusStories = [focus];
-for (const a of articles) {
-  if (focusStories.length === 3) break;
-  if (a.slug === hero.slug || focusStories.some(x => x.slug === a.slug)) continue;
-  const type = String(a.type || '').toLowerCase();
-  if (['analysis','feature','explainer','opinion'].includes(type)) focusStories.push(a);
-}
-for (const a of articles) {
-  if (focusStories.length === 3) break;
-  if (a.slug !== hero.slug && !focusStories.some(x => x.slug === a.slug)) focusStories.push(a);
-}
+// Placement rules live in scripts/lib/home-selection.mjs (tested there). Every published story takes part,
+// manual (Editorial Desk) and automated (newsroom) alike.
+const { articles, world, hero, supporting, onTop, latestFilters, focusStories } = selectHome(loadPublished(articlesDir));
 const [focusLead, ...focusSide] = focusStories;
 
 const regionMap = storiesByRegion(articles);

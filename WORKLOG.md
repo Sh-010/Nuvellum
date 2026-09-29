@@ -4,6 +4,25 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-29 (evening): Editorial Desk integration pass (PR #121)
+
+- **Homepage and manual stories.** Traced after the first real manual publication (#123, a Science essay).
+  - The production homepage is rendered by `scripts/render-editorial-home.mjs`, which already took every published story, whatever its origin.
+  - #123 is live on the homepage as the first card under the hero. It isn't the hero because the hero is the newest *World* story, and it isn't in Latest because Latest deliberately skips stories already shown above.
+  - The `origin === "automation"` filter was in `scripts/inject-home-content.mjs`, the older v5.1 slot filler, which is not part of `npm run build`. It is fixed anyway: all origins, and manual images are the story's own image or none, never generated art or an empty `<img>`.
+  - Placement rules moved unchanged into `scripts/lib/home-selection.mjs` so they can be tested. The built homepage is byte-identical except the build-time "n hours ago" labels.
+  - `check-build-output` now also fails on an empty or undefined `<img src>` on the homepage, and when the newest story of any origin among the four newest is missing from the homepage.
+  - Docs corrected.
+- **Validation wording.** `src/lib/admin-messages.js` translates every validator, gate and image message into editorial language and names its field and group. The rules are unchanged.
+  - In the editor, blockers are listed under "Must fix before publishing" and mark their field and group, opening the group if it is collapsed. Clicking one scrolls to the field and focuses it, and the mark clears as soon as the field is edited.
+  - Warnings, such as "No image: the story will be set text-led", sit apart under "won't block" and never mark, open or block anything.
+- **Tests:**
+  - `npm test` 290/290 (new: `home-selection`, `admin-messages`); `validate`, `build`, `check:build` and `security:audit` all pass.
+  - Browser QA: editor flow 31/31 at 1440 px, 820 px (touch) and 390 px (touch); toolbar and scroll preservation 70/70 at each of the three sizes; end-to-end draft → PR → checks → publish; layouts and dark mode.
+  - The built homepage was inspected with temporary manual fixtures: a manual World story took the hero (text-led), a manual photo story took a card under the hero with its own image, and a manual story reached Latest. The fixtures were removed afterwards.
+
+---
+
 ## 2026-09-29: Admin dashboard and Editorial Review Queue (`/admin`)
 
 Branch `feat/admin-dashboard`, PR open and **not merged**. Operator guide: `docs/ADMIN.md`.

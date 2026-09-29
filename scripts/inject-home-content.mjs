@@ -2,6 +2,11 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildPublicDir } from './lib/paths.mjs';
+import { storyImage } from '../src/lib/story-image.js';
+
+// Legacy v5.1 slot filler. The production build renders the homepage with scripts/render-editorial-home.mjs
+// (placement rules in scripts/lib/home-selection.mjs); this script is not part of `npm run build`. It is kept
+// consistent with those rules: every published story takes part, manual and automated alike.
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = dirname(here);
@@ -37,13 +42,17 @@ function esc(value) {
 
 function attr(value) { return esc(value); }
 function route(a) { return `/article/${a.slug}`; }
+// Automated stories keep their existing art (a custom editorial image, otherwise the generated plate).
+// Every other story shows only its own configured image, and nothing when it has none: never invented art.
 function art(a) {
+  if (a.origin !== 'automation') return storyImage(a);
   const hasCustomEditorialImage = a.origin === 'automation'
     && typeof a.image === 'string'
     && a.image.trim()
     && !a.image.startsWith('/images/');
   return a.origin === 'automation' && !hasCustomEditorialImage ? `/generated/${a.slug}.svg` : a.image;
 }
+const imgTag = a => `<img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}">`;
 function kicker(a) { return `${a.section} · ${a.type}`; }
 function upperKicker(a) { return `${a.section} · ${a.type}`.toUpperCase(); }
 
@@ -56,14 +65,14 @@ const published = readdirSync(articlesDir)
   })
   .filter(a => a.status === 'published');
 
+// All real published stories, whatever their origin; the v5.1 demo slots stay only where there are too few.
 const real = published
-  .filter(a => a.origin === 'automation')
   .sort((a,b) => String(b.date||'').localeCompare(String(a.date||''))
     || String(b.publishedAt||'').localeCompare(String(a.publishedAt||''))
     || a.slug.localeCompare(b.slug));
 
 if (!real.length) {
-  console.log('No published automated stories yet; preserving v5.1 homepage demo slots.');
+  console.log('No published stories yet; preserving v5.1 homepage demo slots.');
   process.exit(0);
 }
 
@@ -78,7 +87,7 @@ function segmentReplace(startMarker, endMarker, transform) {
 
 function leadMarkup(a) {
   return `<article class="lead reveal" data-tilt data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}">
-      <a class="media" href="${route(a)}"><span class="quick-chip">Open story</span><img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}"><span class="photo-credit">NUVELLUM / EDITORIAL ART</span></a>
+      ${art(a) ? `<a class="media" href="${route(a)}"><span class="quick-chip">Open story</span>${imgTag(a)}${a.origin === 'automation' ? '<span class="photo-credit">NUVELLUM / EDITORIAL ART</span>' : ''}</a>` : ''}
       <div class="kicker">${esc(upperKicker(a))}</div>
       <h1><a href="${route(a)}">${esc(a.title)}</a></h1>
       <div class="dek">${esc(a.dek)}</div>
@@ -88,7 +97,7 @@ function leadMarkup(a) {
 }
 
 function sideMarkup(a, withImage = true) {
-  const media = withImage ? `<a class="media" href="${route(a)}"><span class="quick-chip">Open story</span><img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}"></a>` : '';
+  const media = withImage && art(a) ? `<a class="media" href="${route(a)}"><span class="quick-chip">Open story</span>${imgTag(a)}</a>` : '';
   return `<article class="side reveal interactive-story motion-story" tabindex="0" data-tilt data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}">${media}<div class="kicker">${esc(a.section.toUpperCase())}</div><h2><a href="${route(a)}">${esc(a.title)}</a></h2><p>${esc(a.dek)}</p><div class="card-tools"><span class="meta">${esc(a.readingTime)} read</span><button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">♡</button></div></article>`;
 }
 
@@ -99,14 +108,14 @@ function latestMarkup(a) {
 }
 
 function storyCardMarkup(a) {
-  return `<article class="story-card reveal interactive-story motion-story" tabindex="0" data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}"><a class="media" href="${route(a)}"><span class="quick-chip">Open story</span><img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}"></a><div class="kicker">${esc(a.type.toUpperCase())}</div><h3><a href="${route(a)}">${esc(a.title)}</a></h3><p>${esc(a.dek)}</p><div class="card-tools"><span class="meta">${esc(a.readingTime)} read</span><button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">♡</button></div></article>`;
+  return `<article class="story-card reveal interactive-story motion-story" tabindex="0" data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}">${art(a) ? `<a class="media" href="${route(a)}"><span class="quick-chip">Open story</span>${imgTag(a)}</a>` : ''}<div class="kicker">${esc(a.type.toUpperCase())}</div><h3><a href="${route(a)}">${esc(a.title)}</a></h3><p>${esc(a.dek)}</p><div class="card-tools"><span class="meta">${esc(a.readingTime)} read</span><button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">♡</button></div></article>`;
 }
 
 function screenMarkup(a, kind) {
   const cls = kind === 'feature' ? 'feature reveal interactive-story motion-story' : 'mini reveal interactive-story motion-story';
   const p = kind === 'feature' ? `<p>${esc(a.dek)}</p>` : '';
   const saveText = kind === 'feature' ? '♡ Save' : '♡';
-  return `<article class="${cls}" tabindex="0" data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}"><div class="media"><span class="quick-chip">Open story</span><img src="${art(a)}" alt="${attr(a.imageAlt || `Editorial illustration for ${a.title}`)}"></div><div class="kicker">${esc(a.section.toUpperCase())}</div><h3>${esc(a.title)}</h3>${p}<button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">${saveText}</button></article>`;
+  return `<article class="${cls}" tabindex="0" data-title="${attr(a.title)}" data-kicker="${attr(kicker(a))}" data-route="${route(a)}">${art(a) ? `<div class="media"><span class="quick-chip">Open story</span>${imgTag(a)}</div>` : ''}<div class="kicker">${esc(a.section.toUpperCase())}</div><h3>${esc(a.title)}</h3>${p}<button class="bookmark" data-save="${attr(a.title)}" data-cat="${attr(a.section)}">${saveText}</button></article>`;
 }
 
 function opinionMarkup(a) {
@@ -177,8 +186,10 @@ if (opinionReal.length) {
 
 html = html.replace(/(<a class="ticker-text" id="tickerText" href=")[^"]+("[^>]*>)[\s\S]*?(<\/a>)/, `$1${route(hero)}$2${esc(hero.title)}$3`);
 const site = (process.env.SITE_URL || 'https://nuvellum.vercel.app').replace(/\/$/,'');
-html = html.replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${site}${art(hero)}">`);
-html = html.replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${site}${art(hero)}">`);
+if (art(hero)) {
+  html = html.replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${site}${art(hero)}">`);
+  html = html.replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${site}${art(hero)}">`);
+}
 
 writeFileSync(homePath, html);
 console.log(`Injected ${real.length} published automated stories into v5.1 homepage slots without changing layout CSS.`);

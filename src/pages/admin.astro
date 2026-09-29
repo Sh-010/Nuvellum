@@ -330,7 +330,25 @@ iframe.preview{display:block;width:100%;height:80vh;border:1px solid var(--line)
 .gates li.ok::before{content:'✓';border-color:var(--ok-line);color:var(--ok)}
 .checks{list-style:none;margin:0 0 10px;padding:0;font-family:var(--sans);font-size:12.5px}
 .checks li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--hair)}
-.issues{margin:0 0 10px;padding-left:18px;font-family:var(--sans);font-size:12.5px;line-height:1.45}
+.issues{list-style:none;margin:0 0 12px;padding:0;font-family:var(--sans);font-size:12.5px;line-height:1.45}
+.issues li{position:relative;padding:3px 0 3px 17px}
+.issues li::before{position:absolute;left:0;top:4px;font-size:10px}
+.issues.errors li::before{content:'✕';color:var(--bad)}
+.issues.warnings li::before{content:'◦';font-size:13px;top:1px;color:var(--warn)}
+.issues-h{margin:4px 0 5px;font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.issues-h.bad{color:var(--bad)}.issues-h.note{color:var(--warn)}
+.issue-link{border:0;background:none;padding:0;margin:0;text-align:left;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px;transition:text-decoration-color .2s var(--ease)}
+.issue-link:hover,.issue-link:focus-visible{text-decoration-color:currentColor;outline:none}
+.field.has-issue>label,.field.has-issue>.label{color:var(--bad)}
+.field.has-issue input[type=text],.field.has-issue input[type=url],.field.has-issue input[type=date],.field.has-issue input[type=datetime-local],.field.has-issue select,.field.has-issue textarea{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad-bg)}
+.headline-field.has-issue input[type=text],.dek-field.has-issue textarea{box-shadow:none;border-bottom-color:var(--bad)}
+.field.has-issue .seg{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad-bg)}
+.field.has-issue .regions{outline:1px solid var(--bad-line);outline-offset:6px}
+#img-mode.has-issue{outline:1px solid var(--bad-line);outline-offset:6px}
+textarea#f-body.has-issue{box-shadow:inset 3px 0 0 var(--bad)}
+.group.has-issue>summary h3,.group.has-issue>summary .group-note{color:var(--bad)}
+.issue-flash{animation:issueFlash 1.3s var(--ease)}
+@keyframes issueFlash{0%,35%{background:var(--bad-bg)}100%{background:transparent}}
 .issues:empty{display:none}
 .issues.errors li{color:var(--bad)}.issues.warnings li{color:var(--warn)}
 .rail-pub{position:sticky;bottom:0;background:var(--paper);background-image:var(--grain);border-top:1px solid var(--line2);border-bottom:0;box-shadow:0 -14px 18px -16px rgba(0,0,0,.35)}
@@ -560,7 +578,9 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
           <section class="rail-sec">
             <h3 class="rail-h">Checks <span class="hint" id="rt"></span></h3>
             <ul class="checks" id="ed-checks"></ul>
+            <p class="issues-h bad" id="errors-h" hidden>Must fix before publishing</p>
             <ul class="issues errors" id="errors"></ul>
+            <p class="issues-h note" id="warnings-h" hidden>Worth a look · won’t block</p>
             <ul class="issues warnings" id="warnings"></ul>
           </section>
           <section class="rail-sec rail-pub">
@@ -588,6 +608,7 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
 
 <script>
 import { formatMarkdown, linkIntent, isSafeLinkUrl, narrowEdit } from '../lib/markdown-format.js';
+import { describeIssues } from '../lib/admin-messages.js';
 const API = '/api/admin';
 const $ = (id) => document.getElementById(id);
 const el = (tag, attrs = {}, ...kids) => {
@@ -864,18 +885,13 @@ function syncGroups() {
   $('gs-image').classList.toggle('need', needAlt);
   if (needAlt) $('g-image').open = true;
 }
-function openGroupsFor(errors) {
-  const t = errors.join(' ').toLowerCase();
-  if (/\btags?\b|countr|region/.test(t)) $('g-class').open = true;
-  if (/source/.test(t)) $('g-sources').open = true;
-  if (/image|alt text|credit|licen/.test(t)) $('g-image').open = true;
-}
 
 const chipsState = { tags: [], countries: [] };
 function renderChips(kind) {
   $(kind === 'tags' ? 'tag-chips' : 'country-chips').replaceChildren(...chipsState[kind].map((v, i) => el('span', { class: 'chip' }, v,
     el('button', { type: 'button', 'aria-label': `Remove ${v}`, text: '×', onclick: () => { chipsState[kind].splice(i, 1); renderChips(kind); scheduleCheck(); } }))));
   syncGroups();
+  if (chipsState[kind].length) clearIssueBox($(kind === 'tags' ? 'tag-in' : 'country-in').closest('.field'));
 }
 function chipInput(inputId, kind) {
   $(inputId).addEventListener('keydown', (ev) => {
@@ -929,7 +945,7 @@ async function openEditor(target, previewFirst = false) {
   $('f-provider').value = d.imageProvider || 'manual'; $('f-kind').value = d.imageKind || 'photo'; $('f-license').value = d.imageLicense || '';
   $('f-licenseurl').value = d.imageLicenseUrl || ''; $('f-sourcepage').value = d.imageSourcePage || ''; $('f-imgurl').value = '';
   $('g-class').open = !target; $('g-sources').open = !target; $('g-image').open = false;
-  updateCounts(); renderSources(); renderActions(); $('errors').replaceChildren(); $('warnings').replaceChildren(); $('action-msg').textContent = '';
+  updateCounts(); renderSources(); renderActions(); list('errors', []); list('warnings', []); $('action-msg').textContent = '';
   $('ed-state').textContent = !target ? 'Not saved' : e.pr ? 'Loading status…' : e.branch ? 'Draft' : e.mainStatus === 'published' ? 'Published' : e.mainStatus || '';
   $('ed-meta').textContent = e.slug ? `/${e.slug}` : ''; $('ed-checks').replaceChildren(); $('ed-pr').replaceChildren();
   if (e.branch) pollStatus();
@@ -1109,7 +1125,64 @@ async function runCheck(immediate) {
     renderPreview(r.preview);
   } catch (e) { if (e.data?.errors) list('errors', e.data.errors); else if (e.status !== 401) list('errors', [e.message]); }
 }
-function list(id, items) { $(id).replaceChildren(...(items || []).map((t) => el('li', { text: t }))); if (id === 'errors') openGroupsFor(items || []); }
+// Validation messages: the server's rules are unchanged; describeIssues (src/lib/admin-messages.js) turns
+// each one into editorial wording and names the field it is about. Blockers mark that field (and open its
+// group); warnings are listed apart and never block, open or mark anything.
+function list(id, items) {
+  const issues = describeIssues(items);
+  $(id).replaceChildren(...issues.map((it) => el('li', { 'data-field': it.field || undefined },
+    it.field ? el('button', { type: 'button', class: 'issue-link', text: it.text, title: 'Go to the field', onclick: () => goToField(it) }) : it.text)));
+  $(`${id}-h`).hidden = !issues.length;
+  if (id === 'errors') markIssues(issues);
+}
+function fieldTarget(field) {
+  if (!field) return null;
+  if (field === 'risk') return { focus: document.querySelector('input[name=risk]:checked') || document.querySelector('input[name=risk]'), box: document.querySelector('.seg')?.closest('.field') };
+  if (field === 'regions') return { focus: document.querySelector('.region'), box: $('regions')?.closest('.field') };
+  if (field === 'img-mode') return { focus: document.querySelector('input[name=imgmode]:checked'), box: $('img-mode') };
+  const n = $(field);
+  if (!n) return null;
+  return { focus: n, box: n.id === 'f-body' ? n : n.closest('.field') || n };
+}
+function markIssues(issues) {
+  for (const n of document.querySelectorAll('#view-editor .has-issue')) n.classList.remove('has-issue');
+  for (const it of issues) {
+    const t = fieldTarget(it.field);
+    if (t?.box) t.box.classList.add('has-issue');
+    if (it.group && $(it.group)) $(it.group).open = true;
+  }
+  syncGroupIssues();
+}
+function syncGroupIssues() {
+  for (const g of document.querySelectorAll('#meta-pane details.group')) g.classList.toggle('has-issue', Boolean(g.querySelector('.has-issue')));
+}
+function goToField(it) {
+  if ($('workspace').dataset.mode === 'preview') { $('tab-write').click(); }
+  if (it.group && $(it.group)) $(it.group).open = true;
+  let t = fieldTarget(it.field);
+  if (t?.focus && !t.focus.offsetParent) t = fieldTarget('img-mode') && it.group === 'g-image' ? fieldTarget('img-mode') : t;
+  if (!t?.box) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => {
+    t.box.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    try { t.focus?.focus({ preventScroll: true }); } catch {}
+    t.box.classList.remove('issue-flash'); void t.box.offsetWidth; t.box.classList.add('issue-flash');
+  });
+}
+// A blocker disappears as soon as its field is edited; the next check (moments later) confirms or restores it.
+function clearIssueBox(box) {
+  if (!box?.classList.contains('has-issue')) return;
+  box.classList.remove('has-issue');
+  for (const li of [...$('errors').querySelectorAll('li[data-field]')]) if (fieldTarget(li.dataset.field)?.box === box) li.remove();
+  $('errors-h').hidden = !$('errors').children.length;
+  syncGroupIssues();
+}
+function clearIssueFrom(target) {
+  if (!target?.closest || target.id === 'tag-in' || target.id === 'country-in') return; // chips count when added, not while typing
+  clearIssueBox(target.id === 'f-body' ? target : target.closest('.field.has-issue, #img-mode.has-issue'));
+}
+$('view-editor').addEventListener('input', (ev) => clearIssueFrom(ev.target));
+$('view-editor').addEventListener('change', (ev) => clearIssueFrom(ev.target));
 
 function renderPreview(html) {
   S.lastPreview = html;

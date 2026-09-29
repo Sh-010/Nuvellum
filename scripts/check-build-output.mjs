@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { root, articlesDir } from './lib/paths.mjs';
 import { parseFrontmatter } from './lib/editorial.mjs';
 import { COUNTRIES, countrySlug } from '../src/lib/countries.js';
+import { selectHome, loadPublished } from './lib/home-selection.mjs';
 
 const dist = join(root, 'dist');
 const errors = [];
@@ -18,6 +19,17 @@ if (!home.includes('data-home-version="nuvellum-editorial-home-v6"')) errors.pus
 if (!home.includes('id="world-desk"')) errors.push('index.html: World Desk missing');
 if (!home.includes('id="nuvellum-editorial-home-v6"')) errors.push('index.html: homepage interaction script missing');
 if (!home.includes('/article/')) errors.push('index.html: live article routes missing');
+// Text-led stories (manual or automated, no image) must not leave an image without a source.
+if (/<img\b[^>]*\ssrc="(?:|undefined|null)"/.test(home)) errors.push('index.html: an image has an empty or undefined src');
+// Every published story, whatever its origin, is eligible: the newest story of each origin among the four
+// newest must be on the homepage (hero, the row under it, or Latest).
+{
+  const { articles } = selectHome(loadPublished(articlesDir));
+  for (const origin of new Set(articles.slice(0, 4).map((a) => a.origin || 'legacy'))) {
+    const newest = articles.find((a) => (a.origin || 'legacy') === origin);
+    if (!home.includes(`/article/${newest.slug}"`)) errors.push(`index.html: newest ${origin} story (${newest.slug}) is not on the homepage`);
+  }
+}
 if (!home.includes('id="brandZone"')) errors.push('index.html: interactive Nuvellum brand mark missing');
 if (!home.includes('/headlines/n')) errors.push('index.html: headline-letter discovery links missing');
 if (!home.includes('id="newsletter"')) errors.push('index.html: newsletter section missing');
