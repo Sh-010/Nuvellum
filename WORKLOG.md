@@ -408,3 +408,9 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - `Opinion` / `Essay` / `Ideas` remain illustration-first; genuinely abstract `Analysis` may still keep a story-specific illustration after the real-photo pass.
 - When a News story arrives with only `/generated/ai/<slug>.svg` (or a retired house plate) and no sufficiently relevant Commons photo clears the threshold, the visual pass now removes image metadata and the unused generated SVG, producing an intentional text-led article.
 - Added regression tests for technology/film news classification and text-led metadata cleanup. This change does not alter article copy, editorial clearance, or publication gates.
+
+## 2026-09-29 — mobile In Focus regression
+
+- Fixed the homepage `In Focus` responsive grid after a real-phone QA recording showed secondary cards crushed into narrow columns with a large blank area before `Screen & Play`.
+- At tablet/mobile widths the inherited desktop row sizing is now reset; text-led mini stories use a single text column.
+- At phone widths secondary stories stack vertically with readable image/text proportions and no phantom empty grid row.
