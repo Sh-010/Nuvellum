@@ -24,7 +24,7 @@ Anthropic has released Sonnet 5.5, the newest iteration of its mid-tier artifici
 
 ## Speed and performance benchmarks
 
-Sonnet 5 follows its predecessor, Sonnet 5, which was announced roughly three months prior with a focus on efficient agentic deployment at lower costs than competitors. According to Anthropic, the primary selling point of Sonnet 5.5 is speed. The lab claims the new model is 30 percent faster than the previous version while maintaining a significantly slower rate of token burn.
+Sonnet 5.5 follows its predecessor, Sonnet 5, which was announced roughly three months prior with a focus on efficient agentic deployment at lower costs than competitors. According to Anthropic, the primary selling point of Sonnet 5.5 is speed. The lab claims the new model is 30 percent faster than the previous version while maintaining a significantly slower rate of token burn.
 
 Within Anthropic’s model hierarchy, Sonnet sits below the Opus model in terms of raw power, though it often provides greater utility in specific circumstances due to its agility. Benchmarks provided by Anthropic indicate that Sonnet 5.5 outperforms Opus 5.5 in agentic coding, a capability attributed to its capacity to spawn multiple agents without exceeding cost thresholds.
 
