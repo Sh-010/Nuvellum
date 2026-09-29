@@ -26,6 +26,17 @@ export function applyVisualMetadata(src,fields){
   lines.splice(anchor,0,...inserted);
   return `---\n${lines.join('\n')}\n---${src.slice(end+4)}`;
 }
+
+const VISUAL_KEYS=new Set(['image','imageAlt','imageProvider','imageKind','imageCaption','imageCredit','imageLicense','imageLicenseUrl','imageSourcePage','imageGenerationMode']);
+export function removeVisualMetadata(src){
+  if(!String(src).startsWith('---'))throw new Error('article is missing frontmatter');
+  const end=src.indexOf('\n---',3);if(end<0)throw new Error('article frontmatter is not closed');
+  const lines=src.slice(4,end).split(/\r?\n/).filter(line=>{
+    const m=line.match(/^([A-Za-z][A-Za-z0-9]*):/);
+    return !m||!VISUAL_KEYS.has(m[1]);
+  });
+  return `---\n${lines.join('\n')}\n---${src.slice(end+4)}`;
+}
 function queries(article,brief){
   const countries=(article.countries||[]).slice(0,2).join(' ');
   const tags=(article.tags||[]).slice(0,3).join(' ');
@@ -60,7 +71,20 @@ export async function acquireForArticle(path,{doApply=false,search=searchWikimed
   }
   const strict=data.risk==='sensitive';
   const pick=selectBestVisual([...seen.values()],brief,{minConfidence:strict?86:78,minSemantic:strict?18:12});
-  if(!pick.best)return{outcome:'fallback',slug,mode,candidates:pick.ranked.slice(0,5)};
+  if(!pick.best){
+    // For ordinary news, a failed photo search means intentional text-led presentation, not generic AI art.
+    // Illustration remains a fallback only for analysis/abstract pieces explicitly classified photo-or-illustration.
+    if(mode==='photo'&&doApply){
+      const image=String(data.image||'');
+      if(/^\/generated\/ai\/.+\.svg$/i.test(image)||/^\/uploads\/house\/[a-z-]+\.svg$/i.test(image)){
+        writeFileSync(abs,removeVisualMetadata(src));
+        const ai=join(root,'public','generated','ai',`${slug}.svg`);
+        if(existsSync(ai))rmSync(ai);
+        return{outcome:'text-led',slug,mode,candidates:pick.ranked.slice(0,5)};
+      }
+    }
+    return{outcome:'fallback',slug,mode,candidates:pick.ranked.slice(0,5)};
+  }
   const candidate=pick.best;
   if(!doApply)return{outcome:'selected',slug,mode,candidate};
   const dl=await download(candidate.url);
