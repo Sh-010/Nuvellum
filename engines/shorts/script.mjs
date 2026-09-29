@@ -19,14 +19,14 @@ export function hookScore(sentence, index) {
   if (index > 0 && NEEDS_CONTEXT.test(sentence)) score -= 6;
   if (index > 0 && REFERS_BACK.test(sentence)) score -= 5;
   if (sentence.length >= 55 && sentence.length <= 180) score += 3;
-  if (sentence.length > 240) score -= 4;
+  if (sentence.length > 240 && !(index === 0 && sentence.length <= 320)) score -= 4;
   if (/\d/.test(sentence)) score += 2;
   if (CONTRAST.test(sentence)) score += 1.5;
   score += Math.min(3, (sentence.match(PROPER) || []).length * .55);
   if (/[“"]/.test(sentence)) score -= 1;
   score -= index * .3;
   // A news lead is written to stand on its own; later sentences lean on it ("the practice", "the initiative").
-  if (index === 0 && sentence.length <= 240) score += 4;
+  if (index === 0 && sentence.length <= 320) score += 4;
   return score;
 }
 

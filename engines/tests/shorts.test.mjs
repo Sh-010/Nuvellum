@@ -94,4 +94,5 @@ test('the hook never opens on a line that points back to something the viewer ha
   const s = loadStory('us-deportations-are-triggering-a-cascade-of-rights-abuses-un-experts-warn');
   const hook = extractiveScript(s).lines.find((l) => l.role === 'hook').text;
   assert.doesNotMatch(hook, /\b(such|these|those)\b/i, hook);
+  assert.equal(hook, s.sentences[0], 'the self-contained lead opens the short');
 });

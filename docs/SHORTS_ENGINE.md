@@ -106,5 +106,21 @@ Outputs are under `engines/out/shorts/<slug>/`: `short.mp4`, `poster.jpg`, `capt
 
 ## Automation status
 
-`.github/workflows/shorts-preview.yml` renders a real preview as a PR smoke test and supports manual rendering by slug. It does **not** auto-post and the normal article publication gate never depends on it.
+`.github/workflows/shorts-preview.yml`:
+- renders an espeak preview as a PR smoke test;
+- supports **manual rendering with the Piper voice** (Actions → Shorts preview → Run workflow):
+  - `slug`: a published story;
+  - `voice`: `piper`, the default; or `espeak`;
+  - `full`: 1080×1920, 30 fps.
+
+Piper and `en_GB-cori-high` are installed at run time and cached, never committed. A verify step fails the run if:
+- the narration fell back from the requested voice (a silent video can't pass as a Piper render);
+- the MP4 has no AAC audio track;
+- `captions.srt` is missing.
+
+The MP4, poster, SRT and script are uploaded as a 7-day artifact for review.
+
+It does **not** post. Social publishing (`docs/SOCIAL_DISTRIBUTION.md`) records YouTube as `skipped` until a reviewed Short exists, and TikTok always as `awaiting_approval`. The normal article publication gate never depends on either.
+
+Hook rule: the first line must stand on its own. The article's lead sentence is favoured, and lines that point back to earlier context ("such deals", "those talks") are penalised.
 
