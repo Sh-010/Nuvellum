@@ -5,9 +5,10 @@ section: "Science"
 type: "Essay"
 author: "Sam"
 date: "2026-09-29"
+updated: "2026-09-29"
 publishedAt: "2026-09-29T17:31:58Z"
 readingTime: "2 min"
-status: "published"
+status: "draft"
 tags: ["Philosophy","Metaphysics"]
 regions: ["middle-east-north-africa"]
 countries: []
