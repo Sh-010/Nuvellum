@@ -9,7 +9,9 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&a
 const unesc = (s) => String(s).replace(/&(amp|lt|gt|quot|#39);/g, (m, k) => ({ amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'" }[k]));
 
 export function headingId(text) {
-  return String(text).toLowerCase().replace(/<[^>]*>/g, '').replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '-') || 'section';
+  let s = String(text).toLowerCase();
+  for (let prev = null; prev !== s;) { prev = s; s = s.replace(/<[^>]*>/g, ''); }
+  return s.replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '-') || 'section';
 }
 
 function inline(raw) {

@@ -1,6 +1,6 @@
 // Single-owner authentication for the Nuvellum admin. Stateless signed session cookies (HMAC-SHA256),
 // server-side password check, CSRF tokens bound to the session, and login throttling.
-import { createHmac, createHash, randomBytes, timingSafeEqual } from 'node:crypto';
+import { createHmac, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 
 export const SESSION_COOKIE = '__Host-nuvellum_admin';
 export const SESSION_TTL_MS = 8 * 3600e3;
@@ -18,12 +18,17 @@ export function authConfig(env) {
   return { ok: problems.length === 0, problems, password, secret };
 }
 
-const digest = (s) => createHash('sha256').update(String(s), 'utf8').digest();
+// Both sides go through scrypt (a deliberately slow KDF) with a per-instance random salt, then a constant-time
+// compare. The configured password's derived key is cached so each attempt costs one derivation.
+const KDF_SALT = randomBytes(16);
+const derive = (s) => scryptSync(String(s).normalize('NFC'), KDF_SALT, 32, { N: 16384, r: 8, p: 1 });
+let cached = { password: null, key: null };
 
-/** Constant-time password comparison (hashing first equalises lengths). */
+/** Constant-time password comparison against a scrypt-derived key. */
 export function passwordMatches(candidate, password) {
   if (typeof candidate !== 'string' || !candidate || candidate.length > 1024) return false;
-  return timingSafeEqual(digest(candidate), digest(password));
+  if (cached.password !== password) cached = { password, key: derive(password) };
+  return timingSafeEqual(derive(candidate), cached.key);
 }
 
 const b64u = (buf) => Buffer.from(buf).toString('base64url');
