@@ -4,6 +4,43 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 10: real-site QA sweep (production)
+
+Against https://www.nuvellum.news at the time of writing: main = PR #125. PRs #126–#139 are unmerged, and each was QA'd on its own local build (see its entry).
+
+- **Crawl:** all 81 sitemap URLs and all 97 distinct internal links found on them return 200.
+  - One "404" was a crawler false positive: `'/article/'+encodeURIComponent(x.slug)` inside the homepage's search script, not a link.
+  - Apex → www redirects with a 308.
+- **Security headers on /:** HSTS, CSP, X-Content-Type-Options, Referrer-Policy, Permissions-Policy and X-Frame-Options, all present.
+- **Chrome at 360 and 1440 px on 9 pages** (home, Latest, World Explorer, Section World, an article, About, Privacy, Advertise, and a 404):
+  - status as expected (404 for the missing page);
+  - 0 horizontal overflow, 0 broken images, 0 failed sub-requests, 0 console errors (except the expected document 404).
+  - Load events at 535–2435 ms from this connection. The 2.4 s case was the desktop homepage's first load; this is not a lab performance measurement.
+- **Phase 1 still verified live:** the manifest parses and all icons decode (earlier CDP check). A physical-phone install is still owed.
+- Not possible here: real iOS/Android devices, and the Vercel previews (protected by Vercel sign-in). Their equivalents were the local production builds in Chrome.
+
+## 2026-09-30: v1 launch programme, Phase 9: security and operations hardening
+
+Branch `feat/security-ops` (stacked on `feat/monetisation-readiness`). Runbook: `docs/SECURITY_OPS.md`.
+
+- **Credential inventory:** each credential's name, where it lives, scope, expiry and rotation steps, and what breaks if it lapses. Covers:
+  - Vercel: the admin GitHub token, admin password and session secret, the Brief secret, Upstash and GA4;
+  - n8n: "Nuvellum GitHub" and "Google Gemini";
+  - GitHub Actions: the social secrets;
+  - the automatic `GITHUB_TOKEN`.
+- **Unused n8n credentials found:** WhatsApp (2), Wordpress, "Unnamed credential", "Header Auth account" 1 and 2. None is used by the production workflow; the exported workflow references only "Nuvellum GitHub" and "Google Gemini". They are listed for the owner to delete; not deleted here (irreversible, and possibly used elsewhere).
+- **Token expiry warning:**
+  - The admin GitHub client now records GitHub's `github-authentication-token-expiration` header, and the queue response carries `tokenExpiresAt`.
+  - The desk shows a notice 14 days before expiry, and a stronger one once expired. An expired 90-day token would otherwise silently stop publishing.
+  - Verified in Chrome: shown at 5 days and when expired, hidden at 40 days, no overflow at 360 px.
+  - The page names no secret variable (the existing admin test caught a first draft that did).
+- **Branch cleanup:**
+  - The rules now live in `scripts/lib/branch-cleanup.mjs`, with a `scope` input: `incoming` (the default) or `all`.
+  - It stays manual and dry-run unless `yes` is typed.
+  - New keep rules: branches that are the **base of an open stacked PR** (#134–#139 depend on this), and `social-ledger`.
+  - Read-only dry run (`all`), 92 branches: 61 would be deleted (merged, unchanged tip); 31 kept (11 open PRs, 10 closed unmerged, 9 with no PR, and main). **Nothing deleted.**
+- **Tests:** `tests/security-ops.test.mjs` (3): the planner's keep and delete rules including stacked bases, dry-run-by-default wiring, and expiry-header capture plus the desk threshold. `npm test` 326/326; build passes.
+
 ## 2026-09-30: v1 launch programme, Phase 8: AdSense readiness, sponsorship model, media kit
 
 Branch `feat/monetisation-readiness` (stacked on `feat/shorts-piper`). **Nothing monetised or enabled; no figures invented.** Full audit: `docs/MONETISATION.md`.

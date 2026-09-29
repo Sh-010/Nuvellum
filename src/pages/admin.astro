@@ -618,6 +618,7 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
 
   <main class="wrap">
     <div class="notice bad" id="global-error" hidden role="alert"></div>
+    <div class="notice" id="token-warn" hidden role="status"></div>
 
     <section id="view-queue" class="view">
       <div class="view-head">
@@ -979,12 +980,23 @@ function ago(iso) {
 const thumbSrc = (src) => { const s = String(src || ''); return /^https:\/\/\S+$/.test(s) || /^\/(?!\/)\S+$/.test(s) ? s : ''; };
 const tone = (state = '') => (/Ready|Merged|Published/i.test(state) ? 'ok' : /Reject|fail/i.test(state) ? 'bad' : /hold|back/i.test(state) ? 'hold' : /running|created/i.test(state) ? 'wait' : 'pending');
 
+// The GitHub token behind publishing expires (fine-grained, 90 days). Warn two weeks ahead; see docs/SECURITY_OPS.md.
+function tokenWarning(iso) {
+  const n = $('token-warn'), t = Date.parse(iso || '');
+  const days = t ? Math.floor((t - Date.now()) / 864e5) : Infinity;
+  n.hidden = days > 14;
+  if (!n.hidden) n.textContent = days < 0
+    ? 'The GitHub token used for publishing has expired. Publishing from this desk will fail until the admin GitHub token is renewed in Vercel (see the security runbook).'
+    : `The GitHub token used for publishing expires in ${days} day${days === 1 ? '' : 's'} (${new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}). Renew the admin GitHub token in Vercel before then (see the security runbook).`;
+}
+
 $('queue-refresh').addEventListener('click', () => loadQueue());
 async function loadQueue() {
   const board = $('queue-board'), shelves = $('queue-secondary');
   board.classList.add('loading'); shelves.classList.add('loading'); $('queue-note').textContent = 'Refreshing…';
   try {
-    const { columns } = await api('queue');
+    const { columns, tokenExpiresAt } = await api('queue');
+    tokenWarning(tokenExpiresAt);
     const get = (b) => columns[b] || [];
     const when = (it) => String(it.closedAt || it.pr?.updatedAt || '');
     const published = get('Published').slice().sort((a, b) => when(b).localeCompare(when(a)));
