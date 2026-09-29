@@ -4,6 +4,37 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 5: content cleanup
+
+Branch `content/unpublish-launch-filler` (stacked on `feat/ga4-search-console`). Every one of the 52 articles was audited: status, origin, risk, gate fields, word count, image mode, `newStoryQualityProblems`, and the homepage slot it fills.
+
+| Class | Count | Items | Decision |
+| --- | --- | --- | --- |
+| **Unpublish** | 18 | ai-infrastructure, film-spectacle, industrial-race, megacity-power, power-distributed, supply-chains-foreign-policy, world-in-motion, global-anime, observatories, patient-capital, regional-power-logistics, smaller-studios, too-much-information, young-cities-investment, internet-flattened-taste, prestige-media, seriousness-fashionable, sports-media-war | All 18 "launch" pieces share one of **two identical boilerplate bodies** (95 or 158 words about Nuvellum itself), under headlines and labels promising 5–12 minute Analyses, Essays or News. That is placeholder filler presented as journalism. They are set to `status: "draft"` (reversible; history kept) and their image-credit entries are removed. Two of them filled homepage In Focus, and three were the only Opinion pieces. |
+| **Keep** | 24 | automated stories with `editorialReview: "passed"` (and verification where sensitive) | Pre-contract stories lack World Desk `regions`/`countries` (22 stories across Keep rows), so they are not placed on the map. An optional backfill, not a defect. |
+| **Keep (hand-reviewed before the gates existed)** | 8 | India–Pakistan UNGA, Iran/Hormuz, Mississippi (Tasia Fortune), Tigray, White House/CNN, OpenAI agents, Russia/Ukraine data centres, Scotland diesel | The 7 sensitive ones carry `reviewedBy: "Sam Shehab"` and two sources each. Scotland diesel is low risk. India–Pakistan's first source is a DW live page (now blocked by the quality rules); it stays because the owner reviewed it with a second source. Worth a re-read. |
+| **Replace (fixed in place)** | 1 | fuel-costs-create-recruitment-hurdles-for-jersey-meal-delivery-service | Owner-reviewed and low risk. The Title Case headline is now sentence case, and the `?at_medium=RSS&at_campaign=rss` tracking parameters are stripped from its source URL. The slug and URL are unchanged. |
+| **Keep as draft** | 1 | unity-of-being-and-the-multiverse… | The owner's manual draft; untouched. |
+| Delete | 0 | — | Nothing is disposable enough to delete. The filler topics could return later as real reported features. |
+
+- **No broken slots:**
+  - Section fronts for every nav link (World … Opinion, Science, Anime, Crime) are always generated. When empty they show the existing "Nothing has been published in X yet" note and are `noindex`. /section/opinion and /section/science would otherwise have become 404s.
+  - The sitemap lists only section fronts with reporting; the build fails on any `noindex`/sitemap disagreement (world, country, section).
+  - A new build check fails if **any** built page links to an `/article/<slug>` that doesn't exist. Proven by injecting a link to an unpublished slug.
+  - The v5.1 demo page `/article.html` (still deployed, and linking to world-in-motion) now 308-redirects to /latest.
+- **Homepage defect fixed:**
+  - With the filler gone, In Focus fell back to stories already in the supporting row ("Apple ordered to pay $5.7bn" appeared twice). The existing test even pinned that duplicate.
+  - In Focus now prefers stories not already on top, and uses top stories only when the edition is too small.
+  - The test was corrected, and a regression test added.
+- **Results:**
+  - `npm test` 318/318; `validate` and `security:audit` (0 vulnerabilities) pass.
+  - Build: 33 published articles, and `check:build` passes.
+  - Real Chrome at 1440 and 390 px:
+    - every homepage block is filled from real stories;
+    - no page errors, failed requests or broken images;
+    - no overflow;
+    - In Focus shows Swiss referendum, Forgotten Island cast and Grey's Anatomy, none of which repeat the top stories.
+
 ## 2026-09-30: v1 launch programme, Phase 4: GA4 and Search Console readiness
 
 Branch `feat/ga4-search-console` (stacked on `feat/nuvellum-brief`, PR #126).

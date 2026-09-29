@@ -1,5 +1,5 @@
 ---
-title: "Fuel Costs Create Recruitment Hurdles for Jersey Meal Delivery Service"
+title: "Fuel costs create recruitment hurdles for Jersey meal delivery service"
 dek: "Meals on Wheels Jersey reports that rising petrol prices are deterring prospective volunteers from joining its entirely unpaid delivery network."
 section: "Business"
 type: "News"
@@ -10,7 +10,7 @@ image: "/uploads/articles/fuel-costs-create-recruitment-hurdles-for-jersey-meal-
 imageAlt: "St Helier, Jersey, seen from Fort Regent"
 status: "published"
 tags: ["Jersey","Charities","Volunteering","Cost of Living"]
-sourceUrls: ["https://www.bbc.co.uk/news/articles/c6wyzkwnd258o?at_medium=RSS&at_campaign=rss"]
+sourceUrls: ["https://www.bbc.co.uk/news/articles/c6wyzkwnd258o"]
 sourceNote: "Prepared from BBC Jersey reporting and reviewed before publication."
 origin: "automation"
 risk: "low"

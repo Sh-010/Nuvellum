@@ -139,13 +139,32 @@ if (sitemap.includes('/brief/')) errors.push('sitemap: /brief/ pages must not be
 // Search: World Explorer is listed; a World Desk page is in the sitemap exactly when it is indexable
 // (empty region/country desks are noindex and left out).
 if (!/<loc>[^<]*\/world-explorer<\/loc>/.test(sitemap)) errors.push('sitemap: /world-explorer missing');
-for (const kind of ['world', 'country']) {
+for (const kind of ['world', 'country', 'section']) {
   for (const name of readdirSync(join(dist, kind))) {
     const page = read(join(kind, name, 'index.html'));
     const noindex = page.includes('<meta name="robots" content="noindex');
     const listed = sitemap.includes(`/${kind}/${name}</loc>`);
     if (noindex === listed) errors.push(`/${kind}/${name}: ${noindex ? 'noindex but listed in the sitemap' : 'indexable but missing from the sitemap'}`);
   }
+}
+
+// No broken story links anywhere: every /article/<slug> linked from a built page exists (unpublished stories
+// must not linger in cards, rails, tickers or archives). The v5.1 demo page article.html is redirected in
+// vercel.json and not checked.
+{
+  const pages = [];
+  const walkHtml = (dir) => { for (const name of readdirSync(dir, { withFileTypes: true })) { const p = join(dir, name.name); if (name.isDirectory()) walkHtml(p); else if (name.name.endsWith('.html')) pages.push(p); } };
+  walkHtml(dist);
+  const missing = new Map();
+  for (const p of pages) {
+    if (p.endsWith(join(dist, 'article.html'))) continue;
+    for (const m of readFileSync(p, 'utf8').matchAll(/href="\/article\/([a-z0-9-]+)\/?"/g)) {
+      if (!existsSync(join(dist, 'article', m[1], 'index.html'))) missing.set(m[1], p.slice(dist.length + 1));
+    }
+  }
+  for (const [slug, from] of missing) errors.push(`broken story link /article/${slug} (e.g. in ${from})`);
+  const vercel = JSON.parse(readFileSync(join(root, 'vercel.json'), 'utf8'));
+  if (!(vercel.redirects || []).some((r) => r.source === '/article.html')) errors.push('vercel.json: /article.html (v5.1 demo) must redirect');
 }
 
 // Reader analytics (only when a measurement ID was configured for this build): once per public page, never on

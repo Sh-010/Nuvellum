@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "5 min"
 image: "/uploads/articles/regional-power-logistics.jpg"
 imageAlt: "Container cranes at the Bremerhaven terminal"
-status: "published"
+status: "draft"
 tags: ["Middle East","logistics","world"]
 ---
 

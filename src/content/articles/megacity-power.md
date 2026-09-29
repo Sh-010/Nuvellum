@@ -8,7 +8,7 @@ date: "2026-09-25"
 readingTime: "7 min"
 image: "/uploads/articles/megacity-power.jpg"
 imageAlt: "Aerial view across the city of Osaka"
-status: "published"
+status: "draft"
 tags: ["cities","infrastructure","world"]
 ---
 

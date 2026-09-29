@@ -81,20 +81,23 @@ export function selectHome(published) {
     ...filter,
     items: articles.filter(a => !onTop.has(a.slug) && filter.match(String(a.section || '').toLowerCase())).slice(0, LATEST_ROWS)
   }));
-  const focus = world.find(a => a.slug !== hero.slug && String(a.type).toLowerCase() === 'analysis')
-    || world.find(a => a.slug !== hero.slug)
+  // In Focus avoids repeating the stories already on top of the page (hero and supporting row); it only
+  // falls back to them when the edition is too small to fill the block otherwise.
+  const fresh = articles.filter(a => !onTop.has(a.slug));
+  const focus = fresh.find(a => String(a.section).toLowerCase() === 'world' && String(a.type).toLowerCase() === 'analysis')
+    || fresh.find(a => String(a.section).toLowerCase() === 'world')
+    || fresh[0]
     || articles.find(a => a.slug !== hero.slug)
     || hero;
   const focusStories = [focus];
-  for (const a of articles) {
-    if (focusStories.length === 3) break;
-    if (a.slug === hero.slug || focusStories.some(x => x.slug === a.slug)) continue;
-    const type = String(a.type || '').toLowerCase();
-    if (['analysis', 'feature', 'explainer', 'opinion'].includes(type)) focusStories.push(a);
-  }
-  for (const a of articles) {
-    if (focusStories.length === 3) break;
-    if (a.slug !== hero.slug && !focusStories.some(x => x.slug === a.slug)) focusStories.push(a);
-  }
+  const add = (pool, test = () => true) => {
+    for (const a of pool) {
+      if (focusStories.length === 3) break;
+      if (a.slug !== hero.slug && !focusStories.some(x => x.slug === a.slug) && test(a)) focusStories.push(a);
+    }
+  };
+  add(fresh, a => ['analysis', 'feature', 'explainer', 'opinion'].includes(String(a.type || '').toLowerCase()));
+  add(fresh);
+  add(articles);
   return { articles, world, hero, supporting, onTop, latestFilters, focusStories };
 }

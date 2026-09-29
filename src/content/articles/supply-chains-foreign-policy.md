@@ -8,7 +8,7 @@ date: "2026-09-25"
 readingTime: "6 min"
 image: "/uploads/articles/supply-chains-foreign-policy.jpg"
 imageAlt: "A container ship in the Mediterranean Sea"
-status: "published"
+status: "draft"
 tags: ["Asia","supply chains","world"]
 ---
 

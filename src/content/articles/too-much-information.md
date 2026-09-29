@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "5 min"
 image: "/uploads/articles/too-much-information.svg"
 imageAlt: "Nuvellum Opinion & Ideas illustration: overlapping columns of type"
-status: "published"
+status: "draft"
 tags: ["opinion","media","information"]
 ---
 

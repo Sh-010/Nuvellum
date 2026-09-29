@@ -8,7 +8,7 @@ date: "2026-09-25"
 readingTime: "5 min"
 image: "/uploads/articles/industrial-race.jpg"
 imageAlt: "Steel mills on the Hamilton waterfront"
-status: "published"
+status: "draft"
 tags: ["Europe","industry","world"]
 ---
 

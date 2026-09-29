@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "7 min"
 image: "/uploads/articles/global-anime.jpg"
 imageAlt: "Akihabara, Tokyo, lit up at night"
-status: "published"
+status: "draft"
 tags: ["anime", "streaming", "culture"]
 ---
 

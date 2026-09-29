@@ -8,7 +8,7 @@ date: "2026-09-23"
 readingTime: "5 min"
 image: "/uploads/articles/prestige-media.jpg"
 imageAlt: "The auditorium of the Lichtburg cinema in Essen, with its red curtain"
-status: "published"
+status: "draft"
 tags: ["media", "design", "culture"]
 ---
 

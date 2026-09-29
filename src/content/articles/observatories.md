@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "5 min"
 image: "/uploads/articles/observatories.jpg"
 imageAlt: "The Vera C. Rubin Observatory under a night sky"
-status: "published"
+status: "draft"
 tags: ["science","space","observatories"]
 ---
 

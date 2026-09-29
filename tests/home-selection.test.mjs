@@ -92,9 +92,23 @@ test('automated-only selection is unchanged (hero, row, Latest, In Focus)', () =
   assert.equal(home.hero.slug, 'w-news');
   assert.deepEqual(slugs(home.supporting), ['tech', 'film', 'biz']);
   assert.deepEqual(slugs(home.latestFilters[0].items), ['w-analysis', 'w-old']);
-  assert.deepEqual(slugs(home.focusStories), ['w-analysis', 'biz', 'tech']);
+  // In Focus uses stories not already on top first (w-analysis, w-old), then the newest top story to fill the block.
+  assert.deepEqual(slugs(home.focusStories), ['w-analysis', 'w-old', 'tech']);
   const noWorld = selectHome([story({ slug: 'g', section: 'Gaming', date: '2026-09-29' }), story({ slug: 'c', section: 'Culture', date: '2026-09-28' })]);
   assert.equal(noWorld.hero.slug, 'g', 'without a World story the newest story leads');
+});
+
+test('In Focus never repeats the hero or the supporting row while other stories are available', () => {
+  const list = [
+    story({ slug: 'w1', date: '2026-09-30' }), story({ slug: 'tech', section: 'Technology', date: '2026-09-30' }),
+    story({ slug: 'film', section: 'Film & TV', date: '2026-09-29' }), story({ slug: 'biz', section: 'Business', type: 'Analysis', date: '2026-09-29' }),
+    story({ slug: 'w2', date: '2026-09-28' }), story({ slug: 'sport', section: 'Sports', date: '2026-09-27' }), story({ slug: 'w3', date: '2026-09-26' })
+  ];
+  const home = selectHome(list);
+  const top = new Set([home.hero.slug, ...slugs(home.supporting)]);
+  assert.equal(home.focusStories.length, 3);
+  assert.ok(home.focusStories.every((a) => !top.has(a.slug)), `In Focus repeats a top story: ${slugs(home.focusStories)}`);
+  assert.equal(home.focusStories[0].slug, 'w2', 'the lead In Focus story is the newest World story not already on top');
 });
 
 test('drafts and review stories never reach the homepage; nothing is invented to fill space', () => {

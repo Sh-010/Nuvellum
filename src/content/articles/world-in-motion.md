@@ -8,7 +8,7 @@ date: "2026-09-25"
 readingTime: "12 min"
 image: "/uploads/articles/world-in-motion.jpg"
 imageAlt: "An engraved world map in two hemispheres, from 1700"
-status: "published"
+status: "draft"
 tags: ["geopolitics", "global order", "trade"]
 ---
 

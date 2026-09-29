@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "6 min"
 image: "/uploads/articles/young-cities-investment.jpg"
 imageAlt: "The Nairobi city skyline"
-status: "published"
+status: "draft"
 tags: ["Africa","cities","investment"]
 ---
 

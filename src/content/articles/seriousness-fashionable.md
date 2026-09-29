@@ -8,7 +8,7 @@ date: "2026-09-23"
 readingTime: "6 min"
 image: "/uploads/articles/seriousness-fashionable.svg"
 imageAlt: "Nuvellum Opinion & Ideas illustration: a single classical column in hairline"
-status: "published"
+status: "draft"
 tags: ["ideas","culture","opinion"]
 ---
 
