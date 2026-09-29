@@ -1,8 +1,8 @@
 name: Acquire editorial visual
 
 # Every incoming story gets one conservative real-image pass before it can auto-publish.
-# A high-confidence, openly licensed Wikimedia photo may replace the newsroom AI SVG.
-# If no candidate clears the threshold, the existing illustration remains the safe fallback.
+# A high-confidence, openly licensed Wikimedia photo may replace newsroom fallback art.
+# If no photo clears the threshold, ordinary News becomes text-led; eligible analysis/opinion may retain illustration.
 on:
   push:
     branches:
@@ -54,7 +54,7 @@ jobs:
         shell: bash
         run: |
           if git diff --quiet && git diff --cached --quiet; then
-            echo "No visual replacement: existing illustration/fallback remains."
+            echo "No visual file change required after acquisition/text-led policy pass."
             echo "changed=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
