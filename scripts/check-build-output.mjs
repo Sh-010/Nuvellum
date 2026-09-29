@@ -7,6 +7,7 @@ import { root, articlesDir } from './lib/paths.mjs';
 import { parseFrontmatter } from './lib/editorial.mjs';
 import { COUNTRIES, countrySlug } from '../src/lib/countries.js';
 import { selectHome, loadPublished } from './lib/home-selection.mjs';
+import { decodePng } from './lib/app-icons.mjs';
 
 const dist = join(root, 'dist');
 const errors = [];
@@ -15,6 +16,19 @@ if (!existsSync(dist)) { console.error('dist/ is missing; run npm run build firs
 
 // Homepage: editorial v6 must render from live published content and include the World Desk.
 const home = read('index.html');
+// Installable app: the homepage links the manifest, and every icon it lists ships complete at its stated size.
+if (!home.includes('<link rel="manifest" href="/manifest.webmanifest">')) errors.push('index.html: web app manifest link missing');
+if (!home.includes('<link rel="apple-touch-icon" href="/icons/nuvellum-apple-180.png"')) errors.push('index.html: Apple touch icon missing');
+try {
+  const manifest = JSON.parse(read('manifest.webmanifest'));
+  for (const i of manifest.icons || []) {
+    const p = join(dist, i.src.split('?')[0].slice(1));
+    if (!existsSync(p)) { errors.push(`manifest icon ${i.src} missing from dist`); continue; }
+    try { const png = decodePng(readFileSync(p)); if (`${png.width}x${png.height}` !== i.sizes) errors.push(`manifest icon ${i.src} is ${png.width}x${png.height}, not ${i.sizes}`); }
+    catch (e) { errors.push(`manifest icon ${i.src} is broken: ${e.message}`); }
+  }
+  if (!(manifest.icons || []).some((i) => i.purpose === 'maskable')) errors.push('manifest: no maskable icon');
+} catch (e) { errors.push(`manifest.webmanifest unreadable: ${e.message}`); }
 if (!home.includes('data-home-version="nuvellum-editorial-home-v6"')) errors.push('index.html: editorial homepage v6 marker missing');
 if (!home.includes('id="world-desk"')) errors.push('index.html: World Desk missing');
 if (!home.includes('id="nuvellum-editorial-home-v6"')) errors.push('index.html: homepage interaction script missing');

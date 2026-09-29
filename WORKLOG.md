@@ -4,6 +4,41 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 1: mobile/PWA branding
+
+Branch `fix/pwa-icons`.
+
+- **What was actually wrong** (verified in Chrome and by decoding the PNGs):
+  - `public/icon-512.png` was truncated ("truncated IDAT chunk"): only the top strip rendered. It was used for both the regular and the maskable icon.
+  - `icon-192.png` had a corrupt data checksum ("bad CRC in IDAT"), and its bottom rows were missing.
+  - The homepage never linked `manifest.webmanifest`. Chrome on the live site reports `no-manifest`, so installing from the homepage produced generic artwork.
+  - The homepage `theme-color` was `#6d1026`, while every other page and the manifest use `#6d1720`.
+  - The existing test only checked the 8-byte PNG signature.
+- **Fix:**
+  - The icons are rendered from `public/favicon.svg` (the approved N + crimson-star tile, per PRs #90 and #115–#118) by a dependency-free rasteriser (`scripts/lib/app-icons.mjs`, `node scripts/build-app-icons.mjs`). The favicon and the header logo are unchanged.
+  - Variants:
+    - `any` 192/512: the favicon exactly.
+    - Apple 180: full-bleed and opaque, with the monogram at 80 % so iOS corner rounding cannot clip the star.
+    - Maskable 192/512: full-bleed and opaque, with the monogram at 66 %, entirely inside the W3C 80 % safe circle.
+  - New versioned paths under `/icons/` replace `?v=1`. The legacy `icon-*.png` files are re-rendered with the same artwork for cached shortcuts.
+  - The manifest gains `id`, `scope`, `lang` and separate maskable icons.
+  - Every page (SiteHead, homepage renderer, v5.1 bridge) links the manifest, the new Apple icon and `apple-mobile-web-app-title`, with one theme colour.
+- **Tests:** `tests/mobile-pwa.test.mjs` now fails on:
+  - a truncated or corrupt icon, or a size that doesn't match the manifest;
+  - a stale `?v=1`;
+  - icons that no longer match the favicon pixel for pixel;
+  - transparent home-screen icons;
+  - a maskable monogram outside the safe circle;
+  - a missing manifest link, Apple icon or title on any page;
+  - a theme colour mismatch.
+
+  `check-build-output` decodes every manifest icon in `dist/` and fails on the old broken file (verified).
+- **Results:**
+  - `npm test` 299/299; `validate`, `build` (357 pages), `check:build` and `security:audit` (0 vulnerabilities) all pass.
+  - Chrome on the local build: the manifest parses, all four icons decode, and the only installability note is `in-incognito` (the automated session). The live site before the fix reports `no-manifest`.
+
+---
+
 ## 2026-09-30: write-first editor pass (PR #121)
 
 No change to auth, GitHub flow, schema, gates or the newsroom. One additive, read-only field was added: the `check` response now carries `draftBlockers`, the problems that would stop even a draft from saving (the same list `save()` already used).
