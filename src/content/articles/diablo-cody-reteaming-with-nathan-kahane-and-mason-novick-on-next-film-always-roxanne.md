@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-09-28"
 publishedAt: "2026-09-28T20:44:40.631Z"
 readingTime: "2 min"
-image: "/generated/ai/diablo-cody-reteaming-with-nathan-kahane-and-mason-novick-on-next-film-always-roxanne.svg"
-imageAlt: "AI-generated editorial illustration for Diablo Cody reteaming with Nathan Kahane and Mason Novick on next film 'Always, Roxanne'"
 status: "published"
 tags: ["Diablo Cody","Nathan Kahane","Mason Novick","True North","Always Roxanne"]
 regions: []
