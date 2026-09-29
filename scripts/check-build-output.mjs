@@ -167,6 +167,11 @@ for (const kind of ['world', 'country', 'section']) {
   if (!(vercel.redirects || []).some((r) => r.source === '/article.html')) errors.push('vercel.json: /article.html (v5.1 demo) must redirect');
 }
 
+// ads.txt exists only for a configured AdSense publisher ID, and then says exactly that (scripts/write-ads-txt.mjs).
+if (process.env.NUVELLUM_ADSENSE_PUB_ID) {
+  if (!existsSync(join(dist, 'ads.txt')) || read('ads.txt') !== `google.com, ${process.env.NUVELLUM_ADSENSE_PUB_ID.trim()}, DIRECT, f08c47fec0942fa0\n`) errors.push('ads.txt: missing or wrong for the configured publisher ID');
+} else if (existsSync(join(dist, 'ads.txt'))) errors.push('ads.txt: must not ship without an AdSense publisher ID');
+
 // Reader analytics (only when a measurement ID was configured for this build): once per public page, never on
 // the admin desk or the Brief pages.
 if (process.env.NUVELLUM_GA4_ID) {
