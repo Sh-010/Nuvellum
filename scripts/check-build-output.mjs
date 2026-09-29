@@ -136,6 +136,26 @@ else {
 }
 if (sitemap.includes('/brief/')) errors.push('sitemap: /brief/ pages must not be listed');
 
+// Search: World Explorer is listed; a World Desk page is in the sitemap exactly when it is indexable
+// (empty region/country desks are noindex and left out).
+if (!/<loc>[^<]*\/world-explorer<\/loc>/.test(sitemap)) errors.push('sitemap: /world-explorer missing');
+for (const kind of ['world', 'country']) {
+  for (const name of readdirSync(join(dist, kind))) {
+    const page = read(join(kind, name, 'index.html'));
+    const noindex = page.includes('<meta name="robots" content="noindex');
+    const listed = sitemap.includes(`/${kind}/${name}</loc>`);
+    if (noindex === listed) errors.push(`/${kind}/${name}: ${noindex ? 'noindex but listed in the sitemap' : 'indexable but missing from the sitemap'}`);
+  }
+}
+
+// Reader analytics (only when a measurement ID was configured for this build): once per public page, never on
+// the admin desk or the Brief pages.
+if (process.env.NUVELLUM_GA4_ID) {
+  const count = (h) => (h.match(/id="nuvellum-analytics"/g) || []).length;
+  for (const p of ['index.html', 'latest/index.html', 'world-explorer/index.html']) if (count(read(p)) !== 1) errors.push(`${p}: analytics must be present exactly once`);
+  for (const p of ['admin/index.html', 'brief/unsubscribe/index.html']) if (count(read(p)) !== 0) errors.push(`${p}: analytics must not load here`);
+}
+
 if (errors.length) {
   console.error('\nBuild output check failed:\n');
   for (const e of errors) console.error(' - ' + e);

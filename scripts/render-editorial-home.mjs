@@ -839,7 +839,7 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     try{
       const res=await fetch('/api/brief?action=subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,consent:true,website:document.getElementById('signupWebsite')?.value||'',elapsedMs:Date.now()-signupOpened,source:'home'})});
       const data=await res.json().catch(()=>({}));
-      if(res.ok){say(data.message||'Thank you. You are on the list for the Nuvellum Brief.');signup.reset()}
+      if(res.ok){say(data.message||'Thank you. You are on the list for the Nuvellum Brief.');signup.reset();dispatchEvent(new CustomEvent('nuvellum:brief-signup',{detail:{source:'home'}}))}
       else say(data.error||'Something went wrong. Please try again.',1);
     }catch{say('Could not reach Nuvellum. Check your connection and try again.',1)}
     finally{btn.disabled=false}

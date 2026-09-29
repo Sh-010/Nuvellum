@@ -12,18 +12,39 @@ NUVELLUM_GA4_ID=G-XXXXXXXXXX
 
 No ID is committed to the repository. With the variable absent, the built HTML receives no analytics script.
 
-The Nuvellum event layer records only publication/product interactions:
+The ID comes from analytics.google.com → Admin → Data streams → Web. The snippet is in `scripts/lib/analytics.mjs`; `scripts/instrument-analytics.mjs` injects it.
 
-- `page_view` (path and page title)
+**Consent first.**
+- A small notice asks each reader once. Until they choose **Allow**, nothing from Google loads and no cookie is set.
+- **No thanks** is remembered (in this browser only), and /privacy has a *Change analytics settings* button.
+- Google signals and advertising features are off.
+- `NUVELLUM_ANALYTICS_CONSENT=implied` removes the notice. Set it only if you have decided consent is not required for your audience.
+
+**Where.**
+- Every public page: home, articles, sections, Latest, World Explorer, the region and country desks, and 404.
+- Never on `/admin` or `/brief/*`.
+- A page can never initialise it twice, and the build check fails if a page carries it twice.
+
+**Events.** Each carries `page_type`: home, article, section, latest, world_explorer, world, country, author, page or not_found.
+
+- `page_view`: sent once per page by the snippet (gtag's automatic one is off). `page_location` has no query string except utm_* campaign tags.
+- `sign_up` (`method: nuvellum_brief`): only after /api/brief confirms a Brief sign-up. No address is sent.
 - `scroll_depth` at 25/50/75/90%
 - `article_click` (destination path)
 - `save_story`
-- `newsletter_interaction`
 - `outbound_click` (destination domain only)
 
-The instrumentation deliberately avoids sending names, email addresses, search/query strings or article-source URLs in custom event parameters.
+No names, email addresses, search text, query strings or article-source URLs are sent.
 
-Before enabling GA4, the owner must finish the production privacy/consent treatment appropriate to the publication's audience and jurisdictions. The code is intentionally dormant until then.
+**CSP.** `vercel.json` allows scripts from `www.googletagmanager.com` and connections to `*.google-analytics.com`, `*.analytics.google.com` and `*.googletagmanager.com`.
+
+**Turning it on:**
+1. Create a GA4 property with a web stream for https://www.nuvellum.news.
+2. Put the measurement ID in Vercel (Production) and redeploy.
+3. Optionally, in GA4, mark `sign_up` as a key event and register `page_type` as an event-scoped custom dimension.
+4. Open the site, choose Allow, and confirm the visit under GA4 → Reports → Realtime.
+
+Search Console setup is in [SEARCH_CONSOLE.md](SEARCH_CONSOLE.md).
 
 ## Newsroom health
 

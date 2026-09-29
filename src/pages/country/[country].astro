@@ -44,6 +44,7 @@ const titleSize = country.name.length > 26 ? 'font-size:clamp(46px,5.6vw,88px)' 
   title={`${country.name} — Country desk — Nuvellum`}
   description={`Nuvellum reporting from ${country.name}, with regional context from the ${region.label} desk.`}
   active="world"
+  noindex={direct.length === 0}
   folio={[{ label: 'World', href: '/section/world' }, { label: region.label, href: `/world/${region.slug}` }, { label: country.name }]}
   folioNote="Country desk"
 >
