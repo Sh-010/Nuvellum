@@ -1,0 +1,736 @@
+---
+// Nuvellum editorial control room. A static shell with no data and no secrets: everything it shows
+// comes from /api/admin, which authenticates every request on its own. Not linked anywhere, excluded
+// from the sitemap and robots, and marked noindex; that is hygiene, not the protection.
+import interiorCss from '../styles/interior.css?raw';
+import articleCss from '../styles/article.css?raw';
+const previewCss = JSON.stringify(interiorCss + '\n' + articleCss).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="referrer" content="same-origin" />
+<title>Nuvellum — Editorial desk</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<style is:global>
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 700;font-display:swap;src:url(/fonts/newsreader-normal-latin.woff2) format('woff2')}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:300 700;font-display:swap;src:url(/fonts/newsreader-italic-latin.woff2) format('woff2')}
+:root{--paper:#f8f4ec;--paper2:#fbf8f2;--card:#fffdf8;--ink:#1f1a16;--muted:#6b6259;--line:#ddd3c3;--hair:rgba(96,74,52,.2);--wine:#661227;--wine2:#54101f;--ok:#2f5d3a;--warn:#8a5a00;--bad:#8e1834;--serif:'Newsreader',Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+a{color:var(--wine)}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em}
+.eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine)}
+.btn{border:1px solid var(--ink);background:transparent;padding:9px 14px;border-radius:2px;cursor:pointer;font-family:var(--sans);font-size:13px;letter-spacing:.02em}
+.btn:hover{background:rgba(102,18,39,.06)}
+.btn.primary{background:var(--wine);border-color:var(--wine);color:#f6efe4}
+.btn.primary:hover{background:var(--wine2)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.small{padding:5px 9px;font-size:12px}
+.field{display:grid;gap:5px;margin:0 0 14px}
+.field label,.label{font-family:var(--sans);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:10px}
+.field input[type=text],.field input[type=url],.field input[type=password],.field input[type=datetime-local],.field input[type=date],.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--card);padding:9px 10px;border-radius:2px}
+.field textarea{resize:vertical;min-height:70px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid rgba(102,18,39,.35);outline-offset:0}
+.hint{font-family:var(--sans);font-size:12px;color:var(--muted)}
+.count.over{color:var(--bad);font-weight:700}
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-card{width:min(420px,100%);border-top:3px solid var(--wine);background:var(--card);padding:34px 30px;box-shadow:0 8px 24px rgba(56,39,25,.08)}
+.mark{font-size:44px;line-height:1;color:var(--wine);font-weight:600}.mark span{font-size:.45em;vertical-align:top}
+.login h1{font-weight:400;font-size:28px;margin:12px 0 4px}
+.msg{font-family:var(--sans);font-size:13px;margin-top:10px;min-height:18px}
+.msg.bad{color:var(--bad)}.msg.ok{color:var(--ok)}
+/* app */
+.bar{position:sticky;top:0;z-index:5;background:var(--paper2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:10px 20px;flex-wrap:wrap}
+.bar .brand{display:flex;align-items:baseline;gap:10px;font-size:22px}
+.bar .brand .mark{font-size:28px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{border:0;background:none;padding:8px 12px;font-family:var(--sans);font-size:13px;letter-spacing:.04em;cursor:pointer;border-bottom:2px solid transparent}
+.tab[aria-selected=true]{border-color:var(--wine);color:var(--wine)}
+.bar .spacer{flex:1}
+.who{font-family:var(--sans);font-size:12px;color:var(--muted)}
+main.wrap{max-width:1500px;margin:0 auto;padding:22px 20px 60px}
+h2.view-title{font-weight:400;font-size:30px;margin:0 0 4px}
+.view-intro{color:var(--muted);margin:0 0 18px}
+/* queue */
+.columns{display:grid;grid-template-columns:repeat(5,minmax(230px,1fr));gap:14px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--paper2);border:1px solid var(--line);border-top:3px solid var(--ink);min-height:120px}
+.col[data-b="Ready to Publish"]{border-top-color:var(--ok)}.col[data-b="Held / Rejected"]{border-top-color:var(--bad)}.col[data-b="Pending Review"]{border-top-color:var(--wine)}
+.col h3{margin:0;padding:10px 12px;font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
+.card{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--hair);background:none;padding:12px;cursor:pointer}
+.card:hover{background:rgba(102,18,39,.035)}
+.card .t{font-size:17px;line-height:1.2;margin:4px 0 6px}
+.card .d{font-size:13.5px;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.badge{font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);padding:2px 6px;border-radius:2px;background:var(--card)}
+.badge.newsroom{border-color:#6b6259}.badge.manual{border-color:var(--wine);color:var(--wine)}
+.badge.sensitive{background:#f3e3e6;border-color:#d9a5b2;color:var(--bad)}
+.badge.ok{color:var(--ok);border-color:#9fc0a8}.badge.bad{color:var(--bad);border-color:#d9a5b2}.badge.wait{color:var(--warn);border-color:#e0c68f}
+.empty{padding:14px 12px;color:var(--muted);font-size:14px;font-style:italic}
+/* list */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px;align-items:end}
+.filters .field{margin:0;min-width:150px}
+.filters .grow{flex:1;min-width:220px}
+table.list{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}
+.list th{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+.list td{padding:10px;border-bottom:1px solid var(--hair);vertical-align:top;font-size:14.5px}
+.list td.title{font-size:16px;line-height:1.25}
+.list .actions{white-space:nowrap}
+/* editor */
+.editor{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);padding:18px 18px 8px;margin-bottom:16px}
+.panel>h3{margin:0 0 12px;font-weight:400;font-size:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.toolbar{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.toolbar button{border:1px solid var(--line);background:var(--paper2);padding:5px 9px;font-family:var(--sans);font-size:12.5px;cursor:pointer}
+.toolbar button:hover{border-color:var(--wine)}
+textarea#f-body{min-height:420px;font-family:var(--serif);font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper2);padding:3px 8px;font-family:var(--sans);font-size:12.5px}
+.chip button{border:0;background:none;cursor:pointer;color:var(--bad);padding:0 2px}
+.regions{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-family:var(--sans);font-size:13px}
+.side{position:sticky;top:70px}
+.state{font-size:22px;margin:2px 0 10px}
+.checks{list-style:none;margin:0 0 10px;padding:0;font-family:var(--sans);font-size:13px}
+.checks li{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--hair)}
+.gates{list-style:none;margin:0;padding:0;font-family:var(--sans);font-size:13px}
+.gates li{padding:5px 0;display:flex;gap:8px}
+.gates li::before{content:'✗';color:var(--bad);width:14px}
+.gates li.ok::before{content:'✓';color:var(--ok)}
+.issues{margin:0 0 12px;padding-left:18px;font-family:var(--sans);font-size:13px}
+.issues.errors li{color:var(--bad)}.issues.warnings li{color:var(--warn)}
+.actions-grid{display:grid;gap:8px;margin:10px 0 12px}
+.imgprev{max-width:100%;max-height:220px;display:block;border:1px solid var(--line);margin:6px 0 10px;object-fit:contain;background:#eee}
+.radios{display:flex;flex-wrap:wrap;gap:12px;font-family:var(--sans);font-size:13px;margin-bottom:10px}
+.subtabs{display:flex;gap:4px;margin:0 0 10px}
+iframe.preview{width:100%;height:78vh;border:1px solid var(--line);background:var(--paper)}
+.notice{border-left:3px solid var(--wine);background:var(--paper2);padding:10px 12px;font-size:14px;margin:0 0 14px}
+.notice.bad{border-color:var(--bad);background:#fbeef0}
+dialog{border:1px solid var(--line);border-top:3px solid var(--wine);padding:22px;max-width:520px;width:calc(100% - 32px);background:var(--card)}
+dialog::backdrop{background:rgba(20,15,10,.45)}
+.sources a{word-break:break-all}
+@media (max-width:1100px){.editor{grid-template-columns:1fr}.side{position:static}.columns{grid-template-columns:repeat(5,minmax(240px,1fr))}}
+@media (max-width:640px){.row2,.row3{grid-template-columns:1fr}.bar{padding:8px 12px;gap:10px}main.wrap{padding:16px 12px 50px}.list thead{display:none}.list tr{display:block;border-bottom:1px solid var(--line)}.list td{display:block;border:0;padding:4px 10px}.list td.title{padding-top:12px}.columns{grid-template-columns:repeat(5,86vw)}}
+</style>
+</head>
+<body>
+<script is:inline type="application/json" id="preview-css" set:html={previewCss}></script>
+
+<section class="login" id="login-screen" hidden>
+  <form class="login-card" id="login-form" autocomplete="off">
+    <div class="mark">N<span>✦</span></div>
+    <h1>Editorial desk</h1>
+    <p class="hint">Nuvellum staff only.</p>
+    <div class="field"><label for="password">Password</label><input type="password" id="password" autocomplete="current-password" required maxlength="1024" /></div>
+    <button class="btn primary" type="submit">Log in</button>
+    <div class="msg" id="login-msg" role="status"></div>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="bar">
+    <div class="brand"><span class="mark">N<span>✦</span></span> Editorial desk</div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-view="queue" aria-selected="true">Review Queue</button>
+      <button class="tab" role="tab" data-view="list" aria-selected="false">Articles</button>
+      <button class="tab" role="tab" data-view="new" aria-selected="false">+ New article</button>
+    </nav>
+    <span class="spacer"></span>
+    <span class="who" id="session-note"></span>
+    <button class="btn small" id="logout">Log out</button>
+  </header>
+
+  <main class="wrap">
+    <div class="notice bad" id="global-error" hidden role="alert"></div>
+
+    <section id="view-queue">
+      <h2 class="view-title">Review Queue</h2>
+      <p class="view-intro">Every story waiting for a decision: newsroom intake and manual drafts. Nothing publishes until its gates and all required checks pass.</p>
+      <p><button class="btn small" id="queue-refresh">Refresh</button> <span class="hint" id="queue-note"></span></p>
+      <div class="columns" id="queue-columns"></div>
+    </section>
+
+    <section id="view-list" hidden>
+      <h2 class="view-title">Articles</h2>
+      <p class="view-intro">Everything on the site's main branch, plus manual drafts in progress.</p>
+      <div class="filters">
+        <div class="field grow"><label for="q">Search</label><input type="text" id="q" placeholder="Title, author or slug" /></div>
+        <div class="field"><label for="fs">Section</label><select id="fs"><option value="">All</option></select></div>
+        <div class="field"><label for="ft">Type</label><select id="ft"><option value="">All</option></select></div>
+        <div class="field"><label for="fst">Status</label><select id="fst"><option value="">All</option><option>published</option><option>review</option><option>draft</option></select></div>
+        <div class="field"><label for="fo">Origin</label><select id="fo"><option value="">All</option><option value="manual">Manual</option><option value="automation">Newsroom</option><option value="legacy">Launch</option></select></div>
+      </div>
+      <div id="work-block"></div>
+      <table class="list"><thead><tr><th>Title</th><th>Date</th><th>Section</th><th>Author</th><th>Status</th><th>Risk</th><th>Origin</th><th></th></tr></thead><tbody id="list-body"></tbody></table>
+    </section>
+
+    <section id="view-editor" hidden>
+      <p><button class="btn small" id="back">← Back</button></p>
+      <div class="notice" id="editor-notice" hidden></div>
+      <div class="editor">
+        <div>
+          <div class="subtabs"><button class="tab" id="tab-write" aria-selected="true">Write</button><button class="tab" id="tab-preview" aria-selected="false">Preview</button></div>
+          <div id="write-pane">
+            <div class="panel">
+              <h3>Story</h3>
+              <div class="field"><label for="f-title">Headline <span class="count" id="c-title"></span></label><input type="text" id="f-title" maxlength="400" /></div>
+              <div class="field"><label for="f-dek">Dek (standfirst) <span class="count" id="c-dek"></span></label><textarea id="f-dek" rows="2" maxlength="800"></textarea></div>
+              <div class="field"><label for="f-slug">Slug (web address) <span class="hint" id="slug-note"></span></label><input type="text" id="f-slug" maxlength="90" spellcheck="false" /></div>
+              <div class="row3">
+                <div class="field"><label for="f-section">Section</label><select id="f-section"></select></div>
+                <div class="field"><label for="f-type">Type</label><select id="f-type"></select></div>
+                <div class="field"><label for="f-author">Author</label><input type="text" id="f-author" list="authors" maxlength="120" /><datalist id="authors"></datalist></div>
+              </div>
+              <div class="row2">
+                <div class="field"><label for="f-date">Date</label><input type="date" id="f-date" /></div>
+                <div class="field"><label for="f-published">Publish time (UTC) <span class="hint">empty = when published</span></label><input type="datetime-local" id="f-published" step="1" /></div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Article</h3>
+              <div class="toolbar" role="toolbar" aria-label="Formatting">
+                <button type="button" data-md="h2" title="Section heading">H2</button>
+                <button type="button" data-md="bold" title="Bold"><b>B</b></button>
+                <button type="button" data-md="italic" title="Italic"><i>I</i></button>
+                <button type="button" data-md="link" title="Link">Link</button>
+                <button type="button" data-md="quote" title="Quotation">“ Quote</button>
+                <button type="button" data-md="ul" title="Bulleted list">• List</button>
+                <button type="button" data-md="ol" title="Numbered list">1. List</button>
+              </div>
+              <div class="field"><label for="f-body">Body <span class="hint" id="c-body"></span></label><textarea id="f-body" spellcheck="true"></textarea></div>
+              <p class="hint">Formatting buttons insert simple markup. Raw HTML is not allowed; links must start with https://.</p>
+            </div>
+            <div class="panel">
+              <h3>Image</h3>
+              <div class="radios" id="img-mode">
+                <label><input type="radio" name="imgmode" value="none" checked /> No image (text-led)</label>
+                <label id="img-current-opt"><input type="radio" name="imgmode" value="current" /> Keep current image</label>
+                <label><input type="radio" name="imgmode" value="upload" /> Upload</label>
+                <label><input type="radio" name="imgmode" value="url" /> Image URL / repository path</label>
+              </div>
+              <div id="img-upload" hidden class="field"><label for="f-file">JPEG, PNG or WebP · at most 3 MB · at least 600 px wide</label><input type="file" id="f-file" accept="image/jpeg,image/png,image/webp" /></div>
+              <div id="img-url" hidden class="field"><label for="f-imgurl">https:// URL or /uploads/articles/… path</label><input type="url" id="f-imgurl" maxlength="800" /></div>
+              <img class="imgprev" id="img-preview" alt="" hidden />
+              <div id="img-meta" hidden>
+                <div class="field"><label for="f-alt">Alt text (required)</label><input type="text" id="f-alt" maxlength="300" /></div>
+                <div class="field"><label for="f-caption">Caption</label><input type="text" id="f-caption" maxlength="400" /></div>
+                <div class="row2">
+                  <div class="field"><label for="f-credit">Credit (photographer / agency)</label><input type="text" id="f-credit" maxlength="200" /></div>
+                  <div class="field"><label for="f-provider">Provider</label><select id="f-provider"></select></div>
+                </div>
+                <div class="row2">
+                  <div class="field"><label for="f-kind">Kind</label><select id="f-kind"></select></div>
+                  <div class="field"><label for="f-license">Licence</label><input type="text" id="f-license" maxlength="120" /></div>
+                </div>
+                <div class="row2">
+                  <div class="field"><label for="f-licenseurl">Licence URL</label><input type="url" id="f-licenseurl" maxlength="500" /></div>
+                  <div class="field"><label for="f-sourcepage">Source page</label><input type="url" id="f-sourcepage" maxlength="500" /></div>
+                </div>
+                <p class="hint">Record only what you know. Never guess a credit or licence.</p>
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Classification &amp; sources</h3>
+              <div class="field"><label for="tag-in">Tags</label><input type="text" id="tag-in" placeholder="Type a tag and press Enter" maxlength="120" /><div class="chips" id="tag-chips"></div></div>
+              <div class="field"><label for="country-in">Countries</label><input type="text" id="country-in" list="countries" placeholder="Type a country and press Enter" /><datalist id="countries"></datalist><div class="chips" id="country-chips"></div></div>
+              <div class="field"><span class="label">Regions</span><div class="regions" id="regions"></div></div>
+              <div class="field"><label for="f-sources">Source URLs <span class="hint">one per line, https://</span></label><textarea id="f-sources" rows="3" spellcheck="false"></textarea><div class="sources hint" id="source-links"></div></div>
+              <div class="field"><label for="f-sourcenote">Source note (internal)</label><input type="text" id="f-sourcenote" maxlength="600" /></div>
+            </div>
+          </div>
+          <div id="preview-pane" hidden>
+            <p class="hint">Rendered with the live site's article styles. Nothing here is public.</p>
+            <iframe class="preview" id="preview" sandbox="allow-same-origin" title="Article preview"></iframe>
+          </div>
+        </div>
+
+        <aside class="side">
+          <div class="panel">
+            <span class="eyebrow" id="ed-kind">New manual story</span>
+            <div class="state" id="ed-state">Not saved</div>
+            <div class="hint" id="ed-meta"></div>
+            <ul class="checks" id="ed-checks"></ul>
+            <p id="ed-pr" class="hint"></p>
+          </div>
+          <div class="panel">
+            <h3>Editorial gates</h3>
+            <div class="field"><span class="label">Risk</span><div class="radios"><label><input type="radio" name="risk" value="low" /> Low</label><label><input type="radio" name="risk" value="sensitive" /> Sensitive</label></div></div>
+            <div class="field"><label for="f-review">Editorial review</label><select id="f-review"><option value="">Not recorded</option><option value="passed">Passed</option><option value="uncertain">Uncertain</option><option value="failed">Failed</option></select></div>
+            <div id="verify-block">
+              <div class="field"><label for="f-verify">Verification (sensitive stories)</label><select id="f-verify"><option value="">Not recorded</option><option value="cleared">Cleared</option><option value="uncertain">Uncertain</option><option value="failed">Failed</option></select></div>
+              <div class="field"><label for="f-reviewer">Reviewed by (the person who verified)</label><input type="text" id="f-reviewer" maxlength="120" /></div>
+            </div>
+            <p class="hint">The dashboard never marks review or verification as done for you. Record what actually happened.</p>
+            <ul class="gates" id="gates"></ul>
+            <p class="hint" id="humanled-note" hidden>Opinion, Essay, Ideas and Review are human-led formats: they are published only through this manual path.</p>
+          </div>
+          <div class="panel">
+            <h3>Checks <span class="hint" id="rt"></span></h3>
+            <ul class="issues errors" id="errors"></ul>
+            <ul class="issues warnings" id="warnings"></ul>
+            <div class="actions-grid" id="actions"></div>
+            <div class="msg" id="action-msg" role="status"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="dlg-form">
+    <h3 id="dlg-title" style="font-weight:400;font-size:22px;margin:0 0 8px"></h3>
+    <p id="dlg-text" class="hint"></p>
+    <div class="field" id="dlg-field"><label for="dlg-input" id="dlg-label"></label><textarea id="dlg-input" rows="3" maxlength="2000"></textarea></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" value="cancel">Cancel</button><button class="btn primary" id="dlg-ok" value="ok">Confirm</button></div>
+  </form>
+</dialog>
+
+<script>
+const API = '/api/admin';
+const $ = (id) => document.getElementById(id);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === undefined || v === null || v === false) continue;
+    if (k === 'class') n.className = v; else if (k === 'text') n.textContent = v; else if (k.startsWith('on')) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v === true ? '' : v);
+  }
+  for (const k of kids.flat()) if (k !== null && k !== undefined && k !== false) n.append(k instanceof Node ? k : document.createTextNode(String(k)));
+  return n;
+};
+const S = { csrf: '', meta: null, articles: [], work: [], view: 'queue', ed: null, checkTimer: 0, pollTimer: 0, lastCheck: null, uploadDataUrl: '', upload: null };
+
+async function api(action, { method = 'GET', body, params = {} } = {}) {
+  const q = new URLSearchParams({ action, ...params });
+  const res = await fetch(`${API}?${q}`, {
+    method, credentials: 'same-origin', cache: 'no-store',
+    headers: method === 'POST' ? { 'Content-Type': 'application/json', 'X-Nuvellum-CSRF': S.csrf } : {},
+    body: method === 'POST' ? JSON.stringify(body || {}) : undefined
+  });
+  let data = {};
+  try { data = await res.json(); } catch {}
+  if (res.status === 401 && action !== 'login') { showLogin('Your session has ended. Log in again.'); throw Object.assign(new Error(data.error || 'Logged out'), { status: 401, data }); }
+  if (!res.ok) throw Object.assign(new Error(data.error || `Request failed (${res.status})`), { status: res.status, data });
+  return data;
+}
+
+function showError(msg) { const n = $('global-error'); n.textContent = msg; n.hidden = !msg; }
+function showLogin(msg = '') { $('app').hidden = true; $('login-screen').hidden = false; $('login-msg').textContent = msg; $('login-msg').className = 'msg bad'; $('password').focus(); }
+
+async function boot() {
+  try {
+    const s = await api('session');
+    if (!s.authenticated) return showLogin();
+    S.csrf = s.csrf; await enter(s.expires);
+  } catch (e) { showLogin(e.status === 503 ? 'The admin is not configured on this deployment.' : 'Could not reach the admin service.'); }
+}
+
+$('login-form').addEventListener('submit', async (ev) => {
+  ev.preventDefault();
+  const msg = $('login-msg'); msg.className = 'msg'; msg.textContent = 'Checking…';
+  try {
+    const r = await api('login', { method: 'POST', body: { password: $('password').value } });
+    $('password').value = ''; S.csrf = r.csrf; await enter(r.expires);
+  } catch (e) { msg.className = 'msg bad'; msg.textContent = e.message; }
+});
+
+async function enter(expires) {
+  $('login-screen').hidden = true; $('app').hidden = false;
+  $('session-note').textContent = `Session until ${new Date(expires).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+  S.meta = await api('meta');
+  fillSelect($('fs'), S.meta.sections, true); fillSelect($('ft'), S.meta.types, true);
+  fillSelect($('f-section'), S.meta.sections); fillSelect($('f-type'), S.meta.types);
+  fillSelect($('f-provider'), S.meta.imageProviders); fillSelect($('f-kind'), S.meta.imageKinds);
+  $('countries').replaceChildren(...S.meta.countries.map((c) => el('option', { value: c })));
+  $('regions').replaceChildren(...S.meta.regions.map((r) => el('label', {}, el('input', { type: 'checkbox', value: r.id, class: 'region' }), ' ', r.label)));
+  show('queue');
+}
+
+$('logout').addEventListener('click', async () => { try { await api('logout', { method: 'POST' }); } catch {} S.csrf = ''; showLogin('Logged out.'); });
+
+function fillSelect(sel, values, keepFirst = false) {
+  const first = keepFirst ? [sel.options[0]] : [];
+  sel.replaceChildren(...first, ...values.map((v) => el('option', { value: v, text: v })));
+}
+
+for (const t of document.querySelectorAll('.bar .tab')) t.addEventListener('click', () => (t.dataset.view === 'new' ? openEditor(null) : show(t.dataset.view)));
+function show(view) {
+  S.view = view; clearInterval(S.pollTimer); showError('');
+  for (const t of document.querySelectorAll('.bar .tab')) t.setAttribute('aria-selected', String(t.dataset.view === view));
+  $('view-queue').hidden = view !== 'queue'; $('view-list').hidden = view !== 'list'; $('view-editor').hidden = view !== 'editor';
+  if (view === 'queue') loadQueue(); if (view === 'list') loadList();
+}
+
+const originBadge = (o) => el('span', { class: `badge ${o === 'automation' ? 'newsroom' : o === 'manual' ? 'manual' : ''}`, text: o === 'automation' ? 'Newsroom' : o === 'manual' ? 'Manual' : 'Launch' });
+
+// ---- Review Queue ----
+$('queue-refresh').addEventListener('click', () => loadQueue());
+async function loadQueue() {
+  const cols = $('queue-columns'); $('queue-note').textContent = 'Loading…';
+  try {
+    const q = await api('queue');
+    cols.replaceChildren(...S.meta.buckets.map((b) => {
+      const items = q.columns[b] || [];
+      return el('div', { class: 'col', 'data-b': b }, el('h3', {}, b, el('span', { text: String(items.length) })),
+        items.length ? items.map(queueCard) : el('div', { class: 'empty', text: 'Nothing here.' }));
+    }));
+    $('queue-note').textContent = `Updated ${new Date().toLocaleTimeString()}`;
+  } catch (e) { $('queue-note').textContent = ''; showError(e.message); }
+}
+function queueCard(it) {
+  const gateBadges = (it.gates?.gates || []).map((g) => el('span', { class: `badge ${g.ok ? 'ok' : 'bad'}`, text: `${g.ok ? '✓' : '✗'} ${g.id === 'editorialReview' ? 'review' : g.id === 'verification' ? 'verified' : g.id === 'reviewedBy' ? 'reviewer' : g.id}` }));
+  const open = () => {
+    if (it.pr && it.pr.state === 'open' && !it.foreign) return openEditor({ pr: it.pr.number });
+    if (it.pr?.merged && it.slug) return window.open(`/article/${it.slug}`, '_blank', 'noopener');
+    if (it.pr?.url) window.open(it.pr.url, '_blank', 'noopener');
+  };
+  return el('button', { class: 'card', type: 'button', onclick: open },
+    el('span', { class: 'eyebrow', text: [it.section, it.type].filter(Boolean).join(' · ') || 'Story' }),
+    el('div', { class: 't', text: it.title || it.pr?.branch || 'Untitled' }),
+    it.dek ? el('div', { class: 'd', text: it.dek }) : null,
+    el('div', { class: 'badges' }, it.origin ? originBadge(it.origin) : null, it.risk === 'sensitive' ? el('span', { class: 'badge sensitive', text: 'Sensitive' }) : null,
+      el('span', { class: `badge ${/Ready/.test(it.state) ? 'ok' : /fail|Reject|hold|back/i.test(it.state) ? 'bad' : 'wait'}`, text: it.state }), ...gateBadges,
+      it.pr ? el('span', { class: 'badge', text: `PR #${it.pr.number}` }) : null));
+}
+
+// ---- Articles ----
+for (const id of ['q', 'fs', 'ft', 'fst', 'fo']) $(id).addEventListener('input', renderList);
+async function loadList() {
+  try {
+    const r = await api('list');
+    S.articles = r.articles; S.work = r.work;
+    $('authors').replaceChildren(...[...new Set(r.articles.map((a) => a.author).filter(Boolean))].map((a) => el('option', { value: a })));
+    renderList();
+  } catch (e) { showError(e.message); }
+}
+function renderList() {
+  const q = $('q').value.trim().toLowerCase(), s = $('fs').value, t = $('ft').value, st = $('fst').value, o = $('fo').value;
+  const rows = S.articles.filter((a) => (!q || `${a.title} ${a.author} ${a.slug}`.toLowerCase().includes(q)) && (!s || a.section === s) && (!t || a.type === t) && (!st || a.status === st) && (!o || a.origin === o));
+  $('list-body').replaceChildren(...rows.map((a) => el('tr', {},
+    el('td', { class: 'title' }, a.title, el('div', { class: 'hint mono', text: a.slug })),
+    el('td', { text: a.updated ? `${a.date} (upd. ${a.updated})` : a.date }), el('td', { text: a.section }), el('td', { text: a.author }),
+    el('td', { text: a.status }), el('td', { text: a.risk || '—' }), el('td', {}, originBadge(a.origin)),
+    el('td', { class: 'actions' }, el('button', { class: 'btn small', text: 'Edit', onclick: () => openEditor({ slug: a.slug }) }), ' ',
+      a.status === 'published' ? el('a', { class: 'btn small', href: `/article/${a.slug}`, target: '_blank', rel: 'noopener', text: 'View' }) : el('button', { class: 'btn small', text: 'Preview', onclick: () => openEditor({ slug: a.slug }, true) })))));
+  $('work-block').replaceChildren(S.work.length ? el('div', { class: 'panel' }, el('h3', { text: 'Manual work in progress' }),
+    ...S.work.map((w) => el('p', {}, el('button', { class: 'btn small', text: 'Open', onclick: () => openEditor({ slug: w.slug }) }), ' ', w.title, ' ',
+      el('span', { class: 'hint', text: `${w.status || 'draft'}${w.pr ? ` · PR #${w.pr.number}` : ' · not submitted'}${w.onMain ? ' · edit of a live story' : ' · new story'}` })))) : '');
+}
+
+// ---- Editor ----
+$('back').addEventListener('click', () => show(S.ed?.fromQueue ? 'queue' : 'list'));
+$('tab-write').addEventListener('click', () => subtab('write'));
+$('tab-preview').addEventListener('click', () => { subtab('preview'); runCheck(true); });
+function subtab(which) { $('tab-write').setAttribute('aria-selected', String(which === 'write')); $('tab-preview').setAttribute('aria-selected', String(which === 'preview')); $('write-pane').hidden = which !== 'write'; $('preview-pane').hidden = which !== 'preview'; }
+
+const chipsState = { tags: [], countries: [] };
+function renderChips(kind) {
+  $(kind === 'tags' ? 'tag-chips' : 'country-chips').replaceChildren(...chipsState[kind].map((v, i) => el('span', { class: 'chip' }, v,
+    el('button', { type: 'button', 'aria-label': `Remove ${v}`, text: '×', onclick: () => { chipsState[kind].splice(i, 1); renderChips(kind); scheduleCheck(); } }))));
+}
+function chipInput(inputId, kind) {
+  $(inputId).addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Enter' && ev.key !== ',') return;
+    ev.preventDefault();
+    const v = ev.target.value.trim().replace(/,$/, '');
+    if (v && !chipsState[kind].includes(v)) { chipsState[kind].push(v); renderChips(kind); scheduleCheck(); }
+    ev.target.value = '';
+  });
+}
+chipInput('tag-in', 'tags'); chipInput('country-in', 'countries');
+
+async function openEditor(target, previewFirst = false) {
+  clearInterval(S.pollTimer); showError('');
+  S.ed = { slug: null, branch: null, expectedSha: null, mainSha: null, mainStatus: null, origin: 'manual', newsroom: false, pr: null, currentImage: null, fromQueue: S.view === 'queue' };
+  S.upload = null; S.uploadDataUrl = ''; $('f-file').value = '';
+  for (const t of document.querySelectorAll('.bar .tab')) t.setAttribute('aria-selected', String(!target && t.dataset.view === 'new'));
+  $('view-queue').hidden = true; $('view-list').hidden = true; $('view-editor').hidden = false; S.view = 'editor';
+  subtab(previewFirst ? 'preview' : 'write');
+  let d = {}, body = '';
+  if (target) {
+    try {
+      const r = await api('article', { params: target.pr ? { pr: String(target.pr) } : { slug: target.slug } });
+      const src = r.work || r.main;
+      d = src.data; body = src.body;
+      Object.assign(S.ed, { slug: r.slug, branch: r.work?.branch || null, expectedSha: r.work ? r.work.sha : r.main.sha, mainSha: r.main?.sha || null,
+        mainStatus: r.main?.data?.status || null, origin: d.origin || 'legacy', newsroom: Boolean(r.work?.pr?.newsroom), pr: r.work?.pr || null, currentImage: d.image || null });
+    } catch (e) { showError(e.message); return; }
+  }
+  const e = S.ed;
+  $('ed-kind').textContent = !target ? 'New manual story' : e.newsroom ? 'Newsroom story (automated intake)' : e.origin === 'manual' ? 'Manual story' : e.origin === 'automation' ? 'Newsroom story (published)' : 'Launch story';
+  $('editor-notice').hidden = !(e.branch);
+  $('editor-notice').textContent = e.branch ? (e.newsroom ? `Reviewing the newsroom's pull request #${e.pr?.number}. Edits are committed to that pull request; the site changes only when you publish.` : `Continuing unpublished work on ${e.branch}${e.pr ? ` (PR #${e.pr.number})` : ''}. The live story is unchanged until you publish.`) : '';
+  $('f-title').value = d.title || ''; $('f-dek').value = d.dek || ''; $('f-slug').value = e.slug || '';
+  $('f-slug').readOnly = Boolean(e.slug); $('slug-note').textContent = e.slug ? 'fixed for existing stories' : 'auto from headline';
+  $('f-section').value = d.section || S.meta.sections[0]; $('f-type').value = d.type || 'News'; $('f-author').value = d.author || '';
+  $('f-date').value = d.date || new Date().toISOString().slice(0, 10);
+  $('f-published').value = d.publishedAt ? String(d.publishedAt).replace(/Z$/, '').slice(0, 19) : '';
+  $('f-body').value = body;
+  chipsState.tags = Array.isArray(d.tags) ? [...d.tags] : []; chipsState.countries = Array.isArray(d.countries) ? [...d.countries] : [];
+  renderChips('tags'); renderChips('countries');
+  for (const c of document.querySelectorAll('.region')) c.checked = Array.isArray(d.regions) && d.regions.includes(c.value);
+  $('f-sources').value = (Array.isArray(d.sourceUrls) ? d.sourceUrls : []).join('\n'); $('f-sourcenote').value = d.sourceNote || '';
+  for (const r of document.querySelectorAll('input[name=risk]')) r.checked = r.value === (d.risk || '');
+  $('f-review').value = d.editorialReview || ''; $('f-verify').value = d.verification || ''; $('f-reviewer').value = d.reviewedBy || '';
+  $('img-current-opt').hidden = !e.currentImage;
+  setImageMode(e.currentImage ? 'current' : 'none');
+  $('f-alt').value = d.imageAlt || ''; $('f-caption').value = d.imageCaption || ''; $('f-credit').value = d.imageCredit || '';
+  $('f-provider').value = d.imageProvider || 'manual'; $('f-kind').value = d.imageKind || 'photo'; $('f-license').value = d.imageLicense || '';
+  $('f-licenseurl').value = d.imageLicenseUrl || ''; $('f-sourcepage').value = d.imageSourcePage || ''; $('f-imgurl').value = '';
+  updateCounts(); renderSources(); renderActions(); $('errors').replaceChildren(); $('warnings').replaceChildren(); $('action-msg').textContent = '';
+  $('ed-state').textContent = !target ? 'Not saved' : e.pr ? 'Loading status…' : e.branch ? 'Draft' : e.mainStatus === 'published' ? 'Published' : e.mainStatus || '';
+  $('ed-meta').textContent = e.slug ? `/${e.slug}` : ''; $('ed-checks').replaceChildren(); $('ed-pr').replaceChildren();
+  if (e.branch) pollStatus();
+  runCheck(true);
+}
+
+function imageMode() { return document.querySelector('input[name=imgmode]:checked')?.value || 'none'; }
+function setImageMode(m) { for (const r of document.querySelectorAll('input[name=imgmode]')) r.checked = r.value === m; onImageMode(); }
+for (const r of document.querySelectorAll('input[name=imgmode]')) r.addEventListener('change', onImageMode);
+function onImageMode() {
+  const m = imageMode();
+  $('img-upload').hidden = m !== 'upload'; $('img-url').hidden = m !== 'url'; $('img-meta').hidden = m === 'none';
+  const p = $('img-preview');
+  const src = m === 'current' ? S.ed?.currentImage : m === 'upload' ? S.uploadDataUrl : m === 'url' ? $('f-imgurl').value.trim() : '';
+  if (src && (/^https:\/\//.test(src) || src.startsWith('/') || src.startsWith('data:image/'))) { p.src = src; p.hidden = false; } else { p.removeAttribute('src'); p.hidden = true; }
+  scheduleCheck();
+}
+$('f-imgurl').addEventListener('change', onImageMode);
+$('f-file').addEventListener('change', () => {
+  const f = $('f-file').files[0];
+  if (!f) { S.upload = null; S.uploadDataUrl = ''; return onImageMode(); }
+  if (f.size > (S.meta.limits.imageBytes || 3145728)) { S.upload = null; S.uploadDataUrl = ''; $('action-msg').className = 'msg bad'; $('action-msg').textContent = 'That image is larger than 3 MB.'; return onImageMode(); }
+  const reader = new FileReader();
+  reader.onload = () => { S.uploadDataUrl = String(reader.result); S.upload = { name: f.name, type: f.type, dataBase64: S.uploadDataUrl.split(',')[1] || '' }; onImageMode(); };
+  reader.readAsDataURL(f);
+});
+
+// Same rule as the newsroom (scripts/lib/newsroom.mjs slugify); the server re-validates every slug.
+function slugify(input) {
+  const s = String(input).normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return s.length <= 90 ? s : (s.slice(0, 90).replace(/-[^-]*$/, '') || s.slice(0, 90));
+}
+$('f-title').addEventListener('input', () => { if (!S.ed.slug && !$('f-slug').dataset.touched) $('f-slug').value = slugify($('f-title').value); });
+$('f-slug').addEventListener('input', () => { $('f-slug').dataset.touched = '1'; });
+for (const id of ['f-title', 'f-dek', 'f-slug', 'f-section', 'f-type', 'f-author', 'f-date', 'f-published', 'f-body', 'f-sources', 'f-sourcenote', 'f-review', 'f-verify', 'f-reviewer', 'f-alt', 'f-caption', 'f-credit', 'f-provider', 'f-kind', 'f-license', 'f-licenseurl', 'f-sourcepage']) {
+  $(id).addEventListener('input', () => { updateCounts(); scheduleCheck(); });
+}
+for (const r of document.querySelectorAll('input[name=risk], .region')) r.addEventListener('change', () => { updateCounts(); scheduleCheck(); });
+document.addEventListener('change', (ev) => { if (ev.target.classList?.contains('region')) scheduleCheck(); });
+$('f-sources').addEventListener('input', renderSources);
+
+function updateCounts() {
+  const L = S.meta?.limits || { title: 180, dek: 360 };
+  const t = $('f-title').value.length, d = $('f-dek').value.length;
+  $('c-title').textContent = `${t}/${L.title}`; $('c-title').className = `count${t > L.title ? ' over' : ''}`;
+  $('c-dek').textContent = `${d}/${L.dek}`; $('c-dek').className = `count${d > L.dek ? ' over' : ''}`;
+  const words = ($('f-body').value.match(/[A-Za-z0-9][\w'’-]*/g) || []).length;
+  $('c-body').textContent = `${words} words · about ${Math.max(1, Math.round(words / 220))} min read`;
+  const sensitive = document.querySelector('input[name=risk]:checked')?.value === 'sensitive';
+  $('verify-block').style.opacity = sensitive ? '1' : '.55';
+  $('humanled-note').hidden = !['Opinion', 'Essay', 'Ideas', 'Review'].includes($('f-type').value) && $('f-section').value !== 'Opinion';
+}
+function renderSources() {
+  const urls = $('f-sources').value.split('\n').map((s) => s.trim()).filter(Boolean);
+  $('source-links').replaceChildren(...urls.map((u) => /^https:\/\//.test(u) ? el('div', {}, el('a', { href: u, target: '_blank', rel: 'noopener noreferrer', text: u })) : el('div', { text: `✗ not https: ${u}` })));
+}
+
+// Markdown toolbar: wraps or prefixes the current selection.
+for (const b of document.querySelectorAll('[data-md]')) b.addEventListener('click', () => {
+  const ta = $('f-body'), s = ta.selectionStart, e = ta.selectionEnd, v = ta.value, sel = v.slice(s, e);
+  const lineStart = v.lastIndexOf('\n', s - 1) + 1;
+  let out, cs, ce;
+  const wrap = (a, z, ph) => { const text = sel || ph; out = v.slice(0, s) + a + text + z + v.slice(e); cs = s + a.length; ce = cs + text.length; };
+  // Prefix the current line(s). On an empty line only the placeholder is selected, so typing replaces it and keeps the marker.
+  const prefix = (fn) => {
+    const had = v.slice(lineStart, e);
+    const text = (had || 'Text').split('\n').map(fn).join('\n');
+    out = v.slice(0, lineStart) + text + v.slice(e);
+    ce = lineStart + text.length;
+    cs = had ? ce : ce - 'Text'.length;
+  };
+  switch (b.dataset.md) {
+    case 'bold': wrap('**', '**', 'bold text'); break;
+    case 'italic': wrap('*', '*', 'italic text'); break;
+    case 'link': { const url = prompt('Link address (must start with https://)', 'https://'); if (!url || !/^https:\/\/\S+$/.test(url)) return; wrap('[', `](${url})`, 'link text'); break; }
+    case 'h2': prefix((l) => `## ${l.replace(/^#+\s*/, '')}`); break;
+    case 'quote': prefix((l) => `> ${l.replace(/^>\s?/, '')}`); break;
+    case 'ul': prefix((l) => `- ${l.replace(/^([-*+]|\d+\.)\s+/, '')}`); break;
+    case 'ol': { let i = 0; prefix((l) => `${++i}. ${l.replace(/^([-*+]|\d+\.)\s+/, '')}`); break; }
+  }
+  ta.value = out; ta.focus(); ta.setSelectionRange(cs, ce); updateCounts(); scheduleCheck();
+});
+
+function payload(intent) {
+  const m = imageMode();
+  const pub = $('f-published').value;
+  return {
+    slug: $('f-slug').value.trim(), intent, branch: S.ed.branch || undefined, expectedSha: S.ed.expectedSha, isNew: !S.ed.branch && !S.ed.mainSha,
+    form: {
+      title: $('f-title').value, dek: $('f-dek').value, section: $('f-section').value, type: $('f-type').value, author: $('f-author').value,
+      date: $('f-date').value, publishedAt: pub ? `${pub.length === 16 ? pub + ':00' : pub}Z` : '', body: $('f-body').value,
+      tags: chipsState.tags, countries: chipsState.countries, regions: [...document.querySelectorAll('.region:checked')].map((c) => c.value),
+      sourceUrls: $('f-sources').value.split('\n').map((s) => s.trim()).filter(Boolean), sourceNote: $('f-sourcenote').value,
+      risk: document.querySelector('input[name=risk]:checked')?.value || '', editorialReview: $('f-review').value, verification: $('f-verify').value, reviewedBy: $('f-reviewer').value
+    },
+    image: {
+      mode: m, url: $('f-imgurl').value.trim(), upload: m === 'upload' ? S.upload : undefined,
+      alt: $('f-alt').value, caption: $('f-caption').value, credit: $('f-credit').value, provider: $('f-provider').value, kind: $('f-kind').value,
+      license: $('f-license').value, licenseUrl: $('f-licenseurl').value, sourcePage: $('f-sourcepage').value
+    }
+  };
+}
+
+function scheduleCheck() { clearTimeout(S.checkTimer); S.checkTimer = setTimeout(() => runCheck(false), 900); }
+async function runCheck(immediate) {
+  if (!S.ed || S.view !== 'editor') return;
+  if (!$('f-slug').value.trim()) return; // nothing to check until the story has a headline/slug
+  const intent = S.ed.newsroom || S.ed.mainStatus === 'published' ? 'publish' : 'review';
+  try {
+    const r = await api('check', { method: 'POST', body: { ...payload(intent), intent } });
+    S.lastCheck = r;
+    $('rt').textContent = `· ${r.readingTime} read`;
+    list('errors', r.errors); list('warnings', r.warnings);
+    $('gates').replaceChildren(...r.gates.gates.map((g) => el('li', { class: g.ok ? 'ok' : '' }, g.label, g.value && !g.ok ? el('span', { class: 'hint', text: ` (${g.value})` }) : null)));
+    renderPreview(r.preview);
+  } catch (e) { if (e.data?.errors) list('errors', e.data.errors); else if (e.status !== 401) list('errors', [e.message]); }
+}
+function list(id, items) { $(id).replaceChildren(...(items || []).map((t) => el('li', { text: t }))); }
+
+function renderPreview(html) {
+  let css = '';
+  try { css = JSON.parse($('preview-css').textContent || '""'); } catch {}
+  const doc = `<!doctype html><html><head><meta charset="utf-8"><base target="_blank"><style>${css.replace(/<\/style/gi, '')}</style></head><body class="reading-page">${html}</body></html>`;
+  const fr = $('preview');
+  fr.onload = () => {
+    const img = fr.contentDocument?.querySelector('img[data-pending-upload]');
+    if (img && S.uploadDataUrl) img.src = S.uploadDataUrl;
+  };
+  fr.srcdoc = doc;
+}
+
+// ---- Actions & status ----
+function renderActions(st = null) {
+  const e = S.ed, a = $('actions');
+  const btn = (label, fn, cls = 'btn', disabled = false) => el('button', { class: cls, type: 'button', text: label, onclick: fn, disabled });
+  const items = [];
+  const open = st?.pr && st.pr.state === 'open';
+  if (!e.newsroom) {
+    if (!open) items.push(btn('Save draft', () => save('draft')));
+    items.push(btn(open ? 'Save changes for review' : 'Submit for review', () => save('review')));
+    items.push(btn(e.mainStatus === 'published' ? 'Prepare update for publication' : 'Prepare publication', () => save('publish'), 'btn primary'));
+  } else {
+    items.push(btn('Save edits (keep in review)', () => save('review')));
+    items.push(btn('Approve & prepare publication', () => save('publish'), 'btn primary'));
+  }
+  if (st?.canMerge) items.push(btn(st.state === 'Ready to unpublish' ? 'Unpublish now' : 'Publish now', () => mergeNow(st), 'btn primary'));
+  else if (open) items.push(btn('Publish now (waiting for checks and gates)', null, 'btn primary', true));
+  if (open) {
+    const held = (st.pr.labels || []).some((l) => ['hold', 'needs-human'].includes(l));
+    items.push(held ? btn('Release hold', () => reviewAction('release')) : btn('Hold', () => reviewAction('hold')));
+    items.push(btn('Send back for changes…', () => reviewAction('sendback')));
+    items.push(btn('Reject…', () => reviewAction('reject'), 'btn danger'));
+  }
+  if (!e.newsroom && e.branch && !open && !st?.pr?.merged) items.push(btn('Discard draft…', discardDraft, 'btn danger'));
+  if (!e.branch && e.mainStatus === 'published') items.push(btn('Unpublish…', unpublish, 'btn danger'));
+  a.replaceChildren(...items);
+}
+
+async function save(intent) {
+  const msg = $('action-msg'); msg.className = 'msg'; msg.textContent = 'Saving…';
+  try {
+    const r = await api('save', { method: 'POST', body: payload(intent) });
+    Object.assign(S.ed, { slug: r.slug, branch: r.branch, expectedSha: r.articleSha, pr: r.pr || S.ed.pr });
+    $('f-slug').value = r.slug; $('f-slug').readOnly = true;
+    if (imageMode() === 'upload' && S.upload) { S.ed.currentImage = null; }
+    msg.className = 'msg ok'; msg.textContent = intent === 'draft' ? 'Draft saved. Nothing is public.' : r.pr ? `Saved to pull request #${r.pr.number}. Required checks are running.` : 'Saved.';
+    $('editor-notice').hidden = false; $('editor-notice').textContent = `Working on ${r.branch}${r.pr ? ` (PR #${r.pr.number})` : ''}. The live site is unchanged until you publish.`;
+    pollStatus();
+  } catch (e) {
+    msg.className = 'msg bad'; msg.textContent = e.message;
+    if (e.data?.errors) list('errors', e.data.errors);
+  }
+}
+
+async function pollStatus() {
+  clearInterval(S.pollTimer);
+  const tick = async () => {
+    if (!S.ed?.branch || S.view !== 'editor') return clearInterval(S.pollTimer);
+    try {
+      const st = await api('status', { params: { branch: S.ed.branch } });
+      S.ed.status = st; S.ed.pr = st.pr;
+      $('ed-state').textContent = st.state;
+      $('ed-meta').textContent = `/${st.slug} · file status: ${st.fileStatus || '—'}${st.mainStatus ? ` · on site: ${st.mainStatus}` : ' · not yet on site'}`;
+      $('ed-checks').replaceChildren(...(st.checks || []).map((c) => el('li', {}, c.name, el('span', { class: `badge ${c.conclusion === 'success' ? 'ok' : c.status === 'completed' ? 'bad' : 'wait'}`, text: c.status === 'completed' ? c.conclusion : c.status }))));
+      $('ed-pr').replaceChildren(...(st.pr ? [el('a', { href: st.pr.url, target: '_blank', rel: 'noopener', text: `GitHub PR #${st.pr.number}` }), st.pr.labels?.length ? ` · labels: ${st.pr.labels.join(', ')}` : ''] : []));
+      renderActions(st);
+      if (!/running|created/i.test(st.state)) clearInterval(S.pollTimer);
+    } catch (e) { clearInterval(S.pollTimer); }
+  };
+  await tick();
+  S.pollTimer = setInterval(tick, 15000);
+}
+
+async function mergeNow(st) {
+  const verb = st.state === 'Ready to unpublish' ? 'unpublish' : 'publish';
+  if (!(await ask(`${verb === 'publish' ? 'Publish' : 'Unpublish'} this story?`, `This merges pull request #${st.pr.number} into main. Vercel then deploys the site. All required checks passed on commit ${st.headSha.slice(0, 7)}.`))) return;
+  const msg = $('action-msg'); msg.className = 'msg'; msg.textContent = 'Merging…';
+  try {
+    const r = await api('merge', { method: 'POST', body: { number: st.pr.number, sha: st.headSha } });
+    msg.className = 'msg ok'; msg.textContent = `${r.state}. ${r.note}`;
+    $('ed-state').textContent = r.state; clearInterval(S.pollTimer); S.ed.branch = null; S.ed.mainStatus = r.state === 'Published' ? 'published' : 'draft'; renderActions();
+  } catch (e) { msg.className = 'msg bad'; msg.textContent = e.message; if (e.data?.errors) list('errors', e.data.errors); pollStatus(); }
+}
+
+async function reviewAction(action) {
+  const st = S.ed.status;
+  const needsNote = action === 'sendback' || action === 'reject';
+  const titles = { hold: 'Hold this story?', release: 'Release the hold?', sendback: 'Send back for changes', reject: 'Reject this story?' };
+  const texts = { hold: 'It will not publish (manually or automatically) until released.', release: 'It becomes publishable again once gates and checks pass.', sendback: 'The note is recorded on the pull request and the story is held until someone edits it.', reject: 'The pull request is closed with your note. The story will not be published.' };
+  const note = await ask(titles[action], texts[action], needsNote ? 'Note (required)' : 'Note (optional)');
+  if (note === false) return;
+  const msg = $('action-msg'); msg.className = 'msg'; msg.textContent = 'Recording…';
+  try { await api('review', { method: 'POST', body: { number: st.pr.number, action, note: typeof note === 'string' ? note : '' } }); msg.className = 'msg ok'; msg.textContent = 'Recorded.'; pollStatus(); }
+  catch (e) { msg.className = 'msg bad'; msg.textContent = e.message; }
+}
+
+async function discardDraft() {
+  if (!(await ask('Discard this draft?', 'The working branch and any open pull request are closed. The live site is not affected.'))) return;
+  try { await api('discard', { method: 'POST', body: { branch: S.ed.branch } }); $('action-msg').className = 'msg ok'; $('action-msg').textContent = 'Draft discarded.'; S.ed.branch = null; S.ed.expectedSha = S.ed.mainSha; renderActions(); }
+  catch (e) { $('action-msg').className = 'msg bad'; $('action-msg').textContent = e.message; }
+}
+
+async function unpublish() {
+  const typed = await ask('Unpublish this story?', `The story is taken off the site but kept in the repository with its history (status becomes "draft"). Type the slug to confirm: ${S.ed.slug}`, 'Slug');
+  if (typed === false) return;
+  if (typed !== S.ed.slug) { $('action-msg').className = 'msg bad'; $('action-msg').textContent = 'The slug did not match; nothing was changed.'; return; }
+  try {
+    const r = await api('save', { method: 'POST', body: { intent: 'unpublish', slug: S.ed.slug, confirm: typed, expectedSha: S.ed.mainSha } });
+    Object.assign(S.ed, { branch: r.branch, pr: r.pr });
+    $('action-msg').className = 'msg ok'; $('action-msg').textContent = `Unpublish prepared in PR #${r.pr.number}. Publish it once checks pass.`;
+    pollStatus();
+  } catch (e) { $('action-msg').className = 'msg bad'; $('action-msg').textContent = e.message; }
+}
+
+// Confirmation dialog: resolves true/false, or the typed text when a field is shown.
+function ask(title, text, fieldLabel = '') {
+  return new Promise((resolve) => {
+    const d = $('dlg');
+    $('dlg-title').textContent = title; $('dlg-text').textContent = text; $('dlg-field').hidden = !fieldLabel; $('dlg-label').textContent = fieldLabel; $('dlg-input').value = '';
+    d.onclose = () => resolve(d.returnValue === 'ok' ? (fieldLabel ? $('dlg-input').value.trim() : true) : false);
+    d.showModal();
+  });
+}
+
+boot();
+</script>
+</body>
+</html>

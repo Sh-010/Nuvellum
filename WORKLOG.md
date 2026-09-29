@@ -4,6 +4,71 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-29: Admin dashboard and Editorial Review Queue (`/admin`)
+
+Branch `feat/admin-dashboard`, PR open and **not merged**. Operator guide: `docs/ADMIN.md`.
+
+- **Architecture**
+  - `/admin` is a static Astro page: noindex, not linked, excluded from the sitemap, disallowed in robots, no analytics.
+  - The API is one Vercel Function, `api/admin.js` (`/api/admin?action=…`). The rest of the site stays static.
+  - Stories are still Markdown in Git; there is no database.
+  - Every write goes through a branch and a PR, is merged only when the required checks pass on the exact head, and then deploys through Vercel.
+- **Shared contract**
+  - The validator's rules were moved verbatim into `scripts/lib/article-rules.mjs`. `validate-content.mjs` and the dashboard both use it.
+  - On the clean repository and 40 of 41 mutation cases the output is identical to before. The one difference is the first new rule below.
+  - New rule for all articles: links must be `http(s)`, `mailto:`, site-relative or `#`.
+  - New rule for `origin: "manual"`: `risk` is required. Publishing needs `editorialReview: passed`; sensitive stories also need `verification: cleared` and a named `reviewedBy`. `Nuvellum Verification Pipeline` is reserved.
+- **Branches**
+  - Manual stories use `manual/<slug>-<yyyymmddhhmmss>`. They never touch `incoming/**`, so auto-open, visual-acquire and auto-publish are unaffected. Vercel branch deploys are disabled for `manual/**`.
+  - Newsroom stories are reviewed and edited on their own `incoming/**` PR.
+- **Review Queue**
+  - Five columns: Pending Review, Checks Running, Ready to Publish, Published, Held / Rejected.
+  - Actions: approve, clear verification, hold/release, send back, reject, and publish once green.
+  - Held stories use the existing hold labels, which auto-publish already honours.
+- **Proven compatibility fixes**
+  - `visual-acquire.yml` skips commits whose message starts with `editor: `, so it no longer overwrites an editor's image or text-led decision.
+  - `article/[slug].astro` no longer shows "Illustrative launch image" for manual images; image-rights details show only the recorded fields. All 358 existing pages are byte-identical to main.
+  - `instrument-analytics.mjs` skips `/admin`.
+- **Files**
+  - New:
+    - `api/admin.js`
+    - `scripts/lib/article-rules.mjs`
+    - `scripts/lib/admin/{auth,github,editor,images,render,handler}.mjs`
+    - `src/pages/admin.astro`
+    - `tests/admin-fixtures.mjs`
+    - `tests/admin.test.mjs`
+    - `docs/ADMIN.md`
+  - Changed:
+    - `scripts/validate-content.mjs`
+    - `scripts/check-build-output.mjs` (admin noindex, no analytics or credentials, sitemap, robots)
+    - `src/pages/robots.txt.ts`
+    - `vercel.json`
+    - `.github/workflows/visual-acquire.yml`
+    - `scripts/instrument-analytics.mjs`
+    - `src/pages/article/[slug].astro`
+    - `.env.example`
+    - `README.md`
+- **New Vercel env vars** (values are never in the repo):
+  - `NUVELLUM_ADMIN_PASSWORD` (at least 16 characters)
+  - `NUVELLUM_ADMIN_SESSION_SECRET` (at least 32 characters)
+  - `NUVELLUM_GITHUB_TOKEN`: fine-grained, `Sh-010/Nuvellum` only, with Contents RW, Pull requests RW, Actions R and Metadata R
+- **Tests**
+  - `npm test`: 247/247 (34 new admin tests).
+  - `npm run validate`: pass. `npm run build`: 357 pages. `check-build-output`: pass. `npm audit`: 0 vulnerabilities.
+  - Local HTTPS browser end-to-end run in Chrome against an in-memory GitHub loaded with the real articles:
+    - login (wrong, then right)
+    - approve and clear a newsroom story
+    - list and filter articles
+    - a new story with an uploaded image: draft → PR → green → publish
+    - mobile layout: no horizontal overflow; no JS errors
+- **Limitations / owner actions**
+  - Set the three env vars in Vercel, then do a first real run (a draft, then publish a low-risk test story, then unpublish it). The Vercel Function has only been exercised locally.
+  - The login throttle is per function instance. Sessions are stateless: to revoke all of them, rotate the secret.
+  - The preview uses a strict Markdown subset renderer that matches the house article layout; it is not the Astro build itself.
+  - If `NUVELLUM_AUTOPUBLISH` is turned on, auto-publish can still merge pipeline-cleared newsroom stories that are not held.
+
+---
+
 ## 2026-09-28 (night): n8n execution telemetry, the last step of the observability phase
 
 - Live workflow `8hXx6NuZuJU9dRR1`, edited in place: 51c01d9f → **f67dcee5**. Still inactive; `NUVELLUM_AUTOPUBLISH` is still `off`. The graph has 67 nodes (+2); no gate, condition or decision node changed.

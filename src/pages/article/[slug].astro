@@ -63,9 +63,14 @@ const inlineCredit = article.imageProvider === 'wikimedia' ? {
   author: article.imageCredit || 'Unknown creator', license: article.imageLicense || '',
   licenseUrl: article.imageLicenseUrl || '', descriptionUrl: article.imageSourcePage || '', path: article.image
 } : null;
-const credit = inlineCredit || storedCredit;
+// Manual (dashboard) stories carry their own image metadata; show exactly what was recorded, never a stock label.
+const manualCredit = !inlineCredit && article.origin === 'manual' && article.image ? {
+  kind: article.imageKind === 'photo' ? 'photo' : 'other', source: '', caption: article.imageCaption || '',
+  author: article.imageCredit || '', license: article.imageLicense || '', licenseUrl: article.imageLicenseUrl || '', descriptionUrl: article.imageSourcePage || '', path: article.image
+} : null;
+const credit = inlineCredit || manualCredit || storedCredit;
 const focus = imageFocus(article.slug, article.image);
-const caption = credit?.caption ? credit.caption : article.origin === 'automation' && String(article.image).startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
+const caption = credit?.caption ? credit.caption : manualCredit ? '' : article.origin === 'automation' && String(article.image).startsWith('/generated/ai/') ? 'AI-generated editorial illustration' : article.origin === 'automation' ? 'Original editorial illustration' : 'Illustrative launch image';
 const [leadRelated, ...moreRelated] = related;
 const tools = [
   { action: 'smaller', label: 'A−', aria: 'Decrease text size' },
@@ -122,10 +127,10 @@ const tools = [
       <div class="lead-media"><img src={article.image} alt={article.imageAlt} fetchpriority="high" style={focus} /></div>
       <figcaption>
         <span class="eyebrow">✦ Nuvellum</span> {caption}
-        {credit?.kind === 'photo' && (
+        {credit?.kind === 'photo' && credit.author && (
           <details class="image-rights">
             <summary>Image rights</summary>
-            <span>Photo: <a href={credit.descriptionUrl} rel="noopener">{credit.author}</a> / {credit.source}, {/public domain|^pd/i.test(credit.license) ? 'public domain' : credit.licenseUrl ? <a href={credit.licenseUrl} rel="noopener license">{credit.license}</a> : credit.license}.</span>
+            <span>Photo: {credit.descriptionUrl ? <a href={credit.descriptionUrl} rel="noopener">{credit.author}</a> : credit.author}{credit.source && ` / ${credit.source}`}{credit.license && <>, {/public domain|^pd/i.test(credit.license) ? 'public domain' : credit.licenseUrl ? <a href={credit.licenseUrl} rel="noopener license">{credit.license}</a> : credit.license}</>}.</span>
           </details>
         )}
       </figcaption>

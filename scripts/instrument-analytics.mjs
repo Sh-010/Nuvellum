@@ -22,7 +22,8 @@ function walk(dir) {
   return out;
 }
 
-const files = walk(root);
+// The private admin page never loads third-party scripts.
+const files = walk(root).filter((f) => !/[\\/]admin[\\/]index\.html$/.test(f));
 for (const file of files) {
   const before = readFileSync(file, 'utf8');
   const after = injectAnalytics(before, measurementId);

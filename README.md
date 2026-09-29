@@ -29,6 +29,7 @@ Builds never modify tracked files. The served public assets are assembled in `.b
 - Analytics and newsroom health: `docs/OBSERVABILITY.md`
 - Social distribution: `docs/SOCIAL_DISTRIBUTION.md`
 - Shorts/Reels engine: `docs/SHORTS_ENGINE.md`
+- Admin dashboard and Review Queue (`/admin`): `docs/ADMIN.md`
 - Roadmap (milestones, AI Visual Engine): `docs/ROADMAP.md`
 - Recovery: `docs/RECOVERY.md` (distribution and Shorts engines are kept on branch `engines/distribution-shorts`, not in production)
 - n8n workflow contract and version control: `n8n/README.md`

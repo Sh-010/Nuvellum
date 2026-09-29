@@ -83,6 +83,21 @@ for (const { slug } of published) {
   if (!new RegExp(`<loc>https://nuvellum\\.vercel\\.app/article/${slug}</loc><lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`).test(sitemap)) errors.push(`sitemap: ${slug} missing or without lastmod`);
 }
 
+// Private admin shell: present, never indexed or listed, no third-party scripts, and nothing secret-shaped in it.
+// (Its protection is the authenticated /api/admin; this only checks discoverability hygiene.)
+if (!existsSync(join(dist, 'admin', 'index.html'))) errors.push('admin/index.html: missing');
+else {
+  const admin = read(join('admin', 'index.html'));
+  if (!/<meta name="robots" content="noindex, nofollow/.test(admin)) errors.push('admin: missing noindex, nofollow');
+  if (/googletagmanager|google-analytics/.test(admin)) errors.push('admin: analytics must not load on the admin page');
+  if (/github_pat_|ghp_[A-Za-z0-9]{20}|NUVELLUM_ADMIN_PASSWORD|NUVELLUM_ADMIN_SESSION_SECRET|NUVELLUM_GITHUB_TOKEN/.test(admin)) errors.push('admin: credential-like content in the static page');
+  if (/<header[^>]*class="[^"]*site-header|<[a-z]+[^>]*class="footer-cols"/.test(admin)) errors.push('admin: must not reuse the public header/footer');
+}
+if (/\/admin/.test(sitemap)) errors.push('sitemap: /admin must not be listed');
+const robots = read('robots.txt');
+if (!/^Disallow: \/admin$/m.test(robots) || !/^Disallow: \/api\/$/m.test(robots)) errors.push('robots.txt: /admin and /api/ must be disallowed');
+if (/href="\/admin"/.test(home)) errors.push('index.html: the admin must not be linked from the public site');
+
 if (errors.length) {
   console.error('\nBuild output check failed:\n');
   for (const e of errors) console.error(' - ' + e);
