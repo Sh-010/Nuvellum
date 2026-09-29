@@ -349,7 +349,7 @@ const html = `<!doctype html>
 <title>Nuvellum — Beyond the headline.</title>
 <meta name="description" content="${description}">
 <link rel="canonical" href="${canonical}">
-<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" sizes="any">\n<link rel="shortcut icon" href="/favicon.svg?v=3">
+<link rel="icon" href="/favicon.svg?v=4" type="image/svg+xml" sizes="any">\n<link rel="shortcut icon" href="/favicon.svg?v=4">
 <link rel="alternate" type="application/rss+xml" title="Nuvellum RSS" href="/rss.xml">
 <meta name="theme-color" content="#6d1026">
 <meta property="og:type" content="website">
