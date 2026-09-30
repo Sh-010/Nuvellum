@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/nasa-awards-orbital-safety-analysis-support-services-contract.jpg"
+imageAlt: "NASA HQ Building"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: NASA HQ Building. Image of National Aeronautics and Space Administration, not of the events reported."
+imageCredit: "NASA"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:NASA_HQ_Building.jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:NASA_HQ_Building.jpg"
 ---
 ## Contract details and value
 

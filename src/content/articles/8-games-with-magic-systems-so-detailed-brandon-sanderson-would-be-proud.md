@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/8-games-with-magic-systems-so-detailed-brandon-sanderson-would-be-proud.jpg"
+imageAlt: "Brandon Sanderson at CONduit 17 in Salt Lake City, Utah"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Brandon Sanderson at CONduit 17 in Salt Lake City, Utah. Image of Brandon Sanderson, not of the events reported."
+imageCredit: "Nihonjoe"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Brandon_Sanderson_at_CONduit_2007.png"
 ---
 Author Brandon Sanderson defines the difference between a rule-based magic system and one driven purely by atmosphere through his First Law. According to this principle, an author's ability to resolve conflict using magic is directly proportional to how well the audience understands that magic's rules. While novels can sometimes gesture at a system's logic before moving on, video games require players to actively learn and interact with mechanics.
 

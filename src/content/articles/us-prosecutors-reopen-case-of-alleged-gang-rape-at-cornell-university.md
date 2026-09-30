@@ -18,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/us-prosecutors-reopen-case-of-alleged-gang-rape-at-cornell-university.jpg"
+imageAlt: "Helen Newman Hall, Cornell University, Ithaca, New York"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Helen Newman Hall, Cornell University, Ithaca, New York. Image of Cornell University, not of the events reported."
+imageCredit: "P. Hughes"
+imageLicense: "CC BY 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Cornell_University_-_Helen_Newman_Hall.jpg"
 ---
 ## Prosecutors reopen criminal inquiry
 

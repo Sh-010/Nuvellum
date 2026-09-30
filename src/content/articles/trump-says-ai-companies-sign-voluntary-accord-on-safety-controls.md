@@ -18,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/trump-says-ai-companies-sign-voluntary-accord-on-safety-controls.jpg"
+imageAlt: "President Donald Trump poses for his official portrait at The White House, in Washington, D.C., on Friday, October 6, 2017. (Official White House Photo by Shealah Craighead)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: President Donald Trump poses for his official portrait at The White House, in Washington, D.C., on Friday, October 6, 2017. (Official White House Photo by Shealah Craighead). Image of Donald Trump, not of the events reported."
+imageCredit: "Shealeah Craighead"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Donald_Trump_official_portrait_(cropped_wide).jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Donald_Trump_official_portrait_(cropped_wide).jpg"
 ---
 ## Voluntary safety agreement signed at White House
 

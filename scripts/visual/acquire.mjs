@@ -5,13 +5,16 @@ import { fileURLToPath } from 'node:url';
 import { parseFrontmatter } from '../lib/editorial.mjs';
 import { buildVisualBrief, chooseVisualMode, selectBestVisual } from './core.mjs';
 import { searchWikimedia } from './wikimedia.mjs';
+import { findRepresentative, representativeCaption } from './representative.mjs';
 
 const root=dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 const UA='NuvellumVisualEngine/1.0 (https://nuvellum.vercel.app)';
 
-export function cleanDescription(candidate){
+// A representative image's Commons description was written about some other occasion; one that refers to an
+// unnamed "he"/"she" would read as if it meant the person in our story, so the file title is used instead.
+export function cleanDescription(candidate,{representative=false}={}){
   const d=String(candidate?.description||'').replace(/\s+/g,' ').trim();
-  if(d.length>=18&&d.length<=220)return d.replace(/[.\s]+$/,'');
+  if(d.length>=18&&d.length<=220&&!(representative&&/\b(he|she|his|her|him|they|their|them)\b/i.test(d)))return d.replace(/[.\s]+$/,'');
   return String(candidate?.title||'Editorial photograph').replace(/\.[A-Za-z0-9]{2,5}$/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim();
 }
 export function applyVisualMetadata(src,fields){
@@ -56,7 +59,10 @@ function extension(mime,url){
   const e=extname(new URL(url).pathname).toLowerCase();
   return e==='.png'?'png':e==='.webp'?'webp':'jpg';
 }
-export async function acquireForArticle(path,{doApply=false,search=searchWikimedia}={}){
+// Fallback chain: the story's own photograph → a representative image of its primary subject (person,
+// organisation, institution, event or venue; representative.mjs) → the text-led layout. Licence, credit and
+// provenance checks are identical for both kinds of photo; only the caption differs.
+export async function acquireForArticle(path,{doApply=false,search=searchWikimedia,representative=findRepresentative,fetchImage=download}={}){
   const abs=join(root,path);const src=readFileSync(abs,'utf8');const data=parseFrontmatter(src)||{};
   const slug=basename(path).replace(/\.md$/,'');data.slug=slug;
   if(data.imageProvider==='wikimedia'||new RegExp(`^/uploads/articles/${slug}\\.(?:jpe?g|png|webp)$`,'i').test(String(data.image||'')))return{outcome:'already-acquired',slug};
@@ -71,7 +77,26 @@ export async function acquireForArticle(path,{doApply=false,search=searchWikimed
   }
   const strict=data.risk==='sensitive';
   const pick=selectBestVisual([...seen.values()],brief,{minConfidence:strict?86:78,minSemantic:strict?18:12});
-  if(!pick.best){
+  // A "story photo" must be contemporaneous: a file dated years before the story (a 2010 awards ceremony for a
+  // 2026 contract story) is an archive image of something else. It is not used as the story's own picture;
+  // the representative tier, whose caption says so, gets the chance instead.
+  const storyYear=Number(String(data.publishedAt||data.date||'').slice(0,4))||0;
+  // Nor is a photo of a different occasion (a ceremony, meeting, visit or award) the story's own picture,
+  // whatever keywords it shares ("Nasa awards … contract" is not "NASA honors employees").
+  const OTHER_OCCASION=/\b(hosts?|hosted|honou?rs|honou?red|ceremony|meeting|conference|visits?|visited|awards? ceremony|summit|gala|reception|tour|celebrat\w*)\b/i;
+  const stale=c=>{const ys=`${c.title} ${c.description}`.match(/(?<!\d)(19[5-9]\d|20[0-4]\d)(?=\d{4}(?!\d)|(?!\d))/g);return Boolean(storyYear&&ys&&Math.max(...ys.map(Number))<storyYear-1);};
+  const notTheStory=c=>stale(c)||(OTHER_OCCASION.test(String(c.title))&&!OTHER_OCCASION.test(String(data.title)));
+  const minC=strict?86:78,minS=strict?18:12;
+  let candidate=pick.best&&!notTheStory(pick.best)?pick.best:(pick.ranked.find(c=>c.selectionConfidence>=minC&&c.semanticScore>=minS&&!notTheStory(c))||null);
+  let fallbackType='story-photo',entity=null,repTried=null;
+  if(!candidate){
+    try{
+      const rep=await representative({...data},{bodyText:src.slice(src.indexOf('\n---',3)+4)});
+      if(rep.outcome==='selected'){candidate=rep.candidate;fallbackType=rep.fallbackType;entity=rep.entity;}
+      else repTried=rep.tried;
+    }catch(err){console.warn(`representative search failed: ${err.message}`);}
+  }
+  if(!candidate){
     // For ordinary news, a failed photo search means intentional text-led presentation, not generic AI art.
     // Illustration remains a fallback only for analysis/abstract pieces explicitly classified photo-or-illustration.
     if(mode==='photo'&&doApply){
@@ -80,24 +105,23 @@ export async function acquireForArticle(path,{doApply=false,search=searchWikimed
         writeFileSync(abs,removeVisualMetadata(src));
         const ai=join(root,'public','generated','ai',`${slug}.svg`);
         if(existsSync(ai))rmSync(ai);
-        return{outcome:'text-led',slug,mode,candidates:pick.ranked.slice(0,5)};
+        return{outcome:'text-led',slug,mode,fallbackType:'text-led',candidates:pick.ranked.slice(0,5),representative:repTried};
       }
     }
-    return{outcome:'fallback',slug,mode,candidates:pick.ranked.slice(0,5)};
+    return{outcome:'fallback',slug,mode,fallbackType:'text-led',candidates:pick.ranked.slice(0,5),representative:repTried};
   }
-  const candidate=pick.best;
-  if(!doApply)return{outcome:'selected',slug,mode,candidate};
-  const dl=await download(candidate.url);
+  if(!doApply)return{outcome:'selected',slug,mode,fallbackType,candidate,entity};
+  const dl=await fetchImage(candidate.url);
   const ext=extension(dl.mime,candidate.url);
   const publicPath=`/uploads/articles/${slug}.${ext}`;
   const disk=join(root,'public',publicPath);
   mkdirSync(dirname(disk),{recursive:true});writeFileSync(disk,dl.bytes);
-  const desc=cleanDescription(candidate);
-  const fields={image:publicPath,imageAlt:desc.slice(0,220),imageProvider:'wikimedia',imageKind:'photo',imageCaption:`File photo: ${desc}`.slice(0,280),imageCredit:candidate.credit,imageLicense:candidate.license,imageLicenseUrl:candidate.licenseUrl||candidate.sourcePage,imageSourcePage:candidate.sourcePage};
+  const desc=cleanDescription(candidate,{representative:Boolean(entity)});
+  const fields={image:publicPath,imageAlt:desc.slice(0,220),imageProvider:'wikimedia',imageKind:'photo',imageCaption:entity?representativeCaption(desc,entity):`File photo: ${desc}`.slice(0,280),imageCredit:candidate.credit,imageLicense:candidate.license,imageLicenseUrl:candidate.licenseUrl||candidate.sourcePage,imageSourcePage:candidate.sourcePage};
   writeFileSync(abs,applyVisualMetadata(src,fields));
   const ai=join(root,'public','generated','ai',`${slug}.svg`);
   if(existsSync(ai))rmSync(ai);
-  return{outcome:'applied',slug,mode,path:publicPath,candidate:{title:candidate.title,credit:candidate.credit,license:candidate.license,sourcePage:candidate.sourcePage,selectionConfidence:candidate.selectionConfidence,semanticScore:candidate.semanticScore}};
+  return{outcome:'applied',slug,mode,fallbackType,subject:entity?`${entity.label} (${entity.kind})`:null,caption:fields.imageCaption,path:publicPath,candidate:{title:candidate.title,credit:candidate.credit,license:candidate.license,sourcePage:candidate.sourcePage,selectionConfidence:candidate.selectionConfidence,semanticScore:candidate.semanticScore}};
 }
 async function main(){
   const args=process.argv.slice(2),doApply=args.includes('--apply'),articlePath=args.find(x=>!x.startsWith('--'));

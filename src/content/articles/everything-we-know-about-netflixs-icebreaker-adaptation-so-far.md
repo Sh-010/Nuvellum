@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/everything-we-know-about-netflixs-icebreaker-adaptation-so-far.jpg"
+imageAlt: "The headquarters of Netflix in Los Gatos"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: The headquarters of Netflix in Los Gatos. Image of Netflix, not of the events reported."
+imageCredit: "Coolcaesar at English Wikipedia"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Netflix_headquarters.jpg"
 ---
 Netflix is currently developing a series adaptation of Hannah Grace’s bestselling novel *Icebreaker*, which kicks off the Maple Hill book series. Production is underway on the college hockey romance drama, though a release date has not yet been set.
 

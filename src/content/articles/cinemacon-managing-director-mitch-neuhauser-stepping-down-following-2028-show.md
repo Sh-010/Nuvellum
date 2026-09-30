@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/cinemacon-managing-director-mitch-neuhauser-stepping-down-following-2028-show.jpg"
+imageAlt: "CinemaCon 2025 Banners in Caesar's Palace"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: CinemaCon 2025 Banners in Caesar's Palace. Image of CinemaCon, not of the events reported."
+imageCredit: "Jennifer 8. Lee"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:CinemaCon_2025_Banners_in_Caesar%27s_Palace.jpg"
 ---
 ## Retirement announcement
 

@@ -952,3 +952,26 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - Removed the stray text from both shared/interior head markup and the generated homepage head.
 - Repaired `manifest.webmanifest` and added dedicated 192px/512px PNG app icons plus a 180px touch icon so Android/Samsung recents and launch surfaces do not fall back to a generic grey tile or unrelated page art.
 - Added a maskable 512px icon entry and regression tests for manifest validity, PNG signatures and literal-newline leakage.
+
+## 2026-09-30 — representative visual fallbacks
+
+- New fallback chain for article, card and hero images:
+  1. the story's own licensed photo;
+  2. a **representative** licensed photo of its primary subject (`scripts/visual/representative.mjs`), a Wikidata-resolved person, organisation, institution, event or place;
+  3. text-led.
+- The representative caption states *"Image of X, not of the events reported."* Licence, credit and provenance checks are unchanged. See `docs/VISUAL_ACQUISITION.md`.
+- Story-photo tier guard: a matching file dated more than a year before the story, or showing another ceremony, meeting or visit, is no longer used as the story's own picture.
+- Engine bugs found while testing (all were silently rejecting or mis-sizing Commons candidates):
+  - thumbnails served from `thumb.wikimedia.org` failed the host check;
+  - width/height were read from the requested thumbnail rather than the original, so small originals passed the 1200px floor;
+  - `http://creativecommons.org` licence URLs failed validation. They are now upgraded to https for known HTTPS hosts only.
+- Hero: the newest World story with a real or representative image among the six newest World stories leads, else the newest story with an image in the top six, else the previous rule.
+- Applied to the 29 September edition:
+  - Trump AI accord → Trump official portrait (person);
+  - NASA contract → NASA HQ (organisation);
+  - CinemaCon → CinemaCon 2025 banners (event);
+  - Cornell → Helen Newman Hall (institution, legal-restraint rules);
+  - Icebreaker → Netflix HQ (organisation; no qualifying Icebreaker image);
+  - Sanderson games → Brandon Sanderson portrait (person; PNG re-encoded to JPEG, 3.8 MB → 0.2 MB, no crop);
+  - Roy Keane / Rooney unchanged.
+- The hero was text-led Cornell and is now Cornell with its image.
