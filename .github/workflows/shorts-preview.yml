@@ -16,6 +16,15 @@ on:
         description: "Published article slug to render"
         required: false
         default: "pokemon-tcg-s-next-big-set-available-weeks-before-official-release"
+      voice:
+        description: "Narration: piper (free local neural voice en_GB-cori-high) or espeak (functional smoke test)"
+        type: choice
+        options: [piper, espeak]
+        default: piper
+      full:
+        description: "Full 1080x1920 30fps render instead of the half-size preview"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -40,12 +49,43 @@ jobs:
           cd engines
           npm ci --no-audit --no-fund
           npx playwright-core install --with-deps chromium
-      - name: Render short preview
+      # Piper (GPL-3.0, run as a separate program) and the public-domain-trained en_GB-cori-high voice are
+      # downloaded at run time and cached; neither is committed. See docs/SHORTS_ENGINE.md.
+      - name: Cache the Piper voice
+        if: github.event_name == 'workflow_dispatch' && inputs.voice == 'piper'
+        uses: actions/cache@v4
+        with:
+          path: ~/piper-voices
+          key: piper-voice-en_GB-cori-high-v1
+      - name: Install Piper
+        if: github.event_name == 'workflow_dispatch' && inputs.voice == 'piper'
+        run: |
+          python3 -m pip install --quiet piper-tts
+          [ -f ~/piper-voices/en_GB-cori-high.onnx ] || python3 -m piper.download_voices --download-dir ~/piper-voices en_GB-cori-high
+          ls -la ~/piper-voices
+      - name: Render short
         env:
-          SITE_URL: https://nuvellum.vercel.app
-          NUVELLUM_TTS: espeak,silent
+          SITE_URL: https://www.nuvellum.news
+          NUVELLUM_TTS: ${{ github.event_name == 'workflow_dispatch' && inputs.voice == 'piper' && 'piper,silent' || 'espeak,silent' }}
+          PIPER_MODEL: ${{ github.event_name == 'workflow_dispatch' && inputs.voice == 'piper' && '~/piper-voices/en_GB-cori-high.onnx' || '' }}
+          MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.full && 'full' || 'preview' }}
           SLUG: ${{ github.event_name == 'workflow_dispatch' && inputs.slug || 'pokemon-tcg-s-next-big-set-available-weeks-before-official-release' }}
-        run: node engines/shorts/cli.mjs --slug "$SLUG" --preview
+        run: |
+          export PIPER_MODEL="${PIPER_MODEL/#\~/$HOME}"
+          node engines/shorts/cli.mjs --slug "$SLUG" $([ "$MODE" = preview ] && echo --preview)
+      - name: Verify the narration and captions
+        env:
+          WANT: ${{ github.event_name == 'workflow_dispatch' && inputs.voice || 'espeak' }}
+          SLUG: ${{ github.event_name == 'workflow_dispatch' && inputs.slug || 'pokemon-tcg-s-next-big-set-available-weeks-before-official-release' }}
+        run: |
+          d="engines/out/shorts/$SLUG"
+          tts=$(node -p "require('./$d/report.json').tts")
+          echo "narration: $tts"
+          [ "$tts" = "$WANT" ] || { echo "::error::expected $WANT narration, got $tts (a silent fallback must not pass)"; exit 1; }
+          ffprobe -v error -show_entries stream=codec_type,codec_name,width,height -show_entries format=duration -of compact "$d/short.mp4"
+          ffprobe -v error -select_streams a -show_entries stream=codec_name -of csv=p=0 "$d/short.mp4" | grep -q aac || { echo "::error::no AAC audio track"; exit 1; }
+          [ -s "$d/captions.srt" ] || { echo "::error::captions.srt missing"; exit 1; }
+          head -12 "$d/captions.srt"
       - uses: actions/upload-artifact@v4
         with:
           name: shorts-preview-${{ github.run_id }}

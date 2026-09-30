@@ -10,17 +10,23 @@ export const speechSeconds = (s) => words(s) / WORDS_PER_SECOND + 0.35;
 const CONTRAST = /\b(but|despite|however|while|although|yet|even as|instead)\b/i;
 const NEEDS_CONTEXT = /^(however|meanwhile|also|but|and|still|instead|yet|so|in addition|additionally|as a result|the (same|new|latest)|it|its|they|their|he|she|his|her|this|these|those|that|there)\b/i;
 const PROPER = /\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b/g;
+// Words that point back to something said earlier ("has signed such deals", "those talks"): fine inside the
+// story, confusing as the first line a viewer hears.
+const REFERS_BACK = /\b(such|these|those|the same|the latter|the former|similar|likewise|again|further|another)\b/i;
 
 export function hookScore(sentence, index) {
   let score = 0;
   if (index > 0 && NEEDS_CONTEXT.test(sentence)) score -= 6;
+  if (index > 0 && REFERS_BACK.test(sentence)) score -= 5;
   if (sentence.length >= 55 && sentence.length <= 180) score += 3;
-  if (sentence.length > 240) score -= 4;
+  if (sentence.length > 240 && !(index === 0 && sentence.length <= 320)) score -= 4;
   if (/\d/.test(sentence)) score += 2;
   if (CONTRAST.test(sentence)) score += 1.5;
   score += Math.min(3, (sentence.match(PROPER) || []).length * .55);
   if (/[“"]/.test(sentence)) score -= 1;
   score -= index * .3;
+  // A news lead is written to stand on its own; later sentences lean on it ("the practice", "the initiative").
+  if (index === 0 && sentence.length <= 320) score += 4;
   return score;
 }
 
