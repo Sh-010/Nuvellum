@@ -86,12 +86,12 @@ export function createBrief({ store, secret, now = () => Date.now(), site = 'htt
       if (!(await withinLimits(ip))) throw new BriefError(429, 'Too many sign-ups from here just now. Please try again later.', 'rate-limited');
       const id = subscriberId(secret, address), at = new Date(now()).toISOString();
       const rec = await read(id);
-      if (rec?.status === 'active') return { outcome: 'already', id };
+      if (rec?.status === 'active') return { outcome: 'already', id, email: rec.email, consentAt: rec.consentAt, source: rec.source };
       const next = rec
         ? { ...rec, status: 'active', updatedAt: at, consentAt: at, consentVersion: CONSENT_VERSION, resubscribedAt: at, unsubscribedAt: null }
         : { email: address, status: 'active', createdAt: at, updatedAt: at, consentAt: at, consentVersion: CONSENT_VERSION, source: String(source).slice(0, 80), unsubscribedAt: null };
       await store.pipeline([write(id, next), ['ZADD', KEY.index, String(Date.parse(next.createdAt)), id]]);
-      return { outcome: rec ? 'resubscribed' : 'subscribed', id };
+      return { outcome: rec ? 'resubscribed' : 'subscribed', id, email: next.email, consentAt: next.consentAt, source: next.source };
     },
 
     /** Unsubscribe with a signed link. Idempotent: an already-unsubscribed reader gets the same success. */
@@ -102,10 +102,10 @@ export function createBrief({ store, secret, now = () => Date.now(), site = 'htt
     async _unsubscribe(id, by) {
       const rec = await read(id);
       if (!rec) return { outcome: 'unknown' }; // never reveal whether an address was ever subscribed
-      if (rec.status === 'unsubscribed') return { outcome: 'already' };
+      if (rec.status === 'unsubscribed') return { outcome: 'already', email: rec.email };
       const at = new Date(now()).toISOString();
       await store.run(write(id, { ...rec, status: 'unsubscribed', updatedAt: at, unsubscribedAt: at, unsubscribedBy: by }));
-      return { outcome: 'unsubscribed' };
+      return { outcome: 'unsubscribed', email: rec.email };
     },
 
     // ---- admin (called only behind the /admin login) ----

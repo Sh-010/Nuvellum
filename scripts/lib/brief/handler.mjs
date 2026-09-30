@@ -3,7 +3,8 @@
 // Until the subscriber store and NUVELLUM_BRIEF_SECRET are configured, every request answers 503 "not open yet"
 // and nothing is stored.
 import { redisConfig, createUpstash, StoreError } from './store.mjs';
-import { createBrief, BriefError, MIN_SECRET_LENGTH } from './brief.mjs';
+import { createBrief, BriefError, MIN_SECRET_LENGTH, unsubscribeLink } from './brief.mjs';
+import { resendFromEnv } from './resend.mjs';
 
 const MAX_BODY = 4096;
 
@@ -24,13 +25,14 @@ export function briefFromEnv(env, { storeFactory = (cfg) => createUpstash(cfg), 
 
 const clientIp = (h) => (h.get('x-real-ip') || h.get('x-forwarded-for')?.split(',')[0] || '').trim();
 
-export function createBriefHandler({ env = process.env, storeFactory, now = () => Date.now(), log = console } = {}) {
+export function createBriefHandler({ env = process.env, storeFactory, resendFactory, now = () => Date.now(), log = console } = {}) {
   return async function handle(request) {
     try {
       const url = new URL(request.url), action = url.searchParams.get('action') || '';
       if (request.method !== 'POST' || !['subscribe', 'unsubscribe'].includes(action)) return respond(404, { error: 'Not found.' });
       const brief = briefFromEnv(env, { storeFactory, now });
       if (!brief) return respond(503, { error: 'The Nuvellum Brief is not open for sign-ups yet. Your address was not stored.', code: 'not-open' });
+      const resend = resendFromEnv(env, { resendFactory });
 
       const origin = request.headers.get('origin');
       const sameOrigin = origin === `${url.protocol}//${url.host}`;
@@ -45,6 +47,12 @@ export function createBriefHandler({ env = process.env, storeFactory, now = () =
         let body; try { body = JSON.parse(text || '{}'); } catch { return respond(400, { error: 'Malformed request.' }); }
         const r = await brief.subscribe({ email: body.email, consent: body.consent === true, source: body.source, honeypot: body.website, elapsedMs: body.elapsedMs, ip: clientIp(request.headers) });
         log.info?.(`[brief] subscribe: ${r.outcome}`);
+        if (resend) {
+          try {
+            const site = env.SITE_URL || 'https://www.nuvellum.news';
+            await resend.subscribe({ email: r.email, id: r.id, source: r.source, consentAt: r.consentAt, unsubscribeUrl: unsubscribeLink(site, String(env.NUVELLUM_BRIEF_SECRET || ''), r.id) });
+          } catch { log.error?.('[brief] Resend sync failed after subscribe'); }
+        }
         return respond(200, { ok: true, message: 'Thank you. You are on the list for the Nuvellum Brief.' });
       }
 
@@ -57,6 +65,10 @@ export function createBriefHandler({ env = process.env, storeFactory, now = () =
       } else if (!/List-Unsubscribe=One-Click/i.test(text)) return respond(400, { error: 'Malformed request.' });
       const r = await brief.unsubscribe({ id, token });
       log.info?.(`[brief] unsubscribe: ${r.outcome}`);
+      if (resend && r.email) {
+        try { await resend.unsubscribe({ email: r.email }); }
+        catch { log.error?.('[brief] Resend sync failed after unsubscribe'); }
+      }
       return respond(200, { ok: true, message: 'You have been unsubscribed from the Nuvellum Brief. You will not receive it again.' });
     } catch (err) {
       if (err instanceof BriefError) return respond(err.status, { error: err.message, code: err.code });
