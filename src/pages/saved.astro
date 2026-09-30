@@ -1,5 +1,8 @@
 ---
 import InteriorShell from '../components/InteriorShell.astro';
+// The reader's reading list. It lives only in this browser (localStorage, key nuvellum-saved-v2, written by
+// article pages and homepage cards), so the page ships empty and is filled in on the client. Private state:
+// noindex, and deliberately absent from the sitemap.
 ---
 <InteriorShell
   title="Saved stories — Nuvellum"
@@ -14,9 +17,9 @@ import InteriorShell from '../components/InteriorShell.astro';
       <div class="saved-title-row">
         <div>
           <h1>Saved</h1>
-          <p>Stories kept for later, in the order you saved them.</p>
+          <p class="saved-standfirst">Stories set aside for a quieter hour, newest first.</p>
         </div>
-        <div class="saved-count" aria-live="polite"><span id="savedCount">0</span><small>stories</small></div>
+        <div class="saved-count" aria-live="polite"><span id="savedCount">0</span><small id="savedCountLabel">stories</small></div>
       </div>
     </header>
 
@@ -25,79 +28,137 @@ import InteriorShell from '../components/InteriorShell.astro';
         <h2 id="saved-list-title">The reading list</h2>
         <button type="button" id="clearSaved" hidden>Clear all</button>
       </div>
-      <div id="savedList" class="saved-list" aria-live="polite"></div>
+      <ol id="savedList" class="saved-list"></ol>
       <div id="savedEmpty" class="saved-empty" hidden>
         <span class="saved-empty-mark" aria-hidden="true">N✦</span>
-        <div class="eyebrow">Nothing filed yet</div>
-        <h2>Your reading list is still empty.</h2>
-        <p>Use the bookmark control on a story to keep it here for later.</p>
+        <div class="saved-empty-eyebrow">Nothing set aside yet</div>
+        <h2>Your reading list is waiting.</h2>
+        <p>Use the bookmark beside any story, on the front page or at the top of an article, and it will be kept here for later.</p>
         <a href="/latest">Browse the latest edition <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
-    <p class="saved-note">Saved stories are kept in this browser. Clearing your browser storage will also clear this reading list.</p>
+    <p class="saved-note">Your reading list is kept privately in this browser, not in an account. Clearing your browser's site data clears it too.</p>
   </div>
 
-  <style>
+  {/* Global: the rows are built by the script below, so Astro's scoped styles (which only reach template
+       markup) would miss them. Every selector here is saved-* specific to this page. */}
+  <style is:global>
     .saved-page{padding:44px 0 72px}
     .saved-head{border-bottom:1px solid var(--ink);padding:10px 0 32px}
     .saved-kicker{font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--wine-ink);margin-bottom:18px}
     .saved-title-row{display:flex;align-items:end;justify-content:space-between;gap:36px}
     .saved-head h1{font-size:clamp(68px,9vw,136px);font-weight:300;line-height:.78;letter-spacing:-.045em;margin:0}
-    .saved-head p{font-size:19px;line-height:1.45;font-style:italic;color:var(--muted);margin:26px 0 0;max-width:36em}
+    .saved-standfirst{font-size:19px;line-height:1.45;font-style:italic;color:var(--muted);margin:26px 0 0;max-width:36em}
     .saved-count{min-width:118px;border-left:1px solid var(--hair);padding:5px 0 4px 22px;display:grid;justify-items:end}
-    .saved-count span{font-size:42px;line-height:1;color:var(--wine-ink)}
+    .saved-count span{font-size:42px;line-height:1;color:var(--wine-ink);font-variant-numeric:lining-nums}
     .saved-count small{text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-size:9px;margin-top:5px}
     .saved-ledger{padding-top:28px}
     .saved-rule{display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--hair);padding-bottom:9px}
     .saved-rule h2{font-size:14px;font-weight:400;text-transform:uppercase;letter-spacing:.15em;margin:0;color:var(--wine-ink)}
     .saved-rule:after{content:"";height:1px;background:var(--hair);flex:1}
-    .saved-rule button{order:3;border:0;background:transparent;color:var(--muted);font-size:12px;cursor:pointer;padding:5px 0}.saved-rule button:hover{color:var(--wine-ink)}
-    .saved-list{display:grid}
-    .saved-row{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:26px;align-items:start;padding:24px 0;border-bottom:1px solid var(--hair)}
-    .saved-meta{font-size:10px;line-height:1.35;text-transform:uppercase;letter-spacing:.13em;color:var(--wine-ink);padding-top:4px}
-    .saved-copy h3{font-size:25px;line-height:1.1;font-weight:400;margin:0 0 7px}.saved-copy h3 a{background-image:linear-gradient(var(--wine-ink),var(--wine-ink));background-repeat:no-repeat;background-size:0 1px;background-position:0 98%;transition:background-size .35s var(--ease),color .2s}.saved-copy h3 a:hover{color:var(--wine-ink);background-size:100% 1px}
-    .saved-copy p{font-size:15px;line-height:1.45;color:var(--muted);margin:0;max-width:62em}
-    .saved-remove{border:0;background:transparent;color:var(--muted);font-size:12px;font-style:italic;cursor:pointer;padding:5px 0 5px 12px;white-space:nowrap}.saved-remove:hover{color:var(--wine-ink)}
-    .saved-empty{text-align:center;padding:78px 24px 68px;border-bottom:1px solid var(--hair);position:relative;overflow:hidden}
-    .saved-empty-mark{position:absolute;left:50%;top:14px;transform:translateX(-50%);font-size:170px;line-height:1;color:var(--wine-ink);opacity:.035;pointer-events:none}
-    .saved-empty h2{font-size:34px;font-weight:400;margin:11px 0 8px}.saved-empty p{font-size:16px;color:var(--muted);font-style:italic;margin:0 0 22px}.saved-empty a{display:inline-block;background:var(--wine);color:#f6efe4;padding:11px 18px;font-size:13px}
+    .saved-rule button{order:3;border:0;background:transparent;color:var(--muted);font-size:12px;font-style:italic;cursor:pointer;padding:5px 0}
+    .saved-rule button:hover,.saved-rule button.confirming{color:var(--wine-ink)}
+    .saved-list{list-style:none;margin:0;padding:0;display:grid}
+    .saved-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:26px;align-items:start;padding:26px 0;border-bottom:1px solid var(--hair);transition:opacity .28s var(--ease),transform .28s var(--ease)}
+    .saved-row.leaving{opacity:0;transform:translateX(10px)}
+    .saved-num{font-size:30px;line-height:1;font-weight:300;color:var(--wine-ink);font-variant-numeric:lining-nums;padding-top:2px}
+    .saved-meta{font-size:10px;line-height:1.35;text-transform:uppercase;letter-spacing:.13em;color:var(--wine-ink);margin:0 0 9px}
+    .saved-meta span+span:before{content:"·";margin:0 .6em;color:var(--muted)}
+    .saved-meta .saved-time{color:var(--muted)}
+    .saved-copy h3{font-size:27px;line-height:1.1;font-weight:400;margin:0 0 8px;letter-spacing:-.01em}
+    .saved-copy h3 a{background-image:linear-gradient(var(--wine-ink),var(--wine-ink));background-repeat:no-repeat;background-size:0 1px;background-position:0 98%;transition:background-size .35s var(--ease),color .2s}
+    .saved-copy h3 a:hover,.saved-copy h3 a:focus-visible{color:var(--wine-ink);background-size:100% 1px}
+    .saved-copy p{font-size:15.5px;line-height:1.5;font-style:italic;color:var(--muted);margin:0;max-width:60em}
+    .saved-remove{border:0;background:transparent;color:var(--muted);font-size:12px;font-style:italic;cursor:pointer;padding:5px 0 5px 12px;white-space:nowrap}
+    .saved-remove:hover,.saved-remove:focus-visible{color:var(--wine-ink)}
+    .saved-empty{text-align:center;padding:84px 24px 74px;border-bottom:1px solid var(--hair);position:relative;overflow:hidden}
+    .saved-empty-mark{position:absolute;left:50%;top:10px;transform:translateX(-50%);font-size:190px;line-height:1;color:var(--wine-ink);opacity:.04;pointer-events:none;white-space:nowrap}
+    .saved-empty-eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--wine-ink)}
+    .saved-empty h2{font-size:36px;font-weight:400;margin:12px 0 10px;letter-spacing:-.01em}
+    .saved-empty p{font-size:16px;line-height:1.5;color:var(--muted);font-style:italic;margin:0 auto 26px;max-width:30em}
+    .saved-empty a{display:inline-block;background:var(--wine);color:#f6efe4;padding:11px 18px;font-size:13px}
     .saved-note{font-size:12px;color:var(--muted);font-style:italic;margin:18px 0 0}
-    @media(max-width:760px){.saved-page{padding-top:30px}.saved-title-row{align-items:start}.saved-count{display:none}.saved-row{grid-template-columns:1fr auto;gap:8px 18px}.saved-meta{grid-column:1/-1}.saved-copy h3{font-size:22px}.saved-remove{grid-column:2;grid-row:2}}
+    @media(max-width:760px){
+      .saved-page{padding-top:30px}.saved-title-row{align-items:end;gap:18px}
+      .saved-count{min-width:0;padding-left:14px}.saved-count span{font-size:32px}
+      .saved-standfirst{font-size:17px;margin-top:20px}
+      .saved-row{grid-template-columns:34px minmax(0,1fr);gap:4px 14px;padding:22px 0}
+      .saved-num{font-size:21px}
+      .saved-copy h3{font-size:22px}
+      .saved-remove{grid-column:2;justify-self:start;padding:12px 18px 8px 0;margin-bottom:-8px}
+      .saved-empty{padding:64px 8px 58px}.saved-empty h2{font-size:29px}.saved-empty-mark{font-size:140px}
+    }
   </style>
 
-  <script is:inline>
-  (()=>{
-    const key='nuvellum-saved-v2';
-    const listEl=document.getElementById('savedList'),emptyEl=document.getElementById('savedEmpty'),countEl=document.getElementById('savedCount'),clearBtn=document.getElementById('clearSaved');
-    const read=()=>{try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v.filter(x=>x&&x.title&&x.url):[]}catch{return[]}};
-    const write=(items)=>{try{localStorage.setItem(key,JSON.stringify(items.slice(0,80)))}catch{}};
-    const slugFrom=url=>{const m=String(url||'').match(/\/article\/([^/?#]+)/);return m?decodeURIComponent(m[1]):''};
-    let index=[];
+  <script>
+    import { SAVED_KEY, SAVED_LIMIT, parseSaved, withoutSaved, savedRow } from '../lib/saved-list.js';
 
-    const render=()=>{
-      const saved=read();
-      countEl.textContent=String(saved.length);
-      clearBtn.hidden=saved.length===0;
-      emptyEl.hidden=saved.length!==0;
-      listEl.replaceChildren();
-      const bySlug=new Map(index.map(x=>[x.slug,x]));
-      saved.forEach((item,i)=>{
-        const article=bySlug.get(slugFrom(item.url));
-        const row=document.createElement('article');row.className='saved-row';
-        const meta=document.createElement('div');meta.className='saved-meta';meta.textContent=article?.section||item.cat||'Nuvellum';
-        const copy=document.createElement('div');copy.className='saved-copy';
-        const h=document.createElement('h3'),a=document.createElement('a');a.href=item.url;a.textContent=item.title;h.append(a);copy.append(h);
-        const dek=document.createElement('p');dek.textContent=article?.dek||'Saved for later reading.';copy.append(dek);
-        const remove=document.createElement('button');remove.type='button';remove.className='saved-remove';remove.textContent='Remove';remove.setAttribute('aria-label',`Remove ${item.title} from saved stories`);
-        remove.addEventListener('click',()=>{const next=read().filter((_,n)=>n!==i);write(next);render()});
-        row.append(meta,copy,remove);listEl.append(row);
-      });
+    const listEl = document.getElementById('savedList');
+    const emptyEl = document.getElementById('savedEmpty');
+    const countEl = document.getElementById('savedCount');
+    const countLabel = document.getElementById('savedCountLabel');
+    const clearBtn = document.getElementById('clearSaved');
+    const stored = () => { try { return localStorage.getItem(SAVED_KEY); } catch { return null; } };
+    const store = (list) => { try { localStorage.setItem(SAVED_KEY, JSON.stringify(list.slice(0, SAVED_LIMIT))); } catch {} };
+    let bySlug = new Map();
+
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const render = () => {
+      const saved = parseSaved(stored());
+      countEl.textContent = String(saved.length);
+      countLabel.textContent = saved.length === 1 ? 'story' : 'stories';
+      clearBtn.hidden = saved.length === 0;
+      emptyEl.hidden = saved.length !== 0;
+      listEl.replaceChildren(...saved.map((entry, i) => {
+        const row = savedRow(entry, bySlug);
+        const li = el('li', 'saved-row');
+        li.append(el('div', 'saved-num', String(i + 1).padStart(2, '0')));
+        const copy = el('div', 'saved-copy');
+        const meta = el('div', 'saved-meta');
+        if (row.section) meta.append(el('span', '', row.section));
+        if (row.type) meta.append(el('span', '', row.type));
+        if (row.readingTime) meta.append(el('span', 'saved-time', `${row.readingTime} read`));
+        if (meta.childElementCount) copy.append(meta);
+        const h = el('h3');
+        if (row.href) { const a = el('a', '', row.title); a.href = row.href; h.append(a); } else h.textContent = row.title;
+        copy.append(h);
+        if (row.dek) copy.append(el('p', '', row.dek));
+        const remove = el('button', 'saved-remove', 'Remove');
+        remove.type = 'button';
+        remove.setAttribute('aria-label', `Remove “${row.title}” from your reading list`);
+        remove.addEventListener('click', () => {
+          li.classList.add('leaving');
+          store(withoutSaved(stored(), row.removeTitle));
+          setTimeout(render, 260);
+        });
+        li.append(copy, remove);
+        return li;
+      }));
     };
-    clearBtn.addEventListener('click',()=>{write([]);render()});
-    addEventListener('storage',e=>{if(e.key===key)render()});
-    fetch('/search-index.json').then(r=>r.ok?r.json():[]).then(data=>{if(Array.isArray(data))index=data;render()}).catch(render);
+
+    // Clear all asks once, in place: the first press turns into a confirmation for a few seconds.
+    let confirmTimer = 0;
+    const resetClear = () => { clearTimeout(confirmTimer); clearBtn.classList.remove('confirming'); clearBtn.textContent = 'Clear all'; };
+    clearBtn.addEventListener('click', () => {
+      if (!clearBtn.classList.contains('confirming')) {
+        clearBtn.classList.add('confirming');
+        clearBtn.textContent = 'Clear the whole list?';
+        confirmTimer = setTimeout(resetClear, 4000);
+        return;
+      }
+      resetClear();
+      store([]);
+      render();
+    });
+
+    // Saves made in another tab, or on an article opened from here and then left with Back, show up at once.
+    addEventListener('storage', (e) => { if (e.key === SAVED_KEY || e.key === null) render(); });
+    addEventListener('pageshow', (e) => { if (e.persisted) render(); });
     render();
-  })();
+    fetch('/search-index.json')
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data) => { if (Array.isArray(data)) { bySlug = new Map(data.filter((x) => x && x.slug).map((x) => [x.slug, x])); render(); } })
+      .catch(() => {});
   </script>
 </InteriorShell>

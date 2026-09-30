@@ -136,6 +136,27 @@ else {
 }
 if (sitemap.includes('/brief/')) errors.push('sitemap: /brief/ pages must not be listed');
 
+// Saved stories: the masthead bookmark on every page opens /saved (never /latest), and /saved actually ships.
+// A merged route once 404'd because the deploy that should have carried it never ran; this check at least
+// guarantees any build that does deploy contains the page. It is private reading state: noindex, unlisted.
+if (!existsSync(join(dist, 'saved', 'index.html'))) errors.push('saved/index.html: missing reading-list route');
+else {
+  const saved = read(join('saved', 'index.html'));
+  if (!saved.includes('<meta name="robots" content="noindex')) errors.push('saved: missing noindex');
+  if (!saved.includes('id="savedList"')) errors.push('saved: reading list markup missing');
+}
+if (/<loc>[^<]*\/saved<\/loc>/.test(sitemap)) errors.push('sitemap: /saved must not be listed');
+{
+  const bookmarks = [['index.html', home], ['latest/index.html', read(join('latest', 'index.html'))]];
+  const anArticle = readdirSync(join(dist, 'article')).find((d) => existsSync(join(dist, 'article', d, 'index.html')));
+  if (anArticle) bookmarks.push([`article/${anArticle}/index.html`, read(join('article', anArticle, 'index.html'))]);
+  for (const [file, html] of bookmarks) {
+    const tag = html.match(/<[a-z]+[^>]*id="savedOpen"[^>]*>/)?.[0] || '';
+    if (!/href="\/saved"/.test(tag)) errors.push(`${file}: masthead bookmark must link to /saved`);
+    if (/\/latest/.test(tag) || /savedOpen[^;]{0,80}location\.href\s*=\s*['"]\/latest/.test(html)) errors.push(`${file}: masthead bookmark must never go to /latest`);
+  }
+}
+
 // Search: World Explorer is listed; a World Desk page is in the sitemap exactly when it is indexable
 // (empty region/country desks are noindex and left out).
 if (!/<loc>[^<]*\/world-explorer<\/loc>/.test(sitemap)) errors.push('sitemap: /world-explorer missing');

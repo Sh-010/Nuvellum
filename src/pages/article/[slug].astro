@@ -202,12 +202,12 @@ const tools = [
     const step=d=>{size=Math.max(16,Math.min(25,Math.round((size||parseFloat(getComputedStyle(body).fontSize))+d)));try{localStorage.setItem('nuvellum-font',size)}catch(e){}applySize();say(`Text size ${size}px`)};
     applySize();
 
-    // Save: same reading list as the homepage and earlier article pages.
+    // Save: same reading list (and the same newest-first order) as homepage cards; shown on /saved.
     const key='nuvellum-saved-v2',title=document.getElementById('story-title').textContent.trim();
     const cat=document.querySelector('.opening-kicker .eyebrow').textContent.replace('✦','').trim()+' · '+document.querySelector('.opening-kicker .type').textContent.trim();
     const read=()=>{try{const l=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(l)?l:[]}catch(e){return[]}};
     const syncSave=()=>{const on=read().some(x=>x&&x.title===title);all('save').forEach(b=>{b.textContent=on?'Saved':'Save';b.setAttribute('aria-pressed',String(on));b.classList.toggle('on',on)})};
-    const toggleSave=()=>{let l=read();const on=l.some(x=>x&&x.title===title);l=on?l.filter(x=>x&&x.title!==title):[...l,{title,cat,url:location.pathname}];try{localStorage.setItem(key,JSON.stringify(l))}catch(e){}syncSave();say(on?'Removed from your reading list.':'Saved to your reading list.')};
+    const toggleSave=()=>{let l=read();const on=l.some(x=>x&&x.title===title);l=on?l.filter(x=>x&&x.title!==title):[{title,cat,url:location.pathname},...l];try{localStorage.setItem(key,JSON.stringify(l.slice(0,80)))}catch(e){}syncSave();say(on?'Removed from your reading list.':'Saved to your reading list.')};
     syncSave();
 
     const copy=async()=>{try{await navigator.clipboard.writeText(location.href);say('Link copied.')}catch(e){say('Copy the address from your browser to share.')}};

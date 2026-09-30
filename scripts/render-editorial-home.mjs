@@ -465,7 +465,7 @@ ${REVEAL_CSS}
     </nav>
     <div class="header-tools">
       <button class="icon-btn" id="searchOpen" type="button" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
-      <button class="icon-btn" id="savedOpen" type="button" aria-label="Saved stories"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bookmark-shadow" transform="translate(1.35 1.55)" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/><path class="bookmark-face" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/></svg></button>
+      <a class="icon-btn" id="savedOpen" href="/saved" aria-label="Saved stories"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bookmark-shadow" transform="translate(1.35 1.55)" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/><path class="bookmark-face" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/></svg></a>
       <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle night reading" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="solid" d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
       <button class="subscribe" type="button" data-brief-open aria-haspopup="dialog" aria-controls="briefInvitation">Subscribe</button>
     </div>
@@ -728,7 +728,6 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     const btn=e.target.closest?.('[data-save]');if(!btn)return;
     try{let list=readSaved();const title=btn.dataset.save;const url=btn.dataset.url;if(list.some(x=>x&&x.title===title))list=list.filter(x=>x&&x.title!==title);else list.unshift({title,url});localStorage.setItem(savedKey,JSON.stringify(list.slice(0,80)));syncSaved();btn.classList.remove('just-saved');void btn.offsetWidth;btn.classList.add('just-saved');setTimeout(()=>btn.classList.remove('just-saved'),380)}catch{}
   });
-  document.getElementById('savedOpen')?.addEventListener('click',()=>{location.href='/saved'});
 
   const detail=document.getElementById('regionDetail');
   const mapLinks=[...document.querySelectorAll('[data-region]')];
