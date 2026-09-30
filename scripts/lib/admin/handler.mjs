@@ -14,6 +14,7 @@ import { COUNTRIES } from '../../../src/lib/countries.js';
 import { briefFromEnv } from '../brief/handler.mjs';
 import { BriefError } from '../brief/brief.mjs';
 import { StoreError } from '../brief/store.mjs';
+import { resendFromEnv } from '../brief/resend.mjs';
 
 const MAX_BODY_BYTES = 4_500_000;
 const GET_ACTIONS = new Set(['session', 'meta', 'list', 'queue', 'article', 'status', 'brief', 'brief-export']);
@@ -46,7 +47,7 @@ const prInfo = (pr) => (pr ? { number: pr.number, url: pr.html_url, state: pr.st
  * createAdminHandler({ env, githubFactory, now, delay, log, throttle }) -> (Request) => Promise<Response>
  * githubFactory(token) defaults to the real client; tests inject a fake.
  */
-export function createAdminHandler({ env = process.env, githubFactory = (token) => createGitHub({ token }), now = () => Date.now(), delay = sleep, log = console, throttle = createThrottle(), briefStoreFactory } = {}) {
+export function createAdminHandler({ env = process.env, githubFactory = (token) => createGitHub({ token }), now = () => Date.now(), delay = sleep, log = console, throttle = createThrottle(), briefStoreFactory, resendFactory } = {}) {
   return async function handle(request) {
     try {
       const url = new URL(request.url);
@@ -103,7 +104,15 @@ export function createAdminHandler({ env = process.env, githubFactory = (token) 
           const csv = await brief.exportCsv({ status: url.searchParams.get('status') === 'all' ? '' : 'active' });
           return new Response(csv, { status: 200, headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': `attachment; filename="nuvellum-brief-${new Date(now()).toISOString().slice(0, 10)}.csv"`, 'Cache-Control': 'no-store, max-age=0', 'X-Robots-Tag': 'noindex, nofollow', 'X-Content-Type-Options': 'nosniff' } });
         }
-        if (action === 'brief-unsubscribe') return respond(200, { ok: true, ...(await brief.adminUnsubscribe(body.id)) });
+        if (action === 'brief-unsubscribe') {
+          const result = await brief.adminUnsubscribe(body.id);
+          const resend = resendFromEnv(env, { resendFactory });
+          if (resend && result.email) {
+            try { await resend.unsubscribe({ email: result.email }); }
+            catch { log.error?.('[brief] Resend sync failed after admin unsubscribe'); }
+          }
+          return respond(200, { ok: true, outcome: result.outcome });
+        }
       }
 
       const gh = githubFactory(env.NUVELLUM_GITHUB_TOKEN);
