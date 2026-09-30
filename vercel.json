@@ -175,5 +175,6 @@
     "api/brief-send.js": {
       "maxDuration": 30
     }
-  }
+  },
+  "ignoreCommand": "bash scripts/vercel-ignore-build.sh"
 }
