@@ -1,0 +1,66 @@
+name: Telegram launch smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/telegram-launch-smoke.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  post-one-story:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SITE_URL: https://www.nuvellum.news
+      NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      SLUG: roy-keane-and-wayne-rooney-clash-over-potential-man-city-title-strips
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Require live Telegram configuration
+        shell: bash
+        run: |
+          [ "$NUVELLUM_SOCIAL" = "on" ] || { echo "::error::NUVELLUM_SOCIAL is not on"; exit 1; }
+          [ -n "$TELEGRAM_BOT_TOKEN" ] || { echo "::error::Telegram token missing"; exit 1; }
+          [ -n "$TELEGRAM_CHAT_ID" ] || { echo "::error::Telegram chat id missing"; exit 1; }
+      - name: Check out social ledger
+        shell: bash
+        run: |
+          git config user.name "Nuvellum Social"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin social-ledger >/dev/null; then
+            git fetch --depth=1 origin social-ledger
+            git worktree add -B social-ledger .ledger origin/social-ledger
+          else
+            git worktree add --orphan -b social-ledger .ledger
+          fi
+          mkdir -p .ledger/ledger
+      - name: Install card renderer
+        shell: bash
+        run: |
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
+      - name: Post one published Sports story to Telegram
+        shell: bash
+        run: |
+          node engines/publish/cli.mjs --ledger .ledger/ledger --live --trigger workflow_dispatch --slug "$SLUG"
+      - name: Save ledger
+        if: always()
+        shell: bash
+        run: |
+          cd .ledger
+          git add ledger
+          if git diff --cached --quiet; then echo "ledger unchanged"; exit 0; fi
+          git commit -q -m "social: Telegram launch smoke"
+          git push origin HEAD:social-ledger
