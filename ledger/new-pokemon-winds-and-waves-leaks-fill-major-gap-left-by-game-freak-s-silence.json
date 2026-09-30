@@ -1,0 +1,54 @@
+{
+  "slug": "new-pokemon-winds-and-waves-leaks-fill-major-gap-left-by-game-freak-s-silence",
+  "url": "https://www.nuvellum.news/article/new-pokemon-winds-and-waves-leaks-fill-major-gap-left-by-game-freak-s-silence",
+  "title": "New 'Pokémon Winds and Waves' leaks fill major gap left by Game Freak's silence",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-09-30T03:41:41.706Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-09-30T03:41:51.016Z",
+      "remoteId": "10",
+      "remoteUrl": "https://t.me/nuvellum/10",
+      "kind": "text",
+      "reason": null,
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "no official adapter yet (needs a Business account + Graph API app review)",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "no official adapter yet",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video only: posts when a reviewed Short exists",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "tiktok": {
+      "status": "awaiting_approval",
+      "reason": "upload needs human approval",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    }
+  }
+}

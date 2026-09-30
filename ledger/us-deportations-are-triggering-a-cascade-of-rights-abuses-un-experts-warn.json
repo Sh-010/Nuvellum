@@ -1,0 +1,54 @@
+{
+  "slug": "us-deportations-are-triggering-a-cascade-of-rights-abuses-un-experts-warn",
+  "url": "https://www.nuvellum.news/article/us-deportations-are-triggering-a-cascade-of-rights-abuses-un-experts-warn",
+  "title": "US deportations are triggering a cascade of rights abuses, UN experts warn",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-09-30T03:41:41.706Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-09-30T03:41:51.997Z",
+      "remoteId": "12",
+      "remoteUrl": "https://t.me/nuvellum/12",
+      "kind": "photo",
+      "reason": null,
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "no official adapter yet (needs a Business account + Graph API app review)",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "no official adapter yet",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video only: posts when a reviewed Short exists",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "tiktok": {
+      "status": "awaiting_approval",
+      "reason": "upload needs human approval",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    }
+  }
+}

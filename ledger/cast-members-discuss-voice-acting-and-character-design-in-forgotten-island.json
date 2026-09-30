@@ -1,0 +1,54 @@
+{
+  "slug": "cast-members-discuss-voice-acting-and-character-design-in-forgotten-island",
+  "url": "https://www.nuvellum.news/article/cast-members-discuss-voice-acting-and-character-design-in-forgotten-island",
+  "title": "Cast members discuss voice acting and character design in Forgotten Island",
+  "risk": "low",
+  "firstSeenAt": "2026-09-30T03:41:41.706Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-09-30T03:41:47.256Z",
+      "remoteId": "7",
+      "remoteUrl": "https://t.me/nuvellum/7",
+      "kind": "photo",
+      "reason": null,
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "no official adapter yet (needs a Business account + Graph API app review)",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "no official adapter yet",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video only: posts when a reviewed Short exists",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "tiktok": {
+      "status": "awaiting_approval",
+      "reason": "upload needs human approval",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    }
+  }
+}

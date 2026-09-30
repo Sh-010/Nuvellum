@@ -1,0 +1,54 @@
+{
+  "slug": "pokemon-tcg-s-next-big-set-available-weeks-before-official-release",
+  "url": "https://www.nuvellum.news/article/pokemon-tcg-s-next-big-set-available-weeks-before-official-release",
+  "title": "Pokémon TCG's next big set available weeks before official release",
+  "risk": "low",
+  "firstSeenAt": "2026-09-30T03:41:41.706Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-09-30T03:41:51.248Z",
+      "remoteId": "11",
+      "remoteUrl": "https://t.me/nuvellum/11",
+      "kind": "text",
+      "reason": null,
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "no official adapter yet (needs a Business account + Graph API app review)",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "no official adapter yet",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video only: posts when a reviewed Short exists",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    },
+    "tiktok": {
+      "status": "awaiting_approval",
+      "reason": "upload needs human approval",
+      "updatedAt": "2026-09-30T03:41:41.706Z"
+    }
+  }
+}
