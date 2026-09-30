@@ -78,8 +78,8 @@ test('unsubscribe with the signed link, repeat it, then resubscribe', async () =
   assert.equal((await json(await signup('reader@example.com', {}, { ip: '192.0.2.44' }))).status, 200);
   const { stats } = await brief.list();
   assert.deepEqual(stats, { active: 1, unsubscribed: 0, total: 1 }, 'resubscribing reactivates the same record');
-  const rec = (await brief.all())[0];
-  assert.ok(rec.resubscribedAt); assert.equal(rec.unsubscribedAt, null);
+  const renewed = (await brief.all())[0];
+  assert.ok(renewed.resubscribedAt); assert.equal(renewed.unsubscribedAt, null);
 });
 
 test('resubscribing rotates the signed unsubscribe token so older issue links expire', async () => {
