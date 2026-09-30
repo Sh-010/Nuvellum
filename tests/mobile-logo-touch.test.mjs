@@ -10,5 +10,6 @@ test('touch-capable devices get a wordmark reveal fallback beyond pointer media 
   assert.match(renderer, /firesTouchEvents===true/);
   assert.match(renderer, /visualViewport/);
   assert.match(renderer, /touchBrand\(e\)/);
+  assert.match(renderer, /addEventListener\('pointerdown',revealBrand\)/);
   assert.match(renderer, /brandZone\?\.classList\.contains\('is-open'\)/);
 });
