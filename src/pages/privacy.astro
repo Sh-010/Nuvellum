@@ -4,23 +4,23 @@ import InstitutionalPage from '../components/InstitutionalPage.astro';
 <InstitutionalPage
   title="Privacy"
   eyebrow="Legal"
-  description="How Nuvellum handles reader analytics, Brief sign-ups and the publication services currently deployed."
+  description="How Nuvellum handles reader analytics, Brief sign-ups and operational data."
   intro="Nuvellum documents the systems it actually uses rather than publishing a generic privacy template."
-  note="Reader analytics remain disabled unless the production analytics measurement ID is explicitly configured."
+  note="Analytics are consent-first: Google Analytics 4 loads only after a reader chooses “Allow”."
 >
-  <p>Nuvellum avoids unnecessary trackers. Reader analytics are disabled by default in the production build and are only activated when the publication explicitly configures its analytics measurement ID.</p>
+  <p>Nuvellum avoids unnecessary trackers. Where analytics are enabled, they are configured on a consent-first basis rather than loading automatically for every visitor.</p>
   <h2>Reader analytics</h2>
-  <p>If enabled, Nuvellum uses Google Analytics 4 to understand page views, broad traffic sources and product interactions such as article clicks, save actions, reading-depth milestones and successful Brief sign-ups. Nuvellum’s event layer does not send names, email addresses, search text, article-source URLs or URL query strings (other than standard campaign tags such as utm_source). Google signals and advertising features are switched off.</p>
-  <p>Google Analytics only loads after you choose “Allow” in the notice shown on your first visit; until then, and if you choose “No thanks”, no analytics script or cookie is used. Your choice is remembered in this browser only. It never runs on the unsubscribe page or the private editorial desk.</p>
+  <p>Nuvellum uses Google Analytics 4 to understand page views, broad traffic sources and product interactions such as article clicks, save actions, reading-depth milestones and successful Brief sign-ups. Nuvellum’s event layer does not send names, email addresses, search text, article-source URLs or URL query strings other than standard campaign tags such as utm_source. Google signals and advertising features are switched off.</p>
+  <p>Google Analytics only loads after you choose “Allow” in the notice shown on your first visit; until then, and if you choose “No thanks”, no analytics script or cookie is used. Your choice is remembered in this browser only. Analytics never run on the unsubscribe page or the private editorial desk.</p>
   <p data-analytics-settings hidden><button type="button" class="aside-link quiet">Change analytics settings</button></p>
   <h2>Operational monitoring</h2>
   <p>Internal newsroom health checks monitor publication output, repository checks and deployment state. These checks concern the publishing system rather than reader profiles.</p>
   <h2>The Nuvellum Brief</h2>
   <p>If you sign up for the Brief, Nuvellum stores your email address, the time you signed up, the wording of the consent you ticked and the page you signed up from. It is used only to send you the Brief and is not sold or shared for anyone else’s marketing. The list is kept in a private database (Upstash Redis, provided through Vercel), never in Nuvellum’s public code repository or the website’s files, and only the editorial desk can see it after logging in.</p>
   <p>To stop sign-up abuse, Nuvellum counts recent sign-up attempts using a one-way, keyed fingerprint of your network address that expires within an hour; the address itself is not stored.</p>
-  <p>Every Brief carries a personal unsubscribe link. Unsubscribing takes effect at once; to have your record deleted entirely, write to Nuvellum through the <a href="/contact">contact page</a>. The service used to send the Brief will be named on this page before the first issue is sent.</p>
-  <h2>Before additional services are enabled</h2>
-  <p>Advertising, account or other services that materially change reader-data collection should be documented here before they are enabled, together with their purpose and the service responsible for processing the data.</p>
+  <p>Every Brief carries a personal unsubscribe link. Unsubscribing takes effect at once; to have your record deleted entirely, write to Nuvellum through the <a href="/contact">contact page</a>. The service used to deliver the Brief will be identified on this page when delivery begins.</p>
+  <h2>Additional services</h2>
+  <p>If advertising, accounts or other services materially change reader-data collection, this page will be updated to explain their purpose and the service responsible for processing the data.</p>
   <h2>Changes to this page</h2>
-  <p>This policy should continue to be reviewed against the deployed production stack whenever analytics, newsletter, advertising or account infrastructure changes.</p>
+  <p>Nuvellum reviews this policy against the production stack when analytics, newsletter, advertising or account infrastructure changes.</p>
 </InstitutionalPage>
