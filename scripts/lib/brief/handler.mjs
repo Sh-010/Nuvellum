@@ -50,7 +50,7 @@ export function createBriefHandler({ env = process.env, storeFactory, resendFact
         if (resend) {
           try {
             const site = env.SITE_URL || 'https://www.nuvellum.news';
-            await resend.subscribe({ email: r.email, id: r.id, source: r.source, consentAt: r.consentAt, unsubscribeUrl: unsubscribeLink(site, String(env.NUVELLUM_BRIEF_SECRET || ''), r.id) });
+            await resend.subscribe({ email: r.email, id: r.id, source: r.source, consentAt: r.consentAt, unsubscribeUrl: unsubscribeLink(site, String(env.NUVELLUM_BRIEF_SECRET || ''), r.id, r.consentAt) });
           } catch { log.error?.('[brief] Resend sync failed after subscribe'); }
         }
         return respond(200, { ok: true, message: 'Thank you. You are on the list for the Nuvellum Brief.' });
