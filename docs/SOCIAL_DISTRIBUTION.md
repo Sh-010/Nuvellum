@@ -126,11 +126,12 @@ Quote and key-fact cards are optional extra assets, following the card system's 
    - if an image platform is due, render and verify the cards **once**;
    - then post.
 3. **Telegram** uploads the verified **square card PNG** with `sendPhoto` as `multipart/form-data`, so no public image URL is needed. The caption is the bold headline, the dek and the tracked "Read on Nuvellum →" link. The ledger records `kind: "card"`.
-4. **If rendering fails** (a render error, missing Chromium, a clipped headline, or an overflow in Chromium), nothing is posted with a broken image:
-   - The platform stays `queued` with `cardFailures` and the error, and the story's `cards` field records the failure.
+4. **If rendering fails** (a render error, missing Chromium, a clipped headline, or an overflow in Chromium), nothing is posted with a broken or unbranded image:
+   - The platform stays `queued` with `cardFailures` and the error on the first failure, and the story's `cards` field records the failure.
    - On the next run it tries again.
-   - After `CARD_RETRIES` (2) failed renders, it falls back to the previous, deterministic Telegram post: the story's own photo by URL, or a text message. The ledger records `cardFallback`.
-   - Posts are still recorded after every attempt, and `sent` is never revisited, so no failure path can post twice.
+   - After `CARD_RETRIES` (2) failed renders, the platform is marked `failed` and remains unpublished. It does **not** silently fall back to the story's raw photo or a plain text post.
+   - This is deliberate: presentation quality fails closed. A rendering bug should be fixed and the affected story deliberately re-queued rather than publishing a lower-quality fallback.
+   - Posts are still recorded after every attempt, and `sent` / terminal `failed` states are never revisited, so no failure path can post twice.
 5. **Already-sent stories** are neither re-rendered nor re-posted. When nothing is due, Chromium is not even installed.
 
 A safe preview, which renders and verifies the cards and prints the exact Telegram upload and caption without posting or writing the ledger:

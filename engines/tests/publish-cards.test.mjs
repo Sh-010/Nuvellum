@@ -85,7 +85,7 @@ test('an already-sent Telegram entry is neither re-rendered nor re-posted', asyn
   assert.equal(needsCards({ entry: fresh(story), env: TG, storyIsLive: false }), false, 'not live yet → queued, no cards');
 });
 
-test('failed rendering never posts a broken card and can never cause a duplicate post', async () => {
+test('failed rendering never posts a raw fallback or broken card', async () => {
   const story = loadStory(PHOTO), calls = [];
   const failing = async () => ({ ok: false, error: 'cards: rasterisation failed (Error: no Chromium)' });
   // Run 1: render fails → held, nothing posted.
@@ -96,15 +96,15 @@ test('failed rendering never posts a broken card and can never cause a duplicate
   assert.match(r.entry.platforms.telegram.error, /no Chromium/);
   assert.equal(r.entry.cards.status, 'failed');
   assert.ok(CARD_RETRIES >= 2);
-  // Run 2: still failing → the deterministic legacy post (no card), exactly once, with the reason recorded.
+  // Run 2: repeated failure → failed closed. No raw story photo/text fallback is ever posted.
   r = await run(story, r.entry, { prepareAssets: failing, adapters: fakeTelegram(calls) });
-  assert.equal(calls.length, 1);
-  assert.deepEqual(calls[0].assets, {}, 'no half-rendered image is ever passed on');
-  assert.equal(r.entry.platforms.telegram.status, 'sent');
-  assert.match(r.entry.platforms.telegram.cardFallback, /no Chromium/);
-  // Run 3 and later: sent is final.
+  assert.equal(calls.length, 0);
+  assert.equal(r.entry.platforms.telegram.status, 'failed');
+  assert.equal(r.entry.platforms.telegram.cardFailures, CARD_RETRIES);
+  assert.match(r.entry.platforms.telegram.reason, /blocked to protect presentation quality/);
+  // Run 3 and later: failed is final and still nothing is posted.
   for (let i = 0; i < 3; i++) r = await run(story, r.entry, { prepareAssets: failing, adapters: fakeTelegram(calls) });
-  assert.equal(calls.length, 1, 'never posted twice');
+  assert.equal(calls.length, 0, 'a card failure can never silently downgrade into a raw post');
 });
 
 test('overflowing, clipped or crashing renders are refused, not posted', async () => {
@@ -257,6 +257,21 @@ test('the workflow wires the trigger and a default-off bulk input into both CLI 
 });
 
 // Real Chromium (opt-in: CARDS_CHROME=1): the full asset pipeline rasterises and verifies real PNGs.
+test('Chromium: long real-world photo credits stay inside branded cards', { skip: !process.env.CARDS_CHROME }, async () => {
+  for (const slug of [
+    'trump-says-ai-companies-sign-voluntary-accord-on-safety-controls',
+    'nasa-awards-orbital-safety-analysis-support-services-contract',
+    'cinemacon-managing-director-mitch-neuhauser-stepping-down-following-2028-show'
+  ]) {
+    const t = tmpOut();
+    try {
+      const a = await prepareCardAssets(loadStory(slug), { outDir: t.d });
+      assert.equal(a.ok, true, `${slug}: ${a.error || 'unknown card failure'}`);
+      assert.ok(existsSync(a.forPlatform.telegram), `${slug}: Telegram branded card missing`);
+    } finally { t.done(); }
+  }
+});
+
 test('Chromium: prepareCardAssets produces verified PNGs for every format', { skip: !process.env.CARDS_CHROME }, async () => {
   const t = tmpOut();
   try {

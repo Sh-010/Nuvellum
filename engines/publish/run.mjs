@@ -4,9 +4,9 @@ import { planStory, record, outcome } from './plan.mjs';
 import { IMAGE_PLATFORMS } from './assets.mjs';
 import { PostError } from './adapters.mjs';
 
-// A card that fails to render is retried on the next run; after CARD_RETRIES failed renders the platform falls
-// back to its legacy, card-free post (Telegram: the story's own photo by URL, or a text message), which is
-// deterministic and never uses a half-rendered image.
+// A card that fails to render is retried on the next run. If it still cannot be rendered after CARD_RETRIES,
+// the social post is failed closed rather than silently downgrading to a raw article photo/text post. Nuvellum
+// should never trade brand quality for "something got posted".
 export const CARD_RETRIES = 2;
 
 /**
@@ -49,23 +49,25 @@ export async function processStory(o) {
     }
     const platform = step.platform;
     const prev = entry.platforms[platform] || {};
-    let useAssets = {}, fallback = null;
+    let useAssets = {};
     if (IMAGE_PLATFORMS.has(platform) && assets) {
       if (assets.ok) useAssets = assets.forPlatform;
       else {
         const failures = (prev.cardFailures || 0) + 1;
-        if (failures < CARD_RETRIES) {
-          // Do not post with a missing or broken card: stay queued and try again next run.
-          entry = record(entry, platform, { status: 'queued', cardFailures: failures, error: assets.error, reason: 'card rendering failed; will retry' }, now);
-          if (live) save(entry);
-          lines.push(`${story.slug} ${platform}: held (${assets.error})`);
-          continue;
-        }
-        fallback = assets.error;
+        const terminal = failures >= CARD_RETRIES;
+        entry = record(entry, platform, {
+          status: terminal ? 'failed' : 'queued',
+          cardFailures: failures,
+          error: assets.error,
+          reason: terminal ? 'card rendering failed repeatedly; post blocked to protect presentation quality' : 'card rendering failed; will retry'
+        }, now);
+        if (live) save(entry);
+        lines.push(`${story.slug} ${platform}: ${terminal ? 'blocked' : 'held'} (${assets.error})`);
+        continue;
       }
     }
     if (!live) {
-      lines.push(`${story.slug} ${platform}: would post (dry run)${useAssets[platform] ? ` with ${useAssets[platform]}` : fallback ? ' (legacy fallback)' : ''}`);
+      lines.push(`${story.slug} ${platform}: would post (dry run)${useAssets[platform] ? ` with ${useAssets[platform]}` : ''}`);
       continue;
     }
     let result;
@@ -76,7 +78,6 @@ export async function processStory(o) {
       result = { ok: false, retryable: e instanceof PostError ? e.retryable : true, error: e instanceof PostError ? e.message : `${platform}: ${e.name || 'Error'}` };
     }
     const patch = outcome(prev, result);
-    if (fallback) { patch.cardFallback = fallback; patch.cardFailures = (prev.cardFailures || 0) + 1; }
     entry = record(entry, platform, patch, now);
     save(entry); // after every post, so a later crash cannot cause a duplicate on the next run
   }

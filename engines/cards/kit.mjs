@@ -75,9 +75,12 @@ export function kicker(str, x, y, { size = 20, fill = C.burgundy, anchor = 'star
 /** A label on a solid chip (always readable on top of any picture). */
 export function chip(str, x, y, { size = 16, bg = C.ink, fill = C.paper2, anchor = 'start' } = {}) {
   const s = String(str).toUpperCase(), ls = size * 0.14;
-  const w = measure(s, size, 'normal-700', ls) + size * 1.2, h = size * 1.9;
+  // Chromium's real glyph widths can run a few pixels wider than the deterministic metrics.
+  // Give chips generous horizontal padding so long photo credits never spill out of the chip
+  // or trip the live overflow gate by a handful of pixels.
+  const w = measure(s, size, 'normal-700', ls) + size * 2.0, h = size * 1.9;
   const x0 = anchor === 'end' ? x - w : x;
-  return `<g><rect x="${r(x0)}" y="${r(y - h)}" width="${r(w)}" height="${r(h)}" fill="${bg}" opacity="0.92"/>${text(s, { x: x0 + size * 0.6, y: y - h * 0.32, size, face: 'normal-700', fill, ls, max: x0 + w })}</g>`;
+  return `<g><rect x="${r(x0)}" y="${r(y - h)}" width="${r(w)}" height="${r(h)}" fill="${bg}" opacity="0.92"/>${text(s, { x: x0 + size * 0.8, y: y - h * 0.32, size, face: 'normal-700', fill, ls, max: x0 + w })}</g>`;
 }
 
 /** The story's own image, cover-cropped into a box, with a hairline frame. */
