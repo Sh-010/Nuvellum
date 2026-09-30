@@ -1,10 +1,11 @@
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { injectAnalytics, validGa4Id } from './lib/analytics.mjs';
+import { join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { injectAnalytics, validGa4Id, EXCLUDED } from './lib/analytics.mjs';
 
-const dist = new URL('../dist/', import.meta.url);
-const root = dist.pathname;
+const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const measurementId = validGa4Id(process.env.NUVELLUM_GA4_ID);
+const consent = process.env.NUVELLUM_ANALYTICS_CONSENT === 'implied' ? 'implied' : 'required';
 
 if (!measurementId) {
   console.log('Reader analytics disabled: NUVELLUM_GA4_ID is not configured.');
@@ -22,12 +23,12 @@ function walk(dir) {
   return out;
 }
 
-// The private admin page never loads third-party scripts.
-const files = walk(root).filter((f) => !/[\\/]admin[\\/]index\.html$/.test(f));
+// The private admin page and the Brief's unsubscribe page (signed link in its address) never load analytics.
+const files = walk(root).filter((f) => !EXCLUDED.some((re) => re.test(relative(root, f))));
 for (const file of files) {
   const before = readFileSync(file, 'utf8');
-  const after = injectAnalytics(before, measurementId);
+  const after = injectAnalytics(before, measurementId, { consent });
   if (after !== before) writeFileSync(file, after);
 }
 
-console.log(`Reader analytics instrumented in ${files.length} HTML files (${measurementId}).`);
+console.log(`Reader analytics instrumented in ${files.length} HTML files (${measurementId}, consent ${consent}).`);

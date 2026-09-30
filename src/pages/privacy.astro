@@ -10,7 +10,9 @@ import InstitutionalPage from '../components/InstitutionalPage.astro';
 >
   <p>Nuvellum avoids unnecessary trackers. Reader analytics are disabled by default in the production build and are only activated when the publication explicitly configures its analytics measurement ID.</p>
   <h2>Reader analytics</h2>
-  <p>If enabled, Nuvellum uses Google Analytics 4 to understand page views, broad traffic sources and product interactions such as article clicks, save actions and reading-depth milestones. Nuvellum’s custom event layer does not intentionally send names, email addresses, article-source URLs or URL query strings.</p>
+  <p>If enabled, Nuvellum uses Google Analytics 4 to understand page views, broad traffic sources and product interactions such as article clicks, save actions, reading-depth milestones and successful Brief sign-ups. Nuvellum’s event layer does not send names, email addresses, search text, article-source URLs or URL query strings (other than standard campaign tags such as utm_source). Google signals and advertising features are switched off.</p>
+  <p>Google Analytics only loads after you choose “Allow” in the notice shown on your first visit; until then, and if you choose “No thanks”, no analytics script or cookie is used. Your choice is remembered in this browser only. It never runs on the unsubscribe page or the private editorial desk.</p>
+  <p data-analytics-settings hidden><button type="button" class="aside-link quiet">Change analytics settings</button></p>
   <h2>Operational monitoring</h2>
   <p>Internal newsroom health checks monitor publication output, repository checks and deployment state. These checks concern the publishing system rather than reader profiles.</p>
   <h2>The Nuvellum Brief</h2>

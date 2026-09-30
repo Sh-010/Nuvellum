@@ -4,6 +4,73 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 4: GA4 and Search Console readiness
+
+Branch `feat/ga4-search-console` (stacked on `feat/nuvellum-brief`, PR #126).
+
+- **GA4 (still dormant until `NUVELLUM_GA4_ID` is set in Vercel):**
+  - **Consent first.** Nothing from Google loads, and no cookie is set, until the reader chooses Allow in a small notice. "No thanks" is remembered. /privacy has "Change analytics settings". `NUVELLUM_ANALYTICS_CONSENT=implied` removes the notice (an owner/legal decision).
+  - **Events.** One explicit `page_view` per page, with `page_type` (home/article/section/latest/world_explorer/world/country/author/page/not_found). The in-page classifier is generated from the tested `pageType()`.
+    - `page_location` keeps only utm_* tags.
+    - `sign_up` (`method: nuvellum_brief`) fires only when /api/brief confirms a sign-up; it replaces the old click-based `newsletter_interaction`.
+    - Google signals and ad personalisation are off.
+  - **Where.** Never on `/admin` or `/brief/*`; a double-initialisation guard.
+  - **Bugs fixed:**
+    - `instrument-analytics.mjs` used `URL.pathname` for `dist/`, which breaks on Windows. It now uses `fileURLToPath`.
+    - The CSP lacked `*.analytics.google.com` (a GA4 collection host).
+- **Search Console:**
+  - Production is correct: www canonical, apex 308, robots.txt and RSS. `SITE_URL` is set in Vercel, so the note in the Phase 2 entry was corrected.
+  - The sitemap now also lists `/world-explorer`, `/credits`, and the region and country desks that carry reporting (+24 URLs).
+  - The 215 empty country and region desks are now `noindex`. `check-build-output` fails if a desk's `noindex` and sitemap listing ever disagree.
+  - `docs/SEARCH_CONSOLE.md` covers the owner steps (domain property via a DNS TXT record, sitemap submission, URL inspection) and makes no indexing claims.
+- **Tests:** 4 new analytics tests (consent-first, page types, UTM-only location, `sign_up` wiring, exclusions and CSP). `npm test` 317/317.
+- **Builds:**
+  - Default build: analytics disabled, `check:build` passes.
+  - With a test ID (`G-QATEST123`): 358 files instrumented; admin and unsubscribe excluded; `check:build` passes with the analytics assertions.
+- **Real Chrome** (Google requests intercepted and blocked):
+  - The notice shows, with 0 Google requests and no dataLayer before a choice.
+  - Allow → gtag.js is requested, and `page_view:home @/?utm_source=newsletter&utm_medium=email` is sent (the `secret=abc` query was dropped).
+  - A Brief sign-up → exactly one `sign_up:home:nuvellum_brief`, with no "@" anywhere in the dataLayer.
+  - The page types are correct on /latest, /world-explorer, /section/world and an article.
+  - /admin and /brief/unsubscribe have no analytics.
+  - At 360 px: the notice doesn't overflow the page. Declining persists across pages with 0 Google requests, and /privacy settings reopens the notice.
+- **Needs the owner:**
+  - `NUVELLUM_GA4_ID`: from Google Analytics → Admin → Data streams (Web, https://www.nuvellum.news). Place it in Vercel → Settings → Environment Variables (Production), then redeploy.
+  - Search Console: add the domain property `nuvellum.news` (a DNS TXT record at the DNS host) and submit the sitemap. Both need a Google sign-in.
+
+## 2026-09-30: v1 launch programme, Phase 3: n8n v6.5 newsroom audit, three consecutive clean real runs
+
+Live workflow `8hXx6NuZuJU9dRR1` at version **f67dcee5**, unchanged in this phase. The repo export `n8n/workflows/nuvellum-newsroom.json` matches it (same versionId, 67 nodes), so the backup is current. The workflow stayed inactive with the schedule off and `NUVELLUM_AUTOPUBLISH` = `off` (checked via API). Before starting there were no open editorial PRs.
+
+- **Gates audited in `scripts/lib/editorial.mjs` (the auto-publish eligibility check):**
+  - Every automated story needs `origin: automation`, `status: published` and `editorialReview: "passed"`.
+  - Low risk: `verification`, if present, must be `cleared`.
+  - Sensitive: `verification: "cleared"` **and** `reviewedBy: "Nuvellum Verification Pipeline"`.
+  - Opinion and review formats are refused, only the article plus its own art or photo may change, and the required checks must pass on the exact commit.
+  - n8n cannot mark an uncleared story published (`scripts/lib/newsroom.mjs`).
+- **Runs** (manual executions, one at a time). Each summary comes from the Run Summary node; each PR was checked via the GitHub API for branch, PR count, frontmatter gate fields and push checks.
+
+| Run | Execution | Candidates | Stopped (fail-closed) | Committed | PRs | Gates | Push checks |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 946 (1m31s) | 5, 0 unaccounted | CNBC thin source; France 24 thin draft | 3 low | #127 Polygon, #128 NASA, #129 Deadline | low + `editorialReview: passed` | 6/6 green each |
+| 2 | 947 (45s) | 5, 0 unaccounted | CNBC thin source; Polygon, NASA and Deadline as exact duplicates of open PRs | 1 sensitive | #130 BBC Cornell case | `passed` + `cleared` + pipeline reviewer | 6/6 green |
+| 3 | 948 (1m29s) | 5, 0 unaccounted | ANN thin source; Polygon failed editorial review | 2 low + 1 sensitive | #131 Deadline, #132 BBC Sport, #133 France 24 AI accord | as above | 6/6 green each |
+
+  - No node errors in any run. Exactly one PR per branch (the #81 concurrency fix holds). Nothing merged.
+  - Run 3's third PR opened about 10 minutes late: Auto-open was queued behind CodeQL jobs for three simultaneous branches (the free-plan runner limit), not a failure.
+  - On #130 the Visual Engine found no licensed photo and removed the AI illustration, leaving the story text-led. That is the designed policy for news stories (`scripts/visual/acquire.mjs`); the n8n run summary still says "illustration" because that is decided later in Actions (a known limit, docs/OBSERVABILITY.md).
+- **Editorial follow-ups (not pipeline failures; all PRs are held for the editor):**
+  - The headline casing heuristic (`sentenceCase` in Parse Draft & Build Markdown):
+    - treats a word after a leading digit as mid-sentence ("8 Games with magic systems…", #127);
+    - can split a compound title ("CinemaCon managing Director", #129).
+  - "Nasa" comes from the drafter (BBC style).
+  - #127 is a listicle ("8 games…") that passed editorial review. Consider whether list features belong in automation.
+  - #133 is tagged `["United States","China"]`. Check China is material to the story.
+  - The editor should review #127–#133 in /admin before any publish.
+- **Result:** 3/3 consecutive clean real runs (946, 947, 948). No workflow change was needed. The editorial items above are for the owner's review queue.
+
+---
+
 ## 2026-09-30: v1 launch programme, Phase 2: the Nuvellum Brief as a real subscription
 
 Branch `feat/nuvellum-brief`. Phase 1 merged as PR #125 and is verified live: Chrome on www.nuvellum.news parses the manifest, all four icons decode, and the Apple icon and theme colour are correct. A physical-phone home-screen install is still owed by the owner.

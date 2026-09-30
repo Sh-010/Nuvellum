@@ -31,6 +31,7 @@ const [first, second] = region.label.split(' & ');
   title={`${region.label} — World Desk — Nuvellum`}
   description={`Nuvellum's regional desk for ${region.label}: reporting, country desks and the World Explorer atlas.`}
   active="world"
+  noindex={articles.length === 0}
   folio={[{ label: 'World', href: '/section/world' }, { label: 'World Desk', href: '/section/world' }, { label: region.label }]}
   folioNote="Regional bureau"
 >
