@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-const MAX_RECIPIENTS = 1000;
+const MAX_RECIPIENTS = 100;
 const BATCH_SIZE = 100;
 const RESEND_BATCH_URL = 'https://api.resend.com/emails/batch';
 

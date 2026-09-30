@@ -90,12 +90,12 @@ A scheduled issue sends only when all of these are true:
 - at least one of those three stories is new compared with the previous issue;
 - at least one locally active subscriber exists;
 - the issue has not already been sent for the current Cairo calendar date;
-- the active subscriber count is below the sender's 1,000-recipient safety cap;
+- the deliverable subscriber count is at or below the sender's 100-recipient safety cap, matching the current Resend daily email allowance;
 - the subscriber store and Resend delivery configuration are healthy.
 
-Eligible stories must be `published`, have a production origin (`manual` or `automation`), and contain a valid slug, headline, dek and publication date. This keeps old seed placeholders out of the newsletter.
+Eligible stories must be `published`, have a production origin (`manual` or `automation`), and contain a valid slug, headline, dek and publication date. This keeps old seed placeholders out of the newsletter. Subscriber records created by live QA runs (`source` beginning with `qa-`) are also excluded from unattended sends even if a test cleanup leaves one locally active.
 
-The sender uses the private Upstash consent record as the audience source. Each email receives that reader's current signed Nuvellum unsubscribe URL and RFC 8058 one-click unsubscribe headers. Messages are sent to Resend in batches of at most 100 with deterministic idempotency keys. Upstash records the Cairo issue date and the three story slugs only after every batch succeeds, so retries cannot intentionally create a second issue for the same day.
+The sender uses the private Upstash consent record as the audience source. Each email receives that reader's current signed Nuvellum unsubscribe URL and RFC 8058 one-click unsubscribe headers. Messages are sent to Resend with deterministic idempotency keys. The current production guard stops the run before sending if more than 100 deliverable readers are active; raise that guard only after the Resend plan is upgraded. Upstash records the Cairo issue date and the three story slugs only after every batch succeeds, so retries cannot intentionally create a second issue for the same day.
 
 If there are no active subscribers or no new stories, the scheduled run exits successfully without sending anything.
 

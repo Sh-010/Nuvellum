@@ -8,7 +8,8 @@ import {
   issueFingerprint,
   renderBriefIssue,
   buildRecipientEmail,
-  sendResendBatches
+  sendResendBatches,
+  BRIEF_LIMITS
 } from '../api/lib/brief-issue.mjs';
 import { createBriefSendHandler } from '../api/brief-send.js';
 
@@ -59,9 +60,9 @@ test('Brief rendering escapes article text and keeps the personal unsubscribe li
   assert.equal(email.headers['List-Unsubscribe-Post'], 'List-Unsubscribe=One-Click');
 });
 
-test('Resend batch sender chunks recipients and gives every batch an idempotency key', async () => {
+test('Resend sender stays inside the current 100-email daily plan cap and uses an idempotency key', async () => {
   const calls = [];
-  const emails = Array.from({ length: 205 }, (_, i) => ({
+  const emails = Array.from({ length: BRIEF_LIMITS.maxRecipients }, (_, i) => ({
     from: 'Nuvellum Brief <brief@nuvellum.news>',
     to: [`reader${i}@example.com`],
     subject: 'Brief',
@@ -76,13 +77,21 @@ test('Resend batch sender chunks recipients and gives every batch an idempotency
       return new Response('{}', { status: 200 });
     }
   });
-  assert.deepEqual(result, { batches: 3, recipients: 205 });
-  assert.deepEqual(calls.map((c) => c.body.length), [100, 100, 5]);
-  assert.deepEqual(calls.map((c) => c.init.headers['Idempotency-Key']), [
-    'nuvellum-brief/2026-09-30/abc/0',
-    'nuvellum-brief/2026-09-30/abc/1',
-    'nuvellum-brief/2026-09-30/abc/2'
-  ]);
+  assert.equal(BRIEF_LIMITS.maxRecipients, 100);
+  assert.deepEqual(result, { batches: 1, recipients: 100 });
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].body.length, 100);
+  assert.equal(calls[0].init.headers['Idempotency-Key'], 'nuvellum-brief/2026-09-30/abc/0');
+
+  await assert.rejects(
+    sendResendBatches({
+      apiKey: ENV.RESEND_API_KEY,
+      emails: [...emails, { ...emails[0], to: ['overflow@example.com'] }],
+      idempotencyBase: 'overflow',
+      fetchImpl: async () => new Response('{}', { status: 200 })
+    }),
+    /safety cap of 100/
+  );
 });
 
 test('scheduled Brief sender sends once, records the issue, and a repeat cannot duplicate it', async () => {
@@ -124,6 +133,30 @@ test('scheduled Brief sender sends once, records the issue, and a repeat cannot 
   assert.equal(againBody.sent, false);
   assert.equal(againBody.reason, 'no-new-stories');
   assert.equal(batches.length, 1, 'retry must not send another batch');
+});
+
+test('QA-origin subscribers are excluded from unattended delivery', async () => {
+  const store = createMemoryStore();
+  const brief = createBrief({ store, secret: SECRET, site: ENV.SITE_URL });
+  await brief.subscribe({ email: 'qa@example.com', consent: true, source: 'qa-live-e2e', elapsedMs: 9000, ip: '198.51.100.11' });
+
+  const fetchImpl = async (url) => {
+    if (String(url).startsWith(`${ENV.SITE_URL}/search-index.json`)) return new Response(JSON.stringify(articles), { status: 200 });
+    throw new Error('Resend must not be called for QA-only audience');
+  };
+  const handle = createBriefSendHandler({
+    env: ENV,
+    fetchImpl,
+    storeFactory: () => store,
+    now: () => new Date('2026-09-30T12:30:00Z'),
+    auth: async () => ({ event_name: 'schedule' })
+  });
+  const res = await handle(new Request('https://www.nuvellum.news/api/brief-send?send=1', { method: 'POST' }));
+  const body = await res.json();
+  assert.equal(res.status, 200);
+  assert.equal(body.sent, false);
+  assert.equal(body.reason, 'no-active-subscribers');
+  assert.equal(body.qaExcluded, 1);
 });
 
 test('main-branch push invokes the sender only as a dry run', async () => {

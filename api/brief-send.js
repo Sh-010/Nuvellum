@@ -84,7 +84,10 @@ export function createBriefSendHandler({
         return json(200, { ok: true, sent: false, reason: 'no-new-stories', issueDate, stories: stories.map((s) => s.slug) });
       }
 
-      const subscribers = (await brief.all()).filter((r) => r.status === 'active');
+      const active = (await brief.all()).filter((r) => r.status === 'active');
+      // QA sign-ups intentionally exercise the real consent flow, but must never enter an unattended production mailing.
+      const subscribers = active.filter((r) => !/^qa(?:-|$)/i.test(String(r.source || '')));
+      const qaExcluded = active.length - subscribers.length;
       if (subscribers.length > BRIEF_LIMITS.maxRecipients) {
         return json(503, { error: 'Active subscriber count exceeds the configured safety cap.' });
       }
@@ -96,13 +99,14 @@ export function createBriefSendHandler({
           sent: false,
           issueDate,
           recipients: subscribers.length,
+          qaExcluded,
           stories: stories.map((s) => s.slug),
           fingerprint
         });
       }
 
       if (!subscribers.length) {
-        return json(200, { ok: true, sent: false, reason: 'no-active-subscribers', issueDate, stories: stories.map((s) => s.slug) });
+        return json(200, { ok: true, sent: false, reason: 'no-active-subscribers', issueDate, qaExcluded, stories: stories.map((s) => s.slug) });
       }
 
       if (await store.run(['GET', sentKey(issueDate)])) {
