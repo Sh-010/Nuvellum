@@ -87,7 +87,13 @@ export function selectHome(published) {
   const onTop = new Set([hero.slug, ...supporting.map(a => a.slug)]);
   const latestFilters = LATEST_FILTERS.map(filter => ({
     ...filter,
-    items: articles.filter(a => !onTop.has(a.slug) && filter.match(String(a.section || '').toLowerCase())).slice(0, LATEST_ROWS)
+    // "All" avoids repeating the hero/supporting row. A reader who explicitly selects a
+    // section, however, expects the newest stories from that section even when one is already
+    // featured above. Otherwise the filter misleadingly looks incomplete.
+    items: articles
+      .filter(a => (filter.key === 'all' ? !onTop.has(a.slug) : true))
+      .filter(a => filter.match(String(a.section || '').toLowerCase()))
+      .slice(0, LATEST_ROWS)
   }));
   // In Focus avoids repeating the stories already on top of the page (hero and supporting row); it only
   // falls back to them when the edition is too small to fill the block otherwise.
