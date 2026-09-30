@@ -1,0 +1,73 @@
+name: Send Nuvellum Brief
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      send:
+        description: "Actually send the issue instead of a dry run"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: nuvellum-brief-send
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Trigger Brief sender
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          MANUAL_SEND: ${{ github.event_name == 'workflow_dispatch' && inputs.send || false }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          endpoint="https://www.nuvellum.news/api/brief-send"
+          if [ "$EVENT_NAME" = "schedule" ] || { [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$MANUAL_SEND" = "true" ]; }; then
+            endpoint="$endpoint?send=1"
+          fi
+
+          oidc_url="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=nuvellum-brief-send"
+          token_json="$(curl --fail --silent --show-error \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "$oidc_url")"
+          token="$(printf '%s' "$token_json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.value)process.exit(2);process.stdout.write(j.value)})")"
+
+          # A main-branch push can beat the Vercel deployment by a minute or two.
+          # Retry 404/5xx briefly; authentication failures and valid application responses stop immediately.
+          for attempt in 1 2 3 4 5 6; do
+            code="$(curl --silent --show-error \
+              --output brief-response.json \
+              --write-out '%{http_code}' \
+              -X POST \
+              -H "Authorization: Bearer ${token}" \
+              -H "Content-Type: application/json" \
+              "$endpoint" || true)"
+
+            cat brief-response.json 2>/dev/null || true
+            echo
+
+            if [ "$code" = "200" ]; then
+              exit 0
+            fi
+            if [ "$code" = "401" ] || [ "$code" = "403" ]; then
+              echo "Brief sender authentication failed with HTTP $code" >&2
+              exit 1
+            fi
+            if [ "$attempt" = "6" ]; then
+              echo "Brief sender failed with HTTP $code after retries" >&2
+              exit 1
+            fi
+            sleep 30
+          done

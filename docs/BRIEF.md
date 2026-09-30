@@ -75,6 +75,30 @@ For production **Broadcasts**, use the contact property `{{{nuvellum_unsubscribe
 
 The published Resend template `nuvellum-brief-daily` is a reusable design master. If it is used for per-recipient/template sending, supply the reader's Nuvellum signed unsubscribe URL explicitly rather than inventing one.
 
+
+## Automated daily issue
+
+The Brief is generated and sent automatically from Nuvellum's own published article index. It does not call an LLM and does not rewrite article claims: the issue uses the headline, section and dek already approved for the published story.
+
+The scheduler lives in `.github/workflows/brief-send.yml`. It runs daily at **06:00 UTC** (roughly 08:00–09:00 in Cairo depending daylight time). Main-branch pushes also invoke the sender in **dry-run mode only**, which checks authentication, production configuration and issue generation without mailing readers. A manual workflow dispatch is also dry-run unless its explicit **send** input is enabled.
+
+The workflow stores no Resend credential. Instead, GitHub Actions obtains a short-lived OIDC identity token and presents it to `/api/brief-send`. The production endpoint verifies the token's signature, audience, repository, main-branch ref, workflow path and event type before doing anything. Resend and Upstash credentials remain only in Vercel.
+
+A scheduled issue sends only when all of these are true:
+
+- at least three eligible published production stories are available;
+- at least one of those three stories is new compared with the previous issue;
+- at least one locally active subscriber exists;
+- the issue has not already been sent for the current Cairo calendar date;
+- the active subscriber count is below the sender's 1,000-recipient safety cap;
+- the subscriber store and Resend delivery configuration are healthy.
+
+Eligible stories must be `published`, have a production origin (`manual` or `automation`), and contain a valid slug, headline, dek and publication date. This keeps old seed placeholders out of the newsletter.
+
+The sender uses the private Upstash consent record as the audience source. Each email receives that reader's current signed Nuvellum unsubscribe URL and RFC 8058 one-click unsubscribe headers. Messages are sent to Resend in batches of at most 100 with deterministic idempotency keys. Upstash records the Cairo issue date and the three story slugs only after every batch succeeds, so retries cannot intentionally create a second issue for the same day.
+
+If there are no active subscribers or no new stories, the scheduled run exits successfully without sending anything.
+
 ## Resend configuration
 
 The sender domain `nuvellum.news` is verified. Sending is enabled; receiving is intentionally disabled. Open and click tracking are disabled.

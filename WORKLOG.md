@@ -1006,3 +1006,13 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 
 
 - **Brief hardening deploy retry, 30 Sep 2026:** retried production after the Vercel Hobby build-rate window was expected to reset. No application behavior changed in this retry commit.
+
+
+## 2026-09-30 — Nuvellum Brief daily delivery automation
+
+- Added a deterministic daily Brief issue builder using the three newest eligible published production stories; seed placeholders without a production origin are excluded.
+- Added a private `/api/brief-send` production function. It uses the canonical Upstash consent list, per-reader signed unsubscribe links, RFC 8058 one-click headers, Resend batch delivery (100 per call), a 1,000-recipient safety cap, daily issue state and idempotency keys.
+- Added GitHub Actions scheduling at 06:00 UTC. GitHub stores no mail credential: the workflow authenticates to Vercel with a short-lived GitHub Actions OIDC token. Main pushes are dry-run only; scheduled runs are live; manual dispatch is dry-run unless explicitly promoted to send.
+- Fail-closed rules: no send with fewer than three eligible stories, no new story since the prior issue, no active subscribers, an already-sent Cairo date, unhealthy configuration/store, or an audience over the safety cap.
+- Added tests for story selection/escaping, batch chunking/idempotency, single-send behavior, push dry-run behavior and OIDC claim/signature enforcement.
+- No approved site visuals were changed.
