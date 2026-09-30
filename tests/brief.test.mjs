@@ -193,6 +193,20 @@ test('nothing about subscribers is ever written to the repository or the public 
   assert.match(home, /fetch\('\/api\/brief\?action=subscribe'/, 'the homepage form posts to the Brief endpoint');
 });
 
+test('Subscribe opens the in-page Brief invitation instead of jumping the reader down the page', () => {
+  const home = readFileSync('scripts/render-editorial-home.mjs', 'utf8');
+  const shell = readFileSync('src/components/InteriorShell.astro', 'utf8');
+  const css = readFileSync('src/styles/interior.css', 'utf8');
+  for (const source of [home, shell]) {
+    assert.match(source, /data-brief-open/, 'the masthead exposes an in-page Brief opener');
+    assert.match(source, /id="briefInvitation"/, 'the invitation dialog is present');
+    assert.doesNotMatch(source, /<a class="subscribe" href="#newsletter">/, 'Subscribe is not a fragment-navigation link');
+  }
+  assert.match(home, /source:'header'/, 'modal sign-ups are attributed separately');
+  assert.match(shell, /source:'header'/, 'interior modal sign-ups use the Brief endpoint');
+  assert.match(css, /brief-invite-card/, 'interior pages carry the invitation styling');
+});
+
 test('the admin Brief view says plainly when the store is not connected', async () => {
   const handle = createAdminHandler({ env: ENV, githubFactory: () => new FakeGitHub(), briefStoreFactory: () => { throw new Error('must not connect'); }, log: { error() {} }, delay: async () => {} });
   const auth = await login(handle);
