@@ -19,7 +19,7 @@ test('text-led story renders premium square and portrait cards without fake imag
     assert.match(square, /NUVELLUM/);
     assert.match(square, /Pokémon TCG/);
     assert.ok(!square.includes('<image href='));
-    assert.match(square, /#681F2D/i);
+    assert.match(square, /#76132B/i, 'the site burgundy');
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
@@ -73,9 +73,12 @@ test('every distributable story renders both cards inside the margins', () => {
     renderSocialCards(story, dir);
     for (const f of ['square', 'portrait']) {
       const svg = readFileSync(join(dir, story.slug, f + '.svg'), 'utf8');
-      for (const m of svg.matchAll(/<text x="72" y="(\d+)"[^>]*font-size="(\d+)"[^>]*>([^<]*)<\/text>/g)) {
-        const face = /font-style="italic"/.test(m[0]) ? 'italic' : 'bold';
-        if (/Georgia/.test(m[0])) assert.ok(72 + textWidth(m[3].replace(/&apos;/g, "'").replace(/&amp;/g, '&'), +m[2], face) <= 1008, `${f}: "${m[3]}" overflows`);
+      // v2 cards record each line's measured width and allowed box (checked in Chromium by sample-qa.mjs).
+      for (const m of svg.matchAll(/<text x="([\d.]+)"[^>]*data-w="([\d.]+)" data-box="([\d.]+),([\d.]+)">/g)) {
+        const [x, w, min, max] = [+m[1], +m[2], +m[3], +m[4]];
+        const anchor = /text-anchor="(\w+)"/.exec(m[0])?.[1] || 'start';
+        const left = anchor === 'end' ? x - w : anchor === 'middle' ? x - w / 2 : x;
+        assert.ok(left >= min - 1 && left + w <= max + 1 && left + w <= 1008 + 1, `${f}: line at x=${x} overflows its box`);
       }
     }
   } finally { rmSync(dir, { recursive: true, force: true }); }

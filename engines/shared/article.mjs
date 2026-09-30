@@ -121,6 +121,20 @@ export function loadStory(slug, { allowPlaceholder = false } = {}) {
     image,
     imagePath: info.path,
     imageKind: info.kind,
-    mediaMode: info.kind
+    mediaMode: info.kind,
+    author: String(data.author || '').trim(),
+    // Breaking/developing status comes only from the article itself (frontmatter or tags), never inferred.
+    live: data.breaking === true || /^breaking$/i.test(String(data.status_label || '')) || (Array.isArray(data.tags) && data.tags.some(t => /^breaking$/i.test(t))) ? 'breaking'
+      : data.developing === true || (Array.isArray(data.tags) && data.tags.some(t => /^developing$/i.test(t))) ? 'developing' : null,
+    imageCredit: imageCredit(slug, data)
   };
+}
+
+let CREDITS = null;
+/** Attribution for the story's own image: frontmatter first, then src/data/image-credits.json. */
+function imageCredit(slug, data) {
+  if (data.imageCredit || data.imageLicense) return { author: String(data.imageCredit || '').trim(), license: String(data.imageLicense || '').trim(), focus: String(data.imageFocus || '').trim(), width: 0, height: 0 };
+  if (!CREDITS) { try { CREDITS = JSON.parse(readFileSync(join(REPO_ROOT, 'src', 'data', 'image-credits.json'), 'utf8')); } catch { CREDITS = {}; } }
+  const c = CREDITS[slug];
+  return c && c.path && c.path === data.image ? { author: String(c.author || '').trim(), license: String(c.license || '').trim(), focus: String(c.focus || '').trim(), width: +c.width || 0, height: +c.height || 0 } : null;
 }

@@ -4,6 +4,38 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: Nuvellum social card system (`feat/social-card-system`)
+
+Rebased onto main after #126 and #134–#139 merged. It changes none of them, nor the social credentials or adapters, newsroom logic, Admin or the site design. Documentation: `docs/SOCIAL_CARDS.md`.
+
+- **Formats:** square 1080×1080, landscape 1200×630, portrait 1080×1350, and story 1080×1920 (content kept between y=250 and y=1600). Quote/key-fact cards come in square and portrait.
+- **Templates:**
+  - Standard;
+  - Breaking/Developing, only from the article's own flag or tag;
+  - Analysis/Opinion/Ideas: text-led, byline only for named people, quote ornament for opinion;
+  - Culture/Cinema/Gaming: image-forward;
+  - Quote/Key fact: verbatim, self-contained, never for sensitive stories.
+- **Brand:**
+  - the site's Newsreader font embedded in every card (so rendering is identical everywhere);
+  - the site palette tokens;
+  - the existing N✦ monogram and NUVELLUM✦ wordmark;
+  - hairline rules and tracked labels;
+  - no gradients.
+- **Images:** only the story's own photo (FILE PHOTO chip plus licence credit) or approved illustration (ILLUSTRATION); otherwise text-led. Text never sits on a picture, and tall pictures are top-anchored so heads are kept.
+- **Headline fitting:** Newsreader widths measured in Chromium; largest size within per-template bounds; balanced breaks; long-headline layout; photo cards shrink the picture, then switch to text-led below a legibility floor; clipping with "…" only as a flagged last resort.
+- **Manifest v2:** assets with format, size, variant, image use, headline fit, safe zone and path, plus `media.usedBy`, the quote and the `clipped` flag. The v1 keys are kept, so `engines/distribution` still works (checked).
+- **QA in real Chrome:** 68 cards (4 real stories plus 11 fixtures) rasterised at their exact sizes. Every text line was checked against its fitted box: 0 overflow.
+- **Defects found and fixed during visual review:**
+  - the landscape footer and site name ran over the photo;
+  - the section label was hidden under the picture;
+  - the opinion quote mark collided with the headline;
+  - image-forward squares set the headline at 42px (the picture now shrinks first);
+  - short headlines stopped at 96px (they now reach 118–150px);
+  - a key-fact card picked a line with a dangling "such deals";
+  - death-toll "key facts" on sensitive stories (such cards are now skipped).
+- **Tests:** `engines/tests/cards-system.test.mjs` (17, including an opt-in Chromium test) plus updated `cards.test.mjs`. Engines suite: 36 (35 pass + the Chromium test, which also passes with `CARDS_CHROME=1`).
+- **Review sheets:** `docs/social-cards/*.jpg`.
+
 ## 2026-09-30: v1 launch programme, Phase 10: real-site QA sweep (production)
 
 Against https://www.nuvellum.news at the time of writing: main = PR #125. PRs #126–#139 are unmerged, and each was QA'd on its own local build (see its entry).
