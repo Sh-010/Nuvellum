@@ -11,9 +11,11 @@
       "sentAt": "2026-09-30T03:41:51.997Z",
       "remoteId": "12",
       "remoteUrl": "https://t.me/nuvellum/12",
-      "kind": "photo",
+      "kind": "card",
       "reason": null,
-      "updatedAt": "2026-09-30T03:41:41.706Z"
+      "updatedAt": "2026-09-30T03:41:41.706Z",
+      "repairedAt": "2026-09-30T16:38:32.975Z",
+      "repair": "raw photo replaced in place with verified branded Nuvellum card"
     },
     "facebook": {
       "status": "skipped",
@@ -50,5 +52,16 @@
       "reason": "upload needs human approval",
       "updatedAt": "2026-09-30T03:41:41.706Z"
     }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-09-30T16:38:32.975Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
   }
 }
