@@ -93,6 +93,10 @@ Every text line records its measured width and allowed box (`data-w`, `data-box`
 
 The `square` / `portrait` / `sourceMode` keys keep the v1 distribution drafts working. With `--png`, each asset also gets a `png` path.
 
+## Used by the social publisher
+
+`engines/publish/assets.mjs` calls this renderer automatically before an image platform is posted to. It rasterises in Chromium, runs the overflow check and maps platforms to cards; Telegram uploads the square card. See "Social cards in the publisher" in `docs/SOCIAL_DISTRIBUTION.md`.
+
 ## Review samples
 
 Contact sheets rendered from the fixtures (`engines/cards/fixtures.mjs`): `docs/social-cards/*.jpg`.
