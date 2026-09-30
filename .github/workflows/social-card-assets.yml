@@ -6,7 +6,7 @@ on:
     paths:
       - ".github/workflows/social-card-assets.yml"
       - "ops/social-card-request.txt"
-      - "src/content/articles/**.md"
+      - "src/content/articles/*.md"
   workflow_dispatch:
 
 permissions:
@@ -38,25 +38,53 @@ jobs:
           npx playwright-core install --with-deps chromium
 
       - name: Resolve article slugs
-        id: request
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          : > /tmp/slugs.txt
+          : > /tmp/changed.txt
+
+          if [ "$EVENT_NAME" = "push" ] && [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            git diff --name-only "$BEFORE_SHA" "$CURRENT_SHA" > /tmp/changed.txt
+            sed -n 's#^src/content/articles/\([a-z0-9][a-z0-9-]*\)\.md$#\1#p' /tmp/changed.txt >> /tmp/slugs.txt
+          fi
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || grep -Eq '^(ops/social-card-request\.txt|\.github/workflows/social-card-assets\.yml)$' /tmp/changed.txt; then
+            if [ -f ops/social-card-request.txt ]; then
+              tr -d '\r' < ops/social-card-request.txt | sed '/^[[:space:]]*$/d' >> /tmp/slugs.txt
+            fi
+          fi
+
+          sort -u /tmp/slugs.txt -o /tmp/slugs.txt
+          test -s /tmp/slugs.txt || { echo "::error::no article slugs resolved"; exit 1; }
+
+          while IFS= read -r SLUG; do
+            printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$' || { echo "::error::invalid social-card slug: $SLUG"; exit 1; }
+            test -f "src/content/articles/$SLUG.md" || { echo "::error::article not found for $SLUG"; exit 1; }
+          done < /tmp/slugs.txt
+
+          echo "Rendering:"
+          cat /tmp/slugs.txt
+
+      - name: Render and verify Nuvellum social cards
         shell: bash
         run: |
-          : > /tmp/slugs.txt
-          if [ "${{ github.event_name }}" = "push" ] && [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
-            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'src/content/articles/*.md'               | sed -n 's#^src/content/articles/\([a-z0-9][a-z0-9-]*\)\.md$#\1#p' >> /tmp/slugs.txt
-          fi
-          if [ -f ops/social-card-request.txt ]; then
-            tr -d '\r' < ops/social-card-request.txt | sed '/^[[:space:]]*$/d' >> /tmp/slugs.txt
-          fi
-          sort -u /tmp/slugs.txt -o /tmp/slugs.txt
+          set -euo pipefail
           while IFS= read -r SLUG; do
-            printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*
+            node engines/cards/cli.mjs --slug "$SLUG" --png --no-quote
+          done < /tmp/slugs.txt
 
       - name: Publish cards to social-assets branch
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name "Nuvellum Social Assets"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           if git ls-remote --exit-code --heads origin social-assets >/dev/null; then
             git fetch --depth=1 origin social-assets
             git worktree add -B social-assets .social-assets origin/social-assets
@@ -73,9 +101,7 @@ jobs:
             cp "$SRC"/landscape.png "$DST"/
             cp "$SRC"/story.png "$DST"/
             cp "$SRC"/manifest.json "$DST"/
-          done <<'EOF'
-          ${{ steps.request.outputs.slugs }}
-          EOF
+          done < /tmp/slugs.txt
 
           cd .social-assets
           git add cards
@@ -83,55 +109,7 @@ jobs:
             echo "social cards unchanged"
             exit 0
           fi
+
           COUNT="$(git diff --cached --name-only | awk -F/ '$1=="cards"{print $2}' | sort -u | wc -l | tr -d ' ')"
           git commit -q -m "social cards: $COUNT story set(s)"
-          git push origin HEAD:social-assets
- || { echo "::error::invalid social-card slug: $SLUG"; exit 1; }
-            test -f "src/content/articles/$SLUG.md" || { echo "::error::article not found for $SLUG"; exit 1; }
-          done < /tmp/slugs.txt
-          test -s /tmp/slugs.txt || { echo "::error::no article slugs resolved"; exit 1; }
-          {
-            echo 'slugs<<EOF'
-            cat /tmp/slugs.txt
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Render and verify Nuvellum social cards
-        shell: bash
-        run: |
-          while IFS= read -r SLUG; do
-            node engines/cards/cli.mjs --slug "$SLUG" --png --no-quote
-          done <<'EOF'
-          ${{ steps.request.outputs.slugs }}
-          EOF
-
-      - name: Publish cards to social-assets branch
-        shell: bash
-        run: |
-          git config user.name "Nuvellum Social Assets"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git ls-remote --exit-code --heads origin social-assets >/dev/null; then
-            git fetch --depth=1 origin social-assets
-            git worktree add -B social-assets .social-assets origin/social-assets
-          else
-            git worktree add --orphan -b social-assets .social-assets
-          fi
-
-          SLUG="${{ steps.request.outputs.slug }}"
-          SRC="engines/out/social-cards/$SLUG"
-          DST=".social-assets/cards/$SLUG"
-          mkdir -p "$DST"
-          cp "$SRC"/square.png "$DST"/
-          cp "$SRC"/portrait.png "$DST"/
-          cp "$SRC"/landscape.png "$DST"/
-          cp "$SRC"/story.png "$DST"/
-          cp "$SRC"/manifest.json "$DST"/
-
-          cd .social-assets
-          git add "cards/$SLUG"
-          if git diff --cached --quiet; then
-            echo "social cards unchanged"
-            exit 0
-          fi
-          git commit -q -m "social cards: $SLUG"
           git push origin HEAD:social-assets
