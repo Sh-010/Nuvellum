@@ -1003,3 +1003,6 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 
 
 - **Brief delivery hardening, 30 Sep 2026:** unsubscribe signatures now rotate with renewed consent. Production deploy retried after the protected-main merge so the hardened token logic can replace the previous deployment.
+
+
+- **Brief hardening deploy retry, 30 Sep 2026:** retried production after the Vercel Hobby build-rate window was expected to reset. No application behavior changed in this retry commit.
