@@ -6,11 +6,16 @@
   "firstSeenAt": "2026-09-30T09:36:16.566Z",
   "platforms": {
     "telegram": {
-      "status": "queued",
-      "cardFailures": 1,
-      "error": "cards: 1 card(s) failed the overflow check (\"PHOTO: JENNIFER 8. LEE / CC BY-SA 4.0\" ends at 1185.5 > box 1182)",
-      "reason": "card rendering failed; will retry",
-      "updatedAt": "2026-09-30T09:36:16.566Z"
+      "status": "sent",
+      "cardFailures": 2,
+      "reason": null,
+      "updatedAt": "2026-09-30T16:04:28.689Z",
+      "attempts": 1,
+      "sentAt": "2026-09-30T16:04:28.689Z",
+      "remoteId": "16",
+      "remoteUrl": "https://t.me/nuvellum/16",
+      "kind": "photo",
+      "cardFallback": "cards: 1 card(s) failed the overflow check (\"PHOTO: JENNIFER 8. LEE / CC BY-SA 4.0\" ends at 1185.5 > box 1182)"
     },
     "facebook": {
       "status": "skipped",
@@ -50,7 +55,7 @@
   },
   "cards": {
     "status": "failed",
-    "at": "2026-09-30T09:36:16.566Z",
+    "at": "2026-09-30T16:04:28.689Z",
     "error": "cards: 1 card(s) failed the overflow check (\"PHOTO: JENNIFER 8. LEE / CC BY-SA 4.0\" ends at 1185.5 > box 1182)"
   }
 }
