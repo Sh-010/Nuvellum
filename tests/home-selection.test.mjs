@@ -74,7 +74,7 @@ test('manual and automated stories coexist, ordered only by date', () => {
   assert.equal(home.hero.slug, 'a-w');
   assert.deepEqual(slugs(home.supporting), ['a-b', 'm-t', 'a-c']);
   assert.deepEqual(slugs(home.latestFilters[0].items), ['m-w', 'm-w2', 'a-w2']);
-  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'world').items), ['m-w', 'm-w2', 'a-w2']);
+  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'world').items), ['a-w', 'm-w', 'm-w2', 'a-w2']);
   const origins = new Set([home.hero, ...home.supporting, ...home.latestFilters[0].items].map((a) => a.origin));
   assert.deepEqual([...origins].sort(), ['automation', 'manual']);
 });
@@ -128,7 +128,8 @@ test('drafts and review stories never reach the homepage; nothing is invented to
   const home = selectHome([story({ slug: 'pub' }), story({ slug: 'draft', status: 'draft', date: '2026-09-30' }), story({ slug: 'rev', status: 'review', date: '2026-09-30' })]);
   assert.equal(home.hero.slug, 'pub');
   assert.equal(home.supporting.length, 0);
-  assert.ok(home.latestFilters.every((f) => f.items.length === 0), 'empty Latest sets stay empty (the renderer shows its note), never padded');
+  assert.equal(home.latestFilters.find((f) => f.key === 'all').items.length, 0, 'Latest/All stays empty when the only story is already featured');
+  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'world').items), ['pub'], 'an explicit section filter still shows its featured story');
   assert.throws(() => selectHome([]), /at least one published story/);
 });
 
