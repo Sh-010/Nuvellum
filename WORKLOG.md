@@ -4,6 +4,19 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 8: AdSense readiness, sponsorship model, media kit
+
+Branch `feat/monetisation-readiness` (stacked on `feat/shorts-piper`). **Nothing monetised or enabled; no figures invented.** Full audit: `docs/MONETISATION.md`.
+
+- **Technically ready:** HTTPS with one canonical host, mobile layouts, all trust pages (200), no dead ends (after #135), licensed images with credits.
+- **Not content-ready (main risk):** 33 stories, median 293 words, 32 of them "News", almost all machine-drafted from other outlets' reporting. That is the classic "low value content" rejection, and Google's spam policies target scaled content without added value. Advice: several weeks of original and edited work before applying.
+- **Blocker for ads to UK/EEA/CH readers:** a Google-certified TCF CMP (per Google's AdSense Help; TCF v2.3 after 28 Feb 2026). The Phase 4 GA notice is not one; AdSense's free Privacy & messaging CMP would be the route. The privacy page needs its advertising section at the same time.
+- **Recommendations (owner decisions, changes to the approved design):** a "How this story was made" line on automated articles, and a named responsible editor.
+- **Built, dormant:** `scripts/write-ads-txt.mjs` serves `/ads.txt` (with Google's certification ID) only when `NUVELLUM_ADSENSE_PUB_ID` holds a real `pub-` + 16-digit ID. `check:build` fails if ads.txt ships without one, or is wrong with one. Both cases verified.
+- **Sponsorship model** (no prices): Brief sponsorship, section "Presented by", World Explorer credit, and labelled "Paid partner content", each with editorial-separation rules. No CPM or reach claims until 60–90 days of consented GA4 data exist.
+- **Media kit groundwork:** `npm run media-kit` reports only repository facts (33 stories since 2026-09-25; the section, format and visual mix; median length). The audience field says "not yet measured", and a test fails if audience figures ever appear.
+- **Tests:** `tests/monetisation.test.mjs` (2). `npm test` 323/323; build and `check:build` pass.
+
 ## 2026-09-30: v1 launch programme, Phase 7: Shorts with the free Piper voice
 
 Branch `feat/shorts-piper` (stacked on `feat/social-publish`).
