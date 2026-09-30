@@ -1,0 +1,19 @@
+---
+import InstitutionalPage from '../components/InstitutionalPage.astro';
+---
+<InstitutionalPage
+  title="RSS"
+  eyebrow="The feed"
+  description="Follow Nuvellum through RSS, without an algorithm deciding what reaches you."
+  intro="Nuvellum, delivered as a feed rather than a recommendation."
+  note="The feed updates with published stories and can be added to any standard RSS reader."
+>
+  <p>RSS is a simple way to follow Nuvellum without relying on a social platform, notification system or recommendation algorithm. Add the feed once and new stories will appear in the reader of your choice.</p>
+  <h2>Subscribe to the feed</h2>
+  <p>The Nuvellum feed is available at <a href="/rss.xml"><strong>nuvellum.news/rss.xml</strong></a>. Open it in an RSS reader, or copy that address into your reader’s “Add feed” or “Follow website” field.</p>
+  <h2>What appears there</h2>
+  <p>The feed carries published Nuvellum stories with their headline, summary, publication date and a direct link back to the full article.</p>
+  <h2>If your browser shows XML</h2>
+  <p>That is the underlying RSS document rather than an error. Nuvellum styles the feed for ordinary browser viewing where supported, while keeping the original XML intact for feed readers.</p>
+  <span slot="aside">No ranking, no infinite scroll, no intermediary. RSS delivers the publication in the order it was published.</span>
+</InstitutionalPage>
