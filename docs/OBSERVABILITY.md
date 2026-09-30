@@ -76,6 +76,26 @@ npm run ops:report
 
 Without a GitHub token the local report still provides all content/repository metrics; GitHub/deployment checks are omitted.
 
+## Live production smoke checks
+
+The observability workflow also runs `node scripts/production-smoke.mjs` against **https://www.nuvellum.news** on every main push and every six-hour scheduled health run.
+
+It verifies:
+
+- core public routes such as Home, Latest, Saved, World Explorer and institutional pages;
+- RSS, sitemap, robots, manifest and favicon;
+- every same-origin URL currently listed in the production sitemap;
+- every published article route in that sitemap;
+- same-origin article/homepage images for HTTP success and image content type;
+- key homepage/UI markers such as the World Desk, Brief signup and Sports filter;
+- that Latest and Sports contain real article links.
+
+The same workflow also runs the distribution/Shorts engine unit suite. This means social/video code can fail health checks without blocking article publication.
+
+A source-concentration warning is emitted when one host supplies more than one third of automated source references once the corpus is large enough. This is a warning for editorial diversity, not a publication failure.
+
+The smoke audit intentionally checks the **deployed site**, not only the build output. A repository build can be green while a stale or failed deployment is still serving something else; this closes that gap.
+
 ## Newsroom execution telemetry (n8n)
 
 Each run of the live workflow (`8hXx6NuZuJU9dRR1`) ends with one compact `run_summary` item in the **Run Summary** node. It is stored with the execution in n8n; open the execution and select Run Summary. It comes from three pieces:

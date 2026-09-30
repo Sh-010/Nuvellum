@@ -4,15 +4,25 @@ Non-negotiable across every milestone: **preserve the approved Nuvellum v5.1 vis
 
 | Milestone | Scope | Status |
 |---|---|---|
-| **M1: Core stable** | Site works, story navigation, newsroom end-to-end, 3/3 clean production runs, no known release blocker | ✅ Met 2026-09-27 (runs 912, 914, 915 → #58, #60, #61). Autopublish is still OFF, pending the owner's decision. |
-| **MV: AI Visual Engine** | Premium, story-specific editorial imagery with safe fallback (spec below) | Planned; next after M1 |
-| **M2: Discovery ready** | SEO, RSS, sitemap, analytics, accessibility and performance | Partly done: canonical, OG/Twitter, Article JSON-LD (ingestion sources deliberately not published), sitemap `lastmod`, RSS, Lighthouse 98/84/100/100. Remaining: analytics, the v5.1 design-level a11y items. |
-| **M3: Distribution ready** | Social engine, adapters, grounding, idempotency, dry-run default | Code exists on `engines/distribution-shorts`, not in main. Consumes MV assets. |
-| **M4: Video ready** | Shorts pipeline renders grounded, production-quality output | Prototype on `engines/distribution-shorts`. Consumes MV assets. |
-| **M5: Operations ready** | Monitoring, recovery, source management, provider fallback, security | Partly done: recovery docs, source matrix, CI gates, secret scan |
-| **M6: Expansion ready** | Newsletter and monetization plumbing, platform integrations awaiting credentials | Not started |
+| **M1: Core stable** | Site works, story navigation, newsroom end-to-end, release gates and production health | ✅ **Met.** The canonical newsroom, protected publication gate, production site and recurring live smoke checks are operational. `NUVELLUM_AUTOPUBLISH` remains OFF until the owner chooses otherwise. |
+| **MV: Visual system** | Story-specific editorial imagery with safe fallback | ✅ **Operational v1.** Incoming stories get a conservative Wikimedia/representative-image pass, licensing metadata and text-led fallback. A future paid/multi-provider generative-image layer is optional, not a launch dependency. |
+| **M2: Discovery ready** | SEO, RSS, sitemap, analytics, accessibility and performance | 🟡 **Site-side complete; account-side verification remains.** Canonical/OG/JSON-LD, sitemap, RSS, consent-first GA4 plumbing and Search Console instructions are in main. Google account verification/measurement must be completed by the owner. |
+| **M3: Distribution ready** | Social engine, cards, adapters, grounding, idempotency | 🟡 **Engine complete; platform credentials remain.** Distribution, social cards, publishing ledger, retries and live adapters are in main. Live posting stays off until approved platform credentials exist and `NUVELLUM_SOCIAL=on`. |
+| **M4: Video ready** | Shorts/Reels pipeline renders grounded production assets | 🟡 **Renderer complete; publishing remains gated.** 9:16 MP4, captions and local Piper narration are implemented. Final voice/output approval plus platform upload credentials are still required. |
+| **M5: Operations ready** | Monitoring, recovery, source management, provider fallback, security | ✅ **Operational.** CI/security gates, newsroom telemetry, six-hour observability, live production route/image smoke checks, recovery docs and safe branch-cleanup tooling are in main. |
+| **M6: Expansion ready** | Newsletter and monetization plumbing | 🟡 **Newsletter complete; monetisation intentionally deferred.** Nuvellum Brief signup, Resend sync, daily sender and unsubscribe lifecycle are live. AdSense plumbing exists, but application/ads remain off until original-content depth and audience history justify it. |
 
 ---
+
+## Core freeze after stabilization
+
+The approved production experience is now treated as a stable baseline. Do not casually redesign or rewrite working interaction systems while adding distribution, analytics or monetisation.
+
+- Functional fixes must preserve the approved visual language unless the owner explicitly asks for a design change.
+- Any homepage/content-placement change must pass the repository test suite plus the live production smoke audit after deployment.
+- Distribution, Brief, Shorts, analytics and monetisation failures must remain non-blocking for article publication unless a safety/editorial gate itself fails.
+- New feature work should be isolated from the core where possible and should not create another parallel "version" of the site.
+
 
 ## MV: AI Visual Engine
 

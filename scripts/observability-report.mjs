@@ -97,6 +97,14 @@ if (autopublish && age !== null && age > 48) {
   warnings.push(`No automated publication for ${Math.round(age)}h while autopublish is on`);
 }
 
+const sourceEntries = Object.entries(content.sourceHosts || {});
+const sourceTotal = sourceEntries.reduce((sum, [, count]) => sum + Number(count || 0), 0);
+if (sourceTotal >= 12 && sourceEntries.length) {
+  const [host, count] = sourceEntries[0];
+  const share = Number(count || 0) / sourceTotal;
+  if (share > 1 / 3) warnings.push(`Source concentration: ${host} accounts for ${Math.round(share * 100)}% of automated source references`);
+}
+
 const top = (obj, n=5) => Object.entries(obj || {}).slice(0,n).map(([k,v]) => `${k}: ${v}`).join(', ') || 'none';
 const lines = [
   '# Nuvellum newsroom health',
