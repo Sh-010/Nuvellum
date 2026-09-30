@@ -314,6 +314,26 @@ test('public Brief handler mirrors subscribe and unsubscribe to Resend without e
   assert.deepEqual(Object.keys(first.data).sort(), ['message', 'ok']);
 });
 
+test('admin unsubscribe mirrors the reader to Resend without returning their address', async () => {
+  const store = createMemoryStore();
+  const brief = createBrief({ store, secret: SECRET, now: () => Date.parse('2026-09-30T09:00:00Z') });
+  const added = await brief.subscribe({ email: 'reader@example.com', consent: true, elapsedMs: 9000, ip: '203.0.113.5' });
+  const events = [];
+  const handle = createAdminHandler({
+    env: { ...ENV, ...RESEND_ENV },
+    githubFactory: () => new FakeGitHub(),
+    briefStoreFactory: () => store,
+    resendFactory: () => ({ unsubscribe: async (v) => events.push(v) }),
+    log: { error() {} },
+    delay: async () => {}
+  });
+  const auth = await login(handle);
+  const out = await call(handle, auth, 'brief-unsubscribe', { method: 'POST', body: { id: added.id } });
+  assert.equal(out.status, 200);
+  assert.deepEqual(out.data, { ok: true, outcome: 'unsubscribed' });
+  assert.deepEqual(events, [{ email: 'reader@example.com' }]);
+});
+
 test('a Resend outage never rolls back a valid consent record or leaks provider detail to the reader', async () => {
   const logs = [];
   const { signup, brief } = setup({
