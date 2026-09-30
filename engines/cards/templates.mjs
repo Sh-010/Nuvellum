@@ -4,7 +4,7 @@
 // (the FILE PHOTO / ILLUSTRATION label) is a solid chip, so contrast is guaranteed and faces or busy areas are
 // never covered by the headline. Everything lives inside each format's safe zone.
 import { fitText, measure } from './fit.mjs';
-import { C, SITE, text, lines, kicker, chip, star, wordmark, monogram, picture, svg, fontCss, esc } from './kit.mjs';
+import { C, SITE, FAMILY, text, lines, kicker, chip, star, wordmark, monogram, picture, svg, fontCss, esc } from './kit.mjs';
 import { coverAlign } from './media.mjs';
 
 export const FORMATS = {
@@ -164,18 +164,20 @@ function layoutCard(fmtName, story, media, variant) {
       if ((hl.layout === 'normal' && hl.size >= COMFORT[fmtName]) || k === 3) break;
       imgH = Math.round(imgH * 0.86);
     }
-    body += picture(media, coverAlign(media, colW, imgH), m, imgY, colW, imgH, 'pic');
-    body += chip(media.label, m + 16, imgY + imgH - 16, { size: fmtName === 'story' ? 18 : 14 });
-    if (media.credit) body += text(clipTo(media.credit, colW * 0.7, 15), { x: w - m, y: imgY + imgH + 26, size: fmtName === 'story' ? 18 : 15, face: 'normal-400', fill: C.muted, anchor: 'end', min: w - m - colW * 0.72, max: w - m });
-    body += lines(hl, { x: m, y: y + hl.size * 0.8, face: hFace, min: m, max: m + colW });
     const after = y + hl.size * 0.8 + (hl.lines.length - 1) * hl.leading;
     // The dek only where it has real room (portrait/story), never crowding the footer.
-    if (fmtName !== 'square') {
-      const dSize = fmtName === 'story' ? 38 : 30;
-      const dk = fitDek(story.dek, colW, dSize, foot.top - gap - (after + dSize * 2.1));
-      if (dk) body += lines(dk, { x: m, y: after + dSize * 2.1, face: 'italic-400', fill: C.muted, min: m, max: m + colW });
-      meta.dek = dk ? pick(dk) : null;
-    }
+    const dSize = fmtName === 'story' ? 38 : 30;
+    const dk = fmtName !== 'square' ? fitDek(story.dek, colW, dSize, foot.top - gap - (after + dSize * 2.1)) : null;
+    // Story covers: centre the whole composition (picture, credit, headline, dek) between the header and the
+    // footer instead of leaving the slack at the bottom of the safe zone.
+    const contentBottom = dk ? after + dSize * 2.1 + (dk.lines.length - 1) * dk.leading + dSize * 0.3 : after + hl.size * 0.25;
+    const dy = fmtName === 'story' ? Math.max(0, Math.round((foot.top - contentBottom - gap * 0.8) / 2)) : 0;
+    body += picture(media, coverAlign(media, colW, imgH), m, imgY + dy, colW, imgH, 'pic');
+    body += chip(media.label, m + 16, imgY + dy + imgH - 16, { size: fmtName === 'story' ? 18 : 14 });
+    if (media.credit) body += text(clipTo(media.credit, colW * 0.7, 15), { x: w - m, y: imgY + dy + imgH + 26, size: fmtName === 'story' ? 18 : 15, face: 'normal-400', fill: C.muted, anchor: 'end', min: w - m - colW * 0.72, max: w - m });
+    body += lines(hl, { x: m, y: y + dy + hl.size * 0.8, face: hFace, min: m, max: m + colW });
+    if (dk) body += lines(dk, { x: m, y: after + dy + dSize * 2.1, face: 'italic-400', fill: C.muted, min: m, max: m + colW });
+    if (fmtName !== 'square') meta.dek = dk ? pick(dk) : null;
     meta.headline = pick(hl);
     meta.imageHeight = imgH;
     return { svg: frame(f, head, foot, body, story, variant), meta };
@@ -185,13 +187,16 @@ function layoutCard(fmtName, story, media, variant) {
   const kind = variant === 'breaking' ? 'breaking' : 'text';
   const top = head.bottom + (fmtName === 'landscape' ? 40 : 70), bottomY = foot.top - (fmtName === 'landscape' ? 30 : 60);
   const mono = fmtName === 'landscape' ? 300 : fmtName === 'story' ? 640 : 480;
-  body += monogram(w - m - mono * 0.86, top + mono * 0.78 + (fmtName === 'story' ? 40 : 0), mono, { fill: variant === 'breaking' ? C.wine : C.ghost, opacity: variant === 'breaking' ? 0.08 : 1 });
+  // (Story covers carry their monogram in the lower platform zone instead; see storyFrame.)
+  if (fmtName !== 'story') body += monogram(w - m - mono * 0.86, top + mono * 0.78, mono, { fill: variant === 'breaking' ? C.wine : C.ghost, opacity: variant === 'breaking' ? 0.08 : 1 });
   // Opinion / Ideas / Essay carry a large opening quote mark above the headline (the glyph's ink spans roughly
   // 0.42–0.72 em above its baseline); its height is reserved before the block is centred.
   const qSize = /opinion|ideas|essay|column|comment/i.test(`${story.type} ${story.section}`) && variant === 'analysis' ? (fmtName === 'landscape' ? 110 : fmtName === 'story' ? 240 : 190) : 0;
   const reserve = qSize ? qSize * 0.32 + 18 : 0;
-  const hl = headline(story.title, kind, fmtName, colW - (fmtName === 'landscape' ? 60 : 0), bottomY - top - reserve - (fmtName === 'landscape' ? 0 : 140), hFace);
   const by = variant === 'analysis' ? byline(story) : '';
+  // Story covers also keep room for a two-line dek and the byline, so the block never crowds the footer rule.
+  const storyRoom = fmtName === 'story' ? (story.dek ? 42 * 2.9 : 0) + (by ? 42 * 1.8 : 0) : 0;
+  const hl = headline(story.title, kind, fmtName, colW - (fmtName === 'landscape' ? 60 : 0), bottomY - top - reserve - (fmtName === 'landscape' ? 0 : 140) - storyRoom, hFace);
   const dSize = { square: 30, portrait: 34, landscape: 0, story: 42 }[fmtName];
   const hlH = hl.size * 0.8 + (hl.lines.length - 1) * hl.leading;
   const ruleGap = fmtName === 'landscape' ? 0 : 56;
@@ -224,8 +229,32 @@ function clipTo(s, width, size) {
 
 function frame(f, head, foot, body, story, variant) {
   const all = [story.title, story.dek, story.section, story.author, story.type].join(' ');
-  const left = variant === 'breaking' || f === FORMATS.landscape ? '' : `<rect x="0" y="0" width="10" height="${f.h}" fill="${C.burgundy}"/>`;
-  return svg(f.w, f.h, left + head.svg + body + foot.svg, { fonts: fontCss(all + ' Beyond the headline.', { italic: true }), bg: C.paper, title: story.title });
+  const story9 = f === FORMATS.story;
+  const left = variant === 'breaking' || f === FORMATS.landscape ? '' : `<rect x="0" y="0" width="${story9 ? 14 : 10}" height="${f.h}" fill="${C.burgundy}"/>`;
+  const deco = story9 ? storyFrame(f, variant) : '';
+  return svg(f.w, f.h, left + deco + head.svg + body + foot.svg, { fonts: fontCss(all + ' Beyond the headline.', { italic: true }), bg: C.paper, title: story.title });
+}
+
+/**
+ * Story/Reel/Short covers: the platform UI zones (above y=250, below y=1600) hold no content, only quiet
+ * decoration so the space reads as deliberate: a masthead double rule above the safe zone, and a large,
+ * faint N✦ monogram rising from the bottom edge below it (its star falls between the two footer labels).
+ * Decorative text is marked data-decor and carries no data-box: it is not content and may bleed off the card.
+ */
+export const STORY_MONOGRAM = { size: 760, capTop: 0.7 };
+function storyFrame(f, variant) {
+  const { w, m, top, bottom } = f;
+  const breaking = variant === 'breaking';
+  // Above the safe zone: burgundy rule over a hairline, like a masthead (the breaking band fills it instead).
+  const topRules = breaking ? '' : `<rect x="${m}" y="${top - 58}" width="${w - 2 * m}" height="3" fill="${C.burgundy}"/><rect x="${m}" y="${top - 50}" width="${w - 2 * m}" height="1" fill="${C.rule}"/>`;
+  const { size, capTop } = STORY_MONOGRAM;
+  const nW = measure('N', size, 'normal-600');
+  const x = Math.round(m - size * 0.04), base = Math.round(bottom + 74 + size * capTop);
+  const fill = breaking ? C.wine : C.ghost;
+  const glyph = `<text x="${x}" y="${base}" font-family="${FAMILY}" font-size="${size}" font-weight="600" fill="${fill}" data-decor="monogram">N</text>`;
+  const s = size * 0.12, cx = Math.round(x + nW + size * 0.06), cy = Math.round(base - size * 0.66), k = s * 0.3;
+  const starPath = `<path data-decor="monogram-star" d="M${cx} ${cy - s}L${cx + k} ${cy - k}L${cx + s} ${cy}L${cx + k} ${cy + k}L${cx} ${cy + s}L${cx - k} ${cy + k}L${cx - s} ${cy}L${cx - k} ${cy - k}Z" fill="${fill}"/>`;
+  return topRules + `<g opacity="${breaking ? 0.08 : 1}">${glyph}${starPath}</g>`;
 }
 
 // ---------- Quote / key fact ----------

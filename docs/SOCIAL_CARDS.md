@@ -18,7 +18,7 @@ Output goes to `engines/out/social-cards/<slug>/` (gitignored). In GitHub Action
 | `square.svg` | 1080×1080 | X, Facebook, LinkedIn, Threads, Telegram feed | 72 px margins |
 | `landscape.svg` | 1200×630 | link card / og:image, X large summary, Telegram | 60 px margins |
 | `portrait.svg` | 1080×1350 | Instagram / Facebook feed | 72 px margins |
-| `story.svg` | 1080×1920 | Stories, Reel/Short and TikTok covers | content only between y=250 and y=1600 (platform UI covers the rest); 80 px sides |
+| `story.svg` | 1080×1920 | Stories, Reel/Short and TikTok covers | content only between y=250 and y=1600 (platform UI covers the rest); 80 px sides. The zones outside hold only marked decoration: a masthead double rule above (or the breaking band) and a large, faint N✦ monogram rising from the bottom edge. The composition is centred between header and footer, and the spine is 14 px. |
 | `quote-square.svg`, `quote-portrait.svg` | 1080×1080, 1080×1350 | pull quote / key fact (only when the article has a suitable line) | as above |
 
 ## Templates (chosen automatically, or with `--variant`)

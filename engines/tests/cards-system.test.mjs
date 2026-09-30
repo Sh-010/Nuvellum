@@ -283,6 +283,40 @@ test('brand: embedded Newsreader, site palette, N✦ monogram and NUVELLUM✦ wo
   try { assert.equal((a.read('square').match(/@font-face/g) || []).length, 4); } finally { a.done(); }
 });
 
+test('Story covers: all content inside y=250–1600; the platform zones hold only marked decoration', () => {
+  for (const key of ['photo', 'textLed', 'culture', 'illustration', 'opinion', 'analysis', 'breaking', 'developing', 'short', 'longPhoto', 'minimal']) {
+    const r = render(key);
+    try {
+      const svg = r.read('story');
+      for (const t of textsOf(svg)) {
+        if (t.content === '“') continue; // opening quote ornament sits inside the zone anyway
+        assert.ok(t.y - t.size * 0.8 >= 250 && t.y + t.size * 0.25 <= 1600, `${key}: "${t.content}" (y=${t.y}, ${t.size}px) outside the safe zone`);
+      }
+      // Decoration outside the zone: the faint N✦ monogram (marked data-decor, no data-box) and, except under a
+      // breaking band, the masthead double rule above y=250. Nothing else lives there.
+      assert.equal((svg.match(/data-decor="monogram"/g) || []).length, 1, key);
+      assert.match(svg, /<text [^>]*font-size="760"[^>]*data-decor="monogram">N<\/text>/);
+      const decoText = [...svg.matchAll(/<text [^>]*>/g)].filter((m) => !/data-box=/.test(m[0]));
+      assert.ok(decoText.every((m) => /data-decor=/.test(m[0])), `${key}: unmarked text without a fitted box`);
+      if (r.m.variant !== 'breaking') assert.match(svg, /<rect x="80" y="192" width="920" height="3" fill="#76132B"\/>/, `${key}: masthead rule`);
+      assert.doesNotMatch(svg, /Gradient|filter=/);
+    } finally { r.done(); }
+  }
+});
+
+test('Story covers: the picture composition is centred between header and footer', () => {
+  const r = render('photo');
+  try {
+    const svg = r.read('story');
+    const [, y, h] = /<image href="[^"]+" x="80" y="([\d.]+)" width="920" height="([\d.]+)"/.exec(svg).map(Number);
+    const heads = textsOf(svg).filter((t) => t.face === 'normal-600' && t.size >= 56);
+    const last = heads.at(-1);
+    const above = y - 348; // header rule
+    const below = 1532 - (last.y + last.size * 0.25); // footer rule
+    assert.ok(Math.abs(above - below) < 90, `unbalanced: ${Math.round(above)}px above, ${Math.round(below)}px below`);
+  } finally { r.done(); }
+});
+
 test('generation is deterministic', () => {
   const a = render('breaking'), b = render('breaking');
   try {

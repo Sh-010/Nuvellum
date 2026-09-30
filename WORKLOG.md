@@ -35,6 +35,13 @@ Rebased onto main after #126 and #134–#139 merged. It changes none of them, no
   - death-toll "key facts" on sensitive stories (such cards are now skipped).
 - **Tests:** `engines/tests/cards-system.test.mjs` (17, including an opt-in Chromium test) plus updated `cards.test.mjs`. Engines suite: 36 (35 pass + the Chromium test, which also passes with `CARDS_CHROME=1`).
 - **Review sheets:** `docs/social-cards/*.jpg`.
+- **Story-cover polish** (1080×1920 only; safe zones unchanged). Everything was re-checked in Chrome at full size: 68 cards, 0 overflow.
+  - The photo composition is centred between header and footer; the dead space above the footer has gone.
+  - A burgundy-over-hairline masthead rule sits above y=250 (the breaking band fills that zone instead).
+  - A large, faint N✦ monogram rises from the bottom edge below y=1600, its star clear of the footer labels. It is marked `data-decor`, and text-led covers carry this one monogram instead of a second.
+  - The spine is 14 px.
+  - The Story Opinion/Analysis layout now reserves room for the dek and byline, which previously crowded the footer rule.
+  - New tests: all Story content between y=250 and y=1600 with only marked decoration outside it, and a centred photo composition. Sheet: `docs/social-cards/8-story-covers.jpg`.
 
 ## 2026-09-30: v1 launch programme, Phase 10: real-site QA sweep (production)
 
