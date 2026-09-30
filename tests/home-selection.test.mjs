@@ -47,6 +47,19 @@ test('the newest manual story is placed at the top when it is not World (under t
   assert.ok(!slugs(home.latestFilters[0].items).includes('manual-science'), 'and is not repeated in Latest');
 });
 
+test('section filters include a newest story even when it is already featured above', () => {
+  const home = selectHome([
+    story({ slug: 'world', section: 'World', date: '2026-09-30', image: '/uploads/articles/world.jpg' }),
+    story({ slug: 'sport-new', section: 'Sports', date: '2026-09-30', image: '/uploads/articles/sport-new.jpg' }),
+    story({ slug: 'tech', section: 'Technology', date: '2026-09-29' }),
+    story({ slug: 'film', section: 'Film & TV', date: '2026-09-28' }),
+    story({ slug: 'sport-old', section: 'Sports', date: '2026-09-27' })
+  ]);
+  assert.ok(home.supporting.some((a) => a.slug === 'sport-new'), 'newest Sports story is featured above');
+  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'sports').items), ['sport-new', 'sport-old']);
+  assert.ok(!slugs(home.latestFilters.find((f) => f.key === 'all').items).includes('sport-new'), 'All still avoids duplicating the top row');
+});
+
 test('manual and automated stories coexist, ordered only by date', () => {
   const list = [
     story({ slug: 'a-w', date: '2026-09-25' }),
@@ -61,7 +74,7 @@ test('manual and automated stories coexist, ordered only by date', () => {
   assert.equal(home.hero.slug, 'a-w');
   assert.deepEqual(slugs(home.supporting), ['a-b', 'm-t', 'a-c']);
   assert.deepEqual(slugs(home.latestFilters[0].items), ['m-w', 'm-w2', 'a-w2']);
-  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'world').items), ['m-w', 'm-w2', 'a-w2']);
+  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'world').items), ['a-w', 'm-w', 'm-w2', 'a-w2']);
   const origins = new Set([home.hero, ...home.supporting, ...home.latestFilters[0].items].map((a) => a.origin));
   assert.deepEqual([...origins].sort(), ['automation', 'manual']);
 });
@@ -115,7 +128,8 @@ test('drafts and review stories never reach the homepage; nothing is invented to
   const home = selectHome([story({ slug: 'pub' }), story({ slug: 'draft', status: 'draft', date: '2026-09-30' }), story({ slug: 'rev', status: 'review', date: '2026-09-30' })]);
   assert.equal(home.hero.slug, 'pub');
   assert.equal(home.supporting.length, 0);
-  assert.ok(home.latestFilters.every((f) => f.items.length === 0), 'empty Latest sets stay empty (the renderer shows its note), never padded');
+  assert.equal(home.latestFilters.find((f) => f.key === 'all').items.length, 0, 'Latest/All stays empty when the only story is already featured');
+  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'world').items), ['pub'], 'an explicit section filter still shows its featured story');
   assert.throws(() => selectHome([]), /at least one published story/);
 });
 
