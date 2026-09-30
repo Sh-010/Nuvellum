@@ -975,3 +975,25 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
   - Sanderson games → Brandon Sanderson portrait (person; PNG re-encoded to JPEG, 3.8 MB → 0.2 MB, no crop);
   - Roy Keane / Rooney unchanged.
 - The hero was text-led Cornell and is now Cornell with its image.
+
+## 2026-09-30 — Saved stories: working /saved end to end
+
+- **Root cause of the 404.** The code was not at fault: main has generated `/saved/index.html` since #151. Vercel rejected every deployment from 08:03 GMT with "Deployment rate limited — retry in 24 hours" (the Hobby daily build cap), which hit #150, #151 and #152.
+  - #151 was pushed as four commits. Only the first ("Header: point bookmark to the saved reading list") got a preview build, so that preview linked to `/saved` without the page, and returned a 404.
+  - Production is still #149, so its bookmark still goes to `/latest`. The next successful main deploy fixes production.
+- **Real defects found and fixed while verifying in a browser:**
+  - the page's rows were created by script, so Astro's scoped styles never reached them. They rendered as unstyled text with default buttons. The styles are now global and `saved-*` prefixed;
+  - Remove worked by row position, so it could remove the wrong story if the list changed in another tab. It now removes by story;
+  - the homepage bookmark was a `<button>` with a script redirect. It is now a real `<a href="/saved">`;
+  - article saves were appended while homepage saves were prepended, so the list had no consistent order. Both now put the newest first.
+- **`src/lib/saved-list.js`** holds the shared, tested helpers:
+  - it reads legacy `{title,url}` and current `{title,cat,url}` entries from `nuvellum-saved-v2`;
+  - it de-duplicates and drops garbage entries;
+  - it turns absolute Nuvellum URLs into site paths;
+  - it never makes foreign or `javascript:` URLs into links.
+- **Rows** show section · format · reading time (from `/search-index.json`, else the entry's `cat`), then the headline, dek and Remove. Clear all asks for confirmation in place.
+- **Build check** (`check-build-output`):
+  - `saved/index.html` exists and is noindex;
+  - `/saved` is not in the sitemap;
+  - the masthead bookmark on the home, latest and article pages links to `/saved` and never `/latest`.
+- **Browser (Chrome, local dist):** 23/23 checks passed, covering save from an article and a homepage card, the masthead bookmark to `/saved` on home, article and mobile, opening, removing, reloading, unsaving on an article, a legacy absolute-URL entry, dark mode, mobile with no horizontal scroll, and Clear all.
