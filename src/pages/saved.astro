@@ -1,0 +1,103 @@
+---
+import InteriorShell from '../components/InteriorShell.astro';
+---
+<InteriorShell
+  title="Saved stories — Nuvellum"
+  description="Your saved Nuvellum reading list."
+  folio={[{ label: 'Saved stories' }]}
+  folioNote="Your reading list"
+  noindex={true}
+>
+  <div class="shell saved-page">
+    <header class="saved-head" data-reveal>
+      <div class="saved-kicker">✦ Your reading list</div>
+      <div class="saved-title-row">
+        <div>
+          <h1>Saved</h1>
+          <p>Stories kept for later, in the order you saved them.</p>
+        </div>
+        <div class="saved-count" aria-live="polite"><span id="savedCount">0</span><small>stories</small></div>
+      </div>
+    </header>
+
+    <section class="saved-ledger" aria-labelledby="saved-list-title">
+      <div class="saved-rule">
+        <h2 id="saved-list-title">The reading list</h2>
+        <button type="button" id="clearSaved" hidden>Clear all</button>
+      </div>
+      <div id="savedList" class="saved-list" aria-live="polite"></div>
+      <div id="savedEmpty" class="saved-empty" hidden>
+        <span class="saved-empty-mark" aria-hidden="true">N✦</span>
+        <div class="eyebrow">Nothing filed yet</div>
+        <h2>Your reading list is still empty.</h2>
+        <p>Use the bookmark control on a story to keep it here for later.</p>
+        <a href="/latest">Browse the latest edition <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <p class="saved-note">Saved stories are kept in this browser. Clearing your browser storage will also clear this reading list.</p>
+  </div>
+
+  <style>
+    .saved-page{padding:44px 0 72px}
+    .saved-head{border-bottom:1px solid var(--ink);padding:10px 0 32px}
+    .saved-kicker{font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--wine-ink);margin-bottom:18px}
+    .saved-title-row{display:flex;align-items:end;justify-content:space-between;gap:36px}
+    .saved-head h1{font-size:clamp(68px,9vw,136px);font-weight:300;line-height:.78;letter-spacing:-.045em;margin:0}
+    .saved-head p{font-size:19px;line-height:1.45;font-style:italic;color:var(--muted);margin:26px 0 0;max-width:36em}
+    .saved-count{min-width:118px;border-left:1px solid var(--hair);padding:5px 0 4px 22px;display:grid;justify-items:end}
+    .saved-count span{font-size:42px;line-height:1;color:var(--wine-ink)}
+    .saved-count small{text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-size:9px;margin-top:5px}
+    .saved-ledger{padding-top:28px}
+    .saved-rule{display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--hair);padding-bottom:9px}
+    .saved-rule h2{font-size:14px;font-weight:400;text-transform:uppercase;letter-spacing:.15em;margin:0;color:var(--wine-ink)}
+    .saved-rule:after{content:"";height:1px;background:var(--hair);flex:1}
+    .saved-rule button{order:3;border:0;background:transparent;color:var(--muted);font-size:12px;cursor:pointer;padding:5px 0}.saved-rule button:hover{color:var(--wine-ink)}
+    .saved-list{display:grid}
+    .saved-row{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:26px;align-items:start;padding:24px 0;border-bottom:1px solid var(--hair)}
+    .saved-meta{font-size:10px;line-height:1.35;text-transform:uppercase;letter-spacing:.13em;color:var(--wine-ink);padding-top:4px}
+    .saved-copy h3{font-size:25px;line-height:1.1;font-weight:400;margin:0 0 7px}.saved-copy h3 a{background-image:linear-gradient(var(--wine-ink),var(--wine-ink));background-repeat:no-repeat;background-size:0 1px;background-position:0 98%;transition:background-size .35s var(--ease),color .2s}.saved-copy h3 a:hover{color:var(--wine-ink);background-size:100% 1px}
+    .saved-copy p{font-size:15px;line-height:1.45;color:var(--muted);margin:0;max-width:62em}
+    .saved-remove{border:0;background:transparent;color:var(--muted);font-size:12px;font-style:italic;cursor:pointer;padding:5px 0 5px 12px;white-space:nowrap}.saved-remove:hover{color:var(--wine-ink)}
+    .saved-empty{text-align:center;padding:78px 24px 68px;border-bottom:1px solid var(--hair);position:relative;overflow:hidden}
+    .saved-empty-mark{position:absolute;left:50%;top:14px;transform:translateX(-50%);font-size:170px;line-height:1;color:var(--wine-ink);opacity:.035;pointer-events:none}
+    .saved-empty h2{font-size:34px;font-weight:400;margin:11px 0 8px}.saved-empty p{font-size:16px;color:var(--muted);font-style:italic;margin:0 0 22px}.saved-empty a{display:inline-block;background:var(--wine);color:#f6efe4;padding:11px 18px;font-size:13px}
+    .saved-note{font-size:12px;color:var(--muted);font-style:italic;margin:18px 0 0}
+    @media(max-width:760px){.saved-page{padding-top:30px}.saved-title-row{align-items:start}.saved-count{display:none}.saved-row{grid-template-columns:1fr auto;gap:8px 18px}.saved-meta{grid-column:1/-1}.saved-copy h3{font-size:22px}.saved-remove{grid-column:2;grid-row:2}}
+  </style>
+
+  <script is:inline>
+  (()=>{
+    const key='nuvellum-saved-v2';
+    const listEl=document.getElementById('savedList'),emptyEl=document.getElementById('savedEmpty'),countEl=document.getElementById('savedCount'),clearBtn=document.getElementById('clearSaved');
+    const read=()=>{try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v.filter(x=>x&&x.title&&x.url):[]}catch{return[]}};
+    const write=(items)=>{try{localStorage.setItem(key,JSON.stringify(items.slice(0,80)))}catch{}};
+    const slugFrom=url=>{const m=String(url||'').match(/\/article\/([^/?#]+)/);return m?decodeURIComponent(m[1]):''};
+    let index=[];
+
+    const render=()=>{
+      const saved=read();
+      countEl.textContent=String(saved.length);
+      clearBtn.hidden=saved.length===0;
+      emptyEl.hidden=saved.length!==0;
+      listEl.replaceChildren();
+      const bySlug=new Map(index.map(x=>[x.slug,x]));
+      saved.forEach((item,i)=>{
+        const article=bySlug.get(slugFrom(item.url));
+        const row=document.createElement('article');row.className='saved-row';
+        const meta=document.createElement('div');meta.className='saved-meta';meta.textContent=article?.section||item.cat||'Nuvellum';
+        const copy=document.createElement('div');copy.className='saved-copy';
+        const h=document.createElement('h3'),a=document.createElement('a');a.href=item.url;a.textContent=item.title;h.append(a);copy.append(h);
+        const dek=document.createElement('p');dek.textContent=article?.dek||'Saved for later reading.';copy.append(dek);
+        const remove=document.createElement('button');remove.type='button';remove.className='saved-remove';remove.textContent='Remove';remove.setAttribute('aria-label',`Remove ${item.title} from saved stories`);
+        remove.addEventListener('click',()=>{const next=read().filter((_,n)=>n!==i);write(next);render()});
+        row.append(meta,copy,remove);listEl.append(row);
+      });
+    };
+    clearBtn.addEventListener('click',()=>{write([]);render()});
+    addEventListener('storage',e=>{if(e.key===key)render()});
+    fetch('/search-index.json').then(r=>r.ok?r.json():[]).then(data=>{if(Array.isArray(data))index=data;render()}).catch(render);
+    render();
+  })();
+  </script>
+</InteriorShell>
