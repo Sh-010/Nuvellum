@@ -176,11 +176,11 @@ export function articleErrors(src, name, ctx = {}) {
       if (data[key] && /[<>]/.test(String(data[key]))) errors.push(`${name}: HTML is not allowed in ${key}`);
     }
 
+    const imagePath = data.image ? String(data.image).replace(/[?#].*$/, '') : '';
     if (data.image && !String(data.imageAlt || '').trim()) errors.push(`${name}: image needs imageAlt`);
     if (data.image && /^\/uploads\/house\//.test(String(data.image))) errors.push(`${name}: generic house art does not depict the story; omit image so it is set text-led`);
     if (data.image) {
       const image = String(data.image);
-      const imagePath = image.replace(/[?#].*$/, '');
       const aiImage = image.match(AI_IMAGE_RE);
       if (image.startsWith('/generated/')) {
         if (!aiImage) errors.push(`${name}: generated images must be /generated/ai/<slug>.svg`);
