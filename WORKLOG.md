@@ -4,6 +4,12 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: Production redeploy trigger after editorial queue merge
+
+- Editorial PRs #127–#133 and social-card publishing are merged into current `main`.
+- Vercel skipped later main commits while the Hobby deployment-rate limit was active; this documentation-only commit intentionally triggers a fresh production deployment now that the limit has reset.
+- No runtime code or configuration changed in this entry.
+
 ## 2026-09-30: Social cards wired into the publisher (`feat/social-card-publish`, stacked on #140)
 
 **Fix before merge: manual runs can no longer fan out.** A `workflow_dispatch` with an empty slug used to fall back to the 48-hour scan, which once bulk-posted several stories in production.
