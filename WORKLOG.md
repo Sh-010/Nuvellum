@@ -1000,3 +1000,6 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 
 
 - **Deployment retry, 30 Sep 2026:** production was retried after the Resend Brief integration merged. If Vercel still reports the Hobby daily build-rate limit, no further repository changes are required; retry after the limit window clears.
+
+
+- **Brief delivery hardening, 30 Sep 2026:** unsubscribe signatures now rotate with renewed consent. Production deploy retried after the protected-main merge so the hardened token logic can replace the previous deployment.
