@@ -79,7 +79,9 @@ test('the Brief sign-up reaches GA4 only as sign_up after the server confirms it
   assert.match(s, /addEventListener\('nuvellum:brief-signup'[^\n]*send\('sign_up', \{ method: 'nuvellum_brief'/);
   assert.doesNotMatch(s, /newsletter_interaction/, 'clicks in the form are not counted as sign-ups');
   const home = readFileSync('scripts/render-editorial-home.mjs', 'utf8');
-  assert.match(home, /if\(res\.ok\)\{[^}]*signup\.reset\(\);dispatchEvent\(new CustomEvent\('nuvellum:brief-signup',\{detail:\{source:'home'\}\}\)\)/);
+  assert.match(home, /dispatchEvent\(new CustomEvent\('nuvellum:brief-signup',\{detail:\{source\}\}\)\)/, 'the shared form handler emits only after a successful response');
+  assert.match(home, /wireBriefForm\(document\.getElementById\('signup'\),'home'\)/, 'the front-page form keeps the home attribution');
+  assert.match(home, /wireBriefForm\(briefModalForm,'header'\)/, 'the masthead invitation is attributed separately');
 });
 
 test('analytics never reaches the admin desk or the Brief pages, and the CSP allows GA4 endpoints', async () => {

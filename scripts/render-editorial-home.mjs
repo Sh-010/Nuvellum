@@ -344,6 +344,28 @@ body.night .site-header{--bm-edge:#d6cbbb;--ink:#f4eee5;--muted:#b9aea3;--line:#
 
 .main-nav{display:flex;justify-content:flex-start;gap:29px;font-size:16px;letter-spacing:.012em;color:var(--nav-ink);white-space:nowrap;padding-left:78px}.main-nav a{padding:6px 0 5px;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}.main-nav a:hover{color:var(--wine-ink);border-bottom-color:var(--wine-ink)}
 .header-tools{display:flex;align-items:center;justify-content:flex-end;gap:14px}.icon-btn{border:0;background:transparent;color:var(--icon-ink);cursor:pointer;padding:9px;display:grid;place-items:center;line-height:0;transition:color .18s}.icon-btn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}.icon-btn#savedOpen svg{width:22px;height:22px}.icon-btn svg .solid{fill:currentColor;stroke:none}.icon-btn svg .bookmark-shadow{fill:rgba(26,22,19,.66);stroke:none;filter:blur(.3px)}.icon-btn svg .bookmark-face{fill:var(--paper);stroke:var(--bm-edge,#6f675f);stroke-width:.85;stroke-linejoin:round;stroke-linecap:round}.icon-btn:hover{color:var(--wine-ink)}.subscribe{border:0;border-radius:3px;background:var(--wine);color:#f6efe4;padding:0 23px;height:39px;display:inline-grid;place-items:center;font-size:15.5px;letter-spacing:.02em;cursor:pointer;margin-left:12px;transition:background .18s}.subscribe:hover{background:var(--wine2)}
+body.brief-open{overflow:hidden}
+.brief-invite[hidden]{display:none}
+.brief-invite{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:24px}
+.brief-invite-backdrop{position:absolute;inset:0;background:rgba(15,11,9,.54);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:briefVeil .28s ease both}
+.brief-invite-card{position:relative;width:min(570px,calc(100vw - 32px));background:var(--paper2);color:var(--ink);border:1px solid var(--line);box-shadow:0 34px 90px rgba(18,12,8,.3),inset 0 3px 0 var(--wine);padding:38px 40px 32px;animation:briefArrival .48s cubic-bezier(.16,.8,.2,1) both;overflow:hidden}
+.brief-invite-card:after{content:"N";position:absolute;right:-2px;bottom:-46px;font-family:var(--serif);font-size:170px;line-height:1;color:var(--wine-ink);opacity:.035;pointer-events:none}
+.brief-invite-close{position:absolute;right:18px;top:16px;width:34px;height:34px;border:0;background:transparent;color:var(--muted);font-size:26px;line-height:1;cursor:pointer;transition:color .18s,transform .25s var(--ease)}
+.brief-invite-close:hover{color:var(--wine-ink);transform:rotate(4deg)}
+.brief-invite-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--wine-ink);display:flex;align-items:center;gap:10px;margin:0 44px 16px 0}.brief-invite-kicker:before{content:"✦";font-size:11px}
+.brief-invite h2{font-size:42px;line-height:1.02;font-weight:400;letter-spacing:-.02em;margin:0 0 13px;max-width:10em}
+.brief-invite-dek{font-size:17px;line-height:1.48;color:var(--muted);font-style:italic;margin:0 0 26px;max-width:31em}
+.brief-invite-form{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;border-top:1px solid var(--hair);padding-top:22px}
+.brief-invite-form>input[type=email]{min-width:0;height:48px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:0 14px;outline:0}
+.brief-invite-form>input[type=email]:focus{border-color:var(--wine-ink);box-shadow:inset 0 0 0 1px var(--wine-ink)}
+.brief-invite-form>button[type=submit]{height:48px;border:0;background:var(--wine);color:#f7efe4;padding:0 20px;cursor:pointer;white-space:nowrap;transition:background .18s,transform .28s var(--ease)}
+.brief-invite-form>button[type=submit]:hover{background:var(--wine2);transform:translateY(-1px)}
+.brief-invite-form>button[type=submit]:disabled{opacity:.6;cursor:wait;transform:none}
+.brief-invite-consent{grid-column:1/-1;display:flex;gap:9px;align-items:flex-start;font-size:12px;line-height:1.4;color:var(--muted);margin-top:4px}.brief-invite-consent input{margin-top:2px;accent-color:var(--wine)}.brief-invite-consent a{color:var(--wine-ink);text-decoration:underline;text-underline-offset:2px}
+.brief-invite-msg{grid-column:1/-1;min-height:17px;font-size:12px;color:var(--muted);font-style:italic;margin-top:1px}.brief-invite-msg.is-error{color:var(--wine-ink);font-style:normal}
+.brief-invite-hp{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
+@keyframes briefVeil{from{opacity:0}to{opacity:1}}@keyframes briefArrival{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+
 .news-ticker{height:35px;background:var(--charcoal);color:#e2d9cb;display:flex;align-items:center}.ticker-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:40px;font-size:12.5px}.latest-label{color:#b8677a;text-transform:uppercase;letter-spacing:.18em;font-family:var(--text);font-size:10.5px;display:flex;align-items:center;gap:12px}.latest-label:before{content:"";width:5px;height:5px;border-radius:50%;background:#9b3048}.ticker-links{overflow:hidden;white-space:nowrap;min-width:0;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%)}.ticker-track{display:flex;align-items:center;gap:24px;width:max-content;will-change:transform;animation:tickerScroll 36s linear infinite}.ticker-group{display:flex;align-items:center;gap:24px;flex:none}.ticker-links:hover .ticker-track,.ticker-links:focus-within .ticker-track{animation-play-state:paused}.ticker-links a{opacity:.86;font-size:12.5px;font-weight:350;letter-spacing:.012em;flex:0 0 auto;max-width:44ch;overflow:hidden;text-overflow:ellipsis}.ticker-links a:hover{opacity:1;color:#fff}.ticker-dot{opacity:.38;flex:none;font-size:7px}.view-all{color:#e2d9cb;white-space:nowrap;font-size:12.5px;letter-spacing:.01em}.view-all:hover{color:#fff}@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 12px))}}
 .home-layout{display:grid;grid-template-columns:minmax(0,854fr) minmax(0,591fr);gap:7px;padding:11px 0 8px}.left-col,.right-col{min-width:0}.right-col{display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:9px;align-content:stretch}
 .hero{position:relative;height:465px;overflow:hidden;background:#17120f}.hero>a{display:block;height:100%}.hero img{width:100%;height:100%;object-fit:cover;filter:sepia(.32) saturate(.7) contrast(1.05) brightness(.72);transition:transform .9s cubic-bezier(.16,.8,.2,1)}.hero:hover img{transform:scale(1.012)}.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(18,11,8,.66) 0%,rgba(18,11,8,.2) 64%,rgba(18,11,8,.08)),linear-gradient(0deg,rgba(14,9,7,.74) 0%,transparent 60%),radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(10,6,4,.35) 100%)}.hero-copy{position:absolute;z-index:2;left:28px;right:28px;bottom:34px;color:#fff;max-width:585px}.hero-kicker{display:inline-block;background:var(--wine);color:#f3e9dc;padding:4px 8px 3px;font-family:var(--text);font-size:11px;text-transform:uppercase;letter-spacing:.16em}.hero h1{font-size:41px;line-height:1.02;font-weight:400;margin:22px 0 14px;letter-spacing:-.012em;max-width:525px;color:#f7f0e4}.hero-dek{font-size:18px;line-height:1.34;color:#ddd2c3;max-width:548px}.story-meta{font-family:var(--text);font-size:13px;color:var(--muted);margin-top:12px;letter-spacing:.01em}.hero .story-meta{color:#d9d0c7;margin-top:18px}.story-meta span{padding:0 7px;font-size:9px;position:relative;top:-1px}
@@ -405,6 +427,7 @@ ${REVEAL_CSS}
 .search-sheet{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.55);display:none;place-items:start center;padding-top:110px}.search-sheet.open{display:grid}.search-box{width:min(800px,calc(100% - 30px));background:var(--paper2);padding:22px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.25)}.search-box input{width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;color:inherit;font-size:28px;padding:8px 0;outline:0}.search-results{margin-top:14px;display:grid;max-height:55vh;overflow:auto}.search-result{padding:11px 0;border-bottom:1px solid var(--line)}.search-result small{color:var(--wine-ink);text-transform:uppercase;font-family:var(--text);font-size:9px}.search-result strong{display:block;font-size:17px;font-weight:400;margin-top:3px}
 @media(max-width:1180px){.shell{width:min(100% - 32px,1500px)}.header-row{grid-template-columns:250px 1fr 240px}.main-nav{gap:18px;font-size:15px;justify-content:center;padding-left:0}.home-layout{grid-template-columns:1.3fr 1fr}.hero h1{font-size:36px}.region-tabs{display:grid;grid-template-columns:repeat(4,1fr)}.region-tab:nth-child(4n){border-right:0}.region-tab:nth-child(-n+4){border-bottom:1px solid var(--line)}.screen-lead img{height:340px}}
 @media(max-width:900px){.right-col{grid-template-rows:auto}.in-focus-section{display:block}.focus-secondary{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;flex:none}.focus-mini{grid-template-columns:88px minmax(0,1fr)}.focus-mini.is-text{grid-template-columns:1fr}.focus-mini+ .focus-mini{border-top:0;border-left:1px solid var(--hair);padding-left:12px}.support-card+.support-card:before{display:none}.header-row{height:auto;grid-template-columns:minmax(190px,1fr) auto;padding:14px 0 0}.main-nav{grid-column:1/-1;order:3;justify-content:flex-start;padding-left:0;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}.home-layout{grid-template-columns:1fr}.support-grid{grid-template-columns:1fr 1fr}.support-card:last-child{grid-column:1/-1}.hero{height:430px}.screen-grid{grid-template-columns:1fr}.screen-side{border-left:0;padding-left:0}.screen-item:first-child{padding-top:16px;border-top:1px solid #2f2b2d}.opinion-grid{grid-template-columns:1fr}.opinion-col,.opinion-col:first-child{border-left:0;padding:16px 0;border-top:1px solid var(--line)}.newsletter-in{grid-template-columns:1fr;gap:22px}.signup{justify-self:start}.footer-top{grid-template-columns:1fr;gap:28px}.footer-cols{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.brief-invite{padding:12px}.brief-invite-card{padding:31px 23px 25px}.brief-invite h2{font-size:34px}.brief-invite-dek{font-size:15px}.brief-invite-form{grid-template-columns:1fr}.brief-invite-form>button[type=submit]{width:100%}
 @media(max-width:620px){.header-row{grid-template-columns:auto minmax(0,1fr);gap:6px}.header-tools{gap:0}.icon-btn{padding:6px}.icon-btn svg{width:20px;height:20px}.subscribe{padding:0 10px;height:34px;font-size:13px;margin-left:2px}.main-nav{gap:17px;font-size:14px;min-width:0}.ticker-inner{grid-template-columns:auto minmax(0,1fr);gap:16px}.view-all{display:none}.hero{height:440px}.hero-copy{left:18px;right:18px;bottom:22px}.hero h1{font-size:30px;margin:14px 0 10px}.hero-dek{font-size:15px}.support-grid{grid-template-columns:1fr}.support-card:last-child{grid-column:auto}.support-card{display:grid;grid-template-columns:130px 1fr}.support-image img{height:100%;min-height:110px}.region-detail{grid-template-columns:1fr}.region-summary{border-left:0;border-top:1px solid var(--line);padding:14px 0 4px}.region-tabs{display:grid;grid-template-columns:repeat(2,1fr)}.region-tab{min-height:44px;border-bottom:1px solid var(--line)}.region-tab:nth-child(2n){border-right:0}.world-map-wrap{height:188px}.latest-row{grid-template-columns:110px 1fr auto;gap:12px}.latest-thumb img{height:66px}.latest-list{--latest-slot:109px}.latest-list .latest-copy h3{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.latest-filters{gap:18px;padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}.focus-card{grid-template-columns:1fr}.focus-card img{height:180px}.focus-secondary{grid-template-columns:1fr;grid-template-rows:auto}.focus-mini,.focus-mini.is-text{grid-template-columns:112px minmax(0,1fr);min-height:0}.focus-mini.is-text{grid-template-columns:1fr}.focus-mini+ .focus-mini{border-left:0;border-top:1px solid var(--hair);padding:12px 0}.focus-mini img{width:100%;height:78px}.focus-mini h4{font-size:17px;line-height:1.16}.popular-head{flex-wrap:wrap;gap:4px 18px}.popular-head .rule{display:none}.popular-tabs{gap:8px}.popular-tabs button{min-height:40px}.screen-lead img{height:230px}.screen-lead h3{font-size:26px}.screen-item{grid-template-columns:110px 1fr}.screen-item img{height:72px}.screen-item h4{font-size:16px}.newsletter h2{font-size:28px}.footer-cols{gap:18px}.footer-cols a{padding:7px 0}}
 @media(max-width:620px){.shell{width:min(100% - 20px,1500px)}.brand-zone{width:180px;height:52px}.brand-monogram-mark{width:45px;height:45px}.brand-monogram-n{font-size:44px}.brand-tagline{font-size:10px}.brand-expanded{left:0;width:246px;background:var(--paper2);padding:8px 10px;border:1px solid var(--line);box-shadow:var(--shadow)}.brand-letter{font-size:29px;min-width:20px}.brand-home-star{font-size:16px;min-width:20px}.brand-monogram-star{font-size:16px;right:-8px}.brand-expanded-note{font-size:9px}}
 @media(prefers-reduced-motion:reduce){
@@ -444,7 +467,7 @@ ${REVEAL_CSS}
       <button class="icon-btn" id="searchOpen" type="button" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
       <button class="icon-btn" id="savedOpen" type="button" aria-label="Saved stories"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bookmark-shadow" transform="translate(1.35 1.55)" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/><path class="bookmark-face" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/></svg></button>
       <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle night reading" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="solid" d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
-      <a class="subscribe" href="#newsletter">Subscribe</a>
+      <button class="subscribe" type="button" data-brief-open aria-haspopup="dialog" aria-controls="briefInvitation">Subscribe</button>
     </div>
   </div>
 </header>
@@ -606,6 +629,24 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     <div class="footer-bottom"><span>© ${new Date().getUTCFullYear()} Nuvellum. Independent international media.</span><span>Browse by initial: <a href="/headlines/n">N</a> · <a href="/headlines/u">U</a> · <a href="/headlines/v">V</a> · <a href="/headlines/e">E</a> · <a href="/headlines/l">L</a> · <a href="/headlines/m">M</a></span></div>
   </div>
 </footer>
+
+<div class="brief-invite" id="briefInvitation" role="dialog" aria-modal="true" aria-labelledby="briefInvitationTitle" hidden>
+  <div class="brief-invite-backdrop" data-brief-close aria-hidden="true"></div>
+  <section class="brief-invite-card" tabindex="-1">
+    <button class="brief-invite-close" type="button" data-brief-close aria-label="Close the Nuvellum Brief invitation">×</button>
+    <div class="brief-invite-kicker">The Nuvellum Brief</div>
+    <h2 id="briefInvitationTitle">A considered dispatch, once a day.</h2>
+    <p class="brief-invite-dek">The day’s consequential stories, gathered without the noise and arranged for the reader who would rather understand than merely keep up.</p>
+    <form class="brief-invite-form" id="briefModalForm" novalidate>
+      <label class="sr-only" for="briefModalEmail">Email address</label>
+      <input type="email" id="briefModalEmail" name="email" required autocomplete="email" placeholder="you@example.com">
+      <button type="submit">Receive the Brief</button>
+      <label class="brief-invite-consent"><input type="checkbox" name="consent" required> <span>Send me the Nuvellum Brief by email. I can unsubscribe at any time. <a href="/privacy">Privacy</a></span></label>
+      <div class="brief-invite-hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="brief-invite-msg" role="status" aria-live="polite">No noise. Unsubscribe anytime.</div>
+    </form>
+  </section>
+</div>
 
 <div class="search-sheet" id="searchSheet">
   <div class="search-box">
@@ -825,25 +866,58 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     setTimeout(begin,320);
   }
 
-  // The Nuvellum Brief: explicit consent, a hidden honeypot and the time taken to fill the form go to /api/brief.
-  // The address is sent once and never kept in the browser.
-  const signup=document.getElementById('signup');const signupOpened=Date.now();
-  signup?.addEventListener('submit',async e=>{
-    e.preventDefault();
-    const email=document.getElementById('signupEmail'),consent=document.getElementById('signupConsent'),msg=document.getElementById('signupMsg'),btn=signup.querySelector('button[type=submit]');
-    if(!email||!msg||!consent||btn.disabled)return;
-    const say=(t,err)=>{msg.textContent=t;msg.classList.toggle('is-error',!!err)};
-    if(!email.checkValidity()||!email.value.trim()){say('Please enter a valid email address.',1);email.focus();return}
-    if(!consent.checked){say('Please tick the box to confirm you want the Brief.',1);consent.focus();return}
-    btn.disabled=true;say('Signing you up…');
-    try{
-      const res=await fetch('/api/brief?action=subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,consent:true,website:document.getElementById('signupWebsite')?.value||'',elapsedMs:Date.now()-signupOpened,source:'home'})});
-      const data=await res.json().catch(()=>({}));
-      if(res.ok){say(data.message||'Thank you. You are on the list for the Nuvellum Brief.');signup.reset();dispatchEvent(new CustomEvent('nuvellum:brief-signup',{detail:{source:'home'}}))}
-      else say(data.error||'Something went wrong. Please try again.',1);
-    }catch{say('Could not reach Nuvellum. Check your connection and try again.',1)}
-    finally{btn.disabled=false}
+  // The Nuvellum Brief: the masthead opens a quiet in-page invitation instead of
+  // jumping the reader down the page. Both forms use the same consent-first endpoint.
+  const briefModal=document.getElementById('briefInvitation');
+  const briefModalForm=document.getElementById('briefModalForm');
+  let briefReturnFocus=null;
+  const openBrief=(opener)=>{
+    if(!briefModal)return;
+    briefReturnFocus=opener||document.activeElement;
+    if(briefModalForm)briefModalForm.dataset.opened=String(Date.now());
+    briefModal.hidden=false;body.classList.add('brief-open');
+    requestAnimationFrame(()=>briefModal.querySelector('input[type=email]')?.focus());
+  };
+  const closeBrief=()=>{
+    if(!briefModal||briefModal.hidden)return;
+    briefModal.hidden=true;body.classList.remove('brief-open');
+    if(briefReturnFocus&&typeof briefReturnFocus.focus==='function')briefReturnFocus.focus();
+  };
+  document.querySelectorAll('[data-brief-open]').forEach(el=>el.addEventListener('click',()=>openBrief(el)));
+  briefModal?.querySelectorAll('[data-brief-close]').forEach(el=>el.addEventListener('click',closeBrief));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&briefModal&&!briefModal.hidden){e.preventDefault();closeBrief()}
+    if(e.key==='Tab'&&briefModal&&!briefModal.hidden){
+      const focusable=[...briefModal.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')].filter(el=>el.offsetParent!==null);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+    }
   });
+
+  function wireBriefForm(form,source){
+    if(!form)return;
+    if(!form.dataset.opened)form.dataset.opened=String(Date.now());
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const email=form.querySelector('input[name=email]'),consent=form.querySelector('input[name=consent]'),website=form.querySelector('input[name=website]'),msg=form.querySelector('[role=status]'),btn=form.querySelector('button[type=submit]');
+      if(!email||!msg||!consent||!btn||btn.disabled)return;
+      const say=(t,err)=>{msg.textContent=t;msg.classList.toggle('is-error',!!err)};
+      if(!email.checkValidity()||!email.value.trim()){say('Please enter a valid email address.',1);email.focus();return}
+      if(!consent.checked){say('Please tick the box to confirm you want the Brief.',1);consent.focus();return}
+      btn.disabled=true;say('Signing you up…');
+      try{
+        const res=await fetch('/api/brief?action=subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,consent:true,website:website?.value||'',elapsedMs:Date.now()-Number(form.dataset.opened||Date.now()),source})});
+        const data=await res.json().catch(()=>({}));
+        if(res.ok){say(data.message||'Thank you. You are on the list for the Nuvellum Brief.');form.reset();dispatchEvent(new CustomEvent('nuvellum:brief-signup',{detail:{source}}))}
+        else say(data.error||'Something went wrong. Please try again.',1);
+      }catch{say('Could not reach Nuvellum. Check your connection and try again.',1)}
+      finally{btn.disabled=false}
+    });
+  }
+  wireBriefForm(document.getElementById('signup'),'home');
+  wireBriefForm(briefModalForm,'header');
 
   function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 })();
