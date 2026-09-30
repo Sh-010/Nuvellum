@@ -103,7 +103,7 @@ const ticker = (await getArticles()).slice(0, 8);
         <button class="icon-btn" id="searchOpen" type="button" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
         <a class="icon-btn" id="savedOpen" href="/latest" aria-label="Saved stories and latest reporting"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bookmark-shadow" transform="translate(1.35 1.55)" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/><path class="bookmark-face" d="M7.35 4.15Q7.35 3.65 7.9 3.65H16.1Q16.65 3.65 16.65 4.15V19.05L12 16.35 7.35 19.05Z"/></svg></a>
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle night reading" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="solid" d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z"/></svg></button>
-        <a class="subscribe" href="#newsletter">Subscribe</a>
+        <button class="subscribe" type="button" data-brief-open aria-haspopup="dialog" aria-controls="briefInvitation">Subscribe</button>
       </div>
     </div>
   </header>
@@ -142,12 +142,30 @@ const ticker = (await getArticles()).slice(0, 8);
     <section class="newsletter" id="newsletter" aria-labelledby="newsletter-heading">
       <div class="shell newsletter-in">
         <div><div class="kicker">The Nuvellum Brief</div><h2 id="newsletter-heading">One intelligent read of the world. Once a day.</h2></div>
-        <a class="newsletter-go" href="/#newsletter">Sign up on the front page <span aria-hidden="true">→</span></a>
+        <button class="newsletter-go" type="button" data-brief-open>Open the Brief <span aria-hidden="true">→</span></button>
       </div>
     </section>
   )}
 
   <SiteFooter />
+
+  <div class="brief-invite" id="briefInvitation" role="dialog" aria-modal="true" aria-labelledby="briefInvitationTitle" hidden>
+    <div class="brief-invite-backdrop" data-brief-close aria-hidden="true"></div>
+    <section class="brief-invite-card" tabindex="-1">
+      <button class="brief-invite-close" type="button" data-brief-close aria-label="Close the Nuvellum Brief invitation">×</button>
+      <div class="brief-invite-kicker">The Nuvellum Brief</div>
+      <h2 id="briefInvitationTitle">A considered dispatch, once a day.</h2>
+      <p class="brief-invite-dek">The day’s consequential stories, gathered without the noise and arranged for the reader who would rather understand than merely keep up.</p>
+      <form class="brief-invite-form" id="briefModalForm" novalidate>
+        <label class="sr-only" for="briefModalEmail">Email address</label>
+        <input type="email" id="briefModalEmail" name="email" required autocomplete="email" placeholder="you@example.com">
+        <button type="submit">Receive the Brief</button>
+        <label class="brief-invite-consent"><input type="checkbox" name="consent" required> <span>Send me the Nuvellum Brief by email. I can unsubscribe at any time. <a href="/privacy">Privacy</a></span></label>
+        <div class="brief-invite-hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="brief-invite-msg" role="status" aria-live="polite">No noise. Unsubscribe anytime.</div>
+      </form>
+    </section>
+  </div>
 
   <div class="search-sheet" id="searchSheet" role="dialog" aria-label="Search Nuvellum">
     <div class="search-box">
@@ -176,6 +194,39 @@ const ticker = (await getArticles()).slice(0, 8);
       else{flip();requestAnimationFrame(()=>requestAnimationFrame(settle))}
     });
 
+    const briefModal=document.getElementById('briefInvitation'),briefModalForm=document.getElementById('briefModalForm');
+    let briefReturnFocus=null;
+    const openBrief=(opener)=>{
+      if(!briefModal)return;
+      briefReturnFocus=opener||document.activeElement;
+      if(briefModalForm)briefModalForm.dataset.opened=String(Date.now());
+      briefModal.hidden=false;body.classList.add('brief-open');
+      requestAnimationFrame(()=>briefModal.querySelector('input[type=email]')?.focus());
+    };
+    const closeBrief=()=>{
+      if(!briefModal||briefModal.hidden)return;
+      briefModal.hidden=true;body.classList.remove('brief-open');
+      if(briefReturnFocus&&typeof briefReturnFocus.focus==='function')briefReturnFocus.focus();
+    };
+    document.querySelectorAll('[data-brief-open]').forEach(el=>el.addEventListener('click',()=>openBrief(el)));
+    briefModal?.querySelectorAll('[data-brief-close]').forEach(el=>el.addEventListener('click',closeBrief));
+    briefModalForm?.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const email=briefModalForm.querySelector('input[name=email]'),consent=briefModalForm.querySelector('input[name=consent]'),website=briefModalForm.querySelector('input[name=website]'),msg=briefModalForm.querySelector('[role=status]'),btn=briefModalForm.querySelector('button[type=submit]');
+      if(!email||!msg||!consent||!btn||btn.disabled)return;
+      const say=(t,err)=>{msg.textContent=t;msg.classList.toggle('is-error',!!err)};
+      if(!email.checkValidity()||!email.value.trim()){say('Please enter a valid email address.',1);email.focus();return}
+      if(!consent.checked){say('Please tick the box to confirm you want the Brief.',1);consent.focus();return}
+      btn.disabled=true;say('Signing you up…');
+      try{
+        const res=await fetch('/api/brief?action=subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,consent:true,website:website?.value||'',elapsedMs:Date.now()-Number(briefModalForm.dataset.opened||Date.now()),source:'header'})});
+        const data=await res.json().catch(()=>({}));
+        if(res.ok){say(data.message||'Thank you. You are on the list for the Nuvellum Brief.');briefModalForm.reset();dispatchEvent(new CustomEvent('nuvellum:brief-signup',{detail:{source:'header'}}))}
+        else say(data.error||'Something went wrong. Please try again.',1);
+      }catch{say('Could not reach Nuvellum. Check your connection and try again.',1)}
+      finally{btn.disabled=false}
+    });
+
     const sheet=document.getElementById('searchSheet'),input=document.getElementById('searchInput'),results=document.getElementById('searchResults');
     const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     let index=null;
@@ -184,7 +235,18 @@ const ticker = (await getArticles()).slice(0, 8);
     document.getElementById('searchOpen')?.addEventListener('click',open);
     sheet?.addEventListener('click',e=>{if(e.target===sheet)sheet.classList.remove('open')});
     document.addEventListener('keydown',e=>{
-      if(e.key==='Escape'){sheet?.classList.remove('open');brandZone?.classList.remove('is-open')}
+      if(e.key==='Escape'){
+        if(briefModal&&!briefModal.hidden){e.preventDefault();closeBrief();return}
+        sheet?.classList.remove('open');brandZone?.classList.remove('is-open')
+      }
+      if(e.key==='Tab'&&briefModal&&!briefModal.hidden){
+        const focusable=[...briefModal.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')].filter(el=>el.offsetParent!==null);
+        if(focusable.length){
+          const first=focusable[0],last=focusable[focusable.length-1];
+          if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+          else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+        }
+      }
       if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement?.tagName||'')){e.preventDefault();open()}
     });
     input?.addEventListener('input',async()=>{
