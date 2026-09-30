@@ -65,7 +65,10 @@ Per-platform account, app, credential and API-restriction requirements: [`SOCIAL
 
 Live posting is built but **off**. It only posts when the repository variable `NUVELLUM_SOCIAL` is `on` **and** a platform's credentials exist.
 
-- **When.** Every 30 minutes (:12 and :42), and on manual dispatch (optionally for one slug). Auto-published stories reach `main` through `GITHUB_TOKEN` merges, which never trigger push workflows, so a schedule is the reliable hook.
+- **When.** Every 30 minutes (:12 and :42), and on manual dispatch. Auto-published stories reach `main` through `GITHUB_TOKEN` merges, which never trigger push workflows, so a schedule is the reliable hook.
+  - **Only the schedule scans the 48-hour window.**
+  - A manual dispatch must name a `slug`, and then posts that story only.
+  - To deliberately post every eligible story by hand, tick **bulk** (off by default). An empty slug without bulk exits at once with a notice: no scan, no API call, no ledger change. (An empty manual slug once bulk-posted several stories.)
 - **What.** Stories that reached `main` in the last 48 hours, plus any story with a queued platform. A story is posted only once its page answers 200 on www.nuvellum.news. Drafts, placeholders and unpublished stories are never eligible.
 - **Separate from publishing.** This is a separate workflow. The build, the publish gate and the site never wait on it, so a social failure cannot block or undo publication.
 
@@ -98,6 +101,43 @@ Dry run locally, which prints the plan and writes nothing:
 
 ```bash
 SITE_URL=https://www.nuvellum.news node engines/publish/cli.mjs --ledger /tmp/ledger [--slug <slug>]
+```
+
+### Social cards in the publisher
+
+Before a story is posted to a platform that takes an image, the publisher renders its branded cards with the card system (`engines/cards`, `docs/SOCIAL_CARDS.md`). It then rasterises every card to PNG in Chromium and checks every text line against its fitted box. Assets are ephemeral: they are written to `engines/out/social-cards/<slug>/` (gitignored) and discarded with the Actions workspace.
+
+**Which card each platform uses** (`engines/publish/assets.mjs`):
+
+| Platform | Card |
+| --- | --- |
+| Telegram | square 1080×1080 |
+| Facebook, LinkedIn, X | landscape 1200×630 |
+| Threads | square |
+| Instagram feed | portrait 1080×1350 |
+| TikTok, YouTube Shorts | story 1080×1920 |
+
+Quote and key-fact cards are optional extra assets, following the card system's own rules: never for sensitive stories. Only Telegram is live; the other platforms stay unconfigured.
+
+**The flow of one run:**
+1. `cli.mjs --needs-cards` reports whether any story in this run is about to be posted to a configured image platform. Only then does the workflow install (and cache) Chromium.
+2. For each candidate story:
+   - plan (as before: `sent`/`failed` are final);
+   - if an image platform is due, render and verify the cards **once**;
+   - then post.
+3. **Telegram** uploads the verified **square card PNG** with `sendPhoto` as `multipart/form-data`, so no public image URL is needed. The caption is the bold headline, the dek and the tracked "Read on Nuvellum →" link. The ledger records `kind: "card"`.
+4. **If rendering fails** (a render error, missing Chromium, a clipped headline, or an overflow in Chromium), nothing is posted with a broken image:
+   - The platform stays `queued` with `cardFailures` and the error, and the story's `cards` field records the failure.
+   - On the next run it tries again.
+   - After `CARD_RETRIES` (2) failed renders, it falls back to the previous, deterministic Telegram post: the story's own photo by URL, or a text message. The ledger records `cardFallback`.
+   - Posts are still recorded after every attempt, and `sent` is never revisited, so no failure path can post twice.
+5. **Already-sent stories** are neither re-rendered nor re-posted. When nothing is due, Chromium is not even installed.
+
+A safe preview, which renders and verifies the cards and prints the exact Telegram upload and caption without posting or writing the ledger:
+
+```bash
+SITE_URL=https://www.nuvellum.news TELEGRAM_BOT_TOKEN=x TELEGRAM_CHAT_ID=@nuvellum \
+  node engines/publish/cli.mjs --ledger /tmp/ledger --slug <slug> --render
 ```
 
 **Turning Telegram on:**

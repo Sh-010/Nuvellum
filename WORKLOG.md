@@ -4,6 +4,46 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: Social cards wired into the publisher (`feat/social-card-publish`, stacked on #140)
+
+**Fix before merge: manual runs can no longer fan out.** A `workflow_dispatch` with an empty slug used to fall back to the 48-hour scan, which once bulk-posted several stories in production.
+- `runScope()` (engines/publish/run.mjs) decides what a run may touch:
+  - a `schedule` trigger scans the window;
+  - any other run needs `--slug`, unless `--bulk` is given explicitly.
+- A missing trigger counts as manual. A refused run exits before creating the ledger folder, making network calls or reading anything; `--needs-cards` answers "no".
+- The workflow passes `--trigger ${{ github.event_name }}` and gains a boolean `bulk` input (default false).
+- Tests:
+  - a scheduled run scans the window;
+  - a manual slug run touches only that story;
+  - a manual run with no slug and no bulk does nothing: no ledger folder, and a `::notice::` in Actions;
+  - bulk works only when chosen;
+  - the workflow wiring.
+
+The card designs are unchanged; no platform other than Telegram was enabled; `NUVELLUM_X_BUDGET_APPROVED`, billing and permissions are untouched. At the start, the live ledger showed Telegram `sent` for all 8 recent stories. `NUVELLUM_SOCIAL` is `on`, so nothing here was run live.
+
+- **`engines/publish/assets.mjs`:** renders the story's cards with #140's renderer, rasterises every card in Chromium, and refuses the set on any failure: a render error, a clipped headline, an overflow in Chromium, or a PNG that was not written. It also holds the platform→card contract: Telegram square; Facebook, LinkedIn and X landscape; Threads square; Instagram portrait; TikTok and YouTube story. Quote cards follow #140 (none for sensitive stories).
+- **`engines/publish/run.mjs`** (per-story logic, extracted from the CLI so it can be tested):
+  - Cards are rendered **once**, and only when a post to an image platform is actually due.
+  - Telegram gets the verified square PNG.
+  - A failed render holds the post (`queued`, `cardFailures`, error; `entry.cards` records it). After 2 failed renders it falls back to the previous deterministic post (photo by URL, or text), recorded as `cardFallback`.
+  - The ledger is saved after every post; `sent`/`failed` stay final.
+- **Telegram adapter:** multipart/form-data `sendPhoto` upload of the local card (`kind: "card"`), with the caption unchanged (bold headline, dek, tracked "Read on Nuvellum →"). The legacy path is unchanged when no card is given.
+- **CLI:** `--needs-cards` (the workflow gate) and `--render` (a dry run that renders and verifies, and prints the exact Telegram upload and caption); `--slug` validated.
+- **`social-publish.yml`:** the "Will this run post cards?" step installs and caches Chromium only when needed; no secrets are passed to the install step. The posting step is unchanged.
+- **`social-distribution.yml`:** the engine tests also run on dispatch (so stacked branches can be checked), with real Chromium (`CARDS_CHROME=1`).
+- **Tests:** `engines/tests/publish-cards.test.mjs` (10) and `tests/social-publish-workflow.test.mjs` (+1). They cover:
+  - render before post, and the PNG existing when Telegram is called;
+  - a text-led story getting a branded card;
+  - no quote cards for sensitive stories;
+  - sent entries neither re-rendered nor re-posted (no Chromium needed);
+  - failed renders held, falling back after 2, and never posting twice;
+  - overflow, clipping, crashes and missing browsers refused;
+  - a Telegram 502 retried without duplication;
+  - the multipart upload format;
+  - manual `--slug` dispatch;
+  - real Chromium PNGs at the exact sizes.
+- **Safe dry run** (`--render`, fake token, `NUVELLUM_SOCIAL` unset) on the Apple story: cards rendered and verified in Chrome (square, landscape, portrait, story; no quote cards, since it is sensitive), with Telegram previewed as `sendPhoto upload=…/square.png` plus the caption. 0 ledger files written, no network post.
+
 ## 2026-09-30: Nuvellum social card system (`feat/social-card-system`)
 
 Rebased onto main after #126 and #134–#139 merged. It changes none of them, nor the social credentials or adapters, newsroom logic, Admin or the site design. Documentation: `docs/SOCIAL_CARDS.md`.

@@ -25,15 +25,22 @@ concurrency:
 
 jobs:
   test:
-    if: github.event_name == 'pull_request'
+    # Also on dispatch, so stacked branches (whose PRs do not target main) can be checked.
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - run: cd engines && npm ci --no-audit --no-fund && npm test
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('engines/package-lock.json') }}
+      # Real Chromium: the card and publisher tests rasterise cards and run the overflow check.
+      - run: cd engines && npm ci --no-audit --no-fund && npx playwright-core install --with-deps chromium
+      - run: cd engines && CARDS_CHROME=1 npm test
 
   draft:
     if: github.event_name != 'pull_request'

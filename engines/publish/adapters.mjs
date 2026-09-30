@@ -8,6 +8,7 @@
 //
 // Errors thrown from here carry only the platform, HTTP status and the API's own short error text, never
 // credentials or request bodies.
+import { readFileSync } from 'node:fs';
 import { createHmac, randomBytes } from 'node:crypto';
 import { trackedUrl } from '../distribution/copy.mjs';
 
@@ -39,34 +40,55 @@ export function rasterImageUrl(story, siteUrl) {
 
 // ---------- Telegram (first channel) ----------
 
-export function telegramMessage(story, siteUrl) {
+/**
+ * The Telegram post for a story. With `card` (a verified local PNG from the card system) the branded square
+ * card is uploaded as the photo; without it, the legacy behaviour: the story's own raster photo by URL, or a
+ * text message with a link preview.
+ */
+export function telegramMessage(story, siteUrl, { card = null } = {}) {
   const link = trackedUrl(story, 'telegram');
-  const photo = rasterImageUrl(story, siteUrl);
+  const photo = card ? null : rasterImageUrl(story, siteUrl);
+  const asPhoto = Boolean(card || photo);
   const tail = `\n\n<a href="${esc(link)}">Read on Nuvellum →</a>`;
   const head = `<b>${esc(story.title)}</b>`;
   // Captions are limited to 1024 characters, messages to 4096. Telegram counts text after entity parsing;
   // budgeting on the raw HTML (tags, escapes and the link included) keeps well inside either limit.
   const len = (s) => [...s].length;
-  let dek = story.dek ? esc(clip(story.dek, (photo ? 1024 : 4096) - len(head) - len(tail) - 2)) : '';
-  while (dek && len(head) + 2 + len(dek) + len(tail) > (photo ? 1024 : 4096)) dek = esc(clip(story.dek, len(dek) - 20));
+  let dek = story.dek ? esc(clip(story.dek, (asPhoto ? 1024 : 4096) - len(head) - len(tail) - 2)) : '';
+  while (dek && len(head) + 2 + len(dek) + len(tail) > (asPhoto ? 1024 : 4096)) dek = esc(clip(story.dek, len(dek) - 20));
   const text = head + (dek ? `\n\n${dek}` : '') + tail;
+  if (card) return { method: 'sendPhoto', upload: card, caption: text };
   return photo ? { method: 'sendPhoto', photo, caption: text } : { method: 'sendMessage', text };
 }
 
 export const telegram = {
   id: 'telegram',
   configured: (env) => !!(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID),
-  async post(story, { env, fetchImpl = fetch, siteUrl }) {
-    const m = telegramMessage(story, siteUrl);
-    const body = m.method === 'sendPhoto'
-      ? { chat_id: env.TELEGRAM_CHAT_ID, photo: m.photo, caption: m.caption, parse_mode: 'HTML' }
-      : { chat_id: env.TELEGRAM_CHAT_ID, text: m.text, parse_mode: 'HTML', link_preview_options: { url: story.url, prefer_large_media: true } };
-    const res = await fetchImpl(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/${m.method}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  /** assets.telegram: path of the verified square card PNG (optional). */
+  async post(story, { env, fetchImpl = fetch, siteUrl, assets = {} }) {
+    const m = telegramMessage(story, siteUrl, { card: assets.telegram || null });
+    const url = `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/${m.method}`;
+    let init;
+    if (m.upload) {
+      // Upload the local PNG (multipart/form-data): no public image URL is needed.
+      const form = new FormData();
+      form.append('chat_id', env.TELEGRAM_CHAT_ID);
+      form.append('caption', m.caption);
+      form.append('parse_mode', 'HTML');
+      form.append('photo', new Blob([readFileSync(m.upload)], { type: 'image/png' }), `${story.slug}.png`);
+      init = { method: 'POST', body: form };
+    } else {
+      const body = m.method === 'sendPhoto'
+        ? { chat_id: env.TELEGRAM_CHAT_ID, photo: m.photo, caption: m.caption, parse_mode: 'HTML' }
+        : { chat_id: env.TELEGRAM_CHAT_ID, text: m.text, parse_mode: 'HTML', link_preview_options: { url: story.url, prefer_large_media: true } };
+      init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) };
+    }
+    const res = await fetchImpl(url, init);
     if (!res.ok) throw await readError('telegram', res, env);
     const j = await res.json();
     if (!j.ok) throw new PostError('telegram', redact(j.description || 'not ok', env), { retryable: false });
     const chat = j.result?.chat?.username;
-    return { remoteId: String(j.result?.message_id ?? ''), remoteUrl: chat ? `https://t.me/${chat}/${j.result.message_id}` : null, kind: m.method === 'sendPhoto' ? 'photo' : 'text' };
+    return { remoteId: String(j.result?.message_id ?? ''), remoteUrl: chat ? `https://t.me/${chat}/${j.result.message_id}` : null, kind: m.upload ? 'card' : m.method === 'sendPhoto' ? 'photo' : 'text' };
   }
 };
 

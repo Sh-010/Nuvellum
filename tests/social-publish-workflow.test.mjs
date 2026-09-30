@@ -21,6 +21,25 @@ test('live posting needs the NUVELLUM_SOCIAL switch; X needs a separate budget a
   assert.match(cli, /const live = argv\.includes\('--live'\) && process\.env\.NUVELLUM_SOCIAL === 'on';/);
 });
 
+test('social cards: Chromium is installed only when a run will post, with no secrets in the install step', () => {
+  assert.match(wf, /- name: Will this run post cards\?\n        id: cards\n/);
+  assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\} \$\(\[ "\$BULK" = "true" \] && echo --bulk\)\)" >> "\$GITHUB_OUTPUT"/);
+  const install = wf.slice(wf.indexOf('- name: Install the card renderer (Chromium)'), wf.indexOf('- name: Post and record'));
+  assert.match(install, /if: steps\.cards\.outputs\.needed == 'yes'/);
+  assert.match(install, /npx playwright-core install --with-deps chromium/);
+  assert.doesNotMatch(install, /secrets\./, 'third-party install scripts never see credentials');
+  assert.match(wf, /- name: Cache Chromium\n        if: steps\.cards\.outputs\.needed == 'yes'/);
+  // The posting step itself is unchanged: live only with the switch, one run at a time.
+  assert.match(wf, /node engines\/publish\/cli\.mjs --ledger \.ledger\/ledger --live --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
+  // Manual runs never fan out by accident: dispatch needs a slug unless the default-off bulk box is ticked.
+  assert.match(wf, /      bulk:\n        description: "[^"]+"\n        type: boolean\n        default: false/);
+  const cli = readFileSync('engines/publish/cli.mjs', 'utf8');
+  assert.match(cli, /const scope = runScope\(\{ trigger: arg\('trigger'\) \|\| 'manual', slug: onlySlug \|\| '', bulk: argv\.includes\('--bulk'\) \}\);/);
+  assert.ok(cli.indexOf("scope.mode === 'refuse'") < cli.indexOf('mkdirSync(ledgerDir'), 'refused before touching the ledger');
+  const dist = readFileSync('.github/workflows/social-distribution.yml', 'utf8');
+  assert.match(dist, /CARDS_CHROME=1 npm test/, 'CI runs the card tests in real Chromium');
+});
+
 test('the ledger lives on its own branch, which never deploys and triggers no workflows', () => {
   assert.match(wf, /git worktree add -B social-ledger \.ledger origin\/social-ledger/);
   assert.match(wf, /git push origin HEAD:social-ledger/);

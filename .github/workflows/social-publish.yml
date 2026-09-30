@@ -13,8 +13,12 @@ on:
   workflow_dispatch:
     inputs:
       slug:
-        description: "Only this published slug (optional)"
+        description: "Published slug to post (required unless bulk is ticked)"
         required: false
+      bulk:
+        description: "Deliberately post EVERY eligible story from the last 48h (leave off for a single slug)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -50,11 +54,17 @@ jobs:
           fi
           mkdir -p .ledger/ledger
 
-      - name: Post and record
+      # Social cards (engines/cards) are rendered and checked in Chromium only when this run will actually post
+      # to an image platform; otherwise Chromium is not installed at all.
+      - name: Will this run post cards?
+        id: cards
         env:
           SITE_URL: https://www.nuvellum.news
           NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
           SLUG: ${{ inputs.slug }}
+          # schedule = window scan; workflow_dispatch = one slug unless bulk is ticked.
+          TRIGGER: ${{ github.event_name }}
+          BULK: ${{ inputs.bulk }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
@@ -69,7 +79,46 @@ jobs:
         shell: bash
         run: |
           if [ -n "$SLUG" ] && ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "::error::invalid slug"; exit 1; fi
-          node engines/publish/cli.mjs --ledger .ledger/ledger --live ${SLUG:+--slug "$SLUG"}
+          echo "needed=$(node engines/publish/cli.mjs --ledger .ledger/ledger --needs-cards --trigger "$TRIGGER" ${SLUG:+--slug "$SLUG"} $([ "$BULK" = "true" ] && echo --bulk))" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Chromium
+        if: steps.cards.outputs.needed == 'yes'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('engines/package-lock.json') }}
+
+      - name: Install the card renderer (Chromium)
+        if: steps.cards.outputs.needed == 'yes'
+        shell: bash
+        run: |
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
+
+      - name: Post and record
+        env:
+          SITE_URL: https://www.nuvellum.news
+          NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
+          SLUG: ${{ inputs.slug }}
+          # schedule = window scan; workflow_dispatch = one slug unless bulk is ticked.
+          TRIGGER: ${{ github.event_name }}
+          BULK: ${{ inputs.bulk }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          LINKEDIN_ORG_URN: ${{ secrets.LINKEDIN_ORG_URN }}
+          LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          NUVELLUM_X_BUDGET_APPROVED: ${{ vars.NUVELLUM_X_BUDGET_APPROVED }}
+        shell: bash
+        run: |
+          if [ -n "$SLUG" ] && ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "::error::invalid slug"; exit 1; fi
+          node engines/publish/cli.mjs --ledger .ledger/ledger --live --trigger "$TRIGGER" ${SLUG:+--slug "$SLUG"} $([ "$BULK" = "true" ] && echo --bulk)
 
       - name: Save the ledger
         if: always()
