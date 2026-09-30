@@ -38,8 +38,9 @@ export const WEAK = ['procedural', 'section-placeholder'];
 
 export function classify(data) {
   const image = String(data.image || '').trim();
-  if (image.startsWith('/uploads/articles/') && /\.(jpe?g|png|webp)$/i.test(image)) return 'real';
-  if (image.startsWith('/uploads/articles/') && image.endsWith('.svg')) return 'illustration';
+  const imagePath = image.replace(/[?#].*$/, '');
+  if (imagePath.startsWith('/uploads/articles/') && /\.(jpe?g|png|webp)$/i.test(imagePath)) return 'real';
+  if (imagePath.startsWith('/uploads/articles/') && imagePath.endsWith('.svg')) return 'illustration';
   if (!image) return 'text-led';
   if (image.startsWith('/generated/ai/')) return 'ai-svg';
   if (data.origin === 'automation') return 'procedural';

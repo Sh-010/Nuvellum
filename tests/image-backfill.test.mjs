@@ -40,6 +40,7 @@ test('no published article shows placeholder or procedural art without a plan', 
 
 test('classify recognises each image path family', () => {
   assert.equal(classify({ image: '/uploads/articles/x.jpg' }), 'real');
+  assert.equal(classify({ image: '/uploads/articles/x.jpg?v=2' }), 'real');
   assert.equal(classify({ image: '/uploads/articles/x.svg' }), 'illustration');
   assert.equal(classify({ image: '/generated/ai/x.svg' }), 'ai-svg');
   assert.equal(classify({ origin: 'automation' }), 'text-led');
