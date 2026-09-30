@@ -167,6 +167,9 @@
     },
     "api/brief.js": {
       "maxDuration": 10
+    },
+    "api/brief-send.js": {
+      "maxDuration": 30
     }
   }
 }
