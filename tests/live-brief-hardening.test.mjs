@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 const ORIGIN = 'https://www.nuvellum.news';
 const EMAIL = 'nuvellum-hardening-20260930@example.com';
+// Retry after a transient GitHub Actions startup failure.
 
 test('live hardened Brief QA signup succeeds', async () => {
   const res = await fetch(`${ORIGIN}/api/brief?action=subscribe`, {
