@@ -18,7 +18,8 @@
     "images:backfill": "node scripts/backfill-article-images.mjs --apply",
     "visual:acquire": "node scripts/visual/acquire.mjs",
     "ops:report": "node scripts/observability-report.mjs",
-    "media-kit": "node scripts/media-kit.mjs"
+    "media-kit": "node scripts/media-kit.mjs",
+    "ops:smoke": "node scripts/production-smoke.mjs"
   },
   "dependencies": {
     "astro": "7.3.5",
