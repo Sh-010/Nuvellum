@@ -1019,3 +1019,5 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 
 
 - **Brief unattended-send safety follow-up, 30 Sep 2026:** audited the live Resend plan before enabling unattended delivery. The account currently allows 100 emails/day and 3,000/month, so the sender now fails closed above 100 deliverable readers instead of the earlier generic 1,000-reader cap. Live QA-origin subscribers are excluded from scheduled sends even if a test record remains locally active. Added regression coverage for both safeguards.
+
+- **Brief sender safety deploy retry, 30 Sep 2026:** production retry queued after Vercel rejected the safety-guard merge under the Hobby rolling build-rate limit; no application behavior changes in this retry commit.
