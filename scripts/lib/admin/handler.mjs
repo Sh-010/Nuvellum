@@ -110,7 +110,7 @@ export function createAdminHandler({ env = process.env, githubFactory = (token) 
       const at = new Date(now());
       switch (action) {
         case 'list': return respond(200, await list(gh));
-        case 'queue': return respond(200, await queue(gh));
+        case 'queue': return respond(200, { ...(await queue(gh)), tokenExpiresAt: gh.tokenExpiry?.() || null });
         case 'article': return respond(200, await loadArticle(gh, url.searchParams.get('slug'), url.searchParams.get('pr')));
         case 'status': return respond(200, await status(gh, url.searchParams.get('branch')));
         case 'check': return respond(200, await check(gh, body, at));

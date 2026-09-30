@@ -1,8 +1,9 @@
-name: Clean up merged editorial branches
+name: Clean up merged branches
 
-# Manual only. Deletes incoming/** branches whose PR was merged and whose tip
-# is exactly the merged commit. Branches with open, closed-unmerged or no PRs
-# are always kept. Dry run by default.
+# Manual only, dry run by default. Deletes branches whose PR was merged and whose tip is exactly the merged
+# commit. Branches with an open PR, that an open PR targets as its base (stacked PRs), closed-unmerged or
+# with no PR, main and social-ledger are always kept. Rules: scripts/lib/branch-cleanup.mjs.
+# Deleted branches can be restored from their merged PR ("Restore branch").
 on:
   workflow_dispatch:
     inputs:
@@ -10,6 +11,11 @@ on:
         description: 'Type "yes" to actually delete (otherwise dry run)'
         required: false
         default: "no"
+      scope:
+        description: "incoming = editorial incoming/** branches only; all = every merged branch"
+        type: choice
+        options: [incoming, all]
+        default: incoming
 
 permissions:
   contents: write
@@ -29,3 +35,4 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           CONFIRM_DELETE: ${{ inputs.confirm }}
+          CLEANUP_SCOPE: ${{ inputs.scope }}

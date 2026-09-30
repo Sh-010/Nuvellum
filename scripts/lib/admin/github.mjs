@@ -89,6 +89,9 @@ const HUMAN = {
 export function createGitHub({ token, fetchImpl = globalThis.fetch, log = console } = {}) {
   if (!token) throw new GitHubError(503, 'Admin is not connected to GitHub (NUVELLUM_GITHUB_TOKEN is not set).');
   const api = 'https://api.github.com';
+  // Fine-grained tokens report their expiry on every response ("2026-12-29 12:00:00 UTC"); the desk shows a
+  // warning before it lapses, because an expired token silently stops publishing from /admin.
+  let tokenExpiresAt = null;
 
   async function call(method, path, body, { allow404 = false } = {}) {
     let res;
@@ -107,6 +110,8 @@ export function createGitHub({ token, fetchImpl = globalThis.fetch, log = consol
     } catch {
       throw new GitHubError(502, 'Could not reach GitHub. Try again in a moment.');
     }
+    const exp = Date.parse(String(res.headers?.get?.('github-authentication-token-expiration') || '').replace(' UTC', 'Z').replace(' ', 'T'));
+    if (exp) tokenExpiresAt = new Date(exp).toISOString();
     if (allow404 && res.status === 404) return null;
     if (res.status === 204) return {};
     const text = await res.text();
@@ -131,6 +136,8 @@ export function createGitHub({ token, fetchImpl = globalThis.fetch, log = consol
   }
 
   return {
+    /** ISO expiry of the token, once any response has reported it (null for tokens without an expiry). */
+    tokenExpiry: () => tokenExpiresAt,
     /** All article files (text + blob sha) and the names of local images/AI art on a ref, in one query. */
     async snapshot(ref = BASE_BRANCH) {
       const [owner, name] = REPO.split('/');
