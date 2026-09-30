@@ -728,7 +728,7 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
     const btn=e.target.closest?.('[data-save]');if(!btn)return;
     try{let list=readSaved();const title=btn.dataset.save;const url=btn.dataset.url;if(list.some(x=>x&&x.title===title))list=list.filter(x=>x&&x.title!==title);else list.unshift({title,url});localStorage.setItem(savedKey,JSON.stringify(list.slice(0,80)));syncSaved();btn.classList.remove('just-saved');void btn.offsetWidth;btn.classList.add('just-saved');setTimeout(()=>btn.classList.remove('just-saved'),380)}catch{}
   });
-  document.getElementById('savedOpen')?.addEventListener('click',()=>{location.href='/latest'});
+  document.getElementById('savedOpen')?.addEventListener('click',()=>{location.href='/saved'});
 
   const detail=document.getElementById('regionDetail');
   const mapLinks=[...document.querySelectorAll('[data-region]')];
