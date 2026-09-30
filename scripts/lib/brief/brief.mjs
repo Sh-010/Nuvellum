@@ -48,13 +48,16 @@ export function isValidEmail(email) {
 const b64u = (buf) => Buffer.from(buf).toString('base64url');
 const mac = (secret, label, value) => createHmac('sha256', secret).update(`${label}\u0000${value}`).digest();
 export const subscriberId = (secret, email) => b64u(mac(secret, 'nuvellum-brief/id', email)).slice(0, 32);
-export const unsubscribeToken = (secret, id) => b64u(mac(secret, 'nuvellum-brief/unsubscribe', id));
-export function tokenMatches(secret, id, token) {
-  if (typeof id !== 'string' || typeof token !== 'string' || !/^[A-Za-z0-9_-]{32}$/.test(id) || !/^[A-Za-z0-9_-]{43}$/.test(token)) return false;
-  const want = Buffer.from(unsubscribeToken(secret, id)), got = Buffer.from(token);
+export const unsubscribeToken = (secret, id, version) => b64u(mac(secret, 'nuvellum-brief/unsubscribe', `${id}\u0000${String(version || '')}`));
+export function tokenMatches(secret, id, token, version) {
+  if (typeof id !== 'string' || typeof token !== 'string' || !/^[A-Za-z0-9_-]{32}$/.test(id) || !/^[A-Za-z0-9_-]{43}$/.test(token) || !version) return false;
+  const want = Buffer.from(unsubscribeToken(secret, id, version)), got = Buffer.from(token);
   return want.length === got.length && timingSafeEqual(want, got);
 }
-export const unsubscribeLink = (site, secret, id) => `${site.replace(/\/+$/, '')}/brief/unsubscribe?s=${id}&t=${unsubscribeToken(secret, id)}`;
+export const unsubscribeLink = (site, secret, id, version) => {
+  if (!version) throw new Error('unsubscribe token version missing');
+  return `${site.replace(/\/+$/, '')}/brief/unsubscribe?s=${id}&t=${unsubscribeToken(secret, id, version)}`;
+};
 const clientHash = (secret, ip) => b64u(mac(secret, 'nuvellum-brief/client', ip || 'unknown')).slice(0, 22);
 
 // ---------- service ----------
@@ -96,7 +99,13 @@ export function createBrief({ store, secret, now = () => Date.now(), site = 'htt
 
     /** Unsubscribe with a signed link. Idempotent: an already-unsubscribed reader gets the same success. */
     async unsubscribe({ id, token, by = 'reader' }) {
-      if (!tokenMatches(secret, id, token)) throw new BriefError(403, 'This unsubscribe link is not valid. Use the link in your most recent Brief.', 'bad-token');
+      if (typeof id !== 'string' || typeof token !== 'string' || !/^[A-Za-z0-9_-]{32}$/.test(id) || !/^[A-Za-z0-9_-]{43}$/.test(token)) {
+        throw new BriefError(403, 'This unsubscribe link is not valid. Use the link in your most recent Brief.', 'bad-token');
+      }
+      const rec = await read(id);
+      if (!rec || !tokenMatches(secret, id, token, rec.consentAt || rec.createdAt)) {
+        throw new BriefError(403, 'This unsubscribe link is not valid. Use the link in your most recent Brief.', 'bad-token');
+      }
       return this._unsubscribe(id, by);
     },
     async _unsubscribe(id, by) {
@@ -132,7 +141,7 @@ export function createBrief({ store, secret, now = () => Date.now(), site = 'htt
       const rows = (await this.all()).filter((r) => !status || r.status === status);
       const cell = (v) => { const s = String(v ?? ''); return /^[=+\-@\t\r]/.test(s) ? `"'${s.replace(/"/g, '""')}"` : /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
       const head = ['email', 'status', 'subscribed_at', 'consent_at', 'consent_version', 'source', 'unsubscribe_url'];
-      return [head.join(','), ...rows.map((r) => [r.email, r.status, r.createdAt, r.consentAt, r.consentVersion, r.source, unsubscribeLink(site, secret, r.id)].map(cell).join(','))].join('\r\n') + '\r\n';
+      return [head.join(','), ...rows.map((r) => [r.email, r.status, r.createdAt, r.consentAt, r.consentVersion, r.source, unsubscribeLink(site, secret, r.id, r.consentAt || r.createdAt)].map(cell).join(','))].join('\r\n') + '\r\n';
     }
   };
 }
