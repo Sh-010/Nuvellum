@@ -661,15 +661,19 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
   const brandZone=document.getElementById('brandZone');
   const brandMonogram=document.getElementById('brandMonogram');
   const coarsePointer=window.matchMedia?.('(hover: none), (pointer: coarse)');
+  // Some touch browsers/WebViews report a fine pointer even though hover is unavailable.
+  // Treat actual touch capability as coarse input too so the first tap reveals the wordmark
+  // instead of navigating away before the reader can see it.
+  const touchBrand=()=>coarsePointer?.matches===true || Number(navigator.maxTouchPoints||0)>0 || 'ontouchstart' in window;
   const closeBrand=()=>brandZone?.classList.remove('is-open');
   brandMonogram?.addEventListener('click',e=>{
-    if(coarsePointer?.matches && !brandZone?.classList.contains('is-open')){
+    if(touchBrand() && !brandZone?.classList.contains('is-open')){
       e.preventDefault();
       brandZone?.classList.add('is-open');
     }
   });
   document.addEventListener('pointerdown',e=>{
-    if(coarsePointer?.matches && brandZone?.classList.contains('is-open') && !brandZone.contains(e.target)) closeBrand();
+    if(touchBrand() && brandZone?.classList.contains('is-open') && !brandZone.contains(e.target)) closeBrand();
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBrand()});
 
