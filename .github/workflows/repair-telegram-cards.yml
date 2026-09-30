@@ -1,0 +1,53 @@
+name: Repair Telegram branded cards
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "engines/publish/repair-telegram-cards.mjs"
+      - ".github/workflows/repair-telegram-cards.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SITE_URL: https://www.nuvellum.news
+      NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Check out social ledger
+        shell: bash
+        run: |
+          git config user.name "Nuvellum Social"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin social-ledger
+          git worktree add -B social-ledger .ledger origin/social-ledger
+      - name: Install card renderer
+        shell: bash
+        run: |
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
+      - name: Replace raw Telegram photos with branded cards
+        run: node engines/publish/repair-telegram-cards.mjs --ledger .ledger/ledger --live
+      - name: Save repaired ledger
+        if: always()
+        shell: bash
+        run: |
+          cd .ledger
+          git add ledger
+          if git diff --cached --quiet; then echo "ledger unchanged"; exit 0; fi
+          git commit -q -m "social: repair raw Telegram posts with branded cards"
+          git push origin HEAD:social-ledger
