@@ -1,0 +1,56 @@
+{
+  "slug": "8-games-with-magic-systems-so-detailed-brandon-sanderson-would-be-proud",
+  "url": "https://www.nuvellum.news/article/8-games-with-magic-systems-so-detailed-brandon-sanderson-would-be-proud",
+  "title": "8 Games with magic systems so detailed Brandon Sanderson would be proud",
+  "risk": "low",
+  "firstSeenAt": "2026-09-30T09:36:16.566Z",
+  "platforms": {
+    "telegram": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 1 card(s) failed the overflow check (\"PHOTO: NIHONJOE / CC BY 3.0\" ends at 1184.1 > box 1182)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "no official adapter yet (needs a Business account + Graph API app review)",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "no official adapter yet",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video only: posts when a reviewed Short exists",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    },
+    "tiktok": {
+      "status": "awaiting_approval",
+      "reason": "upload needs human approval",
+      "updatedAt": "2026-09-30T09:36:16.566Z"
+    }
+  },
+  "cards": {
+    "status": "failed",
+    "at": "2026-09-30T09:36:16.566Z",
+    "error": "cards: 1 card(s) failed the overflow check (\"PHOTO: NIHONJOE / CC BY 3.0\" ends at 1184.1 > box 1182)"
+  }
+}
