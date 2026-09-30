@@ -1,0 +1,32 @@
+name: Enable Nuvellum autopublish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/enable-autopublish.yml"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Set NUVELLUM_AUTOPUBLISH=on
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh api "repos/$GH_REPO/actions/variables/NUVELLUM_AUTOPUBLISH" >/dev/null 2>&1; then
+            gh api --method PATCH "repos/$GH_REPO/actions/variables/NUVELLUM_AUTOPUBLISH"               -f name=NUVELLUM_AUTOPUBLISH               -f value=on >/dev/null
+          else
+            gh api --method POST "repos/$GH_REPO/actions/variables"               -f name=NUVELLUM_AUTOPUBLISH               -f value=on >/dev/null
+          fi
+          value="$(gh api "repos/$GH_REPO/actions/variables/NUVELLUM_AUTOPUBLISH" --jq .value)"
+          [ "$value" = "on" ] || { echo "::error::NUVELLUM_AUTOPUBLISH did not become on"; exit 1; }
+          echo "NUVELLUM_AUTOPUBLISH is on."
