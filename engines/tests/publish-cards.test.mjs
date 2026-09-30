@@ -172,7 +172,7 @@ test('manual --slug dispatch still works (one story only; bad slugs refused)', (
   try {
     const cli = join(REPO_ROOT, 'engines', 'publish', 'cli.mjs');
     const out = execFileSync(process.execPath, [cli, '--ledger', t.d, '--slug', TEXT], { encoding: 'utf8', env: { ...process.env, NUVELLUM_SOCIAL: '', TELEGRAM_BOT_TOKEN: '', TELEGRAM_CHAT_ID: '' } });
-    assert.match(out, /Social publisher \(dry run; window 48h\)/);
+    assert.match(out, /Social publisher \(dry run; window 48h; single story\)/);
     assert.match(out, new RegExp(`${TEXT}: telegram=skipped`));
     assert.doesNotMatch(out, /apple-ordered|anthropic-releases/, 'only the requested story');
     const need = execFileSync(process.execPath, [cli, '--ledger', t.d, '--slug', TEXT, '--needs-cards'], { encoding: 'utf8', env: { ...process.env, TELEGRAM_BOT_TOKEN: '', TELEGRAM_CHAT_ID: '' } }).trim();
@@ -198,14 +198,15 @@ test('scope rule: schedule scans the window; manual needs a slug unless bulk is 
   assert.deepEqual(runScope({ trigger: 'workflow_dispatch', bulk: true }), { mode: 'window' });
 });
 
-test('1. a scheduled run without a slug processes the eligible window', () => {
+test('1. a scheduled run scans the eligible window but selects at most one actionable story', () => {
   const t = tmpOut();
   try {
     const out = cli(['--ledger', t.d, '--trigger', 'schedule']);
-    assert.match(out, /^Social publisher \(dry run; window 48h\)/m, 'the window scan ran');
+    assert.match(out, /^Social publisher \(dry run; window 48h; scheduled max 1 story\)/m);
     assert.doesNotMatch(out, /Manual run without a slug/);
-    // Every story it considered came from the scan (none was named).
-    assert.equal(cli(['--ledger', t.d, '--trigger', 'schedule', '--needs-cards']).trim(), 'no', 'no image platform configured in this env');
+    const stories = [...out.matchAll(/^ ([a-z0-9-]+):/gm)].map((m) => m[1]);
+    assert.ok(stories.length <= 1, `scheduled run considered too many stories: ${stories.join(', ')}`);
+    assert.equal(cli(['--ledger', t.d, '--trigger', 'schedule', '--needs-cards']).trim(), 'no', 'no configured image platform → no Chromium');
   } finally { t.done(); }
 });
 
@@ -241,19 +242,19 @@ test('4. manual bulk mode scans the window only when deliberately selected', () 
     const refused = cli(['--ledger', t.d, '--trigger', 'workflow_dispatch']);
     assert.match(refused, /Manual run without a slug/);
     const bulk = cli(['--ledger', t.d, '--trigger', 'workflow_dispatch', '--bulk']);
-    assert.match(bulk, /^Social publisher \(dry run; window 48h\)/m);
+    assert.match(bulk, /^Social publisher \(dry run; window 48h; explicit bulk\)/m);
     assert.doesNotMatch(bulk, /Manual run without a slug/);
   } finally { t.done(); }
 });
 
-test('the workflow wires the trigger and a default-off bulk input into both CLI calls', () => {
+test('the workflow wires a spaced one-story schedule and exposes no bulk-post control', () => {
   const wf = readFileSync(join(REPO_ROOT, '.github', 'workflows', 'social-publish.yml'), 'utf8');
-  assert.match(wf, /      bulk:\n        description: "[^"]+"\n        type: boolean\n        default: false/);
+  assert.doesNotMatch(wf, /\n      bulk:/, 'Actions UI must not expose bulk posting');
   assert.equal((wf.match(/TRIGGER: \$\{\{ github\.event_name \}\}/g) || []).length, 2);
-  assert.equal((wf.match(/BULK: \$\{\{ inputs\.bulk \}\}/g) || []).length, 2);
-  assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\} \$\(\[ "\$BULK" = "true" \] && echo --bulk\)/);
-  assert.match(wf, /--live --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\} \$\(\[ "\$BULK" = "true" \] && echo --bulk\)/);
-  assert.match(wf, /^  schedule:\n    - cron: "12,42 \* \* \* \*"/m, 'the schedule itself is unchanged');
+  assert.doesNotMatch(wf, /inputs\.bulk|\$BULK/);
+  assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
+  assert.match(wf, /--live --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
+  assert.match(wf, /- cron: "12 \*\/3 \* \* \*"/, 'scheduled posts are spaced every three hours');
 });
 
 // Real Chromium (opt-in: CARDS_CHROME=1): the full asset pipeline rasterises and verifies real PNGs.
