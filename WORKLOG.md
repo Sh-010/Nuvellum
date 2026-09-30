@@ -997,3 +997,6 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
   - `/saved` is not in the sitemap;
   - the masthead bookmark on the home, latest and article pages links to `/saved` and never `/latest`.
 - **Browser (Chrome, local dist):** 23/23 checks passed, covering save from an article and a homepage card, the masthead bookmark to `/saved` on home, article and mobile, opening, removing, reloading, unsaving on an article, a legacy absolute-URL entry, dark mode, mobile with no horizontal scroll, and Clear all.
+
+
+- **Deployment retry, 30 Sep 2026:** production was retried after the Resend Brief integration merged. If Vercel still reports the Hobby daily build-rate limit, no further repository changes are required; retry after the limit window clears.
