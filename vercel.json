@@ -3,7 +3,10 @@
     "deploymentEnabled": {
       "incoming/**": false,
       "manual/**": false,
-      "social-ledger": false
+      "social-ledger": false,
+      "qa/**": false,
+      "ops/**": false,
+      "checkpoint-*": false
     }
   },
   "headers": [
