@@ -2,7 +2,8 @@
   "git": {
     "deploymentEnabled": {
       "incoming/**": false,
-      "manual/**": false
+      "manual/**": false,
+      "social-ledger": false
     }
   },
   "headers": [

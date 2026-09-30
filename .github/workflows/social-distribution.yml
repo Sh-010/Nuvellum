@@ -64,7 +64,7 @@ jobs:
       - name: Build platform-specific drafts
         if: steps.stories.outputs.slugs != ''
         env:
-          SITE_URL: https://nuvellum.vercel.app
+          SITE_URL: https://www.nuvellum.news
           SLUGS: ${{ steps.stories.outputs.slugs }}
         shell: bash
         run: |

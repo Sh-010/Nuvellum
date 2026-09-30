@@ -1,0 +1,86 @@
+name: Social publish
+
+# Posts newly published stories to the configured social channels and records every outcome in the
+# social-ledger branch (one JSON file per story). It runs on its own schedule, apart from the build and the
+# publish gate: a social failure can never block, delay or undo publication.
+#
+# Live posting needs the repository variable NUVELLUM_SOCIAL = "on"; otherwise it only prints the plan.
+# Auto-published stories reach main through GITHUB_TOKEN merges, which do not trigger push workflows, so the
+# schedule (not a push trigger) is what picks them up. See docs/SOCIAL_DISTRIBUTION.md.
+on:
+  schedule:
+    - cron: "12,42 * * * *"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Only this published slug (optional)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Check out the ledger branch
+        shell: bash
+        run: |
+          git config user.name "Nuvellum Social"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin social-ledger >/dev/null; then
+            git fetch --depth=1 origin social-ledger
+            git worktree add -B social-ledger .ledger origin/social-ledger
+          else
+            git worktree add --orphan -b social-ledger .ledger
+          fi
+          mkdir -p .ledger/ledger
+
+      - name: Post and record
+        env:
+          SITE_URL: https://www.nuvellum.news
+          NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
+          SLUG: ${{ inputs.slug }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          LINKEDIN_ORG_URN: ${{ secrets.LINKEDIN_ORG_URN }}
+          LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          NUVELLUM_X_BUDGET_APPROVED: ${{ vars.NUVELLUM_X_BUDGET_APPROVED }}
+        shell: bash
+        run: |
+          if [ -n "$SLUG" ] && ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "::error::invalid slug"; exit 1; fi
+          node engines/publish/cli.mjs --ledger .ledger/ledger --live ${SLUG:+--slug "$SLUG"}
+
+      - name: Save the ledger
+        if: always()
+        shell: bash
+        run: |
+          cd .ledger
+          git add ledger
+          if git diff --cached --quiet; then echo "ledger unchanged"; exit 0; fi
+          git commit -q -m "social: ledger update (run ${{ github.run_id }})"
+          for i in 1 2 3; do
+            git push origin HEAD:social-ledger && exit 0
+            git pull --rebase -q origin social-ledger || true
+          done
+          echo "::error::could not save the ledger"; exit 1

@@ -26,7 +26,10 @@ test('text-led story renders premium square and portrait cards without fake imag
 test('approved illustration is embedded into the branded card and labelled', () => {
   const dir = mkdtempSync(join(tmpdir(), 'nuvellum-cards-'));
   try {
-    const story = loadStory('diablo-cody-reteaming-with-nathan-kahane-and-mason-novick-on-next-film-always-roxanne');
+    // A fixed fixture: which published stories currently carry an approved illustration changes as the
+    // Visual Engine swaps art for photos or text-led layouts, so the test must not depend on one.
+    const story = { ...loadStory('pokemon-tcg-s-next-big-set-available-weeks-before-official-release'), slug: 'illustration-fixture',
+      title: 'Diablo Cody reteams with Always Roxanne producers', image: '/images/world.svg', imageKind: 'illustration', mediaMode: 'illustration' };
     const m = renderSocialCards(story, dir);
     const square = readFileSync(join(dir, story.slug, 'square.svg'), 'utf8');
     assert.equal(m.sourceMode, 'illustration');

@@ -4,6 +4,43 @@ Append new entries at the top. Record what changed, the commits, the tests with 
 
 ---
 
+## 2026-09-30: v1 launch programme, Phase 6: social distribution (Telegram first)
+
+Branch `feat/social-publish` (stacked on `content/unpublish-launch-filler`).
+
+- **Found:**
+  - Distribution was draft-only (copy plus cards as artifacts), with no posting and no outcome record.
+  - The draft workflow fires on pushes to main, but auto-publish merges with `GITHUB_TOKEN`, and GitHub never triggers workflows from those pushes. So **automatically published stories never got drafts**.
+  - The draft job built links on `nuvellum.vercel.app` (now www.nuvellum.news).
+  - One engine test (`cards.test.mjs`) failed on main, because its story became text-led. It now uses a fixture.
+- **Built:** `engines/publish/` (adapters, planner, CLI) and `.github/workflows/social-publish.yml`.
+  - Runs on a schedule (:12/:42) and on dispatch.
+  - Candidates are stories that reached main within 48h, plus queued ones; a story posts only after its page answers 200.
+  - A separate workflow, so it cannot block or undo publishing.
+  - **Telegram adapter** (Bot API): the headline in bold, the dek, the story's own raster photo, and a UTM-tracked "Read on Nuvellum" link. Text-led and SVG-art stories go as a message with a large link preview.
+  - **Official-API adapters** for Facebook Page (Graph `/feed`), LinkedIn Page (Posts API) and X (v2 `/2/tweets`, OAuth 1.0a). They are dormant without credentials. X also needs `NUVELLUM_X_BUDGET_APPROVED=yes`, because it is paid (about $0.20 per linked post).
+  - Instagram and Threads: `skipped` (no adapter). YouTube: video only. TikTok: `awaiting_approval`.
+  - **Ledger** per story and platform (`queued`/`sent`/`failed`/`skipped`/`awaiting_approval`, with attempts, times, and the remote id/URL or error) on the `social-ledger` branch. That branch never deploys (vercel.json) and triggers no workflows.
+    - `sent`/`failed` are final (no duplicate posts).
+    - The ledger is written after every post and saved `if: always()`.
+    - 429/5xx errors retry up to 3 attempts; other 4xx errors do not.
+    - Errors are trimmed, and credentials redacted.
+  - Master switch: repository variable `NUVELLUM_SOCIAL=on`. Without it, the job only prints its plan.
+- **Tests:**
+  - `engines/tests/publish.test.mjs` (9):
+    - Telegram copy (escaping, the photo rule, the 1024-character caption limit; this caught a real overflow);
+    - Bot API request and token redaction;
+    - the Facebook and LinkedIn request formats (incl. LinkedIn reserved-character escaping);
+    - the X OAuth 1.0a signature against X's documented reference example, and the `/2/tweets` request;
+    - the planner (live/queued/skipped/awaiting), no duplicates, retries, and the X budget gate.
+  - `tests/social-publish-workflow.test.mjs` (3): the schedule, the single-flight lock, no coupling to the gate, secrets only via env, the switch, and the ledger branch.
+- **Results:** the engines suite is 28/28 (previously 26/27 on main). A dry run against the real repo and live site lists the 8 stories from the last 48h: Telegram "would post" when configured; the others are skipped with their reasons, and TikTok is awaiting approval.
+- **Needs the owner (names only):**
+  - Telegram: create a bot with @BotFather and the Nuvellum channel (the bot as admin).
+    - Secrets `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`, in GitHub → Settings → Secrets and variables → Actions.
+    - Variable `NUVELLUM_SOCIAL=on`.
+  - Facebook, LinkedIn and X need the accounts, apps and reviews in `docs/SOCIAL_PLATFORM_SETUP.md`; X also needs the budget decision.
+
 ## 2026-09-30: v1 launch programme, Phase 5: content cleanup
 
 Branch `content/unpublish-launch-filler` (stacked on `feat/ga4-search-console`). Every one of the 52 articles was audited: status, origin, risk, gate fields, word count, image mode, `newStoryQualityProblems`, and the homepage slot it fills.
