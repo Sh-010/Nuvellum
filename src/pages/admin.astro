@@ -276,6 +276,15 @@ main.wrap.editing>.notice{margin:12px 24px}
 .lnk:hover{text-decoration:underline;text-underline-offset:3px}
 .lnk:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .archive>.empty{padding:26px 8px}
+/* the Brief */
+.stats.stats-3{grid-template-columns:repeat(3,minmax(0,1fr))}.stats-3 .stat{cursor:default}
+.bhead,.brow{display:grid;grid-template-columns:minmax(0,1fr) 150px 130px 110px;gap:0 18px;align-items:center}
+.bhead{padding:0 8px 8px;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line2)}
+.brow{padding:11px 8px;border-bottom:1px solid var(--hair);transition:background .18s var(--ease)}
+.brow:hover{background:var(--tint)}
+.bmail{min-width:0;font-family:var(--sans);font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bmail small{display:block;margin-top:2px;font-size:11px;color:var(--muted)}
+.brow .adate,.brow .achips,.brow .aact{grid-area:auto}
 /* editor: command bar */
 .cmdbar{position:sticky;top:var(--bar-h);z-index:15;display:flex;align-items:center;gap:12px;min-height:var(--cmd-h);padding:8px 24px;background:var(--desk-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:34px;height:34px;padding:0 9px;border:1px solid transparent;background:none;border-radius:2px;color:var(--ink);cursor:pointer;font-family:var(--sans);font-size:13px;white-space:nowrap;transition:background .2s var(--ease),border-color .2s var(--ease)}
@@ -517,7 +526,7 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @media (max-width:860px){
   .secondary{grid-template-columns:1fr;gap:26px}.view-head{flex-wrap:wrap;align-items:flex-start}.lane-note{display:none}.login-mast{display:none}
-  .ahead{display:none}
+  .ahead,.bhead{display:none}.brow{grid-template-columns:minmax(0,1fr) auto auto;gap:6px 14px;padding:12px 4px}.brow .bmail{grid-column:1/-1}
   .arow{grid-template-columns:48px minmax(0,1fr) auto;grid-template-areas:"thumb main main" "thumb date act" "thumb chips chips";gap:4px 14px;padding:12px 4px}
   .athumb{width:48px;height:48px;align-self:start}
   .title-link{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
@@ -551,7 +560,10 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
   .vm{padding:7px 9px}
   .login{padding:40px 16px}.login::before{inset:10px}.login::after{inset:14px}.login-corner{top:20px;right:22px}.login-card{padding:34px 24px 28px}.login h1{font-size:34px}.login .mark{font-size:46px}
 }
-@media (max-width:380px){.tab{padding:0 5px;letter-spacing:.03em;font-size:10.5px}.tab::after{left:5px;right:5px}.tt-track{width:42px}html[data-theme=dark] .tt-knob{transform:translateX(18px)}.tt-moon{right:4px}.avatar{width:26px;height:26px}.desk-bar{gap:6px;padding:0 6px}.account>summary{padding:2px}}
+@media (min-width:641px) and (max-width:860px){.t-long,.acct-label{display:none}.desk-bar{gap:12px}}
+@media (max-width:460px){.tab{padding:0 4px;letter-spacing:.02em;font-size:10.5px}.tab::after{left:4px;right:4px}}
+@media (max-width:380px){.tt-track{width:42px}html[data-theme=dark] .tt-knob{transform:translateX(18px)}.tt-moon{right:4px}.avatar{width:26px;height:26px}.desk-bar{gap:6px;padding:0 6px}.account>summary{padding:2px}}
+@media (max-width:340px){.tab{padding:0 3px;letter-spacing:0;font-size:10px}.tab::after{left:3px;right:3px}.tab-count{margin-left:4px;padding:1px 3px}.desk-bar{gap:4px;padding:0 4px}.tt-track{width:36px}html[data-theme=dark] .tt-knob{transform:translateX(12px)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -586,6 +598,7 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
         <button class="tab" role="tab" data-view="queue" aria-selected="true"><span class="t-long">Review&nbsp;</span>Queue<span class="tab-count" id="queue-count" hidden></span></button>
         <button class="tab" role="tab" data-view="list" aria-selected="false">Articles</button>
         <button class="tab" role="tab" data-view="new" aria-selected="false">+ New<span class="t-long">&nbsp;article</span></button>
+        <button class="tab" role="tab" data-view="brief" aria-selected="false">Brief</button>
       </nav>
       <span class="spacer"></span>
       <span class="dateline" id="dateline"></span>
@@ -638,6 +651,25 @@ dialog::backdrop{background:rgba(12,9,7,.5);backdrop-filter:blur(2px)}
       <div id="work-block"></div>
       <div class="ahead" aria-hidden="true"><span></span><span>Headline</span><span>Date</span><span>State</span></div>
       <div class="archive" id="list-body" role="list"></div>
+    </section>
+
+    <section id="view-brief" class="view" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">Readers</span>
+          <h2 class="view-title">The Nuvellum Brief</h2>
+          <p class="view-intro">Everyone who has signed up for the Brief. Private to this desk; addresses are never published or kept in the repository.</p>
+        </div>
+        <div class="view-tools"><span class="hint" id="brief-note" role="status"></span><button class="btn small quiet" id="brief-refresh" type="button">Refresh</button><button class="btn small" id="brief-export" type="button">Export CSV</button></div>
+      </div>
+      <div class="notice" id="brief-off" hidden>The Brief’s subscriber store is not connected on this deployment, so sign-ups are closed and nothing is stored. See docs/BRIEF.md for the settings it needs.</div>
+      <div class="stats stats-3" id="brief-stats" aria-label="Subscriber overview"></div>
+      <div class="filters" role="search">
+        <label class="search"><span class="sr-only">Search subscribers</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg><input type="text" id="bq" placeholder="Search email address" autocomplete="off" /></label>
+        <label><span class="sr-only">Status</span><select class="filter" id="bst"><option value="">Any status</option><option value="active">Active</option><option value="unsubscribed">Unsubscribed</option></select></label>
+      </div>
+      <div class="bhead" aria-hidden="true"><span>Email</span><span>Signed up</span><span>Status</span><span></span></div>
+      <div class="archive" id="brief-body" role="list"></div>
     </section>
 
     <section id="view-editor" class="view" data-mode="write" hidden>
@@ -917,10 +949,10 @@ for (const t of document.querySelectorAll('.desk .tab')) t.addEventListener('cli
 function show(view) {
   S.view = view; clearInterval(S.pollTimer); showError('');
   for (const t of document.querySelectorAll('.desk .tab')) t.setAttribute('aria-selected', String(t.dataset.view === view));
-  $('view-queue').hidden = view !== 'queue'; $('view-list').hidden = view !== 'list'; $('view-editor').hidden = view !== 'editor';
+  $('view-queue').hidden = view !== 'queue'; $('view-list').hidden = view !== 'list'; $('view-editor').hidden = view !== 'editor'; $('view-brief').hidden = view !== 'brief';
   document.querySelector('main.wrap').classList.toggle('editing', view === 'editor');
   const v = $(`view-${view}`); if (v) reveal(v);
-  if (view === 'queue') loadQueue(); if (view === 'list') loadList();
+  if (view === 'queue') loadQueue(); if (view === 'list') loadList(); if (view === 'brief') loadBrief();
 }
 // Restrained motion: re-run the entrance animation on the view being shown (disabled for reduced motion in CSS).
 function reveal(node) { node.classList.remove('enter'); void node.offsetWidth; node.classList.add('enter'); }
@@ -1074,6 +1106,54 @@ function archiveRow(a) {
     el('div', { class: 'aact' }, el('button', { class: 'lnk', type: 'button', text: 'Edit', onclick: open }),
       a.status === 'published' ? el('a', { class: 'lnk', href: `/article/${a.slug}`, target: '_blank', rel: 'noopener', text: 'View ↗' }) : el('button', { class: 'lnk', type: 'button', text: 'Preview', onclick: () => openEditor({ slug: a.slug }, true) })));
 }
+
+// ---- The Brief ----
+// Subscriber data is fetched only on demand from the authenticated API and never cached in the browser.
+let briefTimer = 0;
+$('brief-refresh').addEventListener('click', () => loadBrief());
+$('bq').addEventListener('input', () => { clearTimeout(briefTimer); briefTimer = setTimeout(loadBrief, 250); });
+$('bst').addEventListener('change', () => loadBrief());
+async function loadBrief() {
+  const body = $('brief-body'); body.classList.add('loading'); $('brief-note').textContent = 'Refreshing…';
+  try {
+    const r = await api('brief', { params: { q: $('bq').value.trim(), status: $('bst').value } });
+    $('brief-off').hidden = r.configured !== false;
+    $('brief-export').disabled = r.configured === false;
+    if (r.configured === false) { $('brief-stats').replaceChildren(); body.replaceChildren(); $('brief-note').textContent = ''; return; }
+    const st = r.stats;
+    $('brief-stats').replaceChildren(...[['Active', st.active, true], ['Unsubscribed', st.unsubscribed], ['All time', st.total]].map(([l, n, hot]) =>
+      el('div', { class: `stat${n ? (hot ? ' hot' : '') : ' zero'}` }, el('span', { class: 'n', text: String(n) }), el('span', { class: 'l', text: l }))));
+    body.replaceChildren(...(r.rows.length ? r.rows.map(briefRow) : [el('p', { class: 'empty', text: st.total ? 'No subscribers match this search.' : 'No one has signed up yet.' })]));
+    $('brief-note').textContent = r.matched > r.rows.length ? `Showing ${r.rows.length} of ${r.matched}` : `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+  } catch (e) { $('brief-note').textContent = ''; showError(e.message); }
+  finally { body.classList.remove('loading'); }
+}
+function briefRow(r) {
+  const active = r.status === 'active';
+  return el('article', { class: 'brow', role: 'listitem' },
+    el('div', { class: 'bmail' }, el('span', { text: r.email, title: r.email }), el('small', { text: active ? (r.source ? `via ${r.source}` : '') : `unsubscribed ${fmtDate(r.unsubscribedAt)}` })),
+    el('div', { class: 'adate' }, fmtDate(r.createdAt)),
+    el('div', { class: 'achips' }, pill(active ? 'published' : 'plain', active ? 'Active' : 'Unsubscribed')),
+    el('div', { class: 'aact' }, active ? el('button', { class: 'lnk', type: 'button', text: 'Unsubscribe', onclick: () => briefUnsubscribe(r) }) : ''));
+}
+async function briefUnsubscribe(r) {
+  if (!(await ask('Unsubscribe this reader?', `${r.email} will stop receiving the Brief. They can sign up again themselves at any time.`))) return;
+  try { await api('brief-unsubscribe', { method: 'POST', body: { id: r.id } }); await loadBrief(); }
+  catch (e) { showError(e.message); }
+}
+$('brief-export').addEventListener('click', async () => {
+  const b = $('brief-export'); b.disabled = true;
+  try {
+    const res = await fetch(`${API}?action=brief-export`, { credentials: 'same-origin', cache: 'no-store' });
+    if (res.status === 401) return showLogin('Your session has ended. Log in again.');
+    if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || `Export failed (${res.status})`);
+    const url = URL.createObjectURL(await res.blob());
+    const name = /filename="([^"]+)"/.exec(res.headers.get('content-disposition') || '')?.[1] || 'nuvellum-brief.csv';
+    const a = el('a', { href: url, download: name }); document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (e) { showError(e.message); }
+  finally { b.disabled = false; }
+});
 
 // ---- Editor ----
 // The article is the centre of the screen. Everything about the story (details, media, editorial gates,

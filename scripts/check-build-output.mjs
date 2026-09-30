@@ -124,6 +124,18 @@ const robots = read('robots.txt');
 if (!/^Disallow: \/admin$/m.test(robots) || !/^Disallow: \/api\/$/m.test(robots)) errors.push('robots.txt: /admin and /api/ must be disallowed');
 if (/href="\/admin"/.test(home)) errors.push('index.html: the admin must not be linked from the public site');
 
+// The Nuvellum Brief: the front-page form asks for explicit consent and posts to /api/brief; the unsubscribe
+// page ships, is never indexed and is not listed.
+if (!home.includes('id="signupConsent"') || !home.includes("fetch('/api/brief?action=subscribe'")) errors.push('index.html: Brief sign-up form must ask for consent and post to /api/brief');
+if (!home.includes('name="website" tabindex="-1"')) errors.push('index.html: Brief honeypot field missing');
+if (!existsSync(join(dist, 'brief', 'unsubscribe', 'index.html'))) errors.push('brief/unsubscribe/index.html: missing');
+else {
+  const unsub = read(join('brief', 'unsubscribe', 'index.html'));
+  if (!unsub.includes('<meta name="robots" content="noindex, nofollow"')) errors.push('brief/unsubscribe: missing noindex');
+  if (unsub.includes('rel="canonical"')) errors.push('brief/unsubscribe: must not declare a canonical URL');
+}
+if (sitemap.includes('/brief/')) errors.push('sitemap: /brief/ pages must not be listed');
+
 if (errors.length) {
   console.error('\nBuild output check failed:\n');
   for (const e of errors) console.error(' - ' + e);

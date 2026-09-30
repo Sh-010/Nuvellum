@@ -27,6 +27,8 @@ interface Props {
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
+  /** Private utility pages (e.g. unsubscribe): robots noindex, no canonical. */
+  noindex?: boolean;
 }
 const {
   title = 'Nuvellum',
@@ -43,7 +45,8 @@ const {
   type,
   publishedTime,
   modifiedTime,
-  author
+  author,
+  noindex = false
 } = Astro.props;
 
 const nav: [string, string, string][] = [
@@ -62,7 +65,7 @@ const ticker = (await getArticles()).slice(0, 8);
 <html lang="en">
 <head>
   <script is:inline set:html={THEME_HEAD}></script>
-  <SiteHead title={title} description={description} image={image} canonical={canonical} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} author={author} />
+  <SiteHead title={title} description={description} image={image} canonical={canonical} type={type} publishedTime={publishedTime} modifiedTime={modifiedTime} author={author} noindex={noindex} />
   <slot name="head" />
   <script is:inline>try{if('IntersectionObserver' in window)document.documentElement.classList.add('motion-ready')}catch(e){}</script>
 </head>
