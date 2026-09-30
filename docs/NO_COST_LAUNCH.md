@@ -1,52 +1,69 @@
-# Nuvellum no-cost launch checklist
+# Nuvellum launch and operating checklist
 
-The publication can launch and operate on `https://nuvellum.vercel.app` without buying a domain. A custom domain is a branding/portability upgrade, not a launch blocker.
+Current production host: **https://www.nuvellum.news**. The old no-domain launch assumptions in this file are obsolete; the custom domain, production publication, Brief and distribution engines now exist.
 
-## Already implemented in the repository
+## Operational now
 
-- Exact checksum-pinned v5.1 visual baseline.
-- Static-first production architecture.
-- Real article and section routes.
-- Sitemap, RSS, robots.txt and canonical metadata.
-- Open Graph / social preview metadata.
-- Article content validation before builds.
-- Markdown-only article body policy to reduce XSS risk.
-- Vercel security headers and CSP.
-- GitHub Actions build checks.
-- Dependency auditing, Dependabot and CodeQL.
-- n8n-compatible Markdown publishing contract.
-- Backup/recovery branches.
+- Approved Nuvellum production design and interaction system.
+- Static-first Astro site on Vercel with the canonical `www.nuvellum.news` host.
+- Real article, section, Latest, Saved, World Explorer, region, country and institutional routes.
+- Sitemap, RSS, robots.txt, canonical metadata, Open Graph/Twitter metadata and Article JSON-LD.
+- Content validation, duplicate protection, security checks and CodeQL.
+- Canonical n8n newsroom with editorial and sensitive-story verification gates.
+- Conservative licensed-photo acquisition with text-led fallback.
+- GitHub publication gate and kill switch (`NUVELLUM_AUTOPUBLISH`).
+- Nuvellum Brief consent storage, Resend synchronisation, unsubscribe lifecycle and unattended daily sender.
+- Social distribution/copy/card engines and posting ledger.
+- Shorts/Reels renderer with captions and local TTS.
+- Reader-analytics plumbing with consent-first GA4 loading.
+- Newsroom observability plus recurring live production smoke checks.
+- Recovery and branch-cleanup tooling.
 
-## Free / account-side switches still required
+## Account-side work that repository code cannot finish
 
-These cannot be safely enabled by repository code alone because they belong to third-party account settings or need credentials.
+These are external-account operations, not missing application code.
 
-### Vercel Web Analytics
+### Google
 
-Vercel requires Web Analytics to be enabled in the project dashboard before its analytics route exists. Keep this disabled in code until the dashboard switch is enabled and the final integration is tested against the CSP.
+- Verify the permanent `nuvellum.news` property in Search Console and submit `/sitemap.xml`.
+- Ensure the GA4 web stream measurement ID is present in Vercel Production and confirm live events after consent.
+- Optionally link Search Console to GA4.
 
-### Newsletter
+### Social platforms
 
-The v5.1 newsletter box remains visible, but the production build deliberately does **not** pretend an address was subscribed. Connect a real newsletter provider before storing addresses. Do not commit newsletter API keys to GitHub.
+Keep `NUVELLUM_SOCIAL` off until the intended accounts and developer apps are connected.
 
-### Search Console
+- Meta: Facebook Page / Instagram Professional account, app permissions and any required review.
+- TikTok: developer app, Content Posting API and audit for public automated posting.
+- YouTube: OAuth/client setup and API compliance requirements for public uploads.
+- LinkedIn: Company Page/API approval where applicable.
+- X: paid API budget decision before enabling linked-post automation.
+- Telegram: bot/channel credentials if Telegram publishing is desired.
 
-A URL-prefix property for `https://nuvellum.vercel.app/` can be used before a custom domain exists. When a custom domain is eventually added, create/verify the permanent property and update `SITE_URL`.
+Secrets belong in GitHub Actions secrets, Vercel environment variables, n8n credentials or the provider's secret store. Never commit them.
 
-### n8n publishing
+### Autopublish
 
-Store the GitHub credential inside n8n's credential store. Give it only the repository permissions needed to create/update article files. Sensitive stories should go to a review branch instead of directly to `main`.
+The publication gate is implemented. Turning `NUVELLUM_AUTOPUBLISH=on` is an owner policy decision, not an engineering task. Keep it off if every article should still receive a manual merge decision.
 
-### Social distribution
+## What is deliberately not a launch blocker
 
-Keep Facebook/X/LinkedIn tokens in n8n or the provider's secret store, never in article frontmatter, workflow JSON committed to GitHub, or browser JavaScript.
+- Paid image-generation APIs.
+- Programmatic ads.
+- X API spend.
+- Fully automatic public Shorts/Reels uploads.
+- A large audience or sponsorship inventory.
 
-## When a custom domain becomes affordable
+The publication should accumulate original analysis/explainers, audience history and operational reliability before AdSense or aggressive monetisation is treated as a priority.
 
-1. Buy the domain.
-2. Attach it to the Vercel project.
-3. Set `SITE_URL` to the new HTTPS origin.
-4. Redeploy.
-5. Verify canonical tags, sitemap, RSS and social previews.
-6. Add the domain to Search Console.
-7. Keep the `vercel.app` deployment as a redirect/backup rather than creating duplicate indexed content.
+## Production acceptance rule
+
+The core is considered healthy when:
+
+1. required GitHub checks are green;
+2. Vercel's current production deployment is healthy;
+3. the recurring production smoke audit reports no failures for sitemap routes and public images;
+4. Brief and newsroom failures remain isolated from the public site;
+5. no unresolved release-blocking PR is open.
+
+When those conditions hold, stop changing the core merely to make it "more finished". Work should move to reporting, distribution, original editorial output and audience growth.
