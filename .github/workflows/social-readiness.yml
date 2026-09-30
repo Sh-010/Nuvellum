@@ -1,0 +1,56 @@
+name: Social readiness audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/social-readiness.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
+      NUVELLUM_X_BUDGET_APPROVED: ${{ vars.NUVELLUM_X_BUDGET_APPROVED }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+      LINKEDIN_ORG_URN: ${{ secrets.LINKEDIN_ORG_URN }}
+      LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+      X_API_KEY: ${{ secrets.X_API_KEY }}
+      X_API_SECRET: ${{ secrets.X_API_SECRET }}
+      X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+      X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+    steps:
+      - name: Report configured social publishing capabilities
+        shell: bash
+        run: |
+          flag() { if [ -n "$2" ]; then printf '%-30s configured\n' "$1"; else printf '%-30s missing\n' "$1"; fi; }
+          echo "Nuvellum social readiness"
+          echo "========================="
+          if [ "$NUVELLUM_SOCIAL" = "on" ]; then echo "live publishing switch         ON"; else echo "live publishing switch         OFF"; fi
+          flag "Telegram bot token" "$TELEGRAM_BOT_TOKEN"
+          flag "Telegram chat/channel id" "$TELEGRAM_CHAT_ID"
+          flag "Facebook Page id" "$FACEBOOK_PAGE_ID"
+          flag "Facebook Page token" "$FACEBOOK_PAGE_TOKEN"
+          flag "LinkedIn organisation URN" "$LINKEDIN_ORG_URN"
+          flag "LinkedIn access token" "$LINKEDIN_TOKEN"
+          flag "X API key" "$X_API_KEY"
+          flag "X API secret" "$X_API_SECRET"
+          flag "X access token" "$X_ACCESS_TOKEN"
+          flag "X access secret" "$X_ACCESS_SECRET"
+          if [ "$NUVELLUM_X_BUDGET_APPROVED" = "yes" ]; then echo "X paid-post approval           YES"; else echo "X paid-post approval           NO"; fi
+          echo
+          [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ] && echo "Telegram adapter               READY" || echo "Telegram adapter               BLOCKED"
+          [ -n "$FACEBOOK_PAGE_ID" ] && [ -n "$FACEBOOK_PAGE_TOKEN" ] && echo "Facebook adapter               READY" || echo "Facebook adapter               BLOCKED"
+          [ -n "$LINKEDIN_ORG_URN" ] && [ -n "$LINKEDIN_TOKEN" ] && echo "LinkedIn adapter               READY" || echo "LinkedIn adapter               BLOCKED"
+          [ -n "$X_API_KEY" ] && [ -n "$X_API_SECRET" ] && [ -n "$X_ACCESS_TOKEN" ] && [ -n "$X_ACCESS_SECRET" ] && [ "$NUVELLUM_X_BUDGET_APPROVED" = "yes" ] && echo "X adapter                      READY" || echo "X adapter                      BLOCKED"
+          echo "Instagram adapter              NOT IMPLEMENTED"
+          echo "TikTok direct-post adapter     NOT IMPLEMENTED / PLATFORM AUDIT REQUIRED"
+          echo "YouTube upload adapter         NOT IMPLEMENTED / OAUTH + API AUDIT REQUIRED"
