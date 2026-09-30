@@ -31,3 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUVELLUM_AUTOPUBLISH: ${{ vars.NUVELLUM_AUTOPUBLISH }}
         run: node scripts/observability-report.mjs
+      - name: Smoke-test live production
+        env:
+          NUVELLUM_SITE_URL: https://www.nuvellum.news
+        run: node scripts/production-smoke.mjs
