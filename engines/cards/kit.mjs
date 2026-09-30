@@ -80,7 +80,7 @@ export function chip(str, x, y, { size = 16, bg = C.ink, fill = C.paper2, anchor
   // or trip the live overflow gate by a handful of pixels.
   const w = measure(s, size, 'normal-700', ls) + size * 2.0, h = size * 1.9;
   const x0 = anchor === 'end' ? x - w : x;
-  return `<g><rect x="${r(x0)}" y="${r(y - h)}" width="${r(w)}" height="${r(h)}" fill="${bg}" opacity="0.92"/>${text(s, { x: x0 + size * 0.8, y: y - h * 0.32, size, face: 'normal-700', fill, ls, max: x0 + w - size * 0.8 })}</g>`;
+  return `<g><rect x="${r(x0)}" y="${r(y - h)}" width="${r(w)}" height="${r(h)}" fill="${bg}" opacity="0.92"/>${text(s, { x: x0 + size * 0.8, y: y - h * 0.32, size, face: 'normal-700', fill, ls, max: x0 + w })}</g>`;
 }
 
 /** The story's own image, cover-cropped into a box, with a hairline frame. */
