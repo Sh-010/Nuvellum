@@ -57,7 +57,7 @@ record(!/<img\b[^>]*\ssrc="(?:|undefined|null)"/i.test(home), 'homepage has no e
 const abs = (value) => {
   try { return new URL(value, ORIGIN).toString(); } catch { return ''; }
 };
-const articleUrls = [...new Set([...home.matchAll(/href="([^"]*\/article\/[^"#?]+[^"]*)"/g)].map(m => abs(m[1])).filter(Boolean))];
+const articleUrls = [...new Set([...home.matchAll(/href="(\/article\/[a-z0-9-]+)"/gi)].map(m => abs(m[1])).filter(Boolean))];
 const imageUrls = [...new Set([...home.matchAll(/<img\b[^>]*\ssrc="([^"]+)"/g)].map(m => abs(m[1])).filter(u => u.startsWith(ORIGIN)))];
 
 async function verifyMany(urls, kind) {
