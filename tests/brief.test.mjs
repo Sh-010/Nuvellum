@@ -202,7 +202,7 @@ test('Subscribe opens the in-page Brief invitation instead of jumping the reader
     assert.match(source, /id="briefInvitation"/, 'the invitation dialog is present');
     assert.doesNotMatch(source, /<a class="subscribe" href="#newsletter">/, 'Subscribe is not a fragment-navigation link');
   }
-  assert.match(home, /source:'header'/, 'modal sign-ups are attributed separately');
+  assert.match(home, /wireBriefForm\(briefModalForm,'header'\)/, 'modal sign-ups are attributed separately');
   assert.match(shell, /source:'header'/, 'interior modal sign-ups use the Brief endpoint');
   assert.match(css, /brief-invite-card/, 'interior pages carry the invitation styling');
 });
