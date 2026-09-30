@@ -2,11 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 const ORIGIN = 'https://www.nuvellum.news';
-const UNSUBSCRIBE_URL = 'https://www.nuvellum.news/brief/unsubscribe?s=t-4vPUnWvZuBorRHr_U65rEPSEOJQh50&t=tCPjLSDAjev7JqifQsRBQFW7CSGlCrc2gcs74NyaaQw';
+const EMAIL = 'sam@nuvellum.news';
 
-test('live Nuvellum Brief final cleanup unsubscribe succeeds', async () => {
-  const u = new URL(UNSUBSCRIBE_URL);
-  const res = await fetch(`${ORIGIN}/api/brief?action=unsubscribe&s=${encodeURIComponent(u.searchParams.get('s'))}&t=${encodeURIComponent(u.searchParams.get('t'))}`, {
+test('live Nuvellum Brief delivery recipient signup succeeds', async () => {
+  const res = await fetch(`${ORIGIN}/api/brief?action=subscribe`, {
     method: 'POST',
     redirect: 'follow',
     headers: {
@@ -15,12 +14,15 @@ test('live Nuvellum Brief final cleanup unsubscribe succeeds', async () => {
       'User-Agent': 'Nuvellum-QA/1.0'
     },
     body: JSON.stringify({
-      s: u.searchParams.get('s'),
-      t: u.searchParams.get('t')
+      email: EMAIL,
+      consent: true,
+      website: '',
+      elapsedMs: 9000,
+      source: 'qa-delivery-test'
     })
   });
   const body = await res.json().catch(() => ({}));
   assert.equal(res.status, 200, JSON.stringify(body));
   assert.equal(body.ok, true, JSON.stringify(body));
-  assert.match(String(body.message || ''), /unsubscribed/i);
+  assert.match(String(body.message || ''), /Nuvellum Brief/i);
 });
