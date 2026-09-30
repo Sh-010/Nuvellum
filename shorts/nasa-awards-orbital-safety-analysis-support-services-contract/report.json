@@ -1,0 +1,18 @@
+{
+  "slug": "nasa-awards-orbital-safety-analysis-support-services-contract",
+  "status": "rendered",
+  "method": "extractive",
+  "tts": "piper",
+  "seconds": 44.43333333333333,
+  "frames": 1333,
+  "notes": [
+    "extractive article-only script; no paraphrase model used"
+  ],
+  "files": {
+    "video": "engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/short.mp4",
+    "poster": "engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/poster.jpg",
+    "captions": "engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/captions.srt",
+    "script": "engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/script.json",
+    "plan": "engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/plan.json"
+  }
+}

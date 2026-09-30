@@ -1,0 +1,642 @@
+{
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "total": 44.43333333333333,
+  "frames": 1333,
+  "endCardStart": 41.422991999999994,
+  "lines": [
+    {
+      "index": 0,
+      "role": "hook",
+      "text": "NASA has awarded a contract to Omitron Inc. to acquire orbital safety analysis services intended to protect NASA spaceflight assets and astronaut lives.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/line-00.wav",
+      "start": 0.3,
+      "end": 9.846032,
+      "pages": [
+        {
+          "start": 0.3,
+          "end": 1.485454954248366,
+          "words": [
+            {
+              "w": "NASA",
+              "start": 0.3,
+              "end": 0.6119618300653594
+            },
+            {
+              "w": "has",
+              "start": 0.6119618300653594,
+              "end": 0.861531294117647
+            },
+            {
+              "w": "awarded",
+              "start": 0.861531294117647,
+              "end": 1.360670222222222
+            },
+            {
+              "w": "a",
+              "start": 1.360670222222222,
+              "end": 1.4854549542483657
+            }
+          ]
+        },
+        {
+          "start": 1.485454954248366,
+          "end": 3.045264104575163,
+          "words": [
+            {
+              "w": "contract",
+              "start": 1.485454954248366,
+              "end": 2.046986248366013
+            },
+            {
+              "w": "to",
+              "start": 2.046986248366013,
+              "end": 2.2341633464052286
+            },
+            {
+              "w": "Omitron",
+              "start": 2.2341633464052286,
+              "end": 2.733302274509804
+            },
+            {
+              "w": "Inc.",
+              "start": 2.733302274509804,
+              "end": 3.045264104575163
+            }
+          ]
+        },
+        {
+          "start": 3.045264104575163,
+          "end": 4.667465620915032,
+          "words": [
+            {
+              "w": "to",
+              "start": 3.045264104575163,
+              "end": 3.2324412026143787
+            },
+            {
+              "w": "acquire",
+              "start": 3.2324412026143787,
+              "end": 3.731580130718954
+            },
+            {
+              "w": "orbital",
+              "start": 3.731580130718954,
+              "end": 4.230719058823529
+            },
+            {
+              "w": "safety",
+              "start": 4.230719058823529,
+              "end": 4.667465620915032
+            }
+          ]
+        },
+        {
+          "start": 4.667465620915032,
+          "end": 6.539236601307189,
+          "words": [
+            {
+              "w": "analysis",
+              "start": 4.667465620915032,
+              "end": 5.228996915032679
+            },
+            {
+              "w": "services",
+              "start": 5.228996915032679,
+              "end": 5.7905282091503265
+            },
+            {
+              "w": "intended",
+              "start": 5.7905282091503265,
+              "end": 6.352059503267974
+            },
+            {
+              "w": "to",
+              "start": 6.352059503267974,
+              "end": 6.53923660130719
+            }
+          ]
+        },
+        {
+          "start": 6.539236601307189,
+          "end": 8.535792313725489,
+          "words": [
+            {
+              "w": "protect",
+              "start": 6.539236601307189,
+              "end": 7.038375529411764
+            },
+            {
+              "w": "NASA",
+              "start": 7.038375529411764,
+              "end": 7.350337359477123
+            },
+            {
+              "w": "spaceflight",
+              "start": 7.350337359477123,
+              "end": 8.099045751633986
+            },
+            {
+              "w": "assets",
+              "start": 8.099045751633986,
+              "end": 8.535792313725489
+            }
+          ]
+        },
+        {
+          "start": 8.535792313725489,
+          "end": 9.846032,
+          "words": [
+            {
+              "w": "and",
+              "start": 8.535792313725489,
+              "end": 8.785361777777776
+            },
+            {
+              "w": "astronaut",
+              "start": 8.785361777777776,
+              "end": 9.409285437908496
+            },
+            {
+              "w": "lives.",
+              "start": 9.409285437908496,
+              "end": 9.846032
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "role": "beat",
+      "text": "The indefinite-delivery contract carries an estimated value of approximately $23.5 million spanning a five-year period of performance.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/line-01.wav",
+      "start": 10.006032,
+      "end": 19.180543999999998,
+      "pages": [
+        {
+          "start": 10.006032,
+          "end": 12.792365274074072,
+          "words": [
+            {
+              "w": "The",
+              "start": 10.006032,
+              "end": 10.277869392592592
+            },
+            {
+              "w": "indefinite-delivery",
+              "start": 10.277869392592592,
+              "end": 11.637056355555554
+            },
+            {
+              "w": "contract",
+              "start": 11.637056355555554,
+              "end": 12.248690488888887
+            },
+            {
+              "w": "carries",
+              "start": 12.248690488888887,
+              "end": 12.792365274074072
+            }
+          ]
+        },
+        {
+          "start": 12.792365274074072,
+          "end": 14.287470933333331,
+          "words": [
+            {
+              "w": "an",
+              "start": 12.792365274074072,
+              "end": 12.996243318518516
+            },
+            {
+              "w": "estimated",
+              "start": 12.996243318518516,
+              "end": 13.675836799999997
+            },
+            {
+              "w": "value",
+              "start": 13.675836799999997,
+              "end": 14.083592888888885
+            },
+            {
+              "w": "of",
+              "start": 14.083592888888885,
+              "end": 14.28747093333333
+            }
+          ]
+        },
+        {
+          "start": 14.287470933333331,
+          "end": 16.80196681481481,
+          "words": [
+            {
+              "w": "approximately",
+              "start": 14.287470933333331,
+              "end": 15.238901807407405
+            },
+            {
+              "w": "$23.5",
+              "start": 15.238901807407405,
+              "end": 15.646657896296293
+            },
+            {
+              "w": "million",
+              "start": 15.646657896296293,
+              "end": 16.19033268148148
+            },
+            {
+              "w": "spanning",
+              "start": 16.19033268148148,
+              "end": 16.80196681481481
+            }
+          ]
+        },
+        {
+          "start": 16.80196681481481,
+          "end": 18.093194429629627,
+          "words": [
+            {
+              "w": "a",
+              "start": 16.80196681481481,
+              "end": 16.93788551111111
+            },
+            {
+              "w": "five-year",
+              "start": 16.93788551111111,
+              "end": 17.61747899259259
+            },
+            {
+              "w": "period",
+              "start": 17.61747899259259,
+              "end": 18.09319442962963
+            }
+          ]
+        },
+        {
+          "start": 18.093194429629627,
+          "end": 19.180543999999998,
+          "words": [
+            {
+              "w": "of",
+              "start": 18.093194429629627,
+              "end": 18.29707247407407
+            },
+            {
+              "w": "performance.",
+              "start": 18.29707247407407,
+              "end": 19.180543999999998
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "role": "beat",
+      "text": "The agreement covers conjunction assessment screening services for all uncrewed spacecraft operated by NASA.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/line-02.wav",
+      "start": 19.340543999999998,
+      "end": 25.508072,
+      "pages": [
+        {
+          "start": 19.340543999999998,
+          "end": 21.20777724770642,
+          "words": [
+            {
+              "w": "The",
+              "start": 19.340543999999998,
+              "end": 19.56687530275229
+            },
+            {
+              "w": "agreement",
+              "start": 19.56687530275229,
+              "end": 20.132703559633025
+            },
+            {
+              "w": "covers",
+              "start": 20.132703559633025,
+              "end": 20.52878333944954
+            },
+            {
+              "w": "conjunction",
+              "start": 20.52878333944954,
+              "end": 21.20777724770642
+            }
+          ]
+        },
+        {
+          "start": 21.20777724770642,
+          "end": 23.131593321100915,
+          "words": [
+            {
+              "w": "assessment",
+              "start": 21.20777724770642,
+              "end": 21.830188330275227
+            },
+            {
+              "w": "screening",
+              "start": 21.830188330275227,
+              "end": 22.396016587155962
+            },
+            {
+              "w": "services",
+              "start": 22.396016587155962,
+              "end": 22.905262018348623
+            },
+            {
+              "w": "for",
+              "start": 22.905262018348623,
+              "end": 23.131593321100915
+            }
+          ]
+        },
+        {
+          "start": 23.131593321100915,
+          "end": 24.99882656880734,
+          "words": [
+            {
+              "w": "all",
+              "start": 23.131593321100915,
+              "end": 23.357924623853208
+            },
+            {
+              "w": "uncrewed",
+              "start": 23.357924623853208,
+              "end": 23.867170055045868
+            },
+            {
+              "w": "spacecraft",
+              "start": 23.867170055045868,
+              "end": 24.489581137614675
+            },
+            {
+              "w": "operated",
+              "start": 24.489581137614675,
+              "end": 24.998826568807335
+            }
+          ]
+        },
+        {
+          "start": 24.99882656880734,
+          "end": 25.508072,
+          "words": [
+            {
+              "w": "by",
+              "start": 24.99882656880734,
+              "end": 25.16857504587156
+            },
+            {
+              "w": "NASA.",
+              "start": 25.16857504587156,
+              "end": 25.508072
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "role": "beat",
+      "text": "Additionally, the arrangement includes support for human spaceflight activities alongside orbital safety analysis support directed toward the National Oceanic and Atmospheric Administration’s Office of Space Commerce.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/line-03.wav",
+      "start": 25.668072,
+      "end": 39.068616,
+      "pages": [
+        {
+          "start": 25.668072,
+          "end": 28.065417027522933,
+          "words": [
+            {
+              "w": "Additionally,",
+              "start": 25.668072,
+              "end": 26.52865739449541
+            },
+            {
+              "w": "the",
+              "start": 26.52865739449541,
+              "end": 26.774538935779816
+            },
+            {
+              "w": "arrangement",
+              "start": 26.774538935779816,
+              "end": 27.512183559633026
+            },
+            {
+              "w": "includes",
+              "start": 27.512183559633026,
+              "end": 28.065417027522933
+            }
+          ]
+        },
+        {
+          "start": 28.065417027522933,
+          "end": 29.90952858715596,
+          "words": [
+            {
+              "w": "support",
+              "start": 28.065417027522933,
+              "end": 28.55718011009174
+            },
+            {
+              "w": "for",
+              "start": 28.55718011009174,
+              "end": 28.803061651376144
+            },
+            {
+              "w": "human",
+              "start": 28.803061651376144,
+              "end": 29.17188396330275
+            },
+            {
+              "w": "spaceflight",
+              "start": 29.17188396330275,
+              "end": 29.90952858715596
+            }
+          ]
+        },
+        {
+          "start": 29.90952858715596,
+          "end": 32.122462458715596,
+          "words": [
+            {
+              "w": "activities",
+              "start": 29.90952858715596,
+              "end": 30.58570282568807
+            },
+            {
+              "w": "alongside",
+              "start": 30.58570282568807,
+              "end": 31.20040667889908
+            },
+            {
+              "w": "orbital",
+              "start": 31.20040667889908,
+              "end": 31.692169761467884
+            },
+            {
+              "w": "safety",
+              "start": 31.692169761467884,
+              "end": 32.12246245871559
+            }
+          ]
+        },
+        {
+          "start": 32.122462458715596,
+          "end": 34.15098517431193,
+          "words": [
+            {
+              "w": "analysis",
+              "start": 32.122462458715596,
+              "end": 32.675695926605506
+            },
+            {
+              "w": "support",
+              "start": 32.675695926605506,
+              "end": 33.167459009174316
+            },
+            {
+              "w": "directed",
+              "start": 33.167459009174316,
+              "end": 33.720692477064226
+            },
+            {
+              "w": "toward",
+              "start": 33.720692477064226,
+              "end": 34.150985174311934
+            }
+          ]
+        },
+        {
+          "start": 34.15098517431193,
+          "end": 35.68774480733945,
+          "words": [
+            {
+              "w": "the",
+              "start": 34.15098517431193,
+              "end": 34.39686671559633
+            },
+            {
+              "w": "National",
+              "start": 34.39686671559633,
+              "end": 34.95010018348624
+            },
+            {
+              "w": "Oceanic",
+              "start": 34.95010018348624,
+              "end": 35.44186326605505
+            },
+            {
+              "w": "and",
+              "start": 35.44186326605505,
+              "end": 35.687744807339456
+            }
+          ]
+        },
+        {
+          "start": 35.68774480733945,
+          "end": 38.08508983486239,
+          "words": [
+            {
+              "w": "Atmospheric",
+              "start": 35.68774480733945,
+              "end": 36.42538943119266
+            },
+            {
+              "w": "Administration’s",
+              "start": 36.42538943119266,
+              "end": 37.470385981651376
+            },
+            {
+              "w": "Office",
+              "start": 37.470385981651376,
+              "end": 37.900678678899084
+            },
+            {
+              "w": "of",
+              "start": 37.900678678899084,
+              "end": 38.08508983486239
+            }
+          ]
+        },
+        {
+          "start": 38.08508983486239,
+          "end": 39.068616,
+          "words": [
+            {
+              "w": "Space",
+              "start": 38.08508983486239,
+              "end": 38.453912146788994
+            },
+            {
+              "w": "Commerce.",
+              "start": 38.453912146788994,
+              "end": 39.068616000000006
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "role": "cta",
+      "text": "Read the full story on Nuvellum.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/nasa-awards-orbital-safety-analysis-support-services-contract/line-04.wav",
+      "start": 39.228615999999995,
+      "end": 41.262992,
+      "pages": [
+        {
+          "start": 39.228615999999995,
+          "end": 40.461571151515145,
+          "words": [
+            {
+              "w": "Read",
+              "start": 39.228615999999995,
+              "end": 39.53685478787878
+            },
+            {
+              "w": "the",
+              "start": 39.53685478787878,
+              "end": 39.78344581818181
+            },
+            {
+              "w": "full",
+              "start": 39.78344581818181,
+              "end": 40.091684606060596
+            },
+            {
+              "w": "story",
+              "start": 40.091684606060596,
+              "end": 40.461571151515145
+            }
+          ]
+        },
+        {
+          "start": 40.461571151515145,
+          "end": 41.262992,
+          "words": [
+            {
+              "w": "on",
+              "start": 40.461571151515145,
+              "end": 40.64651442424242
+            },
+            {
+              "w": "Nuvellum.",
+              "start": 40.64651442424242,
+              "end": 41.262992
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "story": {
+    "slug": "nasa-awards-orbital-safety-analysis-support-services-contract",
+    "title": "Nasa awards orbital safety analysis support services contract",
+    "section": "Science",
+    "type": "News",
+    "url": "https://www.nuvellum.news/article/nasa-awards-orbital-safety-analysis-support-services-contract",
+    "imageKind": "photo"
+  }
+}

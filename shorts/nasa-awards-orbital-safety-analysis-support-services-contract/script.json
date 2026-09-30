@@ -1,0 +1,30 @@
+{
+  "method": "extractive",
+  "lines": [
+    {
+      "role": "hook",
+      "text": "NASA has awarded a contract to Omitron Inc. to acquire orbital safety analysis services intended to protect NASA spaceflight assets and astronaut lives.",
+      "source": 0
+    },
+    {
+      "role": "beat",
+      "text": "The indefinite-delivery contract carries an estimated value of approximately $23.5 million spanning a five-year period of performance.",
+      "source": 1
+    },
+    {
+      "role": "beat",
+      "text": "The agreement covers conjunction assessment screening services for all uncrewed spacecraft operated by NASA.",
+      "source": 2
+    },
+    {
+      "role": "beat",
+      "text": "Additionally, the arrangement includes support for human spaceflight activities alongside orbital safety analysis support directed toward the National Oceanic and Atmospheric Administration’s Office of Space Commerce.",
+      "source": 3
+    },
+    {
+      "role": "cta",
+      "text": "Read the full story on Nuvellum.",
+      "source": null
+    }
+  ]
+}
