@@ -664,16 +664,16 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
   // Some touch browsers/WebViews report a fine pointer even though hover is unavailable.
   // Treat actual touch capability as coarse input too so the first tap reveals the wordmark
   // instead of navigating away before the reader can see it.
-  const touchBrand=()=>coarsePointer?.matches===true || Number(navigator.maxTouchPoints||0)>0 || 'ontouchstart' in window;
+  const touchBrand=(event)=>coarsePointer?.matches===true || Number(navigator.maxTouchPoints||0)>0 || 'ontouchstart' in window || event?.pointerType==='touch' || window.innerWidth<=900;
   const closeBrand=()=>brandZone?.classList.remove('is-open');
   brandMonogram?.addEventListener('click',e=>{
-    if(touchBrand() && !brandZone?.classList.contains('is-open')){
+    if(touchBrand(e) && !brandZone?.classList.contains('is-open')){
       e.preventDefault();
       brandZone?.classList.add('is-open');
     }
   });
   document.addEventListener('pointerdown',e=>{
-    if(touchBrand() && brandZone?.classList.contains('is-open') && !brandZone.contains(e.target)) closeBrand();
+    if(touchBrand(e) && brandZone?.classList.contains('is-open') && !brandZone.contains(e.target)) closeBrand();
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBrand()});
 
