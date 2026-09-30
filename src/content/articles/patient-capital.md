@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "6 min"
 image: "/uploads/articles/patient-capital.jpg"
 imageAlt: "The trading hall of the Frankfurt Stock Exchange"
-status: "published"
+status: "draft"
 tags: ["markets", "capital", "business"]
 ---
 

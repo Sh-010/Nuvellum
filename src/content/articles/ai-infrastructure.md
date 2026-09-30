@@ -8,7 +8,7 @@ date: "2026-09-25"
 readingTime: "8 min"
 image: "/uploads/articles/ai-infrastructure.jpg"
 imageAlt: "Aerial view of a data centre campus at sunset"
-status: "published"
+status: "draft"
 tags: ["AI", "infrastructure", "technology"]
 ---
 

@@ -1,21 +1,4 @@
 {
-  "ai-infrastructure": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Google Data Center, Council Bluffs Iowa (49062863796).jpg",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "author": "Chad Davis",
-    "credit": "Google Data Center, Council Bluffs Iowa",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Google_Data_Center,_Council_Bluffs_Iowa_(49062863796).jpg",
-    "mime": "image/jpeg",
-    "width": 4000,
-    "height": 2250,
-    "caption": "A Google data centre in Council Bluffs, Iowa",
-    "focus": "",
-    "path": "/uploads/articles/ai-infrastructure.jpg",
-    "retrieved": "2026-09-28"
-  },
   "anthropic-releases-sonnet-5-5-highlighting-speed-and-lower-costs": {
     "kind": "photo",
     "source": "Wikimedia Commons",
@@ -101,23 +84,6 @@
     "path": "/uploads/articles/film-execs-discuss-impact-timeline-and-cost-risks-of-proposed-u-s-federal-film-tax-credit.jpg",
     "retrieved": "2026-09-28"
   },
-  "film-spectacle": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Columbus Shopping Center, Kinomax IMAX cinema 2021-09 2.jpg",
-    "license": "CC0",
-    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "author": "Svetlov Artem",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Columbus_Shopping_Center,_Kinomax_IMAX_cinema_2021-09_2.jpg",
-    "mime": "image/jpeg",
-    "width": 4000,
-    "height": 2256,
-    "caption": "An IMAX auditorium in Moscow",
-    "focus": "",
-    "path": "/uploads/articles/film-spectacle.jpg",
-    "retrieved": "2026-09-28"
-  },
   "floods-and-landslides-kill-at-least-56-people-in-india-12-in-nepal": {
     "kind": "photo",
     "source": "Wikimedia Commons",
@@ -150,23 +116,6 @@
     "caption": "File photo: St Helier, Jersey",
     "focus": "",
     "path": "/uploads/articles/fuel-costs-create-recruitment-hurdles-for-jersey-meal-delivery-service.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "global-anime": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Akihabara -09.jpg",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "author": "Aimaimyi",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Akihabara_-09.jpg",
-    "mime": "image/jpeg",
-    "width": 5284,
-    "height": 2804,
-    "caption": "Akihabara, Tokyo",
-    "focus": "",
-    "path": "/uploads/articles/global-anime.jpg",
     "retrieved": "2026-09-28"
   },
   "hayley-kiyoko-wants-to-make-a-lesbian-pirates-of-the-caribbean": {
@@ -202,30 +151,6 @@
     "focus": "",
     "path": "/uploads/articles/india-and-pakistan-trade-accusations-at-un-general-assembly.jpg",
     "retrieved": "2026-09-28"
-  },
-  "industrial-race": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Steel Mill in Hamilton, Ontario 03.jpg",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "author": "K2HWY",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Steel_Mill_in_Hamilton,_Ontario_03.jpg",
-    "mime": "image/jpeg",
-    "width": 4226,
-    "height": 2818,
-    "caption": "Steel mills in Hamilton, Ontario",
-    "focus": "50% 88%",
-    "path": "/uploads/articles/industrial-race.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "internet-flattened-taste": {
-    "kind": "illustration",
-    "source": "Nuvellum",
-    "caption": "Nuvellum editorial illustration",
-    "focus": "",
-    "path": "/uploads/articles/internet-flattened-taste.svg"
   },
   "iran-proposes-seven-day-deal-to-reopen-strait-of-hormuz": {
     "kind": "photo",
@@ -276,23 +201,6 @@
     "caption": "Martin McDonagh at the Wild Horse Nine screening, 83rd Venice International Film Festival",
     "focus": "",
     "path": "/uploads/articles/martin-mcdonagh-calls-wild-horse-nine-his-most-political-film.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "megacity-power": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Aerial view of Osaka 2019-04-12.jpg",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "author": "Dick Thomas Johnson from Tokyo, Japan",
-    "credit": "Osaka",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Osaka_2019-04-12.jpg",
-    "mime": "image/jpeg",
-    "width": 6000,
-    "height": 4000,
-    "caption": "Osaka, Japan, from the air",
-    "focus": "",
-    "path": "/uploads/articles/megacity-power.jpg",
     "retrieved": "2026-09-28"
   },
   "meta-and-youtube-say-they-will-run-ads-for-musk-documentary-after-all": {
@@ -346,23 +254,6 @@
     "path": "/uploads/articles/nor-easter-storm-brings-coastal-flooding-as-new-york-and-new-jersey-declare-emergency.jpg",
     "retrieved": "2026-09-28"
   },
-  "observatories": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Vera C. Rubin Observatory, iotw2229a - Night Light.jpg",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "author": "Rubin Observatory/NOIRLab/NSF/AURA/B. Quint",
-    "credit": "https://noirlab.edu/public/images/iotw2229a/",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Vera_C._Rubin_Observatory,_iotw2229a_-_Night_Light.jpg",
-    "mime": "image/jpeg",
-    "width": 9056,
-    "height": 3472,
-    "caption": "The Vera C. Rubin Observatory on Cerro Pachón, Chile",
-    "focus": "",
-    "path": "/uploads/articles/observatories.jpg",
-    "retrieved": "2026-09-28"
-  },
   "openai-probes-dozens-of-incidents-of-ai-agents-acting-improperly": {
     "kind": "photo",
     "source": "Wikimedia Commons",
@@ -378,23 +269,6 @@
     "caption": "File photo: 1515 Third Street in San Francisco's Mission Bay",
     "focus": "",
     "path": "/uploads/articles/openai-probes-dozens-of-incidents-of-ai-agents-acting-improperly.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "patient-capital": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Frankfurt Stock Exchange (Ank Kumar) 01.jpg",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "author": "Ank Kumar",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Frankfurt_Stock_Exchange_(Ank_Kumar)_01.jpg",
-    "mime": "image/jpeg",
-    "width": 6000,
-    "height": 4000,
-    "caption": "The trading hall of the Frankfurt Stock Exchange",
-    "focus": "",
-    "path": "/uploads/articles/patient-capital.jpg",
     "retrieved": "2026-09-28"
   },
   "police-say-mississippi-woman-was-dead-before-body-was-staged-hanging-from-tree": {
@@ -429,57 +303,6 @@
     "caption": "File photo: Pope Leo XIV at his first public appearance, St Peter's Square, May 2025",
     "focus": "",
     "path": "/uploads/articles/pope-decries-scourge-of-sexual-abuse-during-france-visit.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "power-distributed": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:European Parliament Hemicycle - Brussels 2024.jpg",
-    "license": "CC0",
-    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "author": "Profpcde",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:European_Parliament_Hemicycle_-_Brussels_2024.jpg",
-    "mime": "image/jpeg",
-    "width": 4032,
-    "height": 3024,
-    "caption": "The European Parliament hemicycle in Brussels",
-    "focus": "",
-    "path": "/uploads/articles/power-distributed.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "prestige-media": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Lichtburg-Essen-Kinosaal-2025.jpg",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "author": "Tuxyso",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Lichtburg-Essen-Kinosaal-2025.jpg",
-    "mime": "image/jpeg",
-    "width": 6029,
-    "height": 4024,
-    "caption": "The auditorium of the Lichtburg cinema in Essen, Germany",
-    "focus": "",
-    "path": "/uploads/articles/prestige-media.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "regional-power-logistics": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Container-Terminal Bremerhaven 02.jpg",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "author": "H. Zell",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Container-Terminal_Bremerhaven_02.jpg",
-    "mime": "image/jpeg",
-    "width": 4687,
-    "height": 3898,
-    "caption": "Container cranes at the port of Bremerhaven, Germany",
-    "focus": "",
-    "path": "/uploads/articles/regional-power-logistics.jpg",
     "retrieved": "2026-09-28"
   },
   "renewed-fighting-in-tigray-sparks-fears-of-wider-conflict-in-ethiopia": {
@@ -533,64 +356,6 @@
     "path": "/uploads/articles/scotland-diesel-prices-over-2-pounds.jpg",
     "retrieved": "2026-09-28"
   },
-  "seriousness-fashionable": {
-    "kind": "illustration",
-    "source": "Nuvellum",
-    "caption": "Nuvellum editorial illustration",
-    "focus": "",
-    "path": "/uploads/articles/seriousness-fashionable.svg"
-  },
-  "smaller-studios": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Game Developers Conference 2019 entrance, Moscone Center (3).jpg",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "author": "Official GDC",
-    "credit": "https://www.flickr.com/photos/officialgdc/40450128093/in/album-72157677265653397/",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Game_Developers_Conference_2019_entrance,_Moscone_Center_(3).jpg",
-    "mime": "image/jpeg",
-    "width": 3000,
-    "height": 2000,
-    "caption": "The Game Developers Conference, San Francisco, 2019",
-    "focus": "",
-    "path": "/uploads/articles/smaller-studios.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "sports-media-war": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Michael Kay, Paul O'Neill, Ken Singleton in broadcast booth.jpg",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "author": "chris.ptacek",
-    "credit": "https://www.flickr.com/photos/chrisptacek/3449283076/",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Michael_Kay,_Paul_O%27Neill,_Ken_Singleton_in_broadcast_booth.jpg",
-    "mime": "image/jpeg",
-    "width": 1863,
-    "height": 1192,
-    "caption": "A television broadcast booth at Yankee Stadium",
-    "focus": "",
-    "path": "/uploads/articles/sports-media-war.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "supply-chains-foreign-policy": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:YANG MING Container Ship in the mediterranean sea towards the Suez Canal.jpg",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "author": "User: RH",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:YANG_MING_Container_Ship_in_the_mediterranean_sea_towards_the_Suez_Canal.jpg",
-    "mime": "image/jpeg",
-    "width": 3968,
-    "height": 2976,
-    "caption": "A container ship in the Mediterranean, bound for the Suez Canal",
-    "focus": "",
-    "path": "/uploads/articles/supply-chains-foreign-policy.jpg",
-    "retrieved": "2026-09-28"
-  },
   "swiss-voters-set-to-reject-tighter-neutrality-rules-in-referendum": {
     "kind": "photo",
     "source": "Wikimedia Commons",
@@ -624,13 +389,6 @@
     "focus": "",
     "path": "/uploads/articles/ten-climbers-missing-after-avalanche-hits-himalayan-base-camp.jpg",
     "retrieved": "2026-09-28"
-  },
-  "too-much-information": {
-    "kind": "illustration",
-    "source": "Nuvellum",
-    "caption": "Nuvellum editorial illustration",
-    "focus": "",
-    "path": "/uploads/articles/too-much-information.svg"
   },
   "trump-rejects-combining-us-china-ai-efforts": {
     "kind": "photo",
@@ -698,40 +456,6 @@
     "caption": "File photo: Hampden Park, Glasgow, Scotland's national stadium",
     "focus": "",
     "path": "/uploads/articles/why-does-robbie-ure-have-robbie-ure-on-his-scotland-shirt.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "world-in-motion": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:1700 map of the world by Paolo Petrini.jpg",
-    "license": "Public domain",
-    "licenseUrl": "",
-    "author": "Paolo Petrini",
-    "credit": "https://www.raremaps.com/gallery/detail/63696sb/world-map-petrini",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:1700_map_of_the_world_by_Paolo_Petrini.jpg",
-    "mime": "image/jpeg",
-    "width": 12878,
-    "height": 10246,
-    "caption": "A map of the world by Paolo Petrini, 1700",
-    "focus": "",
-    "path": "/uploads/articles/world-in-motion.jpg",
-    "retrieved": "2026-09-28"
-  },
-  "young-cities-investment": {
-    "kind": "photo",
-    "source": "Wikimedia Commons",
-    "file": "File:Nairobi skyline P1000019.jpg",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "author": "Lmwangi",
-    "credit": "Own work",
-    "descriptionUrl": "https://commons.wikimedia.org/wiki/File:Nairobi_skyline_P1000019.jpg",
-    "mime": "image/jpeg",
-    "width": 3648,
-    "height": 2736,
-    "caption": "The skyline of Nairobi, Kenya",
-    "focus": "",
-    "path": "/uploads/articles/young-cities-investment.jpg",
     "retrieved": "2026-09-28"
   }
 }

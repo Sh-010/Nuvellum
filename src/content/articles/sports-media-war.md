@@ -8,7 +8,7 @@ date: "2026-09-23"
 readingTime: "6 min"
 image: "/uploads/articles/sports-media-war.jpg"
 imageAlt: "Commentators in a baseball broadcast booth"
-status: "published"
+status: "draft"
 tags: ["sports", "media rights", "streaming"]
 ---
 

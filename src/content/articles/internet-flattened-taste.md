@@ -8,7 +8,7 @@ date: "2026-09-23"
 readingTime: "7 min"
 image: "/uploads/articles/internet-flattened-taste.svg"
 imageAlt: "Nuvellum Opinion & Ideas illustration: forms pressed into a single plane"
-status: "published"
+status: "draft"
 tags: ["culture","internet","essay"]
 ---
 

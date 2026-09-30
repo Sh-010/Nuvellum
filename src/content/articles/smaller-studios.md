@@ -8,7 +8,7 @@ date: "2026-09-24"
 readingTime: "6 min"
 image: "/uploads/articles/smaller-studios.jpg"
 imageAlt: "The entrance to the Game Developers Conference at the Moscone Center"
-status: "published"
+status: "draft"
 tags: ["gaming","studios","culture"]
 ---
 

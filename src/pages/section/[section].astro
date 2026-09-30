@@ -5,9 +5,12 @@ import { getArticles, slugify } from '../../lib/articles';
 import { REGIONS, storiesByRegion } from '../../lib/geography.js';
 import { SECTION_DEKS, longDate, plural } from '../../lib/interior';
 
+// Every section the site links to always has a front, even before its first story (it is then noindex).
+const NAV_SECTIONS: Record<string, string> = { world: 'World', business: 'Business', technology: 'Technology', culture: 'Culture', entertainment: 'Screen & Play', 'film-tv': 'Film & TV', anime: 'Anime', gaming: 'Gaming', science: 'Science', sports: 'Sports', opinion: 'Opinion', crime: 'Crime' };
+
 export async function getStaticPaths(){
   const articles = await getArticles();
-  const sections = [...new Set([...articles.map(a => slugify(a.section)), 'entertainment', 'crime'])];
+  const sections = [...new Set([...articles.map(a => slugify(a.section)), 'world', 'business', 'technology', 'culture', 'entertainment', 'film-tv', 'anime', 'gaming', 'science', 'sports', 'opinion', 'crime'])];
   return sections.map(section => ({ params: { section } }));
 }
 
@@ -15,7 +18,7 @@ const key = Astro.params.section!;
 const everything = await getArticles();
 const SCREEN = ['anime', 'film-tv', 'gaming'];
 const all = everything.filter(a => slugify(a.section) === key || (key === 'entertainment' && SCREEN.includes(slugify(a.section))));
-const label = key === 'entertainment' ? 'Screen & Play' : key === 'crime' ? 'Crime' : (all[0]?.section || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()));
+const label = key === 'entertainment' ? 'Screen & Play' : (all[0]?.section || NAV_SECTIONS[key] || key.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()));
 const lead = all[0];
 const trio = all.slice(1, 4);
 const rest = all.slice(4);
@@ -34,6 +37,7 @@ const [first, second] = label.split(' & ');
   active={active}
   folio={[{ label: 'Sections', href: '/latest' }, ...(SCREEN.includes(key) ? [{ label: 'Screen & Play', href: '/section/entertainment' }] : []), { label }]}
   folioNote="Section front"
+  noindex={all.length === 0}
 >
   <div class="shell page">
     <header class="desk-head">

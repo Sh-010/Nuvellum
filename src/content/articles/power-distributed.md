@@ -8,7 +8,7 @@ date: "2026-09-25"
 readingTime: "10 min"
 image: "/uploads/articles/power-distributed.jpg"
 imageAlt: "The hemicycle of the European Parliament in Brussels"
-status: "published"
+status: "draft"
 tags: ["geopolitics","power","world"]
 ---
 
