@@ -666,12 +666,20 @@ ${opinions.length ? `<section class="opinion-sec" id="opinion" aria-labelledby="
   // instead of navigating away before the reader can see it.
   const touchBrand=(event)=>coarsePointer?.matches===true || Number(navigator.maxTouchPoints||0)>0 || 'ontouchstart' in window || event?.pointerType==='touch' || event?.sourceCapabilities?.firesTouchEvents===true || Number(window.visualViewport?.width||window.innerWidth)<=900;
   const closeBrand=()=>brandZone?.classList.remove('is-open');
-  brandMonogram?.addEventListener('click',e=>{
+  const revealBrand=(e)=>{
     if(touchBrand(e) && !brandZone?.classList.contains('is-open')){
+      // Open on pointerdown instead of waiting for click. Some touch browsers apply :hover
+      // before click, and our hover CSS temporarily disables pointer events on the monogram.
+      // Consuming the first pointerdown guarantees the reveal and preserves the second tap
+      // for the expanded wordmark/headline links.
       e.preventDefault();
       brandZone?.classList.add('is-open');
+      return true;
     }
-  });
+    return false;
+  };
+  brandMonogram?.addEventListener('pointerdown',revealBrand);
+  brandMonogram?.addEventListener('click',e=>{ if(revealBrand(e)) e.preventDefault(); });
   document.addEventListener('pointerdown',e=>{
     if(touchBrand(e) && brandZone?.classList.contains('is-open') && !brandZone.contains(e.target)) closeBrand();
   });
