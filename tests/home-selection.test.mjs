@@ -47,6 +47,19 @@ test('the newest manual story is placed at the top when it is not World (under t
   assert.ok(!slugs(home.latestFilters[0].items).includes('manual-science'), 'and is not repeated in Latest');
 });
 
+test('section filters include a newest story even when it is already featured above', () => {
+  const home = selectHome([
+    story({ slug: 'world', section: 'World', date: '2026-09-30', image: '/uploads/articles/world.jpg' }),
+    story({ slug: 'sport-new', section: 'Sports', date: '2026-09-30', image: '/uploads/articles/sport-new.jpg' }),
+    story({ slug: 'tech', section: 'Technology', date: '2026-09-29' }),
+    story({ slug: 'film', section: 'Film & TV', date: '2026-09-28' }),
+    story({ slug: 'sport-old', section: 'Sports', date: '2026-09-27' })
+  ]);
+  assert.ok(home.supporting.some((a) => a.slug === 'sport-new'), 'newest Sports story is featured above');
+  assert.deepEqual(slugs(home.latestFilters.find((f) => f.key === 'sports').items), ['sport-new', 'sport-old']);
+  assert.ok(!slugs(home.latestFilters.find((f) => f.key === 'all').items).includes('sport-new'), 'All still avoids duplicating the top row');
+});
+
 test('manual and automated stories coexist, ordered only by date', () => {
   const list = [
     story({ slug: 'a-w', date: '2026-09-25' }),
