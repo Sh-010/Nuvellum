@@ -67,7 +67,8 @@ test('duplicate sign-up creates no second record and gives the same answer (no m
 test('unsubscribe with the signed link, repeat it, then resubscribe', async () => {
   const { signup, post, brief, clock } = setup();
   await signup('reader@example.com');
-  const id = subscriberId(SECRET, 'reader@example.com'), t = unsubscribeToken(SECRET, id);
+  const rec = (await brief.all())[0];
+  const id = rec.id, t = unsubscribeToken(SECRET, id, rec.consentAt);
   const u1 = await json(await post('unsubscribe', { s: id, t }));
   assert.equal(u1.status, 200);
   assert.equal((await brief.list()).stats.unsubscribed, 1);
@@ -81,15 +82,33 @@ test('unsubscribe with the signed link, repeat it, then resubscribe', async () =
   assert.ok(rec.resubscribedAt); assert.equal(rec.unsubscribedAt, null);
 });
 
+test('resubscribing rotates the signed unsubscribe token so older issue links expire', async () => {
+  const { signup, post, brief, clock } = setup();
+  await signup('reader@example.com');
+  let rec = (await brief.all())[0];
+  const oldToken = unsubscribeToken(SECRET, rec.id, rec.consentAt);
+  assert.equal((await post('unsubscribe', { s: rec.id, t: oldToken })).status, 200);
+
+  clock.t += 3_600_000;
+  assert.equal((await signup('reader@example.com', {}, { ip: '198.51.100.77' })).status, 200);
+  rec = (await brief.all())[0];
+  const currentToken = unsubscribeToken(SECRET, rec.id, rec.consentAt);
+  assert.notEqual(currentToken, oldToken, 'renewed consent must rotate the unsubscribe signature');
+  assert.equal((await post('unsubscribe', { s: rec.id, t: oldToken })).status, 403, 'an older Brief can no longer cancel a renewed subscription');
+  assert.equal((await post('unsubscribe', { s: rec.id, t: currentToken })).status, 200, 'the most recent Brief link still works');
+});
+
 test('unsubscribe links carry no address or raw id, and cannot be forged or reused for someone else', async () => {
   const { signup, post, brief } = setup();
   await signup('reader@example.com'); await signup('other@example.com', {}, { ip: '198.51.100.2' });
-  const id = subscriberId(SECRET, 'reader@example.com');
-  const link = unsubscribeLink('https://www.nuvellum.news', SECRET, id);
+  const all = await brief.all();
+  const reader = all.find((r) => r.email === 'reader@example.com'), other = all.find((r) => r.email === 'other@example.com');
+  const id = reader.id;
+  const link = unsubscribeLink('https://www.nuvellum.news', SECRET, id, reader.consentAt);
   assert.doesNotMatch(link, /reader|example\.com|%40|@/i);
   assert.match(link, /^https:\/\/www\.nuvellum\.news\/brief\/unsubscribe\?s=[A-Za-z0-9_-]{32}&t=[A-Za-z0-9_-]{43}$/);
-  const otherId = subscriberId(SECRET, 'other@example.com');
-  for (const [s, t] of [[id, 'x'.repeat(43)], [otherId, unsubscribeToken(SECRET, id)], [id, unsubscribeToken('z'.repeat(48), id)], ['../../etc', 'a'], [null, null]]) {
+  const otherId = other.id;
+  for (const [s, t] of [[id, 'x'.repeat(43)], [otherId, unsubscribeToken(SECRET, id, reader.consentAt)], [id, unsubscribeToken('z'.repeat(48), id, reader.consentAt)], ['../../etc', 'a'], [null, null]]) {
     assert.equal((await post('unsubscribe', { s, t })).status, 403, `${s} / ${t}`);
   }
   assert.equal((await brief.list()).stats.active, 2, 'nobody was unsubscribed');
@@ -98,7 +117,8 @@ test('unsubscribe links carry no address or raw id, and cannot be forged or reus
 test('email clients can unsubscribe in one click (RFC 8058), without a browser origin', async () => {
   const { signup, post, brief } = setup();
   await signup('reader@example.com');
-  const id = subscriberId(SECRET, 'reader@example.com'), t = unsubscribeToken(SECRET, id);
+  const rec = (await brief.all())[0];
+  const id = rec.id, t = unsubscribeToken(SECRET, id, rec.consentAt);
   const r = await post('unsubscribe', 'List-Unsubscribe=One-Click', { origin: null, contentType: 'application/x-www-form-urlencoded', query: `&s=${id}&t=${t}` });
   assert.equal(r.status, 200);
   assert.equal((await brief.list()).stats.unsubscribed, 1);
@@ -308,7 +328,7 @@ test('public Brief handler mirrors subscribe and unsubscribe to Resend without e
   assert.equal(events[0][1].source, 'header');
   assert.match(events[0][1].unsubscribeUrl, /^https:\/\/www\.nuvellum\.news\/brief\/unsubscribe\?s=/);
   const rec = (await brief.all())[0];
-  const r = await json(await post('unsubscribe', { s: rec.id, t: unsubscribeToken(SECRET, rec.id) }));
+  const r = await json(await post('unsubscribe', { s: rec.id, t: unsubscribeToken(SECRET, rec.id, rec.consentAt) }));
   assert.equal(r.status, 200);
   assert.deepEqual(events[1], ['unsubscribe', { email: 'reader@example.com' }]);
   assert.deepEqual(Object.keys(first.data).sort(), ['message', 'ok']);
