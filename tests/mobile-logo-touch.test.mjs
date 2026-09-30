@@ -7,7 +7,8 @@ const renderer = readFileSync(new URL('../scripts/render-editorial-home.mjs', im
 test('touch-capable devices get a wordmark reveal fallback beyond pointer media queries', () => {
   assert.match(renderer, /maxTouchPoints/);
   assert.match(renderer, /pointerType==='touch'/);
-  assert.match(renderer, /innerWidth<=900/);
+  assert.match(renderer, /firesTouchEvents===true/);
+  assert.match(renderer, /visualViewport/);
   assert.match(renderer, /touchBrand\(e\)/);
   assert.match(renderer, /brandZone\?\.classList\.contains\('is-open'\)/);
 });
