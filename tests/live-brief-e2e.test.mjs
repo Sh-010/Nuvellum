@@ -2,11 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 const ORIGIN = 'https://www.nuvellum.news';
-const UNSUBSCRIBE_URL = 'https://www.nuvellum.news/brief/unsubscribe?s=t-4vPUnWvZuBorRHr_U65rEPSEOJQh50&t=tCPjLSDAjev7JqifQsRBQFW7CSGlCrc2gcs74NyaaQw';
+const EMAIL = 'nuvellum-e2e-20260930-1030@example.com';
 
-test('live Nuvellum Brief unsubscribe reaches production and removes the reader', async () => {
-  const u = new URL(UNSUBSCRIBE_URL);
-  const res = await fetch(`${ORIGIN}/api/brief?action=unsubscribe&s=${encodeURIComponent(u.searchParams.get('s'))}&t=${encodeURIComponent(u.searchParams.get('t'))}`, {
+test('live Nuvellum Brief resubscribe reactivates the reader', async () => {
+  const res = await fetch(`${ORIGIN}/api/brief?action=subscribe`, {
     method: 'POST',
     redirect: 'follow',
     headers: {
@@ -15,12 +14,15 @@ test('live Nuvellum Brief unsubscribe reaches production and removes the reader'
       'User-Agent': 'Nuvellum-QA/1.0'
     },
     body: JSON.stringify({
-      s: u.searchParams.get('s'),
-      t: u.searchParams.get('t')
+      email: EMAIL,
+      consent: true,
+      website: '',
+      elapsedMs: 9000,
+      source: 'qa-live-e2e-resubscribe'
     })
   });
   const body = await res.json().catch(() => ({}));
   assert.equal(res.status, 200, JSON.stringify(body));
   assert.equal(body.ok, true, JSON.stringify(body));
-  assert.match(String(body.message || ''), /unsubscribed/i);
+  assert.match(String(body.message || ''), /Nuvellum Brief/i);
 });
