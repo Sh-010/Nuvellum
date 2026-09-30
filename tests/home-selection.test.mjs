@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { selectHome, loadPublished, byNewest } from '../scripts/lib/home-selection.mjs';
-import { storyImage } from '../src/lib/story-image.js';
+import { selectHome, loadPublished, byNewest, HERO_WINDOW } from '../scripts/lib/home-selection.mjs';
+import { storyImage, hasStoryImage } from '../src/lib/story-image.js';
 
 let n = 0;
 const story = (over) => ({ slug: `s${++n}`, title: `Story ${n}`, dek: 'Dek', section: 'World', type: 'News', status: 'published',
@@ -131,7 +131,26 @@ test('the repository homepage: the real manual story is placed, and every origin
     assert.ok(onPage.has(newest.slug), `${newest.slug} (${origin}) is on the homepage`);
   }
   const world = published.filter((a) => a.section === 'World');
-  assert.equal(home.hero.slug, world[0].slug, 'hero = newest World story');
+  const expected = world.slice(0, HERO_WINDOW).find(hasStoryImage) || published.slice(0, HERO_WINDOW).find(hasStoryImage) || world[0];
+  assert.equal(home.hero.slug, expected.slug, 'hero = newest World story with a picture (then any recent story with one)');
+});
+
+test('hero: a fresh story with a picture leads instead of a text-led hero; nothing changes without pictures', () => {
+  const img = (slug) => `/uploads/articles/${slug}.jpg`;
+  // Newest World story is text-led; the next World story has a photo → the photo story leads.
+  let home = selectHome([story({ slug: 'w-text', date: '2026-09-30' }), story({ slug: 'w-photo', date: '2026-09-29', image: img('w-photo') }), story({ slug: 'biz', section: 'Business', date: '2026-09-30', image: img('biz') })]);
+  assert.equal(home.hero.slug, 'w-photo');
+  assert.ok(slugs(home.supporting).includes('w-text'), 'the text-led World story is still on the page');
+  // No World story with a picture near the top → the newest story with one leads.
+  home = selectHome([story({ slug: 'w-text', date: '2026-09-30' }), story({ slug: 'biz', section: 'Business', date: '2026-09-29', image: img('biz') })]);
+  assert.equal(home.hero.slug, 'biz');
+  // Generic section art is not a picture of the story.
+  home = selectHome([story({ slug: 'w-text', date: '2026-09-30' }), story({ slug: 'biz', section: 'Business', date: '2026-09-29', image: '/images/business.svg' })]);
+  assert.equal(home.hero.slug, 'w-text');
+  // Only fresh stories qualify: a picture story beyond the window does not jump the queue.
+  const many = Array.from({ length: HERO_WINDOW }, (_, i) => story({ slug: `w${i}`, date: `2026-09-${String(30 - i).padStart(2, '0')}` }));
+  home = selectHome([...many, story({ slug: 'old-photo', date: '2026-09-01', image: img('old-photo') })]);
+  assert.equal(home.hero.slug, 'w0', 'unchanged: newest World story');
 });
 
 test('images: manual stories show only their own image; text-led ones produce no image at all', () => {

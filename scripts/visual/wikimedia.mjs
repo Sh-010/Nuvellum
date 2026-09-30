@@ -28,7 +28,9 @@ export function normalizeCommonsPage(page){
   if(/featured picture/.test(categoryText))badges.push('featured');
   if(/quality image/.test(categoryText))badges.push('quality');
   if(/valued image/.test(categoryText))badges.push('valued');
-  return {provider:'wikimedia',title:String(page.title||'').replace(/^File:/,''),description:pick(meta,'ImageDescription'),badges,credit,license,licenseUrl:pick(meta,'LicenseUrl'),sourcePage,url:info.thumburl||info.url||'',originalUrl:info.url||'',width:Number(info.thumbwidth||info.width||0),height:Number(info.thumbheight||info.height||0),mime:info.mime||''};
+  return {provider:'wikimedia',title:String(page.title||'').replace(/^File:/,''),description:pick(meta,'ImageDescription'),badges,credit,license,licenseUrl:pick(meta,'LicenseUrl').replace(/^http:\/\/(creativecommons\.org|commons\.wikimedia\.org|[a-z]+\.wikipedia\.org)\//i,'https://$1/'),sourcePage,url:info.thumburl||info.url||'',originalUrl:info.url||'',// Size checks use the ORIGINAL file: Commons reports the requested thumbnail width even when it serves an
+  // unscaled smaller original (a 1000px file came back as 1600px wide).
+  width:Number(info.width||info.thumbwidth||0),height:Number(info.height||info.thumbheight||0),thumbWidth:Number(info.thumbwidth||0),mime:info.mime||''};
 }
 export async function searchWikimedia(query,{limit=14,width=1600,brief=null,fetchImpl=fetch}={}){
   const q=String(query||'').trim();if(!q)return[];

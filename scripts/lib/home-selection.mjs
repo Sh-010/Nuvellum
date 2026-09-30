@@ -4,6 +4,7 @@
 // or the launch set: placement depends only on date, section and type, never on origin.
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
+import { hasStoryImage } from '../../src/lib/story-image.js';
 
 function parseValue(value) {
   const v = String(value ?? '').trim();
@@ -43,6 +44,8 @@ export function loadPublished(articlesDir) {
 }
 
 export const LATEST_ROWS = 5;
+/** How far down the newest stories the hero may look for one with a picture. */
+export const HERO_WINDOW = 6;
 const LATEST_FILTERS = [
   { key: 'all', label: 'All', href: '/latest', match: () => true },
   { key: 'world', label: 'World', href: '/section/world', match: s => s === 'world' },
@@ -55,7 +58,10 @@ const LATEST_FILTERS = [
 
 /**
  * Homepage placement from published stories (any order; they are sorted newest first here).
- *  hero: the newest World story, otherwise the newest story
+ *  hero: the newest World story with a real or representative image among the six newest World stories,
+ *        otherwise the newest story with an image among the six newest overall, otherwise (no image anywhere
+ *        near the top) the newest World story / newest story as before. A text-led hero leaves a huge empty
+ *        ivory slot, so a strong story with a picture leads when one is this fresh.
  *  supporting: the newest story from each of three other sections, topped up with the newest remaining
  *  latestFilters: per filter, up to five of the newest stories not already shown above
  *  focusStories: In Focus (a World analysis first, then analysis/explainer/opinion formats)
@@ -64,7 +70,9 @@ export function selectHome(published) {
   const articles = [...published].filter(a => a.status === undefined || a.status === 'published').sort(byNewest);
   if (!articles.length) throw new Error('Editorial homepage requires at least one published story.');
   const world = articles.filter(a => String(a.section).toLowerCase() === 'world');
-  const hero = world[0] || articles[0];
+  const hero = world.slice(0, HERO_WINDOW).find(hasStoryImage)
+    || articles.slice(0, HERO_WINDOW).find(hasStoryImage)
+    || world[0] || articles[0];
   const supporting = [];
   for (const a of articles) {
     if (supporting.length === 3) break;

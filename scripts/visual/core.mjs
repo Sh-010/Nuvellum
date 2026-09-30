@@ -87,7 +87,8 @@ export function visualCandidateProblems(candidate) {
     const ratio = width / height;
     if (ratio < 1.1 || ratio > 2.6) p.push(`aspect ratio ${ratio.toFixed(2)} is unsuitable`);
   }
-  if (candidate.provider === 'wikimedia' && hostname(candidate.url) !== 'upload.wikimedia.org') p.push('Wikimedia image must use upload.wikimedia.org');
+  // Wikimedia serves originals from upload.wikimedia.org and scaled thumbnails from thumb.wikimedia.org.
+  if (candidate.provider === 'wikimedia' && !['upload.wikimedia.org', 'thumb.wikimedia.org'].includes(hostname(candidate.url))) p.push('Wikimedia image must use upload.wikimedia.org or thumb.wikimedia.org');
   if (candidate.provider === 'wikimedia' && hostname(candidate.sourcePage) !== 'commons.wikimedia.org') p.push('Wikimedia source must be commons.wikimedia.org');
   if (/\.svg(?:\?|$)/i.test(String(candidate.url || ''))) p.push('remote SVG is not accepted as documentary imagery');
   return p;
