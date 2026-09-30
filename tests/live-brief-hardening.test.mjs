@@ -2,11 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 const ORIGIN = 'https://www.nuvellum.news';
-const UNSUBSCRIBE_URL = 'https://www.nuvellum.news/brief/unsubscribe?s=r0694ELtjii3amgB6ivL1Inq_d10evvv&t=vfNw21OCKRajv5E6uDTzVOOtbgpqVFbPKZeShf1CP4Y';
+const EMAIL = 'nuvellum-hardening-20260930@example.com';
 
-test('live hardened Brief QA unsubscribe succeeds', async () => {
-  const u = new URL(UNSUBSCRIBE_URL);
-  const res = await fetch(`${ORIGIN}/api/brief?action=unsubscribe&s=${encodeURIComponent(u.searchParams.get('s'))}&t=${encodeURIComponent(u.searchParams.get('t'))}`, {
+test('live hardened Brief QA resubscribe succeeds', async () => {
+  const res = await fetch(`${ORIGIN}/api/brief?action=subscribe`, {
     method: 'POST',
     redirect: 'follow',
     headers: {
@@ -14,10 +13,15 @@ test('live hardened Brief QA unsubscribe succeeds', async () => {
       'Content-Type': 'application/json',
       'User-Agent': 'Nuvellum-QA/1.0'
     },
-    body: JSON.stringify({ s: u.searchParams.get('s'), t: u.searchParams.get('t') })
+    body: JSON.stringify({
+      email: EMAIL,
+      consent: true,
+      website: '',
+      elapsedMs: 9000,
+      source: 'qa-hardening-resubscribe'
+    })
   });
   const body = await res.json().catch(() => ({}));
   assert.equal(res.status, 200, JSON.stringify(body));
   assert.equal(body.ok, true, JSON.stringify(body));
-  assert.match(String(body.message || ''), /unsubscribed/i);
 });
