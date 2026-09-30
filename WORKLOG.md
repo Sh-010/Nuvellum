@@ -1024,3 +1024,5 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 
 
 - **Evening production retry, 30 Sep 2026:** retried the latest stabilized main deployment after the Vercel Hobby build-rate window was expected to clear. No application behavior changed in this retry commit.
+
+- **Vercel ignored-build verification, 30 Sep 2026:** non-production main commits should now be skipped by the repository `ignoreCommand`, preserving Hobby build-rate budget for actual site changes.
