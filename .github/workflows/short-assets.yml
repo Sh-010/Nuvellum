@@ -1,0 +1,111 @@
+name: Publish short video asset
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/short-assets.yml"
+      - "ops/short-request.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: short-assets
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install rendering tools
+        shell: bash
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
+          python3 -m pip install --quiet piper-tts
+          mkdir -p "$HOME/piper-voices"
+          [ -f "$HOME/piper-voices/en_GB-cori-high.onnx" ] || python3 -m piper.download_voices --download-dir "$HOME/piper-voices" en_GB-cori-high
+
+      - name: Read requested slug
+        id: request
+        shell: bash
+        run: |
+          SLUG="$(tr -d '\r\n ' < ops/short-request.txt)"
+          if ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then
+            echo "::error::invalid short slug"; exit 1
+          fi
+          echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
+
+      - name: Render full Nuvellum Short
+        env:
+          SITE_URL: https://www.nuvellum.news
+          NUVELLUM_TTS: piper,silent
+          PIPER_MODEL: ${{ github.workspace }}/../piper-voices/en_GB-cori-high.onnx
+        shell: bash
+        run: |
+          export PIPER_MODEL="$HOME/piper-voices/en_GB-cori-high.onnx"
+          node engines/shorts/cli.mjs --slug "${{ steps.request.outputs.slug }}"
+
+      - name: Verify output
+        shell: bash
+        run: |
+          SLUG="${{ steps.request.outputs.slug }}"
+          D="engines/out/shorts/$SLUG"
+          test -s "$D/short.mp4"
+          test -s "$D/poster.jpg"
+          test -s "$D/captions.srt"
+          test -s "$D/report.json"
+          TTS="$(node -p "require('./$D/report.json').tts")"
+          [ "$TTS" = "piper" ] || { echo "::error::expected Piper narration, got $TTS"; exit 1; }
+          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height -of default=nw=1 "$D/short.mp4" | tee /tmp/video.txt
+          grep -q 'codec_name=h264' /tmp/video.txt
+          grep -q 'width=1080' /tmp/video.txt
+          grep -q 'height=1920' /tmp/video.txt
+          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 "$D/short.mp4" | grep -q aac
+
+      - name: Publish short to social-assets branch
+        shell: bash
+        run: |
+          git config user.name "Nuvellum Social Assets"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin social-assets >/dev/null; then
+            git fetch --depth=1 origin social-assets
+            git worktree add -B social-assets .social-assets origin/social-assets
+          else
+            git worktree add --orphan -b social-assets .social-assets
+          fi
+
+          SLUG="${{ steps.request.outputs.slug }}"
+          SRC="engines/out/shorts/$SLUG"
+          DST=".social-assets/shorts/$SLUG"
+          mkdir -p "$DST"
+          cp "$SRC"/short.mp4 "$DST"/
+          cp "$SRC"/poster.jpg "$DST"/
+          cp "$SRC"/captions.srt "$DST"/
+          cp "$SRC"/report.json "$DST"/
+          cp "$SRC"/script.json "$DST"/
+          cp "$SRC"/plan.json "$DST"/
+
+          cd .social-assets
+          git add "shorts/$SLUG"
+          if git diff --cached --quiet; then
+            echo "short unchanged"
+            exit 0
+          fi
+          git commit -q -m "short: $SLUG"
+          git push origin HEAD:social-assets
