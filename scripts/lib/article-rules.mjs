@@ -180,6 +180,7 @@ export function articleErrors(src, name, ctx = {}) {
     if (data.image && /^\/uploads\/house\//.test(String(data.image))) errors.push(`${name}: generic house art does not depict the story; omit image so it is set text-led`);
     if (data.image) {
       const image = String(data.image);
+      const imagePath = image.replace(/[?#].*$/, '');
       const aiImage = image.match(AI_IMAGE_RE);
       if (image.startsWith('/generated/')) {
         if (!aiImage) errors.push(`${name}: generated images must be /generated/ai/<slug>.svg`);
@@ -188,14 +189,14 @@ export function articleErrors(src, name, ctx = {}) {
       } else if (!/^(\/images\/|\/uploads\/|https:\/\/)/.test(image)) {
         errors.push(`${name}: image must use /images/, /uploads/, /generated/ai/ or https://`);
       }
-      if (image.startsWith('/uploads/articles/') && data.origin === 'automation' && !publicFileExists(image)) {
-        errors.push(`${name}: local article image ${image} is missing`);
+      if (image.startsWith('/uploads/articles/') && data.origin === 'automation' && !publicFileExists(imagePath)) {
+        errors.push(`${name}: local article image ${imagePath} is missing`);
       }
     }
     if (data.imageProvider === 'wikimedia') {
       if (data.imageKind !== 'photo') errors.push(`${name}: Wikimedia visuals must use imageKind: photo`);
       const expectedImagePrefix = `/uploads/articles/${slug}.`;
-      if (!String(data.image || '').startsWith(expectedImagePrefix) || !/\.(?:jpe?g|png|webp)$/i.test(String(data.image || ''))) {
+      if (!imagePath.startsWith(expectedImagePrefix) || !/\.(?:jpe?g|png|webp)$/i.test(imagePath)) {
         errors.push(`${name}: Wikimedia image must be /uploads/articles/${slug}.<jpg|png|webp>`);
       }
       for (const key of ['imageCaption','imageCredit','imageLicense','imageLicenseUrl','imageSourcePage']) {
