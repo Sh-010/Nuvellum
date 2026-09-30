@@ -102,3 +102,23 @@ export function runScope({ trigger = 'manual', slug = '', bulk = false }) {
 export function needsCards({ entry, env, storyIsLive }) {
   return planStory({ ledger: entry, env, live: storyIsLive }).some((s) => s.action === 'post' && IMAGE_PLATFORMS.has(s.platform));
 }
+
+
+/**
+ * Pick at most one story for an unattended scheduled social run.
+ * Retry an already-queued story first so transient failures are cleared, then prefer the newest
+ * newly-published actionable story. This prevents a scheduler run from dumping the whole 48h window.
+ */
+export function chooseScheduledCandidate(items = []) {
+  const actionable = items.filter((item) => item?.actionable);
+  actionable.sort((a, b) => {
+    const aq = a.hasQueued ? 1 : 0;
+    const bq = b.hasQueued ? 1 : 0;
+    if (aq !== bq) return bq - aq;
+    const at = Number(a.reachedMain || 0);
+    const bt = Number(b.reachedMain || 0);
+    if (at !== bt) return bt - at;
+    return String(a.slug || '').localeCompare(String(b.slug || ''));
+  });
+  return actionable[0]?.slug || null;
+}
