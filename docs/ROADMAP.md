@@ -14,6 +14,10 @@ Non-negotiable across every milestone: **preserve the approved Nuvellum v5.1 vis
 
 ---
 
+## Post-launch editorial/product backlog
+
+Deferred product ideas—original analysis/essays, author pages, article audio, selective interactives, personalised Brief preferences, community, and signature Nuvellum editorial products—are captured in [POST_LAUNCH_EDITORIAL_BACKLOG.md](POST_LAUNCH_EDITORIAL_BACKLOG.md). They are intentionally out of scope until the launch stack operates reliably on its own.
+
 ## Core freeze after stabilization
 
 The approved production experience is now treated as a stable baseline. Do not casually redesign or rewrite working interaction systems while adding distribution, analytics or monetisation.
