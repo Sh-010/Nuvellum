@@ -1,66 +1,104 @@
-# The Nuvellum Brief — sign-ups, unsubscribe and sending
+# The Nuvellum Brief — sign-ups, delivery and unsubscribe
 
-The Brief sign-up on the front page is a real subscription: addresses are validated on the server, stored privately, protected against bots and floods, and every subscriber can leave with one signed link. Nuvellum does **not** send email itself; a campaign provider does (see "Sending the Brief").
+The Brief is a real, consent-based newsletter product.
+
+Nuvellum keeps the canonical subscription record in its private Upstash Redis database. **Resend is the delivery layer**: when a reader subscribes, the site mirrors that reader into the private **Nuvellum Brief** Resend segment and opts them into the **Nuvellum Brief** topic. When a reader unsubscribes through Nuvellum, the site immediately marks the local record unsubscribed and mirrors that state to Resend.
+
+The public repository never stores subscriber addresses, API keys or mailing-list exports.
 
 ## Moving parts
 
 | Part | Where |
 | --- | --- |
-| Public endpoint (sign up, unsubscribe) | `api/brief.js` → `scripts/lib/brief/handler.mjs` |
-| Subscription rules, tokens, list, CSV | `scripts/lib/brief/brief.mjs` |
-| Storage client (Upstash Redis REST, no SDK) | `scripts/lib/brief/store.mjs` |
-| Private subscriber list | `/admin` → **Brief** tab (`brief`, `brief-export`, `brief-unsubscribe` in `scripts/lib/admin/handler.mjs`) |
-| Sign-up form | front page, `#newsletter` (`scripts/render-editorial-home.mjs`) |
-| Unsubscribe page | `/brief/unsubscribe?s=…&t=…` (`src/pages/brief/unsubscribe.astro`; noindex, not in the sitemap) |
+| Public sign-up/unsubscribe endpoint | `api/brief.js` → `scripts/lib/brief/handler.mjs` |
+| Consent rules, tokens, list and CSV | `scripts/lib/brief/brief.mjs` |
+| Private subscriber store | `scripts/lib/brief/store.mjs` |
+| Resend contact/topic sync | `scripts/lib/brief/resend.mjs` |
+| Private subscriber list | `/admin` → **Brief** |
+| Sign-up surfaces | front-page Brief section and masthead invitation |
+| Reader unsubscribe page | `/brief/unsubscribe?s=…&t=…` |
+| Resend sender domain | `nuvellum.news`, EU region |
+| Resend segment/topic | **Nuvellum Brief** / **Nuvellum Brief** |
+| Resend design master | template alias `nuvellum-brief-daily` |
 | Tests | `tests/brief.test.mjs` |
 
-## Turning it on
+## Production environment
 
-Until all three settings exist in the Vercel project, the form answers "The Nuvellum Brief is not open for sign-ups yet. Your address was not stored." and nothing is stored. The admin Brief tab says the store is not connected.
+The local consent store still requires the original three settings:
 
-| Environment variable | Comes from | Put it in |
-| --- | --- | --- |
-| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Vercel → Storage / Marketplace → **Upstash for Redis** (free plan), connected to the Nuvellum project. Vercel adds both automatically. (`UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` also work.) | Vercel project → Settings → Environment Variables (Production, and Preview if wanted) |
-| `NUVELLUM_BRIEF_SECRET` | Generate locally: 32+ random characters, e.g. `node -e "console.log(require('crypto').randomBytes(36).toString('base64url'))"` | Same place. Never commit it. **Keep it stable**: it keys every record and signs every unsubscribe link; changing it orphans the list and breaks old links. |
+| Variable | Purpose |
+| --- | --- |
+| `KV_REST_API_URL` + `KV_REST_API_TOKEN` | private Upstash subscriber store |
+| `NUVELLUM_BRIEF_SECRET` | 32+ random characters; keys records and signs unsubscribe links |
 
-Redeploy after adding them. Upstash's free plan (256 MB, 500,000 commands a month at the time of writing; check upstash.com/pricing/redis) is far beyond what the Brief needs. A sign-up costs about seven commands.
+Resend delivery sync additionally requires:
 
-## Rules the endpoint enforces
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | server-side Resend API key; secret |
+| `RESEND_BRIEF_SEGMENT_ID` | ID of the Resend **Nuvellum Brief** segment |
+| `RESEND_BRIEF_TOPIC_ID` | ID of the Resend **Nuvellum Brief** topic |
 
-- **Validation.** The address is trimmed, lower-cased and the domain converted to ASCII (IDNA), then checked conservatively (no quoted local parts, no IP literals, real-looking TLD).
-- **Explicit consent.** The checkbox must be ticked (`consent === true`). The consent time and wording version (`brief-consent-v1`) are stored with the record.
-- **Duplicates.** One record per normalised address. Signing up again is harmless, and a previously unsubscribed reader is reactivated. The response is identical in every case, so the form cannot be used to discover who subscribes.
-- **Bots.** A hidden `website` honeypot field, and a minimum of 2.5 s between the page opening and submission.
-- **Rate limits.** 5 sign-ups per client per 10 minutes and 300 in total per hour. The client key is an HMAC of the IP that expires with the window; no IP address is stored.
-- **Same-origin only.** Sign-ups must be JSON from `https://www.nuvellum.news` itself (Origin checked).
-- **Unsubscribe.** Links carry an opaque key (`s`, a keyed hash, not the address) and a signature (`t`). Forged, altered or cross-subscriber tokens are refused. Repeating an unsubscribe is harmless.
-  - The page never acts on load, because mail scanners follow links; the reader presses one button.
-  - For email headers, `POST /api/brief?action=unsubscribe&s=…&t=…` with body `List-Unsubscribe=One-Click` implements RFC 8058 one-click unsubscribe.
-- **No public listing.** The public endpoint only accepts `subscribe` and `unsubscribe`. The list, the CSV and manual unsubscribes exist only behind the /admin login, session cookie and CSRF token.
+Keep `SITE_URL=https://www.nuvellum.news` in production so signed unsubscribe URLs always use the canonical site.
 
-Records live under `brief:sub:<id>` with an index in the sorted set `brief:index`. Nothing about subscribers is written to GitHub, the static site, public JSON or browser storage.
+If the Upstash settings or `NUVELLUM_BRIEF_SECRET` are absent, sign-up remains closed and no address is stored. If the Resend settings are absent, the consent store continues to work but delivery sync is disabled. This separation is intentional: a temporary mail-provider problem must never erase or falsify a reader's consent record.
 
-## Sending the Brief (not built yet: choose a provider)
+## Subscription lifecycle
 
-Nuvellum deliberately does not run a mail server or send bulk mail from the Google Workspace mailbox. Deliverability, bounce handling and legal footers belong with a campaign provider. The admin **Export CSV** gives active subscribers with their consent time and personal unsubscribe URL, ready to import.
+1. The reader enters an address and explicitly ticks the consent checkbox.
+2. The server validates and normalises the address, applies bot/rate protections, and commits the consent record to Upstash.
+3. The server mirrors the active reader to Resend:
+   - global contact: active;
+   - segment: **Nuvellum Brief**;
+   - topic: **Nuvellum Brief** = opt-in;
+   - contact properties:
+     - `nuvellum_subscriber_id`
+     - `nuvellum_unsubscribe_url`
+     - `nuvellum_source`
+     - `nuvellum_consent_at`
+4. Duplicate sign-ups do not create duplicate local records. They do re-run the Resend upsert, which also repairs a previously missed provider sync.
+5. A previously unsubscribed reader may explicitly subscribe again; the same local record is reactivated and Resend is reactivated too.
 
-Free tiers as reported in September 2026. **Verify on each provider's pricing page before choosing**, because they change (MailerLite cut its free plan in 2026).
+A Resend outage after the local commit does **not** turn a valid sign-up into an error for the reader. It is logged generically, without the address, provider response or credentials. A later duplicate/resubscribe repairs the provider state. The admin CSV remains a recovery path if a wider reconciliation is ever needed.
 
-| Provider | Free tier (reported) | Notes |
-| --- | --- | --- |
-| Kit (ConvertKit) | up to 10,000 subscribers | Creator/newsletter focused; Kit branding on free emails. Strong fit for a daily brief. |
-| Brevo | 300 emails/day, large contact allowance | Daily cap limits a daily Brief to about 300 readers on free. EU-based. |
-| MailerLite | 250 subscribers, 2,500 emails/month (from June 2026) | Now too small for a daily send beyond a trial. |
-| Buttondown | small free tier; check current limits | Markdown-first, API-friendly, indie. |
-| listmonk (self-hosted, open source) | free software; needs a server plus an SMTP relay | Most control, no lock-in, but it is infrastructure to run. Not recommended for v1. |
+## Unsubscribe
 
-Recommendation for v1: **Kit free** (headroom for growth, and newsletter-native), with Nuvellum's own list remaining the consent record.
-- Before the first issue, name the provider on /privacy.
-- Import via CSV.
-- Keep unsubscribes in sync: either point the provider's unsubscribe at Nuvellum's link, or periodically mark provider unsubscribes in /admin.
+Nuvellum's own signed unsubscribe URL remains the canonical reader exit. It contains an opaque subscriber key and HMAC token, never the address.
 
-Any paid plan needs explicit approval first.
+- Nothing happens merely by loading the page; the reader confirms with a button so mail scanners cannot unsubscribe them accidentally.
+- The local Upstash record is marked unsubscribed first.
+- Resend is then marked globally unsubscribed and the Nuvellum Brief topic is opted out.
+- Repeating the action is harmless.
+- Manual unsubscribe from the private **Brief** admin tab also mirrors to Resend.
 
-## Deleting a subscriber entirely
+For production **Broadcasts**, use the contact property `{{{nuvellum_unsubscribe_url}}}` for the visible unsubscribe link. That keeps Nuvellum's audit record and Resend's delivery state in the same flow. Do not replace that link with a raw email address or unsigned query string.
 
-Unsubscribing keeps a minimal record, so a reactivation is honest and the reader is not re-imported by mistake. For a full erasure request, delete the key `brief:sub:<id>` and its `brief:index` member in the Upstash console. The id appears in the admin row data and in the CSV unsubscribe URL (`s=`).
+The published Resend template `nuvellum-brief-daily` is a reusable design master. If it is used for per-recipient/template sending, supply the reader's Nuvellum signed unsubscribe URL explicitly rather than inventing one.
+
+## Resend configuration
+
+The sender domain `nuvellum.news` is verified. Sending is enabled; receiving is intentionally disabled. Open and click tracking are disabled.
+
+DNS records for Resend live alongside Google Workspace and must not replace Google's MX/SPF/DKIM records.
+
+The Resend contact topic is private and defaults to opt-out. A website sign-up is the event that explicitly opts a contact into the topic.
+
+## Consent and abuse rules
+
+- Addresses are trimmed, lower-cased and IDNA-normalised.
+- Consent must be literal boolean `true`; consent time and wording version are stored.
+- A hidden honeypot and 2.5-second minimum fill time reject obvious bots.
+- Rate limits are 5 attempts per client per 10 minutes and 300 total per hour.
+- The client rate key is a short-lived keyed fingerprint; the IP itself is not stored.
+- Sign-up requests are same-origin JSON only.
+- Public responses do not reveal whether an address was already subscribed.
+
+## Admin and recovery
+
+The private **Brief** tab can list/search subscribers, filter status, manually unsubscribe and export active records to CSV. The CSV includes the signed Nuvellum unsubscribe URL and remains useful for disaster recovery or a one-off provider reconciliation.
+
+Do not make Resend the sole consent database. Upstash is deliberately retained as Nuvellum's independent consent/audit record.
+
+## Full erasure
+
+Unsubscribing keeps a minimal consent-history record so the reader is not accidentally re-imported and a later re-subscribe is explicit. A full erasure request requires deleting the subscriber record/index entry from Upstash and removing or anonymising the corresponding Resend contact according to the erasure request.
