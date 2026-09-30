@@ -57,13 +57,13 @@ If the Upstash settings or `NUVELLUM_BRIEF_SECRET` are absent, sign-up remains c
      - `nuvellum_source`
      - `nuvellum_consent_at`
 4. Duplicate sign-ups do not create duplicate local records. They do re-run the Resend upsert, which also repairs a previously missed provider sync.
-5. A previously unsubscribed reader may explicitly subscribe again; the same local record is reactivated and Resend is reactivated too.
+5. A previously unsubscribed reader may explicitly subscribe again; the same local record is reactivated and Resend is reactivated too. Renewed consent rotates the signed unsubscribe token, so an older issue cannot later cancel the renewed subscription.
 
 A Resend outage after the local commit does **not** turn a valid sign-up into an error for the reader. It is logged generically, without the address, provider response or credentials. A later duplicate/resubscribe repairs the provider state. The admin CSV remains a recovery path if a wider reconciliation is ever needed.
 
 ## Unsubscribe
 
-Nuvellum's own signed unsubscribe URL remains the canonical reader exit. It contains an opaque subscriber key and HMAC token, never the address.
+Nuvellum's own signed unsubscribe URL remains the canonical reader exit. It contains an opaque subscriber key and HMAC token, never the address. The signature is bound to the current consent timestamp, so resubscribing invalidates links from older issues.
 
 - Nothing happens merely by loading the page; the reader confirms with a button so mail scanners cannot unsubscribe them accidentally.
 - The local Upstash record is marked unsubscribed first.
