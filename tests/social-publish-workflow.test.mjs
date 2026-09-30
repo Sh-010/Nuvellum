@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 const wf = readFileSync('.github/workflows/social-publish.yml', 'utf8');
 
 test('social publishing runs apart from the build and publish gate, one run at a time', () => {
-  assert.match(wf, /^on:\n  schedule:\n    - cron: "12,42 \* \* \* \*"\n  workflow_dispatch:/m, 'scheduled (auto-merges do not trigger push workflows) and dispatchable');
+  assert.match(wf, /on:\n  schedule:[\s\S]*?- cron: "12 \*\/3 \* \* \*"\n  workflow_dispatch:/m, 'scheduled every three hours and dispatchable');
   assert.doesNotMatch(wf, /^\s+(push|pull_request|workflow_run):/m, 'never tied to pushes, PRs or other workflows');
   assert.match(wf, /concurrency:\n  group: social-publish\n  cancel-in-progress: false/);
   const gate = readFileSync('scripts/lib/editorial.mjs', 'utf8');
@@ -23,7 +23,7 @@ test('live posting needs the NUVELLUM_SOCIAL switch; X needs a separate budget a
 
 test('social cards: Chromium is installed only when a run will post, with no secrets in the install step', () => {
   assert.match(wf, /- name: Will this run post cards\?\n        id: cards\n/);
-  assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\} \$\(\[ "\$BULK" = "true" \] && echo --bulk\)\)" >> "\$GITHUB_OUTPUT"/);
+  assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}\)" >> "\$GITHUB_OUTPUT"/);
   const install = wf.slice(wf.indexOf('- name: Install the card renderer (Chromium)'), wf.indexOf('- name: Post and record'));
   assert.match(install, /if: steps\.cards\.outputs\.needed == 'yes'/);
   assert.match(install, /npx playwright-core install --with-deps chromium/);
@@ -31,10 +31,13 @@ test('social cards: Chromium is installed only when a run will post, with no sec
   assert.match(wf, /- name: Cache Chromium\n        if: steps\.cards\.outputs\.needed == 'yes'/);
   // The posting step itself is unchanged: live only with the switch, one run at a time.
   assert.match(wf, /node engines\/publish\/cli\.mjs --ledger \.ledger\/ledger --live --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
-  // Manual runs never fan out by accident: dispatch needs a slug unless the default-off bulk box is ticked.
-  assert.match(wf, /      bulk:\n        description: "[^"]+"\n        type: boolean\n        default: false/);
+  // Manual Actions runs never fan out by accident: there is no bulk input and an empty slug is refused.
+  assert.doesNotMatch(wf, /\n      bulk:/);
   const cli = readFileSync('engines/publish/cli.mjs', 'utf8');
-  assert.match(cli, /const scope = runScope\(\{ trigger: arg\('trigger'\) \|\| 'manual', slug: onlySlug \|\| '', bulk: argv\.includes\('--bulk'\) \}\);/);
+  assert.match(cli, /const trigger = arg\('trigger'\) \|\| 'manual';/);
+  assert.match(cli, /const bulk = argv\.includes\('--bulk'\);/);
+  assert.match(cli, /const scope = runScope\(\{ trigger, slug: onlySlug \|\| '', bulk \}\);/);
+  assert.match(cli, /const selected = await selectedCandidates\(\);/);
   assert.ok(cli.indexOf("scope.mode === 'refuse'") < cli.indexOf('mkdirSync(ledgerDir'), 'refused before touching the ledger');
   const dist = readFileSync('.github/workflows/social-distribution.yml', 'utf8');
   assert.match(dist, /CARDS_CHROME=1 npm test/, 'CI runs the card tests in real Chromium');

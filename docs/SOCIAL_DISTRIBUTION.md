@@ -1,6 +1,6 @@
 # Social distribution
 
-Nuvellum's first social-distribution layer is deliberately **dry-run only**. It prepares platform-specific copy after an article reaches `main`, but it does not post to any social account.
+Nuvellum's social-distribution layer supports both safe dry runs and live posting. Live posting is isolated from article publication and only runs for configured platforms when `NUVELLUM_SOCIAL=on`.
 
 ## Flow
 
@@ -65,10 +65,11 @@ Per-platform account, app, credential and API-restriction requirements: [`SOCIAL
 
 Live posting is built but **off**. It only posts when the repository variable `NUVELLUM_SOCIAL` is `on` **and** a platform's credentials exist.
 
-- **When.** Every 30 minutes (:12 and :42), and on manual dispatch. Auto-published stories reach `main` through `GITHUB_TOKEN` merges, which never trigger push workflows, so a schedule is the reliable hook.
-  - **Only the schedule scans the 48-hour window.**
+- **When.** Every three hours at minute 12, and on manual dispatch. Auto-published stories reach `main` through `GITHUB_TOKEN` merges, which never trigger push workflows, so a schedule is the reliable hook.
+  - A scheduled run evaluates the rolling 48-hour window but posts **at most one story** across all configured platforms.
+  - A queued retry is cleared first; otherwise the newest actionable story is selected.
   - A manual dispatch must name a `slug`, and then posts that story only.
-  - To deliberately post every eligible story by hand, tick **bulk** (off by default). An empty slug without bulk exits at once with a notice: no scan, no API call, no ledger change. (An empty manual slug once bulk-posted several stories.)
+  - The GitHub Actions UI no longer exposes a bulk-post switch. This is deliberate: activating a new platform must not dump the recent backlog into followers' feeds.
 - **What.** Stories that reached `main` in the last 48 hours, plus any story with a queued platform. A story is posted only once its page answers 200 on www.nuvellum.news. Drafts, placeholders and unpublished stories are never eligible.
 - **Separate from publishing.** This is a separate workflow. The build, the publish gate and the site never wait on it, so a social failure cannot block or undo publication.
 
@@ -121,10 +122,10 @@ Quote and key-fact cards are optional extra assets, following the card system's 
 
 **The flow of one run:**
 1. `cli.mjs --needs-cards` reports whether any story in this run is about to be posted to a configured image platform. Only then does the workflow install (and cache) Chromium.
-2. For each candidate story:
+2. For a scheduled run, select one candidate only: a queued retry first, otherwise the newest actionable story. Manual runs use the explicit slug.
    - plan (as before: `sent`/`failed` are final);
    - if an image platform is due, render and verify the cards **once**;
-   - then post.
+   - then post the same story to whichever configured platforms are due.
 3. **Telegram** uploads the verified **square card PNG** with `sendPhoto` as `multipart/form-data`, so no public image URL is needed. The caption is the bold headline, the dek and the tracked "Read on Nuvellum →" link. The ledger records `kind: "card"`.
 4. **If rendering fails** (a render error, missing Chromium, a clipped headline, or an overflow in Chromium), nothing is posted with a broken or unbranded image:
    - The platform stays `queued` with `cardFailures` and the error on the first failure, and the story's `cards` field records the failure.

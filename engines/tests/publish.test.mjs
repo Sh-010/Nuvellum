@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { telegram, facebook, linkedin, x, telegramMessage, oauth1Header, PostError } from '../publish/adapters.mjs';
 import { planStory, outcome, record, MAX_ATTEMPTS } from '../publish/plan.mjs';
+import { chooseScheduledCandidate } from '../publish/run.mjs';
 
 const SITE = 'https://www.nuvellum.news';
 const story = (over = {}) => ({ slug: 'a-story', url: SITE + '/article/a-story', title: 'Council <approves> "new" budget & plan', dek: 'The vote was 7–2 after a long debate.', section: 'World', risk: 'low', tags: [], image: '/uploads/articles/a-story.jpg', ...over });
@@ -109,4 +110,24 @@ test('retries: retryable failures are queued up to MAX_ATTEMPTS, then recorded a
   const e = record(record({ slug: 's', platforms: {} }, 'telegram', { status: 'queued', error: 'boom' }, 0), 'telegram', sent, 1);
   assert.equal(e.platforms.telegram.error, undefined);
   assert.equal(planStory({ ledger: { platforms: { telegram: { status: 'queued', attempts: MAX_ATTEMPTS, error: 'HTTP 502' } } }, env: TG, live: true }).find((s) => s.platform === 'telegram').status, 'failed');
+});
+
+
+test('scheduled social cadence selects at most one actionable story and prefers queued retry, then newest', () => {
+  assert.equal(chooseScheduledCandidate([
+    { slug: 'old', actionable: true, reachedMain: 100 },
+    { slug: 'new', actionable: true, reachedMain: 300 },
+    { slug: 'skip', actionable: false, reachedMain: 999 }
+  ]), 'new');
+
+  assert.equal(chooseScheduledCandidate([
+    { slug: 'new', actionable: true, reachedMain: 300 },
+    { slug: 'retry', actionable: true, hasQueued: true, reachedMain: 100 },
+    { slug: 'skip', actionable: false, hasQueued: true, reachedMain: 999 }
+  ]), 'retry');
+
+  assert.equal(chooseScheduledCandidate([
+    { slug: 'a', actionable: false, reachedMain: 100 },
+    { slug: 'b', actionable: false, reachedMain: 200 }
+  ]), null);
 });

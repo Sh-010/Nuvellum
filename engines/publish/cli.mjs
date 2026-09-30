@@ -22,8 +22,8 @@ import { loadStory, REPO_ROOT } from '../shared/article.mjs';
 import { generateFeedCopy } from '../distribution/copy.mjs';
 import { BRAND } from '../shared/brand.mjs';
 import { ADAPTERS, telegramMessage } from './adapters.mjs';
-import { WINDOW_HOURS } from './plan.mjs';
-import { processStory, needsCards, runScope } from './run.mjs';
+import { WINDOW_HOURS, planStory } from './plan.mjs';
+import { processStory, needsCards, runScope, chooseScheduledCandidate } from './run.mjs';
 import { prepareCardAssets } from './assets.mjs';
 
 const argv = process.argv.slice(2);
@@ -35,7 +35,9 @@ const renderInDryRun = argv.includes('--render');
 if (!ledgerDir) { console.error('Usage: cli.mjs --ledger <dir> [--slug <slug>] [--live | --render | --needs-cards]'); process.exit(1); }
 if (onlySlug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(onlySlug)) { console.error('invalid --slug'); process.exit(1); }
 // Scheduled runs scan the window; manual runs need a slug unless --bulk is given deliberately.
-const scope = runScope({ trigger: arg('trigger') || 'manual', slug: onlySlug || '', bulk: argv.includes('--bulk') });
+const trigger = arg('trigger') || 'manual';
+const bulk = argv.includes('--bulk');
+const scope = runScope({ trigger, slug: onlySlug || '', bulk });
 if (scope.mode === 'refuse') {
   if (argv.includes('--needs-cards')) console.log('no');
   else console.log((process.env.GITHUB_ACTIONS ? '::notice title=Social publish::' : '') + scope.message);
@@ -56,7 +58,7 @@ function reachedMain(slug) {
   } catch { return null; }
 }
 
-function candidates() {
+function candidateSlugs() {
   if (onlySlug) return [onlySlug];
   const set = new Set();
   for (const f of readdirSync(join(REPO_ROOT, 'src', 'content', 'articles')).filter((f) => f.endsWith('.md'))) {
@@ -77,10 +79,35 @@ async function isLive(url) {
 
 const freshEntry = (story) => ({ slug: story.slug, url: story.url, title: story.title, risk: story.risk, firstSeenAt: new Date(now).toISOString(), platforms: {} });
 
+async function selectedCandidates() {
+  const base = candidateSlugs();
+  if (onlySlug || bulk || trigger !== 'schedule') return base;
+
+  const assessed = [];
+  for (const slug of base) {
+    let story;
+    try { story = loadStory(slug); } catch { continue; }
+    const entry = readEntry(slug) || freshEntry(story);
+    const liveOnSite = await isLive(story.url);
+    const hasShort = existsSync(join(REPO_ROOT, 'engines', 'out', 'shorts', slug, 'short.mp4'));
+    const plan = planStory({ ledger: entry, env, live: liveOnSite, hasShort });
+    assessed.push({
+      slug,
+      reachedMain: reachedMain(slug),
+      hasQueued: Object.values(entry.platforms || {}).some((p) => p.status === 'queued'),
+      actionable: plan.some((step) => step.action === 'post')
+    });
+  }
+  const chosen = chooseScheduledCandidate(assessed);
+  return chosen ? [chosen] : [];
+}
+
+const selected = await selectedCandidates();
+
 if (argv.includes('--needs-cards')) {
   // Workflow gate: install Chromium only when a run will actually post to an image platform.
   let need = false;
-  for (const slug of candidates()) {
+  for (const slug of selected) {
     let story;
     try { story = loadStory(slug); } catch { continue; }
     if (needsCards({ entry: readEntry(slug) || freshEntry(story), env, storyIsLive: await isLive(story.url) })) { need = true; break; }
@@ -90,7 +117,7 @@ if (argv.includes('--needs-cards')) {
 }
 
 const summary = [];
-for (const slug of candidates()) {
+for (const slug of selected) {
   let story;
   try { story = loadStory(slug); } catch (e) { console.log(`- ${slug}: not eligible (${e.message})`); continue; }
   const copy = Object.fromEntries(Object.entries(generateFeedCopy(story).copy).map(([p, text]) => [p, { text }]));
@@ -108,6 +135,6 @@ for (const slug of candidates()) {
   }
   summary.push(`${slug}: ` + Object.entries(res.entry.platforms).map(([p, s]) => `${p}=${s.status}`).join(' '));
 }
-console.log(`Social publisher (${live ? 'LIVE' : 'dry run'}${renderInDryRun && !live ? ' + card render' : ''}; window ${WINDOW_HOURS}h)`);
+console.log(`Social publisher (${live ? 'LIVE' : 'dry run'}${renderInDryRun && !live ? ' + card render' : ''}; window ${WINDOW_HOURS}h; ${trigger === 'schedule' && !bulk ? 'scheduled max 1 story' : bulk ? 'explicit bulk' : 'single story'})`);
 for (const line of summary) console.log(' ' + line);
 if (!summary.length) console.log(' nothing to do');

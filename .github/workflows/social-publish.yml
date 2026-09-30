@@ -9,16 +9,14 @@ name: Social publish
 # schedule (not a push trigger) is what picks them up. See docs/SOCIAL_DISTRIBUTION.md.
 on:
   schedule:
-    - cron: "12,42 * * * *"
+    # At most one story per run, every three hours. The publisher chooses the newest
+    # actionable story (or a queued retry) instead of dumping the whole recent window.
+    - cron: "12 */3 * * *"
   workflow_dispatch:
     inputs:
       slug:
-        description: "Published slug to post (required unless bulk is ticked)"
+        description: "Published slug to post"
         required: false
-      bulk:
-        description: "Deliberately post EVERY eligible story from the last 48h (leave off for a single slug)"
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -62,9 +60,8 @@ jobs:
           SITE_URL: https://www.nuvellum.news
           NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
           SLUG: ${{ inputs.slug }}
-          # schedule = window scan; workflow_dispatch = one slug unless bulk is ticked.
+          # schedule = one selected story; workflow_dispatch = one explicit slug.
           TRIGGER: ${{ github.event_name }}
-          BULK: ${{ inputs.bulk }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
@@ -79,7 +76,7 @@ jobs:
         shell: bash
         run: |
           if [ -n "$SLUG" ] && ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "::error::invalid slug"; exit 1; fi
-          echo "needed=$(node engines/publish/cli.mjs --ledger .ledger/ledger --needs-cards --trigger "$TRIGGER" ${SLUG:+--slug "$SLUG"} $([ "$BULK" = "true" ] && echo --bulk))" >> "$GITHUB_OUTPUT"
+          echo "needed=$(node engines/publish/cli.mjs --ledger .ledger/ledger --needs-cards --trigger "$TRIGGER" ${SLUG:+--slug "$SLUG"})" >> "$GITHUB_OUTPUT"
 
       - name: Cache Chromium
         if: steps.cards.outputs.needed == 'yes'
@@ -101,9 +98,8 @@ jobs:
           SITE_URL: https://www.nuvellum.news
           NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
           SLUG: ${{ inputs.slug }}
-          # schedule = window scan; workflow_dispatch = one slug unless bulk is ticked.
+          # schedule = one selected story; workflow_dispatch = one explicit slug.
           TRIGGER: ${{ github.event_name }}
-          BULK: ${{ inputs.bulk }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
@@ -118,7 +114,7 @@ jobs:
         shell: bash
         run: |
           if [ -n "$SLUG" ] && ! printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then echo "::error::invalid slug"; exit 1; fi
-          node engines/publish/cli.mjs --ledger .ledger/ledger --live --trigger "$TRIGGER" ${SLUG:+--slug "$SLUG"} $([ "$BULK" = "true" ] && echo --bulk)
+          node engines/publish/cli.mjs --ledger .ledger/ledger --live --trigger "$TRIGGER" ${SLUG:+--slug "$SLUG"}
 
       - name: Save the ledger
         if: always()
