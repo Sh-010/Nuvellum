@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T12:57:29.215Z"
 readingTime: "2 min"
-image: "/generated/ai/sabus-arrested-memory-leads-golden-horse-awards-nominations-with-11-nods.svg"
-imageAlt: "AI-generated editorial illustration for Sabu’s ‘Arrested Memory’ leads Golden Horse Awards nominations with 11 nods"
 status: "published"
 tags: ["Golden Horse Awards","Arrested Memory","Shu Qi","Sabu"]
 regions: ["east-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/sabus-arrested-memory-leads-golden-horse-awards-nominations-with-11-nods.jpg"
+imageAlt: "Shu Qi, director, at the 2025 Toronto International Film Festival (TIFF) for the movie Girl"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Shu Qi, director, at the 2025 Toronto International Film Festival (TIFF) for the movie Girl. Image of Shu Qi, not of the events reported."
+imageCredit: "Sara Komatsu"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Shu_Qi_at_the_2025_Toronto_International_Film_Festival._02.jpg"
 ---
 ## Golden horse nominations announced
 
