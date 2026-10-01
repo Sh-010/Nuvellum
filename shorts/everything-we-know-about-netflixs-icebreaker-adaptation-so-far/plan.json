@@ -1,0 +1,574 @@
+{
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "total": 32.666666666666664,
+  "frames": 980,
+  "endCardStart": 29.673696,
+  "lines": [
+    {
+      "index": 0,
+      "role": "hook",
+      "text": "Netflix is currently developing a series adaptation of Hannah Grace’s bestselling novel Icebreaker, which kicks off the Maple Hill book series.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/line-00.wav",
+      "start": 0.3,
+      "end": 8.069705,
+      "pages": [
+        {
+          "start": 0.3,
+          "end": 2.0266011111111113,
+          "words": [
+            {
+              "w": "Netflix",
+              "start": 0.3,
+              "end": 0.7316502777777778
+            },
+            {
+              "w": "is",
+              "start": 0.7316502777777778,
+              "end": 0.8935191319444444
+            },
+            {
+              "w": "currently",
+              "start": 0.8935191319444444,
+              "end": 1.4330819791666667
+            },
+            {
+              "w": "developing",
+              "start": 1.4330819791666667,
+              "end": 2.0266011111111113
+            }
+          ]
+        },
+        {
+          "start": 2.0266011111111113,
+          "end": 3.2675956597222227,
+          "words": [
+            {
+              "w": "a",
+              "start": 2.0266011111111113,
+              "end": 2.1345136805555556
+            },
+            {
+              "w": "series",
+              "start": 2.1345136805555556,
+              "end": 2.5122076736111114
+            },
+            {
+              "w": "adaptation",
+              "start": 2.5122076736111114,
+              "end": 3.1057268055555562
+            },
+            {
+              "w": "of",
+              "start": 3.1057268055555562,
+              "end": 3.267595659722223
+            }
+          ]
+        },
+        {
+          "start": 3.2675956597222227,
+          "end": 5.048153055555556,
+          "words": [
+            {
+              "w": "Hannah",
+              "start": 3.2675956597222227,
+              "end": 3.6452896527777785
+            },
+            {
+              "w": "Grace’s",
+              "start": 3.6452896527777785,
+              "end": 4.0769399305555565
+            },
+            {
+              "w": "bestselling",
+              "start": 4.0769399305555565,
+              "end": 4.724415347222223
+            },
+            {
+              "w": "novel",
+              "start": 4.724415347222223,
+              "end": 5.048153055555557
+            }
+          ]
+        },
+        {
+          "start": 5.048153055555556,
+          "end": 6.558929027777778,
+          "words": [
+            {
+              "w": "Icebreaker,",
+              "start": 5.048153055555556,
+              "end": 5.695628472222222
+            },
+            {
+              "w": "which",
+              "start": 5.695628472222222,
+              "end": 6.019366180555556
+            },
+            {
+              "w": "kicks",
+              "start": 6.019366180555556,
+              "end": 6.34310388888889
+            },
+            {
+              "w": "off",
+              "start": 6.34310388888889,
+              "end": 6.558929027777778
+            }
+          ]
+        },
+        {
+          "start": 6.558929027777778,
+          "end": 7.368273298611111,
+          "words": [
+            {
+              "w": "the",
+              "start": 6.558929027777778,
+              "end": 6.774754166666667
+            },
+            {
+              "w": "Maple",
+              "start": 6.774754166666667,
+              "end": 7.098491875000001
+            },
+            {
+              "w": "Hill",
+              "start": 7.098491875000001,
+              "end": 7.368273298611112
+            }
+          ]
+        },
+        {
+          "start": 7.368273298611111,
+          "end": 8.069705,
+          "words": [
+            {
+              "w": "book",
+              "start": 7.368273298611111,
+              "end": 7.638054722222223
+            },
+            {
+              "w": "series.",
+              "start": 7.638054722222223,
+              "end": 8.069705
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "role": "beat",
+      "text": "Production is underway on the college hockey romance drama, though a release date has not yet been set.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/line-01.wav",
+      "start": 8.229705000000001,
+      "end": 13.944444,
+      "pages": [
+        {
+          "start": 8.229705000000001,
+          "end": 9.658389750000001,
+          "words": [
+            {
+              "w": "Production",
+              "start": 8.229705000000001,
+              "end": 8.834148548076923
+            },
+            {
+              "w": "is",
+              "start": 8.834148548076923,
+              "end": 8.998996788461538
+            },
+            {
+              "w": "underway",
+              "start": 8.998996788461538,
+              "end": 9.493541509615383
+            },
+            {
+              "w": "on",
+              "start": 9.493541509615383,
+              "end": 9.658389749999998
+            }
+          ]
+        },
+        {
+          "start": 9.658389750000001,
+          "end": 11.14202391346154,
+          "words": [
+            {
+              "w": "the",
+              "start": 9.658389750000001,
+              "end": 9.878187403846155
+            },
+            {
+              "w": "college",
+              "start": 9.878187403846155,
+              "end": 10.317782711538463
+            },
+            {
+              "w": "hockey",
+              "start": 10.317782711538463,
+              "end": 10.702428605769231
+            },
+            {
+              "w": "romance",
+              "start": 10.702428605769231,
+              "end": 11.14202391346154
+            }
+          ]
+        },
+        {
+          "start": 11.14202391346154,
+          "end": 12.460809836538463,
+          "words": [
+            {
+              "w": "drama,",
+              "start": 11.14202391346154,
+              "end": 11.526669807692308
+            },
+            {
+              "w": "though",
+              "start": 11.526669807692308,
+              "end": 11.911315701923076
+            },
+            {
+              "w": "a",
+              "start": 11.911315701923076,
+              "end": 12.021214528846153
+            },
+            {
+              "w": "release",
+              "start": 12.021214528846153,
+              "end": 12.460809836538461
+            }
+          ]
+        },
+        {
+          "start": 12.460809836538463,
+          "end": 13.394949865384616,
+          "words": [
+            {
+              "w": "date",
+              "start": 12.460809836538463,
+              "end": 12.735556903846154
+            },
+            {
+              "w": "has",
+              "start": 12.735556903846154,
+              "end": 12.955354557692308
+            },
+            {
+              "w": "not",
+              "start": 12.955354557692308,
+              "end": 13.175152211538462
+            },
+            {
+              "w": "yet",
+              "start": 13.175152211538462,
+              "end": 13.394949865384616
+            }
+          ]
+        },
+        {
+          "start": 13.394949865384616,
+          "end": 13.944444,
+          "words": [
+            {
+              "w": "been",
+              "start": 13.394949865384616,
+              "end": 13.669696932692307
+            },
+            {
+              "w": "set.",
+              "start": 13.669696932692307,
+              "end": 13.944443999999999
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "role": "beat",
+      "text": "Daisy Jelley (Poser, How To Have Sex) stars as Anastasia “Stassie” Allen, a transfer athlete aiming for Olympic gold.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/line-02.wav",
+      "start": 14.104444,
+      "end": 21.56068,
+      "pages": [
+        {
+          "start": 14.104444,
+          "end": 15.684155016949154,
+          "words": [
+            {
+              "w": "Daisy",
+              "start": 14.104444,
+              "end": 14.483574644067797
+            },
+            {
+              "w": "Jelley",
+              "start": 14.483574644067797,
+              "end": 14.92589372881356
+            },
+            {
+              "w": "(Poser,",
+              "start": 14.92589372881356,
+              "end": 15.431401254237288
+            },
+            {
+              "w": "How",
+              "start": 15.431401254237288,
+              "end": 15.684155016949152
+            }
+          ]
+        },
+        {
+          "start": 15.684155016949154,
+          "end": 16.88473538983051,
+          "words": [
+            {
+              "w": "To",
+              "start": 15.684155016949154,
+              "end": 15.873720338983052
+            },
+            {
+              "w": "Have",
+              "start": 15.873720338983052,
+              "end": 16.189662542372883
+            },
+            {
+              "w": "Sex)",
+              "start": 16.189662542372883,
+              "end": 16.505604745762714
+            },
+            {
+              "w": "stars",
+              "start": 16.505604745762714,
+              "end": 16.88473538983051
+            }
+          ]
+        },
+        {
+          "start": 16.88473538983051,
+          "end": 18.780388610169492,
+          "words": [
+            {
+              "w": "as",
+              "start": 16.88473538983051,
+              "end": 17.07430071186441
+            },
+            {
+              "w": "Anastasia",
+              "start": 17.07430071186441,
+              "end": 17.706185118644072
+            },
+            {
+              "w": "“Stassie”",
+              "start": 17.706185118644072,
+              "end": 18.338069525423734
+            },
+            {
+              "w": "Allen,",
+              "start": 18.338069525423734,
+              "end": 18.780388610169496
+            }
+          ]
+        },
+        {
+          "start": 18.780388610169492,
+          "end": 20.423288067796612,
+          "words": [
+            {
+              "w": "a",
+              "start": 18.780388610169492,
+              "end": 18.906765491525423
+            },
+            {
+              "w": "transfer",
+              "start": 18.906765491525423,
+              "end": 19.47546145762712
+            },
+            {
+              "w": "athlete",
+              "start": 19.47546145762712,
+              "end": 19.980968983050847
+            },
+            {
+              "w": "aiming",
+              "start": 19.980968983050847,
+              "end": 20.42328806779661
+            }
+          ]
+        },
+        {
+          "start": 20.423288067796612,
+          "end": 21.56068,
+          "words": [
+            {
+              "w": "for",
+              "start": 20.423288067796612,
+              "end": 20.676041830508478
+            },
+            {
+              "w": "Olympic",
+              "start": 20.676041830508478,
+              "end": 21.181549355932205
+            },
+            {
+              "w": "gold.",
+              "start": 21.181549355932205,
+              "end": 21.56068
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "role": "beat",
+      "text": "Connor Simos (Subversion) portrays Nate Hawkins, a campus star pursuing the NHL.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/line-03.wav",
+      "start": 21.72068,
+      "end": 27.27288,
+      "pages": [
+        {
+          "start": 21.72068,
+          "end": 24.119778765432102,
+          "words": [
+            {
+              "w": "Connor",
+              "start": 21.72068,
+              "end": 22.200499753086422
+            },
+            {
+              "w": "Simos",
+              "start": 22.200499753086422,
+              "end": 22.611773827160498
+            },
+            {
+              "w": "(Subversion)",
+              "start": 22.611773827160498,
+              "end": 23.50286765432099
+            },
+            {
+              "w": "portrays",
+              "start": 23.50286765432099,
+              "end": 24.119778765432102
+            }
+          ]
+        },
+        {
+          "start": 24.119778765432102,
+          "end": 25.69632938271605,
+          "words": [
+            {
+              "w": "Nate",
+              "start": 24.119778765432102,
+              "end": 24.46250716049383
+            },
+            {
+              "w": "Hawkins,",
+              "start": 24.46250716049383,
+              "end": 25.07941827160494
+            },
+            {
+              "w": "a",
+              "start": 25.07941827160494,
+              "end": 25.21650962962963
+            },
+            {
+              "w": "campus",
+              "start": 25.21650962962963,
+              "end": 25.69632938271605
+            }
+          ]
+        },
+        {
+          "start": 25.69632938271605,
+          "end": 27.27288,
+          "words": [
+            {
+              "w": "star",
+              "start": 25.69632938271605,
+              "end": 26.039057777777778
+            },
+            {
+              "w": "pursuing",
+              "start": 26.039057777777778,
+              "end": 26.65596888888889
+            },
+            {
+              "w": "the",
+              "start": 26.65596888888889,
+              "end": 26.93015160493827
+            },
+            {
+              "w": "NHL.",
+              "start": 26.93015160493827,
+              "end": 27.272879999999997
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "role": "cta",
+      "text": "Read the full story on Nuvellum.",
+      "audio": "/home/runner/work/Nuvellum/Nuvellum/engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/line-04.wav",
+      "start": 27.43288,
+      "end": 29.513696,
+      "pages": [
+        {
+          "start": 27.43288,
+          "end": 28.693980606060606,
+          "words": [
+            {
+              "w": "Read",
+              "start": 27.43288,
+              "end": 27.748155151515153
+            },
+            {
+              "w": "the",
+              "start": 27.748155151515153,
+              "end": 28.000375272727275
+            },
+            {
+              "w": "full",
+              "start": 28.000375272727275,
+              "end": 28.315650424242428
+            },
+            {
+              "w": "story",
+              "start": 28.315650424242428,
+              "end": 28.69398060606061
+            }
+          ]
+        },
+        {
+          "start": 28.693980606060606,
+          "end": 29.513696,
+          "words": [
+            {
+              "w": "on",
+              "start": 28.693980606060606,
+              "end": 28.883145696969695
+            },
+            {
+              "w": "Nuvellum.",
+              "start": 28.883145696969695,
+              "end": 29.513695999999996
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "story": {
+    "slug": "everything-we-know-about-netflixs-icebreaker-adaptation-so-far",
+    "title": "Everything we know about Netflix’s ‘Icebreaker’ adaptation so far",
+    "section": "Film & TV",
+    "type": "Explainer",
+    "url": "https://www.nuvellum.news/article/everything-we-know-about-netflixs-icebreaker-adaptation-so-far",
+    "imageKind": "photo"
+  }
+}

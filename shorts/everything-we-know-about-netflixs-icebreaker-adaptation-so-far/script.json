@@ -1,0 +1,30 @@
+{
+  "method": "extractive",
+  "lines": [
+    {
+      "role": "hook",
+      "text": "Netflix is currently developing a series adaptation of Hannah Grace’s bestselling novel Icebreaker, which kicks off the Maple Hill book series.",
+      "source": 0
+    },
+    {
+      "role": "beat",
+      "text": "Production is underway on the college hockey romance drama, though a release date has not yet been set.",
+      "source": 1
+    },
+    {
+      "role": "beat",
+      "text": "Daisy Jelley (Poser, How To Have Sex) stars as Anastasia “Stassie” Allen, a transfer athlete aiming for Olympic gold.",
+      "source": 2
+    },
+    {
+      "role": "beat",
+      "text": "Connor Simos (Subversion) portrays Nate Hawkins, a campus star pursuing the NHL.",
+      "source": 3
+    },
+    {
+      "role": "cta",
+      "text": "Read the full story on Nuvellum.",
+      "source": null
+    }
+  ]
+}

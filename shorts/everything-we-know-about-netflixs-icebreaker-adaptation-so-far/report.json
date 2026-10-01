@@ -1,0 +1,18 @@
+{
+  "slug": "everything-we-know-about-netflixs-icebreaker-adaptation-so-far",
+  "status": "rendered",
+  "method": "extractive",
+  "tts": "piper",
+  "seconds": 32.666666666666664,
+  "frames": 980,
+  "notes": [
+    "extractive article-only script; no paraphrase model used"
+  ],
+  "files": {
+    "video": "engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/short.mp4",
+    "poster": "engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/poster.jpg",
+    "captions": "engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/captions.srt",
+    "script": "engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/script.json",
+    "plan": "engines/out/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/plan.json"
+  }
+}
