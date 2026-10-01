@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T22:00:40.962Z"
 readingTime: "2 min"
-image: "/generated/ai/lyft-is-paying-272-5m-to-settle-lawsuit-over-how-it-classified-drivers.svg"
-imageAlt: "AI-generated editorial illustration for Lyft is paying $272.5m to settle lawsuit over how it classified drivers"
 status: "published"
 tags: ["Lyft","transportation","lawsuit","gig economy"]
 regions: ["north-america"]
