@@ -50,3 +50,16 @@ See the "Verification" entry in [`../WORKLOG.md`](../WORKLOG.md) for 2026-10-01 
 - **Vercel Hobby: 100 deployments/day.** At ≤ 24 stories/day plus code merges we are well inside it. Docs/workflow/engine-only commits don't build.
 - **Social backlog:** only the newest story is posted per run, so stories published while social was down are not all posted later (deliberate: no dumping).
 - **Closed-unmerged `incoming/*` branches** from the 2026-09-28 test runs are kept as evidence. They only block re-drafting those exact old sources.
+
+## Branches (after the 2026-10-01 cleanup: 42 remain, all intentional)
+
+| Branches | Why they exist |
+| --- | --- |
+| `main` | Production |
+| `social-assets`, `social-ledger` | Artifact storage: cards/Shorts and the posting ledger. Never deployed (own `vercel.json`). **Never delete or force-push.** |
+| `backup-*`, `checkpoint*`, `nuvellum-v5.1-production-baseline`, `brand-assets-20260928` | Recovery references (see RECOVERY.md). Keep. |
+| `incoming/*` with an open PR | Newsroom candidates waiting for the gate (newest first; News expires after 6 h) |
+| `incoming/*` closed without merge | Evidence from the 2026-09-28 test runs; also blocks re-drafting those old sources. Safe to keep. |
+| `qa/*`, `chore/trigger-production-deploy`, `feat/visual-engine*`, `feat/world-desk`, `fix/editorial-svg-house-style`, `fix/quiet-image-attribution`, `engines/distribution-shorts`, `pr/71`, `pr/73`, `pr/74` | Closed-unmerged or PR-less historical work, kept as evidence by the cleanup policy. Not used by production. |
+
+Merged branches are removed with Actions → **Clean up merged branches** (`confirm: yes`). It deletes only branches whose PR merged and that haven't moved since.
