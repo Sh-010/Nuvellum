@@ -1,0 +1,65 @@
+{
+  "slug": "netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication",
+  "url": "https://www.nuvellum.news/article/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication",
+  "title": "Netflix hires Former Disney exec Naomi Bulochnikov-Paul as head of TV series communications",
+  "risk": "low",
+  "firstSeenAt": "2026-10-01T20:22:36.395Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-01T20:22:36.395Z",
+      "remoteId": "20",
+      "remoteUrl": "https://t.me/nuvellum/20",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T20:22:36.395Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-01T20:22:36.395Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
