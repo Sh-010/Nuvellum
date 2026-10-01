@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T19:00:49.659Z"
 readingTime: "2 min"
-image: "/generated/ai/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication.svg"
-imageAlt: "AI-generated editorial illustration for Netflix hires Former Disney exec Naomi Bulochnikov-Paul as head of TV series communications"
 status: "published"
 tags: ["Netflix","Disney","Naomi Bulochnikov-Paul","industry moves"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication.jpg"
+imageAlt: "The headquarters of Netflix in Los Gatos"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: The headquarters of Netflix in Los Gatos. Image of Netflix, not of the events reported."
+imageCredit: "Coolcaesar at English Wikipedia"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Netflix_headquarters.jpg"
 ---
 ## New role at Netflix
 
