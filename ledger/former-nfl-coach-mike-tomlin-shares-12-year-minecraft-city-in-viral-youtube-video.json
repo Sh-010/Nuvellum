@@ -1,0 +1,65 @@
+{
+  "slug": "former-nfl-coach-mike-tomlin-shares-12-year-minecraft-city-in-viral-youtube-video",
+  "url": "https://www.nuvellum.news/article/former-nfl-coach-mike-tomlin-shares-12-year-minecraft-city-in-viral-youtube-video",
+  "title": "Former NFL coach Mike Tomlin shares 12-year Minecraft city in viral YouTube video",
+  "risk": "low",
+  "firstSeenAt": "2026-10-01T22:52:38.320Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-01T22:52:38.320Z",
+      "remoteId": "23",
+      "remoteUrl": "https://t.me/nuvellum/23",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T22:52:38.320Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-01T22:52:38.320Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
