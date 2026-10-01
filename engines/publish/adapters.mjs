@@ -172,7 +172,7 @@ export const x = {
 // The Graph API takes images by public URL only, and JPEG only. The card workflow publishes every story's verified cards to
 // the public social-assets branch, so the portrait card is fetched from there (NUVELLUM_ASSET_BASE).
 
-const ASSET_BASE = (env) => (env.NUVELLUM_ASSET_BASE || 'https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets').replace(/\/$/, '');
+const ASSET_BASE = (env) => (env.NUVELLUM_ASSET_BASE || 'https://cdn.jsdelivr.net/gh/Sh-010/Nuvellum@social-assets').replace(/\/$/, '');
 
 export const instagram = {
   id: 'instagram',
