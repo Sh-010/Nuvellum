@@ -8,9 +8,11 @@ name: Shorts autopilot
 # is recorded and retried once on a later run; it never touches article publication, and the owner-alert
 # step in observability reports repeated failures.
 
+# FALLBACK ONLY (owner decision, 2026-10-01): the current still-image narrated renderer is not the intended
+# Nuvellum video product (a future generative-video engine is). This workflow therefore has no schedule and
+# never posts publicly unless the owner deliberately sets the repository variable NUVELLUM_SHORTS_PUBLISH=on
+# AND ticks "distribute" on a manual run. Rendering to social-assets for review remains available.
 on:
-  schedule:
-    - cron: "41 */4 * * *"
   workflow_dispatch:
     inputs:
       slug:
@@ -18,9 +20,9 @@ on:
         required: false
         default: ""
       distribute:
-        description: "Hand the Short to configured video platforms"
+        description: "Hand the Short to video platforms (also requires the variable NUVELLUM_SHORTS_PUBLISH=on)"
         type: boolean
-        default: true
+        default: false
 
 permissions:
   contents: write
@@ -162,7 +164,7 @@ jobs:
           git show "FETCH_HEAD:shorts/$SLUG/short.mp4" > "engines/out/shorts/$SLUG/short.mp4"
 
       - name: Distribute to video platforms
-        if: (steps.store.outcome == 'success' || steps.select.outputs.retry != '') && (github.event_name == 'schedule' || inputs.distribute)
+        if: (steps.store.outcome == 'success' || steps.select.outputs.retry != '') && inputs.distribute && vars.NUVELLUM_SHORTS_PUBLISH == 'on'
         shell: bash
         env:
           SLUG: ${{ steps.select.outputs.slug || steps.select.outputs.retry }}
