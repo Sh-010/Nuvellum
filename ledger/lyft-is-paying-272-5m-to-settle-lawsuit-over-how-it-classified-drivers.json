@@ -1,0 +1,65 @@
+{
+  "slug": "lyft-is-paying-272-5m-to-settle-lawsuit-over-how-it-classified-drivers",
+  "url": "https://www.nuvellum.news/article/lyft-is-paying-272-5m-to-settle-lawsuit-over-how-it-classified-drivers",
+  "title": "Lyft is paying $272.5m to settle lawsuit over how it classified drivers",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-01T23:02:53.789Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-01T23:02:53.789Z",
+      "remoteId": "24",
+      "remoteUrl": "https://t.me/nuvellum/24",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T23:02:53.789Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-01T23:02:53.789Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
