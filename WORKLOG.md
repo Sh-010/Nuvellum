@@ -1098,3 +1098,8 @@ Owner request: don't let approved incoming PRs pile up (hourly runs produced abo
   - The publication gate's limit of 1 per rolling hour (now the second safety limit) and the 24/day cap.
 - **Safety and fidelity.** The guard fails open on an internal error, so the gate's hourly limit still holds. The If condition is always boolean, so an error can't fail the run.
 - **Tests and sync.** `tests/n8n-one-story-per-run.test.mjs` runs the exported guard against fixtures. The live draft was compared with the repo export: 69 nodes, with identical parameters, error handling and wiring.
+- **Verified on the first scheduled run (execution 951, 17:00:19 UTC, mode `production`, 46s).**
+  - **Live version.** `5e78c5f1` (hourly plus the guard) is active.
+  - **Candidates.** 5 queued and 5 accounted for: 1 `published` (Gaming, polygon.com, PR #216) and 4 `candidate_skipped`/`run_quota` (Variety, CNBC, DW, The Verge), skipped before any fetch or model call.
+  - **Telemetry.** `reachedDrafting` 1, `rejected` 0, `unaccounted` 0.
+  - **Gate.** Exactly one queued story merged in that hour (#210 at 17:01). #205 and #213 from before the change remain queued, at one per hour.
