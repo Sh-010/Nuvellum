@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T21:00:41.775Z"
 readingTime: "2 min"
-image: "/generated/ai/how-fire-emblem-fortune-s-weave-connects-to-three-houses.svg"
-imageAlt: "AI-generated editorial illustration for How Fire Emblem: Fortune's Weave connects to Three Houses"
 status: "published"
 tags: ["Fire Emblem","Nintendo","Gaming","Lore"]
 regions: []
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/how-fire-emblem-fortune-s-weave-connects-to-three-houses.jpg"
+imageAlt: "Nintendo Headquarters in Kyoto (2010). Building design by Yoshimura Architects in 2000. 京都市南区 2006年2月18日に投稿者が撮影 Head Quarters of Nintendo, Minami-ku , Kyoto , Japan"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Nintendo Headquarters in Kyoto (2010). Building design by Yoshimura Architects in 2000. 京都市南区 2006年2月18日に投稿者が撮影 Head Quarters of Nintendo, Minami-ku , Kyoto , Japan. Image of Nintendo, not of the events reported."
+imageCredit: "DVMG"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Nintendo_Headquarters_-_panoramio.jpg"
 ---
 While *Fire Emblem: Fortune's Weave* functions as a standalone game, it includes numerous details that tie it to *Three Houses*, expanding on several vague worldbuilding elements from the earlier title. Nintendo has provided little official emphasis on these links, leaving questions regarding chronology and lore.
 
