@@ -62,7 +62,10 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           NUVELLUM_AUTOPUBLISH: ${{ vars.NUVELLUM_AUTOPUBLISH }}
           NUVELLUM_PUBLISH_DAILY_CAP: ${{ vars.NUVELLUM_PUBLISH_DAILY_CAP }}
-          HEAD_BRANCH: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || '' }}
+          # Every run evaluates all open incoming PRs. Runs share one concurrency group and GitHub keeps only one
+          # pending run, dropping the rest; a run narrowed to its own branch therefore lost stories when several
+          # branches finished their checks together (2026-10-01 rehearsal: #205 waited for the hourly-ish sweep).
+          HEAD_BRANCH: ''
           PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || '' }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '0' }}
         run: node scripts/auto-publish.mjs

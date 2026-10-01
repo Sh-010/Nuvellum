@@ -2,7 +2,7 @@
 
 The publishing software for every platform below is **built and tested**:
 - feed posts: `engines/publish/adapters.mjs`;
-- Shorts/Reels: `engines/publish/video.mjs`, through the Shorts autopilot.
+- Shorts/Reels: `engines/publish/video.mjs`, through the Shorts autopilot. That autopilot is currently a manual fallback: no automatic public video posting, by owner decision. See docs/SHORTS_ENGINE.md.
 
 What remains for each platform is account-side: credentials, and in some cases the platform's own review. Each adapter stays dormant, recording `skipped` / `blocked_credentials` / `blocked_external_approval`, until its secrets exist. One platform's state never affects another.
 

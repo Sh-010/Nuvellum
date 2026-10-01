@@ -1,6 +1,8 @@
 # Shorts and Reels engine
 
-Nuvellum's vertical-video engine is a **zero-cost production engine**. It renders a real 9:16 MP4 with local Piper narration. The Shorts autopilot (below) chooses stories, renders, verifies and distributes them without anyone picking a slug.
+Nuvellum's current vertical-video engine is a **zero-cost fallback**. It renders a real 9:16 MP4 with local Piper narration over the story's still image.
+
+> **Owner decision (2026-10-01).** This renderer is **not** the intended Nuvellum video product; that will be a future generative-video engine with genuinely moving scenes. Until then, the current engine stays a manual fallback. It runs on no schedule, and it never posts publicly unless the owner sets the repository variable `NUVELLUM_SHORTS_PUBLISH=on` **and** ticks *distribute* on a manual run. Don't extend or redesign this renderer.
 
 ## Flow
 
@@ -106,9 +108,9 @@ Outputs are under `engines/out/shorts/<slug>/`: `short.mp4`, `poster.jpg`, `capt
 
 ## Automation status
 
-### Shorts autopilot (the normal production path)
+### Shorts autopilot (manual fallback)
 
-`.github/workflows/shorts-autopilot.yml` runs every four hours (minute 41). Nobody picks a slug.
+`.github/workflows/shorts-autopilot.yml` runs **only when started by hand**: Actions → Shorts autopilot → Run workflow. Left empty, it picks the story itself.
 
 1. **Select.** The autopilot reads every published story from the last 72 hours (`engines/shorts/autopilot.mjs`).
    - **Never automatic:**

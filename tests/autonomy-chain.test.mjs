@@ -124,3 +124,9 @@ test('observability runs the alert step whatever failed before it, with issues w
   assert.match(wf, /- name: Alert the owner when something needs them\n\s+if: always\(\)/);
   assert.match(wf, /SMOKE_OUTCOME: \$\{\{ steps\.smoke\.outcome \}\}/);
 });
+
+test('every gate run sweeps all open incoming PRs, so a dropped pending run cannot strand a story', () => {
+  const wf = readFileSync('.github/workflows/auto-publish.yml', 'utf8');
+  assert.match(wf, /HEAD_BRANCH: ''/);
+  assert.doesNotMatch(wf, /HEAD_BRANCH: \$\{\{ github\.event_name == 'workflow_run'/);
+});
