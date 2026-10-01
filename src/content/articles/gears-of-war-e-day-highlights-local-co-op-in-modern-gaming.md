@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T23:00:42.040Z"
 readingTime: "2 min"
-image: "/generated/ai/gears-of-war-e-day-highlights-local-co-op-in-modern-gaming.svg"
-imageAlt: "AI-generated editorial illustration for Gears of War: E-Day highlights local co-op in modern gaming"
 status: "published"
 tags: ["Gears of War","Xbox","The Coalition","video games","gaming"]
 regions: []
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/gears-of-war-e-day-highlights-local-co-op-in-modern-gaming.png"
+imageAlt: "Marcus Fenix and Dominic Santiago at the Armorer Prayer bar in Gears of War: E-Day"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Marcus Fenix and Dominic Santiago at the Armorer Prayer bar in Gears of War: E-Day"
+imageCredit: "The Coalition"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Gears_of_War_E-Day_-_Screenshot_-_Xbox_Showcase_-_BarBrothers.png"
 ---
 Developed by The Coalition and released in early access for Windows PC and Xbox Series X ahead of its full launch on Oct. 6, 2026, *Gears of War: E-Day* serves as the latest entry in the long-running third-person shooter franchise. As the series' first prequel, the game explores Emergence Day, the inciting event that triggered the franchise's storyline involving characters Marcus Fenix and Dominic Santiago.
 
