@@ -34,7 +34,7 @@ function mockGitHub(state) {
     let m;
     if ((m = p.match(new RegExp(`^${base}/pulls/(\\d+)/files$`)))) return json(200, state.prs.find(x => x.number === +m[1]).files);
     if (req.method === 'PUT' && (m = p.match(new RegExp(`^${base}/pulls/(\\d+)/merge$`)))) {
-      let body = ''; req.on('data', c => body += c); req.on('end', () => { state.merged.push({ number: +m[1], ...JSON.parse(body) }); json(200, { merged: true }); });
+      let body = ''; req.on('data', c => body += c); req.on('end', () => { state.merged.push({ number: +m[1], ...JSON.parse(body) }); const pr = state.prs.find(x => x.number === +m[1]); if (pr) { pr.state = 'closed'; pr.merged_at = new Date().toISOString(); } json(200, { merged: true }); });
       return;
     }
     if ((m = p.match(new RegExp(`^${base}/pulls/(\\d+)$`)))) return json(200, state.prs.find(x => x.number === +m[1]));
@@ -100,24 +100,47 @@ function scenario() {
   };
 }
 
-test('auto-publish: merges only cleared stories with green checks, pinned to head SHA', async () => {
+test('auto-publish: merges ONE cleared story per rolling hour, pinned to head SHA; the rest stay queued', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
     const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
     assert.equal(r.code, 0, r.out);
-    assert.deepEqual(state.merged.map(m => m.number).sort(), [1, 2], r.out);
-    for (const m of state.merged) {
-      assert.equal(m.merge_method, 'squash');
-      assert.equal(m.sha, state.prs.find(p => p.number === m.number).head.sha);
-    }
-    assert.deepEqual(state.deleted.sort(), ['incoming/low-1a2b3c4d', 'incoming/sens-ok-1a2b3c4d']);
-    assert.match(r.out, /HOLD {2}PR #3[\s\S]*uncertain/);
-    assert.match(r.out, /HOLD {2}PR #4[\s\S]*CodeQL" is in_progress/);
+    assert.deepEqual(state.merged.map(m => m.number), [1], r.out);
+    assert.equal(state.merged[0].merge_method, 'squash');
+    assert.equal(state.merged[0].sha, 'sha-low');
+    assert.deepEqual(state.deleted, ['incoming/low-1a2b3c4d']);
+    assert.match(r.out, /WAIT {2}3 open incoming PR\(s\): publication limit reached \(1 per rolling hour, 24 per 24h\)/);
+    assert.equal(state.prs.find(p => p.number === 2).state, 'open', 'the approved sensitive story stays queued');
   } finally { server.close(); }
 });
 
-test('auto-publish: kill switch off means evaluate only, never merge', async () => {
+test('auto-publish: the next sweep within the hour merges nothing; once the hour has passed the next approved story goes', async () => {
+  const state = scenario();
+  const { server, url } = await mockGitHub(state);
+  try {
+    await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
+    const again = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
+    assert.deepEqual(state.merged.map(m => m.number), [1], again.out);
+    state.prs.find(p => p.number === 1).merged_at = new Date(Date.now() - 61 * 60000).toISOString();
+    const later = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
+    assert.deepEqual(state.merged.map(m => m.number), [1, 2], later.out);
+  } finally { server.close(); }
+});
+
+test('auto-publish: the rolling daily cap still applies on top of the hourly limit', async () => {
+  const state = scenario();
+  const old = (n, mins) => ({ number: 100 + n, state: 'closed', head: { ref: `incoming/old-${n}` }, merged_at: new Date(Date.now() - mins * 60000).toISOString() });
+  state.prs.push(old(1, 90), old(2, 150));
+  const { server, url } = await mockGitHub(state);
+  try {
+    const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on', NUVELLUM_PUBLISH_DAILY_CAP: '2' });
+    assert.equal(state.merged.length, 0, r.out);
+    assert.match(r.out, /2 per 24h/);
+  } finally { server.close(); }
+});
+
+test('auto-publish: kill switch off means evaluate only, never merge; every rule still reported', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
@@ -125,6 +148,9 @@ test('auto-publish: kill switch off means evaluate only, never merge', async () 
     assert.equal(r.code, 0, r.out);
     assert.equal(state.merged.length, 0);
     assert.match(r.out, /READY PR #1/);
+    assert.match(r.out, /READY PR #2/);
+    assert.match(r.out, /HOLD {2}PR #3[\s\S]*uncertain/);
+    assert.match(r.out, /HOLD {2}PR #4[\s\S]*CodeQL" is in_progress/);
   } finally { server.close(); }
 });
 

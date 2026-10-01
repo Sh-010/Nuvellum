@@ -155,7 +155,7 @@ The observability workflow ends with `scripts/owner-alerts.mjs`. It runs whether
 | --- | --- |
 | `production-smoke` | The live-site smoke test failed in this run. |
 | `workflow:<name>` | Two consecutive runs failed for any of: Auto-publish, Social publish, Publish social card assets, Shorts autopilot, Send Nuvellum Brief. A single failed **Build Nuvellum** run on main also raises it. |
-| `stuck-incoming` | With autopublish on, an `incoming/**` PR without a hold label has been open more than 6 hours. |
+| `stuck-incoming` | With autopublish on, an `incoming/**` PR without a hold label has been open more than 6 hours **and** the gate has made no automatic publication for 3 hours. With the hourly cadence, approved stories queue legitimately; that only needs a person when publishing has stopped. |
 | `newsroom-stalled` | With autopublish on, there has been no new automated story and no incoming PR for 12 hours. This means n8n is inactive or failing (credentials, Gemini quota, GitHub token). |
 | `deploy` | Vercel reported a failed production deployment (including a rate limit) on the newest decisive main commit, more than 2 hours ago. |
 | `credentials:<platform>` | A social platform rejected Nuvellum's token (401/403, expired, unauthorised) in the last 36 hours. |

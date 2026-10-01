@@ -1072,3 +1072,16 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
   - GA4 on production, 11/11: consent first, one `page_view`, `page_type`, no PII, UTM.
   - Production smoke: 344 checks, 0 failures.
   - Brief dry run: 3 real recipients, 0 QA.
+
+## 2026-10-01 — hourly publication cadence
+
+Owner request: publish hourly. No new workflow, no gate changes.
+- **n8n.** Canonical v6.5 `8hXx6NuZuJU9dRR1`: the Schedule Trigger changed from every 3 hours to **every hour**. It was edited in place as version `f8891965`; the owner activates it. No other node changed. The export and contract test are synced.
+- **Publication gate:**
+  - **Limit.** At most **1 automatic merge per rolling hour**, on top of the unchanged rolling cap of 24 a day. Further approved PRs stay open and are reconsidered on the next sweep, newest first.
+  - **Fail closed.** If recent merges can't be counted, nothing merges that run (previously the gate assumed the full cap).
+  - **Bounded API use.** Once the limit is reached the gate stops evaluating, so a growing queue cannot exhaust the `GITHUB_TOKEN` API budget.
+  - **Unchanged.** Every editorial, verification, duplicate, quality and branch-protection rule.
+- **Owner alert.** `stuck-incoming` now fires only when PRs wait more than 6h **and** the gate hasn't published for 3h. Queued stories alone are normal at this cadence.
+- **Unchanged.** Social cadence (at most 1 story per 3-hourly run) and the daily cap.
+- **Side effect.** n8n yields about 3 approved stories an hour, and only 1 an hour publishes. The queue of open approved PRs therefore grows by roughly 2 an hour, and older ones age. Nothing auto-closes them yet; that needs an owner decision.

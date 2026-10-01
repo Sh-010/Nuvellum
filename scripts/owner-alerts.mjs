@@ -49,7 +49,12 @@ if (repo && token) {
   });
 }
 
+// Newest automatic publication: with the hourly cadence, queued PRs only matter when the gate stops merging.
+const closed = repo && token ? await attempt(() => gh('/pulls?state=closed&sort=updated&direction=desc&per_page=50')) : null;
+const lastAutoMergeAt = closed ? (closed.filter((p) => String(p.head?.ref || '').startsWith('incoming/') && p.merged_at).map((p) => p.merged_at).sort().pop() || null) : undefined;
+
 const evaluation = evaluateAlerts({
+  lastAutoMergeAt,
   now,
   autopublish: String(process.env.NUVELLUM_AUTOPUBLISH || '').toLowerCase() === 'on',
   runs: repo && token ? (await attempt(() => gh('/actions/runs?branch=main&per_page=100')))?.workflow_runs ?? null : null,

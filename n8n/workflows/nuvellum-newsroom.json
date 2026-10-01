@@ -3,7 +3,7 @@
   "name": "Nuvellum v6.5 — Fixed Source Resolution",
   "active": true,
   "isArchived": false,
-  "versionId": "807b29b1-0b3c-49b5-9138-34ee25dbb19a",
+  "versionId": "f8891965-2299-42f3-8d42-dd9b33ca0aa3",
   "activeVersionId": null,
   "triggerCount": 0,
   "nodeCount": 67,
@@ -1099,7 +1099,7 @@
           "interval": [
             {
               "field": "hours",
-              "hoursInterval": 3
+              "hoursInterval": 1
             }
           ]
         }
