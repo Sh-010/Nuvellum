@@ -1145,3 +1145,20 @@ The changes:
   - Unit: the 50-minute gap, and stale rules by type and flag.
   - Gate integration: stale News closed and kept, the fresher story merges instead, an old Explainer stays open, and dry runs only report.
   - Social: the after-cards dispatch wiring, and `--trigger cards` as a one-story sweep.
+
+## 2026-10-01 — one-story-per-run: first scheduled verification
+
+- **Verified on the first scheduled run (execution 951, 17:00:19 UTC, mode `production`, 46s).**
+  - **Live version.** `5e78c5f1` (hourly plus the guard) is active.
+  - **Candidates.** 5 queued and 5 accounted for: 1 `published` (Gaming, polygon.com, PR #216) and 4 `candidate_skipped`/`run_quota` (Variety, CNBC, DW, The Verge), skipped before any fetch or model call.
+  - **Telemetry.** `reachedDrafting` 1, `rejected` 0, `unaccounted` 0.
+  - **Gate.** Exactly one queued story merged in that hour (#210 at 17:01). #205 and #213 from before the change remain queued, at one per hour.
+
+## 2026-10-01 — artifact branches never deploy on Vercel
+
+- **Cause.** Every push to `social-assets` and `social-ledger` created a failed Vercel Preview deployment. Vercel reads `vercel.json` from the **pushed commit**, and these orphan branches (`cards/`, `shorts/`, `ledger/` only) have no copy of main's file, whose `git.deploymentEnabled` already lists both branches. Vercel therefore tried to build a non-app and errored.
+- **Fix.** Each artifact branch now carries its own minimal `vercel.json`: `"git": {"deploymentEnabled": false}`, plus `"ignoreCommand": "exit 0"` as a second guard. The workflows that write these branches build on the existing tip, so the file persists.
+- **Unchanged.** Main's `vercel.json`, the ignore script, production deployments and feature-branch previews.
+- **Verified with the commit adding the file** (`93b18f3` on social-assets, `779d8bd` on social-ledger):
+  - **0** Vercel deployments and no Vercel commit status, versus 1 failed deployment for each previous artifact push;
+  - main still "Deployment has completed".
