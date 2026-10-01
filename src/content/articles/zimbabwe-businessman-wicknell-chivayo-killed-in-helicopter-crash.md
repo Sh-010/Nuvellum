@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T12:57:57.868Z"
 readingTime: "2 min"
-image: "/generated/ai/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash.svg"
-imageAlt: "AI-generated editorial illustration for Zimbabwe businessman Wicknell Chivayo killed in helicopter crash"
 status: "published"
 tags: ["aviation","accident","business","Zimbabwe"]
 regions: ["sub-saharan-africa"]
