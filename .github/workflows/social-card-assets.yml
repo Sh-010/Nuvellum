@@ -98,6 +98,7 @@ jobs:
             mkdir -p "$DST"
             cp "$SRC"/square.png "$DST"/
             cp "$SRC"/portrait.png "$DST"/
+            cp "$SRC"/portrait.jpg "$DST"/
             cp "$SRC"/landscape.png "$DST"/
             cp "$SRC"/story.png "$DST"/
             cp "$SRC"/manifest.json "$DST"/

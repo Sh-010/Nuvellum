@@ -77,9 +77,13 @@ test('X posts to /2/tweets with a signed header', async () => {
 
 test('planner: configured platforms post once live, others are recorded honestly', () => {
   const byP = (plan) => Object.fromEntries(plan.map((s) => [s.platform, s.action === 'post' ? 'post' : s.status || s.action]));
-  assert.deepEqual(byP(planStory({ env: TG, live: true })), { telegram: 'post', facebook: 'skipped', linkedin: 'skipped', x: 'skipped', instagram: 'skipped', threads: 'skipped', youtube: 'skipped', tiktok: 'awaiting_approval' });
+  assert.deepEqual(byP(planStory({ env: TG, live: true })), { telegram: 'post', facebook: 'skipped', linkedin: 'skipped', x: 'skipped', instagram: 'skipped', threads: 'skipped', youtube: 'skipped', tiktok: 'skipped' });
   assert.equal(byP(planStory({ env: TG, live: false })).telegram, 'queued', 'not live yet → queued, not posted');
-  assert.equal(byP(planStory({ env: TG, live: true, hasShort: true })).youtube, 'awaiting_approval');
+  // Video platforms belong to the Shorts autopilot (engines/publish/video.mjs), not the feed publisher.
+  assert.match(planStory({ env: TG, live: true }).find((x) => x.platform === 'tiktok').reason, /Shorts autopilot/);
+  const ig = { INSTAGRAM_USER_ID: '1', INSTAGRAM_TOKEN: 't', THREADS_USER_ID: '2', THREADS_TOKEN: 't' };
+  assert.equal(byP(planStory({ env: { ...TG, ...ig }, live: true })).instagram, 'post');
+  assert.equal(byP(planStory({ env: { ...TG, ...ig }, live: true })).threads, 'post');
 });
 
 test('X is a paid API: credentials alone never post; the owner must approve the spend', () => {

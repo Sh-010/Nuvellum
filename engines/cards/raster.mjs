@@ -35,6 +35,8 @@ export async function rasterise(files, { executablePath = process.env.CHROMIUM_P
       if (png) {
         pngPath = file.replace(/\.svg$/, '.png');
         writeFileSync(pngPath, await page.screenshot({ type: 'png', clip: { x: 0, y: 0, width: +w, height: +h } }));
+        // Instagram's content-publishing API takes JPEG only; the portrait card is the Instagram feed card.
+        if (/(^|[\\/])portrait\.svg$/.test(file)) writeFileSync(file.replace(/\.svg$/, '.jpg'), await page.screenshot({ type: 'jpeg', quality: 92, clip: { x: 0, y: 0, width: +w, height: +h } }));
       }
       out.push({ file, png: pngPath, overflow });
       await page.close();

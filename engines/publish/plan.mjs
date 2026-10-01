@@ -10,8 +10,9 @@ import { ADAPTERS, xHasCredentials } from './adapters.mjs';
 
 export const MAX_ATTEMPTS = 3;
 export const WINDOW_HOURS = 48;
-export const AUTO = ['telegram', 'facebook', 'linkedin', 'x'];
-export const MANUAL = { instagram: 'no official adapter yet (needs a Business account + Graph API app review)', threads: 'no official adapter yet', youtube: 'video only: posts when a reviewed Short exists', tiktok: 'upload needs human approval' };
+export const AUTO = ['telegram', 'facebook', 'linkedin', 'x', 'instagram', 'threads'];
+// Video-only platforms: Shorts reach them through the Shorts autopilot and its own ledger (engines/publish/video.mjs).
+export const MANUAL = { youtube: 'video platform: Shorts are distributed by the Shorts autopilot', tiktok: 'video platform: Shorts are distributed by the Shorts autopilot' };
 export const ALL_PLATFORMS = [...AUTO, ...Object.keys(MANUAL)];
 const FINAL = new Set(['sent', 'failed']);
 
@@ -24,12 +25,7 @@ export function planStory({ ledger = {}, env = {}, live, hasShort = false }) {
     const prev = ledger.platforms?.[platform];
     if (prev && FINAL.has(prev.status)) { out.push({ platform, action: 'keep' }); continue; }
     if (prev?.status === 'queued' && (prev.attempts || 0) >= MAX_ATTEMPTS) { out.push({ platform, action: 'record', status: 'failed', reason: `gave up after ${prev.attempts} attempts: ${prev.error || 'unknown error'}` }); continue; }
-    if (platform in MANUAL) {
-      if (platform === 'youtube' && !hasShort) out.push({ platform, action: 'record', status: 'skipped', reason: MANUAL.youtube });
-      else if (platform === 'youtube' || platform === 'tiktok') out.push({ platform, action: 'record', status: 'awaiting_approval', reason: hasShort ? 'Short rendered; review and upload' : MANUAL[platform] });
-      else out.push({ platform, action: 'record', status: 'skipped', reason: MANUAL[platform] });
-      continue;
-    }
+    if (platform in MANUAL) { out.push({ platform, action: 'record', status: 'skipped', reason: MANUAL[platform] }); continue; }
     if (!ADAPTERS[platform].configured(env)) {
       const reason = platform === 'x' && xHasCredentials(env) ? 'paid API (about $0.20 per linked post): needs budget approval' : 'not configured';
       out.push({ platform, action: 'record', status: 'skipped', reason });

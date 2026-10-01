@@ -1,0 +1,208 @@
+name: Shorts autopilot
+
+# The normal production path for Shorts/Reels. No slug is chosen by hand:
+#   recent published stories -> eligibility (engines/shorts/autopilot.mjs) -> short ledger -> strongest
+#   eligible story -> existing Shorts engine with Piper -> verify the files -> social-assets -> ledger ->
+#   video platforms (engines/publish/video.mjs; each independent, blocked states recorded honestly).
+# At most DAILY_MAX (2) Shorts a day; a run with nothing new retries queued uploads instead. A failed render
+# is recorded and retried once on a later run; it never touches article publication, and the owner-alert
+# step in observability reports repeated failures.
+
+on:
+  schedule:
+    - cron: "41 */4 * * *"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Render this published story (safety rules still apply). Empty: choose automatically."
+        required: false
+        default: ""
+      distribute:
+        description: "Hand the Short to configured video platforms"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shorts-autopilot
+  cancel-in-progress: false
+
+jobs:
+  short:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      SITE_URL: https://www.nuvellum.news
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Check out the ledger and list existing assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Nuvellum Shorts"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin social-ledger >/dev/null; then
+            git fetch --depth=1 origin social-ledger
+            git worktree add -B social-ledger .ledger FETCH_HEAD
+          else
+            git worktree add --orphan -b social-ledger .ledger
+          fi
+          mkdir -p .ledger/shorts
+          : > /tmp/assets-tree.txt
+          if git ls-remote --exit-code --heads origin social-assets >/dev/null; then
+            git fetch --depth=1 origin social-assets
+            git ls-tree -r --name-only FETCH_HEAD > /tmp/assets-tree.txt
+          fi
+
+      - name: Choose the story
+        id: select
+        shell: bash
+        env:
+          REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.slug || '' }}
+        run: |
+          set -euo pipefail
+          node engines/shorts/autopilot-cli.mjs select --ledger .ledger/shorts --assets /tmp/assets-tree.txt ${REQUESTED:+--slug "$REQUESTED"} | tee /tmp/select.json
+          if [ -z "$(grep -E '^slug=.+' "$GITHUB_OUTPUT" || true)" ]; then
+            node engines/shorts/autopilot-cli.mjs pending --ledger .ledger/shorts | tee /tmp/pending.txt
+          fi
+
+      - name: Install rendering tools
+        if: steps.select.outputs.slug != ''
+        shell: bash
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
+          python3 -m pip install --quiet piper-tts
+          mkdir -p "$HOME/piper-voices"
+          [ -f "$HOME/piper-voices/en_GB-cori-high.onnx" ] || python3 -m piper.download_voices --download-dir "$HOME/piper-voices" en_GB-cori-high
+
+      - name: Render with the existing Shorts engine (Piper)
+        id: render
+        if: steps.select.outputs.slug != ''
+        continue-on-error: true
+        shell: bash
+        env:
+          NUVELLUM_TTS: piper,silent
+          SLUG: ${{ steps.select.outputs.slug }}
+        run: |
+          export PIPER_MODEL="$HOME/piper-voices/en_GB-cori-high.onnx"
+          node engines/shorts/cli.mjs --slug "$SLUG"
+
+      - name: Verify the rendered Short
+        id: verify
+        if: steps.select.outputs.slug != '' && steps.render.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        env:
+          SLUG: ${{ steps.select.outputs.slug }}
+        run: node engines/shorts/autopilot-cli.mjs verify --slug "$SLUG" | tee /tmp/verify.json
+
+      - name: Store the Short on social-assets
+        id: store
+        if: steps.verify.outcome == 'success'
+        shell: bash
+        env:
+          SLUG: ${{ steps.select.outputs.slug }}
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin social-assets >/dev/null; then
+            git fetch --depth=1 origin social-assets
+            git worktree add -B social-assets .social-assets FETCH_HEAD
+          else
+            git worktree add --orphan -b social-assets .social-assets
+          fi
+          mkdir -p ".social-assets/shorts/$SLUG"
+          for f in short.mp4 poster.jpg captions.srt report.json script.json plan.json; do cp "engines/out/shorts/$SLUG/$f" ".social-assets/shorts/$SLUG/"; done
+          cd .social-assets
+          git add "shorts/$SLUG"
+          git diff --cached --quiet && exit 0
+          git commit -q -m "short: $SLUG (autopilot)"
+          for i in 1 2 3; do
+            git push origin HEAD:social-assets && exit 0
+            git pull --rebase -q origin social-assets || true
+          done
+          echo "::error::could not store the Short"; exit 1
+
+      - name: Record the render
+        if: steps.select.outputs.slug != ''
+        shell: bash
+        env:
+          SLUG: ${{ steps.select.outputs.slug }}
+          STORED: ${{ steps.store.outcome }}
+          RENDERED: ${{ steps.render.outcome }}
+        run: |
+          set -euo pipefail
+          if [ "$STORED" = "success" ]; then
+            node engines/shorts/autopilot-cli.mjs record --ledger .ledger/shorts --slug "$SLUG" --status rendered
+          else
+            if [ "$RENDERED" != "success" ]; then WHY="render failed"; else WHY="verification failed: $(node -e "try{console.log(require('/tmp/verify.json').problems.join('; '))}catch{console.log('see run log')}")"; fi
+            node engines/shorts/autopilot-cli.mjs record --ledger .ledger/shorts --slug "$SLUG" --status failed --error "$WHY"
+          fi
+
+      - name: Fetch the Short being retried
+        if: steps.select.outputs.slug == '' && steps.select.outputs.retry != ''
+        shell: bash
+        env:
+          SLUG: ${{ steps.select.outputs.retry }}
+        run: |
+          mkdir -p "engines/out/shorts/$SLUG"
+          git fetch --depth=1 origin social-assets
+          git show "FETCH_HEAD:shorts/$SLUG/short.mp4" > "engines/out/shorts/$SLUG/short.mp4"
+
+      - name: Distribute to video platforms
+        if: (steps.store.outcome == 'success' || steps.select.outputs.retry != '') && (github.event_name == 'schedule' || inputs.distribute)
+        shell: bash
+        env:
+          SLUG: ${{ steps.select.outputs.slug || steps.select.outputs.retry }}
+          NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_PAGE_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+          TIKTOK_AUDITED: ${{ vars.TIKTOK_AUDITED }}
+        run: node engines/shorts/autopilot-cli.mjs distribute --ledger .ledger/shorts --slug "$SLUG" --live
+
+      - name: Save the ledger
+        if: always() && (steps.select.outputs.slug != '' || steps.select.outputs.retry != '')
+        shell: bash
+        run: |
+          cd .ledger
+          git add shorts
+          if git diff --cached --quiet; then echo "ledger unchanged"; exit 0; fi
+          git commit -q -m "shorts: ledger update (run ${{ github.run_id }})"
+          for i in 1 2 3; do
+            git push origin HEAD:social-ledger && exit 0
+            git pull --rebase -q origin social-ledger || true
+          done
+          echo "::error::could not save the short ledger"; exit 1
+
+      - name: Summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "### Shorts autopilot"
+            echo
+            node -e "try{const j=require('/tmp/select.json');console.log('- Choice: '+(j.slug||'none')+' ('+j.reason+')');console.log('- Considered: '+j.considered.length+', eligible: '+j.considered.filter(c=>c.eligible).length)}catch{console.log('- selection unavailable')}"
+            [ -f /tmp/verify.json ] && node -e "const j=require('/tmp/verify.json');console.log('- Verify: '+(j.problems.length?j.problems.join('; '):'passed ('+j.probe.width+'x'+j.probe.height+' '+j.probe.videoCodec+'/'+j.probe.audioCodec+', '+j.probe.duration.toFixed(1)+'s)'))"
+            [ -f /tmp/pending.txt ] && sed 's/^/- /' /tmp/pending.txt
+            true
+          } >> "$GITHUB_STEP_SUMMARY"

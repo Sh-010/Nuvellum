@@ -5,6 +5,8 @@
 //   facebook  Graph API POST /{page-id}/feed (link post)         FACEBOOK_PAGE_ID, FACEBOOK_PAGE_TOKEN
 //   linkedin  Posts API POST /rest/posts (article post)          LINKEDIN_ORG_URN, LINKEDIN_TOKEN
 //   x         API v2 POST /2/tweets, OAuth 1.0a user context     X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET
+//   instagram Graph API /{ig-user-id}/media + media_publish       INSTAGRAM_USER_ID, INSTAGRAM_TOKEN (portrait card by public URL)
+//   threads   Threads API /{user-id}/threads TEXT + publish       THREADS_USER_ID, THREADS_TOKEN
 //
 // Errors thrown from here carry only the platform, HTTP status and the API's own short error text, never
 // credentials or request bodies.
@@ -166,4 +168,48 @@ export const x = {
   }
 };
 
-export const ADAPTERS = { telegram, facebook, linkedin, x };
+// ---------- Instagram (feed: the branded portrait card) ----------
+// The Graph API takes images by public URL only, and JPEG only. The card workflow publishes every story's verified cards to
+// the public social-assets branch, so the portrait card is fetched from there (NUVELLUM_ASSET_BASE).
+
+const ASSET_BASE = (env) => (env.NUVELLUM_ASSET_BASE || 'https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets').replace(/\/$/, '');
+
+export const instagram = {
+  id: 'instagram',
+  configured: (env) => !!(env.INSTAGRAM_USER_ID && env.INSTAGRAM_TOKEN),
+  async post(story, { env, fetchImpl = fetch, copy }) {
+    const image = `${ASSET_BASE(env)}/cards/${story.slug}/portrait.jpg`;
+    const head = await fetchImpl(image, { method: 'HEAD' });
+    if (!head.ok) throw new PostError('instagram', `public card not on social-assets yet (HTTP ${head.status})`, { status: head.status, retryable: true });
+    const graph = `https://graph.facebook.com/${env.FACEBOOK_GRAPH_VERSION || 'v23.0'}/${encodeURIComponent(env.INSTAGRAM_USER_ID)}`;
+    const form = (o) => ({ method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ ...o, access_token: env.INSTAGRAM_TOKEN }).toString() });
+    const created = await fetchImpl(`${graph}/media`, form({ image_url: image, caption: copy.instagram.text }));
+    if (!created.ok) throw await readError('instagram', created, env);
+    const { id } = await created.json();
+    const pub = await fetchImpl(`${graph}/media_publish`, form({ creation_id: id }));
+    if (!pub.ok) throw await readError('instagram', pub, env);
+    const media = (await pub.json()).id;
+    return { remoteId: String(media || ''), remoteUrl: null, kind: 'card' };
+  }
+};
+
+// ---------- Threads (text post with the story link) ----------
+
+export const threads = {
+  id: 'threads',
+  configured: (env) => !!(env.THREADS_USER_ID && env.THREADS_TOKEN),
+  async post(story, { env, fetchImpl = fetch, copy }) {
+    const base = `https://graph.threads.net/v1.0/${encodeURIComponent(env.THREADS_USER_ID)}`;
+    const form = (o) => ({ method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ ...o, access_token: env.THREADS_TOKEN }).toString() });
+    const created = await fetchImpl(`${base}/threads`, form({ media_type: 'TEXT', text: copy.threads.text, link_attachment: trackedUrl(story, 'threads') }));
+    if (!created.ok) throw await readError('threads', created, env);
+    const { id } = await created.json();
+    const pub = await fetchImpl(`${base}/threads_publish`, form({ creation_id: id }));
+    if (!pub.ok) throw await readError('threads', pub, env);
+    const post = (await pub.json()).id;
+    return { remoteId: String(post || ''), remoteUrl: null, kind: 'link' };
+  }
+};
+
+
+export const ADAPTERS = { telegram, facebook, linkedin, x, instagram, threads };
