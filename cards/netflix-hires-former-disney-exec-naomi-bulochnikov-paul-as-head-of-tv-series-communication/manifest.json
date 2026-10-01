@@ -1,0 +1,125 @@
+{
+  "version": 2,
+  "slug": "netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication",
+  "url": "https://nuvellum.vercel.app/article/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication",
+  "title": "Netflix hires Former Disney exec Naomi Bulochnikov-Paul as head of TV series communications",
+  "section": "Film & TV",
+  "variant": "culture",
+  "media": {
+    "mode": "photo",
+    "label": "FILE PHOTO",
+    "credit": "Photo: Coolcaesar at English Wikipedia / CC BY-SA 3.0",
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 58,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 520,
+      "path": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 42,
+        "lines": 5,
+        "layout": "long",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "culture",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 58,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 783,
+      "path": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "culture",
+      "image": "photo",
+      "dek": {
+        "size": 38,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "headline": {
+        "size": 66,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 412,
+      "path": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "photo",
+  "square": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/square.svg",
+  "portrait": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/portrait.svg",
+  "landscape": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/landscape.svg",
+  "story": "engines/out/social-cards/netflix-hires-former-disney-exec-naomi-bulochnikov-paul-as-head-of-tv-series-communication/story.svg",
+  "rasterNeededForLivePosting": true
+}
