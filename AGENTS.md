@@ -1,8 +1,8 @@
 # Nuvellum — guide for AI agents and engineers
 
-Read this before changing anything. It replaces months of chat history.
+Read this before changing anything. It replaces months of chat history. For **operations** (current state, schedules, kill switches, playbooks), read [`docs/LIVE_STATE.md`](docs/LIVE_STATE.md) and [`docs/RUNBOOK.md`](docs/RUNBOOK.md).
 
-Nuvellum (https://nuvellum.vercel.app, "Beyond the headline.") is an automated international digital news publication. It has **no permanent human copy desk**, so correctness is enforced by code: validators, a publication gate and fail-closed parsers.
+Nuvellum (https://www.nuvellum.news, "Beyond the headline.") is an automated international digital news publication. It has **no permanent human copy desk**, so correctness is enforced by code: validators, a publication gate and fail-closed parsers.
 
 ## Hard rules
 
@@ -26,9 +26,9 @@ Nuvellum (https://nuvellum.vercel.app, "Beyond the headline.") is an automated i
 | `scripts/lib/newsroom.mjs` | Helpers shared with n8n (URLs, branch names, review/verification parsers, article builder, quality checks). |
 | `scripts/lib/svg-safety.mjs` | Allowlist validator for AI editorial SVGs. |
 | `n8n/` | Canonical workflow export (sanitized), prompts, generated Code-node snippets. |
-| `engines/` | Non-blocking social/media engines. Social distribution and Shorts/Reels remain dry-run until explicitly promoted. |
+| `engines/` | Non-blocking social/media engines: cards, the live social publisher (Telegram live; other platforms await credentials), Shorts (manual fallback only). |
 | `.github/workflows/` | Checks, auto-open PR, publication gate, cleanup. |
-| `docs/` | Architecture, pipeline, recovery, source matrix, baseline. (Distribution/Shorts engines live on branch `engines/distribution-shorts`, outside production.) |
+| `docs/` | Live state, runbook, architecture, pipeline, recovery, social, observability, source matrix. |
 | `WORKLOG.md` | Chronological engineering log. Append to it. |
 
 ## Commands
@@ -62,7 +62,6 @@ Vercel then deploys `main`. Details: `docs/EDITORIAL_PIPELINE.md`.
 - [ ] If anything the site renders changed: compare `dist/` with the previous build and take screenshots (desktop 1440×900, mobile 390×844). They must be pixel-identical unless visual approval exists.
 - [ ] Append to `WORKLOG.md`.
 
-## Known limitations (2026-09-26)
+## Current state
 
-- 18 of the 27 published articles are **seed placeholders**: two bodies duplicated 12 and 6 times. They are live and indexed. They need real content or `noindex`; the owner decides.
-- The live n8n workflow (v6.5, id `8hXx6NuZuJU9dRR1`) is exported, sanitized, in `n8n/workflows/nuvellum-newsroom.json`. It emits `editorialReview`, `verification`, `reviewedBy`, `publishedAt`, canonical `sourceUrls` and deterministic `incoming/<slug>-<hash8>` branches, and its output passes `scripts/validate-content.mjs` and `newStoryQualityProblems`. The workflow stays inactive and `NUVELLUM_AUTOPUBLISH` stays off until three real end-to-end runs pass.
+See [`docs/LIVE_STATE.md`](docs/LIVE_STATE.md). It is kept current: the n8n version and cadence, publication rules, social state per platform, known limitations and open risks. Since 2026-10-01 the newsroom runs unattended (hourly, one story per run) and `NUVELLUM_AUTOPUBLISH` is `on`.

@@ -58,6 +58,10 @@ The prompts in `n8n/prompts/` define the JSON the parsers expect. Keep prompt an
 
 `n8n/raw/` and `*.raw.json` are gitignored. Raw exports never go into Git.
 
+## Restoring the workflow if n8n loses it
+
+The export above is complete except for credentials. Import it, re-bind the Gemini and GitHub Header Auth credentials by name, run it once manually, then **Publish/activate** it. Finally, verify that it is Active, that the Schedule Trigger says every 1 hour, and that a "trigger" execution appears at the next :00 (UTC). Full steps: [`docs/RUNBOOK.md` → n8n recovery](../docs/RUNBOOK.md#n8n-recovery-restore-the-newsroom-workflow). Never run two copies at once.
+
 ## Updating the canonical workflow
 
 1. In n8n, open the production workflow → **⋯ → Download**. Save it as `n8n/raw/nuvellum-newsroom.raw.json`.

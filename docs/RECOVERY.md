@@ -1,6 +1,6 @@
 # Recovery and rollback
 
-Nothing here requires force-pushing or rewriting history.
+Nothing here requires force-pushing or rewriting history. The full operations runbook (kill switches, failure playbooks, credentials) is [`RUNBOOK.md`](RUNBOOK.md).
 
 ## Stop automated publishing immediately
 
@@ -21,6 +21,7 @@ Known-good references:
 
 | Ref | What |
 | --- | --- |
+| `nuvellum-autonomous-v1` (tag) | **Current known-good baseline (2026-10-01):** hourly unattended newsroom, one story per run, guarded publication, cards, Telegram, Brief, observability, analytics; Shorts deferred |
 | `checkpoint-pre-stabilization-2026-09-26` (tag) and `checkpoint/pre-stabilization-2026-09-26` (branch) | `main` at `c14b931`, before the 2026-09-26 stabilization |
 | `nuvellum-v5.1-production-baseline` | First verified live deployment of the exact v5.1 design |
 | `backup-pre-v51-2026-09-25` | Pre-restoration Astro homepage |
@@ -43,4 +44,4 @@ Never "fix" this by changing the checksum.
 
 ## n8n workflow broken
 
-Re-import the last good `n8n/workflows/nuvellum-newsroom.json` into n8n, re-bind credentials by name, test it manually while the schedule is inactive, then reactivate.
+Re-import the last good `n8n/workflows/nuvellum-newsroom.json` into n8n, re-bind credentials by name, test it manually while the schedule is inactive, then reactivate. Step by step: [`RUNBOOK.md` → n8n recovery](RUNBOOK.md#n8n-recovery-restore-the-newsroom-workflow).

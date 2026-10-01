@@ -4,7 +4,7 @@
 
 Production Astro build of the Nuvellum international digital publication.
 
-Live site: https://nuvellum.vercel.app
+Live site: https://www.nuvellum.news
 
 ## Local development
 ```bash
@@ -24,6 +24,7 @@ The site is fully static and deployed from GitHub to Vercel. Articles live in `s
 
 Builds never modify tracked files. The served public assets are assembled in `.build/public/`, which is gitignored: the tracked `public/` folder, plus the checksum-pinned v5.1 design, generated art and homepage injection.
 
+- **Operating Nuvellum: read `docs/LIVE_STATE.md` first, then `docs/RUNBOOK.md`** (schedules, emergency switches, failure playbooks, credential inventory, recovery).
 - Start here (agents and engineers): `AGENTS.md`; architecture: `docs/ARCHITECTURE.md`
 - Publishing policy and automation: `docs/EDITORIAL_PIPELINE.md`
 - Analytics and newsroom health: `docs/OBSERVABILITY.md`
@@ -31,6 +32,6 @@ Builds never modify tracked files. The served public assets are assembled in `.b
 - Shorts/Reels engine: `docs/SHORTS_ENGINE.md`
 - Admin dashboard and Review Queue (`/admin`): `docs/ADMIN.md`
 - Roadmap (milestones, AI Visual Engine): `docs/ROADMAP.md`
-- Recovery: `docs/RECOVERY.md` (distribution and Shorts engines are kept on branch `engines/distribution-shorts`, not in production)
+- Recovery: `docs/RUNBOOK.md` and `docs/RECOVERY.md`; known-good tag `nuvellum-autonomous-v1`
 - n8n workflow contract and version control: `n8n/README.md`
 - Automation publishing contract: `docs/N8N_PUBLISHING.md`
