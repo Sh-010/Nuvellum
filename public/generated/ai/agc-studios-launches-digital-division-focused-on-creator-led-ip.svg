@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <rect width="1200" height="675" fill="#f4efe6"/>
+  
+  
+  <g stroke="#e2d6c5" stroke-width="1" stroke-dasharray="4 8">
+    <line x1="150" y1="100" x2="150" y2="575"/>
+    <line x1="300" y1="100" x2="300" y2="575"/>
+    <line x1="450" y1="100" x2="450" y2="575"/>
+    <line x1="750" y1="100" x2="750" y2="575"/>
+    <line x1="900" y1="100" x2="900" y2="575"/>
+    <line x1="1050" y1="100" x2="1050" y2="575"/>
+  </g>
+
+  
+  <line x1="100" y1="520" x2="1100" y2="520" stroke="#d5c8b5" stroke-width="2"/>
+  <line x1="100" y1="150" x2="1100" y2="150" stroke="#d5c8b5" stroke-width="1"/>
+
+  
+  <g transform="translate(300, 335)">
+    
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="6 3"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    <line x1="-90" y1="0" x2="90" y2="0" stroke="#661227" stroke-width="1"/>
+    <line x1="0" y1="-90" x2="0" y2="90" stroke="#661227" stroke-width="1"/>
+    
+    
+    <polygon points="0,-60 52,30 -52,30" fill="none" stroke="#2a221c" stroke-width="2"/>
+    <polygon points="0,60 -52,-30 52,-30" fill="none" stroke="#2a221c" stroke-width="2"/>
+    <circle cx="0" cy="0" r="25" fill="#661227"/>
+  </g>
+
+  
+  <path d="M 480 335 C 550 250, 650 250, 720 335" fill="none" stroke="#661227" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <path d="M 480 335 C 550 420, 650 420, 720 335" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+
+  
+  <g transform="translate(900, 335)">
+    
+    <rect x="-110" y="-130" width="220" height="260" fill="#ebe3d5" stroke="#2a221c" stroke-width="3"/>
+    
+    
+    <rect x="-85" y="-100" width="170" height="200" fill="#f4efe6" stroke="#661227" stroke-width="2"/>
+    
+    
+    <rect x="-100" y="-110" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="-80" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="-50" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="-20" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="10" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="40" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="70" width="10" height="15" fill="#2a221c"/>
+    <rect x="-100" y="95" width="10" height="15" fill="#2a221c"/>
+
+    
+    <rect x="90" y="-110" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="-80" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="-50" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="-20" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="10" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="40" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="70" width="10" height="15" fill="#2a221c"/>
+    <rect x="90" y="95" width="10" height="15" fill="#2a221c"/>
+
+    
+    <polygon points="-65,60 0,-40 65,60" fill="none" stroke="#2a221c" stroke-width="2"/>
+    <polygon points="-35,60 0,0 35,60" fill="#661227" opacity="0.15"/>
+    <circle cx="0" cy="-40" r="12" fill="#661227"/>
+    <line x1="-65" y1="60" x2="65" y2="60" stroke="#2a221c" stroke-width="2"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5">
+    
+    <line x1="80" y1="90" x2="120" y2="90"/>
+    <line x1="90" y1="80" x2="90" y2="120"/>
+    
+    
+    <line x1="1080" y1="90" x2="1120" y2="90"/>
+    <line x1="1110" y1="80" x2="1110" y2="120"/>
+
+    
+    <line x1="80" y1="585" x2="120" y2="585"/>
+    <line x1="90" y1="555" x2="90" y2="595"/>
+
+    
+    <line x1="1080" y1="585" x2="1120" y2="585"/>
+    <line x1="1110" y1="555" x2="1110" y2="595"/>
+  </g>
+
+  
+  <g stroke="#e5dbc8" stroke-width="1" opacity="0.6">
+    <line x1="150" y1="520" x2="200" y2="570"/>
+    <line x1="180" y1="520" x2="230" y2="570"/>
+    <line x1="210" y1="520" x2="260" y2="570"/>
+    
+    <line x1="940" y1="520" x2="990" y2="570"/>
+    <line x1="970" y1="520" x2="1020" y2="570"/>
+    <line x1="1000" y1="520" x2="1050" y2="570"/>
+  </g>
+</svg>
