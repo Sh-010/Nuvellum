@@ -16,7 +16,7 @@ fi
 
 # These paths do not affect the public Vercel application. Workflow/docs/QA-only
 # commits should not consume the Hobby build-rate budget.
-RELEVANT="$(printf '%s\n' "$CHANGED" | grep -Ev '^(\.github/|docs/|tests/|engines/|ops/|WORKLOG\.md$|README\.md$)' || true)"
+RELEVANT="$(printf '%s\n' "$CHANGED" | grep -Ev '^(\.github/|docs/|tests/|engines/|ops/|n8n/|WORKLOG\.md$|README\.md$)' || true)"
 
 if [ -z "$RELEVANT" ]; then
   echo "Only non-production paths changed; skipping Vercel build."

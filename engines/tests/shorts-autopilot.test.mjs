@@ -101,7 +101,7 @@ test('video outcomes: public = sent; kept private by the platform = awaiting_app
 
 // ---------- adapters (mocked APIs) ----------
 const res = (status, body, headers = {}) => new Response(body == null ? null : JSON.stringify(body), { status, headers });
-const video = { bytes: Buffer.alloc(1000), size: 1000, url: 'https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/a-story/short.mp4' };
+const video = { bytes: Buffer.alloc(1000), size: 1000, url: 'https://cdn.jsdelivr.net/gh/Sh-010/Nuvellum@social-assets/shorts/a-story/short.mp4' };
 
 test('YouTube: refresh → resumable upload; an unaudited project kept private is reported, not called public', async () => {
   const calls = [];
@@ -171,4 +171,13 @@ test('Threads: a text post with the tracked story link', async () => {
     return res(200, { id: 't1' });
   } });
   assert.equal(r.remoteId, 't1');
+});
+
+test('public media for Meta comes from a CDN that sends real image/video content types, never raw GitHub', async () => {
+  const { readFileSync } = await import('node:fs');
+  for (const f of ['publish/adapters.mjs', 'shorts/autopilot-cli.mjs']) {
+    const src = readFileSync(new URL('../' + f, import.meta.url), 'utf8');
+    assert.match(src, /cdn\.jsdelivr\.net\/gh\/Sh-010\/Nuvellum@social-assets/, f);
+    assert.doesNotMatch(src, /raw\.githubusercontent\.com/, f + ': raw GitHub serves application/octet-stream, which Meta rejects');
+  }
 });
