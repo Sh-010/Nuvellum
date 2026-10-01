@@ -8,6 +8,17 @@ on:
     branches:
       - "incoming/**"
   workflow_dispatch:
+    inputs:
+      refresh_checks:
+        description: "Push an empty commit (deploy key) so required checks re-run and attach to the PR"
+        type: boolean
+        default: false
+
+# Why a deploy key: a commit pushed with GITHUB_TOKEN fires no push workflows, and checks started by
+# workflow_dispatch are never linked to the pull request, so branch protection on main kept every story
+# with a new photo blocked (seen in the 2026-10-01 rehearsal: PRs #204-#207). A push made with the
+# repository deploy key (secret NUVELLUM_DEPLOY_KEY) is an ordinary push: Build, Security, CodeQL and the
+# duplicate guard run on it and attach to the PR. Without the key the old dispatch fallback is kept.
 
 permissions:
   contents: write
@@ -21,11 +32,15 @@ jobs:
   acquire:
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    env:
+      # Secrets cannot appear in step conditions; expose only whether the key exists.
+      HAS_DEPLOY_KEY: ${{ secrets.NUVELLUM_DEPLOY_KEY != '' }}
     steps:
       - uses: actions/checkout@v7
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
+          ssh-key: ${{ secrets.NUVELLUM_DEPLOY_KEY }}
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -71,8 +86,17 @@ jobs:
           git commit -m "visual: acquire licensed editorial image"
           git push origin "HEAD:${GITHUB_REF_NAME}"
           echo "changed=1" >> "$GITHUB_OUTPUT"
-      - name: Dispatch required checks for the new visual commit
-        if: steps.commit.outputs.changed == '1'
+      - name: Re-run required checks on demand (deploy key)
+        if: github.event_name == 'workflow_dispatch' && inputs.refresh_checks && steps.commit.outputs.changed != '1'
+        shell: bash
+        run: |
+          [ "$HAS_DEPLOY_KEY" = "true" ] || { echo "::error::NUVELLUM_DEPLOY_KEY is not configured"; exit 1; }
+          git config user.name "Nuvellum Visual Engine"
+          git config user.email "actions@users.noreply.github.com"
+          git commit --allow-empty -m "ci: re-run required checks for publication"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - name: Dispatch required checks for the new visual commit (no deploy key)
+        if: steps.commit.outputs.changed == '1' && env.HAS_DEPLOY_KEY != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}

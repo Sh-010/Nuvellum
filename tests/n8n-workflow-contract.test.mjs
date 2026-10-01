@@ -16,8 +16,14 @@ const node = (name) => {
   return found;
 };
 
-test('canonical newsroom stays inactive during stabilization', () => {
-  assert.equal(workflow.active, false);
+// Stabilization ended on 2026-10-01 (three verified real runs): the canonical workflow runs unattended.
+// Every 3 hours: ~3 stories a run keeps production builds inside Vercel Hobby's 100/day and matches the
+// publication gate's daily cap; hourly would not.
+test('canonical newsroom is active on a 3-hour schedule', () => {
+  assert.equal(workflow.active, true);
+  const interval = node('Schedule Trigger').parameters.rule.interval[0];
+  assert.equal(interval.field, 'hours');
+  assert.equal(interval.hoursInterval, 3);
 });
 
 test('draft contract explicitly requests regions and countries', () => {
