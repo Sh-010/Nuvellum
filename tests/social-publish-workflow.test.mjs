@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 const wf = readFileSync('.github/workflows/social-publish.yml', 'utf8');
 
 test('social publishing runs apart from the build and publish gate, one run at a time', () => {
-  assert.match(wf, /on:\n  schedule:[\s\S]*?- cron: "35 \* \* \* \*"\n  workflow_dispatch:/m, 'scheduled hourly at :35 (after the :00 newsroom run) and dispatchable');
+  assert.match(wf, /on:\n  schedule:[\s\S]*?- cron: "35 \* \* \* \*"\n[\s\S]*?\n  workflow_dispatch:/m, 'hourly :35 backup sweep, and dispatchable');
   assert.doesNotMatch(wf, /^\s+(push|pull_request|workflow_run):/m, 'never tied to pushes, PRs or other workflows');
   assert.match(wf, /concurrency:\n  group: social-publish\n  cancel-in-progress: false/);
   const gate = readFileSync('scripts/lib/editorial.mjs', 'utf8');
@@ -49,4 +49,17 @@ test('the ledger lives on its own branch, which never deploys and triggers no wo
   const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
   assert.equal(vercel.git.deploymentEnabled['social-ledger'], false);
   assert.match(wf, /Save the ledger\n        if: always\(\)/, 'outcomes are saved even when a post fails');
+});
+
+test('primary trigger: the card workflow starts one social sweep right after post-merge cards are stored', () => {
+  const cards = readFileSync('.github/workflows/social-card-assets.yml', 'utf8');
+  assert.match(cards, /permissions:\n  contents: write\n  actions: write/);
+  const step = cards.slice(cards.indexOf('- name: Start the social publisher'));
+  assert.match(step, /if: steps\.publish\.outcome == 'success'/, 'only after the cards were stored successfully');
+  assert.match(step, /"inputs":\{"after_cards":"true"\}/);
+  assert.match(step, /actions\/workflows\/social-publish\.yml\/dispatches/);
+  assert.match(cards, /- name: Publish cards to social-assets branch\n        id: publish\n/);
+  // The publisher treats that dispatch exactly like the (backup) schedule: one story, newest actionable first.
+  assert.match(wf, /after_cards:\n        description: [^\n]+\n        type: boolean\n        default: false/);
+  assert.equal((wf.match(/TRIGGER: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.after_cards && 'cards' \|\| github\.event_name \}\}/g) || []).length, 2);
 });

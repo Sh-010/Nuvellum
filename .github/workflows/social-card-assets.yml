@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # start the social publisher once the cards exist
 
 concurrency:
   group: social-card-assets
@@ -100,6 +101,7 @@ jobs:
           done < /tmp/slugs.txt
 
       - name: Publish cards to social-assets branch
+        id: publish
         if: steps.slugs.outputs.any == 'true'
         shell: bash
         run: |
@@ -136,3 +138,19 @@ jobs:
           COUNT="$(git diff --cached --name-only | awk -F/ '$1=="cards"{print $2}' | sort -u | wc -l | tr -d ' ')"
           git commit -q -m "social cards: $COUNT story set(s)"
           git push origin HEAD:social-assets
+
+      # Post-merge cards are ready (and the article has normally deployed by now): start one social sweep
+      # directly, instead of waiting for GitHub's unreliable schedule. The publisher still posts at most one
+      # story (newest actionable or a queued retry), only once its page answers 200, and never twice (ledger).
+      - name: Start the social publisher
+        if: steps.publish.outcome == 'success'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          curl --fail-with-body -sS -X POST \
+            -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" \
+            -d '{"ref":"main","inputs":{"after_cards":"true"}}' \
+            "https://api.github.com/repos/$REPO/actions/workflows/social-publish.yml/dispatches"
+          echo "Social publisher started (one-story sweep)."

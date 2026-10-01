@@ -33,7 +33,7 @@ Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib
 | Create Review Branch | An existing branch skips the story; the run continues. |
 
 The workflow has been **active** since 2026-10-01 on an **hourly schedule**, and `NUVELLUM_AUTOPUBLISH` is `on`. Stabilization ended after three verified real end-to-end runs.
-- **The publishing rate is the gate's job, not the schedule's.** It merges at most **1 story per rolling hour** and 24 per rolling day; further approved stories stay open and are reconsidered on the next sweep, newest first.
+- **The publishing rate is the gate's job, not the schedule's.** It merges at most **1 story per hourly slot** (the previous merge must be at least 50 minutes old) and 24 per rolling day. Time-sensitive candidates that wait more than 6h are closed as stale, and the freshest story always goes first.
 - **Failure alerts.** A silent or failing newsroom raises the `newsroom-stalled` owner alert (docs/OBSERVABILITY.md#owner-alerts).
 
 ### Execution telemetry

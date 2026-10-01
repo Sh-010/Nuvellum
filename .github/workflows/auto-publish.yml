@@ -38,6 +38,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write    # label and comment candidates closed as stale
   actions: write   # read check runs; dispatch the social-card workflow after a merge
 
 concurrency:

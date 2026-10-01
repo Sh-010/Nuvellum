@@ -9,16 +9,23 @@ name: Social publish
 # schedule (not a push trigger) is what picks them up. See docs/SOCIAL_DISTRIBUTION.md.
 on:
   schedule:
-    # At most one story per run, every hour at minute 35. The newsroom runs at minute 0, so by :35 the hour's
+    # Backup/recovery sweep. At most one story per run, every hour at minute 35. The newsroom runs at minute 0, so by :35 the hour's
     # story has normally been merged, deployed and given its cards (and the publisher still waits until the
     # article answers 200). It chooses the newest actionable story (or a queued retry) instead of dumping the
     # whole recent window.
     - cron: "35 * * * *"
+  # Primary trigger: the card workflow dispatches this with after_cards=true as soon as a newly published
+  # story's cards are rendered (GitHub scheduled runs proved unreliable). The schedule above is only a
+  # backup/recovery sweep. Either way: at most one story per run, ledger-backed, never a duplicate.
   workflow_dispatch:
     inputs:
       slug:
         description: "Published slug to post"
         required: false
+      after_cards:
+        description: "Sweep for one story (used by the card workflow after rendering cards)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -62,8 +69,8 @@ jobs:
           SITE_URL: https://www.nuvellum.news
           NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
           SLUG: ${{ inputs.slug }}
-          # schedule = one selected story; workflow_dispatch = one explicit slug.
-          TRIGGER: ${{ github.event_name }}
+          # schedule / after_cards = one selected story (newest actionable); a manual dispatch = one explicit slug.
+          TRIGGER: ${{ github.event_name == 'workflow_dispatch' && inputs.after_cards && 'cards' || github.event_name }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
@@ -104,8 +111,8 @@ jobs:
           SITE_URL: https://www.nuvellum.news
           NUVELLUM_SOCIAL: ${{ vars.NUVELLUM_SOCIAL }}
           SLUG: ${{ inputs.slug }}
-          # schedule = one selected story; workflow_dispatch = one explicit slug.
-          TRIGGER: ${{ github.event_name }}
+          # schedule / after_cards = one selected story (newest actionable); a manual dispatch = one explicit slug.
+          TRIGGER: ${{ github.event_name == 'workflow_dispatch' && inputs.after_cards && 'cards' || github.event_name }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}

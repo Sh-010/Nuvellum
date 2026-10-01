@@ -37,6 +37,15 @@ function mockGitHub(state) {
       let body = ''; req.on('data', c => body += c); req.on('end', () => { state.merged.push({ number: +m[1], ...JSON.parse(body) }); const pr = state.prs.find(x => x.number === +m[1]); if (pr) { pr.state = 'closed'; pr.merged_at = new Date().toISOString(); } json(200, { merged: true }); });
       return;
     }
+    if (req.method === 'PATCH' && (m = p.match(new RegExp(`^${base}/pulls/(\\d+)$`)))) {
+      let body = ''; req.on('data', c => body += c); req.on('end', () => { const pr = state.prs.find(x => x.number === +m[1]); Object.assign(pr, JSON.parse(body)); (state.closed ||= []).push(+m[1]); json(200, pr); });
+      return;
+    }
+    if (req.method === 'POST' && (m = p.match(new RegExp(`^${base}/issues/(\\d+)/(labels|comments)$`)))) {
+      let body = ''; req.on('data', c => body += c); req.on('end', () => { (state[m[2]] ||= []).push({ number: +m[1], ...JSON.parse(body) }); json(200, {}); });
+      return;
+    }
+    if (req.method === 'POST' && p === `${base}/labels`) return json(201, {});
     if ((m = p.match(new RegExp(`^${base}/pulls/(\\d+)$`)))) return json(200, state.prs.find(x => x.number === +m[1]));
     if (req.method === 'DELETE' && (m = p.match(new RegExp(`^${base}/git/refs/heads/(.+)$`)))) { state.deleted.push(m[1]); return json(204); }
     if (p === `${base}/actions/runs`) return json(200, { workflow_runs: state.runs[url.searchParams.get('head_sha')] || [] });
@@ -71,7 +80,7 @@ const green = () => REQUIRED_CHECKS.map(name => ({ name, status: 'completed', co
 
 function prFor(number, slug, sha, extra = {}) {
   return {
-    number, state: 'open', draft: false, labels: [], base: { ref: 'main' },
+    number, state: 'open', draft: false, labels: [], base: { ref: 'main' }, created_at: new Date().toISOString(),
     head: { ref: `incoming/${slug}-1a2b3c4d`, sha, repo: { full_name: REPO } },
     files: [{ filename: `src/content/articles/${slug}.md`, status: 'added' }],
     ...extra
@@ -110,19 +119,19 @@ test('auto-publish: merges ONE cleared story per rolling hour, pinned to head SH
     assert.equal(state.merged[0].merge_method, 'squash');
     assert.equal(state.merged[0].sha, 'sha-low');
     assert.deepEqual(state.deleted, ['incoming/low-1a2b3c4d']);
-    assert.match(r.out, /WAIT {2}3 open incoming PR\(s\): publication limit reached \(1 per rolling hour, 24 per 24h\)/);
+    assert.match(r.out, /WAIT {2}3 open incoming PR\(s\): publication limit reached \(1 per hourly slot, 50 min apart; 24 per 24h\)/);
     assert.equal(state.prs.find(p => p.number === 2).state, 'open', 'the approved sensitive story stays queued');
   } finally { server.close(); }
 });
 
-test('auto-publish: the next sweep within the hour merges nothing; once the hour has passed the next approved story goes', async () => {
+test('auto-publish: a sweep within 50 minutes merges nothing; the next hourly slot (even a few minutes early) merges the next story', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
     await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
     const again = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
     assert.deepEqual(state.merged.map(m => m.number), [1], again.out);
-    state.prs.find(p => p.number === 1).merged_at = new Date(Date.now() - 61 * 60000).toISOString();
+    state.prs.find(p => p.number === 1).merged_at = new Date(Date.now() - 57 * 60000).toISOString();
     const later = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
     assert.deepEqual(state.merged.map(m => m.number), [1, 2], later.out);
   } finally { server.close(); }
@@ -137,6 +146,44 @@ test('auto-publish: the rolling daily cap still applies on top of the hourly lim
     const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on', NUVELLUM_PUBLISH_DAILY_CAP: '2' });
     assert.equal(state.merged.length, 0, r.out);
     assert.match(r.out, /2 per 24h/);
+  } finally { server.close(); }
+});
+
+function staleScenario() {
+  const state = scenario();
+  const hoursAgo = (h) => new Date(Date.now() - h * 3600000).toISOString();
+  state.prs.find(p => p.number === 1).created_at = hoursAgo(7); // approved News, waited 7h
+  const explainer = md({ title: 'Explainer', status: 'published', origin: 'automation', risk: 'low', editorialReview: 'passed', section: 'World', type: 'Explainer', sourceUrls: ['https://ex.com/e'], sourceNote: 'Prepared from Example reporting.' });
+  state.branches['incoming/explainer-1a2b3c4d'] = { sha: 'sha-exp', first: '1', files: [['src/content/articles/explainer.md', explainer]] };
+  state.prs.push(prFor(5, 'explainer', 'sha-exp', { created_at: hoursAgo(9) }));
+  state.runs['sha-exp'] = green();
+  return state;
+}
+
+test('auto-publish: a time-sensitive candidate waiting over 6h is closed as stale (kept, labelled, explained); fresher news publishes instead', async () => {
+  const state = staleScenario();
+  const { server, url } = await mockGitHub(state);
+  try {
+    const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
+    assert.equal(r.code, 0, r.out);
+    assert.deepEqual(state.closed, [1], 'the 7h-old News PR is closed');
+    assert.ok(!state.merged.some(m => m.number === 1), 'a stale story is never published');
+    assert.deepEqual(state.labels, [{ number: 1, labels: ['stale'] }]);
+    assert.match(state.comments[0].body, /stale.*News candidate waited 7h without publication \(limit 6h\)[\s\S]*Nothing was deleted/);
+    assert.ok(!state.deleted.includes('incoming/low-1a2b3c4d'), 'its branch (and article) are kept');
+    assert.deepEqual(state.merged.map(m => m.number), [2], 'the fresher approved story publishes in its place');
+    assert.equal(state.prs.find(p => p.number === 5).state, 'open', 'a 9h-old Explainer does not expire');
+    assert.match(r.out, /STALE PR #1 .* closed/);
+  } finally { server.close(); }
+});
+
+test('auto-publish: with the kill switch off, stale candidates are only reported, never closed', async () => {
+  const state = staleScenario();
+  const { server, url } = await mockGitHub(state);
+  try {
+    const r = await run('auto-publish.mjs', { GITHUB_API_URL: url });
+    assert.equal(state.closed, undefined);
+    assert.match(r.out, /STALE PR #1 .*\(dry run, not closed\)/);
   } finally { server.close(); }
 });
 

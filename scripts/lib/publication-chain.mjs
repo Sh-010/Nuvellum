@@ -4,9 +4,12 @@
 //  - which stories still need branded social cards on the social-assets branch.
 
 export const DEFAULT_DAILY_CAP = 24;
-// Hourly cadence: at most one automatic publication in any rolling hour. Further approved stories stay open
-// and are reconsidered on the next sweep (every gate run sweeps all open incoming PRs).
+// Hourly cadence: one automatic publication per hourly slot. Another may merge once the previous merge is at
+// least MIN_GAP_MINUTES old. Not a strict 60: the gate runs when each hourly newsroom push lands (a few minutes
+// past the hour, with drift), so a strict rolling hour skipped every other slot.
 export const HOURLY_CAP = 1;
+export const MIN_GAP_MINUTES = 50;
+const GAP = MIN_GAP_MINUTES * 60000;
 const HOUR = 3600000;
 const DAY = 86400000;
 
@@ -26,14 +29,37 @@ export function remainingToday(pulls, cap, now = Date.now()) {
   return Math.max(0, cap - publishedInLastDay(pulls, now));
 }
 
-/** Automatic publications (merged incoming/** PRs) in the rolling hour before `now`. */
+/** Automatic publications (merged incoming/** PRs) within the minimum gap before `now`. */
 export function publishedInLastHour(pulls = [], now = Date.now()) {
-  return pulls.filter((pr) => String(pr?.head?.ref || '').startsWith('incoming/') && pr.merged_at && now - Date.parse(pr.merged_at) < HOUR).length;
+  return pulls.filter((pr) => String(pr?.head?.ref || '').startsWith('incoming/') && pr.merged_at && now - Date.parse(pr.merged_at) < GAP).length;
 }
 
-/** How many stories may be merged right now: the rolling-hour limit and the rolling daily cap both apply. */
+/** How many stories may be merged right now: the hourly-slot limit and the rolling daily cap both apply. */
 export function remainingNow(pulls, cap, now = Date.now()) {
   return Math.min(remainingToday(pulls, cap, now), Math.max(0, HOURLY_CAP - publishedInLastHour(pulls, now)));
+}
+
+// Freshness: Nuvellum publishes the newest approved story first, so an ordinary news candidate that waits
+// too long would never publish and only grow the queue. Time-sensitive candidates (News, or anything flagged
+// breaking/developing) that have waited more than STALE_HOURS are closed as stale; their branch and article are
+// kept. Long-life formats (Explainer, Analysis, Review, Essay, Opinion, Ideas) do not expire this way.
+export const STALE_HOURS = 6;
+const TIME_SENSITIVE_TYPES = new Set(['news', 'breaking', 'developing']);
+
+/** Whether a candidate's article is time-sensitive news (from its frontmatter). */
+export function isTimeSensitive(data = {}) {
+  const tags = (Array.isArray(data.tags) ? data.tags : []).map((t) => String(t).toLowerCase());
+  return TIME_SENSITIVE_TYPES.has(String(data.type || '').trim().toLowerCase())
+    || data.breaking === true || data.developing === true
+    || tags.includes('breaking') || tags.includes('developing')
+    || /^(breaking|developing)$/i.test(String(data.status_label || ''));
+}
+
+/** The stale reason for an open candidate, or null if it may still publish. */
+export function staleReason({ createdAt, data, now = Date.now() }) {
+  const hours = (now - Date.parse(createdAt || '')) / HOUR;
+  if (!Number.isFinite(hours) || hours <= STALE_HOURS || !isTimeSensitive(data)) return null;
+  return `stale: ${String(data.type || 'News')} candidate waited ${Math.floor(hours)}h without publication (limit ${STALE_HOURS}h); newer news took priority`;
 }
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

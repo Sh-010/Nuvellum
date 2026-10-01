@@ -9,15 +9,18 @@
 // - Nothing is merged unless the repository variable NUVELLUM_AUTOPUBLISH is "on".
 // - DRY_RUN=1 evaluates and reports without merging.
 // - A PR labelled hold / do-not-publish / needs-human is never merged.
-// - Hourly cadence: at most HOURLY_CAP (1) story is merged in any rolling hour, and at most
-//   NUVELLUM_PUBLISH_DAILY_CAP (default 24) in any 24 hours (each is a production build; Vercel Hobby allows
-//   100 a day). Further approved stories wait, open, and are reconsidered on the next sweep.
+// - Hourly cadence: at most HOURLY_CAP (1) story per hourly slot (another may merge once the previous merge is
+//   MIN_GAP_MINUTES = 50 minutes old), and at most NUVELLUM_PUBLISH_DAILY_CAP (default 24) in any 24 hours
+//   (each is a production build; Vercel Hobby allows 100 a day). Further approved stories wait, open.
+// - Freshness: newest first. Time-sensitive candidates (News, breaking/developing) that have waited more than
+//   STALE_HOURS (6) are closed as stale with a "stale" label and a comment; the branch and article are kept.
+//   Long-life formats (Explainer, Analysis, Review, Essay, Opinion, Ideas) do not expire this way.
 //
 // After a merge it dispatches the social-card workflow for the published slugs: a GITHUB_TOKEN merge fires
 // no push workflows, so nothing downstream would otherwise notice the new story.
 
-import { evaluatePublication } from './lib/editorial.mjs';
-import { dailyCap, remainingNow, HOURLY_CAP } from './lib/publication-chain.mjs';
+import { evaluatePublication, parseFrontmatter, HOLD_LABELS } from './lib/editorial.mjs';
+import { dailyCap, remainingNow, HOURLY_CAP, MIN_GAP_MINUTES, STALE_HOURS, staleReason } from './lib/publication-chain.mjs';
 
 const token = process.env.GITHUB_TOKEN;
 const repo = process.env.GITHUB_REPOSITORY;
@@ -65,15 +68,24 @@ async function candidatePrs() {
   return prs.filter(pr => String(pr.head?.ref || '').startsWith('incoming/') && (!onlyBranch || pr.head.ref === onlyBranch));
 }
 
-async function evaluate(pr) {
-  const sha = pr.head.sha;
+// The PR's files and article Markdown at its head (fetched once per run).
+const fetched = new Map();
+async function articleOf(pr) {
+  if (fetched.has(pr.number)) return fetched.get(pr.number);
   const files = await gh(`/repos/${repo}/pulls/${pr.number}/files?per_page=100`);
   const articleFile = files.find(f => /^src\/content\/articles\/.+\.md$/.test(f.filename));
   let article = '';
   if (articleFile) {
-    const payload = await gh(`/repos/${repo}/contents/${enc(articleFile.filename)}?ref=${sha}`);
+    const payload = await gh(`/repos/${repo}/contents/${enc(articleFile.filename)}?ref=${pr.head.sha}`);
     article = Buffer.from(payload.content || '', 'base64').toString('utf8');
   }
+  fetched.set(pr.number, { files, article });
+  return { files, article };
+}
+
+async function evaluate(pr) {
+  const sha = pr.head.sha;
+  const { files, article } = await articleOf(pr);
   const runs = (await gh(`/repos/${repo}/actions/runs?head_sha=${sha}&per_page=100`)).workflow_runs || [];
   return evaluatePublication({ pr, repo, files, article, runs });
 }
@@ -88,14 +100,44 @@ let allowance = 0;
 try { allowance = remainingNow(await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`), cap); }
 catch (err) { console.warn(`Could not count recent publications (${err.message}); merging nothing this run.`); }
 
-const candidates = await candidatePrs(); // newest first: the freshest approved story is published first
+// Freshness sweep: close time-sensitive candidates that have waited too long. Only PRs older than STALE_HOURS
+// are inspected, and held PRs are a person's decision, so they are left alone. Nothing is deleted.
+const candidates = [];
+for (const pr of await candidatePrs()) { // newest first: the freshest approved story is published first
+  const held = (pr.labels || []).some(l => HOLD_LABELS.has(String(l.name || l).toLowerCase()));
+  const ageHours = (Date.now() - Date.parse(pr.created_at || '')) / 3600000;
+  if (held || !(ageHours > STALE_HOURS)) { candidates.push(pr); continue; }
+  const { article } = await articleOf(pr);
+  const reason = staleReason({ createdAt: pr.created_at, data: parseFrontmatter(article) || {}, now: Date.now() });
+  if (!reason) { candidates.push(pr); continue; }
+  if (dryRun) {
+    console.log(`STALE PR #${pr.number} ${pr.head.ref} (dry run, not closed)\n      - ${reason}`);
+    summary.push(`| #${pr.number} | stale (dry run) | ${reason} |`);
+    continue;
+  }
+  try {
+    try {
+      await gh(`/repos/${repo}/labels`, { method: 'POST', body: JSON.stringify({ name: 'stale', color: 'bfbfbf', description: 'Time-sensitive candidate closed unpublished: newer news took priority' }) });
+    } catch { /* the label already exists */ }
+    await gh(`/repos/${repo}/issues/${pr.number}/labels`, { method: 'POST', body: JSON.stringify({ labels: ['stale'] }) });
+    await gh(`/repos/${repo}/issues/${pr.number}/comments`, { method: 'POST', body: JSON.stringify({ body: `Closed by the Nuvellum publication gate as **stale**: ${reason}.\n\nNothing was deleted: the branch \`${pr.head.ref}\` and its article are kept. Reopen this PR to reconsider it.` }) });
+    await gh(`/repos/${repo}/pulls/${pr.number}`, { method: 'PATCH', body: JSON.stringify({ state: 'closed' }) });
+    console.log(`STALE PR #${pr.number} ${pr.head.ref} closed\n      - ${reason}`);
+    summary.push(`| #${pr.number} | closed: stale | ${reason} |`);
+  } catch (err) {
+    // A stale story is never merged, even if closing it failed.
+    console.warn(`::warning::PR #${pr.number} is stale but could not be closed: ${err.message}`);
+    summary.push(`| #${pr.number} | stale (close failed) | ${reason} |`);
+  }
+}
+
 for (const [i, pr] of candidates.entries()) {
   // Limit reached: everything still open stays queued for the next sweep. Stop here instead of evaluating
   // the rest, so a growing queue cannot exhaust the GITHUB_TOKEN API budget.
   if (!dryRun && allowance <= 0) {
     const queued = candidates.length - i;
-    console.log(`WAIT  ${queued} open incoming PR(s): publication limit reached (${HOURLY_CAP} per rolling hour, ${cap} per 24h); queued for the next sweep`);
-    summary.push(`| ${queued} open | queued | ${HOURLY_CAP}/hour or ${cap}/24h limit reached |`);
+    console.log(`WAIT  ${queued} open incoming PR(s): publication limit reached (${HOURLY_CAP} per hourly slot, ${MIN_GAP_MINUTES} min apart; ${cap} per 24h); queued for the next sweep`);
+    summary.push(`| ${queued} open | queued | ${HOURLY_CAP} per ${MIN_GAP_MINUTES} min or ${cap}/24h limit reached |`);
     break;
   }
   const result = await evaluate(pr);

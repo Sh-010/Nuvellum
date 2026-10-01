@@ -23,7 +23,7 @@ import { generateFeedCopy } from '../distribution/copy.mjs';
 import { BRAND } from '../shared/brand.mjs';
 import { ADAPTERS, telegramMessage } from './adapters.mjs';
 import { WINDOW_HOURS, planStory } from './plan.mjs';
-import { processStory, needsCards, runScope, chooseScheduledCandidate } from './run.mjs';
+import { processStory, needsCards, runScope, chooseScheduledCandidate, isSweepTrigger } from './run.mjs';
 import { prepareCardAssets } from './assets.mjs';
 
 const argv = process.argv.slice(2);
@@ -81,7 +81,7 @@ const freshEntry = (story) => ({ slug: story.slug, url: story.url, title: story.
 
 async function selectedCandidates() {
   const base = candidateSlugs();
-  if (onlySlug || bulk || trigger !== 'schedule') return base;
+  if (onlySlug || bulk || !isSweepTrigger(trigger)) return base;
 
   const assessed = [];
   for (const slug of base) {
@@ -135,6 +135,6 @@ for (const slug of selected) {
   }
   summary.push(`${slug}: ` + Object.entries(res.entry.platforms).map(([p, s]) => `${p}=${s.status}`).join(' '));
 }
-console.log(`Social publisher (${live ? 'LIVE' : 'dry run'}${renderInDryRun && !live ? ' + card render' : ''}; window ${WINDOW_HOURS}h; ${trigger === 'schedule' && !bulk ? 'scheduled max 1 story' : bulk ? 'explicit bulk' : 'single story'})`);
+console.log(`Social publisher (${live ? 'LIVE' : 'dry run'}${renderInDryRun && !live ? ' + card render' : ''}; window ${WINDOW_HOURS}h; ${isSweepTrigger(trigger) && !bulk ? `${trigger === 'cards' ? 'after cards' : 'scheduled'} max 1 story` : bulk ? 'explicit bulk' : 'single story'})`);
 for (const line of summary) console.log(' ' + line);
 if (!summary.length) console.log(' nothing to do');
