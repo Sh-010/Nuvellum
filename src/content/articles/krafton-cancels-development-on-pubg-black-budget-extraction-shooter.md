@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T12:58:26.657Z"
 readingTime: "1 min"
-image: "/generated/ai/krafton-cancels-development-on-pubg-black-budget-extraction-shooter.svg"
-imageAlt: "AI-generated editorial illustration for Krafton cancels development on PUBG: Black Budget extraction shooter"
 status: "published"
 tags: ["PUBG","Krafton","video games","extraction shooter"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/krafton-cancels-development-on-pubg-black-budget-extraction-shooter.jpg"
+imageAlt: "The #PUBGMFIFTHANNIVERSARY is making its impact on Erangel! Check out the latest update video on all of the celebrations you'll experience: https://pubgmobile.live/Imagiversaryupdate PUBGMOBILEC4S11 #PUBGMOBILE"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: The #PUBGMFIFTHANNIVERSARY is making its impact on Erangel! Check out the latest update video on all of the celebrations you'll experience: https://pubgmobile.live/Imagiversaryupdate PUBGMOBILEC4S11 #PUBGMOBILE"
+imageCredit: "PUBG MOBILE"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:PUBG_MOBILE_-_Erangel%27s_New_Imagination_Plaza.webm"
 ---
 Developer Krafton has officially ended development on *PUBG: Black Budget*, its take on the extraction shooter genre. The project, led by PUBG Studios, was initiated following renewed interest in extraction shooters sparked by titles like *Arc Raiders* and *Escape from Tarkov*.
 
