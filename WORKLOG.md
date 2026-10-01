@@ -1126,3 +1126,22 @@ Owner request: post to social hourly, offset from the newsroom.
   - the template has no fallback;
   - for **every** region in the built output, both the homepage desk and `/world/<region>`, each linked story carries that region.
   - The tests fail on main's build and pass with the fix.
+
+## 2026-10-01 — freshness policy, 50-minute gate gap, social after cards
+
+The problems, observed live:
+- **GitHub scheduled runs barely fired.** Only one scheduled run started between 13:28 and 20:00 UTC, so social posting never ran and Telegram posted nothing today.
+- **The gate merged about every 2 hours.** It runs when each hourly push lands (around :01–:04), and the previous merge at about the same minute was always just under a strict 60 minutes old.
+- **Old approved news piled up.** Newest-first left #205, #213 and #218 waiting forever.
+
+The changes:
+- **Gate gap.** Another story may merge once the previous merge is **at least 50 minutes old** (`MIN_GAP_MINUTES`). The 24/day cap and every editorial and sensitive-verification rule are unchanged.
+- **Freshness policy.**
+  - **What expires.** Newest-first stays. Time-sensitive candidates (type News, or flagged breaking/developing) open for **more than 6h** are closed as stale. Each gets a `stale` label and a comment with the reason; the branch and article are kept, and reopening the PR reconsiders it.
+  - **What doesn't.** Explainer, Analysis, Review, Essay, Opinion and Ideas candidates don't expire this way, and held PRs are left alone.
+  - **Kill switch off.** Stale candidates are only reported.
+- **Social.** The card workflow dispatches the social publisher (`after_cards`) as soon as post-merge cards are stored. The publisher treats it exactly like the schedule: at most one story per run (a queued retry first, else the newest actionable story), ledger-backed, never a duplicate. The hourly :35 schedule is now only a backup/recovery sweep.
+- **Tests.**
+  - Unit: the 50-minute gap, and stale rules by type and flag.
+  - Gate integration: stale News closed and kept, the fresher story merges instead, an old Explainer stays open, and dry runs only report.
+  - Social: the after-cards dispatch wiring, and `--trigger cards` as a one-story sweep.

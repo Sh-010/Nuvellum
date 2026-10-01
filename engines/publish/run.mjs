@@ -91,9 +91,16 @@ export async function processStory(o) {
  * manual, so the safe behaviour is the default.
  * @returns {{ mode: 'window' | 'slug' | 'refuse', message?: string }}
  */
+/**
+ * Unattended sweeps: the hourly schedule (backup/recovery) and the run the card workflow starts right after a
+ * story's cards are rendered ('cards'). Both scan the window and post at most ONE story (queued retry first,
+ * then the newest actionable one); neither can bulk-post.
+ */
+export const isSweepTrigger = (trigger) => trigger === 'schedule' || trigger === 'cards';
+
 export function runScope({ trigger = 'manual', slug = '', bulk = false }) {
   if (slug) return { mode: 'slug' };
-  if (trigger === 'schedule') return { mode: 'window' };
+  if (isSweepTrigger(trigger)) return { mode: 'window' };
   if (bulk === true) return { mode: 'window' };
   return { mode: 'refuse', message: 'Manual run without a slug: nothing was posted and the ledger is unchanged. Give a slug, or set bulk=true to deliberately process every eligible story in the window.' };
 }

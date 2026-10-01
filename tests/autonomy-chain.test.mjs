@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { dailyCap, DEFAULT_DAILY_CAP, publishedInLastDay, remainingToday, publishedInLastHour, remainingNow, HOURLY_CAP, cardSlugs } from '../scripts/lib/publication-chain.mjs';
+import { dailyCap, DEFAULT_DAILY_CAP, publishedInLastDay, remainingToday, publishedInLastHour, remainingNow, HOURLY_CAP, MIN_GAP_MINUTES, STALE_HOURS, staleReason, isTimeSensitive, cardSlugs } from '../scripts/lib/publication-chain.mjs';
 import { evaluateAlerts, alertActions, MARKER, keyOf, STUCK_PR_HOURS } from '../scripts/lib/alerts.mjs';
 
 const H = 3600000;
@@ -131,14 +131,27 @@ test('every gate run sweeps all open incoming PRs, so a dropped pending run cann
   assert.doesNotMatch(wf, /HEAD_BRANCH: \$\{\{ github\.event_name == 'workflow_run'/);
 });
 
-test('hourly cadence: at most one automatic publication per rolling hour, inside the daily cap', () => {
+test('hourly cadence: one publication per hourly slot (50-minute minimum gap), inside the daily cap', () => {
   assert.equal(HOURLY_CAP, 1);
+  assert.equal(MIN_GAP_MINUTES, 50);
   const merged = (minsAgo) => ({ head: { ref: 'incoming/x' }, merged_at: new Date(NOW - minsAgo * 60000).toISOString() });
   assert.equal(remainingNow([], 24, NOW), 1, 'nothing merged lately: one may go');
-  assert.equal(publishedInLastHour([merged(59)], NOW), 1);
-  assert.equal(remainingNow([merged(59)], 24, NOW), 0, 'one already this hour: the rest wait');
-  assert.equal(remainingNow([merged(61)], 24, NOW), 1, 'a new rolling hour');
-  assert.equal(remainingNow([merged(61), merged(120)], 2, NOW), 0, 'the daily cap still applies');
+  assert.equal(publishedInLastHour([merged(49)], NOW), 1);
+  assert.equal(remainingNow([merged(49)], 24, NOW), 0, 'previous merge under 50 minutes ago: the rest wait');
+  assert.equal(remainingNow([merged(57)], 24, NOW), 1, 'the next hourly push lands a few minutes early: it still goes (the old strict hour skipped it)');
+  assert.equal(remainingNow([merged(55), merged(120)], 2, NOW), 0, 'the daily cap still applies');
+});
+
+test('freshness: time-sensitive candidates expire after 6h; long-life formats do not', () => {
+  assert.equal(STALE_HOURS, 6);
+  const at = (h) => new Date(NOW - h * H).toISOString();
+  assert.match(staleReason({ createdAt: at(7), data: { type: 'News' }, now: NOW }), /^stale: News candidate waited 7h without publication \(limit 6h\)/);
+  assert.equal(staleReason({ createdAt: at(5), data: { type: 'News' }, now: NOW }), null, 'under 6h: still a candidate');
+  for (const flagged of [{ type: 'Analysis', tags: ['Breaking'] }, { type: 'Explainer', developing: true }, { type: 'Analysis', status_label: 'developing' }])
+    assert.ok(staleReason({ createdAt: at(7), data: flagged, now: NOW }), JSON.stringify(flagged));
+  for (const type of ['Explainer', 'Analysis', 'Review', 'Essay', 'Opinion', 'Ideas'])
+    assert.equal(staleReason({ createdAt: at(48), data: { type }, now: NOW }), null, `${type} does not expire after 6h`);
+  assert.equal(isTimeSensitive({ type: 'news' }), true, 'case-insensitive');
 });
 
 test('queued stories alert only when the gate has stopped publishing', () => {

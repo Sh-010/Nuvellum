@@ -210,6 +210,20 @@ test('1. a scheduled run scans the eligible window but selects at most one actio
   } finally { t.done(); }
 });
 
+test('1b. the run started after post-merge cards is a one-story sweep, exactly like the backup schedule', async () => {
+  const { runScope, isSweepTrigger } = await import('../publish/run.mjs');
+  assert.deepEqual(runScope({ trigger: 'cards' }), { mode: 'window' });
+  assert.equal(isSweepTrigger('cards'), true);
+  assert.equal(isSweepTrigger('workflow_dispatch'), false, 'a plain manual dispatch still needs a slug');
+  const t = tmpOut();
+  try {
+    const out = cli(['--ledger', t.d, '--trigger', 'cards']);
+    assert.match(out, /^Social publisher \(dry run; window 48h; after cards max 1 story\)/m);
+    const stories = [...out.matchAll(/^ ([a-z0-9-]+):/gm)].map((m) => m[1]);
+    assert.ok(stories.length <= 1, `after-cards run considered too many stories: ${stories.join(', ')}`);
+  } finally { t.done(); }
+});
+
 test('2. a manual run with a slug processes only that slug', () => {
   const t = tmpOut();
   try {
@@ -250,7 +264,7 @@ test('4. manual bulk mode scans the window only when deliberately selected', () 
 test('the workflow wires a spaced one-story schedule and exposes no bulk-post control', () => {
   const wf = readFileSync(join(REPO_ROOT, '.github', 'workflows', 'social-publish.yml'), 'utf8');
   assert.doesNotMatch(wf, /\n      bulk:/, 'Actions UI must not expose bulk posting');
-  assert.equal((wf.match(/TRIGGER: \$\{\{ github\.event_name \}\}/g) || []).length, 2);
+  assert.equal((wf.match(/TRIGGER: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.after_cards && 'cards' \|\| github\.event_name \}\}/g) || []).length, 2);
   assert.doesNotMatch(wf, /inputs\.bulk|\$BULK/);
   assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
   assert.match(wf, /--live --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
