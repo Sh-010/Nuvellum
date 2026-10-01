@@ -1,0 +1,44 @@
+{
+  "slug": "everything-we-know-about-netflixs-icebreaker-adaptation-so-far",
+  "title": "Everything we know about Netflix’s ‘Icebreaker’ adaptation so far",
+  "risk": "low",
+  "firstSeenAt": "2026-10-01T12:23:24.119Z",
+  "platforms": {
+    "youtube": {
+      "status": "blocked_credentials",
+      "reason": "needs YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REFRESH_TOKEN",
+      "updatedAt": "2026-10-01T12:23:24.191Z"
+    },
+    "facebook": {
+      "status": "blocked_credentials",
+      "reason": "needs FACEBOOK_PAGE_ID, FACEBOOK_PAGE_TOKEN",
+      "updatedAt": "2026-10-01T12:23:24.191Z"
+    },
+    "instagram": {
+      "status": "blocked_credentials",
+      "reason": "needs INSTAGRAM_USER_ID, INSTAGRAM_TOKEN",
+      "updatedAt": "2026-10-01T12:23:24.191Z"
+    },
+    "tiktok": {
+      "status": "blocked_credentials",
+      "reason": "needs TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET, TIKTOK_REFRESH_TOKEN",
+      "updatedAt": "2026-10-01T12:23:24.191Z"
+    }
+  },
+  "render": {
+    "status": "rendered",
+    "at": "2026-10-01T12:23:24.119Z",
+    "seconds": 32.666666666666664,
+    "tts": "piper",
+    "failures": 0,
+    "assets": {
+      "short": "https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/short.mp4",
+      "poster": "https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/poster.jpg",
+      "captions": "https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/captions.srt",
+      "script": "https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/script.json",
+      "plan": "https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/plan.json",
+      "report": "https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/everything-we-know-about-netflixs-icebreaker-adaptation-so-far/report.json"
+    }
+  },
+  "updatedAt": "2026-10-01T12:23:24.191Z"
+}
