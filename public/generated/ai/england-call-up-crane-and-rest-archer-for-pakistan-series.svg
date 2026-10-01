@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <linearGradient id="paperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5efe6" />
+      <stop offset="50%" stop-color="#efe8db" />
+      <stop offset="100%" stop-color="#e6ded0" />
+    </linearGradient>
+
+    
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.3" opacity="0.15" />
+    </pattern>
+
+    <pattern id="crosshatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="0.3" opacity="0.2" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#661227" stroke-width="0.3" opacity="0.1" />
+    </pattern>
+
+    
+    <filter id="subtleShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#2a221c" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)" />
+
+  
+  <rect x="35" y="35" width="1130" height="605" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.4" />
+  <rect x="43" y="43" width="1114" height="589" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.3" />
+  
+  <path d="M 30 45 L 45 45 L 45 30" fill="none" stroke="#661227" stroke-width="2" />
+  <path d="M 1170 45 L 1155 45 L 1155 30" fill="none" stroke="#661227" stroke-width="2" />
+  <path d="M 30 630 L 45 630 L 45 645" fill="none" stroke="#661227" stroke-width="2" />
+  <path d="M 1170 630 L 1155 630 L 1155 645" fill="none" stroke="#661227" stroke-width="2" />
+
+  
+  
+  <path d="M 150 520 Q 600 220 1050 520" fill="none" stroke="#2a221c" stroke-width="1" stroke-dasharray="6,6" opacity="0.3" />
+  <path d="M 250 520 Q 600 280 950 520" fill="none" stroke="#661227" stroke-width="1" opacity="0.25" />
+
+  
+  <rect x="90" y="120" width="300" height="430" fill="url(#hatch)" opacity="0.6" rx="2" />
+  <rect x="90" y="120" width="300" height="430" fill="none" stroke="#2a221c" stroke-width="1.5" />
+
+  
+  
+  <g filter="url(#subtleShadow)" transform="translate(600, 310)">
+    
+    <circle cx="0" cy="0" r="145" fill="#52101e" />
+    <circle cx="0" cy="0" r="145" fill="url(#crosshatch)" />
+
+    
+    <circle cx="-35" cy="-35" r="145" fill="none" stroke="#efe8db" stroke-width="3" opacity="0.15" />
+
+    
+    
+    <path d="M -115 -90 C -40 -130 40 -130 115 -90 C 40 130 -40 130 -115 -90" fill="none" stroke="#2a221c" stroke-width="12" opacity="0.4" />
+    
+    
+    <path d="M -110 -85 C -35 -125 35 -125 110 -85" fill="none" stroke="#efe8db" stroke-width="4" stroke-dasharray="3,5" />
+    <path d="M -110 -85 C -35 -125 35 -125 110 -85" fill="none" stroke="#661227" stroke-width="2" />
+
+    <path d="M -110 85 C -35 125 35 125 110 85" fill="none" stroke="#efe8db" stroke-width="4" stroke-dasharray="3,5" />
+    <path d="M -110 85 C -35 125 35 125 110 85" fill="none" stroke="#661227" stroke-width="2" />
+
+    
+    <path d="M -135 0 C -45 -25 45 -25 135 0" fill="none" stroke="#2a221c" stroke-width="2.5" opacity="0.8" />
+    <path d="M -135 0 C -45 25 45 25 135 0" fill="none" stroke="#2a221c" stroke-width="2.5" opacity="0.8" />
+
+    
+    
+    <path d="M -90 -103 l 4 8 M -70 -112 l 4 8 M -50 -118 l 4 8 M -30 -121 l 4 8 M -10 -122 l 2 8 M 10 -122 l 2 8 M 30 -121 l 0 8 M 50 -118 l -2 8 M 70 -112 l -4 8 M 90 -103 l -4 8" fill="none" stroke="#efe8db" stroke-width="2" />
+    
+    <path d="M -90 103 l 4 -8 M -70 112 l 4 -8 M -50 118 l 4 -8 M -30 121 l 4 -8 M -10 122 l 2 -8 M 10 122 l 2 -8 M 30 121 l 0 -8 M 50 118 l -2 -8 M 70 112 l -4 -8 M 90 103 l -4 -8" fill="none" stroke="#efe8db" stroke-width="2" />
+
+    
+    <path d="M -170 -40 C -190 20 -150 90 -100 130" fill="none" stroke="#2a221c" stroke-width="2" stroke-dasharray="5,4" opacity="0.7" />
+    <polygon points="-100,130 -105,115 -112,126" fill="#2a221c" />
+
+    <path d="M 170 40 C 190 -20 150 -90 100 -130" fill="none" stroke="#2a221c" stroke-width="2" stroke-dasharray="5,4" opacity="0.7" />
+    <polygon points="100,-130 105,-115 112,-126" fill="#2a221c" />
+  </g>
+
+  
+  <g transform="translate(150, 180)" opacity="0.85">
+    
+    <path d="M 0 280 L 0 80 Q 0 0 100 0 Q 200 0 200 80 L 200 280" fill="none" stroke="#2a221c" stroke-width="3" />
+    <path d="M 20 280 L 20 90 Q 20 30 100 30 Q 180 30 180 90 L 180 280" fill="none" stroke="#2a221c" stroke-width="1" />
+    
+    
+    <line x1="50" y1="120" x2="150" y2="120" stroke="#661227" stroke-width="2" />
+    <line x1="50" y1="150" x2="150" y2="150" stroke="#2a221c" stroke-width="1" />
+    <line x1="50" y1="180" x2="150" y2="180" stroke="#2a221c" stroke-width="1" />
+    <line x1="50" y1="210" x2="150" y2="210" stroke="#2a221c" stroke-width="1" />
+    <line x1="50" y1="240" x2="150" y2="240" stroke="#661227" stroke-width="2" />
+    
+    
+    <line x1="100" y1="30" x2="100" y2="280" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="4,4" />
+  </g>
+
+  
+  <g transform="translate(850, 180)" opacity="0.85">
+    
+    <rect x="0" y="0" width="200" height="280" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    <rect x="10" y="10" width="180" height="260" fill="none" stroke="#661227" stroke-width="1" />
+    
+    
+    <circle cx="100" cy="90" r="45" fill="none" stroke="#2a221c" stroke-width="1.5" />
+    <circle cx="100" cy="90" r="5" fill="#661227" />
+    <line x1="100" y1="40" x2="100" y2="140" stroke="#2a221c" stroke-width="1" stroke-dasharray="2,2" />
+    <line x1="50" y1="90" x2="150" y2="90" stroke="#2a221c" stroke-width="1" stroke-dasharray="2,2" />
+    <path d="M 100 45 L 110 60 L 90 60 Z" fill="#661227" />
+
+    
+    <line x1="30" y1="170" x2="170" y2="170" stroke="#2a221c" stroke-width="2" />
+    <line x1="30" y1="195" x2="140" y2="195" stroke="#2a221c" stroke-width="1" opacity="0.6" />
+    <line x1="30" y1="215" x2="160" y2="215" stroke="#2a221c" stroke-width="1" opacity="0.6" />
+    <line x1="30" y1="235" x2="110" y2="235" stroke="#661227" stroke-width="1.5" />
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" fill="none">
+    
+    <path d="M 50 580 L 250 580" stroke-width="1.5" />
+    <path d="M 50 590 L 180 590" opacity="0.5" />
+    <circle cx="270" cy="580" r="4" fill="#661227" stroke="none" />
+
+    
+    <path d="M 950 580 L 1150 580" stroke-width="1.5" />
+    <path d="M 1020 590 L 1150 590" opacity="0.5" />
+    <circle cx="930" cy="580" r="4" fill="#661227" stroke="none" />
+  </g>
+
+  
+  <circle cx="600" cy="310" r="220" fill="none" stroke="#661227" stroke-width="0.75" opacity="0.2" stroke-dasharray="8,12" />
+  <circle cx="600" cy="310" r="280" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.1" />
+
+</svg>
