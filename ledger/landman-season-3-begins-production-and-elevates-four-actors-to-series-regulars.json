@@ -1,0 +1,67 @@
+{
+  "slug": "landman-season-3-begins-production-and-elevates-four-actors-to-series-regulars",
+  "url": "https://www.nuvellum.news/article/landman-season-3-begins-production-and-elevates-four-actors-to-series-regulars",
+  "title": "‘Landman’ season 3 begins production and elevates four actors to series regulars",
+  "risk": "low",
+  "firstSeenAt": "2026-10-01T21:03:19.082Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-01T21:03:19.082Z",
+      "remoteId": "21",
+      "remoteUrl": "https://t.me/nuvellum/21",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T21:03:19.082Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-01T21:03:19.082Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
