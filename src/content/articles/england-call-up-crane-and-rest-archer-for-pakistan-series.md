@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T12:56:51.685Z"
 readingTime: "2 min"
-image: "/generated/ai/england-call-up-crane-and-rest-archer-for-pakistan-series.svg"
-imageAlt: "AI-generated editorial illustration for England call up Crane and rest Archer for Pakistan series"
 status: "published"
 tags: ["Cricket","England","Pakistan","Sri Lanka","Mason Crane","Jofra Archer"]
 regions: ["south-asia","europe-central-asia"]
