@@ -1,17 +1,50 @@
 # Social platform connection checklist
 
-What each official Nuvellum account will need **before** live posting is added to the dry-run distribution engine (`docs/SOCIAL_DISTRIBUTION.md`). Nothing here has been created. No apps, keys or secrets exist yet.
+The publishing software for every platform below is **built and tested**:
+- feed posts: `engines/publish/adapters.mjs`;
+- Shorts/Reels: `engines/publish/video.mjs`, through the Shorts autopilot.
 
-Checked against the platforms' developer documentation in **September 2026**. These terms change often, so re-check each item when the adapter is built.
+What remains for each platform is account-side: credentials, and in some cases the platform's own review. Each adapter stays dormant, recording `skipped` / `blocked_credentials` / `blocked_external_approval`, until its secrets exist. One platform's state never affects another.
 
-## Requirements shared by every platform
+## Current status (1 October 2026)
 
-- **Rasterised media.** Social cards are SVG today. Every platform needs JPEG or PNG, and Instagram accepts JPEG only. Rasterise at 1080×1080 and 1080×1350 on a machine that has Georgia, or the metric-compatible OFL font Gelasio.
-- **Public media URLs.** The Meta APIs (Instagram, Threads, Facebook URL uploads) and TikTok `PULL_FROM_URL` fetch media from a public HTTPS URL, and TikTok also needs that domain verified. We'll need a public media location, such as the site itself or a bucket.
+| Platform | Feed post | Short/Reel | Live today? | What unblocks it (owner side) |
+| --- | --- | --- | --- | --- |
+| **Telegram** | Branded square card + caption | — | **Yes**, every 3 hours, ledger-backed, no duplicates | Nothing |
+| **Facebook Page** | Link post | Reels via `video_reels` | No: no secrets | Meta app with `pages_manage_posts`, `pages_read_engagement`, `pages_show_list`; long-lived Page token → `FACEBOOK_PAGE_ID`, `FACEBOOK_PAGE_TOKEN`. Advanced Access needs App Review + Business Verification (**external approval**). |
+| **Instagram** | Portrait card (JPEG) | Reels | No: no secrets | Professional account linked to the Page; `instagram_content_publish` (App Review, **external approval**) → `INSTAGRAM_USER_ID`, `INSTAGRAM_TOKEN` |
+| **Threads** | Text + link | — | No: no secrets | `threads_basic`, `threads_content_publish` (App Review, **external approval**) → `THREADS_USER_ID`, `THREADS_TOKEN`. The token lasts 60 days: renew it, and the owner alert fires on rejection. |
+| **LinkedIn Page** | Article post | — | No: no secrets | Community Management API approval, which is open only to a registered legal entity (**external approval**) → `LINKEDIN_ORG_URN`, `LINKEDIN_TOKEN` (60-day token) |
+| **YouTube** | — | Shorts upload | No: no secrets | Google Cloud project, YouTube Data API v3, OAuth client, refresh token for the channel → `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN`. Put the OAuth consent screen **In production**: refresh tokens of "Testing" apps expire after 7 days. Until Google's API compliance audit, uploads are locked private, and the ledger records them as `awaiting_approval` (**external approval**). |
+| **TikTok** | — | Direct Post (file upload) | No: no secrets | Developer app with Content Posting API → `TIKTOK_CLIENT_KEY`, `TIKTOK_CLIENT_SECRET`, `TIKTOK_REFRESH_TOKEN`. Public posting needs TikTok's **audit**; then set the variable `TIKTOK_AUDITED=yes`. Until then: `blocked_external_approval`. |
+| **X** | Text + link | — | No: deliberately off | Paid API (about $0.20 per linked post). Needs a budget decision (`NUVELLUM_X_BUDGET_APPROVED=yes`). Not a launch dependency. |
+
+**Third-party schedulers are not part of the architecture.**
+- **Metricool:** API access requires the paid Advanced plan (from about $53/month); the Free and Starter plans have no API.
+- **Windsor.ai:** a data-integration product whose free tier, after a 30-day trial, is limited to one source.
+
+Accounts connected inside those tools can still be used by hand. Nuvellum's automation never depends on them.
+
+Media is served publicly from the `social-assets` branch (the repository is public):
+- `https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/cards/<slug>/portrait.jpg`
+- `https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/<slug>/short.mp4`
+
+Instagram and Facebook Reels fetch from these URLs. YouTube and TikTok receive the bytes directly, so no TikTok domain verification is needed.
+
+All secrets go in GitHub → Settings → Secrets and variables → Actions → **Secrets**. Variables (`NUVELLUM_SOCIAL`, `TIKTOK_AUDITED`, `NUVELLUM_X_BUDGET_APPROVED`, `YOUTUBE_PRIVACY`) go under **Variables**.
+
+## Background
+
+Checked against the platforms' developer documentation in **September 2026**. These terms change often.
+
+### Requirements shared by every platform
+
+- **Rasterised media.** Done: cards are rasterised in Chromium to PNG, with the Instagram portrait card also as JPEG, and published to `social-assets`.
+- **Public media URLs.** Done: the public `social-assets` branch (see above).
 - **Secret storage.** Keep all tokens in GitHub Actions secrets (or n8n credentials), never in the repo. Record each token's expiry and who can refresh it.
-- **Human review stays on.** Keep dry-run and human review until at least one batch of drafts has been checked. Nothing posts automatically.
+- **Editorial gates.** Only stories that passed the publication gate are ever posted. Sensitive stories never get automatic Shorts.
 
-## Per platform
+### Per platform
 
 | Platform | Account type | Developer / app setup | Secrets we'll hold | Photos | Video | Restrictions that matter for auto-posting |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -23,7 +56,7 @@ Checked against the platforms' developer documentation in **September 2026**. Th
 | **YouTube** | YouTube **channel** (a Brand Account is recommended so several people can manage it) | Google Cloud project; enable **YouTube Data API v3**; OAuth consent screen (external) with the `youtube.upload` scope (a sensitive scope, so Google verification is needed); OAuth client | OAuth client ID and secret, **refresh token** for the channel | No photo/community posts via the API | Yes, `videos.insert`. A vertical video of 3 minutes or less is treated as a **Short** automatically, and `#Shorts` helps. | **Videos uploaded by an unverified API project (created after July 2020) are locked private** until the project passes Google's compliance audit. Default quota is 10,000 units/day; check the current upload cost in the Cloud console. |
 | **LinkedIn** | LinkedIn **Company Page**; the app must be verified by a Page super admin | LinkedIn Developer app associated with the Page. Posting **as the Page** needs the **Community Management API** (`w_organization_social`, `r_organization_social`). That's an application (Development tier, then Standard tier with a screencast) open only to a **registered legal entity**, with a verified business email, legal name, address, website and privacy policy. "Share on LinkedIn" (`w_member_social`) posts only as a person. | Client ID, client secret, member access token (60 days) plus refresh token where granted, organisation URN | Yes (Images API) | Yes (Videos API) | Page posting depends on the Community Management approval above. Without it, only personal-profile posting is possible. |
 
-## Items only Sam can do
+### Items only Sam can do
 
 1. Create the seven accounts, the Meta Business portfolio and a YouTube Brand Account, with the owners and 2FA.
 2. Decide whether Nuvellum has, or will register, the **legal entity** that LinkedIn (and Meta Business Verification) require.

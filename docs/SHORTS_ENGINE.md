@@ -1,6 +1,6 @@
 # Shorts and Reels engine
 
-Nuvellum's v1 vertical-video engine is a **zero-cost, dry-run production engine**. It can render a real 9:16 MP4, but nothing is posted to a social account automatically.
+Nuvellum's vertical-video engine is a **zero-cost production engine**. It renders a real 9:16 MP4 with local Piper narration. The Shorts autopilot (below) chooses stories, renders, verifies and distributes them without anyone picking a slug.
 
 ## Flow
 
@@ -47,7 +47,7 @@ Default zero-cost chain:
 piper -> espeak -> silent
 ```
 
-Piper is used only when `PIPER_MODEL` points to a local voice model. GitHub's smoke test uses `espeak-ng` so the whole render can be proven without a paid API. **espeak is functional validation, not the intended final public voice quality.** A better local Piper voice or an approved provider should be chosen before automatic public posting.
+Piper is used only when `PIPER_MODEL` points to a local voice model. GitHub's smoke test uses `espeak-ng` so the whole render can be proven without a paid API. **espeak is functional validation, not the intended final public voice quality.** Production uses Piper with `en_GB-cori-high` (below); the autopilot refuses any Short narrated by a fallback voice.
 
 ### Recommended free local voice (Piper)
 
@@ -106,6 +106,56 @@ Outputs are under `engines/out/shorts/<slug>/`: `short.mp4`, `poster.jpg`, `capt
 
 ## Automation status
 
+### Shorts autopilot (the normal production path)
+
+`.github/workflows/shorts-autopilot.yml` runs every four hours (minute 41). Nobody picks a slug.
+
+1. **Select.** The autopilot reads every published story from the last 72 hours (`engines/shorts/autopilot.mjs`).
+   - **Never automatic:**
+     - Opinion/Essay/Ideas/Review;
+     - any story whose `risk` is not `low` (sensitive stories are excluded by default);
+     - breaking/developing stories;
+     - stories whose own text can't yield a verified, verbatim 20–45 second script with at least two supporting lines.
+   - **Ranking.** Eligible stories get a deterministic score: recency, then real photo over illustration over text-led, then section fit and script length.
+2. **Short ledger** (`shorts/<slug>.json` on the `social-ledger` branch).
+   - A story with a rendered Short is never rendered again.
+   - Stories that already had a hand-made Short on `social-assets` count as done.
+   - A failed render is retried once on a later run, then left alone (`render.final`).
+   - At most **2 Shorts in 24 hours**, and one render at a time.
+3. **Render** with the existing engine. The voice is Piper `en_GB-cori-high`, with `NUVELLUM_TTS=piper,silent`, so a missing Piper produces a silent file that fails verification. It is never published.
+4. **Verify** the actual files (`autopilot-cli.mjs verify`). The checks:
+   - 1080×1920, H.264 video and an AAC audio track;
+   - Piper narration (no fallback);
+   - a duration of 15–60s;
+   - non-empty `short.mp4`, `poster.jpg`, `captions.srt`, `script.json`, `plan.json` and `report.json`;
+   - every spoken line re-checked as verbatim text of the published article (no invented claims).
+5. **Store** the six files on `social-assets` under `shorts/<slug>/`. **Record** the result in the ledger.
+6. **Distribute** to the video platforms (`engines/publish/video.mjs`). Each platform is independent, and the ledger is saved after every upload, so nothing is uploaded twice.
+   - `sent`: public.
+   - `awaiting_approval`: uploaded, but the platform kept it private (an unaudited YouTube project). This is final, and a person can make it public.
+   - `blocked_credentials`: no secrets yet.
+   - `blocked_external_approval`: TikTok until its audit; set the variable `TIKTOK_AUDITED=yes` afterwards.
+   - `queued`: retried up to 3 attempts. A run with no new Short retries queued uploads instead.
+   - `failed`.
+
+**Isolation.** A failed render or upload is recorded, and the owner-alert step reports repeated failures. Neither can block or undo article publication.
+
+| Platform | API | Secrets |
+| --- | --- | --- |
+| YouTube Shorts | Data API v3 resumable `videos.insert` | `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN` (optional variable `YOUTUBE_PRIVACY`) |
+| Facebook Reels | Graph `/{page-id}/video_reels` (start → `file_url` → finish) | `FACEBOOK_PAGE_ID`, `FACEBOOK_PAGE_TOKEN` |
+| Instagram Reels | Graph `/{ig-user-id}/media` `REELS` → status poll → `media_publish` | `INSTAGRAM_USER_ID`, `INSTAGRAM_TOKEN` |
+| TikTok | Content Posting API, `FILE_UPLOAD` Direct Post | `TIKTOK_CLIENT_KEY`, `TIKTOK_CLIENT_SECRET`, `TIKTOK_REFRESH_TOKEN`; variable `TIKTOK_AUDITED=yes` after the audit |
+
+Meta fetches the MP4 by public URL from `https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/<slug>/short.mp4` (the repository is public). YouTube and TikTok receive the bytes directly.
+
+**Manual runs:**
+- **Actions → Shorts autopilot → Run workflow.** An optional `slug` skips the recency window and daily limit, but never the safety rules. `distribute` can be unticked to render only.
+- **Actions → Shorts preview** still renders a review artifact. `short-assets.yml` (`ops/short-request.txt`) still exists for a hand-requested Short.
+
+### Shorts preview (review tool)
+
+
 `.github/workflows/shorts-preview.yml`:
 - renders an espeak preview as a PR smoke test;
 - supports **manual rendering with the Piper voice** (Actions → Shorts preview → Run workflow):
@@ -120,7 +170,7 @@ Piper and `en_GB-cori-high` are installed at run time and cached, never committe
 
 The MP4, poster, SRT and script are uploaded as a 7-day artifact for review.
 
-It does **not** post. Social publishing (`docs/SOCIAL_DISTRIBUTION.md`) records YouTube as `skipped` until a reviewed Short exists, and TikTok always as `awaiting_approval`. The normal article publication gate never depends on either.
+The preview does **not** post. Distribution is the autopilot's job (above). The article publication gate never depends on either.
 
 Hook rule: the first line must stand on its own. The article's lead sentence is favoured, and lines that point back to earlier context ("such deals", "those talks") are penalised.
 

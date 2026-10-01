@@ -30,7 +30,7 @@ Social distribution follows the production visual policy:
 real relevant photo -> approved story-specific illustration -> designed Nuvellum social card
 ```
 
-The social-card renderer is implemented. Every published story gets a deterministic 1080×1080 square card and 1080×1350 portrait card in Nuvellum's ivory/charcoal/burgundy editorial system. When a real photo or approved illustration exists it is embedded into the card; text-led stories use typography, rules and the N✦ mark instead of fake imagery. Instagram uses the portrait card while the other feed targets use the square card. The short-video track points to the Shorts/Reels engine described in `docs/SHORTS_ENGINE.md`; video rendering remains dry-run and is not auto-posted.
+The social-card renderer is implemented. Every published story gets a deterministic 1080×1080 square card and 1080×1350 portrait card in Nuvellum's ivory/charcoal/burgundy editorial system. When a real photo or approved illustration exists it is embedded into the card; text-led stories use typography, rules and the N✦ mark instead of fake imagery. Instagram uses the portrait card while the other feed targets use the square card. The short-video track is the Shorts autopilot (`docs/SHORTS_ENGINE.md`). It renders verified Shorts automatically and hands them to the video platforms through its own ledger.
 
 ## Tracking
 
@@ -85,9 +85,9 @@ Live posting is built but **off**. It only posts when the repository variable `N
 | Facebook Page | Graph API `POST /{page-id}/feed` (link post) | `FACEBOOK_PAGE_ID`, `FACEBOOK_PAGE_TOKEN` (optional `FACEBOOK_GRAPH_VERSION`, default v23.0) | Needs the Meta app and permissions in SOCIAL_PLATFORM_SETUP.md. |
 | LinkedIn Page | Posts API `POST /rest/posts` (article post) | `LINKEDIN_ORG_URN`, `LINKEDIN_TOKEN` (optional `LINKEDIN_API_VERSION`) | Needs Community Management API approval. |
 | X | API v2 `POST /2/tweets`, OAuth 1.0a | `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_SECRET` | **Paid** (about $0.20 per linked post). It also needs the repository variable `NUVELLUM_X_BUDGET_APPROVED` = `yes`; credentials alone never post. |
-| Instagram, Threads | none yet | — | Recorded as `skipped` with the reason. |
-| YouTube Shorts | video only | — | `skipped` until a reviewed Short exists, then `awaiting_approval`. |
-| TikTok | approval-based | — | Always `awaiting_approval`: a human uploads. |
+| Instagram (feed) | Graph API `/{ig-user-id}/media` + `media_publish` | `INSTAGRAM_USER_ID`, `INSTAGRAM_TOKEN` | Posts the verified **portrait card as JPEG** (Instagram accepts JPEG only) by public URL from `social-assets`. If the card isn't there yet, the post stays queued and retries. Needs Meta App Review for `instagram_content_publish`. |
+| Threads | Threads API `/{user-id}/threads` (TEXT + link) + `threads_publish` | `THREADS_USER_ID`, `THREADS_TOKEN` | Headline, dek and tracked link. Needs Meta App Review for `threads_content_publish`. The long-lived token lasts 60 days. |
+| YouTube, TikTok | video only | — | Recorded `skipped` here. Shorts reach them through the **Shorts autopilot** and its own ledger (`shorts/<slug>.json`, `docs/SHORTS_ENGINE.md`), as do Facebook and Instagram **Reels**. |
 
 **The ledger.** Every outcome is recorded per platform in `ledger/<slug>.json` on the `social-ledger` branch. That branch never deploys (vercel.json) and triggers no workflows. Each record holds the status, attempts, time, and the remote id and URL or the error.
 
