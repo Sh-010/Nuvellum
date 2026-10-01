@@ -4,6 +4,10 @@
 //  - which stories still need branded social cards on the social-assets branch.
 
 export const DEFAULT_DAILY_CAP = 24;
+// Hourly cadence: at most one automatic publication in any rolling hour. Further approved stories stay open
+// and are reconsidered on the next sweep (every gate run sweeps all open incoming PRs).
+export const HOURLY_CAP = 1;
+const HOUR = 3600000;
 const DAY = 86400000;
 
 /** The cap from the repository variable; anything unusable falls back to the default, never "unlimited". */
@@ -17,9 +21,19 @@ export function publishedInLastDay(pulls = [], now = Date.now()) {
   return pulls.filter((pr) => String(pr?.head?.ref || '').startsWith('incoming/') && pr.merged_at && now - Date.parse(pr.merged_at) < DAY).length;
 }
 
-/** How many more stories may be merged now (0 = hold until the window frees up). */
+/** How many more stories may be merged within the daily cap (0 = hold until the window frees up). */
 export function remainingToday(pulls, cap, now = Date.now()) {
   return Math.max(0, cap - publishedInLastDay(pulls, now));
+}
+
+/** Automatic publications (merged incoming/** PRs) in the rolling hour before `now`. */
+export function publishedInLastHour(pulls = [], now = Date.now()) {
+  return pulls.filter((pr) => String(pr?.head?.ref || '').startsWith('incoming/') && pr.merged_at && now - Date.parse(pr.merged_at) < HOUR).length;
+}
+
+/** How many stories may be merged right now: the rolling-hour limit and the rolling daily cap both apply. */
+export function remainingNow(pulls, cap, now = Date.now()) {
+  return Math.min(remainingToday(pulls, cap, now), Math.max(0, HOURLY_CAP - publishedInLastHour(pulls, now)));
 }
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

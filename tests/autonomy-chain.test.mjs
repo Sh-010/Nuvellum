@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { dailyCap, DEFAULT_DAILY_CAP, publishedInLastDay, remainingToday, cardSlugs } from '../scripts/lib/publication-chain.mjs';
+import { dailyCap, DEFAULT_DAILY_CAP, publishedInLastDay, remainingToday, publishedInLastHour, remainingNow, HOURLY_CAP, cardSlugs } from '../scripts/lib/publication-chain.mjs';
 import { evaluateAlerts, alertActions, MARKER, keyOf, STUCK_PR_HOURS } from '../scripts/lib/alerts.mjs';
 
 const H = 3600000;
@@ -129,4 +129,22 @@ test('every gate run sweeps all open incoming PRs, so a dropped pending run cann
   const wf = readFileSync('.github/workflows/auto-publish.yml', 'utf8');
   assert.match(wf, /HEAD_BRANCH: ''/);
   assert.doesNotMatch(wf, /HEAD_BRANCH: \$\{\{ github\.event_name == 'workflow_run'/);
+});
+
+test('hourly cadence: at most one automatic publication per rolling hour, inside the daily cap', () => {
+  assert.equal(HOURLY_CAP, 1);
+  const merged = (minsAgo) => ({ head: { ref: 'incoming/x' }, merged_at: new Date(NOW - minsAgo * 60000).toISOString() });
+  assert.equal(remainingNow([], 24, NOW), 1, 'nothing merged lately: one may go');
+  assert.equal(publishedInLastHour([merged(59)], NOW), 1);
+  assert.equal(remainingNow([merged(59)], 24, NOW), 0, 'one already this hour: the rest wait');
+  assert.equal(remainingNow([merged(61)], 24, NOW), 1, 'a new rolling hour');
+  assert.equal(remainingNow([merged(61), merged(120)], 2, NOW), 0, 'the daily cap still applies');
+});
+
+test('queued stories alert only when the gate has stopped publishing', () => {
+  const pr = { number: 7, title: 'Queued', head: { ref: 'incoming/q-1' }, created_at: iso(STUCK_PR_HOURS + 2), labels: [] };
+  const base = { ...quiet, pulls: [pr] };
+  assert.deepEqual(evaluateAlerts({ ...base, lastAutoMergeAt: iso(0.5) }).alerts, [], 'gate merging hourly: a queue is normal');
+  assert.deepEqual(evaluateAlerts({ ...base, lastAutoMergeAt: iso(5) }).alerts.map((a) => a.key), ['stuck-incoming']);
+  assert.deepEqual(evaluateAlerts({ ...base, lastAutoMergeAt: null }).alerts.map((a) => a.key), ['stuck-incoming'], 'never merged');
 });

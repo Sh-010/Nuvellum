@@ -17,13 +17,13 @@ const node = (name) => {
 };
 
 // Stabilization ended on 2026-10-01 (three verified real runs): the canonical workflow runs unattended.
-// Every 3 hours: ~3 stories a run keeps production builds inside Vercel Hobby's 100/day and matches the
-// publication gate's daily cap; hourly would not.
-test('canonical newsroom is active on a 3-hour schedule', () => {
+// Hourly (owner decision, 2026-10-01). The publication gate, not the schedule, sets the publishing rate:
+// at most 1 automatic merge per rolling hour and 24 per day, which keeps builds inside Vercel Hobby.
+test('canonical newsroom is active on an hourly schedule', () => {
   assert.equal(workflow.active, true);
   const interval = node('Schedule Trigger').parameters.rule.interval[0];
   assert.equal(interval.field, 'hours');
-  assert.equal(interval.hoursInterval, 3);
+  assert.equal(interval.hoursInterval, 1);
 });
 
 test('draft contract explicitly requests regions and countries', () => {

@@ -9,14 +9,15 @@
 // - Nothing is merged unless the repository variable NUVELLUM_AUTOPUBLISH is "on".
 // - DRY_RUN=1 evaluates and reports without merging.
 // - A PR labelled hold / do-not-publish / needs-human is never merged.
-// - At most NUVELLUM_PUBLISH_DAILY_CAP stories (default 24) are merged in any 24 hours: each one is a
-//   production build, and Vercel Hobby allows 100 a day. Stories over the cap wait, open, for a later run.
+// - Hourly cadence: at most HOURLY_CAP (1) story is merged in any rolling hour, and at most
+//   NUVELLUM_PUBLISH_DAILY_CAP (default 24) in any 24 hours (each is a production build; Vercel Hobby allows
+//   100 a day). Further approved stories wait, open, and are reconsidered on the next sweep.
 //
 // After a merge it dispatches the social-card workflow for the published slugs: a GITHUB_TOKEN merge fires
 // no push workflows, so nothing downstream would otherwise notice the new story.
 
 import { evaluatePublication } from './lib/editorial.mjs';
-import { dailyCap, remainingToday } from './lib/publication-chain.mjs';
+import { dailyCap, remainingNow, HOURLY_CAP } from './lib/publication-chain.mjs';
 
 const token = process.env.GITHUB_TOKEN;
 const repo = process.env.GITHUB_REPOSITORY;
@@ -57,7 +58,7 @@ async function candidatePrs() {
   if (onlyPr) return [await gh(`/repos/${repo}/pulls/${onlyPr}`)];
   const prs = [];
   for (let page = 1; page <= 3; page++) {
-    const batch = await gh(`/repos/${repo}/pulls?state=open&base=main&per_page=100&page=${page}`);
+    const batch = await gh(`/repos/${repo}/pulls?state=open&base=main&sort=created&direction=desc&per_page=100&page=${page}`);
     prs.push(...batch);
     if (batch.length < 100) break;
   }
@@ -81,23 +82,27 @@ const summary = [];
 const merged = [];
 if (!enabled) console.log('NUVELLUM_AUTOPUBLISH is not "on": evaluating only, nothing will be merged.');
 
-// Publications already made in the last 24 hours count against the daily cap.
-let allowance = cap;
-try { allowance = remainingToday(await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`), cap); }
-catch (err) { console.warn(`Could not count today's publications (${err.message}); using the full cap.`); }
+// Publications already made count against the rolling-hour limit and the daily cap. If they cannot be
+// counted, nothing is merged this run (fail closed; the next sweep tries again).
+let allowance = 0;
+try { allowance = remainingNow(await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`), cap); }
+catch (err) { console.warn(`Could not count recent publications (${err.message}); merging nothing this run.`); }
 
-for (const pr of await candidatePrs()) {
+const candidates = await candidatePrs(); // newest first: the freshest approved story is published first
+for (const [i, pr] of candidates.entries()) {
+  // Limit reached: everything still open stays queued for the next sweep. Stop here instead of evaluating
+  // the rest, so a growing queue cannot exhaust the GITHUB_TOKEN API budget.
+  if (!dryRun && allowance <= 0) {
+    const queued = candidates.length - i;
+    console.log(`WAIT  ${queued} open incoming PR(s): publication limit reached (${HOURLY_CAP} per rolling hour, ${cap} per 24h); queued for the next sweep`);
+    summary.push(`| ${queued} open | queued | ${HOURLY_CAP}/hour or ${cap}/24h limit reached |`);
+    break;
+  }
   const result = await evaluate(pr);
   const label = `PR #${pr.number} ${pr.head.ref} @ ${pr.head.sha.slice(0, 7)}`;
   if (!result.publish) {
     console.log(`HOLD  ${label}\n      - ${result.reasons.join('\n      - ')}`);
     summary.push(`| #${pr.number} | hold | ${result.reasons.join('<br>')} |`);
-    continue;
-  }
-  if (!dryRun && allowance <= 0) {
-    console.log(`WAIT  ${label}
-      - daily publication cap (${cap} in 24h) reached; stays open for a later run`);
-    summary.push(`| #${pr.number} | waiting | daily publication cap (${cap}/24h) reached |`);
     continue;
   }
   if (dryRun) {

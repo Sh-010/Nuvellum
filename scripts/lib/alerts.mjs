@@ -14,6 +14,8 @@ export const WATCHED_WORKFLOWS = [
   'Send Nuvellum Brief'
 ];
 export const STUCK_PR_HOURS = 6;
+// Hourly cadence: the gate merges about one story an hour. No automatic merge for this long while PRs wait = stuck.
+export const GATE_IDLE_HOURS = 3;
 export const NEWSROOM_STALL_HOURS = 12;
 export const RECENT_HOURS = 36;
 export const REMIND_HOURS = 24;
@@ -26,6 +28,7 @@ const AUTH_RE = /HTTP 40[13]\b|unauthori[sz]ed|invalid[_ ]?token|expired|OAuthEx
  * @param {boolean} s.autopublish
  * @param {Array|null} s.runs          workflow runs on main, newest first ({name, status, conclusion, html_url, created_at}); null = unavailable
  * @param {Array|null} s.pulls         open PRs; null = unavailable
+ * @param {string} [s.lastAutoMergeAt] merged_at of the newest automatically published incoming PR
  * @param {string|null} s.latestAutomatedAt  publishedAt of the newest automated story on main
  * @param {string|null} s.smoke        outcome of the production smoke step ('success' | 'failure' | ...)
  * @param {object|null} s.deploy       newest decisive Vercel status on main: {sha, state, description, createdAt}; null = unknown
@@ -59,7 +62,10 @@ export function evaluateAlerts(s) {
     const incoming = s.pulls.filter((p) => String(p.head?.ref || '').startsWith('incoming/'));
     if (s.autopublish) {
       const stuck = incoming.filter((p) => !(p.labels || []).some((l) => held.has(String(l.name || l).toLowerCase())) && age(p.created_at) > STUCK_PR_HOURS);
-      if (stuck.length) add('stuck-incoming', `${stuck.length} newsroom PR(s) not publishing`, `These incoming PRs have been open more than ${STUCK_PR_HOURS}h without a hold label, so the publication gate keeps declining them (a failed check or rule, or the daily cap). The gate run's summary lists the reasons.\n\n${stuck.map((p) => `- #${p.number} ${p.title || p.head.ref} (${Math.round(age(p.created_at))}h)`).join('\n')}`);
+      // With the hourly cadence approved stories legitimately queue for hours; that only needs a person when
+      // the gate has stopped publishing altogether. (lastAutoMergeAt undefined = unknown: keep the old rule.)
+      const gateMoving = s.lastAutoMergeAt !== undefined && age(s.lastAutoMergeAt) <= GATE_IDLE_HOURS;
+      if (stuck.length && !gateMoving) add('stuck-incoming', `${stuck.length} newsroom PR(s) not publishing`, `These incoming PRs have been open more than ${STUCK_PR_HOURS}h without a hold label, so the publication gate keeps declining them (a failed check or rule, or the daily cap). The gate run's summary lists the reasons.\n\n${stuck.map((p) => `- #${p.number} ${p.title || p.head.ref} (${Math.round(age(p.created_at))}h)`).join('\n')}`);
       const newest = Math.min(age(s.latestAutomatedAt), ...incoming.map((p) => age(p.created_at)));
       if (newest > NEWSROOM_STALL_HOURS) add('newsroom-stalled', `Newsroom silent for ${Number.isFinite(newest) ? Math.round(newest) + 'h' : 'a long time'}`, `No new automated story or incoming PR for more than ${NEWSROOM_STALL_HOURS}h. The n8n workflow "Nuvellum v6.5" (8hXx6NuZuJU9dRR1) may be inactive, failing (credentials, Gemini quota, GitHub token) or finding only duplicates. Check its executions in n8n.`);
     }

@@ -13,7 +13,7 @@ n8n/
 
 ## Live production workflow (v6.5)
 
-The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is the sanitized export of live n8n version `807b29b1-0b3c-49b5-9138-34ee25dbb19a` (2026-10-01). It is identical to `f67dcee5` except that the Schedule Trigger runs every 3 hours. Earlier, version `bcf2474f` (2026-09-28) merged the explicit geography contract onto live `081d8faa`, keeping the five-candidate queue and the roundup/multi-story rejection. The geography contract was checked in real manual runs on 2026-09-28 (executions 921–924; see WORKLOG). Do not create v6.6+ copies.
+The canonical workflow is **"Nuvellum v6.5 — Fixed Source Resolution"**, n8n id `8hXx6NuZuJU9dRR1`. `workflows/nuvellum-newsroom.json` is the sanitized export of n8n version `f8891965-2299-42f3-8d42-dd9b33ca0aa3` (2026-10-01). It is identical to `f67dcee5` except that the Schedule Trigger runs **every hour**. Earlier, version `bcf2474f` (2026-09-28) merged the explicit geography contract onto live `081d8faa`, keeping the five-candidate queue and the roundup/multi-story rejection. The geography contract was checked in real manual runs on 2026-09-28 (executions 921–924; see WORKLOG). Do not create v6.6+ copies.
 
 Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib/newsroom.mjs` are the live "Build GitHub Payload" logic (FNV-1a over the host + path key, 60-character slug cut), and `tests/n8n-workflow-contract.test.mjs` runs the live node code against them and executes the candidate's Code nodes end to end. Other helpers still differ: `canonicalSourceUrl` uses the `URL` global, which the live node notes the n8n Code sandbox does not expose, so confirm a snippet in a real execution before swapping it in.
 
@@ -31,8 +31,8 @@ Branch identity is shared: `sourceKey`/`sourceHash`/`branchName` in `scripts/lib
 | Build GitHub Payload | Final contract gate before any commit. It also re-checks geography: arrays, canonical region slugs and World Explorer country names, no duplicates, and values matching the frontmatter. Branch `incoming/<slug ≤60>-<8-hex FNV-1a of the normalized source URL>`. |
 | Create Review Branch | An existing branch skips the story; the run continues. |
 
-The workflow has been **active** since 2026-10-01, on a **3-hour schedule**, and `NUVELLUM_AUTOPUBLISH` is `on`. Stabilization ended after three verified real end-to-end runs.
-- **Why not hourly.** A run yields about 3 stories. Hourly would mean about 70 production builds a day (Vercel Hobby allows 100) and about 480 Gemini calls. Every 3 hours matches the publication gate's daily cap of 24.
+The workflow has been **active** since 2026-10-01 on an **hourly schedule**, and `NUVELLUM_AUTOPUBLISH` is `on`. Stabilization ended after three verified real end-to-end runs.
+- **The publishing rate is the gate's job, not the schedule's.** It merges at most **1 story per rolling hour** and 24 per rolling day; further approved stories stay open and are reconsidered on the next sweep, newest first.
 - **Failure alerts.** A silent or failing newsroom raises the `newsroom-stalled` owner alert (docs/OBSERVABILITY.md#owner-alerts).
 
 ### Execution telemetry
