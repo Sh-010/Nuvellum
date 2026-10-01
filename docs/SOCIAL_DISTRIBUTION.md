@@ -61,6 +61,12 @@ Outputs are written to `engines/out/distribution/<slug>.json` and `engines/out/s
 
 Per-platform account, app, credential and API-restriction requirements: [`SOCIAL_PLATFORM_SETUP.md`](SOCIAL_PLATFORM_SETUP.md).
 
+### Cards after automatic publication
+
+The publication gate merges with `GITHUB_TOKEN`, which fires no push workflows. After every merge it therefore **dispatches** `social-card-assets.yml` with the published slugs.
+
+Every card run also sweeps stories published in the last 48 hours that have no `cards/<slug>/manifest.json` on `social-assets` (up to six per run). A dispatch GitHub dropped, or a run that failed, is caught by the next one. The gate also caps automatic publication at `NUVELLUM_PUBLISH_DAILY_CAP` stories in any 24 hours (default 24), which keeps production builds well inside the Vercel Hobby limit of 100 a day. Stories over the cap stay open until a later run.
+
 ## Live posting (`engines/publish/`, `.github/workflows/social-publish.yml`)
 
 Live posting is built but **off**. It only posts when the repository variable `NUVELLUM_SOCIAL` is `on` **and** a platform's credentials exist.

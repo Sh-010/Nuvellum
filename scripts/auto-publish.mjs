@@ -9,8 +9,14 @@
 // - Nothing is merged unless the repository variable NUVELLUM_AUTOPUBLISH is "on".
 // - DRY_RUN=1 evaluates and reports without merging.
 // - A PR labelled hold / do-not-publish / needs-human is never merged.
+// - At most NUVELLUM_PUBLISH_DAILY_CAP stories (default 24) are merged in any 24 hours: each one is a
+//   production build, and Vercel Hobby allows 100 a day. Stories over the cap wait, open, for a later run.
+//
+// After a merge it dispatches the social-card workflow for the published slugs: a GITHUB_TOKEN merge fires
+// no push workflows, so nothing downstream would otherwise notice the new story.
 
 import { evaluatePublication } from './lib/editorial.mjs';
+import { dailyCap, remainingToday } from './lib/publication-chain.mjs';
 
 const token = process.env.GITHUB_TOKEN;
 const repo = process.env.GITHUB_REPOSITORY;
@@ -19,6 +25,8 @@ const dryRun = process.env.DRY_RUN === '1' || !enabled;
 const onlyPr = Number(process.env.PR_NUMBER || 0);
 const onlyBranch = process.env.HEAD_BRANCH || '';
 const deleteBranch = process.env.DELETE_BRANCH_AFTER_MERGE !== '0';
+const cap = dailyCap(process.env.NUVELLUM_PUBLISH_DAILY_CAP);
+const CARD_WORKFLOW = 'social-card-assets.yml';
 
 if (!repo || (!token && enabled && process.env.DRY_RUN !== '1')) {
   console.error('Missing GITHUB_REPOSITORY, or GITHUB_TOKEN when merging is enabled.');
@@ -70,7 +78,13 @@ async function evaluate(pr) {
 }
 
 const summary = [];
+const merged = [];
 if (!enabled) console.log('NUVELLUM_AUTOPUBLISH is not "on": evaluating only, nothing will be merged.');
+
+// Publications already made in the last 24 hours count against the daily cap.
+let allowance = cap;
+try { allowance = remainingToday(await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`), cap); }
+catch (err) { console.warn(`Could not count today's publications (${err.message}); using the full cap.`); }
 
 for (const pr of await candidatePrs()) {
   const result = await evaluate(pr);
@@ -78,6 +92,12 @@ for (const pr of await candidatePrs()) {
   if (!result.publish) {
     console.log(`HOLD  ${label}\n      - ${result.reasons.join('\n      - ')}`);
     summary.push(`| #${pr.number} | hold | ${result.reasons.join('<br>')} |`);
+    continue;
+  }
+  if (!dryRun && allowance <= 0) {
+    console.log(`WAIT  ${label}
+      - daily publication cap (${cap} in 24h) reached; stays open for a later run`);
+    summary.push(`| #${pr.number} | waiting | daily publication cap (${cap}/24h) reached |`);
     continue;
   }
   if (dryRun) {
@@ -98,6 +118,8 @@ for (const pr of await candidatePrs()) {
       })
     });
     console.log(`MERGED ${label}`);
+    allowance -= 1;
+    if (result.slug) merged.push(result.slug);
     summary.push(`| #${pr.number} | merged | all rules passed |`);
     if (deleteBranch) {
       try { await gh(`/repos/${repo}/git/refs/heads/${enc(pr.head.ref)}`, { method: 'DELETE' }); }
@@ -107,6 +129,17 @@ for (const pr of await candidatePrs()) {
     console.error(`FAILED to merge ${label}: ${err.message}`);
     summary.push(`| #${pr.number} | merge failed | ${err.message} |`);
     process.exitCode = 1;
+  }
+}
+
+// Downstream of publication: branded social cards. A failure here never undoes the merge; the card
+// workflow's own sweep also catches any story this dispatch misses.
+if (merged.length) {
+  try {
+    await gh(`/repos/${repo}/actions/workflows/${CARD_WORKFLOW}/dispatches`, { method: 'POST', body: JSON.stringify({ ref: 'main', inputs: { slugs: merged.join(' ') } }) });
+    console.log(`Dispatched ${CARD_WORKFLOW} for ${merged.join(', ')}`);
+  } catch (err) {
+    console.warn(`::warning::Merged, but could not dispatch ${CARD_WORKFLOW}: ${err.message}`);
   }
 }
 

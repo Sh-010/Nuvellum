@@ -7,7 +7,14 @@ on:
       - ".github/workflows/social-card-assets.yml"
       - "ops/social-card-request.txt"
       - "src/content/articles/*.md"
+  # The publication gate dispatches this after every automatic merge (GITHUB_TOKEN merges fire no push
+  # workflows). Every run also sweeps recent stories without cards, so a dropped dispatch heals itself.
   workflow_dispatch:
+    inputs:
+      slugs:
+        description: "Slugs to render (space/comma separated). Empty: the request file plus the recent-story sweep."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -30,47 +37,61 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install renderer
-        shell: bash
-        run: |
-          cd engines
-          npm ci --no-audit --no-fund
-          npx playwright-core install --with-deps chromium
-
       - name: Resolve article slugs
+        id: slugs
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
           CURRENT_SHA: ${{ github.sha }}
+          INPUT_SLUGS: ${{ github.event_name == 'workflow_dispatch' && inputs.slugs || '' }}
         run: |
           set -euo pipefail
-          : > /tmp/slugs.txt
+          : > /tmp/requested.txt
           : > /tmp/changed.txt
 
           if [ "$EVENT_NAME" = "push" ] && [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
             git diff --name-only "$BEFORE_SHA" "$CURRENT_SHA" > /tmp/changed.txt
-            sed -n 's#^src/content/articles/\([a-z0-9][a-z0-9-]*\)\.md$#\1#p' /tmp/changed.txt >> /tmp/slugs.txt
+            sed -n 's#^src/content/articles/\([a-z0-9][a-z0-9-]*\)\.md$#\1#p' /tmp/changed.txt >> /tmp/requested.txt
           fi
-
-          if [ "$EVENT_NAME" = "workflow_dispatch" ] || grep -Eq '^(ops/social-card-request\.txt|\.github/workflows/social-card-assets\.yml)$' /tmp/changed.txt; then
+          printf '%s\n' "$INPUT_SLUGS" | tr ', ' '\n\n' | sed '/^[[:space:]]*$/d' >> /tmp/requested.txt
+          if { [ "$EVENT_NAME" = "workflow_dispatch" ] && [ -z "$INPUT_SLUGS" ]; } || grep -Eq '^(ops/social-card-request\.txt|\.github/workflows/social-card-assets\.yml)$' /tmp/changed.txt; then
             if [ -f ops/social-card-request.txt ]; then
-              tr -d '\r' < ops/social-card-request.txt | sed '/^[[:space:]]*$/d' >> /tmp/slugs.txt
+              tr -d '\r' < ops/social-card-request.txt | sed '/^[[:space:]]*$/d' >> /tmp/requested.txt
             fi
           fi
 
-          sort -u /tmp/slugs.txt -o /tmp/slugs.txt
-          test -s /tmp/slugs.txt || { echo "::error::no article slugs resolved"; exit 1; }
+          # Recent stories that already carry cards on social-assets are not re-rendered by the sweep.
+          : > /tmp/assets-tree.txt
+          if git ls-remote --exit-code --heads origin social-assets >/dev/null; then
+            git fetch --depth=1 origin social-assets
+            git ls-tree -r --name-only FETCH_HEAD > /tmp/assets-tree.txt
+          fi
+          REQUESTED="$(tr '\n' ' ' < /tmp/requested.txt)" HAVE_CARDS=/tmp/assets-tree.txt node scripts/social-card-slugs.mjs > /tmp/slugs.txt
 
           while IFS= read -r SLUG; do
             printf '%s' "$SLUG" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$' || { echo "::error::invalid social-card slug: $SLUG"; exit 1; }
             test -f "src/content/articles/$SLUG.md" || { echo "::error::article not found for $SLUG"; exit 1; }
           done < /tmp/slugs.txt
 
-          echo "Rendering:"
-          cat /tmp/slugs.txt
+          if [ -s /tmp/slugs.txt ]; then
+            echo "any=true" >> "$GITHUB_OUTPUT"
+            echo "Rendering:"; cat /tmp/slugs.txt
+          else
+            echo "any=false" >> "$GITHUB_OUTPUT"
+            echo "Every recent story already has cards; nothing to render."
+          fi
+
+      - name: Install renderer
+        if: steps.slugs.outputs.any == 'true'
+        shell: bash
+        run: |
+          cd engines
+          npm ci --no-audit --no-fund
+          npx playwright-core install --with-deps chromium
 
       - name: Render and verify Nuvellum social cards
+        if: steps.slugs.outputs.any == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -79,6 +100,7 @@ jobs:
           done < /tmp/slugs.txt
 
       - name: Publish cards to social-assets branch
+        if: steps.slugs.outputs.any == 'true'
         shell: bash
         run: |
           set -euo pipefail
