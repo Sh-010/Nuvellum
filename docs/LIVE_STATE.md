@@ -59,6 +59,7 @@ Earlier the same day:
 - **Vercel Hobby: 100 deployments/day.** At ≤ 24 stories/day plus code merges we are well inside it. Docs/workflow/engine-only commits don't build.
 - **Social backlog:** only the newest story is posted per run, so stories published while social was down are not all posted later (deliberate: no dumping).
 - **Closed-unmerged `incoming/*` branches** from the 2026-09-28 test runs are kept as evidence. They only block re-drafting those exact old sources.
+- **Open editorial PRs at handoff:** #213 (News, now past 6 h; the next gate run closes it as stale), #218 (News, under 6 h) and #227 (the 21:00 story). This is the normal queue; the gate handles it, so leave these PRs alone.
 
 ## Branches (after the 2026-10-01 cleanup: 42 remain, all intentional)
 
