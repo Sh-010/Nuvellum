@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T20:00:40.627Z"
 readingTime: "1 min"
-image: "/generated/ai/landman-season-3-begins-production-and-elevates-four-actors-to-series-regulars.svg"
-imageAlt: "AI-generated editorial illustration for ‘Landman’ season 3 begins production and elevates four actors to series regulars"
 status: "published"
 tags: ["Landman","Paramount Plus","Television","Production"]
 regions: ["north-america"]
