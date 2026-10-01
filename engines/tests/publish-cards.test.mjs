@@ -254,7 +254,7 @@ test('the workflow wires a spaced one-story schedule and exposes no bulk-post co
   assert.doesNotMatch(wf, /inputs\.bulk|\$BULK/);
   assert.match(wf, /--needs-cards --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
   assert.match(wf, /--live --trigger "\$TRIGGER" \$\{SLUG:\+--slug "\$SLUG"\}/);
-  assert.match(wf, /- cron: "12 \*\/3 \* \* \*"/, 'scheduled posts are spaced every three hours');
+  assert.match(wf, /- cron: "35 \* \* \* \*"/, 'scheduled posts are spaced one hour apart, offset from the :00 newsroom run');
 });
 
 // Real Chromium (opt-in: CARDS_CHROME=1): the full asset pipeline rasterises and verifies real PNGs.
