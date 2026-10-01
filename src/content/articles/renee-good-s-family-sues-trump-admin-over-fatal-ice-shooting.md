@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T15:02:18.102Z"
 readingTime: "2 min"
-image: "/generated/ai/renee-good-s-family-sues-trump-admin-over-fatal-ice-shooting.svg"
-imageAlt: "AI-generated editorial illustration for Renee Good's family sues Trump admin over fatal ICE shooting"
 status: "published"
 tags: ["ICE","lawsuit","Minneapolis","immigration","protests"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/renee-good-s-family-sues-trump-admin-over-fatal-ice-shooting.jpg"
+imageAlt: "Overview of the Stadium Village neighborhood in Minneapolis, Minnesota showing the light rail, football stadium, and alumni center"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Overview of the Stadium Village neighborhood in Minneapolis, Minnesota showing the light rail, football stadium, and alumni center. Image of Minneapolis, not of the events reported."
+imageCredit: "SidewalkMD"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Overview_of_Stadium_Village,_Minneapolis.jpg"
 ---
 ## Lawsuits filed over Minneapolis shooting
 
