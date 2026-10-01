@@ -1026,3 +1026,49 @@ Live workflow `8hXx6NuZuJU9dRR1` at version `bcf2474f` (geography contract merge
 - **Evening production retry, 30 Sep 2026:** retried the latest stabilized main deployment after the Vercel Hobby build-rate window was expected to clear. No application behavior changed in this retry commit.
 
 - **Vercel ignored-build verification, 30 Sep 2026:** non-production main commits should now be skipped by the repository `ignoreCommand`, preserving Hobby build-rate budget for actual site changes.
+
+## 2026-10-01 — final autonomy sprint: Nuvellum runs unattended
+
+**Audit findings (real state, not notes):**
+- n8n v6.5 was **inactive**; all 28 recorded runs were manual.
+- `NUVELLUM_AUTOPUBLISH` was off.
+- Auto-published stories could never get social cards: `GITHUB_TOKEN` merges fire no push workflows.
+- The Brief's 06:00 cron had **never fired**.
+- Nothing alerted the owner.
+- Branch protection made automatic merging impossible for any story with an acquired photo (found in the rehearsal, below).
+
+**Changes:**
+- **#199 publication chain:**
+  - After merging, the gate dispatches card generation, and the card workflow sweeps recent stories without cards.
+  - A daily publication cap (`NUVELLUM_PUBLISH_DAILY_CAP`, default 24) protects the Vercel Hobby limit of 100 builds a day.
+  - Owner alerts: one `ops-alert` issue per condition, @-mentioning the owner, with an optional Telegram DM; it closes itself.
+  - The Brief moved to an off-peak cron with idempotent backups.
+- **#200** Shorts autopilot, video adapters and Instagram/Threads feed adapters. **#209** later made the Shorts autopilot a manual fallback by owner decision: no schedule, and public posting needs `NUVELLUM_SHORTS_PUBLISH=on`, which is not set.
+- **#203:**
+  - The n8n export is synced (active, every 3h).
+  - Meta media is served via jsDelivr: raw GitHub serves `application/octet-stream`, which Meta rejects.
+  - The ignored build step also covers `n8n/`.
+- **#208 (rehearsal fix).** `visual-acquire` pushes the photo commit with the repository deploy key (`NUVELLUM_DEPLOY_KEY`). Its `GITHUB_TOKEN` push plus dispatched checks never attached to the PR, so branch protection answered "3 of 3 required status checks are expected".
+- **#209 (rehearsal fix).** Every gate run sweeps all open incoming PRs. 28 of 36 queued gate runs were dropped by GitHub's one-pending-run concurrency, which stranded #205.
+- **Owner actions:**
+  - Turned on `NUVELLUM_AUTOPUBLISH`.
+  - Activated n8n version `807b29b1` (the schedule changed from hourly to every 3 hours: about 3 stories a run).
+  - Added the deploy key and its secret.
+
+**Dress rehearsal (real production):**
+- **Execution 949 (12:56 UTC)** produced #204–#207. Gate, checks and verification all passed, and branch protection blocked the merge, which is how #208 was found. After #208 and a branch update, the gate (`github-actions[bot]`) auto-merged:
+  - #204 at 14:03:18;
+  - #206 at 14:03:39, a sensitive story with verification cleared;
+  - #207 at 14:03:59.
+- **Downstream of those merges:**
+  - Vercel deployed each one.
+  - The articles answer 200.
+  - Six card files per story are on `social-assets`, and the gate dispatched card generation.
+- **Scheduled execution 950** fired by itself at **15:00:19 UTC**, succeeded, and opened #210–#213. The gate auto-merged #211 and #212 within about 2 minutes.
+- **Alerts:** issues #201 (newsroom silent) and #202 (deploy) opened, then closed themselves when the conditions cleared.
+- **Social publish (13:10, scheduled):** "nothing to do", which is correct since every story in its window was already sent. Today's stories are picked up by the next scheduled run (at most one per run).
+- **Shorts:** one automatic render (Icebreaker, 32.7s, Piper) was verified and stored. Every platform was `blocked_credentials`, so nothing was posted.
+- **Other live checks:**
+  - GA4 on production, 11/11: consent first, one `page_view`, `page_type`, no PII, UTM.
+  - Production smoke: 344 checks, 0 failures.
+  - Brief dry run: 3 real recipients, 0 QA.
