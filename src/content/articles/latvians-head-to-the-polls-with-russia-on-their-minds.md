@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T18:02:10.648Z"
 readingTime: "3 min"
-image: "/generated/ai/latvians-head-to-the-polls-with-russia-on-their-minds.svg"
-imageAlt: "AI-generated editorial illustration for Latvians head to the polls with Russia on their minds"
 status: "published"
 tags: ["Latvia","parliamentary election","Russia","security","NATO","economy"]
 regions: ["europe-central-asia"]
