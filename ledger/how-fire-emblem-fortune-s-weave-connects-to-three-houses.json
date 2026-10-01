@@ -1,0 +1,65 @@
+{
+  "slug": "how-fire-emblem-fortune-s-weave-connects-to-three-houses",
+  "url": "https://www.nuvellum.news/article/how-fire-emblem-fortune-s-weave-connects-to-three-houses",
+  "title": "How Fire Emblem: Fortune's Weave connects to Three Houses",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-01T22:03:10.290Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-01T22:03:10.290Z",
+      "remoteId": "22",
+      "remoteUrl": "https://t.me/nuvellum/22",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-01T22:03:10.290Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-01T22:03:10.290Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
