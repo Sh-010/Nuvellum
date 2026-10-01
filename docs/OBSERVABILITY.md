@@ -126,6 +126,7 @@ Reason codes, by stage:
 
 | Stage | Codes |
 | --- | --- |
+| `queue` | `run_quota` (event `candidate_skipped`: a story was already committed in this run; not a rejection) |
 | `source` | `thin_source` |
 | `dedupe` | `duplicate_source` (`detail`: `open_pr` or `published`), `duplicate_story`, `duplicate_check_failed` |
 | `draft` | `draft_skip` (the drafter declined, or the source is opinion or another non-news format), `invalid_geography`, `thin_draft`, `draft_invalid` |

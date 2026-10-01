@@ -1085,3 +1085,16 @@ Owner request: publish hourly. No new workflow, no gate changes.
 - **Owner alert.** `stuck-incoming` now fires only when PRs wait more than 6h **and** the gate hasn't published for 3h. Queued stories alone are normal at this cadence.
 - **Unchanged.** Social cadence (at most 1 story per 3-hourly run) and the daily cap.
 - **Side effect.** n8n yields about 3 approved stories an hour, and only 1 an hour publishes. The queue of open approved PRs therefore grows by roughly 2 an hour, and older ones age. Nothing auto-closes them yet; that needs an owner decision.
+
+## 2026-10-01 — one publishable story per hourly run
+
+Owner request: don't let approved incoming PRs pile up (hourly runs produced about 3 approved stories, and 1 published).
+- **The guard.** Canonical v6.5, edited in place as version `5e78c5f1`, published by the owner. Two nodes are added between the candidate loop and Fetch Full Source: **One Story Per Run** (Code) and **Story Already Published This Run?** (If).
+- **Behaviour.** Once a story has been committed in an execution, every later candidate is skipped before any fetch or model call. Telemetry records it as `queue:run_quota`, event `candidate_skipped`, not as a rejection.
+- **Which story.** The run publishes the first candidate, in the existing newest-first, source- and section-diversity order, that clears every gate. A weaker candidate is tried only when a stronger one was rejected by a gate, or its push failed, in the same run, and it passes the same gates. There is never more than one incoming PR per run.
+- **Unchanged.**
+  - The queue and its source diversity.
+  - The draft, editorial review, sensitive verification, duplicate and quality nodes.
+  - The publication gate's limit of 1 per rolling hour (now the second safety limit) and the 24/day cap.
+- **Safety and fidelity.** The guard fails open on an internal error, so the gate's hourly limit still holds. The If condition is always boolean, so an error can't fail the run.
+- **Tests and sync.** `tests/n8n-one-story-per-run.test.mjs` runs the exported guard against fixtures. The live draft was compared with the repo export: 69 nodes, with identical parameters, error handling and wiring.

@@ -3,7 +3,7 @@
   "name": "Nuvellum v6.5 — Fixed Source Resolution",
   "active": true,
   "isArchived": false,
-  "versionId": "f8891965-2299-42f3-8d42-dd9b33ca0aa3",
+  "versionId": "5e78c5f1-0abd-48ec-ab12-2789af76ec6f",
   "activeVersionId": null,
   "triggerCount": 0,
   "nodeCount": 67,
@@ -346,7 +346,7 @@
         ],
         [
           {
-            "node": "Fetch Full Source",
+            "node": "One Story Per Run",
             "type": "main",
             "index": 0
           }
@@ -1085,6 +1085,35 @@
         [
           {
             "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "One Story Per Run": {
+      "main": [
+        [
+          {
+            "node": "Story Already Published This Run?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Story Already Published This Run?": {
+      "main": [
+        [
+          {
+            "node": "Process One by One",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Full Source",
             "type": "main",
             "index": 0
           }
@@ -2575,6 +2604,55 @@
         "jsCode": "// Run telemetry: one compact, privacy-safe summary per execution, read from the item each candidate returned to\n// the loop. Only fixed reason codes and whitelisted fields leave this node: never source or article text,\n// prompts, model output, full URLs, headers or credentials. It runs after the loop has finished and cannot\n// affect publishing; an internal error still yields a summary (reason \"telemetry_error\").\nconst now = Date.now();\nconst safe = (fn, fallback) => { try { const v = fn(); return v === undefined ? fallback : v; } catch { return fallback; } };\nconst slugOf = s => /^[a-z0-9-]{1,120}$/.test(String(s || '')) ? String(s) : null;\nconst hostOf = s => String(s || '').replace(/[^a-z0-9.-]/gi, '').slice(0, 80) || null;\n\nfunction draftReason(error) {\n  const e = String(error || '');\n  if (/^Drafter declined|^Source is |states an opinion/.test(e)) return 'draft_skip';\n  if (/region|countr/i.test(e)) return 'invalid_geography';\n  if (/too short/.test(e)) return 'thin_draft';\n  return 'draft_invalid';\n}\n\n// Final item of one candidate -> { stage, reason }. Order follows the pipeline's own gates.\nfunction classify(j) {\n  if (j.telemetry && typeof j.telemetry === 'object') return j.telemetry;\n  if (j.sourceReady === false) return { event: 'candidate_rejected', stage: 'source', reason: 'thin_source' };\n  if ('isDuplicate' in j && !('draftFailed' in j)) {\n    return { event: 'candidate_rejected', stage: 'dedupe', reason: j.duplicateParserError ? 'duplicate_check_failed' : 'duplicate_story' };\n  }\n  if (j.exactSourceMatch === true && !('draftFailed' in j)) {\n    return { event: 'candidate_rejected', stage: 'dedupe', reason: 'duplicate_source', detail: j.openPrExactSourceMatch ? 'open_pr' : 'published' };\n  }\n  if ('sensitiveVerified' in j && j.sensitiveVerified !== true) {\n    return { event: 'candidate_rejected', stage: 'verification', reason: j.sensitiveVerificationError ? 'verification_uncertain' : 'verification_failed' };\n  }\n  if (j.editorialApproved === false) {\n    if (j.draftFailed) return { event: 'candidate_rejected', stage: 'draft', reason: draftReason(j.draftError) };\n    return { event: 'candidate_rejected', stage: 'editorial_review', reason: j.reviewParserError ? 'editorial_uncertain' : 'editorial_failed' };\n  }\n  return { event: 'candidate_rejected', stage: 'unknown', reason: 'unclassified' };\n}\n\nlet summary;\ntry {\n  const items = $input.all().map(i => i.json || {});\n  const events = items.map(j => {\n    const t = classify(j);\n    return {\n      event: t.event, stage: t.stage, reason: t.reason,\n      ...(t.detail ? { detail: t.detail } : {}),\n      ...(t.httpStatus ? { httpStatus: t.httpStatus } : {}),\n      slug: slugOf(t.slug ?? j.slug),\n      section: String(t.section ?? j.section ?? j.sourceSectionHint ?? '').slice(0, 40) || null,\n      sourceHost: hostOf(t.sourceHost ?? j.sourceHost),\n      ...(t.image ? { image: t.image } : {}),\n      ...(t.risk ? { risk: t.risk } : {})\n    };\n  });\n  const count = pred => events.filter(pred).length;\n  const DRAFTED = new Set(['draft', 'editorial_review', 'verification', 'github']);\n  const published = events.filter(e => e.reason === 'published');\n  const queuedAt = safe(() => Number($('Queue Latest Candidates').first().json._queuedAt), NaN);\n  const candidates = safe(() => $('Queue Latest Candidates').all().length, items.length);\n  const qs = safe(() => $('Queue Latest Candidates').first().json._queueStats, null) || {};\n  const queue = Object.fromEntries(['feedItems', 'feedErrors', 'aggregatePages', 'repeats'].map(k => [k, Number.isFinite(Number(qs[k])) ? Number(qs[k]) : null]));\n  const reasons = {};\n  for (const e of events) if (e.event === 'candidate_rejected') reasons[e.reason] = (reasons[e.reason] || 0) + 1;\n  summary = {\n    event: 'run_summary',\n    telemetryVersion: 1,\n    runId: safe(() => String($execution.id), null),\n    mode: safe(() => String($execution.mode), null),\n    queue,\n    candidates,\n    processed: events.length,\n    unaccounted: Math.max(0, candidates - events.length),\n    reachedDrafting: count(e => DRAFTED.has(e.stage)),\n    editorial: {\n      passed: count(e => e.stage === 'verification' || e.stage === 'github'),\n      failed: count(e => e.stage === 'editorial_review')\n    },\n    verification: {\n      passed: count(e => e.stage === 'github' && e.risk === 'sensitive'),\n      failed: count(e => e.stage === 'verification')\n    },\n    github: {\n      branchCreated: count(e => e.stage === 'github' && e.reason === 'published'),\n      pushFailed: count(e => e.reason === 'github_push_failed')\n    },\n    published: published.length,\n    rejected: count(e => e.event === 'candidate_rejected'),\n    reasons,\n    // Real photos are chosen after this run by the repository's visual-acquire job on the incoming branch.\n    imageModes: {\n      photo: 0,\n      illustration: published.filter(e => e.image?.mode === 'illustration').length,\n      textLed: published.filter(e => e.image?.mode === 'text-led').length\n    },\n    durationMs: Number.isFinite(queuedAt) ? now - queuedAt : null,\n    events\n  };\n} catch (e) {\n  summary = { event: 'run_summary', telemetryVersion: 1, reason: 'telemetry_error', runId: safe(() => String($execution.id), null), errorName: String(e && e.name || 'Error').slice(0, 40) };\n}\nreturn [{ json: summary }];\n"
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "id": "589579e8-f472-477b-a4bf-16d75e1afe3b",
+      "name": "One Story Per Run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        2368
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// One publishable story per run (hourly cadence, owner decision 2026-10-01). Candidates arrive in the queue's\n// own order (newest first, source/section diversity), so the first one that clears every gate is the run's\n// strongest eligible story. Once a story has been committed in this execution, every later candidate is\n// skipped here, before any fetching or model call. A later candidate is therefore only tried when an earlier\n// one was rejected by a gate (or its push failed) in this same run, and it passes the same gates.\n// Any error here lets the candidate through: the publication gate's 1-per-hour limit is the second safeguard.\nfunction publishedThisRun() {\n  for (let run = 0; run < 50; run++) {\n    let items;\n    try { items = $('Record GitHub Outcome').all(0, run); } catch { return false; }\n    if (!items || !items.length) return false;\n    if (items.some(i => i.json && i.json.telemetry && i.json.telemetry.event === 'candidate_published')) return true;\n  }\n  return false;\n}\nlet skip = false;\ntry { skip = $('Record GitHub Outcome').isExecuted === true && publishedThisRun(); } catch { skip = false; }\nconst json = { ...$json, _runQuotaReached: skip };\nif (skip) {\n  json.telemetry = {\n    event: 'candidate_skipped',\n    stage: 'queue',\n    reason: 'run_quota',\n    slug: null,\n    section: String($json._sectionHint || '').slice(0, 40) || null,\n    sourceHost: String($json._sourceHost || '').replace(/[^a-z0-9.-]/gi, '').slice(0, 80) || null\n  };\n}\nreturn { json };\n"
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "31a65c0f-f3cf-4c85-81ac-1ca0f0e5f90e",
+      "name": "Story Already Published This Run?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1008,
+        2528
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5d1f0c2e-9a1b-4c7e-8f3a-2b6d9e0a1c44",
+              "leftValue": "={{ $json._runQuotaReached === true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
     }
   ],
   "nodeGroups": [],
