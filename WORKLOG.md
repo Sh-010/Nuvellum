@@ -1171,7 +1171,7 @@ The changes:
   - Stale claims are corrected in README, AGENTS.md, SOCIAL_DISTRIBUTION, RECOVERY and the n8n README.
 - **Repository hygiene.**
   - "Clean up merged branches" (confirm yes, scope all) removed 130 merged branches: 172 → 42. Every remaining branch is explained in LIVE_STATE.
-  - Docs PRs #217 and #224 were folded in here and closed.
+  - Docs PR #217 was folded in here and closed; #224 was merged directly.
   - No temporary key files remain; `.gitignore` covers `.env*` and the raw n8n exports.
 - **n8n.** The live version `5e78c5f1` (69 nodes, active, hourly) equals `n8n/workflows/nuvellum-newsroom.json`.
 - **Tests.**
