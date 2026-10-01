@@ -24,7 +24,6 @@ const covered = countries.filter(c => (counts.get(c.name) || 0) > 0).sort((a, b)
 const lead = articles[0];
 const secondary = articles.slice(1, 4);
 const rest = articles.slice(4);
-const worldDesk = all.filter(a => a.section === 'World' && !articles.includes(a)).slice(0, 4);
 const [first, second] = region.label.split(' & ');
 ---
 <InteriorShell
@@ -81,13 +80,6 @@ const [first, second] = region.label.split(' & ');
         <section class="block" aria-labelledby="continuing">
           <div class="section-title" data-reveal><h2 id="continuing">Continuing coverage</h2><span class="rule"></span><span class="note">{plural(rest.length, 'further report')}</span></div>
           <div class="rows">{rest.map((a, i) => <Story article={a} variant="row" d={Math.min(i, 5) * 60} />)}</div>
-        </section>
-      )}
-
-      {!lead && worldDesk.length > 0 && (
-        <section class="block" aria-labelledby="world-desk">
-          <div class="section-title" data-reveal><h2 id="world-desk">From the World desk</h2><span class="rule"></span><a href="/section/world">World section →</a></div>
-          <div class="rows">{worldDesk.map((a, i) => <Story article={a} variant="row" d={i * 60} />)}</div>
         </section>
       )}
 

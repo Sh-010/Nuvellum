@@ -1109,3 +1109,20 @@ Owner request: post to social hourly, offset from the newsroom.
   - **Adapters.** Telegram, Facebook, Instagram, Threads and LinkedIn.
   - **Shorts/Reels** stay disabled and manual.
 - **Tests and docs.** The two cadence tests and the docs (SOCIAL_DISTRIBUTION, SOCIAL_PLATFORM_SETUP) are updated.
+
+## 2026-10-01 — World Desk: regions show only their own stories
+
+- **The bug.**
+  - On the homepage World Desk, any region with fewer than 3 stories was topped up with the latest World stories ("World desk ·" rows).
+  - `/world/<region>` showed a "From the World desk" block when the region had no stories.
+  - Both put stories under the wrong continent and duplicated them across desks. Seen live: the Renee Good story (North America) appeared under Latin America & Caribbean on both surfaces.
+- **The fix.**
+  - Both fallbacks are removed.
+  - An empty region shows "No stories on this desk yet." (homepage list, in the existing muted italic voice) or the existing "No reporting has been filed to this bureau yet" note (region page).
+  - The map, tabs, counts, styling, animations and World Explorer are unchanged.
+  - Country desks were checked: their "Regional context" already uses only the country's own region.
+- **Tests.** `tests/world-desk-regions.test.mjs`:
+  - a Sub-Saharan Africa story can't appear under Latin America or North America;
+  - the template has no fallback;
+  - for **every** region in the built output, both the homepage desk and `/world/<region>`, each linked story carries that region.
+  - The tests fail on main's build and pass with the fix.
