@@ -22,7 +22,7 @@ const get = (n) => { const i = argv.indexOf('--' + n); return i >= 0 ? (argv[i +
 const ledgerDir = typeof get('ledger') === 'string' ? get('ledger') : null;
 const slugArg = typeof get('slug') === 'string' ? get('slug') : null;
 const now = Date.now();
-const ASSET_BASE = (process.env.NUVELLUM_ASSET_BASE || 'https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets').replace(/\/$/, '');
+const ASSET_BASE = (process.env.NUVELLUM_ASSET_BASE || 'https://cdn.jsdelivr.net/gh/Sh-010/Nuvellum@social-assets').replace(/\/$/, '');
 const outDir = (slug) => join(REPO_ROOT, 'engines', 'out', 'shorts', slug);
 const output = (k, v) => { if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `${k}=${v}\n`); };
 

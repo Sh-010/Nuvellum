@@ -25,9 +25,9 @@ What remains for each platform is account-side: credentials, and in some cases t
 
 Accounts connected inside those tools can still be used by hand. Nuvellum's automation never depends on them.
 
-Media is served publicly from the `social-assets` branch (the repository is public):
-- `https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/cards/<slug>/portrait.jpg`
-- `https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/<slug>/short.mp4`
+Media is served publicly from the `social-assets` branch (the repository is public), through jsDelivr's free GitHub CDN. jsDelivr returns proper `image/jpeg` / `video/mp4` types, which the Meta APIs require; raw.githubusercontent.com answers `application/octet-stream`. Override the base with the variable `NUVELLUM_ASSET_BASE` if needed:
+- `https://cdn.jsdelivr.net/gh/Sh-010/Nuvellum@social-assets/cards/<slug>/portrait.jpg`
+- `https://cdn.jsdelivr.net/gh/Sh-010/Nuvellum@social-assets/shorts/<slug>/short.mp4`
 
 Instagram and Facebook Reels fetch from these URLs. YouTube and TikTok receive the bytes directly, so no TikTok domain verification is needed.
 

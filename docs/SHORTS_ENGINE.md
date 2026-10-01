@@ -147,7 +147,7 @@ Outputs are under `engines/out/shorts/<slug>/`: `short.mp4`, `poster.jpg`, `capt
 | Instagram Reels | Graph `/{ig-user-id}/media` `REELS` → status poll → `media_publish` | `INSTAGRAM_USER_ID`, `INSTAGRAM_TOKEN` |
 | TikTok | Content Posting API, `FILE_UPLOAD` Direct Post | `TIKTOK_CLIENT_KEY`, `TIKTOK_CLIENT_SECRET`, `TIKTOK_REFRESH_TOKEN`; variable `TIKTOK_AUDITED=yes` after the audit |
 
-Meta fetches the MP4 by public URL from `https://raw.githubusercontent.com/Sh-010/Nuvellum/social-assets/shorts/<slug>/short.mp4` (the repository is public). YouTube and TikTok receive the bytes directly.
+Meta fetches the MP4 by public URL from `https://cdn.jsdelivr.net/gh/Sh-010/Nuvellum@social-assets/shorts/<slug>/short.mp4` (the repository is public). jsDelivr serves `video/mp4` / `image/jpeg` content types. Raw GitHub URLs answer `application/octet-stream` with `nosniff`, which Meta's media fetch rejects. YouTube and TikTok receive the bytes directly.
 
 **Manual runs:**
 - **Actions → Shorts autopilot → Run workflow.** An optional `slug` skips the recency window and daily limit, but never the safety rules. `distribute` can be unticked to render only.
