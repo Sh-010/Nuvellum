@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 const wf = readFileSync('.github/workflows/social-publish.yml', 'utf8');
 
 test('social publishing runs apart from the build and publish gate, one run at a time', () => {
-  assert.match(wf, /on:\n  schedule:[\s\S]*?- cron: "12 \*\/3 \* \* \*"\n  workflow_dispatch:/m, 'scheduled every three hours and dispatchable');
+  assert.match(wf, /on:\n  schedule:[\s\S]*?- cron: "35 \* \* \* \*"\n  workflow_dispatch:/m, 'scheduled hourly at :35 (after the :00 newsroom run) and dispatchable');
   assert.doesNotMatch(wf, /^\s+(push|pull_request|workflow_run):/m, 'never tied to pushes, PRs or other workflows');
   assert.match(wf, /concurrency:\n  group: social-publish\n  cancel-in-progress: false/);
   const gate = readFileSync('scripts/lib/editorial.mjs', 'utf8');

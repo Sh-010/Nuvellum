@@ -65,13 +65,13 @@ Per-platform account, app, credential and API-restriction requirements: [`SOCIAL
 
 The publication gate merges with `GITHUB_TOKEN`, which fires no push workflows. After every merge it therefore **dispatches** `social-card-assets.yml` with the published slugs.
 
-Every card run also sweeps stories published in the last 48 hours that have no `cards/<slug>/manifest.json` on `social-assets` (up to six per run). A dispatch GitHub dropped, or a run that failed, is caught by the next one. **Publishing rate.** n8n runs hourly and each run creates **at most one** publishable incoming PR: the strongest eligible, non-duplicate story of the run (n8n `One Story Per Run` guard). The publication gate is a second safety limit: at most **one merge per rolling hour**, and at most `NUVELLUM_PUBLISH_DAILY_CAP` (default 24) per rolling 24 hours, which keeps production builds well inside the Vercel Hobby limit of 100 a day. Every gate run sweeps all open incoming PRs, and once the limit is reached it stops evaluating. Social posting keeps its own cadence (at most one story per 3-hourly run).
+Every card run also sweeps stories published in the last 48 hours that have no `cards/<slug>/manifest.json` on `social-assets` (up to six per run). A dispatch GitHub dropped, or a run that failed, is caught by the next one. **Publishing rate.** n8n runs hourly and each run creates **at most one** publishable incoming PR: the strongest eligible, non-duplicate story of the run (n8n `One Story Per Run` guard). The publication gate is a second safety limit: at most **one merge per rolling hour**, and at most `NUVELLUM_PUBLISH_DAILY_CAP` (default 24) per rolling 24 hours, which keeps production builds well inside the Vercel Hobby limit of 100 a day. Every gate run sweeps all open incoming PRs, and once the limit is reached it stops evaluating. Social posting runs hourly at minute 35, at most one story per run.
 
 ## Live posting (`engines/publish/`, `.github/workflows/social-publish.yml`)
 
 Live posting is built but **off**. It only posts when the repository variable `NUVELLUM_SOCIAL` is `on` **and** a platform's credentials exist.
 
-- **When.** Every three hours at minute 12, and on manual dispatch. Auto-published stories reach `main` through `GITHUB_TOKEN` merges, which never trigger push workflows, so a schedule is the reliable hook.
+- **When.** Every hour at minute 35, and on manual dispatch. The newsroom runs at minute 0, so by :35 the hour's story has normally been merged, deployed and given its cards. Auto-published stories reach `main` through `GITHUB_TOKEN` merges, which never trigger push workflows, so a schedule is the reliable hook.
   - A scheduled run evaluates the rolling 48-hour window but posts **at most one story** across all configured platforms.
   - A queued retry is cleared first; otherwise the newest actionable story is selected.
   - A manual dispatch must name a `slug`, and then posts that story only.

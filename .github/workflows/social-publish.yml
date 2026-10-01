@@ -9,9 +9,11 @@ name: Social publish
 # schedule (not a push trigger) is what picks them up. See docs/SOCIAL_DISTRIBUTION.md.
 on:
   schedule:
-    # At most one story per run, every three hours. The publisher chooses the newest
-    # actionable story (or a queued retry) instead of dumping the whole recent window.
-    - cron: "12 */3 * * *"
+    # At most one story per run, every hour at minute 35. The newsroom runs at minute 0, so by :35 the hour's
+    # story has normally been merged, deployed and given its cards (and the publisher still waits until the
+    # article answers 200). It chooses the newest actionable story (or a queued retry) instead of dumping the
+    # whole recent window.
+    - cron: "35 * * * *"
   workflow_dispatch:
     inputs:
       slug:

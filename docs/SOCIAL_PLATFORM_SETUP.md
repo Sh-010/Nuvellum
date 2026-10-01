@@ -10,7 +10,7 @@ What remains for each platform is account-side: credentials, and in some cases t
 
 | Platform | Feed post | Short/Reel | Live today? | What unblocks it (owner side) |
 | --- | --- | --- | --- | --- |
-| **Telegram** | Branded square card + caption | — | **Yes**, every 3 hours, ledger-backed, no duplicates | Nothing |
+| **Telegram** | Branded square card + caption | — | **Yes**, hourly at :35, one story per run, ledger-backed, no duplicates | Nothing |
 | **Facebook Page** | Link post | Reels via `video_reels` | No: no secrets | Meta app with `pages_manage_posts`, `pages_read_engagement`, `pages_show_list`; long-lived Page token → `FACEBOOK_PAGE_ID`, `FACEBOOK_PAGE_TOKEN`. Advanced Access needs App Review + Business Verification (**external approval**). |
 | **Instagram** | Portrait card (JPEG) | Reels | No: no secrets | Professional account linked to the Page; `instagram_content_publish` (App Review, **external approval**) → `INSTAGRAM_USER_ID`, `INSTAGRAM_TOKEN` |
 | **Threads** | Text + link | — | No: no secrets | `threads_basic`, `threads_content_publish` (App Review, **external approval**) → `THREADS_USER_ID`, `THREADS_TOKEN`. The token lasts 60 days: renew it, and the owner alert fires on rejection. |

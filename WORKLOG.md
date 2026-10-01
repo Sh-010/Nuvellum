@@ -1098,3 +1098,14 @@ Owner request: don't let approved incoming PRs pile up (hourly runs produced abo
   - The publication gate's limit of 1 per rolling hour (now the second safety limit) and the 24/day cap.
 - **Safety and fidelity.** The guard fails open on an internal error, so the gate's hourly limit still holds. The If condition is always boolean, so an error can't fail the run.
 - **Tests and sync.** `tests/n8n-one-story-per-run.test.mjs` runs the exported guard against fixtures. The live draft was compared with the repo export: 69 nodes, with identical parameters, error handling and wiring.
+
+## 2026-10-01 — hourly social posting
+
+Owner request: post to social hourly, offset from the newsroom.
+- **Schedule.** `social-publish.yml` moves from `12 */3 * * *` to **`35 * * * *`** (every hour at minute 35). The newsroom runs at minute 0. By :35 that hour's story has normally been merged by the gate, deployed by Vercel and given its cards. The publisher still posts only once the article answers 200.
+- **Unchanged:**
+  - **Pacing.** At most one story per scheduled run: a queued retry first, otherwise the newest actionable story in the 48-hour window. The old backlog is never dumped.
+  - **Ledger.** The `social-ledger` idempotency (`sent`/`failed` are final), so there are no duplicate posts.
+  - **Adapters.** Telegram, Facebook, Instagram, Threads and LinkedIn.
+  - **Shorts/Reels** stay disabled and manual.
+- **Tests and docs.** The two cadence tests and the docs (SOCIAL_DISTRIBUTION, SOCIAL_PLATFORM_SETUP) are updated.
