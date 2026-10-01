@@ -33,14 +33,23 @@ _Last verified: 2026-10-01 (UTC)._
 
 ## Last verified automation events
 
-See the "Verification" entry in [`../WORKLOG.md`](../WORKLOG.md) for 2026-10-01 for links. In short:
-- **Unattended newsroom runs:** executions 951–955 fired on schedule hourly. Each produced at most one PR, and the rest were logged as `run_quota`.
-- **Automatic merges by the gate (`github-actions[bot]`):**
-  - #204, #206 (sensitive, verified) and #207 at 14:03 UTC;
-  - #211 and #212 at 15:04–15:05;
-  - #210 at 17:01, #216 at 18:04 and #221 at 20:01;
-  - each was followed by a successful production deploy.
-- **Telegram:** see the handoff entry in WORKLOG (the first post through the new after-cards trigger).
+The full unattended chain was verified on the **21:00 UTC cycle of 2026-10-01**, with no human action:
+
+| Time (UTC) | Event | Evidence |
+| --- | --- | --- |
+| 21:00:19 | n8n execution **955** fired on schedule (mode `trigger`) and created exactly one incoming PR (**#227**) | n8n Executions |
+| 21:01 | Publication gate **auto-merged #222** (Landman season 3), 60 min after the previous merge (#221 at 20:01) | PR #222, merged by `github-actions[bot]` |
+| 21:01 | Gate **closed #205 as `stale`** ("News candidate waited 8h without publication (limit 6h)"); its branch was kept | PR #205 comment and label |
+| ~21:02 | Production deploy of the publish commit `48f8abf`: "Deployment has completed"; the article answers 200 | Vercel commit status |
+| 21:01:23 → 21:02:43 | Gate dispatched social cards; six card files stored on `social-assets` (`d4e3b32`) | Actions: Publish social card assets |
+| 21:02:45 | Card job **dispatched the social publisher** (`after_cards`, "max 1 story") | Actions: Social publish run 36925961901 |
+| **21:03:19** | **Telegram post sent** as a branded card: https://t.me/nuvellum/21, 1 attempt, recorded `sent` | `social-ledger` `473428c` |
+| — | Artifact pushes `473428c` (ledger) and `d4e3b32` (assets) created **0** Vercel deployments | GitHub deployments API |
+
+Earlier the same day:
+- Scheduled runs 951–954 each produced at most one PR.
+- The gate auto-merged #204, #206 (sensitive, verified), #207, #210, #211, #212, #216 and #221.
+- Production smoke on 2026-10-01: **387 checks, 0 failures** (19 core routes, 96 sitemap URLs, 49 articles, 38 images).
 
 ## Known limitations and open risks
 
