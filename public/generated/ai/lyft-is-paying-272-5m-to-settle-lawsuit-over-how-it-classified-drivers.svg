@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <rect id="bg" width="1200" height="675" fill="#f3ecdf" />
+    
+    
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" />
+    </filter>
+
+    
+    <pattern id="hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.75" opacity="0.25" />
+    </pattern>
+
+    
+    <pattern id="crosshatch" width="6" height="6" patternTransform="rotate(30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="0.8" opacity="0.3" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#661227" stroke-width="0.5" opacity="0.2" />
+    </pattern>
+
+    
+    <pattern id="ledger" width="40" height="24" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="24" x2="40" y2="24" stroke="#8c7a6b" stroke-width="0.5" opacity="0.3" />
+    </pattern>
+  </defs>
+
+  
+  
+  <rect width="1200" height="675" filter="url(#grain)" opacity="0.7" />
+
+  
+  <g id="frame" stroke="#2a221c" stroke-width="1.5">
+    <line x1="80" y1="60" x2="1120" y2="60" opacity="0.4" />
+    <line x1="80" y1="615" x2="1120" y2="615" opacity="0.4" />
+    <circle cx="80" cy="60" r="3" fill="#2a221c" />
+    <circle cx="1120" cy="60" r="3" fill="#2a221c" />
+    <circle cx="80" cy="615" r="3" fill="#2a221c" />
+    <circle cx="1120" cy="615" r="3" fill="#2a221c" />
+  </g>
+
+  
+  <g id="document-backdrop" transform="translate(360, 110)">
+    
+    <rect x="0" y="0" width="480" height="455" fill="#f9f5ed" stroke="#8c7a6b" stroke-width="1.5" />
+    <rect x="25" y="25" width="430" height="405" fill="url(#ledger)" opacity="0.6" />
+    
+    
+    <line x1="65" y1="0" x2="65" y2="455" stroke="#661227" stroke-width="1.5" opacity="0.6" />
+
+    
+    <g stroke="#2a221c" stroke-width="2" stroke-linecap="round" opacity="0.25">
+      <line x1="90" y1="50" x2="250" y2="50" />
+      <line x1="90" y1="80" x2="380" y2="80" />
+      <line x1="90" y1="110" x2="330" y2="110" />
+      <line x1="90" y1="140" x2="360" y2="140" />
+      
+      
+      <line x1="90" y1="310" x2="400" y2="310" />
+      <line x1="90" y1="340" x2="350" y2="340" />
+      <line x1="90" y1="370" x2="380" y2="370" />
+    </g>
+  </g>
+
+  
+  <g id="focal-sculpture" transform="translate(600, 310)">
+    
+    
+    <g id="pillar">
+      <rect x="-12" y="-120" width="24" height="240" fill="#2a221c" />
+      <rect x="-6" y="-120" width="12" height="240" fill="#4a3b32" />
+      
+      <path d="M-60,120 L60,120 L45,135 L-45,135 Z" fill="#2a221c" stroke="#2a221c" stroke-linejoin="round" />
+      <rect x="-80" y="135" width="160" height="10" fill="#2a221c" />
+      
+      <circle cx="0" cy="-125" r="14" fill="#2a221c" />
+      <circle cx="0" cy="-125" r="8" fill="#f3ecdf" />
+    </g>
+
+    
+    <g transform="rotate(-4.5)">
+      
+      <path d="M-280,-140 L280,-140 L260,-152 L-260,-152 Z" fill="#2a221c" />
+      <circle cx="0" cy="-146" r="8" fill="#f3ecdf" stroke="#2a221c" stroke-width="3" />
+
+      
+      <g id="left-arm">
+        <line x1="-260" y1="-146" x2="-260" y2="-20" stroke="#2a221c" stroke-width="2.5" />
+        <line x1="-220" y1="-146" x2="-220" y2="-20" stroke="#2a221c" stroke-width="2.5" />
+        
+        
+        <path d="M-260,-20 L-220,-20 L-240,0 Z" fill="#2a221c" />
+        <line x1="-240" y1="0" x2="-240" y2="40" stroke="#2a221c" stroke-width="2.5" />
+
+        
+        <path d="M-320,40 C-320,30 -160,30 -160,40 L-140,75 C-140,75 -240,85 -340,75 Z" fill="#2a221c" stroke="#2a221c" />
+        <ellipse cx="-240" cy="40" rx="100" ry="12" fill="#4a3b32" stroke="#2a221c" stroke-width="2" />
+
+        
+        <g transform="translate(-240, 15)">
+          
+          <circle cx="0" cy="0" r="45" fill="none" stroke="#2a221c" stroke-width="10" />
+          
+          <circle cx="0" cy="0" r="40" fill="url(#hatch)" />
+          
+          <circle cx="0" cy="0" r="18" fill="#f3ecdf" stroke="#2a221c" stroke-width="3" />
+          
+          <line x1="0" y1="-18" x2="0" y2="18" stroke="#2a221c" stroke-width="3" />
+          <line x1="-18" y1="0" x2="18" y2="0" stroke="#2a221c" stroke-width="3" />
+        </g>
+      </g>
+
+      
+      <g id="right-arm">
+        <line x1="220" y1="-146" x2="220" y2="-20" stroke="#2a221c" stroke-width="2.5" />
+        <line x1="260" y1="-146" x2="260" y2="-20" stroke="#2a221c" stroke-width="2.5" />
+        
+        
+        <path d="M220,-20 L260,-20 L240,0 Z" fill="#2a221c" />
+        <line x1="240" y1="0" x2="240" y2="40" stroke="#2a221c" stroke-width="2.5" />
+
+        
+        <path d="M160,40 C160,30 320,30 320,40 L340,75 C340,75 240,85 140,75 Z" fill="#2a221c" stroke="#2a221c" />
+        <ellipse cx="240" cy="40" rx="100" ry="12" fill="#4a3b32" stroke="#2a221c" stroke-width="2" />
+
+        
+        <g transform="translate(240, 0)">
+          
+          <rect x="-65" y="-10" width="130" height="22" fill="#661227" stroke="#2a221c" stroke-width="2" />
+          <rect x="-65" y="-10" width="130" height="22" fill="url(#crosshatch)" opacity="0.5" />
+          
+          
+          <rect x="-50" y="-32" width="100" height="22" fill="#f9f5ed" stroke="#2a221c" stroke-width="2" />
+          
+          <line x1="-35" y1="-21" x2="35" y2="-21" stroke="#2a221c" stroke-width="2" stroke-linecap="round" />
+          <line x1="-25" y1="-16" x2="25" y2="-16" stroke="#661227" stroke-width="1.5" stroke-linecap="round" />
+
+          
+          <rect x="-35" y="-50" width="70" height="18" fill="#661227" stroke="#2a221c" stroke-width="2" />
+          <circle cx="0" cy="-41" r="4" fill="#f3ecdf" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+  
+  <g id="foreground-accents">
+    
+    <g transform="translate(480, 520)">
+      
+      <path d="M-120,12 L120,-12 L122,-6 L-118,18 Z" fill="#2a221c" />
+      <circle cx="-120" cy="15" r="6" fill="#661227" stroke="#2a221c" stroke-width="1.5" />
+      
+      
+      <rect x="-140" y="-3" width="35" height="30" rx="4" fill="#661227" stroke="#2a221c" stroke-width="2" transform="rotate(-8 -122 12)" />
+      
+      <rect x="110" y="-18" width="35" height="30" rx="4" fill="#661227" stroke="#2a221c" stroke-width="2" transform="rotate(-8 127 -3)" />
+    </g>
+
+    
+    <g opacity="0.3" stroke="#2a221c" stroke-width="1">
+      
+      <path d="M 100,80 L 140,80 M 100,80 L 100,120" fill="none" />
+      <circle cx="100" cy="80" r="2" fill="#2a221c" />
+      
+      
+      <path d="M 1100,80 L 1060,80 M 1100,80 L 1100,120" fill="none" />
+      <circle cx="1100" cy="80" r="2" fill="#2a221c" />
+    </g>
+
+    
+    <line x1="550" y1="595" x2="650" y2="595" stroke="#661227" stroke-width="2" />
+    <circle cx="600" cy="595" r="3" fill="#661227" />
+  </g>
+</svg>
