@@ -12,6 +12,8 @@ permissions:
   checks: read
   contents: read
   pull-requests: read
+  statuses: read
+  issues: write     # owner alerts: one ops-alert issue per condition
 
 concurrency:
   group: nuvellum-observability
@@ -32,11 +34,32 @@ jobs:
           NUVELLUM_AUTOPUBLISH: ${{ vars.NUVELLUM_AUTOPUBLISH }}
         run: node scripts/observability-report.mjs
       - name: Smoke-test live production
+        id: smoke
         env:
           NUVELLUM_SITE_URL: https://www.nuvellum.news
         run: node scripts/production-smoke.mjs
       - name: Test distribution and Shorts engines
+        id: engines
         run: |
           cd engines
           npm ci --no-audit --no-fund
           npm test
+      # Owner alerts run last and whatever happened above: a failing smoke test is exactly what they report.
+      - name: Read the social ledger
+        if: always()
+        shell: bash
+        run: |
+          if git ls-remote --exit-code --heads origin social-ledger >/dev/null; then
+            git fetch --depth=1 origin social-ledger
+            git worktree add --detach /tmp/social-ledger FETCH_HEAD
+          fi
+      - name: Alert the owner when something needs them
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUVELLUM_AUTOPUBLISH: ${{ vars.NUVELLUM_AUTOPUBLISH }}
+          SMOKE_OUTCOME: ${{ steps.smoke.outcome }}
+          LEDGER_DIR: /tmp/social-ledger
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+        run: node scripts/owner-alerts.mjs

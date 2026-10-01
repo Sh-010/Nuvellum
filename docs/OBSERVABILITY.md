@@ -147,6 +147,32 @@ Aggregate, live, video and gallery pages are screened out before the loop, so th
 
 **Fail-safe.** Both telemetry nodes run with `onError: continueRegularOutput` and catch their own errors (`reason: "telemetry_error"`). Run Summary runs only after the loop has finished, and neither node feeds any gate.
 
+## Owner alerts
+
+The observability workflow ends with `scripts/owner-alerts.mjs`. It runs whether or not the earlier steps passed, and notifies the owner only when a condition needs a person. There is no "all is well" message.
+
+| Alert | Raised when |
+| --- | --- |
+| `production-smoke` | The live-site smoke test failed in this run. |
+| `workflow:<name>` | Two consecutive runs failed for any of: Auto-publish, Social publish, Publish social card assets, Shorts autopilot, Send Nuvellum Brief. A single failed **Build Nuvellum** run on main also raises it. |
+| `stuck-incoming` | With autopublish on, an `incoming/**` PR without a hold label has been open more than 6 hours. |
+| `newsroom-stalled` | With autopublish on, there has been no new automated story and no incoming PR for 12 hours. This means n8n is inactive or failing (credentials, Gemini quota, GitHub token). |
+| `deploy` | Vercel reported a failed production deployment (including a rate limit) on the newest decisive main commit, more than 2 hours ago. |
+| `credentials:<platform>` | A social platform rejected Nuvellum's token (401/403, expired, unauthorised) in the last 36 hours. |
+| `social-failed` | Posts that gave up after retries in the last 36 hours. |
+| `shorts-failing` | An automatic Short failed to render or verify in the last 36 hours. |
+
+**Delivery.**
+- **GitHub issue.** Each condition opens one issue labelled `ops-alert`, which @-mentions the repository owner (GitHub emails them).
+- **Telegram (optional).** When the secret `TELEGRAM_ALERT_CHAT_ID` is set to the owner's private chat id with the Nuvellum bot, the same text also goes there.
+- **Reminders.** An alert that persists is reminded at most once every 24 hours.
+- **Resolution.** When the condition clears, the issue gets a "Resolved" comment and closes.
+- **Missing data.** If a data source can't be read in a run (GitHub API, ledger), alerts that depend on it stay open rather than closing on missing data.
+
+**Safety.** Messages contain no credentials: ledger errors are already redacted by the publisher.
+
+**Local dry run:** `DRY_RUN=1 GITHUB_TOKEN=… GITHUB_REPOSITORY=Sh-010/Nuvellum NUVELLUM_AUTOPUBLISH=on LEDGER_DIR=<social-ledger checkout> node scripts/owner-alerts.mjs`
+
 ## Limits
 
 - **Real photos** are chosen after the run by `visual-acquire.yml` on the incoming branch, so `imageModes.photo` is always 0 in n8n. The GitHub reporter above counts the final photo, illustration and text-led mix.

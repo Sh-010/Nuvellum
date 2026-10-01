@@ -4,7 +4,12 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 6 * * *"
+    # GitHub drops scheduled runs freely, worst of all on the hour: the original 06:00 run never fired.
+    # Off-peak minutes plus two backups; the sender is idempotent per issue date (sent key + lock), so every
+    # run after the first returns "already-sent-today".
+    - cron: "17 6 * * *"
+    - cron: "47 7 * * *"
+    - cron: "29 10 * * *"
   workflow_dispatch:
     inputs:
       send:
