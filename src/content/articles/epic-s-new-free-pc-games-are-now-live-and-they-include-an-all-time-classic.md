@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T15:01:42.650Z"
 readingTime: "1 min"
-image: "/generated/ai/epic-s-new-free-pc-games-are-now-live-and-they-include-an-all-time-classic.svg"
-imageAlt: "AI-generated editorial illustration for Epic's new free PC games are now live, and they include an all-time classic"
 status: "published"
 tags: ["Epic Games Store","PC games","System Shock 2","Buried Stars"]
 regions: []
