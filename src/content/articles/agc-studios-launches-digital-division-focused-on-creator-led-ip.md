@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T15:00:42.567Z"
 readingTime: "2 min"
-image: "/generated/ai/agc-studios-launches-digital-division-focused-on-creator-led-ip.svg"
-imageAlt: "AI-generated editorial illustration for Agc Studios launches digital division focused on creator-led IP"
 status: "published"
 tags: ["AGC Studios","AGC Digital","Creator Economy"]
 regions: ["north-america"]
