@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash",
+  "url": "https://nuvellum.vercel.app/article/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash",
+  "title": "Zimbabwe businessman Wicknell Chivayo killed in helicopter crash",
+  "section": "World",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 84,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 86,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 112,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 110,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/square.svg",
+  "portrait": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/portrait.svg",
+  "landscape": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/landscape.svg",
+  "story": "engines/out/social-cards/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash/story.svg",
+  "rasterNeededForLivePosting": true
+}

@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "slug": "krafton-cancels-development-on-pubg-black-budget-extraction-shooter",
+  "url": "https://nuvellum.vercel.app/article/krafton-cancels-development-on-pubg-black-budget-extraction-shooter",
+  "title": "Krafton cancels development on PUBG: Black Budget extraction shooter",
+  "section": "Gaming",
+  "variant": "culture",
+  "media": {
+    "mode": "photo",
+    "label": "FILE PHOTO",
+    "credit": "Photo: PUBG MOBILE / CC BY 3.0",
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 64,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 520,
+      "path": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 44,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "culture",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 64,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 783,
+      "path": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "culture",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 86,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 648,
+      "path": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "photo",
+  "square": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/square.svg",
+  "portrait": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/portrait.svg",
+  "landscape": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/landscape.svg",
+  "story": "engines/out/social-cards/krafton-cancels-development-on-pubg-black-budget-extraction-shooter/story.svg",
+  "rasterNeededForLivePosting": true
+}
