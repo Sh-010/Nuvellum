@@ -1,0 +1,5 @@
+{
+  "$comment": "Artifact branch (social cards/Shorts or the social ledger), not an application. Vercel reads vercel.json from the pushed commit, and this orphan branch has no copy of main's, so without this file every push created a failed Preview deployment. Never deploy this branch.",
+  "git": { "deploymentEnabled": false },
+  "ignoreCommand": "exit 0"
+}
