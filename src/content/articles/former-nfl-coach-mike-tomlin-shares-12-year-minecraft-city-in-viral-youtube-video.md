@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-01"
 publishedAt: "2026-10-01T17:00:49.528Z"
 readingTime: "1 min"
-image: "/generated/ai/former-nfl-coach-mike-tomlin-shares-12-year-minecraft-city-in-viral-youtube-video.svg"
-imageAlt: "AI-generated editorial illustration for Former NFL coach Mike Tomlin shares 12-year Minecraft city in viral YouTube video"
 status: "published"
 tags: ["Minecraft","Mike Tomlin","YouTube","gaming"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/former-nfl-coach-mike-tomlin-shares-12-year-minecraft-city-in-viral-youtube-video.jpg"
+imageAlt: "Pittsburgh Steelers coach Mike Tomlin - September 16, 2007"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Pittsburgh Steelers coach Mike Tomlin - September 16, 2007. Image of Mike Tomlin, not of the events reported."
+imageCredit: "SteelCityHobbies"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Mike_Tomlin_2007.jpg"
 ---
 Former Pittsburgh Steelers head coach Mike Tomlin has revealed a secret digital project, sharing a tour of a Minecraft city he has spent the past 12 years building. 
 
