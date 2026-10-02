@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T12:01:22.399Z"
 readingTime: "2 min"
-image: "/generated/ai/star-wars-galactic-racer-brings-roguelike-mechanics-to-arcade-racing.svg"
-imageAlt: "AI-generated editorial illustration for Star Wars: Galactic Racer brings roguelike mechanics to arcade racing"
 status: "published"
 tags: ["Star Wars","Galactic Racer","Fuse Games","Secret Mode"]
 regions: []
