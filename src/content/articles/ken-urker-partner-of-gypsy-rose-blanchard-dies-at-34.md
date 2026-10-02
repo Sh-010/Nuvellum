@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T04:01:02.280Z"
 readingTime: "1 min"
-image: "/generated/ai/ken-urker-partner-of-gypsy-rose-blanchard-dies-at-34.svg"
-imageAlt: "AI-generated editorial illustration for Ken Urker, partner of Gypsy-Rose Blanchard, dies at 34"
 status: "published"
 tags: ["Ken Urker","Gypsy-Rose Blanchard","Life After Lockup","Television"]
 regions: ["north-america"]
