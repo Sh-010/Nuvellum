@@ -1,0 +1,65 @@
+{
+  "slug": "renee-good-s-family-sues-trump-admin-over-fatal-ice-shooting",
+  "url": "https://www.nuvellum.news/article/renee-good-s-family-sues-trump-admin-over-fatal-ice-shooting",
+  "title": "Renee Good's family sues Trump admin over fatal ICE shooting",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-02T15:57:28.776Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-02T15:57:28.776Z",
+      "remoteId": "28",
+      "remoteUrl": "https://t.me/nuvellum/28",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T15:57:28.776Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-02T15:57:28.776Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
