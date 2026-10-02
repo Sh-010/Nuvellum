@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T22:00:40.346Z"
 readingTime: "2 min"
-image: "/generated/ai/northern-ireland-secure-impressive-3-0-nations-league-victory-over-ukraine.svg"
-imageAlt: "AI-generated editorial illustration for Northern Ireland secure impressive 3-0 Nations League victory over Ukraine"
 status: "published"
 tags: ["football","Nations League","Northern Ireland","Ukraine"]
 regions: ["europe-central-asia"]
