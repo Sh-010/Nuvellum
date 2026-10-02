@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T15:00:44.006Z"
 readingTime: "2 min"
-image: "/generated/ai/variety-unveils-its-10-broadway-stars-to-watch-for-the-2026-27-season.svg"
-imageAlt: "AI-generated editorial illustration for Variety unveils its 10 Broadway Stars to Watch for the 2026-27 season"
 status: "published"
 tags: ["Broadway","theater","Variety","performing arts"]
 regions: ["north-america"]
