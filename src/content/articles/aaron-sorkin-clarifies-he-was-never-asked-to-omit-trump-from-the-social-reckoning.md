@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T02:00:40.301Z"
 readingTime: "1 min"
-image: "/generated/ai/aaron-sorkin-clarifies-he-was-never-asked-to-omit-trump-from-the-social-reckoning.svg"
-imageAlt: "AI-generated editorial illustration for Aaron Sorkin clarifies he was never asked to omit Trump from 'The Social Reckoning'"
 status: "published"
 tags: ["Aaron Sorkin","The Social Reckoning","Donald Trump"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/aaron-sorkin-clarifies-he-was-never-asked-to-omit-trump-from-the-social-reckoning.jpg"
+imageAlt: "Aaron Sorkin at the John F. Kennedy International Airport in New York City, New York, United States Worried"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Aaron Sorkin at the John F. Kennedy International Airport in New York City, New York, United States Worried. Image of Aaron Sorkin, not of the events reported."
+imageCredit: "Ondra Soukup from Prague, Czech Republic"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:AaronSorkinJFK.jpg"
 ---
 ## Background on 'The Social Reckoning'
 
