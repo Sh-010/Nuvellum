@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T16:00:45.848Z"
 readingTime: "2 min"
-image: "/generated/ai/dan-houser-details-upcoming-projects-at-absurd-ventures-and-why-he-avoids-open-world-games.svg"
-imageAlt: "AI-generated editorial illustration for Dan Houser details upcoming projects at Absurd Ventures and why he avoids open-world games"
 status: "published"
 tags: ["Dan Houser","Absurd Ventures","Rockstar Games","Grand Theft Auto"]
 regions: []
