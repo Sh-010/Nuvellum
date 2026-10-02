@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T00:00:44.600Z"
 readingTime: "2 min"
-image: "/generated/ai/verity-ending-explained-how-the-final-twist-changes-the-movie.svg"
-imageAlt: "AI-generated editorial illustration for 'Verity' ending explained: how the final twist changes the movie"
 status: "published"
 tags: ["Verity","movie","ending explained","Colleen Hoover"]
 regions: []
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/verity-ending-explained-how-the-final-twist-changes-the-movie.jpg"
+imageAlt: "La Specola Roger Verity Collection Zerynthia"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: La Specola Roger Verity Collection Zerynthia. Image of Ruggero Verity, not of the events reported."
+imageCredit: "Notafly"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:RogerVerityCollectionZerynthia.JPG"
 ---
 Directed by Michael Showalter and based on a novel by Colleen Hoover, the psychological thriller *Verity* features a cast that includes Anne Hathaway, Dakota Johnson, and Josh Hartnett. The film follows struggling writer Lowen Ashleigh (Johnson), who is hired by Jeremy Crawford (Hartnett) to complete the book series written by his famous wife, Verity Crawford (Hathaway). The job comes with a substantial sum of money and a place to live in the Crawfords' remote Vermont mansion, where a paralyzed Verity also resides following a car crash.
 
