@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <rect id="bg" width="1200" height="675" fill="#f3ecdf"/>
+    
+    
+    <pattern id="hatch" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#2a221c" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+    <pattern id="wood" width="120" height="675" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="120" y2="0" stroke="#2a221c" stroke-width="0.8" stroke-opacity="0.1"/>
+    </pattern>
+  </defs>
+
+  
+  
+
+  
+  <g id="architecture" fill="none" stroke="#2a221c" stroke-width="1.5">
+    
+    <polygon points="100,600 1100,600 1100,80 100,80" fill="#efe8db" stroke-width="2"/>
+    
+    <path d="M100,480 L1100,480 L1150,600 L50,600 Z" fill="#e8dfd0" stroke-width="2"/>
+    
+    
+    <line x1="100" y1="480" x2="50" y2="600" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="300" y1="480" x2="270" y2="600" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="500" y1="480" x2="490" y2="600" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="700" y1="480" x2="710" y2="600" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="900" y1="480" x2="930" y2="600" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="1100" y1="480" x2="1150" y2="600" stroke-width="1" stroke-opacity="0.4"/>
+
+    
+    <path d="M750,130 C750,95 785,80 830,80 C875,80 910,95 910,130 L910,480 L750,480 Z" fill="#e2d8c8" stroke-width="2"/>
+    
+    <line x1="830" y1="80" x2="830" y2="480" stroke-width="1.5"/>
+    <line x1="750" y1="280" x2="910" y2="280" stroke-width="1.5"/>
+    
+    
+    <path d="M800,480 L800,320 L780,360 L810,360 L790,410 L820,410 L800,480 Z" fill="#6c736e" stroke="none"/>
+    <path d="M860,480 L860,290 L845,340 L870,340 L850,390 L875,390 L860,480 Z" fill="#5a615c" stroke="none"/>
+  </g>
+
+  
+  <path d="M420,530 L580,530 L570,570 L430,570 Z" fill="#2a221c" opacity="0.25"/>
+
+  
+  <g id="floorboard-flap">
+    
+    <path d="M430,520 L570,520 L560,550 L440,550 Z" fill="#251e19"/>
+    
+    
+    <polygon points="430,520 570,520 590,490 410,490" fill="#d9cebc" stroke="#2a221c" stroke-width="2"/>
+    
+    <line x1="435" y1="505" x2="565" y2="505" stroke="#2a221c" stroke-width="0.7" stroke-opacity="0.3"/>
+    <line x1="425" y1="497" x2="575" y2="497" stroke="#2a221c" stroke-width="0.7" stroke-opacity="0.3"/>
+  </g>
+
+  
+  <g id="hidden-letter" transform="translate(460, 495) rotate(-6)">
+    
+    <polygon points="0,15 50,0 100,15 100,60 0,60" fill="#fcf9f2" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <polyline points="0,15 50,42 100,15" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <line x1="20" y1="28" x2="60" y2="28" stroke="#661227" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="20" y1="36" x2="80" y2="36" stroke="#661227" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="20" y1="44" x2="50" y2="44" stroke="#661227" stroke-width="1.5" stroke-linecap="round"/>
+    
+    
+    <circle cx="50" cy="42" r="7" fill="#661227"/>
+  </g>
+
+  
+  <g id="foreground-hand">
+    
+    <path d="M 680,675 C 650,590 580,560 520,555 L 530,535 C 595,540 660,570 700,675 Z" fill="#2a221c"/>
+    
+    <path d="M 515,557 C 500,555 480,550 470,540 C 475,533 490,535 510,543 Z" fill="#2a221c"/>
+  </g>
+
+  
+  <g id="side-table" transform="translate(180, 360)">
+    
+    <rect x="0" y="40" width="120" height="80" fill="#e5dacb" stroke="#2a221c" stroke-width="2"/>
+    <line x1="20" y1="120" x2="10" y2="180" stroke="#2a221c" stroke-width="2"/>
+    <line x1="100" y1="120" x2="110" y2="180" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    <rect x="40" y="0" width="40" height="40" rx="6" fill="#fcf9f2" stroke="#2a221c" stroke-width="1.5"/>
+    <circle cx="60" cy="15" r="8" fill="none" stroke="#2a221c" stroke-width="1"/>
+    
+    <circle cx="53" cy="30" r="1.5" fill="#2a221c"/>
+    <circle cx="60" cy="30" r="1.5" fill="#2a221c"/>
+    <circle cx="67" cy="30" r="1.5" fill="#2a221c"/>
+    
+    <circle cx="60" cy="15" r="3" fill="#661227"/>
+  </g>
+
+  
+  <line x1="80" y1="40" x2="1120" y2="40" stroke="#661227" stroke-width="2"/>
+  <line x1="80" y1="635" x2="1120" y2="635" stroke="#2a221c" stroke-width="1"/>
+
+</svg>
