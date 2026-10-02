@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T23:05:50.682Z"
 readingTime: "2 min"
-image: "/generated/ai/christa-pike-unconscious-after-failed-execution-attorneys.svg"
-imageAlt: "AI-generated editorial illustration for Christa Pike unconscious after failed execution — attorneys"
 status: "published"
 tags: ["crime","execution","legal","tennessee"]
 regions: ["north-america"]
