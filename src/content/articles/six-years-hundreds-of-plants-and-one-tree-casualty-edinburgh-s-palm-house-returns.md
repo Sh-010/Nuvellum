@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T06:01:06.380Z"
 readingTime: "2 min"
-image: "/generated/ai/six-years-hundreds-of-plants-and-one-tree-casualty-edinburgh-s-palm-house-returns.svg"
-imageAlt: "AI-generated editorial illustration for Six years, hundreds of plants and one tree casualty - Edinburgh's Palm House returns"
 status: "published"
 tags: ["Horticulture","Conservation","Edinburgh"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/six-years-hundreds-of-plants-and-one-tree-casualty-edinburgh-s-palm-house-returns.jpg"
+imageAlt: "After a year in lockdown, this is Edinburgh"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: After a year in lockdown, this is Edinburgh. Image of Edinburgh, not of the events reported."
+imageCredit: "Gary Campbell-Hall from Edinburgh, UK"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:2021_Edinburgh_Project_Gary_Campbell-Hall_(51084560971).jpg"
 ---
 After a six-year closure for vital restoration work, the historic Palm Houses at the Royal Botanic Garden in Edinburgh have reopened to the public.
 
