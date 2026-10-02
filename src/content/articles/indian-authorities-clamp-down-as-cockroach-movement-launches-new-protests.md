@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T11:00:46.802Z"
 readingTime: "2 min"
-image: "/generated/ai/indian-authorities-clamp-down-as-cockroach-movement-launches-new-protests.svg"
-imageAlt: "AI-generated editorial illustration for Indian authorities clamp down as ‘cockroach’ movement launches new protests"
 status: "published"
 tags: ["protests","politics","elections"]
 regions: ["south-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/indian-authorities-clamp-down-as-cockroach-movement-launches-new-protests.jpg"
+imageAlt: "minivannews.com/politics/india-backs-inclusive-elections-"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: minivannews.com/politics/india-backs-inclusive-elections-"
+imageCredit: "Dying Regime from Maldives"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:President_Nasheed_takes_refuge_at_Indian_Embassy_%26_Protests_(8474094742).jpg"
 ---
 ## Protests and police response in New Delhi and Mumbai
 
