@@ -1,0 +1,67 @@
+{
+  "slug": "krafton-cancels-development-on-pubg-black-budget-extraction-shooter",
+  "url": "https://www.nuvellum.news/article/krafton-cancels-development-on-pubg-black-budget-extraction-shooter",
+  "title": "Krafton cancels development on PUBG: Black Budget extraction shooter",
+  "risk": "low",
+  "firstSeenAt": "2026-10-02T20:56:26.867Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-02T20:56:26.867Z",
+      "remoteId": "29",
+      "remoteUrl": "https://t.me/nuvellum/29",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T20:56:26.867Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-02T20:56:26.867Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
