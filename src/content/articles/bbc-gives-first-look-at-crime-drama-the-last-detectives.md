@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T08:01:00.423Z"
 readingTime: "2 min"
-image: "/generated/ai/bbc-gives-first-look-at-crime-drama-the-last-detectives.svg"
-imageAlt: "AI-generated editorial illustration for BBC gives first look at crime drama 'The Last Detectives'"
 status: "published"
 tags: ["BBC","The Last Detectives","Matthew Barry","Nicola Shindler","Steffan Rhodri"]
 regions: ["europe-central-asia"]
