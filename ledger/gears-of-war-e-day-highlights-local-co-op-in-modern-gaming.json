@@ -1,0 +1,65 @@
+{
+  "slug": "gears-of-war-e-day-highlights-local-co-op-in-modern-gaming",
+  "url": "https://www.nuvellum.news/article/gears-of-war-e-day-highlights-local-co-op-in-modern-gaming",
+  "title": "Gears of War: E-Day highlights local co-op in modern gaming",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-02T00:02:47.633Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-02T00:02:47.633Z",
+      "remoteId": "25",
+      "remoteUrl": "https://t.me/nuvellum/25",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T00:02:47.633Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-02T00:02:47.633Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
