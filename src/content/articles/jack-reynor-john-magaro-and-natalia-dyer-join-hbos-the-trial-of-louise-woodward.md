@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T18:00:42.753Z"
 readingTime: "2 min"
-image: "/generated/ai/jack-reynor-john-magaro-and-natalia-dyer-join-hbos-the-trial-of-louise-woodward.svg"
-imageAlt: "AI-generated editorial illustration for Jack Reynor, John Magaro and Natalia Dyer join HBO’s ‘The Trial Of Louise Woodward’"
 status: "published"
 tags: ["Jack Reynor","John Magaro","Natalia Dyer","The Trial of Louise Woodward","HBO"]
 regions: ["north-america"]
