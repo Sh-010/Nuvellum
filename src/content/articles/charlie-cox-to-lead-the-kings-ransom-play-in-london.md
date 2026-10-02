@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T10:00:39.823Z"
 readingTime: "2 min"
-image: "/generated/ai/charlie-cox-to-lead-the-kings-ransom-play-in-london.svg"
-imageAlt: "AI-generated editorial illustration for Charlie Cox to lead ‘The King’s Ransom’ play in London"
 status: "published"
 tags: ["Charlie Cox","The King's Ransom","Donmar Warehouse","Stuart Slade","London theater"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/charlie-cox-to-lead-the-kings-ransom-play-in-london.jpg"
+imageAlt: "Charlie Cox speaking at the 2017 San Diego Comic Con International, for \"Marvel's The Defenders\", at the San Diego Convention Center in San Diego, California. Please attribute to Gage Skidmore if used elsewhere"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Charlie Cox speaking at the 2017 San Diego Comic Con International, for \"Marvel's The Defenders\", at the San Diego Convention Center in San Diego, California. Please attribute to Gage Skidmore if used elsewhere. Image of Charlie Cox, not of the events reported."
+imageCredit: "Gage Skidmore from Peoria, AZ, United States of America"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Charlie_Cox_(36184588595).jpg"
 ---
 Actor Charlie Cox is returning to the London stage this winter to star in Stuart Slade’s new play, “The King’s Ransom.” The production will hold its world premiere at the Donmar Warehouse.
 
