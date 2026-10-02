@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T19:00:41.940Z"
 readingTime: "2 min"
-image: "/generated/ai/square-enix-brings-dragon-quest-and-octopath-traveler-games-to-nintendo-switch-2.svg"
-imageAlt: "AI-generated editorial illustration for Square Enix brings Dragon Quest and Octopath Traveler games to Nintendo Switch 2"
 status: "published"
 tags: ["Nintendo Switch 2","Square Enix","Dragon Quest","Octopath Traveler","RPGs"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/square-enix-brings-dragon-quest-and-octopath-traveler-games-to-nintendo-switch-2.jpg"
+imageAlt: "Square Enix building Los Angeles"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Square Enix building Los Angeles. Image of Square Enix, not of the events reported."
+imageCredit: "Tarcil Tarcil"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Square_Enix_building_Los_Angeles_(9029481517).jpg"
 ---
 Square Enix has released three role-playing games on the Nintendo Switch 2 over a two-week period, including *Dragon Quest 11S*, *Octopath Traveler*, and *Octopath Traveler 2*. 
 
