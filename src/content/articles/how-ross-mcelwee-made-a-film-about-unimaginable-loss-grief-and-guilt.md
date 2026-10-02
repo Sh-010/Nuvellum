@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T07:00:40.242Z"
 readingTime: "2 min"
-image: "/generated/ai/how-ross-mcelwee-made-a-film-about-unimaginable-loss-grief-and-guilt.svg"
-imageAlt: "AI-generated editorial illustration for How Ross mcelwee made a film about unimaginable loss, grief and guilt"
 status: "published"
 tags: ["documentary","ross mcelwee","remake","film"]
 regions: ["north-america","europe-central-asia"]
