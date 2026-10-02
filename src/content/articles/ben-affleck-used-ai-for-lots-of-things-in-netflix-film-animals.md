@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T03:00:41.400Z"
 readingTime: "1 min"
-image: "/generated/ai/ben-affleck-used-ai-for-lots-of-things-in-netflix-film-animals.svg"
-imageAlt: "AI-generated editorial illustration for Ben Affleck used AI for 'Lots Of Things' in Netflix film 'Animals'"
 status: "published"
 tags: ["Ben Affleck","Artificial Intelligence","Netflix","Animals"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/ben-affleck-used-ai-for-lots-of-things-in-netflix-film-animals.jpg"
+imageAlt: "Ben Affleck aboard USS Enterprise (CVN 65). Academy Award winning actor Ben Affleck addresses the crew on the flight deck"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Ben Affleck aboard USS Enterprise (CVN 65). Academy Award winning actor Ben Affleck addresses the crew on the flight deck. Image of Ben Affleck, not of the events reported."
+imageCredit: "U.S. Navy photo by Photographer's Mate Airman Justin N. McGarry"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Ben_Affleck_aboard_USS_Enterprise.jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Ben_Affleck_aboard_USS_Enterprise.jpg"
 ---
 ## Artificial intelligence in production
 
