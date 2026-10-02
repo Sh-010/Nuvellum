@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T17:00:53.247Z"
 readingTime: "2 min"
-image: "/generated/ai/netflix-s-steel-ball-run-ending-song-sparks-fan-controversy.svg"
-imageAlt: "AI-generated editorial illustration for Netflix's Steel Ball Run ending song sparks fan controversy"
 status: "published"
 tags: ["anime","jojos-bizarre-adventure","netflix","music"]
 regions: []
