@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T13:00:52.151Z"
 readingTime: "2 min"
-image: "/generated/ai/kieran-culkin-wants-to-play-the-devil-on-family-guy-forever.svg"
-imageAlt: "AI-generated editorial illustration for Kieran Culkin wants to play the Devil on 'Family Guy' forever"
 status: "published"
 tags: ["Kieran Culkin","Family Guy","Hulu","television"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/kieran-culkin-wants-to-play-the-devil-on-family-guy-forever.jpg"
+imageAlt: "Bag Hulu was giving out at the Essence Festival of Culture 2025 in New Orleans, Louisiana in July 2025"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Bag Hulu was giving out at the Essence Festival of Culture 2025 in New Orleans, Louisiana in July 2025. Image of Hulu, not of the events reported."
+imageCredit: "Danielle G. Campbell"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Hulu_Black_Stories_Always_Bag_at_EssenceFest_2025.jpg"
 ---
 Actor Kieran Culkin enjoyed voicing the Devil in an upcoming *Family Guy* Halloween special so much that he intends to return to the role permanently, according to the show's creators.
 
