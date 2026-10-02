@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T21:00:41.278Z"
 readingTime: "2 min"
-image: "/generated/ai/10-new-movies-to-watch-this-weekend-on-prime-video-hbo-max-and-hulu-october-2-4.svg"
-imageAlt: "AI-generated editorial illustration for 10 New movies to watch this weekend on Prime Video, HBO Max, and Hulu (October 2-4)"
 status: "published"
 tags: ["movies","streaming","releases"]
 regions: []
