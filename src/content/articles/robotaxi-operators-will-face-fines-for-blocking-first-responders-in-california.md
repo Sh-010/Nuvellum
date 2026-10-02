@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-02"
 publishedAt: "2026-10-02T01:00:41.218Z"
 readingTime: "2 min"
-image: "/generated/ai/robotaxi-operators-will-face-fines-for-blocking-first-responders-in-california.svg"
-imageAlt: "AI-generated editorial illustration for Robotaxi operators will face fines for blocking first responders in California"
 status: "published"
 tags: ["autonomous vehicles","robotaxis","regulation","California"]
 regions: ["north-america"]
