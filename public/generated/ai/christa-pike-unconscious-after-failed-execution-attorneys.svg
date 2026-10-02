@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <style>
+      .bg { fill: #f3ecdf; }
+      .ink-dark { fill: #2a221c; }
+      .ink-charcoal { fill: #382e28; }
+      .burgundy { fill: #661227; }
+      .burgundy-trans { fill: rgba(102, 18, 39, 0.12); }
+      .burgundy-trans-heavy { fill: rgba(102, 18, 39, 0.25); }
+      .stone-grey { fill: #a39b90; }
+      .light-stone { fill: #dcd4c7; }
+      .white-paper { fill: #faf6ef; }
+      .line-dark { stroke: #2a221c; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .line-fine { stroke: #2a221c; stroke-width: 1; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .line-burgundy { stroke: #661227; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .line-dashed { stroke: #661227; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; stroke-linecap: round; }
+    </style>
+
+    
+    <pattern id="engrave" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#2a221c" stroke-width="0.5" opacity="0.15" />
+    </pattern>
+    
+    <pattern id="crosshatch" width="6" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 6L6 0M-1 1L1 -1M5 7L7 5" stroke="#661227" stroke-width="0.6" opacity="0.3" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+
+  
+  
+  <line x1="150" y1="80" x2="1050" y2="80" class="line-fine" opacity="0.3" />
+  <line x1="150" y1="595" x2="1050" y2="595" class="line-fine" opacity="0.3" />
+  <line x1="150" y1="80" x2="150" y2="595" class="line-fine" opacity="0.3" />
+  <line x1="1050" y1="80" x2="1050" y2="595" class="line-fine" opacity="0.3" />
+
+  
+  <path d="M 300 200 L 300 480 Q 300 530 350 530 L 850 530 Q 900 530 900 480 L 900 200" class="line-fine" opacity="0.4" />
+  <path d="M 330 210 L 330 475 Q 330 510 370 510 L 830 510 Q 870 510 870 475 L 870 210" fill="#ede5d8" opacity="0.6" />
+
+  
+
+  
+  <rect x="420" y="140" width="360" height="260" rx="4" class="white-paper" />
+  <rect x="420" y="140" width="360" height="260" rx="4" class="line-dark" />
+  <rect x="440" y="160" width="320" height="180" fill="#f8f4ee" class="line-fine" />
+
+  
+  <path d="M 450 250 L 520 250 L 540 220 L 560 280 L 580 230 L 600 250 L 670 250 Q 700 250 710 250 L 740 250" class="line-burgundy" stroke-width="2.5" />
+  
+  <line x1="710" y1="250" x2="750" y2="250" stroke="#a39b90" stroke-width="2" stroke-dasharray="3,3" />
+
+  
+  
+  <g transform="translate(380, 260)">
+    
+    <polygon points="50,40 290,20 310,240 70,260" class="light-stone" />
+    <polygon points="50,40 290,20 310,240 70,260" class="line-fine" />
+    
+    
+    <polygon points="80,20 320,60 280,270 40,230" class="white-paper" />
+    <polygon points="80,20 320,60 280,270 40,230" class="line-dark" />
+
+    
+    <line x1="105" y1="65" x2="255" y2="75" class="line-fine" opacity="0.6" />
+    <line x1="100" y1="90" x2="280" y2="100" class="line-fine" opacity="0.6" />
+    <line x1="95" y1="115" x2="260" y2="125" class="line-fine" opacity="0.6" />
+    <line x1="90" y1="140" x2="290" y2="150" class="line-fine" opacity="0.6" />
+    <line x1="85" y1="165" x2="230" y2="175" class="line-fine" opacity="0.6" />
+    <line x1="80" y1="190" x2="270" y2="200" class="line-fine" opacity="0.6" />
+
+    
+    <rect x="135" y="110" width="100" height="18" class="burgundy-trans-heavy" />
+    <line x1="135" y1="119" x2="235" y2="119" class="line-burgundy" opacity="0.8" />
+  </g>
+
+  
+  <path d="M 600 80 Q 600 120 540 140 T 480 200 Q 420 250 360 300 T 250 380" class="line-burgundy" stroke-width="4" fill="none" />
+  
+  <path d="M 610 80 Q 610 130 550 150 T 490 210 Q 430 260 370 310 T 260 390" class="line-fine" stroke-dasharray="6,4" />
+
+  
+  <g transform="translate(560, 40)">
+    <rect x="40" y="0" width="80" height="70" rx="8" class="white-paper" />
+    <rect x="40" y="0" width="80" height="70" rx="8" class="line-dark" />
+    
+    <path d="M 80 0 L 80 -20" class="line-dark" />
+    <circle cx="80" cy="-20" r="4" class="ink-dark" />
+    
+    <path d="M 43 25 L 117 25 L 117 65 Q 117 67 115 67 L 45 67 Q 43 67 43 65 Z" class="burgundy-trans-heavy" />
+    
+    <rect x="73" y="35" width="14" height="6" class="burgundy" />
+    <rect x="77" y="31" width="6" height="14" class="burgundy" />
+  </g>
+
+  
+  <g transform="translate(800, 310)">
+    
+    <rect x="0" y="0" width="120" height="180" rx="6" class="stone-grey" />
+    <rect x="0" y="0" width="120" height="180" rx="6" class="line-dark" />
+    
+    
+    <rect x="15" y="20" width="90" height="60" rx="3" class="white-paper" />
+    <rect x="15" y="20" width="90" height="60" rx="3" class="line-dark" />
+    
+    <path d="M 25 50 Q 40 30 55 50 T 85 50" class="line-dark" stroke-width="1.5" />
+
+    
+    <circle cx="35" cy="115" r="12" class="white-paper" />
+    <circle cx="35" cy="115" r="12" class="line-dark" />
+    <line x1="35" y1="115" x2="43" y2="120" class="line-dark" />
+
+    <circle cx="85" cy="115" r="12" class="white-paper" />
+    <circle cx="85" cy="115" r="12" class="line-dark" />
+    <line x1="85" y1="115" x2="85" y2="103" class="line-dark" />
+
+    
+    <path d="M 0 150 Q -60 150 -100 120 T -200 100" class="line-dark" stroke-width="8" fill="none" />
+    <path d="M 0 150 Q -60 150 -100 120 T -200 100" class="white-paper" stroke-width="4" fill="none" />
+  </g>
+
+  
+  <g transform="translate(220, 420)">
+    
+    <line x1="0" y1="60" x2="760" y2="60" class="line-dark" stroke-width="4" />
+    
+    <line x1="80" y1="60" x2="60" y2="140" class="line-dark" stroke-width="3" />
+    <line x1="220" y1="60" x2="200" y2="140" class="line-dark" stroke-width="3" />
+    <line x1="580" y1="60" x2="600" y2="140" class="line-dark" stroke-width="3" />
+    <line x1="700" y1="60" x2="720" y2="140" class="line-dark" stroke-width="3" />
+    
+    <circle cx="60" cy="140" r="8" class="white-paper" />
+    <circle cx="60" cy="140" r="8" class="line-dark" />
+    <circle cx="200" cy="140" r="8" class="white-paper" />
+    <circle cx="200" cy="140" r="8" class="line-dark" />
+    <circle cx="600" cy="140" r="8" class="white-paper" />
+    <circle cx="600" cy="140" r="8" class="line-dark" />
+    <circle cx="720" cy="140" r="8" class="white-paper" />
+    <circle cx="720" cy="140" r="8" class="line-dark" />
+
+    
+    <path d="M 40 60 Q 100 10 200 30 L 680 50 Q 720 52 720 60 Z" class="light-stone" />
+    <path d="M 40 60 Q 100 10 200 30 L 680 50 Q 720 52 720 60 Z" class="line-dark" />
+
+    
+    <path d="M 90 35 Q 120 10 160 30 Q 180 40 220 45" class="line-dark" />
+    <path d="M 120 22 Q 135 15 145 25" class="line-fine" /> 
+  </g>
+
+  
+  <g transform="translate(600, 110)">
+    
+    <line x1="-50" y1="0" x2="50" y2="0" class="line-burgundy" stroke-width="2" />
+    <polygon points="0,-15 5,-5 -5,-5" class="burgundy" />
+    <line x1="0" y1="-15" x2="0" y2="0" class="line-burgundy" />
+    
+    
+    <line x1="-50" y1="0" x2="-70" y2="30" class="line-burgundy" />
+    <line x1="-50" y1="0" x2="-30" y2="30" class="line-burgundy" />
+    <path d="M -80 30 Q -50 45 -20 30 Z" class="burgundy-trans-heavy" />
+    <path d="M -80 30 Q -50 45 -20 30 Z" class="line-burgundy" />
+
+    
+    <line x1="50" y1="0" x2="30" y2="20" class="line-burgundy" />
+    <line x1="50" y1="0" x2="70" y2="20" class="line-burgundy" />
+    <path d="M 20 20 Q 50 35 80 20 Z" class="burgundy-trans-heavy" />
+    <path d="M 20 20 Q 50 35 80 20 Z" class="line-burgundy" />
+  </g>
+
+  
+  
+  <path d="M 300 200 L 330 210 L 330 475 L 300 480 Z" fill="url(#engrave)" />
+  
+  <path d="M 900 200 L 870 210 L 870 475 L 900 480 Z" fill="url(#engrave)" />
+
+  
+  <line x1="150" y1="585" x2="1050" y2="585" class="line-burgundy" stroke-width="1.5" />
+  <circle cx="600" cy="585" r="3" class="burgundy" />
+
+</svg>
