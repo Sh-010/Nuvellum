@@ -86,7 +86,7 @@ jobs:
           ffprobe -v error -select_streams a -show_entries stream=codec_name -of csv=p=0 "$d/short.mp4" | grep -q aac || { echo "::error::no AAC audio track"; exit 1; }
           [ -s "$d/captions.srt" ] || { echo "::error::captions.srt missing"; exit 1; }
           head -12 "$d/captions.srt"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shorts-preview-${{ github.run_id }}
           path: engines/out/shorts/
