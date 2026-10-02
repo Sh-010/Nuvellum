@@ -1,0 +1,65 @@
+{
+  "slug": "agc-studios-launches-digital-division-focused-on-creator-led-ip",
+  "url": "https://www.nuvellum.news/article/agc-studios-launches-digital-division-focused-on-creator-led-ip",
+  "title": "Agc Studios launches digital division focused on creator-led IP",
+  "risk": "low",
+  "firstSeenAt": "2026-10-02T02:32:23.179Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-02T02:32:23.179Z",
+      "remoteId": "26",
+      "remoteUrl": "https://t.me/nuvellum/26",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-02T02:32:23.179Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-02T02:32:23.179Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
