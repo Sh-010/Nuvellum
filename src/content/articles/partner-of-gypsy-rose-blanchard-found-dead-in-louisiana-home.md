@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-03"
 publishedAt: "2026-10-03T00:00:47.916Z"
 readingTime: "2 min"
-image: "/generated/ai/partner-of-gypsy-rose-blanchard-found-dead-in-louisiana-home.svg"
-imageAlt: "AI-generated editorial illustration for Partner of Gypsy Rose Blanchard found dead in Louisiana home"
 status: "published"
 tags: ["crime","louisiana","gypsy-rose-blanchard","ken-urker"]
 regions: ["north-america"]
