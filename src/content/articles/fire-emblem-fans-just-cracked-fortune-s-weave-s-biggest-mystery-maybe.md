@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-03"
 publishedAt: "2026-10-03T01:00:40.856Z"
 readingTime: "2 min"
-image: "/generated/ai/fire-emblem-fans-just-cracked-fortune-s-weave-s-biggest-mystery-maybe.svg"
-imageAlt: "AI-generated editorial illustration for Fire Emblem fans just cracked Fortune's Weave's biggest mystery (maybe)"
 status: "published"
 tags: ["Fire Emblem","Fortune's Weave","Nintendo","gaming"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/fire-emblem-fans-just-cracked-fortune-s-weave-s-biggest-mystery-maybe.jpg"
+imageAlt: "Nintendo Headquarters in Kyoto (2010). Building design by Yoshimura Architects in 2000. 京都市南区 2006年2月18日に投稿者が撮影 Head Quarters of Nintendo, Minami-ku , Kyoto , Japan"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Nintendo Headquarters in Kyoto (2010). Building design by Yoshimura Architects in 2000. 京都市南区 2006年2月18日に投稿者が撮影 Head Quarters of Nintendo, Minami-ku , Kyoto , Japan. Image of Nintendo, not of the events reported."
+imageCredit: "DVMG"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Nintendo_Headquarters_-_panoramio.jpg"
 ---
 Players of *Fire Emblem: Fortune's Weave* have been piecing together clues from across the game's routes to determine the true identity of its silent protagonist, Eshmel. While the game never directly states who Eshmel was before being created as a Mediator by Fortuna and the Kunlun village leader, a detailed theory shared across community platforms like Reddit and GameFAQs suggests a surprising connection.
 
