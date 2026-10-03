@@ -1,0 +1,65 @@
+{
+  "slug": "zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash",
+  "url": "https://www.nuvellum.news/article/zimbabwe-businessman-wicknell-chivayo-killed-in-helicopter-crash",
+  "title": "Zimbabwe businessman Wicknell Chivayo killed in helicopter crash",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-03T00:42:28.597Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-03T00:42:28.597Z",
+      "remoteId": "30",
+      "remoteUrl": "https://t.me/nuvellum/30",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-03T00:42:28.597Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-03T00:42:28.597Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
