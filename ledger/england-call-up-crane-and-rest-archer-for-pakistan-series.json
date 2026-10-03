@@ -1,0 +1,65 @@
+{
+  "slug": "england-call-up-crane-and-rest-archer-for-pakistan-series",
+  "url": "https://www.nuvellum.news/article/england-call-up-crane-and-rest-archer-for-pakistan-series",
+  "title": "England call up Crane and rest Archer for Pakistan series",
+  "risk": "low",
+  "firstSeenAt": "2026-10-03T07:03:15.917Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-03T07:03:15.917Z",
+      "remoteId": "31",
+      "remoteUrl": "https://t.me/nuvellum/31",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-03T07:03:15.917Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-03T07:03:15.917Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
