@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-03"
 publishedAt: "2026-10-03T02:00:40.046Z"
 readingTime: "1 min"
-image: "/generated/ai/quentin-tarantino-s-first-official-movie-sequel-arrives-next-month.svg"
-imageAlt: "AI-generated editorial illustration for Quentin Tarantino's first official movie sequel arrives next month"
 status: "published"
 tags: ["Quentin Tarantino","David Fincher","Netflix","Once Upon a Time in Hollywood"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/quentin-tarantino-s-first-official-movie-sequel-arrives-next-month.jpg"
+imageAlt: "Plaque in men's toilet, Ritz, Randwick, Sydney"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Plaque in men's toilet, Ritz, Randwick, Sydney. Image of Quentin Tarantino, not of the events reported."
+imageCredit: "Sardaka"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Quentin_Tarantino_001.jpg"
 ---
 Seven years after the release of *Once Upon a Time in Hollywood*, Quentin Tarantino's period action-drama is receiving an official sequel. Rather than being directed by Tarantino, the direct sequel is helmed by *Fight Club* and *Zodiac* director David Fincher.
 
