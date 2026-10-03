@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-03"
 publishedAt: "2026-10-03T04:00:44.739Z"
 readingTime: "2 min"
-image: "/generated/ai/co-pilot-on-flydubai-flight-was-banned-from-flying-by-oman.svg"
-imageAlt: "AI-generated editorial illustration for Co-pilot on Flydubai flight was banned from flying by Oman"
 status: "published"
 tags: ["aviation","security","Flydubai","Oman"]
 regions: ["middle-east-north-africa"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/co-pilot-on-flydubai-flight-was-banned-from-flying-by-oman.jpg"
+imageAlt: "FlyDubai - A6-FGI - Boeing 737-8KN - 89648E - 60962 - VGHS"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: FlyDubai - A6-FGI - Boeing 737-8KN - 89648E - 60962 - VGHS. Image of flydubai, not of the events reported."
+imageCredit: "Md Shaifuzzaman Ayon"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:FlyDubai_-_A6-FGI_-_Boeing_737-8KN_-_89648E_-_60962_-_VGHS.jpg"
 ---
 ## Background on the flying ban
 
