@@ -69,7 +69,7 @@ Every card run also sweeps stories published in the last 48 hours that have no `
 
 ## Live posting (`engines/publish/`, `.github/workflows/social-publish.yml`)
 
-Live posting is built but **off**. It only posts when the repository variable `NUVELLUM_SOCIAL` is `on` **and** a platform's credentials exist.
+Live posting is **on** (`NUVELLUM_SOCIAL=on`). Telegram posts automatically; a platform posts only when its credentials exist.
 
 - **When.** Right after each newly published story's cards are stored. The card workflow dispatches the publisher (`after_cards`), which then sweeps for **one** story: a queued retry first, otherwise the newest actionable one. An hourly run at minute 35 remains as a backup/recovery sweep, because GitHub's scheduled runs proved unreliable for this repository. A manual dispatch with a `slug` posts that story only. Every route posts at most one story per run, and the ledger prevents duplicates.
   - A scheduled run evaluates the rolling 48-hour window but posts **at most one story** across all configured platforms.

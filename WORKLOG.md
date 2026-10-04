@@ -1146,6 +1146,14 @@ The changes:
   - Gate integration: stale News closed and kept, the fresher story merges instead, an old Explainer stays open, and dry runs only report.
   - Social: the after-cards dispatch wiring, and `--trigger cards` as a one-story sweep.
 
+## 2026-10-01 — one-story-per-run: first scheduled verification
+
+- **Verified on the first scheduled run (execution 951, 17:00:19 UTC, mode `production`, 46s).**
+  - **Live version.** `5e78c5f1` (hourly plus the guard) is active.
+  - **Candidates.** 5 queued and 5 accounted for: 1 `published` (Gaming, polygon.com, PR #216) and 4 `candidate_skipped`/`run_quota` (Variety, CNBC, DW, The Verge), skipped before any fetch or model call.
+  - **Telemetry.** `reachedDrafting` 1, `rejected` 0, `unaccounted` 0.
+  - **Gate.** Exactly one queued story merged in that hour (#210 at 17:01). #205 and #213 from before the change remain queued, at one per hour.
+
 ## 2026-10-01 — artifact branches never deploy on Vercel
 
 - **Cause.** Every push to `social-assets` and `social-ledger` created a failed Vercel Preview deployment. Vercel reads `vercel.json` from the **pushed commit**, and these orphan branches (`cards/`, `shorts/`, `ledger/` only) have no copy of main's file, whose `git.deploymentEnabled` already lists both branches. Vercel therefore tried to build a non-app and errored.
@@ -1154,3 +1162,25 @@ The changes:
 - **Verified with the commit adding the file** (`93b18f3` on social-assets, `779d8bd` on social-ledger):
   - **0** Vercel deployments and no Vercel commit status, versus 1 failed deployment for each previous artifact push;
   - main still "Deployment has completed".
+
+## 2026-10-01 — final handoff / maintainability pass
+
+- **Docs.**
+  - `docs/LIVE_STATE.md` is the read-first snapshot.
+  - `docs/RUNBOOK.md` covers schedules, emergency switches, 17 failure playbooks, the credential inventory (names only), external approvals, the "breaks tonight" sequence, n8n restore, and checkpoint/rollback.
+  - Stale claims are corrected in README, AGENTS.md, SOCIAL_DISTRIBUTION, RECOVERY and the n8n README.
+- **Repository hygiene.**
+  - "Clean up merged branches" (confirm yes, scope all) removed 130 merged branches: 172 → 42. Every remaining branch is explained in LIVE_STATE.
+  - Docs PR #217 was folded in here and closed; #224 was merged directly.
+  - No temporary key files remain; `.gitignore` covers `.env*` and the raw n8n exports.
+- **n8n.** The live version `5e78c5f1` (69 nodes, active, hourly) equals `n8n/workflows/nuvellum-newsroom.json`.
+- **Tests.**
+  - Repo: 404/404.
+  - Engines: 79 pass, 0 fail, 3 skipped (the opt-in real-Chromium card tests, which CI runs).
+  - `validate` passes, including the n8n export check.
+  - Build: 349 pages; the build-output check passes for 48 articles.
+  - `npm audit`: 0 vulnerabilities (root and engines).
+  - Production smoke: 387 checks, 0 failures.
+- **Production.** 200 for home, article, Latest, World Desk, Saved, RSS (49 items), sitemap (96 URLs), robots, Brief unsubscribe and the search index. GA4 is present, the Brief form is present, and the World Desk shows only filed stories (Latin America shows the empty state).
+- **Live chain on the 21:00 UTC cycle.** Execution 955 → #227 (one PR); the gate auto-merged #222 at the 60-min mark and closed #205 as stale; deploy `48f8abf`; cards `d4e3b32`; the social publisher was dispatched after cards; **Telegram https://t.me/nuvellum/21 at 21:03:19**; artifact-branch pushes created 0 Vercel deployments.
+- **Checkpoint.** Tag `nuvellum-autonomous-v1`, on the merge commit of this handoff PR.
