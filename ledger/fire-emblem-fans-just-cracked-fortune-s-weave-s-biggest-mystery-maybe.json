@@ -1,0 +1,65 @@
+{
+  "slug": "fire-emblem-fans-just-cracked-fortune-s-weave-s-biggest-mystery-maybe",
+  "url": "https://www.nuvellum.news/article/fire-emblem-fans-just-cracked-fortune-s-weave-s-biggest-mystery-maybe",
+  "title": "Fire Emblem fans just cracked Fortune's Weave's biggest mystery (maybe)",
+  "risk": "low",
+  "firstSeenAt": "2026-10-07T22:14:13.028Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-07T22:14:13.028Z",
+      "remoteId": "37",
+      "remoteUrl": "https://t.me/nuvellum/37",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T22:14:13.028Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-07T22:14:13.028Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
