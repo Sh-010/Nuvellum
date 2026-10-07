@@ -1,0 +1,65 @@
+{
+  "slug": "10-new-movies-to-watch-this-weekend-on-prime-video-hbo-max-and-hulu-october-2-4",
+  "url": "https://www.nuvellum.news/article/10-new-movies-to-watch-this-weekend-on-prime-video-hbo-max-and-hulu-october-2-4",
+  "title": "10 New movies to watch this weekend on Prime Video, HBO Max, and Hulu (October 2-4)",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-07T16:52:40.703Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-07T16:52:40.703Z",
+      "remoteId": "36",
+      "remoteUrl": "https://t.me/nuvellum/36",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T16:52:40.703Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-07T16:52:40.703Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
