@@ -1154,3 +1154,13 @@ The changes:
 - **Verified with the commit adding the file** (`93b18f3` on social-assets, `779d8bd` on social-ledger):
   - **0** Vercel deployments and no Vercel commit status, versus 1 failed deployment for each previous artifact push;
   - main still "Deployment has completed".
+
+## 2026-10-06 — sales demonstration readiness repair
+
+- Reproduced the editorial build failures: publication-gate tests combined the September 30 fixture date with the current clock. Pin their publication clock; keep every runtime date and editorial validation unchanged.
+- Update http-cache-semantics 4.2.0 to 4.3.0 and source-map-js 1.2.1 to 1.2.2. Local npm audit reports zero vulnerabilities.
+- Run live smoke and engine checks even when the independent freshness report fails. The report still fails and owner alerts still run; no error is suppressed.
+- Held editorial PRs #230, #237, #242, #250, #252, #256 and #260 pending source/image/category/freshness review before any release. #230 has a film classified Gaming and an unrelated butterfly-collection image. Fixing CI alone must not release this backlog.
+- Production smoke checked 398 targets; all route/article/metadata checks passed. Two image requests timed out at 15 seconds, then independently returned HTTP 200 (760902 and 202528 bytes). Treat these as latency evidence, not proven missing images.
+- Demonstration limitation: no fresh end-to-end n8n editorial execution has been established. Last article merged October 2; do not claim unattended/hourly publishing is restored. Social and Brief job success alone does not establish delivery.
+- Validation: npm test 404 passed, zero failures; npm run build succeeded. No published article, homepage markup, stylesheet, locked asset, or publication gate was changed.
