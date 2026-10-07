@@ -1,0 +1,67 @@
+{
+  "slug": "variety-unveils-its-10-broadway-stars-to-watch-for-the-2026-27-season",
+  "url": "https://www.nuvellum.news/article/variety-unveils-its-10-broadway-stars-to-watch-for-the-2026-27-season",
+  "title": "Variety unveils its 10 Broadway Stars to Watch for the 2026-27 season",
+  "risk": "low",
+  "firstSeenAt": "2026-10-07T07:38:22.021Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-07T07:38:22.021Z",
+      "remoteId": "33",
+      "remoteUrl": "https://t.me/nuvellum/33",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T07:38:22.021Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-07T07:38:22.021Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
