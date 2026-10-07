@@ -1,0 +1,65 @@
+{
+  "slug": "star-wars-galactic-racer-brings-roguelike-mechanics-to-arcade-racing",
+  "url": "https://www.nuvellum.news/article/star-wars-galactic-racer-brings-roguelike-mechanics-to-arcade-racing",
+  "title": "Star Wars: Galactic Racer brings roguelike mechanics to arcade racing",
+  "risk": "low",
+  "firstSeenAt": "2026-10-07T09:11:14.349Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-07T09:11:14.349Z",
+      "remoteId": "35",
+      "remoteUrl": "https://t.me/nuvellum/35",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T09:11:14.349Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-07T09:11:14.349Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
