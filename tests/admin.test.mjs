@@ -228,12 +228,12 @@ test('an uploaded image is committed to public/uploads/articles/<slug>.<ext> wit
 // ---- editorial gates ------------------------------------------------------------------------------------
 test('low-risk gate: publishing needs editorial review passed (dashboard and repository validator)', () => {
   for (const review of ['', 'failed', 'uncertain']) {
-    const { markdown, data } = buildArticle(form({ editorialReview: review }), { intent: 'publish' });
+    const { markdown, data } = buildArticle(form({ editorialReview: review }), { intent: 'publish', now: new Date('2026-09-30T10:15:00Z') });
     const r = checkArticle({ slug: 'low-risk', markdown, data, snapshot: EMPTY, isNew: true, intent: 'publish' });
     assert.ok(r.errors.some((e) => /editorial review: passed|editorialReview/i.test(e)), review || 'missing');
     assert.ok(articleErrors(markdown, 'low-risk.md').some((e) => /editorialReview: "passed"/.test(e)), 'CI refuses it too');
   }
-  const ok = buildArticle(form(), { intent: 'publish' });
+  const ok = buildArticle(form(), { intent: 'publish', now: new Date('2026-09-30T10:15:00Z') });
   assert.deepEqual(checkArticle({ slug: 'low-risk', markdown: ok.markdown, data: ok.data, snapshot: EMPTY, isNew: true, intent: 'publish' }).errors, []);
   const draft = buildArticle(form({ editorialReview: '' }), { intent: 'draft' });
   assert.deepEqual(articleErrors(draft.markdown, 'low-risk.md'), [], 'gates apply only at publication');
@@ -248,20 +248,20 @@ test('sensitive gate: verification cleared and a named reviewer are both require
     [{ verification: 'cleared', reviewedBy: 'Nuvellum Verification Pipeline' }, /reviewer|reserved/]
   ];
   for (const [over, re] of cases) {
-    const { markdown, data } = buildArticle(form({ risk: 'sensitive', ...over }), { intent: 'publish' });
+    const { markdown, data } = buildArticle(form({ risk: 'sensitive', ...over }), { intent: 'publish', now: new Date('2026-09-30T10:15:00Z') });
     assert.equal(publicationGates(data).ok, false, JSON.stringify(over));
     const r = checkArticle({ slug: 'sensitive-story', markdown, data, snapshot: EMPTY, isNew: true, intent: 'publish' });
     assert.ok(r.errors.some((e) => re.test(e)), JSON.stringify(over) + ' -> ' + r.errors);
     assert.ok(articleErrors(markdown, 's.md').length > 0, 'CI refuses it too');
   }
-  const ok = buildArticle(form({ risk: 'sensitive', verification: 'cleared', reviewedBy: 'Sam Shehab' }), { intent: 'publish' });
+  const ok = buildArticle(form({ risk: 'sensitive', verification: 'cleared', reviewedBy: 'Sam Shehab' }), { intent: 'publish', now: new Date('2026-09-30T10:15:00Z') });
   assert.equal(publicationGates(ok.data).ok, true);
   assert.deepEqual(articleErrors(ok.markdown, 's.md'), []);
   assert.deepEqual(manualPublicationErrors({ origin: undefined, status: 'published' }, 'legacy.md'), [], 'legacy launch articles are untouched');
 });
 
 test('the dashboard never records review or verification on its own', () => {
-  const { data } = buildArticle(form({ editorialReview: '', verification: '', reviewedBy: '', risk: 'sensitive' }), { intent: 'publish' });
+  const { data } = buildArticle(form({ editorialReview: '', verification: '', reviewedBy: '', risk: 'sensitive' }), { intent: 'publish', now: new Date('2026-09-30T10:15:00Z') });
   assert.equal(data.editorialReview, undefined);
   assert.equal(data.verification, undefined);
   assert.equal(data.reviewedBy, '');
