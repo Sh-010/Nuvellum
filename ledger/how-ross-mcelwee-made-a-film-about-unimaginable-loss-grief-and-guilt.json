@@ -1,0 +1,65 @@
+{
+  "slug": "how-ross-mcelwee-made-a-film-about-unimaginable-loss-grief-and-guilt",
+  "url": "https://www.nuvellum.news/article/how-ross-mcelwee-made-a-film-about-unimaginable-loss-grief-and-guilt",
+  "title": "How Ross mcelwee made a film about unimaginable loss, grief and guilt",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-07T07:39:06.018Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-07T07:39:06.018Z",
+      "remoteId": "34",
+      "remoteUrl": "https://t.me/nuvellum/34",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T07:39:06.018Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-07T07:39:06.018Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
