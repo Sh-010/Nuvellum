@@ -1,0 +1,65 @@
+{
+  "slug": "netflix-s-steel-ball-run-ending-song-sparks-fan-controversy",
+  "url": "https://www.nuvellum.news/article/netflix-s-steel-ball-run-ending-song-sparks-fan-controversy",
+  "title": "Netflix's Steel Ball Run ending song sparks fan controversy",
+  "risk": "low",
+  "firstSeenAt": "2026-10-07T07:37:40.783Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-07T07:37:40.783Z",
+      "remoteId": "32",
+      "remoteUrl": "https://t.me/nuvellum/32",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-07T07:37:40.783Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-07T07:37:40.783Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
