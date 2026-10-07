@@ -35,11 +35,13 @@ jobs:
         run: node scripts/observability-report.mjs
       - name: Smoke-test live production
         id: smoke
+        if: always()
         env:
           NUVELLUM_SITE_URL: https://www.nuvellum.news
         run: node scripts/production-smoke.mjs
       - name: Test distribution and Shorts engines
         id: engines
+        if: always()
         run: |
           cd engines
           npm ci --no-audit --no-fund
