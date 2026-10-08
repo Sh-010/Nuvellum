@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T20:00:44.243Z"
 readingTime: "2 min"
-image: "/generated/ai/osleys-iglesias-defends-ibf-and-ibo-titles-against-oliver-zaren-in-quebec-city.svg"
-imageAlt: "AI-generated editorial illustration for Osleys Iglesias defends IBF and IBO titles against Oliver Zaren in Quebec City"
 status: "published"
 tags: ["boxing","sports","DAZN","Osleys Iglesias","Oliver Zaren"]
 regions: ["north-america"]
