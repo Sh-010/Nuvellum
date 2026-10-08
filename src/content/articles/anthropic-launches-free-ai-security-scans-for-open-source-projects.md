@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T22:00:41.748Z"
 readingTime: "1 min"
-image: "/generated/ai/anthropic-launches-free-ai-security-scans-for-open-source-projects.svg"
-imageAlt: "AI-generated editorial illustration for Anthropic launches free AI security scans for open-source projects"
 status: "published"
 tags: ["Anthropic","Artificial Intelligence","Cybersecurity","Open Source"]
 regions: []
