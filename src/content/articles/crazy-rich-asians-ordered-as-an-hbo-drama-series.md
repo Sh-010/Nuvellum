@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T21:00:43.756Z"
 readingTime: "2 min"
-image: "/generated/ai/crazy-rich-asians-ordered-as-an-hbo-drama-series.svg"
-imageAlt: "AI-generated editorial illustration for ‘Crazy Rich Asians’ ordered as an hbo drama series"
 status: "published"
 tags: ["Crazy Rich Asians","HBO","Adele Lim","Jon M. Chu","Kevin Kwan"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/crazy-rich-asians-ordered-as-an-hbo-drama-series.png"
+imageAlt: "Logo used by the Latin American version of HBO, then named HBO Olé, used from 1991 to 2000"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Logo used by the Latin American version of HBO, then named HBO Olé, used from 1991 to 2000. Image of HBO, not of the events reported."
+imageCredit: "WarnerMedia Latin America"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:HBO_Ole_logo.png"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:HBO_Ole_logo.png"
 ---
 ## HBO greenlights series adaptation
 
