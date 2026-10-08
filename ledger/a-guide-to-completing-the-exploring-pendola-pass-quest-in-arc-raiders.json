@@ -1,0 +1,65 @@
+{
+  "slug": "a-guide-to-completing-the-exploring-pendola-pass-quest-in-arc-raiders",
+  "url": "https://www.nuvellum.news/article/a-guide-to-completing-the-exploring-pendola-pass-quest-in-arc-raiders",
+  "title": "A guide to completing the 'Exploring Pendola Pass' quest in Arc Raiders",
+  "risk": "low",
+  "firstSeenAt": "2026-10-08T18:05:41.156Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T18:05:41.156Z",
+      "remoteId": "42",
+      "remoteUrl": "https://t.me/nuvellum/42",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T18:05:41.156Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T18:05:41.156Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
