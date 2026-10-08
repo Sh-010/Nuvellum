@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T17:01:54.820Z"
 readingTime: "2 min"
-image: "/generated/ai/navigating-the-crossroads-in-order-of-the-sinking-star.svg"
-imageAlt: "AI-generated editorial illustration for Navigating the Crossroads in Order of the Sinking Star"
 status: "published"
 tags: ["Order of the Sinking Star","gaming","guides"]
 regions: []
