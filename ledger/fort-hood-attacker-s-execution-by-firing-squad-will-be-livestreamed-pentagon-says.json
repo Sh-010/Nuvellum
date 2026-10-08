@@ -1,0 +1,65 @@
+{
+  "slug": "fort-hood-attacker-s-execution-by-firing-squad-will-be-livestreamed-pentagon-says",
+  "url": "https://www.nuvellum.news/article/fort-hood-attacker-s-execution-by-firing-squad-will-be-livestreamed-pentagon-says",
+  "title": "Fort Hood attacker's execution by firing squad will be livestreamed, Pentagon says",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-08T23:03:52.274Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T23:03:52.274Z",
+      "remoteId": "47",
+      "remoteUrl": "https://t.me/nuvellum/47",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T23:03:52.274Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T23:03:52.274Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
