@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T19:00:56.901Z"
 readingTime: "1 min"
-image: "/generated/ai/cyberpunk-2077-live-action-movie-officially-announced.svg"
-imageAlt: "AI-generated editorial illustration for Cyberpunk 2077 live-action movie officially announced"
 status: "published"
 tags: ["Cyberpunk 2077","Paramount Pictures","CD Projekt Red","movies","gaming"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/cyberpunk-2077-live-action-movie-officially-announced.jpg"
+imageAlt: "Stoisko gry Cyberpunk 2077 na Poznań Game Arena 2019 (PGA)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Stoisko gry Cyberpunk 2077 na Poznań Game Arena 2019 (PGA). Image of Cyberpunk 2077, not of the events reported."
+imageCredit: "Klapi"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:PGA_2019_Cyberpunk_2077.jpg"
 ---
 CD Projekt Red's role-playing game *Cyberpunk 2077* is being adapted into a live-action movie by Paramount Pictures. The project will be produced by Lorenzo di Bonaventura alongside CD Projekt Red.
 
