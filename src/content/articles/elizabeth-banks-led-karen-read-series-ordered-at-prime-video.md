@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T16:00:50.305Z"
 readingTime: "1 min"
-image: "/generated/ai/elizabeth-banks-led-karen-read-series-ordered-at-prime-video.svg"
-imageAlt: "AI-generated editorial illustration for Elizabeth Banks-led Karen Read series ordered at Prime Video"
 status: "published"
 tags: ["Elizabeth Banks","Karen Read","Prime Video","Justin Noble"]
 regions: ["north-america"]
