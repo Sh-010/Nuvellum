@@ -1,0 +1,67 @@
+{
+  "slug": "cyberpunk-2077-live-action-movie-officially-announced",
+  "url": "https://www.nuvellum.news/article/cyberpunk-2077-live-action-movie-officially-announced",
+  "title": "Cyberpunk 2077 live-action movie officially announced",
+  "risk": "low",
+  "firstSeenAt": "2026-10-08T19:04:47.587Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T19:04:47.587Z",
+      "remoteId": "43",
+      "remoteUrl": "https://t.me/nuvellum/43",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T19:04:47.587Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T19:04:47.587Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
