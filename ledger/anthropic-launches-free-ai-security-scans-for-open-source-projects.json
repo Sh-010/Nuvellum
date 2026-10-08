@@ -1,0 +1,65 @@
+{
+  "slug": "anthropic-launches-free-ai-security-scans-for-open-source-projects",
+  "url": "https://www.nuvellum.news/article/anthropic-launches-free-ai-security-scans-for-open-source-projects",
+  "title": "Anthropic launches free AI security scans for open-source projects",
+  "risk": "low",
+  "firstSeenAt": "2026-10-08T22:03:47.693Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T22:03:47.693Z",
+      "remoteId": "46",
+      "remoteUrl": "https://t.me/nuvellum/46",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T22:03:47.693Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T22:03:47.693Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
