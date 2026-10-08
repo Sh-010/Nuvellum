@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T14:00:47.542Z"
 readingTime: "2 min"
-image: "/generated/ai/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs.svg"
-imageAlt: "AI-generated editorial illustration for New 'Spider-Man: Brand New Day' video reveals the secret stories behind its best Easter eggs"
 status: "published"
 tags: ["Spider-Man","Blu-ray","movies","Marvel Comics"]
 regions: []
