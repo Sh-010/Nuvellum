@@ -1,0 +1,65 @@
+{
+  "slug": "crazy-rich-asians-ordered-as-an-hbo-drama-series",
+  "url": "https://www.nuvellum.news/article/crazy-rich-asians-ordered-as-an-hbo-drama-series",
+  "title": "‘Crazy Rich Asians’ ordered as an hbo drama series",
+  "risk": "low",
+  "firstSeenAt": "2026-10-08T21:03:50.977Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T21:03:50.977Z",
+      "remoteId": "45",
+      "remoteUrl": "https://t.me/nuvellum/45",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T21:03:50.977Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T21:03:50.977Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
