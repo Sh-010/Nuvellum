@@ -1,0 +1,67 @@
+{
+  "slug": "osleys-iglesias-defends-ibf-and-ibo-titles-against-oliver-zaren-in-quebec-city",
+  "url": "https://www.nuvellum.news/article/osleys-iglesias-defends-ibf-and-ibo-titles-against-oliver-zaren-in-quebec-city",
+  "title": "Osleys Iglesias defends IBF and IBO titles against Oliver Zaren in Quebec City",
+  "risk": "low",
+  "firstSeenAt": "2026-10-08T20:03:48.119Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T20:03:48.119Z",
+      "remoteId": "44",
+      "remoteUrl": "https://t.me/nuvellum/44",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T20:03:48.119Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T20:03:48.119Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
