@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0.08 0" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" />
+    </filter>
+
+    
+    <pattern id="hatch-fine" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.6" opacity="0.18" />
+    </pattern>
+
+    <pattern id="hatch-dense" width="4" height="4" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#661227" stroke-width="0.8" opacity="0.25" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+
+  
+  <rect width="1200" height="675" fill="#2a221c" filter="url(#paper-grain)" opacity="0.4" />
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" stroke="#2a221c" stroke-width="1.5" opacity="0.4" />
+  <line x1="80" y1="615" x2="1120" y2="615" stroke="#2a221c" stroke-width="1.5" opacity="0.4" />
+
+  
+
+  
+  <path d="M 150 420 L 150 360 L 190 340 L 230 360 L 230 420 L 300 420 L 300 310 L 340 280 L 380 310 L 380 420 L 450 420 L 450 350 L 500 320 L 550 350 L 550 420 L 950 420 L 950 330 L 990 300 L 1030 330 L 1030 420 Z" fill="#2a221c" opacity="0.06" />
+
+  
+  <g stroke="#2a221c" stroke-width="0.5" opacity="0.2" stroke-dasharray="4,4">
+    <line x1="600" y1="60" x2="600" y2="615" />
+    <line x1="200" y1="200" x2="1000" y2="200" />
+    <line x1="300" y1="520" x2="900" y2="520" />
+  </g>
+
+  
+  <circle cx="600" cy="270" r="140" fill="#661227" opacity="0.08" />
+  <circle cx="600" cy="270" r="100" fill="none" stroke="#661227" stroke-width="1" opacity="0.3" stroke-dasharray="6,3" />
+
+  
+  <g fill="#2a221c">
+    
+    <rect x="360" y="480" width="80" height="20" opacity="0.85" />
+    <rect x="370" y="465" width="60" height="15" opacity="0.85" />
+    
+    <rect x="380" y="220" width="40" height="245" opacity="0.85" />
+    
+    <line x1="390" y1="220" x2="390" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="400" y1="220" x2="400" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="410" y1="220" x2="410" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    
+    <path d="M 375 220 L 425 220 L 435 205 L 365 205 Z" opacity="0.85" />
+  </g>
+
+  
+  <g fill="#2a221c">
+    <rect x="480" y="480" width="80" height="20" opacity="0.85" />
+    <rect x="490" y="465" width="60" height="15" opacity="0.85" />
+    <rect x="500" y="220" width="40" height="245" opacity="0.85" />
+    <line x1="510" y1="220" x2="510" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="520" y1="220" x2="520" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="530" y1="220" x2="530" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <path d="M 495 220 L 545 220 L 555 205 L 485 205 Z" opacity="0.85" />
+  </g>
+
+  
+  <g fill="#2a221c">
+    <rect x="640" y="480" width="80" height="20" opacity="0.85" />
+    <rect x="650" y="465" width="60" height="15" opacity="0.85" />
+    <rect x="660" y="220" width="40" height="245" opacity="0.85" />
+    <line x1="670" y1="220" x2="670" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="680" y1="220" x2="680" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="690" y1="220" x2="690" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <path d="M 635 220 L 705 220 L 715 205 L 645 205 Z" opacity="0.85" transform="scale(-1, 1) translate(-1350, 0)" />
+  </g>
+
+  
+  <g fill="#2a221c">
+    <rect x="760" y="480" width="80" height="20" opacity="0.85" />
+    <rect x="770" y="465" width="60" height="15" opacity="0.85" />
+    <rect x="780" y="220" width="40" height="245" opacity="0.85" />
+    <line x1="790" y1="220" x2="790" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="800" y1="220" x2="800" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <line x1="810" y1="220" x2="810" y2="465" stroke="#f3ecdf" stroke-width="1.5" />
+    <path d="M 755 220 L 825 220 L 835 205 L 765 205 Z" opacity="0.85" transform="scale(-1, 1) translate(-1590, 0)" />
+  </g>
+
+  
+  <polygon points="340,205 860,205 600,145" fill="#2a221c" opacity="0.9" />
+  <rect x="330" y="190" width="540" height="15" fill="#2a221c" opacity="0.9" />
+
+  
+  <polygon points="600,165 720,205 480,205" fill="url(#hatch-fine)" />
+
+  
+  <path d="M 100 520 Q 250 470 400 500 Q 600 540 800 490 Q 980 450 1100 510 L 1100 620 L 100 620 Z" fill="#2a221c" opacity="0.12" />
+  <path d="M 80 550 Q 300 480 550 530 Q 750 570 1020 500 L 1120 530 L 1120 620 L 80 620 Z" fill="#f3ecdf" stroke="#2a221c" stroke-width="2" />
+  
+  
+  <path d="M 150 560 Q 300 510 500 550 Q 700 590 950 530 L 1080 560 L 1080 620 L 150 620 Z" fill="url(#hatch-fine)" />
+
+  
+  <g>
+    
+    <line x1="600" y1="205" x2="600" y2="520" stroke="#661227" stroke-width="3" opacity="0.8" />
+    
+    
+    <rect x="540" y="340" width="120" height="40" rx="4" fill="#2a221c" />
+    <rect x="530" y="345" width="140" height="30" rx="3" fill="none" stroke="#f3ecdf" stroke-width="1.5" opacity="0.7" />
+    
+    
+    <rect x="585" y="340" width="30" height="40" fill="#661227" opacity="0.9" />
+
+    
+    <line x1="520" y1="280" x2="680" y2="280" stroke="#2a221c" stroke-width="2" />
+    <circle cx="520" cy="280" r="5" fill="#2a221c" />
+    <circle cx="680" cy="280" r="5" fill="#2a221c" />
+    
+    
+    <path d="M 500 320 L 540 320 L 520 340 Z" fill="#2a221c" opacity="0.7" />
+    <line x1="520" y1="280" x2="500" y2="320" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="520" y1="280" x2="540" y2="320" stroke="#2a221c" stroke-width="1.5" />
+
+    
+    <path d="M 650 310 L 690 310 L 670 330 Z" fill="#661227" opacity="0.8" />
+    <line x1="680" y1="280" x2="650" y2="310" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="680" y1="280" x2="690" y2="310" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g fill="#2a221c" opacity="0.4">
+    <circle cx="220" cy="140" r="2" />
+    <circle cx="280" cy="230" r="1.5" />
+    <circle cx="180" cy="290" r="2.5" />
+    <circle cx="330" cy="120" r="1.5" />
+    <circle cx="410" cy="160" r="2" />
+    <circle cx="260" cy="380" r="1.5" />
+    
+    <circle cx="920" cy="150" r="2" />
+    <circle cx="980" cy="240" r="2.5" />
+    <circle cx="1040" cy="180" r="1.5" />
+    <circle cx="890" cy="290" r="2" />
+    <circle cx="950" cy="360" r="1.5" />
+    <circle cx="1010" cy="110" r="2.5" />
+
+    <circle cx="510" cy="110" r="1.5" />
+    <circle cx="690" cy="120" r="2" />
+    <circle cx="740" cy="150" r="1.5" />
+  </g>
+
+  
+  <rect x="95" y="75" width="1010" height="525" fill="none" stroke="#2a221c" stroke-width="0.75" opacity="0.3" />
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.6">
+    
+    <line x1="70" y1="80" x2="90" y2="80" />
+    <line x1="80" y1="70" x2="80" y2="90" />
+    
+    <line x1="1110" y1="80" x2="1130" y2="80" />
+    <line x1="1120" y1="70" x2="1120" y2="90" />
+    
+    <line x1="70" y1="595" x2="90" y2="595" />
+    <line x1="80" y1="585" x2="80" y2="605" />
+    
+    <line x1="1110" y1="595" x2="1130" y2="595" />
+    <line x1="1120" y1="585" x2="1120" y2="605" />
+  </g>
+
+</svg>
