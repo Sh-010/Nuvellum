@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T13:04:05.449Z"
 readingTime: "2 min"
-image: "/generated/ai/joe-rogan-renews-nine-figure-spotify-deal.svg"
-imageAlt: "AI-generated editorial illustration for Joe Rogan renews nine-figure Spotify deal"
 status: "published"
 tags: ["Joe Rogan","Spotify","podcasting","media"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/joe-rogan-renews-nine-figure-spotify-deal.jpg"
+imageAlt: "Alex Jones discusses the Joe Rogan Spotify Controversy – Drinkin' Bros Clips"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Alex Jones discusses the Joe Rogan Spotify Controversy – Drinkin' Bros Clips"
+imageCredit: "Drinkin' Bros Studios"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Alex_Jones_discusses_the_Joe_Rogan_Spotify_Controversy_%E2%80%93_Drinkin%27_Bros_Clips.webm"
 ---
 Spotify and Joe Rogan have entered into a new multiyear licensing agreement, continuing a relationship that began in 2020. Under the agreement, Spotify handles ad sales and licensing for “The Joe Rogan Experience,” which is available across multiple services.
 
