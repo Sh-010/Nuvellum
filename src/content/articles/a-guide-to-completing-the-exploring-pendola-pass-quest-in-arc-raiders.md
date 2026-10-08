@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T18:01:53.619Z"
 readingTime: "2 min"
-image: "/generated/ai/a-guide-to-completing-the-exploring-pendola-pass-quest-in-arc-raiders.svg"
-imageAlt: "AI-generated editorial illustration for A guide to completing the 'Exploring Pendola Pass' quest in Arc Raiders"
 status: "published"
 tags: ["Arc Raiders","gaming","walkthrough","Frozen Trail"]
 regions: []
