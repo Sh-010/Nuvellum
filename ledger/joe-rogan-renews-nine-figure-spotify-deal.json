@@ -1,0 +1,67 @@
+{
+  "slug": "joe-rogan-renews-nine-figure-spotify-deal",
+  "url": "https://www.nuvellum.news/article/joe-rogan-renews-nine-figure-spotify-deal",
+  "title": "Joe Rogan renews nine-figure Spotify deal",
+  "risk": "low",
+  "firstSeenAt": "2026-10-08T13:08:00.340Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-08T13:08:00.340Z",
+      "remoteId": "38",
+      "remoteUrl": "https://t.me/nuvellum/38",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-08T13:08:00.340Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-08T13:08:00.340Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
