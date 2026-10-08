@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs",
+  "url": "https://nuvellum.vercel.app/article/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs",
+  "title": "New 'Spider-Man: Brand New Day' video reveals the secret stories behind its best Easter eggs",
+  "section": "Gaming",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 76,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 62,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 92,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 90,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/square.svg",
+  "portrait": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/portrait.svg",
+  "landscape": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/landscape.svg",
+  "story": "engines/out/social-cards/new-spider-man-brand-new-day-video-reveals-the-secret-stories-behind-its-best-easter-eggs/story.svg",
+  "rasterNeededForLivePosting": true
+}
