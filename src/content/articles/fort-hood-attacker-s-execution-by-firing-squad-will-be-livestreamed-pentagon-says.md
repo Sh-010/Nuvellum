@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T23:00:57.897Z"
 readingTime: "2 min"
-image: "/generated/ai/fort-hood-attacker-s-execution-by-firing-squad-will-be-livestreamed-pentagon-says.svg"
-imageAlt: "AI-generated editorial illustration for Fort Hood attacker's execution by firing squad will be livestreamed, Pentagon says"
 status: "published"
 tags: ["military execution","firing squad","Fort Hood","United States"]
 regions: ["north-america"]
