@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-08"
 publishedAt: "2026-10-08T15:01:15.579Z"
 readingTime: "1 min"
-image: "/generated/ai/gta-vi-will-have-in-game-podcasts-and-at-least-six-radio-stations.svg"
-imageAlt: "AI-generated editorial illustration for Gta vi will have in-game podcasts and at least six radio stations"
 status: "published"
 tags: ["gaming","gta-vi","rockstar-games"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/gta-vi-will-have-in-game-podcasts-and-at-least-six-radio-stations.png"
+imageAlt: "Gradient version of the series logo"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Gradient version of the series logo"
+imageCredit: "Rockstar Games"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Grand_Theft_Auto_logo_series_(with_gradient).png"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Grand_Theft_Auto_logo_series_(with_gradient).png"
 ---
 ## Radio stations and soundtrack previews
 
