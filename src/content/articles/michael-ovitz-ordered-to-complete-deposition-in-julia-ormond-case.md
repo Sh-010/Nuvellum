@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T01:00:42.829Z"
 readingTime: "2 min"
-image: "/generated/ai/michael-ovitz-ordered-to-complete-deposition-in-julia-ormond-case.svg"
-imageAlt: "AI-generated editorial illustration for Michael Ovitz ordered to complete deposition in Julia Ormond case"
 status: "published"
 tags: ["Michael Ovitz","Julia Ormond","CAA","Harvey Weinstein","Jeffrey Epstein"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/michael-ovitz-ordered-to-complete-deposition-in-julia-ormond-case.jpg"
+imageAlt: "Julia Ormond05"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Julia Ormond05. Image of Julia Ormond, not of the events reported."
+imageCredit: "Court Sloger"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Julia_Ormond05.jpg"
 ---
 ## Court ruling on deposition completion
 
