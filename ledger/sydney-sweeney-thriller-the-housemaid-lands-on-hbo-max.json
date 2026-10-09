@@ -1,0 +1,65 @@
+{
+  "slug": "sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max",
+  "url": "https://www.nuvellum.news/article/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max",
+  "title": "Sydney Sweeney thriller 'The Housemaid' lands on HBO Max",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T04:05:28.227Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T04:05:28.227Z",
+      "remoteId": "51",
+      "remoteUrl": "https://t.me/nuvellum/51",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T04:05:28.227Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T04:05:28.227Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
