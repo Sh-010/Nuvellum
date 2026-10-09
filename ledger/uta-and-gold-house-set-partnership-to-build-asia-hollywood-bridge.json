@@ -1,0 +1,74 @@
+{
+  "slug": "uta-and-gold-house-set-partnership-to-build-asia-hollywood-bridge",
+  "url": "https://www.nuvellum.news/article/uta-and-gold-house-set-partnership-to-build-asia-hollywood-bridge",
+  "title": "Uta and Gold House set partnership to build Asia-Hollywood bridge",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T09:04:20.614Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T09:04:20.614Z",
+      "remoteId": "56",
+      "remoteUrl": "https://t.me/nuvellum/56",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T09:04:20.614Z",
+      "remoteId": "1277147205491143_122104817493497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104817493497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T09:04:20.614Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T09:04:20.614Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
