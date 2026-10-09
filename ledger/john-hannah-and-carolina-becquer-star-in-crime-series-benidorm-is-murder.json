@@ -1,0 +1,65 @@
+{
+  "slug": "john-hannah-and-carolina-becquer-star-in-crime-series-benidorm-is-murder",
+  "url": "https://www.nuvellum.news/article/john-hannah-and-carolina-becquer-star-in-crime-series-benidorm-is-murder",
+  "title": "John Hannah and Carolina Bécquer star in crime series ‘Benidorm is Murder’",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T06:04:02.583Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T06:04:02.583Z",
+      "remoteId": "53",
+      "remoteUrl": "https://t.me/nuvellum/53",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T06:04:02.583Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T06:04:02.583Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
