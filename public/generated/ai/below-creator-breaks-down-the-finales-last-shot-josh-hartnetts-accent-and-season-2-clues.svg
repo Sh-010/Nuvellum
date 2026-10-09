@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+
+  
+  <g opacity="0.4">
+    <path d="M0,0 h1200 v675 h-1200 z" fill="#efe8db" />
+  </g>
+
+  
+  <path d="M 0 450 Q 300 430 600 450 T 1200 430 L 1200 675 L 0 675 Z" fill="#e2d6c5" opacity="0.6" />
+
+  
+  
+  <rect x="0" y="440" width="1200" height="235" fill="#2a221c" opacity="0.06" />
+  
+  
+  <g stroke="#2a221c" stroke-width="0.75" opacity="0.3">
+    <line x1="0" y1="460" x2="1200" y2="460" />
+    <line x1="0" y1="480" x2="1200" y2="480" />
+    <line x1="0" y1="505" x2="1200" y2="505" />
+    <line x1="0" y1="535" x2="1200" y2="535" />
+    <line x1="0" y1="570" x2="1200" y2="570" />
+    <line x1="0" y1="610" x2="1200" y2="610" />
+    <line x1="0" y1="655" x2="1200" y2="655" />
+  </g>
+
+  
+  <g transform="translate(750, 200)">
+    
+    <polygon points="50,240 320,240 280,100 180,60 120,90 40,180" fill="#2a221c" opacity="0.12" />
+    
+    <polygon points="60,230 300,230 260,95 170,50 110,85 50,170" fill="#f7f3ee" stroke="#2a221c" stroke-width="2.5" stroke-linejoin="round" />
+    
+    <polyline points="170,50 170,230" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.7" />
+    <polyline points="110,85 170,140 260,95" fill="none" stroke="#2a221c" stroke-width="1.2" opacity="0.6" />
+    <polyline points="50,170 130,190 200,160" fill="none" stroke="#2a221c" stroke-width="1.2" opacity="0.5" />
+    <polygon points="170,50 260,95 210,130" fill="#dfd6c8" opacity="0.5" />
+    <polygon points="110,85 60,170 130,130" fill="#e8dfd2" opacity="0.7" />
+    
+    
+    <polygon points="60,230 300,230 330,300 30,290" fill="#661227" opacity="0.25" />
+    <path d="M30,290 Q 150,330 330,300" fill="none" stroke="#661227" stroke-width="2" opacity="0.6" />
+  </g>
+
+  
+  <g transform="translate(600, 280)">
+    <polygon points="30,150 140,150 110,70 80,50 50,90" fill="#f3ecdf" stroke="#2a221c" stroke-width="2" stroke-linejoin="round" />
+    <polyline points="80,50 90,150" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.5" />
+  </g>
+
+  
+  <g transform="translate(180, 360)">
+    
+    <path d="M 120 280 C 140 200, 180 120, 240 80 C 270 60, 310 50, 350 40" fill="none" stroke="#661227" stroke-width="4.5" stroke-linecap="round" opacity="0.85" />
+    <path d="M 150 280 C 170 210, 210 140, 270 100 C 300 80, 340 70, 390 65" fill="none" stroke="#2a221c" stroke-width="3" stroke-linecap="round" opacity="0.9" />
+    <path d="M 90 280 C 100 220, 140 160, 190 120 C 220 95, 260 80, 300 75" fill="none" stroke="#661227" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+
+    
+    <circle cx="230" cy="95" r="3.5" fill="#f3ecdf" stroke="#661227" stroke-width="1.5" />
+    <circle cx="250" cy="85" r="3" fill="#f3ecdf" stroke="#661227" stroke-width="1.5" />
+    <circle cx="275" cy="73" r="2.5" fill="#f3ecdf" stroke="#661227" stroke-width="1.5" />
+    
+    <circle cx="260" cy="110" r="3" fill="#f3ecdf" stroke="#2a221c" stroke-width="1.5" />
+    <circle cx="285" cy="95" r="2.5" fill="#f3ecdf" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g transform="translate(80, 330)">
+    
+    <line x1="30" y1="90" x2="30" y2="130" stroke="#2a221c" stroke-width="3" />
+    <line x1="60" y1="85" x2="60" y2="130" stroke="#2a221c" stroke-width="3" />
+    <line x1="90" y1="90" x2="90" y2="130" stroke="#2a221c" stroke-width="3" />
+    <line x1="120" y1="80" x2="120" y2="130" stroke="#2a221c" stroke-width="3" />
+
+    
+    <polygon points="20,90 130,70 130,20 20,40" fill="#2a221c" opacity="0.85" />
+    
+    <polygon points="15,40 135,20 140,25 20,48" fill="#661227" opacity="0.9" />
+    <polygon points="15,40 75,5 135,20" fill="#2a221c" />
+
+    
+    <rect x="85" y="45" width="20" height="25" fill="#f3ecdf" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="95" y1="45" x2="95" y2="70" stroke="#2a221c" stroke-width="1" />
+    <line x1="85" y1="57" x2="105" y2="57" stroke="#2a221c" stroke-width="1" />
+  </g>
+
+  
+  <path d="M 0 440 L 40 435 L 75 442 L 120 430 L 160 438 L 220 425 L 280 435 L 350 420 L 420 432 L 500 425 L 580 430 L 650 422 L 720 435 L 800 440 L 900 438 L 1000 440 L 1100 435 L 1200 440 L 1200 675 L 0 675 Z" fill="#2a221c" opacity="0.15" />
+  
+  
+  <polyline points="0,440 60,432 120,430 200,425 290,435 380,420 480,430 570,425 680,435 780,432 900,438 1050,433 1200,440" fill="none" stroke="#2a221c" stroke-width="2.5" stroke-linecap="round" />
+
+  
+  <rect x="0" y="0" width="1200" height="675" fill="none" stroke="#2a221c" stroke-width="6" opacity="0.12" />
+
+  
+  <g transform="translate(80, 80)" opacity="0.4" stroke="#2a221c" stroke-width="1.2" fill="none">
+    <circle cx="0" cy="0" r="25" />
+    <circle cx="0" cy="0" r="21" stroke-dasharray="2,4" />
+    <line x1="0" y1="-30" x2="0" y2="30" />
+    <line x1="-30" y1="0" x2="30" y2="0" />
+    <polygon points="0,-33 4,-24 0,-27 -4,-24" fill="#2a221c" />
+  </g>
+</svg>
