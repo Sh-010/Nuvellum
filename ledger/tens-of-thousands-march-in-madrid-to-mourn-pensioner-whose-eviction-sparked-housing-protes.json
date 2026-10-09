@@ -16,9 +16,14 @@
       "updatedAt": "2026-10-09T07:06:20.024Z"
     },
     "facebook": {
-      "status": "skipped",
-      "reason": "not configured",
-      "updatedAt": "2026-10-09T07:06:20.024Z"
+      "status": "sent",
+      "reason": null,
+      "updatedAt": "2026-10-09T09:34:31.915Z",
+      "attempts": 1,
+      "sentAt": "2026-10-09T09:34:31.915Z",
+      "remoteId": "1277147205491143_122104835709497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104835709497904",
+      "kind": "link"
     },
     "linkedin": {
       "status": "skipped",
@@ -55,7 +60,7 @@
   },
   "cards": {
     "status": "rendered",
-    "at": "2026-10-09T07:06:20.024Z",
+    "at": "2026-10-09T09:34:31.915Z",
     "variant": "standard",
     "formats": [
       "square",
