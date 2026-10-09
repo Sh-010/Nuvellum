@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m",
+  "url": "https://nuvellum.vercel.app/article/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m",
+  "title": "Indian Premier League stands alone at the top as Asia Pacific sports rights growth slows, Media Partners Asia finds",
+  "section": "Film & TV",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 62,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 50,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 76,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 74,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/square.svg",
+  "portrait": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/portrait.svg",
+  "landscape": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/landscape.svg",
+  "story": "engines/out/social-cards/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m/story.svg",
+  "rasterNeededForLivePosting": true
+}
