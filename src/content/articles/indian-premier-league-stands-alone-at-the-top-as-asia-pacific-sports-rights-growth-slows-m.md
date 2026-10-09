@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T03:00:46.140Z"
 readingTime: "2 min"
-image: "/generated/ai/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m.svg"
-imageAlt: "AI-generated editorial illustration for Indian Premier League stands alone at the top as Asia Pacific sports rights growth slows, Media Partners Asia finds"
 status: "published"
 tags: ["sports economy","media rights","Indian Premier League","Asia Pacific","streaming"]
 regions: ["south-asia","east-asia","southeast-asia-oceania"]
