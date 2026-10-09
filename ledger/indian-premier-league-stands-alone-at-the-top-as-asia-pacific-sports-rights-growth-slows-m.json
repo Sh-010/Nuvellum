@@ -1,0 +1,67 @@
+{
+  "slug": "indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m",
+  "url": "https://www.nuvellum.news/article/indian-premier-league-stands-alone-at-the-top-as-asia-pacific-sports-rights-growth-slows-m",
+  "title": "Indian Premier League stands alone at the top as Asia Pacific sports rights growth slows, Media Partners Asia finds",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T03:04:09.377Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T03:04:09.377Z",
+      "remoteId": "50",
+      "remoteUrl": "https://t.me/nuvellum/50",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T03:04:09.377Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T03:04:09.377Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
