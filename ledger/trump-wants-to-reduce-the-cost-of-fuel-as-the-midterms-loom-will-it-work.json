@@ -1,0 +1,65 @@
+{
+  "slug": "trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work",
+  "url": "https://www.nuvellum.news/article/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work",
+  "title": "Trump wants to reduce the cost of fuel as the midterms loom - will it work?",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T05:04:00.988Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T05:04:00.988Z",
+      "remoteId": "52",
+      "remoteUrl": "https://t.me/nuvellum/52",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T05:04:00.988Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T05:04:00.988Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
