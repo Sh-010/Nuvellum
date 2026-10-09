@@ -1,0 +1,75 @@
+{
+  "slug": "a-rare-david-bowie-self-portrait-featuring-his-handprints-is-heading-to-auction-at-sotheby",
+  "url": "https://www.nuvellum.news/article/a-rare-david-bowie-self-portrait-featuring-his-handprints-is-heading-to-auction-at-sotheby",
+  "title": "A rare David Bowie self-portrait featuring his handprints is heading to auction at Sotheby's",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T08:05:46.116Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T08:05:46.116Z",
+      "remoteId": "55",
+      "remoteUrl": "https://t.me/nuvellum/55",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T08:05:46.116Z",
+      "remoteId": "1277147205491143_122104781619497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104781619497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T08:05:46.116Z",
+      "remoteId": "18637697284037090",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T08:05:46.116Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T08:05:46.116Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
