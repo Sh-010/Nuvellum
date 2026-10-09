@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T10:00:47.396Z"
 readingTime: "2 min"
-image: "/generated/ai/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel.svg"
-imageAlt: "AI-generated editorial illustration for ‘Celeste’ creator Diego San josé and director Elena trapé discuss season 2 prequel"
 status: "published"
 tags: ["Celeste","Diego San José","Elena Trapé","Movistar Plus","The Mediapro Studio","Carmen Machi"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel.jpg"
+imageAlt: "Elena Trapé during the celebration of the Valladolid International Film Festival in 2025"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Elena Trapé during the celebration of the Valladolid International Film Festival in 2025. Image of Elena Trapé, not of the events reported."
+imageCredit: "Pedro J Pacheco"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Seminci_2025_-_Elena_Trap%C3%A9-3.jpg"
 ---
 Creator Diego San José and director Elena Trapé have detailed the upcoming second season of the comedy series “Celeste,” discussing the decision to shift focus toward soccer and transform a tax inspector into an unlikely noir figure.
 
