@@ -1,0 +1,72 @@
+{
+  "slug": "expedition-33-star-charlie-cox-officially-confirms-role-in-unannounced-sega-game",
+  "url": "https://www.nuvellum.news/article/expedition-33-star-charlie-cox-officially-confirms-role-in-unannounced-sega-game",
+  "title": "Expedition 33 star Charlie Cox officially confirms role in unannounced Sega game",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T15:48:34.594Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T15:48:34.594Z",
+      "remoteId": "62",
+      "remoteUrl": "https://t.me/nuvellum/62",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T15:48:34.594Z",
+      "remoteId": "1277147205491143_122105110155497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105110155497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T15:48:34.594Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T15:48:34.594Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
