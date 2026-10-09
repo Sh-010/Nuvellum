@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T00:00:52.914Z"
 readingTime: "2 min"
-image: "/generated/ai/after-4-hours-phantom-blade-zero-shapes-up-as-a-major-2026-action-release.svg"
-imageAlt: "AI-generated editorial illustration for After 4 hours, Phantom Blade Zero shapes up as a major 2026 action release"
 status: "published"
 tags: ["Phantom Blade Zero","S-Game","gaming","action games","preview"]
 regions: ["east-asia"]
