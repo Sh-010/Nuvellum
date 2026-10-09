@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T22:01:00.926Z"
 readingTime: "2 min"
-image: "/generated/ai/vietnams-v-studios-seals-multiple-international-deals-on-supernatural-fantasy-red-woman.svg"
-imageAlt: "AI-generated editorial illustration for Vietnam’s V studios seals multiple international deals on supernatural fantasy ‘Red Woman’"
 status: "published"
 tags: ["V Studios","Red Woman","CJ CGV","Minh Hang","film sales"]
 regions: ["east-asia","southeast-asia-oceania","north-america"]
