@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T15:00:51.932Z"
 readingTime: "1 min"
-image: "/generated/ai/expedition-33-star-charlie-cox-officially-confirms-role-in-unannounced-sega-game.svg"
-imageAlt: "AI-generated editorial illustration for Expedition 33 star Charlie Cox officially confirms role in unannounced Sega game"
 status: "published"
 tags: ["Charlie Cox","Sega","Clair Obscur Expedition 33","New York Comic Con"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/expedition-33-star-charlie-cox-officially-confirms-role-in-unannounced-sega-game.jpg"
+imageAlt: "Charlie Cox speaking at the 2017 San Diego Comic Con International, for \"Marvel's The Defenders\", at the San Diego Convention Center in San Diego, California. Please attribute to Gage Skidmore if used elsewhere"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Charlie Cox speaking at the 2017 San Diego Comic Con International, for \"Marvel's The Defenders\", at the San Diego Convention Center in San Diego, California. Please attribute to Gage Skidmore if used elsewhere. Image of Charlie Cox, not of the events reported."
+imageCredit: "Gage Skidmore from Peoria, AZ, United States of America"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Charlie_Cox_(36184588595).jpg"
 ---
 Actor Charlie Cox has confirmed that he will star in an upcoming, unannounced video game from Sega. Speaking at New York Comic Con, Cox revealed details about the project following his voice work in *Clair Obscur: Expedition 33*.
 
