@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T04:00:41.545Z"
 readingTime: "2 min"
-image: "/generated/ai/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max.svg"
-imageAlt: "AI-generated editorial illustration for Sydney Sweeney thriller 'The Housemaid' lands on HBO Max"
 status: "published"
 tags: ["streaming","movies","HBO Max"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max.jpg"
+imageAlt: "Jason Momoa & Patrick Wilson Try Painting Each Other Aquaman & the Lost Kingdom Max"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Jason Momoa & Patrick Wilson Try Painting Each Other Aquaman & the Lost Kingdom Max"
+imageCredit: "Max"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Jason_Momoa_%26_Patrick_Wilson_Try_Painting_Each_Other_-_Aquaman_%26_the_Lost_Kingdom_-_Max.webm"
 ---
 ## Streaming debut on HBO Max
 
