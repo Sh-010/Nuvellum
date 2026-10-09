@@ -1,0 +1,74 @@
+{
+  "slug": "wardogs-gambling-is-officially-here-with-season-2-update",
+  "url": "https://www.nuvellum.news/article/wardogs-gambling-is-officially-here-with-season-2-update",
+  "title": "Wardogs gambling is officially here with season 2 update",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T17:05:30.448Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T17:05:30.448Z",
+      "remoteId": "63",
+      "remoteUrl": "https://t.me/nuvellum/63",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T17:05:30.448Z",
+      "remoteId": "1277147205491143_122105182353497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105182353497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T17:05:30.448Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T17:05:30.448Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
