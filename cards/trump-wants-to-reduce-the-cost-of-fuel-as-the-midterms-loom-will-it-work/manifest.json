@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "slug": "trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work",
+  "url": "https://nuvellum.vercel.app/article/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work",
+  "title": "Trump wants to reduce the cost of fuel as the midterms loom - will it work?",
+  "section": "World",
+  "variant": "standard",
+  "media": {
+    "mode": "illustration",
+    "label": "ILLUSTRATION",
+    "credit": null,
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": "illustration",
+      "headline": {
+        "size": 64,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 497,
+      "path": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": "illustration",
+      "headline": {
+        "size": 52,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": "illustration",
+      "dek": null,
+      "headline": {
+        "size": 70,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 648,
+      "path": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": "illustration",
+      "dek": null,
+      "headline": {
+        "size": 86,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 567,
+      "path": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "illustration",
+  "square": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/square.svg",
+  "portrait": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/portrait.svg",
+  "landscape": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/landscape.svg",
+  "story": "engines/out/social-cards/trump-wants-to-reduce-the-cost-of-fuel-as-the-midterms-loom-will-it-work/story.svg",
+  "rasterNeededForLivePosting": true
+}
