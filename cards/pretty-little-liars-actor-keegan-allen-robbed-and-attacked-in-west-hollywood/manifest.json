@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "slug": "pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood",
+  "url": "https://nuvellum.vercel.app/article/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood",
+  "title": "Pretty Little Liars actor Keegan Allen robbed and attacked in West Hollywood",
+  "section": "Crime",
+  "variant": "standard",
+  "media": {
+    "mode": "photo",
+    "label": "FILE PHOTO",
+    "credit": "Photo: Tuxyso / CC BY-SA 3.0",
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": "photo",
+      "headline": {
+        "size": 64,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 497,
+      "path": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": "photo",
+      "headline": {
+        "size": 52,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 70,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 648,
+      "path": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 86,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 567,
+      "path": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "photo",
+  "square": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/square.svg",
+  "portrait": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/portrait.svg",
+  "landscape": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/landscape.svg",
+  "story": "engines/out/social-cards/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood/story.svg",
+  "rasterNeededForLivePosting": true
+}
