@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T16:00:51.301Z"
 readingTime: "2 min"
-image: "/generated/ai/wardogs-gambling-is-officially-here-with-season-2-update.svg"
-imageAlt: "AI-generated editorial illustration for Wardogs gambling is officially here with season 2 update"
 status: "published"
 tags: ["Wardogs","gaming","update","patch notes"]
 regions: []
