@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <style>
+      .bg { fill: #f3ecdf; }
+      .paper-grain { opacity: 0.04; mix-blend-mode: multiply; }
+      .ink-base { fill: #2a221c; }
+      .burgundy { fill: #661227; }
+      .stone-grey { fill: #8c8275; }
+      .light-stone { fill: #d4cbbd; }
+      .earth-ochre { fill: #a6633b; }
+      .line-ink { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-fine { stroke: #2a221c; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-burgundy { stroke: #661227; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-stone { stroke: #8c8275; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .hatch { stroke: #2a221c; stroke-width: 0.75; stroke-linecap: round; }
+    </style>
+    
+    
+    <pattern id="hatch-pat" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" class="hatch" />
+    </pattern>
+    <pattern id="dot-pat" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" class="stone-grey" opacity="0.3" />
+      <circle cx="10" cy="10" r="1" class="stone-grey" opacity="0.3" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+  <rect width="1200" height="675" fill="url(#dot-pat)" />
+
+  
+  <path d="M 60 50 L 1140 50" class="line-burgundy" stroke-width="3" />
+  <path d="M 60 625 L 1140 625" class="line-burgundy" stroke-width="1" />
+  <path d="M 60 56 L 1140 56" class="line-fine" />
+
+  
+  
+  
+  <g transform="translate(100, 150)">
+    
+    <path d="M 0 350 L 1000 350 L 1000 420 L 0 420 Z" class="light-stone" opacity="0.5" />
+    <path d="M 0 280 L 1000 280 L 1000 350 L 0 350 Z" class="light-stone" opacity="0.8" />
+    <path d="M 0 200 L 1000 200 L 1000 280 L 0 280 Z" fill="#e5dbcc" />
+    
+    
+    <path d="M 0 200 Q 250 215 500 200 T 1000 200" class="line-stone" />
+    <path d="M 0 280 Q 300 265 600 285 T 1000 280" class="line-stone" />
+    <path d="M 0 350 Q 200 365 700 345 T 1000 350" class="line-stone" />
+
+    
+    <line x1="150" y1="200" x2="130" y2="280" class="line-fine" opacity="0.4" />
+    <line x1="160" y1="200" x2="140" y2="280" class="line-fine" opacity="0.4" />
+    <line x1="170" y1="200" x2="150" y2="280" class="line-fine" opacity="0.4" />
+
+    <line x1="650" y1="280" x2="670" y2="350" class="line-fine" opacity="0.4" />
+    <line x1="660" y1="280" x2="680" y2="350" class="line-fine" opacity="0.4" />
+    <line x1="670" y1="280" x2="690" y2="350" class="line-fine" opacity="0.4" />
+
+    
+    <path d="M 420 320 Q 500 290 580 330 Q 510 380 420 320 Z" class="burgundy" opacity="0.85" />
+    <path d="M 440 330 Q 500 310 560 335 Q 510 365 440 330 Z" fill="#f3ecdf" opacity="0.6" />
+
+    
+    <g transform="translate(460, -30)">
+      
+      <path d="M 40 80 L 10 230 L 70 230 Z" fill="#e5dbcc" stroke="#2a221c" stroke-width="2" />
+      
+      
+      <line x1="40" y1="80" x2="10" y2="230" class="line-fine" />
+      <line x1="40" y1="80" x2="70" y2="230" class="line-fine" />
+      <line x1="25" y1="120" x2="55" y2="120" class="line-fine" />
+      <line x1="20" y1="150" x2="60" y2="150" class="line-fine" />
+      <line x1="15" y1="190" x2="65" y2="190" class="line-fine" />
+      <line x1="40" y1="80" x2="40" y2="230" class="line-fine" stroke-dasharray="3,3" />
+
+      
+      <rect x="30" y="70" width="20" height="10" class="ink-base" />
+      <line x1="40" y1="50" x2="40" y2="70" class="line-ink" />
+
+      
+      <line x1="40" y1="230" x2="40" y2="340" class="line-burgundy" stroke-width="4" />
+      <line x1="38" y1="230" x2="38" y2="340" class="line-fine" />
+      <line x1="42" y1="230" x2="42" y2="340" class="line-fine" />
+      
+      
+      <rect x="15" y="210" width="50" height="30" fill="#f3ecdf" stroke="#2a221c" stroke-width="2" />
+      <line x1="25" y1="210" x2="25" y2="240" class="line-fine" />
+      <line x1="55" y1="210" x2="55" y2="240" class="line-fine" />
+    </g>
+
+    
+    
+    <g transform="translate(180, 140)">
+      <line x1="20" y1="20" x2="20" y2="60" class="line-ink" />
+      <polygon points="20,0 5,25 35,25" class="ink-base" />
+      <polygon points="20,15 0,40 40,40" class="ink-base" />
+      <polygon points="20,30 10,60 30,60" class="ink-base" />
+    </g>
+    <g transform="translate(240, 150)">
+      <line x1="15" y1="15" x2="15" y2="50" class="line-ink" />
+      <polygon points="15,0 2,20 28,20" class="stone-grey" />
+      <polygon points="15,12 5,35 25,35" class="stone-grey" />
+      <polygon points="15,25 8,50 22,50" class="stone-grey" />
+    </g>
+    <g transform="translate(120, 165)">
+      <line x1="15" y1="15" x2="15" y2="45" class="line-ink" />
+      <polygon points="15,0 5,18 25,18" class="stone-grey" />
+      <polygon points="15,10 8,32 22,32" class="stone-grey" />
+    </g>
+
+    
+    <g transform="translate(750, 145)" transform="rotate(15 20 60)">
+      <line x1="20" y1="20" x2="25" y2="60" class="line-ink" />
+      <polygon points="20,0 5,25 35,25" class="earth-ochre" />
+      <polygon points="20,15 0,40 40,40" class="earth-ochre" />
+      <polygon points="20,30 10,60 30,60" class="earth-ochre" />
+    </g>
+    <g transform="translate(820, 160)" transform="rotate(25 15 50)">
+      <line x1="15" y1="15" x2="22" y2="50" class="line-ink" />
+      <polygon points="15,0 2,20 28,20" class="stone-grey" />
+      <polygon points="15,12 5,35 25,35" class="stone-grey" />
+    </g>
+
+    
+    <path d="M 0 200 Q 300 180 500 195 T 1000 200" class="line-ink" stroke-width="3" />
+  </g>
+
+  
+  
+  <g transform="translate(60, 90)">
+    
+    <rect x="0" y="0" width="1080" height="510" fill="none" stroke="#2a221c" stroke-width="4" />
+    
+    
+    <path d="M -15 -15 L 20 -15 M -15 -15 L -15 20" class="line-burgundy" stroke-width="3" />
+    <path d="M 1095 -15 L 1060 -15 M 1095 -15 L 1095 20" class="line-burgundy" stroke-width="3" />
+    <path d="M -15 525 L 20 525 M -15 525 L -15 490" class="line-burgundy" stroke-width="3" />
+    <path d="M 1095 525 L 1060 525 M 1095 525 L 1095 490" class="line-burgundy" stroke-width="3" />
+
+    
+    <g class="light-stone">
+      <rect x="15" y="40" width="12" height="24" rx="2" />
+      <rect x="15" y="100" width="12" height="24" rx="2" />
+      <rect x="15" y="160" width="12" height="24" rx="2" />
+      <rect x="15" y="220" width="12" height="24" rx="2" />
+      <rect x="15" y="280" width="12" height="24" rx="2" />
+      <rect x="15" y="340" width="12" height="24" rx="2" />
+      <rect x="15" y="400" width="12" height="24" rx="2" />
+      <rect x="15" y="460" width="12" height="24" rx="2" />
+
+      <rect x="1053" y="40" width="12" height="24" rx="2" />
+      <rect x="1053" y="100" width="12" height="24" rx="2" />
+      <rect x="1053" y="160" width="12" height="24" rx="2" />
+      <rect x="1053" y="220" width="12" height="24" rx="2" />
+      <rect x="1053" y="280" width="12" height="24" rx="2" />
+      <rect x="1053" y="340" width="12" height="24" rx="2" />
+      <rect x="1053" y="400" width="12" height="24" rx="2" />
+      <rect x="1053" y="460" width="12" height="24" rx="2" />
+    </g>
+  </g>
+
+  
+  <g transform="translate(950, 160)">
+    
+    <line x1="50" y1="10" x2="110" y2="10" class="line-ink" stroke-width="2" />
+    <line x1="80" y1="10" x2="80" y2="40" class="line-ink" stroke-width="2" />
+    
+    
+    <line x1="50" y1="10" x2="30" y2="70" class="line-stone" />
+    <line x1="50" y1="10" x2="70" y2="70" class="line-stone" />
+    <rect x="30" y="70" width="40" height="25" fill="#d4cbbd" stroke="#8c8275" stroke-width="1.5" />
+    <line x1="35" y1="82" x2="65" y2="82" class="line-stone" />
+
+    
+    <line x1="110" y1="10" x2="90" y2="50" class="line-burgundy" />
+    <line x1="110" y1="10" x2="130" y2="50" class="line-burgundy" />
+    <rect x="90" y="50" width="40" height="35" class="burgundy" />
+    
+    <polygon points="110,56 113,64 121,64 115,69 117,77 110,72 103,77 105,69 99,64 107,64" fill="#f3ecdf" />
+  </g>
+
+  
+  <g opacity="0.3">
+    
+    <line x1="60" y1="90" x2="90" y2="90" class="line-ink" />
+    <line x1="60" y1="100" x2="80" y2="100" class="line-ink" />
+    <line x1="60" y1="110" x2="70" y2="110" class="line-ink" />
+    <line x1="90" y1="60" x2="90" y2="90" class="line-ink" />
+    <line x1="100" y1="60" x2="100" y2="80" class="line-ink" />
+    
+    
+    <line x1="1140" y1="570" x2="1110" y2="570" class="line-ink" />
+    <line x1="1140" y1="560" x2="1120" y2="560" class="line-ink" />
+    <line x1="1110" y1="600" x2="1110" y2="570" class="line-ink" />
+    <line x1="1100" y1="600" x2="1100" y2="580" class="line-ink" />
+  </g>
+</svg>
