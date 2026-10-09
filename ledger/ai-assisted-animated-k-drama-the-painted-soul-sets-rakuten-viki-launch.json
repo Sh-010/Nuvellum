@@ -1,0 +1,74 @@
+{
+  "slug": "ai-assisted-animated-k-drama-the-painted-soul-sets-rakuten-viki-launch",
+  "url": "https://www.nuvellum.news/article/ai-assisted-animated-k-drama-the-painted-soul-sets-rakuten-viki-launch",
+  "title": "AI-assisted animated K-drama 'The Painted Soul' sets Rakuten Viki launch",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T13:04:23.075Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T13:04:23.075Z",
+      "remoteId": "60",
+      "remoteUrl": "https://t.me/nuvellum/60",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T13:04:23.075Z",
+      "remoteId": "1277147205491143_122104995309497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104995309497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T13:04:23.075Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T13:04:23.075Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
