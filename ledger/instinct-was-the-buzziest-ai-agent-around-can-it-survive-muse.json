@@ -1,0 +1,74 @@
+{
+  "slug": "instinct-was-the-buzziest-ai-agent-around-can-it-survive-muse",
+  "url": "https://www.nuvellum.news/article/instinct-was-the-buzziest-ai-agent-around-can-it-survive-muse",
+  "title": "Instinct was the buzziest AI agent around — can it survive Muse?",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T14:03:32.627Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T14:03:32.627Z",
+      "remoteId": "61",
+      "remoteUrl": "https://t.me/nuvellum/61",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T14:03:32.627Z",
+      "remoteId": "1277147205491143_122105041593497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105041593497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T14:03:32.627Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T14:03:32.627Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
