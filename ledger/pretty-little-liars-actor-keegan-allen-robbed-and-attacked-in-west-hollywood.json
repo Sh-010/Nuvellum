@@ -1,0 +1,75 @@
+{
+  "slug": "pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood",
+  "url": "https://www.nuvellum.news/article/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood",
+  "title": "Pretty Little Liars actor Keegan Allen robbed and attacked in West Hollywood",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T22:02:40.215Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T22:02:40.215Z",
+      "remoteId": "68",
+      "remoteUrl": "https://t.me/nuvellum/68",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T22:02:40.215Z",
+      "remoteId": "1277147205491143_122105391327497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105391327497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T22:02:40.215Z",
+      "remoteId": "18085353980686387",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T22:02:40.215Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T22:02:40.215Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
