@@ -1,0 +1,74 @@
+{
+  "slug": "xonas-commercial-gps-alternative-is-about-to-go-live",
+  "url": "https://www.nuvellum.news/article/xonas-commercial-gps-alternative-is-about-to-go-live",
+  "title": "Xona’s commercial GPS alternative is about to go live",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T12:04:04.429Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T12:04:04.429Z",
+      "remoteId": "59",
+      "remoteUrl": "https://t.me/nuvellum/59",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T12:04:04.429Z",
+      "remoteId": "1277147205491143_122104940691497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104940691497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T12:04:04.429Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T12:04:04.429Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
