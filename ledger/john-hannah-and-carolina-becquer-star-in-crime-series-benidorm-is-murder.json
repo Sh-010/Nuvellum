@@ -36,9 +36,14 @@
       "updatedAt": "2026-10-09T06:04:02.583Z"
     },
     "threads": {
-      "status": "skipped",
-      "reason": "not configured",
-      "updatedAt": "2026-10-09T06:04:02.583Z"
+      "status": "sent",
+      "reason": null,
+      "updatedAt": "2026-10-09T06:50:19.839Z",
+      "attempts": 1,
+      "sentAt": "2026-10-09T06:50:19.839Z",
+      "remoteId": "17969924882962233",
+      "remoteUrl": null,
+      "kind": "link"
     },
     "youtube": {
       "status": "skipped",
@@ -53,7 +58,7 @@
   },
   "cards": {
     "status": "rendered",
-    "at": "2026-10-09T06:04:02.583Z",
+    "at": "2026-10-09T06:50:19.839Z",
     "variant": "standard",
     "formats": [
       "square",
