@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T09:00:42.005Z"
 readingTime: "2 min"
-image: "/generated/ai/uta-and-gold-house-set-partnership-to-build-asia-hollywood-bridge.svg"
-imageAlt: "AI-generated editorial illustration for Uta and Gold House set partnership to build Asia-Hollywood bridge"
 status: "published"
 tags: ["UTA","Gold House","Busan International Film Festival","Hollywood","film industry"]
 regions: ["east-asia","north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/uta-and-gold-house-set-partnership-to-build-asia-hollywood-bridge.jpg"
+imageAlt: "Prather Residence Hall at the University of Texas at Austin in Austin, Texas, United States"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Prather Residence Hall at the University of Texas at Austin in Austin, Texas, United States. Image of University of Texas at Austin, not of the events reported."
+imageCredit: "Larry D. Moore"
+imageLicense: "CC BY 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Prather_residence_hall_ut_austin.jpg"
 ---
 ## A new cross-border alliance
 
