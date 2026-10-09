@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T21:00:56.346Z"
 readingTime: "2 min"
-image: "/generated/ai/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood.svg"
-imageAlt: "AI-generated editorial illustration for Pretty Little Liars actor Keegan Allen robbed and attacked in West Hollywood"
 status: "published"
 tags: ["Keegan Allen","West Hollywood","Robbery","Los Angeles"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/pretty-little-liars-actor-keegan-allen-robbed-and-attacked-in-west-hollywood.jpg"
+imageAlt: "Aerial view of Los Angeles"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Aerial view of Los Angeles. Image of Los Angeles, not of the events reported."
+imageCredit: "Tuxyso"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Los_Angeles_Aerial_view_2013.jpg"
 ---
 ## The attack and robbery
 
