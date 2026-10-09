@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T19:00:45.293Z"
 readingTime: "2 min"
-image: "/generated/ai/gears-of-war-e-day-officially-debunks-20-year-old-fan-theory.svg"
-imageAlt: "AI-generated editorial illustration for Gears of war: e-day officially debunks 20-year-old fan theory"
 status: "published"
 tags: ["Gears of War","Gears of War: E-Day","The Coalition","gaming"]
 regions: []
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/gears-of-war-e-day-officially-debunks-20-year-old-fan-theory.png"
+imageAlt: "Coalition of Ordered Governments (COG) helmet amid burning ruins in Gears of War: E-Day"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Coalition of Ordered Governments (COG) helmet amid burning ruins in Gears of War: E-Day"
+imageCredit: "The Coalition"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:GearsofWarE-Day_Screenshot_Gamescom_COGHelmet.png"
 ---
 Lead developers behind *Gears of War: E-Day* have officially put to rest a two-decade-old fan theory attempting to explain why the franchise's characters possess exceptionally muscular physiques.
 
