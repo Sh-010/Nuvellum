@@ -1,0 +1,67 @@
+{
+  "slug": "tens-of-thousands-march-in-madrid-to-mourn-pensioner-whose-eviction-sparked-housing-protes",
+  "url": "https://www.nuvellum.news/article/tens-of-thousands-march-in-madrid-to-mourn-pensioner-whose-eviction-sparked-housing-protes",
+  "title": "Tens of thousands march in Madrid to mourn pensioner whose eviction sparked housing protests",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T07:06:20.024Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T07:06:20.024Z",
+      "remoteId": "54",
+      "remoteUrl": "https://t.me/nuvellum/54",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T07:06:20.024Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T07:06:20.024Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
