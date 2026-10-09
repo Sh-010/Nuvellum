@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T18:00:45.282Z"
 readingTime: "2 min"
-image: "/generated/ai/laika-submits-original-song-from-wildwood-for-oscars-performed-by-the-decemberists.svg"
-imageAlt: "AI-generated editorial illustration for Laika submits original song from 'Wildwood' for Oscars, performed by The Decemberists"
 status: "published"
 tags: ["Laika","Wildwood","Oscars","The Decemberists","Colin Meloy"]
 regions: ["north-america","europe-central-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/laika-submits-original-song-from-wildwood-for-oscars-performed-by-the-decemberists.jpg"
+imageAlt: "The red carpet at the intersection of Hollywood and Highland during the 81st Academy Awards Ceremony"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: The red carpet at the intersection of Hollywood and Highland during the 81st Academy Awards Ceremony. Image of Academy Awards ceremony, not of the events reported."
+imageCredit: "BDS2006 ( talk )"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:81st_Academy_Awards_Ceremony.JPG"
 ---
 ## Academy Awards submission
 
