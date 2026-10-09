@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/microsoft-tries-to-spark-new-life-into-windows.jpg"
+imageAlt: "Aerial Microsoft West Campus August 2009"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Aerial Microsoft West Campus August 2009. Image of Microsoft, not of the events reported."
+imageCredit: "Jelson25"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Aerial_Microsoft_West_Campus_August_2009.jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Aerial_Microsoft_West_Campus_August_2009.jpg"
 ---
 At a Windows and Surface event in San Francisco, Microsoft detailed its ambitions to convert Windows into an agentic operating system. Rather than pursuing a shift toward Windows 12, Microsoft is building upon Windows 11 as the foundation for bringing AI agents and hybrid intelligence directly to users.
 
