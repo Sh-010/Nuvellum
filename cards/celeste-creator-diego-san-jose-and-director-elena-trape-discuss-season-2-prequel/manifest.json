@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "slug": "celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel",
+  "url": "https://nuvellum.vercel.app/article/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel",
+  "title": "‘Celeste’ creator Diego San josé and director Elena trapé discuss season 2 prequel",
+  "section": "Film & TV",
+  "variant": "culture",
+  "media": {
+    "mode": "photo",
+    "label": "FILE PHOTO",
+    "credit": "Photo: Pedro J Pacheco / CC BY-SA 4.0",
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 64,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 520,
+      "path": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 40,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "culture",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 66,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 783,
+      "path": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "culture",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 84,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 648,
+      "path": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "photo",
+  "square": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/square.svg",
+  "portrait": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/portrait.svg",
+  "landscape": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/landscape.svg",
+  "story": "engines/out/social-cards/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel/story.svg",
+  "rasterNeededForLivePosting": true
+}
