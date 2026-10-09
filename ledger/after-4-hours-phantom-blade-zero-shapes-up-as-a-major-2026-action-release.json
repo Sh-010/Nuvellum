@@ -1,0 +1,65 @@
+{
+  "slug": "after-4-hours-phantom-blade-zero-shapes-up-as-a-major-2026-action-release",
+  "url": "https://www.nuvellum.news/article/after-4-hours-phantom-blade-zero-shapes-up-as-a-major-2026-action-release",
+  "title": "After 4 hours, Phantom Blade Zero shapes up as a major 2026 action release",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T00:04:17.543Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T00:04:17.543Z",
+      "remoteId": "48",
+      "remoteUrl": "https://t.me/nuvellum/48",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T00:04:17.543Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T00:04:17.543Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
