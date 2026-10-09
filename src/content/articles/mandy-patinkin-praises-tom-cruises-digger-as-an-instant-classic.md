@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T11:00:47.005Z"
 readingTime: "2 min"
-image: "/generated/ai/mandy-patinkin-praises-tom-cruises-digger-as-an-instant-classic.svg"
-imageAlt: "AI-generated editorial illustration for Mandy Patinkin praises Tom Cruise’s ‘Digger’ as an instant classic"
 status: "published"
 tags: ["Mandy Patinkin","Tom Cruise","Digger","Alejandro G. Iñárritu"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/mandy-patinkin-praises-tom-cruises-digger-as-an-instant-classic.jpg"
+imageAlt: "Image of Mandy Patinkin on January 13, 2012, outside the Ethel Barrymore Theatre"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Image of Mandy Patinkin on January 13, 2012, outside the Ethel Barrymore Theatre. Image of Mandy Patinkin, not of the events reported."
+imageCredit: "Bearian"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:MandyPatinkin_1_13_12.JPG"
 ---
 Actor Mandy Patinkin has voiced strong support for the Alejandro G. Iñárritu-directed film *Digger*, calling it an instant classic and one of the greatest pieces of film he has ever seen. 
 
