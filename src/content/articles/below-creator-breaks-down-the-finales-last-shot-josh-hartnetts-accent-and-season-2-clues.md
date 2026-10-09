@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T23:00:52.158Z"
 readingTime: "2 min"
-image: "/generated/ai/below-creator-breaks-down-the-finales-last-shot-josh-hartnetts-accent-and-season-2-clues.svg"
-imageAlt: "AI-generated editorial illustration for ‘Below’ creator breaks down the finale’s last shot, Josh Hartnett’s accent and Season 2 clues"
 status: "published"
 tags: ["Below","Netflix","Josh Hartnett","Mackenzie Davis","Jesse McKeown","Jessica Rhoades"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/below-creator-breaks-down-the-finales-last-shot-josh-hartnetts-accent-and-season-2-clues.jpg"
+imageAlt: "Grabstein General Otto von Below Stadtfriedhof (Göttingen)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Grabstein General Otto von Below Stadtfriedhof (Göttingen). Image of Otto von Below, not of the events reported."
+imageCredit: "Wikitarisch"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Grabstein_General_Otto_von_Below_Stadtfriedhof_(G%C3%B6ttingen).jpg"
 ---
 Netflix's mystery series *Below* follows fisherman Calvin Penney, played by Josh Hartnett, and Dr. Fonda Howander, played by Mackenzie Davis, as they investigate a local mystery involving dirty ice and a giant sea monster in the Newfoundland town of Snook's Arm. Creator and showrunner Jesse McKeown and executive producer Jessica Rhoades spoke with *Variety* about the creative choices behind the six-episode first season's ending, the cast's accent work, and the visual design of the series.
 
