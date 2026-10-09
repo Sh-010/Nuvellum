@@ -16,9 +16,14 @@
       "updatedAt": "2026-10-09T04:05:28.227Z"
     },
     "facebook": {
-      "status": "skipped",
-      "reason": "not configured",
-      "updatedAt": "2026-10-09T04:05:28.227Z"
+      "status": "sent",
+      "reason": null,
+      "updatedAt": "2026-10-09T21:13:20.032Z",
+      "attempts": 1,
+      "sentAt": "2026-10-09T21:13:20.032Z",
+      "remoteId": "1277147205491143_122105353215497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105353215497904",
+      "kind": "link"
     },
     "linkedin": {
       "status": "skipped",
@@ -36,9 +41,14 @@
       "updatedAt": "2026-10-09T04:05:28.227Z"
     },
     "threads": {
-      "status": "skipped",
-      "reason": "not configured",
-      "updatedAt": "2026-10-09T04:05:28.227Z"
+      "status": "sent",
+      "reason": null,
+      "updatedAt": "2026-10-09T21:13:20.032Z",
+      "attempts": 1,
+      "sentAt": "2026-10-09T21:13:20.032Z",
+      "remoteId": "18022968020717813",
+      "remoteUrl": null,
+      "kind": "link"
     },
     "youtube": {
       "status": "skipped",
@@ -53,7 +63,7 @@
   },
   "cards": {
     "status": "rendered",
-    "at": "2026-10-09T04:05:28.227Z",
+    "at": "2026-10-09T21:13:20.032Z",
     "variant": "culture",
     "formats": [
       "square",
