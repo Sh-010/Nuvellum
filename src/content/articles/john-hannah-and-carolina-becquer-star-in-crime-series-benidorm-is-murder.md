@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T06:00:42.671Z"
 readingTime: "2 min"
-image: "/generated/ai/john-hannah-and-carolina-becquer-star-in-crime-series-benidorm-is-murder.svg"
-imageAlt: "AI-generated editorial illustration for John Hannah and Carolina Bécquer star in crime series ‘Benidorm is Murder’"
 status: "published"
 tags: ["Benidorm Is Murder","John Hannah","Carolina Bécquer","ZDF Studios","Blackbox Multimedia","Clapperboard Studios"]
 regions: ["europe-central-asia"]
