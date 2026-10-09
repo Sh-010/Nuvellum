@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T20:00:55.869Z"
 readingTime: "2 min"
-image: "/generated/ai/commentator-katie-zacharia-picked-as-new-white-house-press-secretary.svg"
-imageAlt: "AI-generated editorial illustration for Commentator Katie Zacharia picked as new White House press secretary"
 status: "published"
 tags: ["White House","US politics","Media"]
 regions: ["north-america"]
