@@ -1,0 +1,74 @@
+{
+  "slug": "mandy-patinkin-praises-tom-cruises-digger-as-an-instant-classic",
+  "url": "https://www.nuvellum.news/article/mandy-patinkin-praises-tom-cruises-digger-as-an-instant-classic",
+  "title": "Mandy Patinkin praises Tom Cruise’s ‘Digger’ as an instant classic",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T11:03:53.431Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T11:03:53.431Z",
+      "remoteId": "58",
+      "remoteUrl": "https://t.me/nuvellum/58",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T11:03:53.431Z",
+      "remoteId": "1277147205491143_122104896525497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104896525497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T11:03:53.431Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T11:03:53.431Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
