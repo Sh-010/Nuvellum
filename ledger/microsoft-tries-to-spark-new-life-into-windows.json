@@ -1,0 +1,77 @@
+{
+  "slug": "microsoft-tries-to-spark-new-life-into-windows",
+  "url": "https://www.nuvellum.news/article/microsoft-tries-to-spark-new-life-into-windows",
+  "title": "Microsoft tries to spark new life into Windows",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T18:02:27.843Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T18:02:27.843Z",
+      "remoteId": "64",
+      "remoteUrl": "https://t.me/nuvellum/64",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T18:02:27.843Z",
+      "remoteId": "1277147205491143_122105229741497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105229741497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T18:02:27.843Z",
+      "remoteId": "17972102595150431",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T18:02:27.843Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T18:02:27.843Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
