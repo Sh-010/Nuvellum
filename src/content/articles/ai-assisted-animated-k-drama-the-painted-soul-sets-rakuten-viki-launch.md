@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T13:00:48.952Z"
 readingTime: "2 min"
-image: "/generated/ai/ai-assisted-animated-k-drama-the-painted-soul-sets-rakuten-viki-launch.svg"
-imageAlt: "AI-generated editorial illustration for AI-assisted animated K-drama 'The Painted Soul' sets Rakuten Viki launch"
 status: "published"
 tags: ["Rakuten Viki","Imaginus","The Painted Soul","K-drama","Animation","Artificial Intelligence"]
 regions: ["east-asia","south-asia","southeast-asia-oceania"]
