@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T08:00:57.432Z"
 readingTime: "1 min"
-image: "/generated/ai/a-rare-david-bowie-self-portrait-featuring-his-handprints-is-heading-to-auction-at-sotheby.svg"
-imageAlt: "AI-generated editorial illustration for A rare David Bowie self-portrait featuring his handprints is heading to auction at Sotheby's"
 status: "published"
 tags: ["David Bowie","Sotheby's","art auction"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/a-rare-david-bowie-self-portrait-featuring-his-handprints-is-heading-to-auction-at-sotheby.jpg"
+imageAlt: "Tony Defries and David Bowie at Pork at London's Roundhouse 1971"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Tony Defries and David Bowie at Pork at London's Roundhouse 1971. Image of David Bowie, not of the events reported."
+imageCredit: "Djmehow"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Tony_Defries_et_David_Bowie.jpg"
 ---
 ## A rare 1996 self-portrait
 
