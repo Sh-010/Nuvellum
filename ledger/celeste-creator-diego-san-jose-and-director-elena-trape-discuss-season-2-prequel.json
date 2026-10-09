@@ -1,0 +1,75 @@
+{
+  "slug": "celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel",
+  "url": "https://www.nuvellum.news/article/celeste-creator-diego-san-jose-and-director-elena-trape-discuss-season-2-prequel",
+  "title": "‘Celeste’ creator Diego San josé and director Elena trapé discuss season 2 prequel",
+  "risk": "low",
+  "firstSeenAt": "2026-10-09T10:04:18.266Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T10:04:18.266Z",
+      "remoteId": "57",
+      "remoteUrl": "https://t.me/nuvellum/57",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T10:04:18.266Z",
+      "remoteId": "1277147205491143_122104852305497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122104852305497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T10:04:18.266Z",
+      "remoteId": "17879604690554524",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T10:04:18.266Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T10:04:18.266Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
