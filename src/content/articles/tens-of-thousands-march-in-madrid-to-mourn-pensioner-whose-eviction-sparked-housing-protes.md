@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-09"
 publishedAt: "2026-10-09T07:02:14.312Z"
 readingTime: "2 min"
-image: "/generated/ai/tens-of-thousands-march-in-madrid-to-mourn-pensioner-whose-eviction-sparked-housing-protes.svg"
-imageAlt: "AI-generated editorial illustration for Tens of thousands march in Madrid to mourn pensioner whose eviction sparked housing protests"
 status: "published"
 tags: ["Spain","housing","Madrid","Pedro Sanchez","protest"]
 regions: ["europe-central-asia"]
