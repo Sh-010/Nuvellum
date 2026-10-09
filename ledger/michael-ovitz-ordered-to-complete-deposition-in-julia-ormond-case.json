@@ -1,0 +1,65 @@
+{
+  "slug": "michael-ovitz-ordered-to-complete-deposition-in-julia-ormond-case",
+  "url": "https://www.nuvellum.news/article/michael-ovitz-ordered-to-complete-deposition-in-julia-ormond-case",
+  "title": "Michael Ovitz ordered to complete deposition in Julia Ormond case",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T01:04:22.548Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T01:04:22.548Z",
+      "remoteId": "49",
+      "remoteUrl": "https://t.me/nuvellum/49",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "facebook": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "threads": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T01:04:22.548Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T01:04:22.548Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
