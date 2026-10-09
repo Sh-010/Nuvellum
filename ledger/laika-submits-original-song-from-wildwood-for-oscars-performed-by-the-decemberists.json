@@ -1,0 +1,75 @@
+{
+  "slug": "laika-submits-original-song-from-wildwood-for-oscars-performed-by-the-decemberists",
+  "url": "https://www.nuvellum.news/article/laika-submits-original-song-from-wildwood-for-oscars-performed-by-the-decemberists",
+  "title": "Laika submits original song from 'Wildwood' for Oscars, performed by The Decemberists",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-09T19:04:55.356Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T19:04:55.356Z",
+      "remoteId": "65",
+      "remoteUrl": "https://t.me/nuvellum/65",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T19:04:55.356Z",
+      "remoteId": "1277147205491143_122105266743497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105266743497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-09T19:04:55.356Z",
+      "remoteId": "18146835628601849",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-09T19:04:55.356Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-09T19:04:55.356Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
