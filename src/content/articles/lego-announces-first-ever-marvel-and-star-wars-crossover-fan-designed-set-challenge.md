@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T16:00:47.529Z"
 readingTime: "2 min"
-image: "/generated/ai/lego-announces-first-ever-marvel-and-star-wars-crossover-fan-designed-set-challenge.svg"
-imageAlt: "AI-generated editorial illustration for Lego announces first-ever Marvel and 'Star Wars' crossover fan-designed set challenge"
 status: "published"
 tags: ["Lego","Marvel","Star Wars","New York Comic Con"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/lego-announces-first-ever-marvel-and-star-wars-crossover-fan-designed-set-challenge.png"
+imageAlt: "Cosplay New York Comic Con 2023 - Cosplays of"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Cosplay New York Comic Con 2023 - Cosplays of. Image of New York Comic Con, not of the events reported."
+imageCredit: "FBAFTERMATH"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Cosplay_New_York_Comic_Con_2023_-_Cosplays_of.png"
 ---
 Lego is merging the universes of Marvel and "Star Wars" for a new fan design competition. Announced at New York Comic Con, the toy company revealed a Lego Ideas challenge that asks builders to combine the two Disney-owned franchises, with winning designs eligible for development into official products.
 
