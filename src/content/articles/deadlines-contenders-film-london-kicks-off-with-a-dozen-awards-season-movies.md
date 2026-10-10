@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T09:00:50.659Z"
 readingTime: "2 min"
-image: "/generated/ai/deadlines-contenders-film-london-kicks-off-with-a-dozen-awards-season-movies.svg"
-imageAlt: "AI-generated editorial illustration for Deadline’s Contenders Film: London kicks off with a dozen awards-season movies"
 status: "published"
 tags: ["Contenders London","film","awards season","movies"]
 regions: ["europe-central-asia"]
