@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T15:00:56.600Z"
 readingTime: "2 min"
-image: "/generated/ai/portia-doubleday-on-playing-a-conspiracy-theorist-in-the-social-reckoning.svg"
-imageAlt: "AI-generated editorial illustration for Portia Doubleday on playing a conspiracy theorist in ‘The Social Reckoning’"
 status: "published"
 tags: ["The Social Reckoning","Portia Doubleday","Aaron Sorkin","movies"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/portia-doubleday-on-playing-a-conspiracy-theorist-in-the-social-reckoning.jpg"
+imageAlt: "Aaron Sorkin at the John F. Kennedy International Airport in New York City, New York, United States Worried"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Aaron Sorkin at the John F. Kennedy International Airport in New York City, New York, United States Worried. Image of Aaron Sorkin, not of the events reported."
+imageCredit: "Ondra Soukup from Prague, Czech Republic"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:AaronSorkinJFK.jpg"
 ---
 ## Bringing real-world radicalization to the screen
 
