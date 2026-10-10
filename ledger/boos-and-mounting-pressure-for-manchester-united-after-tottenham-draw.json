@@ -1,0 +1,74 @@
+{
+  "slug": "boos-and-mounting-pressure-for-manchester-united-after-tottenham-draw",
+  "url": "https://www.nuvellum.news/article/boos-and-mounting-pressure-for-manchester-united-after-tottenham-draw",
+  "title": "Boos and mounting pressure for Manchester United after Tottenham draw",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T22:53:50.971Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T22:53:50.971Z",
+      "remoteId": "79",
+      "remoteUrl": "https://t.me/nuvellum/79",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T22:53:50.971Z",
+      "remoteId": "1277147205491143_122106331377497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106331377497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T22:53:50.971Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T22:53:50.971Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
