@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T14:00:43.478Z"
 readingTime: "2 min"
-image: "/generated/ai/brad-bird-explains-why-he-brought-ray-gunn-to-skydance-instead-of-pixar.svg"
-imageAlt: "AI-generated editorial illustration for Brad Bird explains why he brought ‘Ray Gunn’ to Skydance instead of Pixar"
 status: "published"
 tags: ["Brad Bird","Ray Gunn","Skydance Animation","Netflix","Pixar"]
 regions: ["europe-central-asia","north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/brad-bird-explains-why-he-brought-ray-gunn-to-skydance-instead-of-pixar.jpg"
+imageAlt: "The entrance to Pixar's studio lot in Emeryville, California , photographed by User:Coolcaesar on April 16, 2007"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: The entrance to Pixar's studio lot in Emeryville, California , photographed by User:Coolcaesar on April 16, 2007. Image of Pixar, not of the events reported."
+imageCredit: "Coolcaesar"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Pixaranimationstudios.jpg"
 ---
 Director Brad Bird has opened up about the development of his animated feature *Ray Gunn*, explaining why he chose to take the project to Skydance Animation rather than Pixar. The film, a noir detective caper set in a retro-futuristic world, is scheduled to premiere at the BFI London Film Festival before launching on Netflix.
 
