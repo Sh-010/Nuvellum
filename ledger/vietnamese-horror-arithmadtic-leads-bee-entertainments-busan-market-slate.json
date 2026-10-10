@@ -1,0 +1,74 @@
+{
+  "slug": "vietnamese-horror-arithmadtic-leads-bee-entertainments-busan-market-slate",
+  "url": "https://www.nuvellum.news/article/vietnamese-horror-arithmadtic-leads-bee-entertainments-busan-market-slate",
+  "title": "Vietnamese horror ‘Arithmadtic’ leads Bee Entertainment’s Busan market slate",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T05:02:32.320Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T05:02:32.320Z",
+      "remoteId": "75",
+      "remoteUrl": "https://t.me/nuvellum/75",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T05:02:32.320Z",
+      "remoteId": "1277147205491143_122105646405497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105646405497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T05:02:32.320Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T05:02:32.320Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
