@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T01:00:49.554Z"
 readingTime: "3 min"
-image: "/generated/ai/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin.svg"
-imageAlt: "AI-generated editorial illustration for Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin"
 status: "published"
 tags: ["fuel prices","Russia","United States","Ukraine","sanctions"]
 regions: ["north-america","europe-central-asia"]
