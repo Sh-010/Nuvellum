@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T12:00:58.745Z"
 readingTime: "2 min"
-image: "/generated/ai/lea-seydoux-and-marie-kreutzer-discuss-cannes-drama-gentle-monster-at-contenders-london.svg"
-imageAlt: "AI-generated editorial illustration for Léa Seydoux and Marie Kreutzer discuss Cannes drama 'Gentle Monster' at Contenders London"
 status: "published"
 tags: ["Léa Seydoux","Marie Kreutzer","Gentle Monster","Contenders London"]
 regions: ["europe-central-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/lea-seydoux-and-marie-kreutzer-discuss-cannes-drama-gentle-monster-at-contenders-london.jpg"
+imageAlt: "Léa Seydoux, Marie Kreutzer, Jella Haase on the red carpet for Gentle Monster at TIFF 2026"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Léa Seydoux, Marie Kreutzer, Jella Haase on the red carpet for Gentle Monster at TIFF 2026"
+imageCredit: "Marlene Landu"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Gentle_Monster_Cast_at_TIFF_2026_02.jpg"
 ---
 Writer-director Marie Kreutzer and star Léa Seydoux appeared at Deadline’s Contenders London event to discuss their Cannes drama, *Gentle Monster*. 
 
