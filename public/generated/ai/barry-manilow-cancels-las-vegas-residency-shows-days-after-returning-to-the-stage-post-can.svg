@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  
+  
+  <g opacity="0.6">
+    <rect x="80" y="60" width="1040" height="555" fill="#efe8db" stroke="#2a221c" stroke-width="1.5" />
+    <rect x="90" y="70" width="1020" height="535" fill="none" stroke="#2a221c" stroke-width="0.5" />
+  </g>
+
+  
+  <g id="theater-proscenium">
+    
+    <path d="M 200 120 L 1000 120 L 1000 555 L 200 555 Z" fill="none" stroke="#2a221c" stroke-width="2" />
+    
+    
+    <path d="M 200 120 L 280 120 L 260 555 L 200 555 Z" fill="#661227" opacity="0.85" />
+    <path d="M 280 120 L 360 120 L 340 555 L 260 555 Z" fill="#4d0d1d" opacity="0.9" />
+    <path d="M 360 120 L 420 120 L 400 555 L 340 555 Z" fill="#661227" opacity="0.75" />
+
+    <path d="M 1000 120 L 920 120 L 940 555 L 1000 555 Z" fill="#661227" opacity="0.85" />
+    <path d="M 920 120 L 840 120 L 860 555 L 940 555 Z" fill="#4d0d1d" opacity="0.9" />
+    <path d="M 840 120 L 780 120 L 800 555 L 860 555 Z" fill="#661227" opacity="0.75" />
+
+    
+    <path d="M 200 120 Q 600 200 1000 120 L 1000 150 Q 600 230 200 150 Z" fill="#661227" />
+  </g>
+
+  
+  <g id="stage-floor">
+    <polygon points="300,555 900,555 1000,600 200,600" fill="#e3dac9" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="300" y1="555" x2="250" y2="600" stroke="#2a221c" stroke-width="1" />
+    <line x1="450" y1="555" x2="425" y2="600" stroke="#2a221c" stroke-width="0.75" />
+    <line x1="600" y1="555" x2="600" y2="600" stroke="#2a221c" stroke-width="0.75" />
+    <line x1="750" y1="555" x2="775" y2="600" stroke="#2a221c" stroke-width="0.75" />
+    <line x1="900" y1="555" x2="950" y2="600" stroke="#2a221c" stroke-width="1" />
+  </g>
+
+  
+  <g id="piano-and-mic" transform="translate(430, 280)">
+    
+    <path d="M 50 180 L 220 180 L 280 230 L 280 260 L 50 260 Z" fill="#2a221c" />
+    <path d="M 50 180 L 220 180 L 220 220 L 50 220 Z" fill="#3d322b" />
+    
+    <path d="M 60 180 L 210 80 L 220 180 Z" fill="#efe8db" stroke="#2a221c" stroke-width="1.5" />
+    <path d="M 60 180 L 210 80 L 213 83 L 66 183 Z" fill="#661227" opacity="0.3" />
+    
+    <rect x="55" y="220" width="40" height="25" fill="#f3ecdf" stroke="#2a221c" stroke-width="1" />
+    
+    <line x1="70" y1="260" x2="50" y2="330" stroke="#2a221c" stroke-width="4" />
+    <line x1="250" y1="260" x2="270" y2="330" stroke="#2a221c" stroke-width="4" />
+    <line x1="100" y1="260" x2="110" y2="330" stroke="#2a221c" stroke-width="3" />
+
+    
+    <line x1="-80" y1="330" x2="-80" y2="120" stroke="#2a221c" stroke-width="2.5" />
+    
+    <ellipse cx="-80" cy="330" rx="25" ry="8" fill="#2a221c" />
+    
+    <rect x="-88" y="100" width="16" height="22" rx="8" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    <line x1="-88" y1="107" x2="-72" y2="107" stroke="#2a221c" stroke-width="1" />
+    <line x1="-88" y1="114" x2="-72" y2="114" stroke="#2a221c" stroke-width="1" />
+  </g>
+
+  
+  <g id="musical-staff">
+    
+    <line x1="180" y1="250" x2="420" y2="250" stroke="#2a221c" stroke-width="1" />
+    <line x1="180" y1="260" x2="420" y2="260" stroke="#2a221c" stroke-width="1" />
+    <line x1="180" y1="270" x2="420" y2="270" stroke="#2a221c" stroke-width="1" />
+    <line x1="180" y1="280" x2="420" y2="280" stroke="#2a221c" stroke-width="1" />
+    <line x1="180" y1="290" x2="420" y2="290" stroke="#2a221c" stroke-width="1" />
+
+    
+    <ellipse cx="230" cy="275" rx="7" ry="5" fill="#2a221c" transform="rotate(-15 230 275)" />
+    <line x1="236" y1="275" x2="236" y2="245" stroke="#2a221c" stroke-width="1.5" />
+    
+    <ellipse cx="290" cy="265" rx="7" ry="5" fill="#2a221c" transform="rotate(-15 290 265)" />
+    <line x1="296" y1="265" x2="296" y2="235" stroke="#2a221c" stroke-width="1.5" />
+
+    <ellipse cx="360" cy="255" rx="7" ry="5" fill="#2a221c" transform="rotate(-15 360 255)" />
+    <line x1="366" y1="255" x2="366" y2="225" stroke="#2a221c" stroke-width="1.5" />
+    
+    <path d="M 236 245 Q 266 235 296 235" fill="none" stroke="#2a221c" stroke-width="2" />
+
+    
+    <line x1="750" y1="250" x2="1020" y2="250" stroke="#661227" stroke-width="1" stroke-dasharray="6, 8" />
+    <line x1="750" y1="260" x2="1020" y2="260" stroke="#661227" stroke-width="1" stroke-dasharray="4, 10" />
+    <line x1="750" y1="270" x2="1020" y2="270" stroke="#661227" stroke-width="1" stroke-dasharray="8, 6" />
+    <line x1="750" y1="280" x2="1020" y2="280" stroke="#661227" stroke-width="1" stroke-dasharray="5, 9" />
+    <line x1="750" y1="290" x2="1020" y2="290" stroke="#661227" stroke-width="1" stroke-dasharray="7, 7" />
+
+    
+    <ellipse cx="710" cy="340" rx="7" ry="5" fill="#661227" transform="rotate(25 710 340)" />
+    <line x1="713" y1="335" x2="713" y2="305" stroke="#661227" stroke-width="1.5" />
+    <path d="M 713 305 Q 723 295 730 300" fill="none" stroke="#661227" stroke-width="1.5" />
+  </g>
+
+  
+  <g id="vegas-marquee-frame" transform="translate(500, 70)">
+    <rect x="-150" y="0" width="300" height="35" fill="#efe8db" stroke="#2a221c" stroke-width="1.5" />
+    
+    <line x1="-135" y1="17.5" x2="-120" y2="17.5" stroke="#661227" stroke-width="3" stroke-linecap="round" />
+    <line x1="-105" y1="17.5" x2="-90" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="-75" y1="17.5" x2="-60" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="-45" y1="17.5" x2="-30" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="-15" y1="17.5" x2="0" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="15" y1="17.5" x2="30" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="45" y1="17.5" x2="60" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="75" y1="17.5" x2="90" y2="17.5" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <line x1="105" y1="17.5" x2="120" y2="17.5" stroke="#661227" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  
+  <g id="hatching-shadows" opacity="0.3">
+    <line x1="210" y1="150" x2="240" y2="180" stroke="#2a221c" stroke-width="1" />
+    <line x1="210" y1="180" x2="250" y2="220" stroke="#2a221c" stroke-width="1" />
+    <line x1="210" y1="210" x2="260" y2="260" stroke="#2a221c" stroke-width="1" />
+    <line x1="210" y1="240" x2="270" y2="300" stroke="#2a221c" stroke-width="1" />
+
+    <line x1="990" y1="150" x2="960" y2="180" stroke="#2a221c" stroke-width="1" />
+    <line x1="990" y1="180" x2="950" y2="220" stroke="#2a221c" stroke-width="1" />
+    <line x1="990" y1="210" x2="940" y2="260" stroke="#2a221c" stroke-width="1" />
+    <line x1="990" y1="240" x2="930" y2="300" stroke="#2a221c" stroke-width="1" />
+  </g>
+</svg>
