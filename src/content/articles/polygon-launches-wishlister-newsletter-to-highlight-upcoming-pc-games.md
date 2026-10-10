@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T13:00:43.438Z"
 readingTime: "1 min"
-image: "/generated/ai/polygon-launches-wishlister-newsletter-to-highlight-upcoming-pc-games.svg"
-imageAlt: "AI-generated editorial illustration for Polygon launches Wishlister newsletter to highlight upcoming PC games"
 status: "published"
 tags: ["Polygon","Steam","video games","newsletters"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/polygon-launches-wishlister-newsletter-to-highlight-upcoming-pc-games.jpg"
+imageAlt: "Ice wedges form underground over time and produce polygons on the tundra. The complex patterns are best seen from the air. (c5336f1c 1dd8 b71c 072d 34f5852f454e)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Ice wedges form underground over time and produce polygons on the tundra. The complex patterns are best seen from the air. (c5336f1c 1dd8 b71c 072d 34f5852f454e). Image of Polygon, not of the events reported."
+imageCredit: "NPS Photo"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Ice_wedges_form_underground_over_time_and_produce_polygons_on_the_tundra._The_complex_patterns_are_best_seen_from_the_air._(c5336f1c-1dd8-b71c-072d-34f5852f454e).jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Ice_wedges_form_underground_over_time_and_produce_polygons_on_the_tundra._The_complex_patterns_are_best_seen_from_the_air._(c5336f1c-1dd8-b71c-072d-34f5852f454e).jpg"
 ---
 Digital publication Polygon has launched Wishlister, a weekly newsletter aimed at helping users discover upcoming PC games available to add to their Steam wishlists. 
 
