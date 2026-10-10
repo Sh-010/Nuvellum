@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T02:00:44.519Z"
 readingTime: "2 min"
-image: "/generated/ai/life-threatening-hurricane-isaias-makes-landfall-in-florida.svg"
-imageAlt: "AI-generated editorial illustration for Life-threatening hurricane Isaias makes landfall in Florida"
 status: "published"
 tags: ["Hurricanes","Severe weather","Florida","Alabama"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/life-threatening-hurricane-isaias-makes-landfall-in-florida.jpg"
+imageAlt: "Stairwell in the UF Architecture Building"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Stairwell in the UF Architecture Building. Image of University of Florida, not of the events reported."
+imageCredit: "Alexander Abair"
+imageLicense: "CC BY 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:University_of_Florida_Architecture_Building_01.jpg"
 ---
 Hurricane Isaias has made landfall in the United States state of Florida, bringing life-threatening flooding and winds that have forced thousands of residents to evacuate. 
 
