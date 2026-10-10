@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin",
+  "url": "https://nuvellum.vercel.app/article/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin",
+  "title": "Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin",
+  "section": "World",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 92,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 78,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 108,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 106,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/square.svg",
+  "portrait": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/portrait.svg",
+  "landscape": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/landscape.svg",
+  "story": "engines/out/social-cards/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin/story.svg",
+  "rasterNeededForLivePosting": true
+}
