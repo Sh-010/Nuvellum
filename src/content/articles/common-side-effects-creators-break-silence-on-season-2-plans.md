@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T00:00:43.845Z"
 readingTime: "2 min"
-image: "/generated/ai/common-side-effects-creators-break-silence-on-season-2-plans.svg"
-imageAlt: "AI-generated editorial illustration for 'Common Side Effects' creators break silence on season 2 plans"
 status: "published"
 tags: ["Common Side Effects","Adult Swim","Joe Bennett","Steve Hely","New York Comic Con"]
 regions: []
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/common-side-effects-creators-break-silence-on-season-2-plans.jpg"
+imageAlt: "El dibuixant de còmics brasiler Joe Bennett"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: El dibuixant de còmics brasiler Joe Bennett. Image of Joe Bennett, not of the events reported."
+imageCredit: "Francesc Fort"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Joe_Bennett_a_Val%C3%A8ncia.jpg"
 ---
 Co-creators Joe Bennett and Steve Hely discussed the upcoming second season of *Common Side Effects* during an appearance at New York Comic Con 2026. The Adult Swim animated series, which follows a fungus expert discovering a mushroom capable of curing any disease, is scheduled to return for its second season on Sunday, Jan. 24 at 11:00 p.m. ET on Adult Swim, with streaming available the following day on HBO Max.
 
