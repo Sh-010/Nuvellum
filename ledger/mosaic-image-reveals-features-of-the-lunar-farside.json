@@ -1,0 +1,60 @@
+{
+  "slug": "mosaic-image-reveals-features-of-the-lunar-farside",
+  "url": "https://www.nuvellum.news/article/mosaic-image-reveals-features-of-the-lunar-farside",
+  "title": "Mosaic image reveals features of the lunar farside",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T07:42:22.176Z",
+  "platforms": {
+    "telegram": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: NASA / GSFC / ARIZONA STATE UNIV. / LUNAR RECONNAISSANCE…\" ends at 1185.3 > box 1182)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "facebook": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: NASA / GSFC / ARIZONA STATE UNIV. / LUNAR RECONNAISSANCE…\" ends at 1185.3 > box 1182)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "threads": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: NASA / GSFC / ARIZONA STATE UNIV. / LUNAR RECONNAISSANCE…\" ends at 1185.3 > box 1182)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T07:42:22.176Z"
+    }
+  },
+  "cards": {
+    "status": "failed",
+    "at": "2026-10-10T07:42:22.176Z",
+    "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: NASA / GSFC / ARIZONA STATE UNIV. / LUNAR RECONNAISSANCE…\" ends at 1185.3 > box 1182)"
+  }
+}
