@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T06:00:41.519Z"
 readingTime: "2 min"
-image: "/generated/ai/vietnamese-supernatural-horror-bloodline-the-curse-within-heads-to-busan-market-with-mocki.svg"
-imageAlt: "AI-generated editorial illustration for Vietnamese supernatural horror ‘Bloodline: The Curse Within’ heads to Busan market with Mockingbird Pictures"
 status: "published"
 tags: ["Bloodline: The Curse Within","Busan International Film Festival","Mockingbird Pictures","Vietnamese cinema"]
 regions: ["southeast-asia-oceania","east-asia"]
