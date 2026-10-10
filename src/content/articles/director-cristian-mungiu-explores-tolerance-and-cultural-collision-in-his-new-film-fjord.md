@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T11:00:41.221Z"
 readingTime: "2 min"
-image: "/generated/ai/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord.svg"
-imageAlt: "AI-generated editorial illustration for Director Cristian Mungiu explores tolerance and cultural collision in his new film Fjord"
 status: "published"
 tags: ["Cristian Mungiu","Fjord","film","directors","interviews"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord.jpg"
+imageAlt: "Cristian Mungiu, Palme d'Or winner, at 2026 Cannes Film Festival"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Cristian Mungiu, Palme d'Or winner, at 2026 Cannes Film Festival. Image of Cristian Mungiu, not of the events reported."
+imageCredit: "John Sears"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Cristian_Mungiu_at_2026_Cannes_Film_Festival_02.jpg"
 ---
 Director Cristian Mungiu’s sixth feature film, *Fjord*, centers on a religious Romanian family that moves to a small hamlet in rural Norway. The story follows Mamma, played by Renata Reinsve; Tata, played by Sebastian Stan; and their children. The parents are openly religious, proselytizing, and believe in punitive discipline rather than gentle parenting, according to the source material.
 
