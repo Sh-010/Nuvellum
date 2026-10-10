@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="noise" />
+      <feColorMatrix type="matrix" values="0.3 0 0 0 0.1  0 0.3 0 0 0.1  0 0 0.3 0 0.1  0 0 0 0.07 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="mix" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="mix" />
+    </filter>
+    
+    <pattern id="hatch-1" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#2a221c" stroke-width="0.75" opacity="0.18" />
+    </pattern>
+
+    <pattern id="hatch-2" width="8" height="8" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#661227" stroke-width="0.8" opacity="0.15" />
+    </pattern>
+
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#2a221c" opacity="0.12" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  <rect width="1200" height="675" filter="url(#paper-grain)" opacity="0.75" />
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" stroke="#2a221c" stroke-width="1.5" opacity="0.25" />
+  <line x1="80" y1="615" x2="1120" y2="615" stroke="#2a221c" stroke-width="1.5" opacity="0.25" />
+  <line x1="80" y1="60" x2="80" y2="615" stroke="#2a221c" stroke-width="1.5" opacity="0.25" />
+  <line x1="1120" y1="60" x2="1120" y2="615" stroke="#2a221c" stroke-width="1.5" opacity="0.25" />
+
+  
+  <g opacity="0.4">
+    
+    <line x1="80" y1="520" x2="1120" y2="520" stroke="#2a221c" stroke-width="1" stroke-dasharray="6,4" />
+    <line x1="300" y1="520" x2="200" y2="250" stroke="#2a221c" stroke-width="0.75" opacity="0.3" />
+    <line x1="500" y1="520" x2="450" y2="250" stroke="#2a221c" stroke-width="0.75" opacity="0.3" />
+    <line x1="700" y1="520" x2="750" y2="250" stroke="#2a221c" stroke-width="0.75" opacity="0.3" />
+    <line x1="900" y1="520" x2="1000" y2="250" stroke="#2a221c" stroke-width="0.75" opacity="0.3" />
+  </g>
+
+  
+  
+  
+  
+  <ellipse cx="600" cy="535" rx="210" ry="25" fill="#2a221c" opacity="0.12" />
+
+  
+  <g id="stone-base">
+    <path d="M 450,520 L 750,520 L 730,480 L 470,480 Z" fill="#d8cfc2" stroke="#2a221c" stroke-width="1.5" />
+    <path d="M 470,480 L 730,480 L 710,440 L 490,440 Z" fill="#e4dbce" stroke="#2a221c" stroke-width="1.5" />
+    <rect x="490" y="440" width="220" height="15" fill="#2a221c" opacity="0.85" />
+  </g>
+
+  
+  <g id="ballot-box" transform="translate(0, -10)">
+    
+    <rect x="440" y="270" width="320" height="170" fill="#f3ecdf" stroke="#2a221c" stroke-width="2.5" />
+    
+    <rect x="445" y="275" width="310" height="160" fill="url(#hatch-1)" />
+    
+    
+    <rect x="440" y="270" width="320" height="20" fill="#661227" />
+    <rect x="440" y="420" width="320" height="20" fill="#661227" />
+
+    
+    <rect x="540" y="277" width="120" height="6" fill="#2a221c" />
+    
+    
+    <g id="arrested-ballot">
+      
+      <polygon points="535,277 665,277 685,175 515,175" fill="#2a221c" opacity="0.08" />
+      
+      <polygon points="530,277 670,277 680,165 520,165" fill="#fdfbf7" stroke="#2a221c" stroke-width="1.75" />
+      <rect x="530" y="165" width="150" height="112" fill="url(#dots)" opacity="0.4" />
+      
+      
+      <line x1="550" y1="195" x2="650" y2="195" stroke="#2a221c" stroke-width="1.5" stroke-linecap="round" opacity="0.6" />
+      <circle cx="538" cy="195" r="4" fill="none" stroke="#2a221c" stroke-width="1.25" />
+
+      <line x1="550" y1="220" x2="630" y2="220" stroke="#2a221c" stroke-width="1.5" stroke-linecap="round" opacity="0.4" />
+      <circle cx="538" cy="220" r="4" fill="none" stroke="#2a221c" stroke-width="1.25" />
+
+      <line x1="550" y1="245" x2="600" y2="245" stroke="#2a221c" stroke-width="1.5" stroke-linecap="round" opacity="0.2" />
+      <circle cx="538" cy="245" r="4" fill="none" stroke="#2a221c" stroke-width="1.25" />
+    </g>
+
+    
+    <g id="seal-lock" transform="translate(600, 355)">
+      <path d="M -20,-10 C -20,-30 20,-30 20,-10" fill="none" stroke="#2a221c" stroke-width="5" stroke-linecap="round" />
+      <rect x="-30" y="-10" width="60" height="55" rx="6" fill="#661227" stroke="#2a221c" stroke-width="2.5" />
+      <circle cx="0" cy="15" r="6" fill="#f3ecdf" />
+      <line x1="0" y1="21" x2="0" y2="30" stroke="#f3ecdf" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </g>
+
+  
+  <g id="pendulum-arm">
+    
+    <path d="M 350,130 Q 600,60 850,130" fill="none" stroke="#2a221c" stroke-width="2" opacity="0.5" />
+    
+    
+    <line x1="600" y1="80" x2="720" y2="310" stroke="#2a221c" stroke-width="3.5" stroke-linecap="round" />
+    
+    
+    <g transform="translate(720, 310)">
+      <circle cx="0" cy="0" r="38" fill="#f3ecdf" stroke="#2a221c" stroke-width="2.5" />
+      <circle cx="0" cy="0" r="30" fill="url(#hatch-2)" />
+      <circle cx="0" cy="0" r="18" fill="#661227" />
+      <circle cx="0" cy="0" r="6" fill="#f3ecdf" />
+    </g>
+  </g>
+
+  
+  <g id="corner-accents" opacity="0.6">
+    
+    <line x1="100" y1="80" x2="130" y2="80" stroke="#2a221c" stroke-width="1" />
+    <line x1="100" y1="80" x2="100" y2="110" stroke="#2a221c" stroke-width="1" />
+    
+    
+    <line x1="1100" y1="80" x2="1070" y2="80" stroke="#2a221c" stroke-width="1" />
+    <line x1="1100" y1="80" x2="1100" y2="110" stroke="#2a221c" stroke-width="1" />
+
+    
+    <line x1="100" y1="595" x2="130" y2="595" stroke="#2a221c" stroke-width="1" />
+    <line x1="100" y1="595" x2="100" y2="565" stroke="#2a221c" stroke-width="1" />
+
+    
+    <line x1="1100" y1="595" x2="1070" y2="595" stroke="#2a221c" stroke-width="1" />
+    <line x1="1100" y1="595" x2="1100" y2="565" stroke="#2a221c" stroke-width="1" />
+  </g>
+
+  
+  <g id="topography" opacity="0.25">
+    <path d="M 120,460 C 200,440 280,480 380,450 C 480,420 540,380 620,410 C 700,440 820,420 900,470 C 980,520 1050,450 1100,480" fill="none" stroke="#661227" stroke-width="1.25" stroke-dasharray="4,2" />
+    <path d="M 150,500 C 230,480 310,520 410,490 C 510,460 570,420 650,450 C 730,480 850,460 930,510 C 1010,560 1070,490 1120,520" fill="none" stroke="#2a221c" stroke-width="1" />
+  </g>
+
+  
+  <path d="M 80,60 L 1120,60" stroke="#661227" stroke-width="3" opacity="0.8" />
+  <path d="M 80,615 L 1120,615" stroke="#661227" stroke-width="1" opacity="0.5" />
+</svg>
