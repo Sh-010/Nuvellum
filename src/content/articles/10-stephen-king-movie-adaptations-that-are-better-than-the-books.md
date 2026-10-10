@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T19:00:48.690Z"
 readingTime: "2 min"
-image: "/generated/ai/10-stephen-king-movie-adaptations-that-are-better-than-the-books.svg"
-imageAlt: "AI-generated editorial illustration for 10 Stephen King movie adaptations that are better than the books"
 status: "published"
 tags: ["Stephen King","movies","film adaptations","books"]
 regions: []
