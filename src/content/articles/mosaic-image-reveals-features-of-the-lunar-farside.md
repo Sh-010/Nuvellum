@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T05:00:44.599Z"
 readingTime: "1 min"
-image: "/generated/ai/mosaic-image-reveals-features-of-the-lunar-farside.svg"
-imageAlt: "AI-generated editorial illustration for Mosaic image reveals features of the lunar farside"
 status: "published"
 tags: ["Moon","Lunar Reconnaissance Orbiter","astronomy","space exploration"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/mosaic-image-reveals-features-of-the-lunar-farside.jpg"
+imageAlt: "LRO Tycho Central Peak"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: LRO Tycho Central Peak"
+imageCredit: "NASA / GSFC / Arizona State Univ. / Lunar Reconnaissance Orbiter"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:LRO_Tycho_Central_Peak.jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:LRO_Tycho_Central_Peak.jpg"
 ---
 ## Capturing the hidden hemisphere
 
