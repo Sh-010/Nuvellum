@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T08:00:45.520Z"
 readingTime: "2 min"
-image: "/generated/ai/us-lifts-sanctions-on-daughter-of-military-linked-myanmar-businessman.svg"
-imageAlt: "AI-generated editorial illustration for US lifts sanctions on daughter of military-linked Myanmar businessman"
 status: "published"
 tags: ["Sanctions","Myanmar","United States"]
 regions: ["north-america","southeast-asia-oceania"]
