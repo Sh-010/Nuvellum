@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <style>
+      .bg { fill: #f3ecdf; }
+      .ink-dark { fill: #2a221c; }
+      .ink-light { fill: #5c5044; }
+      .burgundy { fill: #661227; }
+      .burgundy-trans { fill: #661227; fill-opacity: 0.15; }
+      .nordic-blue { fill: #334d5c; }
+      .nordic-blue-trans { fill: #334d5c; fill-opacity: 0.2; }
+      .paper-white { fill: #fcf8f2; }
+      .line-dark { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-fine { stroke: #2a221c; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-burgundy { stroke: #661227; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .hatch { stroke: #2a221c; stroke-width: 0.75; stroke-linecap: round; opacity: 0.35; }
+    </style>
+    
+    
+    <pattern id="engrave" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" class="hatch" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+
+  
+  <line x1="80" y1="50" x2="1120" y2="50" stroke="#661227" stroke-width="1.5" stroke-opacity="0.4" />
+  <line x1="80" y1="625" x2="1120" y2="625" stroke="#661227" stroke-width="1.5" stroke-opacity="0.4" />
+
+  
+  
+  <path d="M 80,420 L 320,320 L 480,380 L 720,260 L 920,350 L 1120,290 L 1120,550 L 80,550 Z" class="nordic-blue-trans" />
+  
+  
+  <path d="M 340,330 L 390,380 M 370,320 L 420,370 M 680,270 L 740,330 M 710,260 L 770,320 M 890,360 L 940,410" class="hatch" stroke-width="0.5" />
+
+  
+  <line x1="80" y1="420" x2="1120" y2="420" class="line-dark" stroke-width="1.5" />
+
+  
+  
+  
+  <g transform="translate(260, 180)">
+    
+    <polygon points="0,120 120,40 240,120 240,320 0,320" class="paper-white" />
+    <polygon points="0,120 120,40 240,120 240,320 0,320" class="line-dark" />
+    
+    
+    <polygon points="-20,130 120,30 260,130 240,110 120,20 0,110" class="ink-dark" />
+    
+    
+    <rect x="40" y="160" width="40" height="60" class="paper-white" />
+    <rect x="40" y="160" width="40" height="60" class="line-fine" />
+    <line x1="60" y1="160" x2="60" y2="220" class="line-fine" />
+    <line x1="40" y1="190" x2="80" y2="190" class="line-fine" />
+
+    <rect x="160" y="160" width="40" height="60" class="paper-white" />
+    <rect x="160" y="160" width="40" height="60" class="line-fine" />
+    <line x1="180" y1="160" x2="180" y2="220" class="line-fine" />
+    <line x1="160" y1="190" x2="200" y2="190" class="line-fine" />
+
+    
+    <line x1="20" y1="120" x2="20" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="40" y1="120" x2="40" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="60" y1="120" x2="60" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="80" y1="120" x2="80" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="100" y1="120" x2="100" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="140" y1="120" x2="140" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="160" y1="120" x2="160" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="180" y1="120" x2="180" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="200" y1="120" x2="200" y2="320" class="line-fine" stroke-opacity="0.3" />
+    <line x1="220" y1="120" x2="220" y2="320" class="line-fine" stroke-opacity="0.3" />
+  </g>
+
+  
+  <g transform="translate(700, 180)">
+    
+    <polygon points="0,120 120,40 240,120 240,320 0,320" class="paper-white" />
+    <polygon points="0,120 120,40 240,120 240,320 0,320" class="line-dark" />
+    
+    
+    <polygon points="-10,125 120,35 250,125 240,110 120,25 0,110" class="nordic-blue" />
+    
+    
+    <rect x="40" y="150" width="70" height="110" class="paper-white" />
+    <rect x="40" y="150" width="70" height="110" class="line-fine" />
+    <line x1="75" y1="150" x2="75" y2="260" class="line-fine" />
+
+    <rect x="130" y="180" width="70" height="80" class="paper-white" />
+    <rect x="130" y="180" width="70" height="80" class="line-fine" />
+
+    
+    <line x1="0" y1="140" x2="240" y2="140" class="line-fine" stroke-opacity="0.3" />
+    <line x1="0" y1="170" x2="240" y2="170" class="line-fine" stroke-opacity="0.3" />
+    <line x1="0" y1="200" x2="240" y2="200" class="line-fine" stroke-opacity="0.3" />
+    <line x1="0" y1="230" x2="240" y2="230" class="line-fine" stroke-opacity="0.3" />
+    <line x1="0" y1="260" x2="240" y2="260" class="line-fine" stroke-opacity="0.3" />
+    <line x1="0" y1="290" x2="240" y2="290" class="line-fine" stroke-opacity="0.3" />
+  </g>
+
+  
+  
+  <g transform="translate(540, 240)">
+    
+    <polygon points="0,60 60,20 120,60 120,260 0,260" class="burgundy-trans" />
+    <polygon points="0,60 60,20 120,60 120,260 0,260" class="line-burgundy" />
+    
+    
+    <line x1="60" y1="10" x2="60" y2="280" class="line-dark" stroke-dasharray="8 4" />
+    
+    
+    <circle cx="60" cy="140" r="16" class="paper-white" />
+    <circle cx="60" cy="140" r="16" class="line-burgundy" />
+    <circle cx="60" cy="140" r="6" class="burgundy" />
+  </g>
+
+  
+  
+  <g transform="translate(0, 40)">
+    
+    <g transform="translate(340, 310)">
+      
+      <path d="M 20,120 L 20,60 C 20,40 40,30 50,30 C 60,30 80,40 80,60 L 80,120 Z" class="ink-dark" />
+      <circle cx="50" cy="20" r="12" class="ink-dark" />
+      
+      <path d="M 85,130 L 85,80 C 85,65 95,55 105,55 C 115,55 125,65 125,80 L 125,130 Z" class="ink-dark" />
+      <circle cx="105" cy="45" r="9" class="ink-dark" />
+      
+      <ellipse cx="70" cy="125" rx="55" ry="6" class="ink-light" opacity="0.3" />
+    </g>
+
+    
+    <g transform="translate(760, 310)">
+      
+      <path d="M 30,120 L 30,55 C 30,35 45,25 60,25 C 75,25 90,35 90,55 L 90,120 Z" class="nordic-blue" />
+      <circle cx="60" cy="15" r="11" class="nordic-blue" />
+      
+      <path d="M -5,130 L -5,85 C -5,72 5,62 15,62 C 25,62 35,72 35,85 L 35,130 Z" class="nordic-blue" />
+      <circle cx="15" cy="52" r="8" class="nordic-blue" />
+      
+      <ellipse cx="40" cy="125" rx="50" ry="6" class="ink-light" opacity="0.3" />
+    </g>
+  </g>
+
+  
+  <line x1="80" y1="500" x2="1120" y2="500" class="line-dark" />
+  
+  
+  <line x1="500" y1="500" x2="440" y2="540" class="line-fine" />
+  <line x1="530" y1="500" x2="480" y2="540" class="line-fine" />
+  <line x1="560" y1="500" x2="520" y2="540" class="line-fine" />
+  <line x1="640" y1="500" x2="680" y2="540" class="line-fine" />
+  <line x1="670" y1="500" x2="720" y2="540" class="line-fine" />
+  <line x1="700" y1="500" x2="760" y2="540" class="line-fine" />
+
+  
+  
+  <g transform="translate(120, 100)">
+    <line x1="0" y1="0" x2="0" y2="30" class="line-fine" />
+    <line x1="0" y1="0" x2="30" y2="0" class="line-fine" />
+    <circle cx="0" cy="0" r="3" class="burgundy" />
+  </g>
+
+  
+  <g transform="translate(1080, 100)">
+    <line x1="-30" y1="0" x2="0" y2="0" class="line-fine" />
+    <line x1="0" y1="0" x2="0" y2="30" class="line-fine" />
+    <circle cx="0" cy="0" r="3" class="line-dark" />
+  </g>
+
+  
+  <path d="M 65,65 L 85,65 M 65,65 L 65,85" class="line-burgundy" stroke-width="1" />
+  <path d="M 1135,65 L 1115,65 M 1135,65 L 1135,85" class="line-burgundy" stroke-width="1" />
+  <path d="M 65,610 L 85,610 M 65,610 L 65,590" class="line-burgundy" stroke-width="1" />
+  <path d="M 1135,610 L 1115,610 M 1135,610 L 1135,590" class="line-burgundy" stroke-width="1" />
+
+</svg>
