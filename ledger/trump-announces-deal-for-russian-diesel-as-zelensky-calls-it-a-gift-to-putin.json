@@ -1,0 +1,75 @@
+{
+  "slug": "trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin",
+  "url": "https://www.nuvellum.news/article/trump-announces-deal-for-russian-diesel-as-zelensky-calls-it-a-gift-to-putin",
+  "title": "Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-10T02:02:37.283Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T02:02:37.283Z",
+      "remoteId": "72",
+      "remoteUrl": "https://t.me/nuvellum/72",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T02:02:37.283Z",
+      "remoteId": "1277147205491143_122105510631497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105510631497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T02:02:37.283Z",
+      "remoteId": "18044190620641162",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T02:02:37.283Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T02:02:37.283Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
