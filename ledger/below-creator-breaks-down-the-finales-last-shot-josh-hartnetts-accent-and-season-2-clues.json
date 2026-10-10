@@ -1,0 +1,75 @@
+{
+  "slug": "below-creator-breaks-down-the-finales-last-shot-josh-hartnetts-accent-and-season-2-clues",
+  "url": "https://www.nuvellum.news/article/below-creator-breaks-down-the-finales-last-shot-josh-hartnetts-accent-and-season-2-clues",
+  "title": "‘Below’ creator breaks down the finale’s last shot, Josh Hartnett’s accent and Season 2 clues",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T00:02:41.806Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T00:02:41.806Z",
+      "remoteId": "70",
+      "remoteUrl": "https://t.me/nuvellum/70",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T00:02:41.806Z",
+      "remoteId": "1277147205491143_122105450799497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105450799497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T00:02:41.806Z",
+      "remoteId": "17907820212325762",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T00:02:41.806Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T00:02:41.806Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
