@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T03:00:45.002Z"
 readingTime: "1 min"
-image: "/generated/ai/exorcism-of-god-director-alejandro-hidalgo-to-helm-malaysian-hungry-ghost-festival-horror.svg"
-imageAlt: "AI-generated editorial illustration for ‘Exorcism of God’ director Alejandro Hidalgo to helm Malaysian Hungry Ghost Festival horror ‘The Hungry One’"
 status: "published"
 tags: ["Alejandro Hidalgo","The Hungry One","Busan International Film Festival","horror","film"]
 regions: ["southeast-asia-oceania","east-asia"]
