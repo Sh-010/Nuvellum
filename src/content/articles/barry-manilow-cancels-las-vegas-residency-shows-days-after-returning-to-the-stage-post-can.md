@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T18:00:51.008Z"
 readingTime: "1 min"
-image: "/generated/ai/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can.svg"
-imageAlt: "AI-generated editorial illustration for Barry Manilow cancels Las Vegas residency shows days after returning to the stage post-cancer recovery"
 status: "published"
 tags: ["Barry Manilow","Las Vegas","Music","Health"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can.jpg"
+imageAlt: "Barry Manilow live at the Xcel Energy Center in St. Paul, MN on January 11, 2008. Photo taken by Matt Becker from Row 8"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Barry Manilow live at the Xcel Energy Center in St. Paul, MN on January 11, 2008. Photo taken by Matt Becker from Row 8. Image of Barry Manilow, not of the events reported."
+imageCredit: "Matt Becker ( talk ) ( Uploads )"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:BarryManilowKeys.jpg"
 ---
 Following a return to the stage on Thursday night, Barry Manilow has canceled his weekend shows at the International Theater at the Westgate Las Vegas Resort & Casino due to illness.
 
