@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T04:00:44.024Z"
 readingTime: "2 min"
-image: "/generated/ai/vietnamese-horror-arithmadtic-leads-bee-entertainments-busan-market-slate.svg"
-imageAlt: "AI-generated editorial illustration for Vietnamese horror ‘Arithmadtic’ leads Bee Entertainment’s Busan market slate"
 status: "published"
 tags: ["film","horror","Busan International Film Festival","Bee Entertainment"]
 regions: ["southeast-asia-oceania","east-asia"]
