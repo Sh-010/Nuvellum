@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T22:00:42.793Z"
 readingTime: "1 min"
-image: "/generated/ai/floyd-schofield-and-lucas-bahdi-meet-in-chicago-for-vacant-wba-lightweight-title.svg"
-imageAlt: "AI-generated editorial illustration for Floyd Schofield and Lucas Bahdi meet in Chicago for vacant WBA lightweight title"
 status: "published"
 tags: ["boxing","Floyd Schofield","Lucas Bahdi","WBA","Chicago"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/floyd-schofield-and-lucas-bahdi-meet-in-chicago-for-vacant-wba-lightweight-title.jpg"
+imageAlt: "Chicago at Dusk with the 150 North Riverside and the 333 West Wacker Towers"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Chicago at Dusk with the 150 North Riverside and the 333 West Wacker Towers. Image of Chicago, not of the events reported."
+imageCredit: "Matthew T Rader"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Chicago_at_Dusk.jpg"
 ---
 ## Championship bout details
 
