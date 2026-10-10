@@ -1,0 +1,74 @@
+{
+  "slug": "exorcism-of-god-director-alejandro-hidalgo-to-helm-malaysian-hungry-ghost-festival-horror",
+  "url": "https://www.nuvellum.news/article/exorcism-of-god-director-alejandro-hidalgo-to-helm-malaysian-hungry-ghost-festival-horror",
+  "title": "‘Exorcism of God’ director Alejandro Hidalgo to helm Malaysian Hungry Ghost Festival horror ‘The Hungry One’",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T04:02:30.470Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T04:02:30.470Z",
+      "remoteId": "74",
+      "remoteUrl": "https://t.me/nuvellum/74",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T04:02:30.470Z",
+      "remoteId": "1277147205491143_122105611899497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105611899497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T04:02:30.470Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T04:02:30.470Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
