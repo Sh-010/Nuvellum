@@ -1,0 +1,77 @@
+{
+  "slug": "star-trek-s-the-city-on-the-edge-of-forever-gets-comic-adaptation-reprint",
+  "url": "https://www.nuvellum.news/article/star-trek-s-the-city-on-the-edge-of-forever-gets-comic-adaptation-reprint",
+  "title": "Star Trek's “The City on the Edge of Forever” gets comic adaptation reprint",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T19:29:12.417Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T19:29:12.417Z",
+      "remoteId": "78",
+      "remoteUrl": "https://t.me/nuvellum/78",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T19:29:12.417Z",
+      "remoteId": "1277147205491143_122106213909497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106213909497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T19:29:12.417Z",
+      "remoteId": "18122449837937617",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T19:29:12.417Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T19:29:12.417Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
