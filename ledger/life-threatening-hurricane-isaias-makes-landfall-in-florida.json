@@ -1,0 +1,72 @@
+{
+  "slug": "life-threatening-hurricane-isaias-makes-landfall-in-florida",
+  "url": "https://www.nuvellum.news/article/life-threatening-hurricane-isaias-makes-landfall-in-florida",
+  "title": "Life-threatening hurricane Isaias makes landfall in Florida",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-10T03:02:32.668Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T03:02:32.668Z",
+      "remoteId": "73",
+      "remoteUrl": "https://t.me/nuvellum/73",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T03:02:32.668Z",
+      "remoteId": "1277147205491143_122105572731497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122105572731497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T03:02:32.668Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T03:02:32.668Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
