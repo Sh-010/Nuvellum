@@ -1,0 +1,125 @@
+{
+  "version": 2,
+  "slug": "barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can",
+  "url": "https://nuvellum.vercel.app/article/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can",
+  "title": "Barry Manilow cancels Las Vegas residency shows days after returning to the stage post-cancer recovery",
+  "section": "Film & TV",
+  "variant": "culture",
+  "media": {
+    "mode": "photo",
+    "label": "FILE PHOTO",
+    "credit": "Photo: Matt Becker ( talk ) ( Uploads ) / CC BY 3.0",
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 50,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 384,
+      "path": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "culture",
+      "image": "photo",
+      "headline": {
+        "size": 34,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "culture",
+      "image": "photo",
+      "dek": null,
+      "headline": {
+        "size": 70,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 673,
+      "path": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "culture",
+      "image": "photo",
+      "dek": {
+        "size": 38,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "headline": {
+        "size": 70,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 412,
+      "path": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "photo",
+  "square": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/square.svg",
+  "portrait": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/portrait.svg",
+  "landscape": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/landscape.svg",
+  "story": "engines/out/social-cards/barry-manilow-cancels-las-vegas-residency-shows-days-after-returning-to-the-stage-post-can/story.svg",
+  "rasterNeededForLivePosting": true
+}
