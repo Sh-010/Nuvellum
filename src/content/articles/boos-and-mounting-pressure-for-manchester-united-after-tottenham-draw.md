@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T21:00:42.179Z"
 readingTime: "2 min"
-image: "/generated/ai/boos-and-mounting-pressure-for-manchester-united-after-tottenham-draw.svg"
-imageAlt: "AI-generated editorial illustration for Boos and mounting pressure for Manchester United after Tottenham draw"
 status: "published"
 tags: ["Manchester United","Tottenham Hotspur","Premier League","Michael Carrick","football"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/boos-and-mounting-pressure-for-manchester-united-after-tottenham-draw.jpg"
+imageAlt: "Azerbaijan Premier League match between Sabail and Sabah at the ASCO Arena on 6th November 2022"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Azerbaijan Premier League match between Sabail and Sabah at the ASCO Arena on 6th November 2022. Image of Azerbaijan Premier League, not of the events reported."
+imageCredit: "Ureinwohner"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Azerbaijan_Premier_League_match_Sabail-Sabah_(2022-11-06).jpeg"
 ---
 ## A familiar late collapse at Old Trafford
 
