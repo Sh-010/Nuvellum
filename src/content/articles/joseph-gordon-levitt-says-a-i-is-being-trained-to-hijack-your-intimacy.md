@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T20:00:42.172Z"
 readingTime: "2 min"
-image: "/generated/ai/joseph-gordon-levitt-says-a-i-is-being-trained-to-hijack-your-intimacy.svg"
-imageAlt: "AI-generated editorial illustration for Joseph Gordon-Levitt says A.I. is being trained to 'Hijack Your Intimacy'"
 status: "published"
 tags: ["artificial intelligence","Joseph Gordon-Levitt","United Nations","technology"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/joseph-gordon-levitt-says-a-i-is-being-trained-to-hijack-your-intimacy.jpg"
+imageAlt: "Secretary Kerry Addresses Delegates Before Signing the COP21 Climate Change Agreement on Earth Day in New York (26514585581)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Secretary Kerry Addresses Delegates Before Signing the COP21 Climate Change Agreement on Earth Day in New York (26514585581). Image of United Nations, not of the events reported."
+imageCredit: "U.S. Department of State from United States"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Secretary_Kerry_Addresses_Delegates_Before_Signing_the_COP21_Climate_Change_Agreement_on_Earth_Day_in_New_York_(26514585581).jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Secretary_Kerry_Addresses_Delegates_Before_Signing_the_COP21_Climate_Change_Agreement_on_Earth_Day_in_New_York_(26514585581).jpg"
 ---
 ## Concerns over artificial intelligence
 
