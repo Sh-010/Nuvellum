@@ -1,0 +1,75 @@
+{
+  "slug": "director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord",
+  "url": "https://www.nuvellum.news/article/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord",
+  "title": "Director Cristian Mungiu explores tolerance and cultural collision in his new film Fjord",
+  "risk": "low",
+  "firstSeenAt": "2026-10-10T14:40:40.135Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T14:40:40.135Z",
+      "remoteId": "76",
+      "remoteUrl": "https://t.me/nuvellum/76",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T14:40:40.135Z",
+      "remoteId": "1277147205491143_122106015897497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106015897497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-10T14:40:40.135Z",
+      "remoteId": "18081430982347687",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-10T14:40:40.135Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-10T14:40:40.135Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
