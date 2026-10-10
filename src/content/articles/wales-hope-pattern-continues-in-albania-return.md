@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-10"
 publishedAt: "2026-10-10T10:00:56.368Z"
 readingTime: "2 min"
-image: "/generated/ai/wales-hope-pattern-continues-in-albania-return.svg"
-imageAlt: "AI-generated editorial illustration for Wales hope pattern continues in Albania return"
 status: "published"
 tags: ["football","women's football","wales","albania","world cup qualifying"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/wales-hope-pattern-continues-in-albania-return.jpg"
+imageAlt: "Frances (Appleton) Longfellow to Emmeline (Austin) Wadsworth, 10 September 1850 (077020a2 d6e9 4469 b1dd 133de96b7aed)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Frances (Appleton) Longfellow to Emmeline (Austin) Wadsworth, 10 September 1850 (077020a2 d6e9 4469 b1dd 133de96b7aed)"
+imageCredit: "Fanny (Appleton) Longfellow (1817-1861)"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Emmeline_(Austin)_Wadsworth,_10_September_1850_(077020a2-d6e9-4469-b1dd-133de96b7aed).jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Frances_(Appleton)_Longfellow_to_Emmeline_(Austin)_Wadsworth,_10_September_1850_(077020a2-d6e9-4469-b1dd-133de96b7aed).jpg"
 ---
 ## First leg advantage in Llanelli
 
