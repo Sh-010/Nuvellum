@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T08:00:43.734Z"
 readingTime: "2 min"
-image: "/generated/ai/taiwan-s-sole-busan-competition-title-to-be-ordinary-marks-lee-yun-chan-s-return-to-featur.svg"
-imageAlt: "AI-generated editorial illustration for Taiwan's sole Busan competition title 'to be ordinary' marks Lee Yun chan's return to features after two decades"
 status: "published"
 tags: ["Busan International Film Festival","To Be Ordinary","Lee Yun Chan","Taiwanese cinema"]
 regions: ["east-asia","southeast-asia-oceania"]
