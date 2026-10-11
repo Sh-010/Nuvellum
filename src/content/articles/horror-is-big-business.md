@@ -1,8 +1,8 @@
 ---
 title: "Horror is big business"
 dek: "The horror genre has transformed into a dominant tentpole across gaming, film, and television, driven by low production costs and massive returns."
-section: "Technology"
-type: "Explainer"
+section: "Culture"
+type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T12:00:46.598Z"
