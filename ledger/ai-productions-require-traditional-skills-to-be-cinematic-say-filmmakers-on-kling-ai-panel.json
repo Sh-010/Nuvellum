@@ -1,0 +1,77 @@
+{
+  "slug": "ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel",
+  "url": "https://www.nuvellum.news/article/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel",
+  "title": "AI productions require traditional skills to be cinematic, say filmmakers on Kling AI panel",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T23:56:37.502Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T23:56:37.502Z",
+      "remoteId": "89",
+      "remoteUrl": "https://t.me/nuvellum/89",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T23:56:37.502Z",
+      "remoteId": "1277147205491143_122107304151497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107304151497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T23:56:37.502Z",
+      "remoteId": "17980503960102102",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T23:56:37.502Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T23:56:37.502Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
