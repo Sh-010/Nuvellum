@@ -1,7 +1,7 @@
 ---
 title: "Star Trek's “The City on the Edge of Forever” gets comic adaptation reprint"
 dek: "Nearly 60 years after its broadcast, Star Trek's influential time-travel episode receives a reprint via IDW Publishing."
-section: "Gaming"
+section: "Culture"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-10"
