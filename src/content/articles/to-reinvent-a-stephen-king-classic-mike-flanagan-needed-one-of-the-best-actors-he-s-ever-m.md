@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T16:00:42.640Z"
 readingTime: "2 min"
-image: "/generated/ai/to-reinvent-a-stephen-king-classic-mike-flanagan-needed-one-of-the-best-actors-he-s-ever-m.svg"
-imageAlt: "AI-generated editorial illustration for To reinvent a Stephen King classic, Mike Flanagan needed one of the best actors he's ever met"
 status: "published"
 tags: ["Mike Flanagan","Samantha Sloyan","Carrie","Stephen King","Prime Video"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/to-reinvent-a-stephen-king-classic-mike-flanagan-needed-one-of-the-best-actors-he-s-ever-m.jpg"
+imageAlt: "2026 Toronto International Film Festival \"Carrie\" Premiere 13"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: 2026 Toronto International Film Festival \"Carrie\" Premiere 13"
+imageCredit: "Gabriel Hutchinson"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:2026_Toronto_International_Film_Festival_-_%22Carrie%22_Premiere_13.jpg"
 ---
 ## Redefining Margaret White
 
