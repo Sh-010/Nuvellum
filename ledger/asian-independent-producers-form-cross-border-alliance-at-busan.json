@@ -1,0 +1,75 @@
+{
+  "slug": "asian-independent-producers-form-cross-border-alliance-at-busan",
+  "url": "https://www.nuvellum.news/article/asian-independent-producers-form-cross-border-alliance-at-busan",
+  "title": "Asian independent producers form cross-border Alliance at Busan",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-11T09:15:43.128Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T09:15:43.128Z",
+      "remoteId": "83",
+      "remoteUrl": "https://t.me/nuvellum/83",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T09:15:43.128Z",
+      "remoteId": "1277147205491143_122106688647497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106688647497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T09:15:43.128Z",
+      "remoteId": "17993283126018603",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T09:15:43.128Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T09:15:43.128Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
