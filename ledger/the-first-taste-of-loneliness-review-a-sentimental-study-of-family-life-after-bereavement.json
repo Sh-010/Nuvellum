@@ -1,0 +1,77 @@
+{
+  "slug": "the-first-taste-of-loneliness-review-a-sentimental-study-of-family-life-after-bereavement",
+  "url": "https://www.nuvellum.news/article/the-first-taste-of-loneliness-review-a-sentimental-study-of-family-life-after-bereavement",
+  "title": "‘The First Taste of Loneliness’ Review: a sentimental study of family life after bereavement",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T02:08:12.419Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T02:08:12.419Z",
+      "remoteId": "81",
+      "remoteUrl": "https://t.me/nuvellum/81",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T02:08:12.419Z",
+      "remoteId": "1277147205491143_122106429027497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106429027497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T02:08:12.419Z",
+      "remoteId": "18074720225720144",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T02:08:12.419Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T02:08:12.419Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
