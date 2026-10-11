@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T18:00:47.366Z"
 readingTime: "2 min"
-image: "/generated/ai/dhar-mann-outlines-creator-city-vision-at-mipcom.svg"
-imageAlt: "AI-generated editorial illustration for Dhar Mann outlines creator City vision at mipcom"
 status: "published"
 tags: ["Dhar Mann","Creator City","MIPCOM","YouTube","Los Angeles"]
 regions: ["north-america","europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/dhar-mann-outlines-creator-city-vision-at-mipcom.jpg"
+imageAlt: "Opening night of MIPCOM 2010"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Opening night of MIPCOM 2010. Image of MIPCOM, not of the events reported."
+imageCredit: "Angela Natividad"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:MIPCOM_2010_opening_night_02.jpg"
 ---
 ## Creator City campus in Los Angeles
 
