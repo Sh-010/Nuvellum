@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T22:00:48.792Z"
 readingTime: "2 min"
-image: "/generated/ai/john-stamos-addresses-mike-love-s-health-following-concern-over-beach-boys-concert-footage.svg"
-imageAlt: "AI-generated editorial illustration for John Stamos addresses Mike Love's health following concern over Beach Boys concert footage"
 status: "published"
 tags: ["Mike Love","John Stamos","The Beach Boys","music"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/john-stamos-addresses-mike-love-s-health-following-concern-over-beach-boys-concert-footage.jpg"
+imageAlt: "John Stamos at the World of Color Premiere Disney California Adventure"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: John Stamos at the World of Color Premiere Disney California Adventure. Image of John Stamos, not of the events reported."
+imageCredit: "hyku"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:JohnStamosJun10.jpg"
 ---
 Following fan concern over footage from the Beach Boys' concert in Cincinnati, actor and musician John Stamos has issued a statement regarding frontman Mike Love's health. Stamos acknowledged that Love is facing serious health challenges while continuing to perform.
 
