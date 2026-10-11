@@ -14,8 +14,11 @@ const site = Astro.site ?? new URL('https://nuvellum.vercel.app');
 const url = canonical ? new URL(canonical, site) : new URL(Astro.url.pathname, site);
 // '' = a text-led story with no image: no share image rather than unrelated art.
 // Social crawlers need raster previews, not SVGs.
-const shareImage = /\.(?:png|jpe?g|webp)(?:[?#].*)?$/i.test(String(image || ''))
-  ? image : '/icons/nuvellum-512.png';
+const articleSlug = type === 'article' ? url.pathname.match(/^\/article\/([a-z0-9-]+)\/?$/)?.[1] : null;
+const shareImage = articleSlug
+  ? `/api/og?slug=${articleSlug}`
+  : /\.(?:png|jpe?g|webp)(?:[?#].*)?$/i.test(String(image || ''))
+    ? image : '/icons/nuvellum-512.png';
 const imageUrl = new URL(shareImage, site);
 ---
 <meta charset="utf-8" />

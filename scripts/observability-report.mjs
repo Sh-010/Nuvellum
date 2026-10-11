@@ -36,7 +36,8 @@ async function api(path) {
 if (repo && token) {
   try {
     const runs = await api('/actions/runs?branch=main&per_page=100');
-    const core = ['Build Nuvellum', 'Security checks', 'CodeQL', 'Editorial duplicate guard'];
+    // Duplicate guard is triggered on incoming article branches, not on main.
+    const core = ['Build Nuvellum', 'Security checks', 'CodeQL'];
     for (const name of core) {
       const run = (runs?.workflow_runs || []).find(r => r.name === name);
       if (!run) {
@@ -70,7 +71,14 @@ if (repo && token) {
       for (const pr of github.incomingPrs) {
         if (pr.labels.some(x => held.has(String(x).toLowerCase()))) continue;
         const age = (Date.now() - Date.parse(pr.createdAt)) / 3600000;
-        if (age > 24) errors.push(`Incoming PR #${pr.number} has been open ${Math.round(age)}h while autopublish is on`);
+        if (age > 24) {
+          // Evergreen explainers can legitimately remain queued. It is a hard
+          // incident only when the publishing pipeline is also demonstrably stale.
+          const publishAge = staleHours(content.latestAutomatedAt);
+          const message = `Incoming PR #${pr.number} has been open ${Math.round(age)}h while autopublish is on`;
+          if (publishAge !== null && publishAge > 12) errors.push(`${message}; no recent automated publication for ${Math.round(publishAge)}h`);
+          else warnings.push(`${message}; publishing is still active or its latest date is unknown`);
+        }
       }
     }
 
