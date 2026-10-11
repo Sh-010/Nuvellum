@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+
+  
+  <g opacity="0.3" stroke="#2a221c" stroke-width="0.5">
+    <line x1="0" y1="50" x2="1200" y2="50" stroke-dasharray="2, 8" />
+    <line x1="0" y1="150" x2="1200" y2="150" stroke-dasharray="4, 12" />
+    <line x1="0" y1="250" x2="1200" y2="250" stroke-dasharray="1, 6" />
+    <line x1="0" y1="350" x2="1200" y2="350" stroke-dasharray="8, 4" />
+    <line x1="0" y1="450" x2="1200" y2="450" stroke-dasharray="3, 9" />
+    <line x1="0" y1="550" x2="1200" y2="550" stroke-dasharray="5, 5" />
+    <line x1="0" y1="630" x2="1200" y2="630" stroke-dasharray="2, 10" />
+  </g>
+
+  
+  <path d="M 150,120 Q 400,80 750,150 T 1100,200 L 1150,550 Q 800,600 450,580 T 100,500 Z" fill="#7a8275" opacity="0.18" />
+  <path d="M 300,180 Q 550,120 900,220 T 1050,450 Q 700,530 350,480 T 150,300 Z" fill="#661227" opacity="0.08" />
+
+  
+  <g fill="none" stroke="#2a221c" stroke-width="2">
+    
+    <rect x="250" y="80" width="700" height="515" stroke-width="4" />
+    
+    <line x1="483" y1="80" x2="483" y2="595" stroke-width="2" />
+    <line x1="716" y1="80" x2="716" y2="595" stroke-width="2" />
+    
+    <line x1="250" y1="150" x2="950" y2="150" stroke-width="1.5" />
+  </g>
+
+  
+  <g>
+    
+    <path d="M 280,480 Q 366,410 453,480" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.4" />
+    <line x1="280" y1="480" x2="453" y2="480" stroke="#2a221c" stroke-width="1.5" opacity="0.4" />
+    <line x1="320" y1="480" x2="320" y2="520" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+    <line x1="366" y1="450" x2="366" y2="520" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+    <line x1="412" y1="480" x2="412" y2="520" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+
+    
+    <path d="M 340,320 Q 350,270 370,240 Q 390,210 380,180" fill="none" stroke="#661227" stroke-width="3" stroke-linecap="round" />
+    <circle cx="380" cy="170" r="12" fill="#2a221c" />
+    <path d="M 330,350 Q 370,300 410,350" fill="none" stroke="#2a221c" stroke-width="2" />
+
+    <path d="M 400,330 Q 390,280 370,250 Q 350,220 340,190" fill="none" stroke="#2a221c" stroke-width="2" stroke-dasharray="4,4" />
+    <circle cx="335" cy="180" r="10" fill="#2a221c" opacity="0.7" />
+
+    
+    <path d="M 290,200 Q 285,240 295,280" fill="none" stroke="#7a8275" stroke-width="1.5" />
+    <path d="M 310,220 Q 305,260 315,300" fill="none" stroke="#7a8275" stroke-width="1.5" />
+    <path d="M 430,210 Q 435,250 425,290" fill="none" stroke="#7a8275" stroke-width="1.5" />
+  </g>
+
+  
+  <g>
+    
+    <g stroke="#2a221c" stroke-width="1" opacity="0.5">
+      <rect x="520" y="180" width="160" height="15" fill="#e5dcce" />
+      <rect x="530" y="220" width="140" height="12" fill="#e5dcce" />
+      <rect x="515" y="260" width="170" height="15" fill="#e5dcce" />
+      
+      <line x1="535" y1="180" x2="535" y2="195" />
+      <line x1="550" y1="180" x2="550" y2="195" />
+      <line x1="580" y1="180" x2="580" y2="195" />
+      <line x1="620" y1="180" x2="620" y2="195" />
+      <line x1="640" y1="180" x2="640" y2="195" />
+      
+      <line x1="545" y1="220" x2="545" y2="232" />
+      <line x1="590" y1="220" x2="590" y2="232" />
+      <line x1="610" y1="220" x2="610" y2="232" />
+      <line x1="650" y1="220" x2="650" y2="232" />
+    </g>
+
+    
+    <g transform="translate(560, 310)">
+      
+      <path d="M 40,20 C 30,50 30,90 35,160 C 35,190 45,210 60,220 L 100,220 C 115,210 125,190 125,160 C 130,90 130,50 120,20 Z" fill="#efe8db" stroke="#2a221c" stroke-width="3" />
+      
+      <ellipse cx="80" cy="20" rx="40" ry="10" fill="#e5dcce" stroke="#2a221c" stroke-width="2.5" />
+      <ellipse cx="80" cy="16" rx="35" ry="7" fill="none" stroke="#2a221c" stroke-width="1.5" />
+      
+      <path d="M 37,35 L 123,35" stroke="#661227" stroke-width="4" stroke-linecap="round" />
+      
+      <path d="M 60,60 Q 70,80 55,110" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.6" />
+      <path d="M 100,75 Q 90,105 105,130" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.6" />
+      <path d="M 70,140 Q 85,160 80,190" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.6" />
+      
+      <path d="M 45,100 Q 80,120 115,100 C 120,150 115,190 100,210 L 60,210 C 45,190 40,150 45,100 Z" fill="#661227" opacity="0.15" />
+    </g>
+
+    
+    <line x1="500" y1="530" x2="680" y2="530" stroke="#2a221c" stroke-width="3" />
+    <line x1="520" y1="540" x2="660" y2="540" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g>
+    
+    <rect x="760" y="340" width="160" height="180" fill="#e5dcce" stroke="#2a221c" stroke-width="2" rx="4" />
+    
+    <g stroke="#7a8275" stroke-width="1" opacity="0.7">
+      <line x1="780" y1="380" x2="900" y2="380" />
+      <line x1="780" y1="410" x2="880" y2="410" />
+      <line x1="780" y1="440" x2="900" y2="440" />
+      <line x1="780" y1="470" x2="860" y2="470" />
+      <line x1="780" y1="500" x2="890" y2="500" />
+    </g>
+    
+    <g stroke="#661227" stroke-width="1.5" fill="none">
+      <path d="M 830,395 Q 850,380 870,400" />
+      <circle cx="850" cy="455" r="15" />
+      <line x1="835" y1="455" x2="865" y2="455" />
+    </g>
+
+    
+    <g fill="#2a221c">
+      
+      <circle cx="840" cy="205" r="11" />
+      
+      <path d="M 820,270 Q 840,225 860,270 L 880,340 L 800,340 Z" />
+    </g>
+    
+    <polygon points="760,250 920,340 920,530 760,530" fill="#ffffff" opacity="0.1" />
+  </g>
+
+  
+  
+  <line x1="180" y1="615" x2="1020" y2="615" stroke="#661227" stroke-width="3" />
+  <line x1="180" y1="623" x2="1020" y2="623" stroke="#2a221c" stroke-width="1" />
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.5">
+    
+    <line x1="60" y1="40" x2="90" y2="40" />
+    <line x1="60" y1="40" x2="60" y2="70" />
+    
+    <line x1="1140" y1="40" x2="1110" y2="40" />
+    <line x1="1140" y1="40" x2="1140" y2="70" />
+    
+    <line x1="60" y1="635" x2="90" y2="635" />
+    <line x1="60" y1="635" x2="60" y2="605" />
+    
+    <line x1="1140" y1="635" x2="1110" y2="635" />
+    <line x1="1140" y1="635" x2="1140" y2="605" />
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="0.5" opacity="0.4">
+    <line x1="252" y1="83" x2="262" y2="93" />
+    <line x1="252" y1="93" x2="272" y2="113" />
+    <line x1="948" y1="83" x2="938" y2="93" />
+    <line x1="948" y1="93" x2="928" y2="113" />
+  </g>
+
+  
+  <g fill="#7a8275" opacity="0.5">
+    <circle cx="210" cy="180" r="3" />
+    <circle cx="225" cy="165" r="2" />
+    <circle cx="190" cy="210" r="1.5" />
+    <circle cx="980" cy="150" r="2.5" />
+    <circle cx="1010" cy="175" r="1.5" />
+    <circle cx="995" cy="200" r="3" />
+  </g>
+
+</svg>
