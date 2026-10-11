@@ -4,7 +4,11 @@ const GENERIC_IMAGE_RE = /^\/(?:images\/[a-z-]+\.svg$|uploads\/house\/|generated
 
 export function storyImage(article) {
   const src = String(article?.image ?? '').trim();
-  return src && !GENERIC_IMAGE_RE.test(src) ? src : '';
+  // Avoid archive photography depicting a different event; let the article be text-led.
+  const unrelatedArchive = /not of the events? reported/i.test(String(article?.imageCaption || ''));
+  // Never depict a real sensitive event with a machine-generated scene.
+  const sensitiveAi = article?.risk === 'sensitive' && /^\/generated\/ai\//i.test(src);
+  return src && !GENERIC_IMAGE_RE.test(src) && !unrelatedArchive && !sensitiveAi ? src : '';
 }
 
 export const hasStoryImage = (article) => storyImage(article) !== '';
