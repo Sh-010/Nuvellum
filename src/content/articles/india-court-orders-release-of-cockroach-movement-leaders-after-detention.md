@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T06:00:41.335Z"
 readingTime: "2 min"
-image: "/generated/ai/india-court-orders-release-of-cockroach-movement-leaders-after-detention.svg"
-imageAlt: "AI-generated editorial illustration for India court orders release of 'cockroach' movement leaders after detention"
 status: "published"
 tags: ["India","protest","Narendra Modi","youth"]
 regions: ["south-asia"]
