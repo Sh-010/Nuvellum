@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "palestinian-president-postpones-elections-until-late-2027",
+  "url": "https://nuvellum.vercel.app/article/palestinian-president-postpones-elections-until-late-2027",
+  "title": "Palestinian President postpones elections until late 2027",
+  "section": "World",
+  "variant": "standard",
+  "media": {
+    "mode": "illustration",
+    "label": "ILLUSTRATION",
+    "credit": null,
+    "usedBy": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": "illustration",
+      "headline": {
+        "size": 64,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 497,
+      "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": "illustration",
+      "headline": {
+        "size": 52,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": "illustration",
+      "dek": {
+        "size": 30,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": true
+      },
+      "headline": {
+        "size": 70,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 648,
+      "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": "illustration",
+      "dek": {
+        "size": 38,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": true
+      },
+      "headline": {
+        "size": 86,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "imageHeight": 567,
+      "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "illustration",
+  "square": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/square.svg",
+  "portrait": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/portrait.svg",
+  "landscape": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/landscape.svg",
+  "story": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/story.svg",
+  "rasterNeededForLivePosting": true
+}
