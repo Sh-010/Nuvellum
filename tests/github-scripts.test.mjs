@@ -172,7 +172,7 @@ test('auto-publish: a time-sensitive candidate waiting over 6h is closed as stal
     assert.match(state.comments[0].body, /stale.*News candidate waited 7h without publication \(limit 6h\)[\s\S]*Nothing was deleted/);
     assert.ok(!state.deleted.includes('incoming/low-1a2b3c4d'), 'its branch (and article) are kept');
     assert.deepEqual(state.merged.map(m => m.number), [5], 'the low-risk explainer may publish when sensitive stories are held');
-    assert.equal(state.prs.find(p => p.number === 5).state, 'open', 'a 9h-old Explainer does not expire');
+    assert.equal(state.prs.find(p => p.number === 5).state, 'closed', 'a 9h-old Explainer publishes and closes by merge, rather than expiring as stale');
     assert.match(r.out, /STALE PR #1 .* closed/);
   } finally { server.close(); }
 });
