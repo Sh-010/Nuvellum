@@ -1,0 +1,77 @@
+{
+  "slug": "the-pitt-and-all-her-fault-among-winners-of-inaugural-easterseals-disability-arts-culture",
+  "url": "https://www.nuvellum.news/article/the-pitt-and-all-her-fault-among-winners-of-inaugural-easterseals-disability-arts-culture",
+  "title": "‘The Pitt’ and ‘All Her Fault’ among winners of inaugural Easterseals Disability Arts & Culture Awards",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T01:03:00.338Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T01:03:00.338Z",
+      "remoteId": "80",
+      "remoteUrl": "https://t.me/nuvellum/80",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T01:03:00.338Z",
+      "remoteId": "1277147205491143_122106394731497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106394731497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T01:03:00.338Z",
+      "remoteId": "18117580793071590",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T01:03:00.338Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T01:03:00.338Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
