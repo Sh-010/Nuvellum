@@ -1,0 +1,75 @@
+{
+  "slug": "owners-fear-healthy-dog-died-due-to-orange-substance-exposure-on-contaminated-land",
+  "url": "https://www.nuvellum.news/article/owners-fear-healthy-dog-died-due-to-orange-substance-exposure-on-contaminated-land",
+  "title": "Owners fear 'healthy' dog died due to orange substance exposure on contaminated land",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-11T15:23:32.247Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:23:32.247Z",
+      "remoteId": "85",
+      "remoteUrl": "https://t.me/nuvellum/85",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:23:32.247Z",
+      "remoteId": "1277147205491143_122106970461497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106970461497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:23:32.247Z",
+      "remoteId": "18196095247380843",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T15:23:32.247Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T15:23:32.247Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
