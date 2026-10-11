@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <rect id="bg" width="1200" height="675" fill="#f3ecdf"/>
+
+    
+    <pattern id="hatch-dense" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.6" opacity="0.15"/>
+    </pattern>
+    <pattern id="hatch-cross" width="10" height="10" patternTransform="rotate(30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#661227" stroke-width="0.5" opacity="0.2"/>
+      <line x1="0" y1="0" x2="10" y2="0" stroke="#661227" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+    <pattern id="dot-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#7a7067" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  
+  
+  <rect x="0" y="0" width="1200" height="675" fill="url(#dot-grid)" opacity="0.5"/>
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.4"/>
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.3"/>
+
+  
+  
+  
+  
+
+  
+  <g stroke="#2a221c" stroke-width="1.2" fill="none" opacity="0.5">
+    <path d="M 600, 140 L 640, 180 L 560, 180 Z"/>
+    <path d="M 520, 180 L 680, 180 L 700, 200 L 500, 200 Z"/>
+    <path d="M 460, 200 L 740, 200 L 760, 215 L 440, 215 Z"/>
+    
+    <line x1="600" y1="140" x2="600" y2="115"/>
+    <circle cx="600" cy="112" r="3" fill="#2a221c"/>
+  </g>
+
+  
+  <line x1="200" y1="535" x2="1000" y2="535" stroke="#2a221c" stroke-width="3"/>
+  <line x1="220" y1="543" x2="980" y2="543" stroke="#2a221c" stroke-width="1"/>
+  <rect x="250" y="525" width="700" height="5" fill="#661227" opacity="0.8"/>
+
+  
+  
+  
+  <g transform="translate(340, 230)">
+    <polygon points="0,0 60,15 50,295 -10,295" fill="#d8cebf" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <polygon points="0,0 60,15 50,295 -10,295" fill="url(#hatch-dense)"/>
+    
+    <rect x="-15" y="-12" width="85" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="-15" y="285" width="75" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <line x1="10" y1="10" x2="5" y2="285" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+    <line x1="25" y1="12" x2="20" y2="285" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+    <line x1="40" y1="14" x2="35" y2="285" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+  </g>
+
+  
+  <g transform="translate(480, 220) rotate(2)">
+    <polygon points="0,0 55,10 40,305 -15,305" fill="#cfc4b4" stroke="#2a221c" stroke-width="1.5"/>
+    <polygon points="0,0 55,10 40,305 -15,305" fill="url(#hatch-dense)"/>
+    <rect x="-20" y="-12" width="80" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="-18" y="295" width="70" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="10" y1="8" x2="5" y2="295" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+    <line x1="25" y1="9" x2="18" y2="295" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+  </g>
+
+  
+  <g transform="translate(625, 215) rotate(-1)">
+    <polygon points="0,0 50,15 45,310 -5,310" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    <polygon points="0,0 50,15 45,310 -5,310" fill="url(#hatch-cross)"/>
+    <rect x="-10" y="-12" width="70" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="-8" y="300" width="65" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <path d="M 15,80 L 35,110 L 10,140 L 30,180" fill="none" stroke="#efe8db" stroke-width="2"/>
+    <path d="M 25,200 L 5,230 L 20,260" fill="none" stroke="#efe8db" stroke-width="1.5"/>
+  </g>
+
+  
+  <g transform="translate(770, 230)">
+    <polygon points="0,0 60,15 50,295 -10,295" fill="#d8cebf" stroke="#2a221c" stroke-width="1.5"/>
+    <polygon points="0,0 60,15 50,295 -10,295" fill="url(#hatch-dense)"/>
+    <rect x="-15" y="-12" width="85" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="-15" y="285" width="75" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="15" y1="10" x2="10" y2="285" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+    <line x1="30" y1="12" x2="25" y2="285" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+    <line x1="45" y1="14" x2="40" y2="285" stroke="#2a221c" stroke-width="0.8" opacity="0.6"/>
+  </g>
+
+  
+  
+  
+
+  
+  <g stroke="#2a221c" stroke-width="2.5" fill="none">
+    <line x1="280" y1="195" x2="920" y2="195" transform="rotate(-3 600 195)"/>
+    
+    <polygon points="600,195 585,225 615,225" fill="#efe8db" stroke="#2a221c" stroke-width="2"/>
+    <circle cx="600" cy="195" r="5" fill="#661227"/>
+  </g>
+
+  
+  <g transform="translate(310, 310)">
+    
+    <line x1="0" y1="0" x2="-40" y2="80" stroke="#2a221c" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="40" y2="80" stroke="#2a221c" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="0" y2="80" stroke="#2a221c" stroke-width="1.2"/>
+    
+    <ellipse cx="0" cy="85" rx="55" ry="14" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M -55,85 C -55,105 55,105 55,85" fill="#d8cebf" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <rect x="-35" y="65" width="70" height="8" fill="#efe8db" stroke="#2a221c" stroke-width="1"/>
+    <rect x="-30" y="55" width="60" height="12" fill="#d8cebf" stroke="#2a221c" stroke-width="1"/>
+    <rect x="-38" y="43" width="76" height="14" fill="#efe8db" stroke="#2a221c" stroke-width="1"/>
+    <line x1="-30" y1="50" x2="30" y2="50" stroke="#661227" stroke-width="1.5"/>
+    <rect x="-32" y="30" width="64" height="15" fill="#661227" stroke="#2a221c" stroke-width="1"/>
+    
+    <line x1="-15" y1="35" x2="15" y2="40" stroke="#efe8db" stroke-width="1.5"/>
+    <circle cx="-10" cy="35" r="2" fill="#efe8db"/>
+    <circle cx="10" cy="40" r="2" fill="#efe8db"/>
+  </g>
+
+  
+  <g transform="translate(890, 345)">
+    
+    <line x1="0" y1="0" x2="-40" y2="70" stroke="#2a221c" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="40" y2="70" stroke="#2a221c" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="0" y2="70" stroke="#2a221c" stroke-width="1.2"/>
+    
+    <ellipse cx="0" cy="75" rx="50" ry="12" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M -50,75 C -50,95 50,95 50,75" fill="#d8cebf" stroke="#2a221c" stroke-width="1.5"/>
+
+    
+    <g transform="translate(-22, 20)">
+      <rect x="0" y="0" width="44" height="58" rx="4" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <ellipse cx="22" cy="0" rx="22" ry="6" fill="#801b33" stroke="#2a221c" stroke-width="1.5"/>
+      <ellipse cx="22" cy="58" rx="22" ry="6" fill="#4d0d1c" stroke="#2a221c" stroke-width="1.5"/>
+      <line x1="0" y1="18" x2="44" y2="18" stroke="#2a221c" stroke-width="2"/>
+      <line x1="0" y1="40" x2="44" y2="40" stroke="#2a221c" stroke-width="2"/>
+      
+      <path d="M 12,18 L 22,29 L 32,18" fill="none" stroke="#efe8db" stroke-width="2"/>
+    </g>
+  </g>
+
+  
+  
+  
+
+  
+  <g fill="none" opacity="0.4">
+    <path d="M 150, 420 Q 250, 380 350, 400 T 550, 460 T 750, 480 T 950, 440" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <path d="M 150, 350 Q 250, 310 350, 360 T 550, 410 T 750, 490 T 1050, 510" stroke="#661227" stroke-width="2"/>
+    
+    <circle cx="350" cy="360" r="3" fill="#661227"/>
+    <circle cx="550" cy="410" r="3" fill="#661227"/>
+    <circle cx="750" cy="490" r="3" fill="#661227"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" fill="none" opacity="0.6">
+    
+    <path d="M 60, 580 L 60, 610 L 90, 610"/>
+    <path d="M 65, 585 L 65, 605 L 85, 605"/>
+    <circle cx="75" cy="595" r="4" fill="#661227"/>
+    
+    
+    <path d="M 1140, 580 L 1140, 610 L 1110, 610"/>
+    <path d="M 1135, 585 L 1135, 605 L 1115, 605"/>
+    <circle cx="1125" cy="595" r="4" fill="#661227"/>
+
+    
+    <path d="M 60, 95 L 60, 65 L 90, 65"/>
+    <circle cx="75" cy="80" r="2" fill="#2a221c"/>
+
+    
+    <path d="M 1140, 95 L 1140, 65 L 1110, 65"/>
+    <circle cx="1125" cy="80" r="2" fill="#2a221c"/>
+  </g>
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#661227" stroke-width="0.5" opacity="0.2"/>
+</svg>
