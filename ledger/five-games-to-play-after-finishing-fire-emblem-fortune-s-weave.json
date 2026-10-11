@@ -1,0 +1,75 @@
+{
+  "slug": "five-games-to-play-after-finishing-fire-emblem-fortune-s-weave",
+  "url": "https://www.nuvellum.news/article/five-games-to-play-after-finishing-fire-emblem-fortune-s-weave",
+  "title": "Five games to play after finishing Fire Emblem: Fortune's Weave",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T15:36:28.333Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:36:28.333Z",
+      "remoteId": "86",
+      "remoteUrl": "https://t.me/nuvellum/86",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:36:28.333Z",
+      "remoteId": "1277147205491143_122106979677497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106979677497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:36:28.333Z",
+      "remoteId": "18217798411353050",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T15:36:28.333Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T15:36:28.333Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
