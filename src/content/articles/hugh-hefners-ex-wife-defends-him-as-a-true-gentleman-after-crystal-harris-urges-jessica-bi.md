@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T23:00:42.803Z"
 readingTime: "2 min"
-image: "/generated/ai/hugh-hefners-ex-wife-defends-him-as-a-true-gentleman-after-crystal-harris-urges-jessica-bi.svg"
-imageAlt: "AI-generated editorial illustration for Hugh Hefner’s ex-wife defends him as a 'True Gentleman' after Crystal Harris urges Jessica Biel to reconsider role"
 status: "published"
 tags: ["Hugh Hefner","Kimberly Hefner","Crystal Harris","Jessica Biel","Playmates"]
 regions: []
