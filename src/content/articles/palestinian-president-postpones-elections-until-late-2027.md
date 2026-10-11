@@ -21,7 +21,7 @@ editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
 ---
-Palestinian President Mahmoud Abbas has issued a decree postponing legislative and presidential elections to September 11, 2027. Abbas had previously scheduled legislative elections for November 28, with presidential elections planned for early next year. Had they proceeded as previously planned, they would have marked the first Palestinian elections in more than two decades.
+According to [Deutsche Welle](https://www.dw.com/en/palestinian-president-postpones-elections-until-late-2027/a-79630075), Palestinian President Mahmoud Abbas has issued a decree postponing legislative and presidential elections to September 11, 2027. Abbas had previously scheduled legislative elections for November 28, with presidential elections planned for early next year. Had they proceeded as previously planned, they would have marked the first Palestinian elections in more than two decades.
 
 ## Reasons for the delay
 
@@ -35,4 +35,4 @@ Israel's Foreign Minister Gideon Saar responded to the announcement on social me
 
 Abbas had previously provided a written commitment to French President Emmanuel Macron and Saudi Crown Prince Mohammed bin Salman that elections would be held as part of France's recognition of the State of Palestine the prior year. The delay was announced only weeks after Abbas reaffirmed his commitment to holding elections during a video address to the United Nations General Assembly. 
 
-Abbas has governed by decree since his presidential mandate expired in 2009.
+Deutsche Welle also reports that Abbas has governed by decree since his presidential mandate expired in 2009.
