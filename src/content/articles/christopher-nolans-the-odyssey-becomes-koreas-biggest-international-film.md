@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T13:00:50.061Z"
 readingTime: "2 min"
-image: "/generated/ai/christopher-nolans-the-odyssey-becomes-koreas-biggest-international-film.svg"
-imageAlt: "AI-generated editorial illustration for Christopher Nolan’s ‘The Odyssey’ becomes Korea’s biggest international film"
 status: "published"
 tags: ["Box Office","Christopher Nolan","The Odyssey","Korea"]
 regions: ["east-asia"]
