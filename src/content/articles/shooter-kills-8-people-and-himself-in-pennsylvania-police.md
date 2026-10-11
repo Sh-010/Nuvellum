@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T02:00:41.150Z"
 readingTime: "1 min"
-image: "/generated/ai/shooter-kills-8-people-and-himself-in-pennsylvania-police.svg"
-imageAlt: "AI-generated editorial illustration for Shooter kills 8 people and himself in Pennsylvania — police"
 status: "published"
 tags: ["crime","shooting","pennsylvania","erie"]
 regions: ["north-america"]
