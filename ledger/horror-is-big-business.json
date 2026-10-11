@@ -1,0 +1,77 @@
+{
+  "slug": "horror-is-big-business",
+  "url": "https://www.nuvellum.news/article/horror-is-big-business",
+  "title": "Horror is big business",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T15:56:14.968Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:56:14.968Z",
+      "remoteId": "87",
+      "remoteUrl": "https://t.me/nuvellum/87",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:56:14.968Z",
+      "remoteId": "1277147205491143_122106993333497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106993333497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T15:56:14.968Z",
+      "remoteId": "18230027479328660",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T15:56:14.968Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T15:56:14.968Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
