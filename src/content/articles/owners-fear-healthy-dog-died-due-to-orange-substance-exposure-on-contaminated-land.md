@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T15:00:59.132Z"
 readingTime: "2 min"
-image: "/generated/ai/owners-fear-healthy-dog-died-due-to-orange-substance-exposure-on-contaminated-land.svg"
-imageAlt: "AI-generated editorial illustration for Owners fear 'healthy' dog died due to orange substance exposure on contaminated land"
 status: "published"
 tags: ["pollution","environment","wales","wrexham"]
 regions: ["europe-central-asia"]
