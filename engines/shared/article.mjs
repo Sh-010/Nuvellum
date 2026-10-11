@@ -2,6 +2,7 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BRAND } from './brand.mjs';
+import { storyImage } from '../../src/lib/story-image.js';
 
 export const REPO_ROOT = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 const ARTICLES = join(REPO_ROOT, 'src', 'content', 'articles');
@@ -103,8 +104,8 @@ export function loadStory(slug, { allowPlaceholder = false } = {}) {
   const parsed = parseArticle(readFileSync(file, 'utf8'));
   const data = parsed.data;
   if (data.status !== 'published') throw new Error('article ' + slug + ' is not published');
-  const image = String(data.image || '').trim() || null;
-  const info = imageInfo(data);
+  const image = storyImage(data) || null;
+  const info = imageInfo({ ...data, image });
   return {
     slug,
     url: BRAND.siteUrl + '/article/' + slug,
@@ -121,7 +122,7 @@ export function loadStory(slug, { allowPlaceholder = false } = {}) {
     image,
     imagePath: info.path,
     imageKind: info.kind,
-    mediaMode: info.kind,
+    mediaMode: image ? info.kind : 'text-led',
     author: String(data.author || '').trim(),
     // Breaking/developing status comes only from the article itself (frontmatter or tags), never inferred.
     live: data.breaking === true || /^breaking$/i.test(String(data.status_label || '')) || (Array.isArray(data.tags) && data.tags.some(t => /^breaking$/i.test(t))) ? 'breaking'

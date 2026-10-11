@@ -149,6 +149,9 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
     } else if (data.risk === 'sensitive') {
       if (data.verification !== 'cleared') fail(`sensitive story verification is "${data.verification ?? 'missing'}", not "cleared"`);
       if (String(data.reviewedBy || '').trim() !== VERIFICATION_REVIEWER) fail(`sensitive story reviewedBy is not "${VERIFICATION_REVIEWER}"`);
+      // A model verifying against the source is not independent corroboration.
+      // Hold for a human editor instead of allowing a purely automatic merge.
+      fail('sensitive reporting requires human editorial approval; automatic merge is disabled');
     } else {
       fail(`risk is "${data.risk ?? 'missing'}"`);
     }
@@ -165,6 +168,19 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
       if (!/^File photo:/i.test(String(data.imageCaption || ''))) fail('quality: automated Wikimedia caption must begin "File photo:"');
     }
     for (const q of newStoryQualityProblems(data, body, { slug, branch: pr?.head?.ref, hasAiArt: hasAiArt && !hasPhoto })) fail(`quality: ${q}`);
+    // Deterministic safety net for categories and imagery that passed a model review.
+    const title = String(data.title || '');
+    const section = String(data.section || '').toLowerCase();
+    if (/\b(films?|movies?|cinema|filmmakers?|directors?|actors?|actresses?|adaptations?|television|tv series)\b/i.test(title)
+        && ['gaming','technology','science'].includes(section)) {
+      fail('quality: screen/film subject has an implausible section; reclassification required');
+    }
+    if (/\bfavou?rite\b/i.test(title) && !/\bfavou?rite\b/i.test(body)) {
+      fail('quality: headline claims a favourite without evidence in the article');
+    }
+    if (data.imageProvider === 'wikimedia' && /not of the events? reported/i.test(String(data.imageCaption || ''))) {
+      fail('quality: unrelated representative photograph is not allowed in automated reporting; use text-led');
+    }
   }
 
   // --- Repository checks on this exact commit ----------------------------

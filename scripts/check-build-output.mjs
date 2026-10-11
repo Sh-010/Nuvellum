@@ -93,11 +93,16 @@ for (const { slug, data } of published) {
   if (!/<time datetime="\d{4}-\d{2}-\d{2}T[^"]+">/.test(h)) errors.push(`${slug}: <time datetime> missing`);
   if (!/"@type":"(News)?Article"/.test(h)) errors.push(`${slug}: Article JSON-LD missing`);
   if (GENERIC_ART_RE.test(h)) errors.push(`${slug}: generic section art is rendered as a story image`);
-  // Ingestion sources stay in the article metadata (newsroom, verification, duplicate checks) but are
-  // not published: no sources block, no link to or mention of an ingestion URL, no JSON-LD isBasedOn,
-  // and no internal sourceNote. Attribution a story needs is written into its text.
+  // Internal source metadata stays private, but an editor may deliberately
+  // link to a named outlet inside the article body. Do not reject that citation.
+  const bodyStart = h.indexOf('id="articleBody"');
+  const bodyEnd = h.indexOf('class="story-end"', bodyStart);
+  const articleBody = bodyStart >= 0 && bodyEnd > bodyStart ? h.slice(bodyStart, bodyEnd) : '';
   for (const u of Array.isArray(data.sourceUrls) ? data.sourceUrls : []) {
-    if (h.includes(String(u).replace(/&/g, '&amp;'))) errors.push(`${slug}: ingestion source ${u} is exposed on the page`);
+    const escaped = String(u).replace(/&/g, '&amp;');
+    if (h.includes(escaped) && !articleBody.includes('href="' + escaped + '"')) {
+      errors.push(`${slug}: ingestion source ${u} is exposed outside an intentional in-text attribution`);
+    }
   }
   if (h.includes('class="context sources"') || h.includes('"isBasedOn"')) errors.push(`${slug}: public sources block or isBasedOn present`);
   if (data.sourceNote && h.includes(String(data.sourceNote).replace(/&/g, '&amp;'))) errors.push(`${slug}: internal sourceNote is exposed on the page`);

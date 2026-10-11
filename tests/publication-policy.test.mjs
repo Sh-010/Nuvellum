@@ -55,7 +55,7 @@ test('low-risk: blocked when status is review', () => no(input({ fields: { statu
 test('low-risk: blocked if a verification ran and did not clear', () => no(input({ fields: { verification: 'uncertain' } }), /verification/));
 
 // ---- Sensitive ---------------------------------------------------------
-test('sensitive: publishes only when verification cleared by the pipeline', () => ok(input({ fields: sensitiveCleared })));
+test('sensitive: pipeline clearance alone is not human approval; hold automated merge', () => no(input({ fields: sensitiveCleared }), /human editorial approval/));
 test('sensitive: blocked when verification failed', () => no(input({ fields: { ...sensitiveCleared, verification: 'failed' } }), /verification/));
 test('sensitive: blocked when verification uncertain', () => no(input({ fields: { ...sensitiveCleared, verification: 'uncertain' } }), /verification/));
 test('sensitive: blocked when verification missing', () => no(input({ fields: { risk: 'sensitive', reviewedBy: VERIFICATION_REVIEWER } }), /verification/));
@@ -204,4 +204,23 @@ test('quality: committed AI art must be referenced by the article', () => no(inp
 test('quality: malformed publishedAt is held; valid one passes', () => {
   no(input({ fields: { publishedAt: '26/09/2026 10:00' } }), /publishedAt/);
   ok(input({ fields: { publishedAt: '2026-09-26T10:15:00Z' } }));
+});
+
+test('quality: a film item misfiled as Gaming or Technology is held', () => {
+  no(input({ fields: { title: 'Director discusses a new film adaptation', section: 'Gaming' } }), /implausible section/);
+  no(input({ fields: { title: 'Actor discusses new film', section: 'Technology' } }), /implausible section/);
+});
+test('quality: unsupported favourite overclaim and unrelated photo are held', () => {
+  no(input({ fields: { title: 'The director\'s favorite film is released today' } }), /favourite/);
+  no(input({ files: [
+    { filename: `src/content/articles/${SLUG}.md`, status: 'added' },
+    { filename: `public/uploads/articles/${SLUG}.jpg`, status: 'added' }
+  ], fields: {
+    image: `/uploads/articles/${SLUG}.jpg`,
+    imageProvider: 'wikimedia', imageKind: 'photo',
+    imageCaption: 'File photo: a building. Image of a building, not of the events reported.',
+    imageCredit: 'Example', imageLicense: 'CC BY 4.0',
+    imageLicenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    imageSourcePage: 'https://commons.wikimedia.org/wiki/File:Example.jpg'
+  } }), /unrelated representative photograph/);
 });

@@ -124,7 +124,7 @@ test('auto-publish: merges ONE cleared story per rolling hour, pinned to head SH
   } finally { server.close(); }
 });
 
-test('auto-publish: a sweep within 50 minutes merges nothing; the next hourly slot (even a few minutes early) merges the next story', async () => {
+test('auto-publish: an hourly slot cannot bypass the human hold on sensitive stories', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
@@ -133,7 +133,7 @@ test('auto-publish: a sweep within 50 minutes merges nothing; the next hourly sl
     assert.deepEqual(state.merged.map(m => m.number), [1], again.out);
     state.prs.find(p => p.number === 1).merged_at = new Date(Date.now() - 57 * 60000).toISOString();
     const later = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on' });
-    assert.deepEqual(state.merged.map(m => m.number), [1, 2], later.out);
+    assert.deepEqual(state.merged.map(m => m.number), [1], later.out);
   } finally { server.close(); }
 });
 
@@ -171,8 +171,8 @@ test('auto-publish: a time-sensitive candidate waiting over 6h is closed as stal
     assert.deepEqual(state.labels, [{ number: 1, labels: ['stale'] }]);
     assert.match(state.comments[0].body, /stale.*News candidate waited 7h without publication \(limit 6h\)[\s\S]*Nothing was deleted/);
     assert.ok(!state.deleted.includes('incoming/low-1a2b3c4d'), 'its branch (and article) are kept');
-    assert.deepEqual(state.merged.map(m => m.number), [2], 'the fresher approved story publishes in its place');
-    assert.equal(state.prs.find(p => p.number === 5).state, 'open', 'a 9h-old Explainer does not expire');
+    assert.deepEqual(state.merged.map(m => m.number), [5], 'the low-risk explainer may publish when sensitive stories are held');
+    assert.equal(state.prs.find(p => p.number === 5).state, 'closed', 'a 9h-old Explainer publishes and closes by merge, rather than expiring as stale');
     assert.match(r.out, /STALE PR #1 .* closed/);
   } finally { server.close(); }
 });
@@ -195,7 +195,7 @@ test('auto-publish: kill switch off means evaluate only, never merge; every rule
     assert.equal(r.code, 0, r.out);
     assert.equal(state.merged.length, 0);
     assert.match(r.out, /READY PR #1/);
-    assert.match(r.out, /READY PR #2/);
+    assert.match(r.out, /HOLD {2}PR #2[\s\S]*human editorial approval/);
     assert.match(r.out, /HOLD {2}PR #3[\s\S]*uncertain/);
     assert.match(r.out, /HOLD {2}PR #4[\s\S]*CodeQL" is in_progress/);
   } finally { server.close(); }
@@ -207,7 +207,8 @@ test('auto-publish: HEAD_BRANCH limits evaluation to one PR', async () => {
   try {
     const r = await run('auto-publish.mjs', { GITHUB_API_URL: url, NUVELLUM_AUTOPUBLISH: 'on', HEAD_BRANCH: 'incoming/sens-ok-1a2b3c4d' });
     assert.equal(r.code, 0, r.out);
-    assert.deepEqual(state.merged.map(m => m.number), [2]);
+    assert.deepEqual(state.merged.map(m => m.number), []);
+    assert.match(r.out, /human editorial approval/);
   } finally { server.close(); }
 });
 

@@ -1,7 +1,7 @@
 ---
 title: "10 Stephen King movie adaptations that are better than the books"
 dek: "A look at ten cinematic adaptations of Stephen King stories that improved upon their source material by streamlining plots, expanding characters, and making bold narrative changes."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-10"

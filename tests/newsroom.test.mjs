@@ -123,7 +123,8 @@ test('buildArticle: cleared sensitive story passes the real gate and validator p
   assert.deepEqual(fm.sourceUrls, ['https://bbc.co.uk/news/articles/cqgmrr9ekr7ko']);
   assert.equal(fm.sourceNote.startsWith('Prepared from BBC reporting.'), true);
   assert.deepEqual(contentPolicyErrors(fm, 'x'), []);
-  const g = gate(b); assert.equal(g.publish, true, g.reasons.join('; '));
+  const g = gate(b); assert.equal(g.publish, false);
+  assert.match(g.reasons.join('; '), /human editorial approval/);
 });
 
 test('buildArticle: uncleared stories are written as review and never pass the gate', () => {
