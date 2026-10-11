@@ -1,8 +1,8 @@
 ---
-title: "Stephen King's favorite adaptation, The Boogeyman, arrives on Netflix"
+title: "Stephen King praised The Boogeyman before its Netflix arrival"
 dek: "Rob Savage's 2023 supernatural horror-thriller based on a Stephen King short story is now available to stream on Netflix."
-section: "Gaming"
-type: "News"
+section: "Film & TV"
+type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T11:00:42.638Z"
