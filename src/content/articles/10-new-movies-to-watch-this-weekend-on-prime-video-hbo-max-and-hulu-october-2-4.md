@@ -1,7 +1,7 @@
 ---
 title: "10 New movies to watch this weekend on Prime Video, HBO Max, and Hulu (October 2-4)"
 dek: "A look at ten new movies and streaming releases available across various platforms for the weekend of October 2-4."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-02"

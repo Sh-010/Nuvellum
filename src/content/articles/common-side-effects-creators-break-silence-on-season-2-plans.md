@@ -1,7 +1,7 @@
 ---
 title: "'Common Side Effects' creators break silence on season 2 plans"
 dek: "Co-creators Joe Bennett and Steve Hely revealed details about the upcoming second season of the Adult Swim animated series at New York Comic Con."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-10"

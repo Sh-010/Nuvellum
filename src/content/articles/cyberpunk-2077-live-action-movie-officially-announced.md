@@ -1,7 +1,7 @@
 ---
 title: "Cyberpunk 2077 live-action movie officially announced"
 dek: "CD Projekt Red and Paramount Pictures are developing a live-action film adaptation of Cyberpunk 2077, with producer Lorenzo di Bonaventura attached."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-08"
