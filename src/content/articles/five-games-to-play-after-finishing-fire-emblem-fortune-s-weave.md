@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T14:00:42.871Z"
 readingTime: "2 min"
-image: "/generated/ai/five-games-to-play-after-finishing-fire-emblem-fortune-s-weave.svg"
-imageAlt: "AI-generated editorial illustration for Five games to play after finishing Fire Emblem: Fortune's Weave"
 status: "published"
 tags: ["Fire Emblem","gaming","strategy games","RPG"]
 regions: []
