@@ -1,7 +1,7 @@
 ---
 title: "Variety unveils its 10 Broadway Stars to Watch for the 2026-27 season"
 dek: "Variety has released its annual list highlighting actors, composers, librettists, and playwrights expected to shape the upcoming theater season."
-section: "Film & TV"
+section: "Culture"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-02"
