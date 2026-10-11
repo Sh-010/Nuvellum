@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/aaron-sorkins-social-reckoning-is-off-to-a-weak-start.jpg"
+imageAlt: "Aaron Sorkin at the John F. Kennedy International Airport in New York City, New York, United States Worried"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Aaron Sorkin at the John F. Kennedy International Airport in New York City, New York, United States Worried. Image of Aaron Sorkin, not of the events reported."
+imageCredit: "Ondra Soukup from Prague, Czech Republic"
+imageLicense: "CC BY 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:AaronSorkinJFK.jpg"
 ---
 ## Domestic box office projections
 
