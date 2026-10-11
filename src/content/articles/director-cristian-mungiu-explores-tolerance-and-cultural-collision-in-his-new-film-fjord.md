@@ -1,7 +1,7 @@
 ---
 title: "Director Cristian Mungiu explores tolerance and cultural collision in his new film Fjord"
 dek: "With his sixth feature, director Cristian Mungiu examines a religious Romanian family settling in Norway, raising questions about societal tolerance and discipline."
-section: "Technology"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-10"
