@@ -3,18 +3,10 @@
   "slug": "director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord",
   "url": "https://nuvellum.vercel.app/article/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord",
   "title": "Director Cristian Mungiu explores tolerance and cultural collision in his new film Fjord",
-  "section": "Technology",
+  "section": "Film & TV",
   "variant": "standard",
   "media": {
-    "mode": "photo",
-    "label": "FILE PHOTO",
-    "credit": "Photo: John Sears / CC BY-SA 4.0",
-    "usedBy": [
-      "square",
-      "landscape",
-      "portrait",
-      "story"
-    ]
+    "mode": "text-led"
   },
   "quote": {
     "skipped": "disabled"
@@ -25,14 +17,20 @@
       "width": 1080,
       "height": 1080,
       "variant": "standard",
-      "image": "photo",
+      "image": null,
       "headline": {
-        "size": 60,
+        "size": 74,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 497,
+      "byline": null,
       "path": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/square.svg",
       "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
       "safeZone": {
@@ -47,13 +45,15 @@
       "width": 1200,
       "height": 630,
       "variant": "standard",
-      "image": "photo",
+      "image": null,
       "headline": {
-        "size": 42,
-        "lines": 4,
+        "size": 66,
+        "lines": 3,
         "layout": "normal",
         "clipped": false
       },
+      "dek": null,
+      "byline": null,
       "path": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/landscape.svg",
       "use": "link card / og:image, Telegram, X summary_large_image",
       "safeZone": {
@@ -68,15 +68,20 @@
       "width": 1080,
       "height": 1350,
       "variant": "standard",
-      "image": "photo",
-      "dek": null,
+      "image": null,
       "headline": {
-        "size": 70,
-        "lines": 4,
+        "size": 98,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 648,
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/portrait.svg",
       "use": "Instagram / Facebook feed",
       "safeZone": {
@@ -91,20 +96,20 @@
       "width": 1080,
       "height": 1920,
       "variant": "standard",
-      "image": "photo",
-      "dek": {
-        "size": 38,
-        "lines": 1,
-        "layout": "normal",
-        "clipped": true
-      },
+      "image": null,
       "headline": {
-        "size": 72,
-        "lines": 4,
+        "size": 98,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 567,
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
       "path": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/story.svg",
       "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
       "safeZone": {
@@ -116,7 +121,7 @@
     }
   ],
   "clipped": false,
-  "sourceMode": "photo",
+  "sourceMode": "text-led",
   "square": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/square.svg",
   "portrait": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/portrait.svg",
   "landscape": "engines/out/social-cards/director-cristian-mungiu-explores-tolerance-and-cultural-collision-in-his-new-film-fjord/landscape.svg",

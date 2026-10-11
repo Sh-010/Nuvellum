@@ -3,18 +3,13 @@
   "slug": "horror-is-big-business",
   "url": "https://nuvellum.vercel.app/article/horror-is-big-business",
   "title": "Horror is big business",
-  "section": "Technology",
-  "variant": "standard",
+  "section": "Culture",
+  "variant": "analysis",
   "media": {
     "mode": "illustration",
     "label": "ILLUSTRATION",
     "credit": null,
-    "usedBy": [
-      "square",
-      "landscape",
-      "portrait",
-      "story"
-    ]
+    "usedBy": []
   },
   "quote": {
     "skipped": "disabled"
@@ -24,15 +19,21 @@
       "format": "square",
       "width": 1080,
       "height": 1080,
-      "variant": "standard",
-      "image": "illustration",
+      "variant": "analysis",
+      "image": null,
       "headline": {
-        "size": 64,
-        "lines": 1,
+        "size": 118,
+        "lines": 2,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 497,
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/horror-is-big-business/square.svg",
       "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
       "safeZone": {
@@ -46,14 +47,16 @@
       "format": "landscape",
       "width": 1200,
       "height": 630,
-      "variant": "standard",
-      "image": "illustration",
+      "variant": "analysis",
+      "image": null,
       "headline": {
-        "size": 52,
-        "lines": 2,
+        "size": 88,
+        "lines": 1,
         "layout": "normal",
         "clipped": false
       },
+      "dek": null,
+      "byline": null,
       "path": "engines/out/social-cards/horror-is-big-business/landscape.svg",
       "use": "link card / og:image, Telegram, X summary_large_image",
       "safeZone": {
@@ -67,21 +70,21 @@
       "format": "portrait",
       "width": 1080,
       "height": 1350,
-      "variant": "standard",
-      "image": "illustration",
+      "variant": "analysis",
+      "image": null,
+      "headline": {
+        "size": 128,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": false
+      },
       "dek": {
-        "size": 30,
+        "size": 34,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "headline": {
-        "size": 70,
-        "lines": 1,
-        "layout": "normal",
-        "clipped": false
-      },
-      "imageHeight": 648,
+      "byline": null,
       "path": "engines/out/social-cards/horror-is-big-business/portrait.svg",
       "use": "Instagram / Facebook feed",
       "safeZone": {
@@ -95,21 +98,21 @@
       "format": "story",
       "width": 1080,
       "height": 1920,
-      "variant": "standard",
-      "image": "illustration",
+      "variant": "analysis",
+      "image": null,
+      "headline": {
+        "size": 150,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": false
+      },
       "dek": {
-        "size": 38,
+        "size": 42,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "headline": {
-        "size": 86,
-        "lines": 1,
-        "layout": "normal",
-        "clipped": false
-      },
-      "imageHeight": 567,
+      "byline": null,
       "path": "engines/out/social-cards/horror-is-big-business/story.svg",
       "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
       "safeZone": {
@@ -121,7 +124,7 @@
     }
   ],
   "clipped": false,
-  "sourceMode": "illustration",
+  "sourceMode": "text-led",
   "square": "engines/out/social-cards/horror-is-big-business/square.svg",
   "portrait": "engines/out/social-cards/horror-is-big-business/portrait.svg",
   "landscape": "engines/out/social-cards/horror-is-big-business/landscape.svg",

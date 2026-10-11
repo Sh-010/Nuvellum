@@ -6,15 +6,7 @@
   "section": "World",
   "variant": "standard",
   "media": {
-    "mode": "illustration",
-    "label": "ILLUSTRATION",
-    "credit": null,
-    "usedBy": [
-      "square",
-      "landscape",
-      "portrait",
-      "story"
-    ]
+    "mode": "text-led"
   },
   "quote": {
     "skipped": "disabled"
@@ -25,14 +17,20 @@
       "width": 1080,
       "height": 1080,
       "variant": "standard",
-      "image": "illustration",
+      "image": null,
       "headline": {
-        "size": 64,
+        "size": 96,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 497,
+      "byline": null,
       "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/square.svg",
       "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
       "safeZone": {
@@ -47,13 +45,15 @@
       "width": 1200,
       "height": 630,
       "variant": "standard",
-      "image": "illustration",
+      "image": null,
       "headline": {
-        "size": 52,
-        "lines": 4,
+        "size": 88,
+        "lines": 3,
         "layout": "normal",
         "clipped": false
       },
+      "dek": null,
+      "byline": null,
       "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/landscape.svg",
       "use": "link card / og:image, Telegram, X summary_large_image",
       "safeZone": {
@@ -68,20 +68,20 @@
       "width": 1080,
       "height": 1350,
       "variant": "standard",
-      "image": "illustration",
-      "dek": {
-        "size": 30,
-        "lines": 2,
-        "layout": "normal",
-        "clipped": true
-      },
+      "image": null,
       "headline": {
-        "size": 70,
+        "size": 128,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 648,
+      "byline": null,
       "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/portrait.svg",
       "use": "Instagram / Facebook feed",
       "safeZone": {
@@ -96,20 +96,20 @@
       "width": 1080,
       "height": 1920,
       "variant": "standard",
-      "image": "illustration",
-      "dek": {
-        "size": 38,
-        "lines": 2,
-        "layout": "normal",
-        "clipped": true
-      },
+      "image": null,
       "headline": {
-        "size": 86,
-        "lines": 3,
+        "size": 132,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 567,
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
       "path": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/story.svg",
       "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
       "safeZone": {
@@ -121,7 +121,7 @@
     }
   ],
   "clipped": false,
-  "sourceMode": "illustration",
+  "sourceMode": "text-led",
   "square": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/square.svg",
   "portrait": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/portrait.svg",
   "landscape": "engines/out/social-cards/palestinian-president-postpones-elections-until-late-2027/landscape.svg",
