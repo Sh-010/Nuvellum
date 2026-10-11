@@ -2,7 +2,7 @@
 const {
   title='Nuvellum',
   description='Beyond the headline.',
-  image='/images/world.svg',
+  image='/icons/nuvellum-512.png',
   canonical,
   type='website',
   publishedTime,
@@ -13,7 +13,10 @@ const {
 const site = Astro.site ?? new URL('https://nuvellum.vercel.app');
 const url = canonical ? new URL(canonical, site) : new URL(Astro.url.pathname, site);
 // '' = a text-led story with no image: no share image rather than unrelated art.
-const imageUrl = image ? new URL(image, site) : null;
+// Social crawlers need raster previews, not SVGs.
+const shareImage = /\.(?:png|jpe?g|webp)(?:[?#].*)?$/i.test(String(image || ''))
+  ? image : '/icons/nuvellum-512.png';
+const imageUrl = new URL(shareImage, site);
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,6 +34,7 @@ const imageUrl = image ? new URL(image, site) : null;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={url} />
+<meta property="og:image:alt" content={title} />
 {imageUrl && <meta property="og:image" content={imageUrl} />}
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
