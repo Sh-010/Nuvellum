@@ -1,7 +1,7 @@
 ---
 title: "Sydney Sweeney thriller 'The Housemaid' lands on HBO Max"
 dek: "Paul Feig's screen adaptation of Freida McFadden's psychological thriller novel stars Sydney Sweeney and Amanda Seyfried."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-09"
