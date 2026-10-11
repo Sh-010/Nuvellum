@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T01:00:50.011Z"
 readingTime: "2 min"
-image: "/generated/ai/the-first-taste-of-loneliness-review-a-sentimental-study-of-family-life-after-bereavement.svg"
-imageAlt: "AI-generated editorial illustration for ‘The First Taste of Loneliness’ Review: a sentimental study of family life after bereavement"
 status: "published"
 tags: ["The First Taste of Loneliness","Gu You","Busan Film Festival","film review"]
 regions: ["east-asia"]
