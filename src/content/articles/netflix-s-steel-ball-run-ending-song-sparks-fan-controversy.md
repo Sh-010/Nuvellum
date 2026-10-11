@@ -1,7 +1,7 @@
 ---
 title: "Netflix's Steel Ball Run ending song sparks fan controversy"
 dek: "The latest season of JoJo's Bizarre Adventure has broken a 14-year tradition by replacing Western ending tracks with a Japanese hip-hop song."
-section: "Gaming"
+section: "Anime"
 type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-10-02"
