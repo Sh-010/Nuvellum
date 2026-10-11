@@ -1,0 +1,74 @@
+{
+  "slug": "fox-launching-extracted-international-production-hub-in-malaysia",
+  "url": "https://www.nuvellum.news/article/fox-launching-extracted-international-production-hub-in-malaysia",
+  "title": "Fox launching 'Extracted' international production hub in Malaysia",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T07:04:18.853Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T07:04:18.853Z",
+      "remoteId": "82",
+      "remoteUrl": "https://t.me/nuvellum/82",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T07:04:18.853Z",
+      "remoteId": "1277147205491143_122106597201497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106597201497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T07:04:18.853Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T07:04:18.853Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
