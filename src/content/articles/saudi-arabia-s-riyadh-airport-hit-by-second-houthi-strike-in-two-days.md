@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T17:00:53.482Z"
 readingTime: "3 min"
-image: "/generated/ai/saudi-arabia-s-riyadh-airport-hit-by-second-houthi-strike-in-two-days.svg"
-imageAlt: "AI-generated editorial illustration for Saudi Arabia's Riyadh airport hit by second Houthi strike in two days"
 status: "published"
 tags: ["Saudi Arabia","Yemen","Houthis","Riyadh"]
 regions: ["middle-east-north-africa"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/saudi-arabia-s-riyadh-airport-hit-by-second-houthi-strike-in-two-days.png"
+imageAlt: "South Yemen location map خريطة موقع الجنوب العربي محافظات اليمن الجنوبي"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: South Yemen location map خريطة موقع الجنوب العربي محافظات اليمن الجنوبي"
+imageCredit: "This vector image includes elements that have been taken or adapted from this file:"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:South_Yemen_location_map_%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9_%D9%85%D9%88%D9%82%D8%B9_%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A_%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A7%D8%AA_%D8%A7%D9%84%D9%8A%D9%85%D9%86_%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8%D9%8A.svg"
 ---
 ## Airport struck for second consecutive day
 
