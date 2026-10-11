@@ -1,0 +1,77 @@
+{
+  "slug": "christopher-nolans-the-odyssey-becomes-koreas-biggest-international-film",
+  "url": "https://www.nuvellum.news/article/christopher-nolans-the-odyssey-becomes-koreas-biggest-international-film",
+  "title": "Christopher Nolan’s ‘The Odyssey’ becomes Korea’s biggest international film",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T13:04:08.167Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T13:04:08.167Z",
+      "remoteId": "84",
+      "remoteUrl": "https://t.me/nuvellum/84",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T13:04:08.167Z",
+      "remoteId": "1277147205491143_122106873063497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122106873063497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T13:04:08.167Z",
+      "remoteId": "17928479265180699",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T13:04:08.167Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T13:04:08.167Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
