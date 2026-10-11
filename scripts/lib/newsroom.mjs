@@ -244,6 +244,17 @@ export function newStoryQualityProblems(data, body, { slug, branch, hasAiArt } =
   const title = String(data.title || '');
   if (title.length > 140) p.push(`headline is ${title.length} characters (max 140)`);
   if (looksTitleCase(title)) p.push('headline is in Title Case; Nuvellum uses sentence case');
+  const section = String(data.section || '').toLowerCase();
+  const screenSubject = /\b(films?|movies?|cinema|filmmakers?|directors?|actors?|actresses?|adaptations?|television|tv series)\b/i.test(title);
+  if (screenSubject && ['gaming', 'technology', 'science'].includes(section)) {
+    p.push('screen/film subject has an implausible section; editorial reclassification required');
+  }
+  if (/\bfavou?rite\b/i.test(title) && !/\bfavou?rite\b/i.test(String(body))) {
+    p.push('headline claims a favourite without supporting evidence in the article');
+  }
+  if (data.imageProvider === 'wikimedia' && /not of the events? reported/i.test(String(data.imageCaption || ''))) {
+    p.push('unrelated representative photograph is not allowed in new automated reporting; use text-led');
+  }
   if (/prepared from source reporting/i.test(String(data.sourceNote || '')) || !String(data.sourceNote || '').trim()) {
     p.push('sourceNote is missing or still the "Prepared from Source reporting" placeholder');
   }
