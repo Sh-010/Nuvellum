@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T20:00:42.323Z"
 readingTime: "2 min"
-image: "/generated/ai/why-disney-s-kids-family-division-is-working-with-creators-like-dhar-mann-and-nastya.svg"
-imageAlt: "AI-generated editorial illustration for Why Disney's Kids & Family division is working with creators like Dhar Mann and Nastya"
 status: "published"
 tags: ["Disney","MipJunior","Dhar Mann","Nastya","Streaming","Content Strategy"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/why-disney-s-kids-family-division-is-working-with-creators-like-dhar-mann-and-nastya.jpg"
+imageAlt: "Walt Disney Studios Alameda Entrance"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Walt Disney Studios Alameda Entrance. Image of The Walt Disney Company, not of the events reported."
+imageCredit: "Coolcaesar"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Walt_Disney_Studios_Alameda_Entrance.jpg"
 ---
 During a panel discussion at MipJunior in Cannes, executives from Disney's Kids & Family division detailed the studio's strategy to address disruptions in youth viewing habits by partnering with prominent online creators such as Dhar Mann and Nastya.
 
