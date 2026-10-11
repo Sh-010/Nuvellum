@@ -149,6 +149,9 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
     } else if (data.risk === 'sensitive') {
       if (data.verification !== 'cleared') fail(`sensitive story verification is "${data.verification ?? 'missing'}", not "cleared"`);
       if (String(data.reviewedBy || '').trim() !== VERIFICATION_REVIEWER) fail(`sensitive story reviewedBy is not "${VERIFICATION_REVIEWER}"`);
+      // A model verifying against the source is not independent corroboration.
+      // Hold for a human editor instead of allowing a purely automatic merge.
+      fail('sensitive reporting requires human editorial approval; automatic merge is disabled');
     } else {
       fail(`risk is "${data.risk ?? 'missing'}"`);
     }
