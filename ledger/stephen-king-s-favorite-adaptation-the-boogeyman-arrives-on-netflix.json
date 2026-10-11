@@ -1,0 +1,74 @@
+{
+  "slug": "stephen-king-s-favorite-adaptation-the-boogeyman-arrives-on-netflix",
+  "url": "https://www.nuvellum.news/article/stephen-king-s-favorite-adaptation-the-boogeyman-arrives-on-netflix",
+  "title": "Stephen King praised The Boogeyman before its Netflix arrival",
+  "risk": "low",
+  "firstSeenAt": "2026-10-11T20:32:11.996Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T20:32:11.996Z",
+      "remoteId": "88",
+      "remoteUrl": "https://t.me/nuvellum/88",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-11T20:32:11.996Z",
+      "remoteId": "1277147205491143_122107190571497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107190571497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-11T20:32:11.996Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-11T20:32:11.996Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
