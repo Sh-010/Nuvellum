@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-11"
 publishedAt: "2026-10-11T05:00:43.166Z"
 readingTime: "2 min"
-image: "/generated/ai/midday-meal-review-majid-majidi-charts-a-teachers-desperate-struggle.svg"
-imageAlt: "AI-generated editorial illustration for ‘Midday Meal’ review: Majid Majidi charts a teacher’s desperate struggle"
 status: "published"
 tags: ["film","review","Majid Majidi","Busan International Film Festival"]
 regions: ["middle-east-north-africa"]
