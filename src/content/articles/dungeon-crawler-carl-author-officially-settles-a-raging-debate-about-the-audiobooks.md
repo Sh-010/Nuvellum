@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T11:00:47.924Z"
 readingTime: "2 min"
-image: "/generated/ai/dungeon-crawler-carl-author-officially-settles-a-raging-debate-about-the-audiobooks.svg"
-imageAlt: "AI-generated editorial illustration for 'Dungeon Crawler Carl' author officially settles a raging debate about the audiobooks"
 status: "published"
 tags: ["Dungeon Crawler Carl","Matt Dinniman","audiobooks","LitRPG"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/dungeon-crawler-carl-author-officially-settles-a-raging-debate-about-the-audiobooks.jpg"
+imageAlt: "Matt Dinniman at San Diego Comic Con 2026"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Matt Dinniman at San Diego Comic Con 2026. Image of Matt Dinniman, not of the events reported."
+imageCredit: "Kevin Paul"
+imageLicense: "CC BY 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Matt_Dinniman_at_San_Diego_Comic_Con_2026-2.jpg"
 ---
 ## The audiobook speed debate
 
