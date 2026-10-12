@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T05:00:49.042Z"
 readingTime: "2 min"
-image: "/generated/ai/swansea-s-humble-approach-paying-off-says-ben-cabango.svg"
-imageAlt: "AI-generated editorial illustration for Swansea's humble approach paying off, says Ben Cabango"
 status: "published"
 tags: ["Swansea City","Championship","Ben Cabango","Football"]
 regions: ["europe-central-asia"]
