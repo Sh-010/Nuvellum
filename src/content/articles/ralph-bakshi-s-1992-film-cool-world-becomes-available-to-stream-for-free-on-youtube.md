@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T00:00:42.177Z"
 readingTime: "2 min"
-image: "/generated/ai/ralph-bakshi-s-1992-film-cool-world-becomes-available-to-stream-for-free-on-youtube.svg"
-imageAlt: "AI-generated editorial illustration for Ralph Bakshi's 1992 film 'Cool World' becomes available to stream for free on YouTube"
 status: "published"
 tags: ["Cool World","Ralph Bakshi","YouTube","animation"]
 regions: []
