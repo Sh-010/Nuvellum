@@ -1,5 +1,5 @@
 ---
-title: "Navigating the Crossroads in Order of the Sinking Star"
+title: "How to navigate the crossroads in Order of the Sinking Star"
 dek: "A guide to choosing which direction to explore first upon reaching the Crossroads in Order of the Sinking Star."
 section: "Gaming"
 type: "Explainer"
