@@ -1,0 +1,77 @@
+{
+  "slug": "midday-meal-review-majid-majidi-charts-a-teachers-desperate-struggle",
+  "url": "https://www.nuvellum.news/article/midday-meal-review-majid-majidi-charts-a-teachers-desperate-struggle",
+  "title": "‘Midday Meal’ review: Majid Majidi charts a teacher’s desperate struggle",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T15:27:35.815Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T15:27:35.815Z",
+      "remoteId": "96",
+      "remoteUrl": "https://t.me/nuvellum/96",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T15:27:35.815Z",
+      "remoteId": "1277147205491143_122107905795497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107905795497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    },
+    "threads": {
+      "containerId": "17949810075321818",
+      "containerCreatedAt": "2026-10-12T15:27:47.131Z",
+      "updatedAt": "2026-10-12T15:27:35.815Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T15:27:35.815Z",
+      "remoteId": "18024042425927947",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T15:27:35.815Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T15:27:35.815Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
