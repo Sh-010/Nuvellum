@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T20:00:47.750Z"
 readingTime: "1 min"
-image: "/generated/ai/garrett-hedlund-jake-lacy-and-jessica-biel-to-star-in-downriver.svg"
-imageAlt: "AI-generated editorial illustration for Garrett Hedlund, Jake Lacy and Jessica Biel to star in 'Downriver'"
 status: "published"
 tags: ["Garrett Hedlund","Jake Lacy","Jessica Biel","Artists Equity Independent Pictures","Hungry Bull Productions"]
 regions: ["north-america"]
