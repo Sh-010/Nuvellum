@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T21:00:46.130Z"
 readingTime: "2 min"
-image: "/generated/ai/us-actress-selma-blair-accused-of-assault-after-incident-with-flight-attendants.svg"
-imageAlt: "AI-generated editorial illustration for US actress Selma Blair accused of assault after incident with flight attendants"
 status: "published"
 tags: ["Selma Blair","Delta Airlines","FBI","New York Port Authority"]
 regions: ["north-america"]
