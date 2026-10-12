@@ -69,7 +69,7 @@ export async function acquireForArticle(path,{doApply=false,search=searchWikimed
   const data=parseFrontmatter(src)||{};
   const slug=basename(path).replace(/\.md$/,'');data.slug=slug;
   if(/not of the events? reported/i.test(String(data.imageCaption||''))){
-    if(doApply){writeFileSync(abs,removeVisualMetadata(src));const photo=join(root,'public',String(data.image||''));if(existsSync(photo)&&new RegExp(`/uploads/articles/${slug}\\.(?:jpe?g|png|webp)$`,'i').test(String(data.image||'')))rmSync(photo);}
+    if(doApply){writeFileSync(abs,removeVisualMetadata(src));const image=String(data.image||'');const photo=join(root,'public',image);if(existsSync(photo)&&['jpg','jpeg','png','webp'].some(ext=>image===`/uploads/articles/${slug}.${ext}`))rmSync(photo);}
     return{outcome:'text-led',slug,fallbackType:'text-led'};
   }
   if(data.imageProvider==='wikimedia'||new RegExp(`^/uploads/articles/${slug}\\.(?:jpe?g|png|webp)$`,'i').test(String(data.image||'')))return{outcome:'already-acquired',slug};
