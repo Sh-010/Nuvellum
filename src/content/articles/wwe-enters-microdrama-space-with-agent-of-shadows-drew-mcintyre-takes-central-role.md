@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T16:00:41.966Z"
 readingTime: "2 min"
-image: "/generated/ai/wwe-enters-microdrama-space-with-agent-of-shadows-drew-mcintyre-takes-central-role.svg"
-imageAlt: "AI-generated editorial illustration for WWE enters microdrama space with 'Agent of Shadows,' Drew McIntyre takes central role"
 status: "published"
 tags: ["WWE","ReelShort","Drew McIntyre","Agent of Shadows","microdrama"]
 regions: []
