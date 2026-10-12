@@ -1,0 +1,77 @@
+{
+  "slug": "shane-gillis-bombs-snl-monologue-again-with-remarks-on-gyms-and-hitler",
+  "url": "https://www.nuvellum.news/article/shane-gillis-bombs-snl-monologue-again-with-remarks-on-gyms-and-hitler",
+  "title": "Shane Gillis bombs 'SNL' monologue again with remarks on gyms and Hitler",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T23:11:12.296Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T23:11:12.296Z",
+      "remoteId": "104",
+      "remoteUrl": "https://t.me/nuvellum/104",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T23:11:12.296Z",
+      "remoteId": "1277147205491143_122108091861497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108091861497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    },
+    "threads": {
+      "containerId": "17949862422321818",
+      "containerCreatedAt": "2026-10-12T23:11:22.854Z",
+      "updatedAt": "2026-10-12T23:11:12.296Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T23:11:12.296Z",
+      "remoteId": "18086176637306027",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T23:11:12.296Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T23:11:12.296Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
