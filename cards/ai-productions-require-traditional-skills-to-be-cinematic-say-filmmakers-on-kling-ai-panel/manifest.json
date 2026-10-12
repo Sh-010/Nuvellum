@@ -4,17 +4,9 @@
   "url": "https://nuvellum.vercel.app/article/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel",
   "title": "AI productions require traditional skills to be cinematic, say filmmakers on Kling AI panel",
   "section": "Film & TV",
-  "variant": "culture",
+  "variant": "standard",
   "media": {
-    "mode": "photo",
-    "label": "FILE PHOTO",
-    "credit": "Photo: by lwy / CC BY 2.0",
-    "usedBy": [
-      "square",
-      "landscape",
-      "portrait",
-      "story"
-    ]
+    "mode": "text-led"
   },
   "quote": {
     "skipped": "disabled"
@@ -24,15 +16,21 @@
       "format": "square",
       "width": 1080,
       "height": 1080,
-      "variant": "culture",
-      "image": "photo",
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 56,
-        "lines": 3,
+        "size": 72,
+        "lines": 4,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 520,
+      "dek": {
+        "size": 30,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/square.svg",
       "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
       "safeZone": {
@@ -46,14 +44,16 @@
       "format": "landscape",
       "width": 1200,
       "height": 630,
-      "variant": "culture",
-      "image": "photo",
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 34,
-        "lines": 4,
+        "size": 62,
+        "lines": 3,
         "layout": "normal",
         "clipped": false
       },
+      "dek": null,
+      "byline": null,
       "path": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/landscape.svg",
       "use": "link card / og:image, Telegram, X summary_large_image",
       "safeZone": {
@@ -67,16 +67,21 @@
       "format": "portrait",
       "width": 1080,
       "height": 1350,
-      "variant": "culture",
-      "image": "photo",
-      "dek": null,
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 70,
-        "lines": 4,
+        "size": 88,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 673,
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/portrait.svg",
       "use": "Instagram / Facebook feed",
       "safeZone": {
@@ -90,16 +95,21 @@
       "format": "story",
       "width": 1080,
       "height": 1920,
-      "variant": "culture",
-      "image": "photo",
-      "dek": null,
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 72,
-        "lines": 4,
+        "size": 88,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 648,
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/story.svg",
       "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
       "safeZone": {
@@ -111,7 +121,7 @@
     }
   ],
   "clipped": false,
-  "sourceMode": "photo",
+  "sourceMode": "text-led",
   "square": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/square.svg",
   "portrait": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/portrait.svg",
   "landscape": "engines/out/social-cards/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel/landscape.svg",

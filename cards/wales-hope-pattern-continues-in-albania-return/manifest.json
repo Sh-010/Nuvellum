@@ -6,15 +6,7 @@
   "section": "Sports",
   "variant": "standard",
   "media": {
-    "mode": "photo",
-    "label": "FILE PHOTO",
-    "credit": "Photo: Fanny (Appleton) Longfellow (1817-1861) / Public domain",
-    "usedBy": [
-      "square",
-      "landscape",
-      "portrait",
-      "story"
-    ]
+    "mode": "text-led"
   },
   "quote": {
     "skipped": "disabled"
@@ -25,14 +17,20 @@
       "width": 1080,
       "height": 1080,
       "variant": "standard",
-      "image": "photo",
+      "image": null,
       "headline": {
-        "size": 64,
-        "lines": 2,
+        "size": 118,
+        "lines": 4,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 497,
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/square.svg",
       "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
       "safeZone": {
@@ -47,13 +45,15 @@
       "width": 1200,
       "height": 630,
       "variant": "standard",
-      "image": "photo",
+      "image": null,
       "headline": {
-        "size": 52,
+        "size": 88,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
+      "dek": null,
+      "byline": null,
       "path": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/landscape.svg",
       "use": "link card / og:image, Telegram, X summary_large_image",
       "safeZone": {
@@ -68,20 +68,20 @@
       "width": 1080,
       "height": 1350,
       "variant": "standard",
-      "image": "photo",
-      "dek": {
-        "size": 30,
-        "lines": 2,
-        "layout": "normal",
-        "clipped": true
-      },
+      "image": null,
       "headline": {
-        "size": 70,
+        "size": 128,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 648,
+      "byline": null,
       "path": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/portrait.svg",
       "use": "Instagram / Facebook feed",
       "safeZone": {
@@ -96,20 +96,20 @@
       "width": 1080,
       "height": 1920,
       "variant": "standard",
-      "image": "photo",
-      "dek": {
-        "size": 38,
-        "lines": 2,
-        "layout": "normal",
-        "clipped": true
-      },
+      "image": null,
       "headline": {
-        "size": 86,
+        "size": 146,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 567,
+      "byline": null,
       "path": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/story.svg",
       "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
       "safeZone": {
@@ -121,7 +121,7 @@
     }
   ],
   "clipped": false,
-  "sourceMode": "photo",
+  "sourceMode": "text-led",
   "square": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/square.svg",
   "portrait": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/portrait.svg",
   "landscape": "engines/out/social-cards/wales-hope-pattern-continues-in-albania-return/landscape.svg",

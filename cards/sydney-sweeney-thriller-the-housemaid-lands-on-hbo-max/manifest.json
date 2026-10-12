@@ -4,17 +4,9 @@
   "url": "https://nuvellum.vercel.app/article/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max",
   "title": "Sydney Sweeney thriller 'The Housemaid' lands on HBO Max",
   "section": "Film & TV",
-  "variant": "culture",
+  "variant": "standard",
   "media": {
-    "mode": "photo",
-    "label": "FILE PHOTO",
-    "credit": "Photo: Max / CC BY 3.0",
-    "usedBy": [
-      "square",
-      "landscape",
-      "portrait",
-      "story"
-    ]
+    "mode": "text-led"
   },
   "quote": {
     "skipped": "disabled"
@@ -24,15 +16,21 @@
       "format": "square",
       "width": 1080,
       "height": 1080,
-      "variant": "culture",
-      "image": "photo",
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 60,
+        "size": 108,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
         "lines": 2,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 605,
+      "byline": null,
       "path": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/square.svg",
       "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
       "safeZone": {
@@ -46,14 +44,16 @@
       "format": "landscape",
       "width": 1200,
       "height": 630,
-      "variant": "culture",
-      "image": "photo",
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 52,
-        "lines": 4,
+        "size": 84,
+        "lines": 3,
         "layout": "normal",
         "clipped": false
       },
+      "dek": null,
+      "byline": null,
       "path": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/landscape.svg",
       "use": "link card / og:image, Telegram, X summary_large_image",
       "safeZone": {
@@ -67,16 +67,21 @@
       "format": "portrait",
       "width": 1080,
       "height": 1350,
-      "variant": "culture",
-      "image": "photo",
-      "dek": null,
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 70,
+        "size": 114,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
         "lines": 3,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 783,
+      "byline": null,
       "path": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/portrait.svg",
       "use": "Instagram / Facebook feed",
       "safeZone": {
@@ -90,16 +95,21 @@
       "format": "story",
       "width": 1080,
       "height": 1920,
-      "variant": "culture",
-      "image": "photo",
-      "dek": null,
+      "variant": "standard",
+      "image": null,
       "headline": {
-        "size": 86,
-        "lines": 4,
+        "size": 112,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
-      "imageHeight": 648,
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
       "path": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/story.svg",
       "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
       "safeZone": {
@@ -111,7 +121,7 @@
     }
   ],
   "clipped": false,
-  "sourceMode": "photo",
+  "sourceMode": "text-led",
   "square": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/square.svg",
   "portrait": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/portrait.svg",
   "landscape": "engines/out/social-cards/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max/landscape.svg",
