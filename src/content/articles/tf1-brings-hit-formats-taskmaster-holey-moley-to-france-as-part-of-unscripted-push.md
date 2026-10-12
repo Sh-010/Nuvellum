@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T06:00:56.459Z"
 readingTime: "2 min"
-image: "/generated/ai/tf1-brings-hit-formats-taskmaster-holey-moley-to-france-as-part-of-unscripted-push.svg"
-imageAlt: "AI-generated editorial illustration for TF1 brings hit formats 'Taskmaster,' 'Holey Moley' to France as part of unscripted push"
 status: "published"
 tags: ["TF1","Taskmaster","Holey Moley","France","television"]
 regions: ["europe-central-asia"]
