@@ -1,7 +1,7 @@
 ---
 title: "Ralph Bakshi's 1992 film 'Cool World' becomes available to stream for free on YouTube"
 dek: "Ralph Bakshi's 1992 hybrid live-action and animated feature Cool World is currently streaming for free on YouTube."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-12"
