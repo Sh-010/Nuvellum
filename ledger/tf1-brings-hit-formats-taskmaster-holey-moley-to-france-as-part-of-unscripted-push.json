@@ -1,0 +1,74 @@
+{
+  "slug": "tf1-brings-hit-formats-taskmaster-holey-moley-to-france-as-part-of-unscripted-push",
+  "url": "https://www.nuvellum.news/article/tf1-brings-hit-formats-taskmaster-holey-moley-to-france-as-part-of-unscripted-push",
+  "title": "TF1 brings hit formats 'Taskmaster,' 'Holey Moley' to France as part of unscripted push",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T06:04:46.289Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T06:04:46.289Z",
+      "remoteId": "91",
+      "remoteUrl": "https://t.me/nuvellum/91",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T06:04:46.289Z",
+      "remoteId": "1277147205491143_122107535145497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107535145497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T06:04:46.289Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T06:04:46.289Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
