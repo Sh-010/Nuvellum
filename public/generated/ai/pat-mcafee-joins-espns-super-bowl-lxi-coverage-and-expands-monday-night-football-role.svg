@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="600" cy="337" r="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="100%" stop-color="#ebdcc7"/>
+    
+    
+    
+    <pattern id="hatchBurgundy" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#661227" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="hatchCharcoal" width="6" height="6" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#2a221c" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="hatchStone" width="10" height="10" patternTransform="rotate(60 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#8c7e72" stroke-width="1"/>
+    </pattern>
+
+    
+    <filter id="subtleShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#2a221c" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)"/>
+
+  
+  <g stroke="#8c7e72" stroke-width="1" opacity="0.4" stroke-dasharray="6,6">
+    <line x1="100" y1="337.5" x2="1100" y2="337.5"/>
+    <line x1="600" y1="80" x2="600" y2="595"/>
+    <circle cx="600" cy="337.5" r="140" fill="none"/>
+    <circle cx="600" cy="337.5" r="3" fill="#8c7e72"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" fill="none" opacity="0.3">
+    <ellipse cx="600" cy="337.5" rx="520" ry="220"/>
+    <ellipse cx="600" cy="337.5" rx="460" ry="180"/>
+    
+    <line x1="80" y1="337.5" x2="120" y2="337.5"/>
+    <line x1="1080" y1="337.5" x2="1120" y2="337.5"/>
+    <line x1="600" y1="117.5" x2="600" y2="157.5"/>
+    <line x1="600" y1="517.5" x2="600" y2="557.5"/>
+  </g>
+
+  
+  <rect x="250" y="240" width="700" height="195" rx="8" fill="#d4c3b3" opacity="0.4" filter="url(#subtleShadow)"/>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" opacity="0.6">
+    <line x1="350" y1="240" x2="350" y2="435"/>
+    <line x1="500" y1="240" x2="500" y2="435"/>
+    <line x1="650" y1="240" x2="650" y2="435"/>
+    <line x1="800" y1="240" x2="800" y2="435"/>
+    
+    <path d="M 350 255 L 360 255 M 350 420 L 360 420 M 500 255 L 510 255 M 500 420 L 510 420 M 800 255 L 810 255 M 800 420 L 810 420" stroke-width="2"/>
+  </g>
+
+  
+  
+  <g transform="translate(600, 310)" filter="url(#subtleShadow)">
+    
+    
+    <path d="M -70 -120 L 70 -120 C 110 -120 110 -40 70 20 C 30 80 0 130 0 150 C 0 130 -30 80 -70 20 C -110 -40 -110 -120 -70 -120 Z" fill="url(#hatchBurgundy)" stroke="#661227" stroke-width="2"/>
+
+    
+    <path d="M -50 -105 L 50 -105 C 85 -105 85 -35 50 15 C 20 65 0 110 0 125 C 0 110 -20 65 -50 15 C -85 -35 -85 -105 -50 -105 Z" fill="#f7f2ea" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <g transform="translate(0, -10)">
+      <path d="M -130 -25 L 130 -25 L 140 15 L -140 15 Z" fill="#2a221c" stroke="#2a221c" stroke-width="2"/>
+      
+      <path d="M -115 -20 L 115 -20 L 122 10 L -122 10 Z" fill="#f7f2ea" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <circle cx="0" cy="-20" r="4" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    </g>
+
+    
+    <g transform="translate(0, -75)">
+      
+      <ellipse cx="0" cy="0" rx="32" ry="42" fill="url(#hatchCharcoal)" stroke="#2a221c" stroke-width="2.5"/>
+      
+      <path d="M -25 -25 L 25 25 M -25 25 L 25 -25 M 0 -42 L 0 42 M -32 0 L 32 0" stroke="#f7f2ea" stroke-width="1" opacity="0.8"/>
+      
+      <rect x="-8" y="42" width="16" height="15" fill="#2a221c"/>
+      <path d="M -16 57 L 16 57 L 12 70 L -12 70 Z" fill="#2a221c"/>
+    </g>
+
+    
+    <g transform="translate(0, 55)" stroke="#2a221c" stroke-width="2.5" stroke-linecap="round">
+      <line x1="0" y1="-15" x2="0" y2="25"/>
+      <line x1="-8" y1="-8" x2="8" y2="-8"/>
+      <line x1="-8" y1="2" x2="8" y2="2"/>
+      <line x1="-8" y1="12" x2="8" y2="12"/>
+    </g>
+
+  </g>
+
+  
+  <g transform="translate(180, 200)" filter="url(#subtleShadow)">
+    <rect x="0" y="0" width="140" height="95" rx="4" fill="#f7f2ea" stroke="#2a221c" stroke-width="2.5"/>
+    
+    <line x1="70" y1="0" x2="70" y2="95" stroke="#2a221c" stroke-width="2"/>
+    <line x1="0" y1="47.5" x2="140" y2="47.5" stroke="#2a221c" stroke-width="2"/>
+    
+    <rect x="15" y="15" width="40" height="30" fill="url(#hatchStone)" opacity="0.7"/>
+    <rect x="85" y="15" width="40" height="30" fill="url(#hatchStone)" opacity="0.7"/>
+    <rect x="15" y="58" width="40" height="25" fill="url(#hatchStone)" opacity="0.7"/>
+    <rect x="85" y="58" width="40" height="25" fill="url(#hatchStone)" opacity="0.7"/>
+  </g>
+
+  
+  <g transform="translate(880, 200)" filter="url(#subtleShadow)">
+    <rect x="0" y="0" width="140" height="95" rx="4" fill="#2a221c" stroke="#2a221c" stroke-width="2.5"/>
+    
+    <rect x="10" y="10" width="120" height="75" fill="#f7f2ea" stroke="#661227" stroke-width="2"/>
+    
+    <path d="M 30 50 Q 70 20 110 50" fill="none" stroke="#661227" stroke-width="2" stroke-dasharray="4,3"/>
+    <circle cx="30" cy="50" r="4" fill="#661227"/>
+    <circle cx="110" cy="50" r="4" fill="#2a221c"/>
+    <polygon points="105,45 115,50 105,55" fill="#2a221c"/>
+  </g>
+
+  
+  <g stroke="#661227" stroke-width="1.5">
+    <line x1="80" y1="45" x2="1120" y2="45"/>
+    <line x1="80" y1="630" x2="1120" y2="630"/>
+    
+    <path d="M 70 35 L 90 35 M 80 25 L 80 45" stroke-width="1"/>
+    <path d="M 1110 35 L 1130 35 M 1120 25 L 1120 45" stroke-width="1"/>
+    <path d="M 70 640 L 90 640 M 80 630 L 80 650" stroke-width="1"/>
+    <path d="M 1110 640 L 1130 640 M 1120 630 L 1120 650" stroke-width="1"/>
+  </g>
+
+  
+  <path d="M 0 0 L 1200 0 L 1200 675 L 0 675 Z" fill="none" stroke="#2a221c" stroke-width="16" opacity="0.04"/>
+
+</svg>
