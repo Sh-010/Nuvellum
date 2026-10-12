@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T17:00:46.874Z"
 readingTime: "2 min"
-image: "/generated/ai/six-ukrainian-energy-sites-hit-by-russia-since-trump-announced-ceasefire-zelensky-says.svg"
-imageAlt: "AI-generated editorial illustration for Six Ukrainian energy sites hit by Russia since Trump announced ceasefire, Zelensky says"
 status: "published"
 tags: ["Ukraine","Russia","energy","ceasefire","Donald Trump"]
 regions: ["europe-central-asia","north-america"]
