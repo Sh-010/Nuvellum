@@ -1,0 +1,77 @@
+{
+  "slug": "wwe-enters-microdrama-space-with-agent-of-shadows-drew-mcintyre-takes-central-role",
+  "url": "https://www.nuvellum.news/article/wwe-enters-microdrama-space-with-agent-of-shadows-drew-mcintyre-takes-central-role",
+  "title": "WWE enters microdrama space with 'Agent of Shadows,' Drew McIntyre takes central role",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T17:02:50.016Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T17:02:50.016Z",
+      "remoteId": "98",
+      "remoteUrl": "https://t.me/nuvellum/98",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T17:02:50.016Z",
+      "remoteId": "1277147205491143_122107952547497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107952547497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    },
+    "threads": {
+      "containerId": "17949826737321818",
+      "containerCreatedAt": "2026-10-12T17:03:02.108Z",
+      "updatedAt": "2026-10-12T17:02:50.016Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T17:02:50.016Z",
+      "remoteId": "17898302748395118",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T17:02:50.016Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T17:02:50.016Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
