@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T09:00:42.916Z"
 readingTime: "2 min"
-image: "/generated/ai/carrie-showrunner-confirms-the-biggest-changes-to-the-book-were-stephen-king-s-idea.svg"
-imageAlt: "AI-generated editorial illustration for 'Carrie' showrunner confirms the biggest changes to the book were Stephen King's idea"
 status: "published"
 tags: ["Carrie","Mike Flanagan","Stephen King","Prime Video"]
 regions: []
