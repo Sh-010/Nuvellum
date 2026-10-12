@@ -1,0 +1,79 @@
+{
+  "slug": "all-classes-and-unlock-requirements-in-fire-emblem-fortune-s-weave",
+  "url": "https://www.nuvellum.news/article/all-classes-and-unlock-requirements-in-fire-emblem-fortune-s-weave",
+  "title": "All classes and unlock requirements in Fire Emblem Fortune's Weave",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T22:04:14.213Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T22:04:14.213Z",
+      "remoteId": "102",
+      "remoteUrl": "https://t.me/nuvellum/102",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T22:04:14.213Z",
+      "remoteId": "1277147205491143_122108074209497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108074209497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    },
+    "threads": {
+      "containerId": "17949856506321818",
+      "containerCreatedAt": "2026-10-12T22:04:26.831Z",
+      "updatedAt": "2026-10-12T22:04:14.213Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T22:04:14.213Z",
+      "remoteId": "18183270022423254",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T22:04:14.213Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T22:04:14.213Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
