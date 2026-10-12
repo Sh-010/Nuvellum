@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T22:00:47.009Z"
 readingTime: "2 min"
-image: "/generated/ai/all-classes-and-unlock-requirements-in-fire-emblem-fortune-s-weave.svg"
-imageAlt: "AI-generated editorial illustration for All classes and unlock requirements in Fire Emblem Fortune's Weave"
 status: "published"
 tags: ["gaming","guides","Fire Emblem Fortune's Weave"]
 regions: []
