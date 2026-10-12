@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <style>
+      .bg { fill: #f3ecdf; }
+      .charcoal { fill: #2a221c; }
+      .burgundy { fill: #661227; }
+      .river-blue { fill: #4a626d; }
+      .stone-grey { fill: #b8aea1; }
+      .light-stone { fill: #dfd7cb; }
+      .white-wash { fill: #faf6f0; }
+    </style>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" stroke="#b8aea1" stroke-width="1" stroke-opacity="0.5" />
+  <line x1="80" y1="615" x2="1120" y2="615" stroke="#b8aea1" stroke-width="1" stroke-opacity="0.5" />
+
+  
+  
+  <polygon points="120,420 300,220 480,420" class="stone-grey" opacity="0.4" />
+  <polygon points="420,420 620,180 850,420" class="stone-grey" opacity="0.3" />
+  <polygon points="750,420 950,250 1100,420" class="stone-grey" opacity="0.4" />
+
+  
+  <polyline points="300,220 380,310 480,420" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3" />
+  <polyline points="620,180 730,290 850,420" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3" />
+  <polyline points="950,250 1030,340 1100,420" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3" />
+
+  
+  <g class="stone-grey" opacity="0.7">
+    <polygon points="150,420 160,350 170,420" />
+    <polygon points="165,420 173,365 181,420" />
+    <polygon points="190,420 200,340 210,420" />
+    <polygon points="230,420 240,330 250,420" />
+    <polygon points="880,420 890,345 900,420" />
+    <polygon points="915,420 925,330 935,420" />
+    <polygon points="960,420 970,355 980,420" />
+  </g>
+
+  
+  <path d="M 80,420 C 300,410 450,490 600,480 C 750,470 950,390 1120,440 L 1120,540 C 950,490 750,570 600,560 C 450,550 300,470 80,480 Z" class="river-blue" opacity="0.85" />
+
+  
+  <path d="M 200,445 C 320,440 400,500 520,505" fill="none" stroke="#f3ecdf" stroke-width="2" stroke-dasharray="12, 8" opacity="0.7" />
+  <path d="M 450,525 C 600,520 750,460 900,475" fill="none" stroke="#f3ecdf" stroke-width="1.5" stroke-dasharray="8, 12" opacity="0.7" />
+  <path d="M 680,485 C 800,470 920,440 1050,460" fill="none" stroke="#f3ecdf" stroke-width="2" stroke-dasharray="15, 6" opacity="0.7" />
+
+  
+  <path d="M 0,675 L 0,450 C 150,440 250,480 350,510 C 480,550 550,675 0,675 Z" class="light-stone" />
+  <path d="M 0,675 L 0,480 C 120,470 220,510 320,540 C 430,570 500,675 0,675 Z" class="stone-grey" opacity="0.3" />
+
+  
+  <path d="M 1200,675 L 1200,460 C 1050,440 950,490 850,510 C 750,530 650,675 1200,675 Z" class="light-stone" />
+
+  
+  
+  <path d="M 180,620 Q 450,250 950,150" fill="none" stroke="#2a221c" stroke-width="5" stroke-linecap="round" />
+  
+  <line x1="160" y1="640" x2="200" y2="600" stroke="#661227" stroke-width="8" stroke-linecap="round" />
+  <circle cx="185" cy="615" r="8" fill="none" stroke="#2a221c" stroke-width="3" />
+
+  
+  <path d="M 600,280 Q 720,380 650,470" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="4, 4" opacity="0.8" />
+  
+  <ellipse cx="650" cy="470" rx="6" ry="3" class="burgundy" />
+  <path d="M 645,470 L 640,463 M 655,470 L 660,463" stroke="#2a221c" stroke-width="1.5" />
+
+  
+  
+  <ellipse cx="880" cy="510" rx="70" ry="30" class="stone-grey" />
+  <ellipse cx="875" cy="505" rx="55" ry="22" class="light-stone" />
+  <path d="M 830,510 Q 880,495 930,510 Q 940,530 880,535 Q 820,530 830,510 Z" class="charcoal" opacity="0.15" />
+
+  
+  
+  <line x1="880" y1="460" x2="880" y2="500" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+  
+  <ellipse cx="880" cy="500" rx="16" ry="6" fill="none" stroke="#2a221c" stroke-width="2.5" />
+  
+  <polygon points="850,425 910,425 880,462" fill="#faf6f0" stroke="#2a221c" stroke-width="3" stroke-linejoin="round" />
+  
+  <polygon points="856,433 904,433 880,460" class="burgundy" opacity="0.85" />
+  
+  <line x1="865" y1="415" x2="895" y2="445" stroke="#2a221c" stroke-width="2" />
+  <circle cx="882" cy="432" r="5" class="burgundy" />
+  <circle cx="880" cy="430" r="1.5" class="white-wash" />
+
+  
+  <path d="M 70,80 L 70,70 L 80,70" fill="none" stroke="#2a221c" stroke-width="2" />
+  <path d="M 1130,80 L 1130,70 L 1120,70" fill="none" stroke="#2a221c" stroke-width="2" />
+  <path d="M 70,595 L 70,605 L 80,605" fill="none" stroke="#2a221c" stroke-width="2" />
+  <path d="M 1130,595 L 1130,605 L 1120,605" fill="none" stroke="#2a221c" stroke-width="2" />
+
+  
+  <rect x="585" y="60" width="30" height="3" class="burgundy" />
+</svg>
