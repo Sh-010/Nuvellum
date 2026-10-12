@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/disney-officially-reveals-percy-jackson-season-3-release-schedule.jpg"
+imageAlt: "Argentine actor Luis Sandrini and Walt Disney at Hotel Alvear. Buenos Aires"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Argentine actor Luis Sandrini and Walt Disney at Hotel Alvear. Buenos Aires. Image of Walt Disney, not of the events reported."
+imageCredit: "Unknown"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Sandrini_y_waltdisney_1941.jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Sandrini_y_waltdisney_1941.jpg"
 ---
 Disney has revealed the official release schedule and episode titles for the third season of *Percy Jackson and the Olympians* during an appearance at New York Comic Con. The upcoming season introduces a significant change to the show's rollout by moving away from traditional weekly releases.
 
