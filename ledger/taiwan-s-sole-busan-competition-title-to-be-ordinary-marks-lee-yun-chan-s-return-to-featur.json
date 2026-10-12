@@ -1,0 +1,74 @@
+{
+  "slug": "taiwan-s-sole-busan-competition-title-to-be-ordinary-marks-lee-yun-chan-s-return-to-featur",
+  "url": "https://www.nuvellum.news/article/taiwan-s-sole-busan-competition-title-to-be-ordinary-marks-lee-yun-chan-s-return-to-featur",
+  "title": "Taiwan's sole Busan competition title 'to be ordinary' marks Lee Yun chan's return to features after two decades",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T06:26:47.092Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T06:26:47.092Z",
+      "remoteId": "92",
+      "remoteUrl": "https://t.me/nuvellum/92",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T06:26:47.092Z",
+      "remoteId": "1277147205491143_122107547667497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107547667497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T06:26:47.092Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T06:26:47.092Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
