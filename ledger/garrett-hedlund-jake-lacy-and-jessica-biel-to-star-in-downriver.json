@@ -1,0 +1,77 @@
+{
+  "slug": "garrett-hedlund-jake-lacy-and-jessica-biel-to-star-in-downriver",
+  "url": "https://www.nuvellum.news/article/garrett-hedlund-jake-lacy-and-jessica-biel-to-star-in-downriver",
+  "title": "Garrett Hedlund, Jake Lacy and Jessica Biel to star in 'Downriver'",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T20:04:16.417Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T20:04:16.417Z",
+      "remoteId": "101",
+      "remoteUrl": "https://t.me/nuvellum/101",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T20:04:16.417Z",
+      "remoteId": "1277147205491143_122108032827497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108032827497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    },
+    "threads": {
+      "containerId": "17949846792321818",
+      "containerCreatedAt": "2026-10-12T20:04:27.652Z",
+      "updatedAt": "2026-10-12T20:04:16.417Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T20:04:16.417Z",
+      "remoteId": "18076457297455415",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T20:04:16.417Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T20:04:16.417Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
