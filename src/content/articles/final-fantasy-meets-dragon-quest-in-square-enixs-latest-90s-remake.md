@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T19:00:41.117Z"
 readingTime: "2 min"
-image: "/generated/ai/final-fantasy-meets-dragon-quest-in-square-enixs-latest-90s-remake.svg"
-imageAlt: "AI-generated editorial illustration for Final Fantasy meets Dragon Quest in Square enix’s latest ‘90s remake"
 status: "published"
 tags: ["Square Enix","Romancing SaGa 3","video games","remake","RPG"]
 regions: []
