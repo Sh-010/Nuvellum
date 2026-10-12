@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <style>
+      .bg { fill: #f3ecdf; }
+      .charcoal { fill: #2a221c; }
+      .burgundy { fill: #661227; }
+      .stone { fill: #d8cbb8; }
+      .paper { fill: #faf6ef; }
+      .shadow { fill: #2a221c; opacity: 0.12; }
+      .line { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .fine-line { stroke: #2a221c; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .burgundy-line { stroke: #661227; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .hatch { stroke: #2a221c; stroke-width: 0.75; opacity: 0.4; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" class="fine-line" opacity="0.3" />
+  <line x1="80" y1="615" x2="1120" y2="615" class="fine-line" opacity="0.3" />
+
+  
+  
+  
+
+  
+  <path d="M 460,195 L 610,195 L 630,505 L 440,505 Z" class="shadow" />
+
+  
+  <path d="M 450,185 L 600,185 L 620,495 L 430,495 Z" class="paper" />
+  <path d="M 450,185 L 600,185 L 620,495 L 430,495 Z" class="line" />
+
+  
+  <path d="M 480,185 L 480,165 L 570,165 L 570,185" class="line" />
+  <rect x="500" y="160" width="50" height="8" rx="2" class="paper" />
+  <rect x="500" y="160" width="50" height="8" rx="2" class="line" />
+
+  
+  <rect x="460" y="230" width="130" height="190" rx="6" class="bg" />
+  <rect x="460" y="230" width="130" height="190" rx="6" class="fine-line" />
+  <rect x="480" y="250" width="90" height="150" class="burgundy" opacity="0.15" />
+
+  
+  <line x1="448" y1="460" x2="470" y2="460" class="hatch" />
+  <line x1="446" y1="470" x2="472" y2="470" class="hatch" />
+  <line x1="444" y1="480" x2="474" y2="480" class="hatch" />
+  
+  <line x1="578" y1="460" x2="602" y2="460" class="hatch" />
+  <line x1="576" y1="470" x2="604" y2="470" class="hatch" />
+  <line x1="574" y1="480" x2="606" y2="480" class="hatch" />
+
+  
+  <rect x="480" y="495" width="90" height="25" class="stone" />
+  <rect x="480" y="495" width="90" height="25" class="line" />
+  <line x1="495" y1="495" x2="495" y2="520" class="fine-line" />
+  <line x1="510" y1="495" x2="510" y2="520" class="fine-line" />
+  <line x1="525" y1="495" x2="525" y2="520" class="fine-line" />
+  <line x1="540" y1="495" x2="540" y2="520" class="fine-line" />
+  <line x1="555" y1="495" x2="555" y2="520" class="fine-line" />
+
+  
+  
+  <line x1="250" y1="340" x2="430" y2="340" class="burgundy-line" />
+  <circle cx="250" cy="340" r="8" class="burgundy" />
+  <circle cx="250" cy="340" r="8" class="line" />
+  <path d="M 230,380 L 270,380 L 250,340 Z" class="paper" />
+  <path d="M 230,380 L 270,380 L 250,340 Z" class="line" />
+
+  
+  <line x1="620" y1="340" x2="950" y2="340" class="line" />
+  <circle cx="950" cy="340" r="6" class="charcoal" />
+
+  
+  <g transform="translate(750, 220)">
+    
+    <rect x="0" y="0" width="140" height="200" rx="4" class="paper" />
+    <rect x="0" y="0" width="140" height="200" rx="4" class="line" />
+    
+    <line x1="20" y1="40" x2="120" y2="40" class="fine-line" />
+    <line x1="20" y1="70" x2="100" y2="70" class="fine-line" />
+    <line x1="20" y1="100" x2="90" y2="100" class="fine-line" />
+    <rect x="20" y="130" width="40" height="40" class="burgundy" opacity="0.2" />
+    <rect x="20" y="130" width="40" height="40" class="fine-line" />
+  </g>
+
+  <g transform="translate(780, 190)">
+    
+    <rect x="0" y="0" width="140" height="200" rx="4" class="stone" opacity="0.6" />
+    <rect x="0" y="0" width="140" height="200" rx="4" class="line" />
+    <line x1="20" y1="40" x2="120" y2="40" class="fine-line" />
+    <line x1="20" y1="70" x2="100" y2="70" class="fine-line" />
+    <circle cx="40" cy="130" r="15" class="burgundy" opacity="0.3" />
+    <circle cx="40" cy="130" r="15" class="fine-line" />
+  </g>
+
+  
+  <line x1="535" y1="140" x2="535" y2="165" class="burgundy-line" />
+  <circle cx="535" cy="140" r="5" class="burgundy" />
+
+  
+  <g class="fine-line" opacity="0.5">
+    
+    <line x1="120" y1="120" x2="140" y2="120" />
+    <line x1="130" y1="110" x2="130" y2="130" />
+
+    
+    <line x1="1060" y1="535" x2="1080" y2="535" />
+    <line x1="1070" y1="525" x2="1070" y2="545" />
+
+    
+    <line x1="80" y1="340" x2="95" y2="340" />
+    <line x1="80" y1="380" x2="90" y2="380" />
+    <line x1="80" y1="300" x2="90" y2="300" />
+  </g>
+
+  
+  <ellipse cx="527" cy="535" rx="95" ry="12" class="shadow" />
+
+</svg>
