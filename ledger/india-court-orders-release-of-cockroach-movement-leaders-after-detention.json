@@ -1,0 +1,75 @@
+{
+  "slug": "india-court-orders-release-of-cockroach-movement-leaders-after-detention",
+  "url": "https://www.nuvellum.news/article/india-court-orders-release-of-cockroach-movement-leaders-after-detention",
+  "title": "India court orders release of 'cockroach' movement leaders after detention",
+  "risk": "sensitive",
+  "firstSeenAt": "2026-10-12T15:25:01.748Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T15:25:01.748Z",
+      "remoteId": "95",
+      "remoteUrl": "https://t.me/nuvellum/95",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T15:25:01.748Z",
+      "remoteId": "1277147205491143_122107904871497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107904871497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T15:25:01.748Z",
+      "remoteId": "18178401142452368",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T15:25:01.748Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T15:25:01.748Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
