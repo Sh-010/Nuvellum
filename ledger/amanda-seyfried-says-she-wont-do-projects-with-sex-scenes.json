@@ -1,0 +1,77 @@
+{
+  "slug": "amanda-seyfried-says-she-wont-do-projects-with-sex-scenes",
+  "url": "https://www.nuvellum.news/article/amanda-seyfried-says-she-wont-do-projects-with-sex-scenes",
+  "title": "Amanda Seyfried says she won’t do projects with sex scenes",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T23:03:53.647Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T23:03:53.647Z",
+      "remoteId": "103",
+      "remoteUrl": "https://t.me/nuvellum/103",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T23:03:53.647Z",
+      "remoteId": "1277147205491143_122108090169497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108090169497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    },
+    "threads": {
+      "containerId": "17949862035321818",
+      "containerCreatedAt": "2026-10-12T23:04:07.411Z",
+      "updatedAt": "2026-10-12T23:03:53.647Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T23:03:53.647Z",
+      "remoteId": "18130842814690908",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T23:03:53.647Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T23:03:53.647Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
