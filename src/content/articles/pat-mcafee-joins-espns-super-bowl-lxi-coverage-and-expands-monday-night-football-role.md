@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T03:00:45.953Z"
 readingTime: "2 min"
-image: "/generated/ai/pat-mcafee-joins-espns-super-bowl-lxi-coverage-and-expands-monday-night-football-role.svg"
-imageAlt: "AI-generated editorial illustration for Pat McAfee joins ESPN’s Super Bowl LXI coverage and expands Monday Night Football role"
 status: "published"
 tags: ["Pat McAfee","ESPN","Super Bowl LXI"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/pat-mcafee-joins-espns-super-bowl-lxi-coverage-and-expands-monday-night-football-role.png"
+imageAlt: "Host Pat McAfee on an episode of the The Pat McAfee Show released on August 31, 2022. Image is a screen shot of Youtube video ~ 03:11"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Host Pat McAfee on an episode of the The Pat McAfee Show released on August 31, 2022. Image is a screen shot of Youtube video ~ 03:11. Image of Pat McAfee, not of the events reported."
+imageCredit: "FanDuel"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Pat_McAfee_on_The_Pat_McAfee_Show_8.31.2022.png"
 ---
 ## Expanding to the NFL
 
