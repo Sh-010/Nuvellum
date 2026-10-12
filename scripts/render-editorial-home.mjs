@@ -6,7 +6,7 @@ import { REGIONS, storiesByRegion } from '../src/lib/geography.js';
 import { WORLD_MAP_GROUPS, WORLD_MAP_VIEWBOX } from '../src/lib/world-map-data.js';
 import { THEME_HEAD, THEME_BODY } from '../src/lib/theme-boot.js';
 import { storyImage } from '../src/lib/story-image.js';
-import { selectHome, loadPublished, LATEST_ROWS } from './lib/home-selection.mjs';
+import { selectHome, loadPublished, selectAcrossDesks, LATEST_ROWS } from './lib/home-selection.mjs';
 
 // Crop focus for backfilled article images (scripts/backfill-article-images.mjs).
 const creditsFile = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', 'image-credits.json');
@@ -123,13 +123,14 @@ function latestSet(filter) {
   return `${rows}<p class="latest-empty">${note} <a href="${filter.href}">Browse ${label} →</a></p>`;
 }
 
-// Truthful "Popular Reads" until real analytics exist: the most recent stories published in
-// each window (no invented view counts). Each row shows its reading time.
+// Across the Desks is editorial, not an invented readership ranking. For each
+// period, prefer one genuine story from each news/culture/business/technology desk,
+// then fill remaining slots with the newest available stories.
 const DAY = 86400000;
 const buildNow = Date.now();
 const ageMs = a => buildNow - Date.parse(stampOf(a) || (a.date ? a.date + 'T23:59:59Z' : 0));
 const popularWindows = [['today', 'Today', DAY], ['week', 'This Week', 7 * DAY], ['month', 'This Month', 30 * DAY]]
-  .map(([key, label, span]) => ({ key, label, items: articles.filter(a => ageMs(a) <= span).slice(0, 5) }));
+  .map(([key, label, span]) => ({ key, label, items: selectAcrossDesks(articles.filter(a => ageMs(a) <= span), 5) }));
 const popularList = ({ key, items }, active) => `<div class="popular-list" role="tabpanel" id="popular-${key}" aria-labelledby="popular-tab-${key}"${active ? '' : ' hidden'}>${
   items.length ? items.map((a, i) => `<a class="popular-item" href="${route(a)}"><span class="popular-rank">${i + 1}</span><span class="popular-title">${esc(a.title)}</span><span class="popular-views">${esc(a.readingTime)} read</span></a>`).join('')
     : '<div class="popular-empty">No stories published in this period yet.</div>'}</div>`;
@@ -531,7 +532,7 @@ ${REVEAL_CSS}
     </section>
 
     <section class="section-block popular" aria-labelledby="popular-heading">
-      <div class="popular-head"><h2 id="popular-heading">Popular Reads</h2><span class="rule"></span><div class="popular-tabs" role="tablist" aria-label="Popular Reads period">${
+      <div class="popular-head"><h2 id="popular-heading">Across the Desks</h2><span class="rule"></span><div class="popular-tabs" role="tablist" aria-label="Across the Desks period">${
         popularWindows.map(w => `<button type="button" role="tab" id="popular-tab-${w.key}" aria-controls="popular-${w.key}" aria-selected="${w === firstPopular}" tabindex="${w === firstPopular ? 0 : -1}" data-popular-tab="${w.key}">${w.label}</button>`).join('')
       }</div></div>
       ${popularWindows.map(w => popularList(w, w === firstPopular)).join('')}

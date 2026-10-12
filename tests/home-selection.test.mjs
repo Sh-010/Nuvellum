@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { selectHome, loadPublished, byNewest, HERO_WINDOW } from '../scripts/lib/home-selection.mjs';
+import { selectHome, selectAcrossDesks, loadPublished, byNewest, HERO_WINDOW } from '../scripts/lib/home-selection.mjs';
 import { storyImage, hasStoryImage } from '../src/lib/story-image.js';
 
 let n = 0;
@@ -188,4 +188,19 @@ test('renderer and legacy injector both place every origin, and never emit an im
   assert.match(injector, /return a \? leadMarkup\(hero\)|a \? sideMarkup\(a, i === 1\) : original/, 'demo slots are kept only where no real story fills them');
   const check = readFileSync(new URL('../scripts/check-build-output.mjs', import.meta.url), 'utf8');
   assert.match(check, /an image has an empty or undefined src/);
+});
+
+test('Across the Desks favours several editorial beats instead of five consecutive screen items', () => {
+  const stories = [
+    story({ slug:'film1', section:'Film & TV' }),
+    story({ slug:'anime1', section:'Anime' }),
+    story({ slug:'game1', section:'Gaming' }),
+    story({ slug:'culture1', section:'Culture' }),
+    story({ slug:'world1', section:'World' }),
+    story({ slug:'business1', section:'Business' }),
+    story({ slug:'tech1', section:'Technology' }),
+    story({ slug:'sports1', section:'Sports' })
+  ];
+  assert.deepEqual(slugs(selectAcrossDesks(stories)), ['film1','world1','business1','tech1','sports1']);
+  assert.deepEqual(slugs(selectAcrossDesks(stories.slice(0,3))), ['film1','anime1','game1']);
 });

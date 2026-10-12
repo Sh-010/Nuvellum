@@ -43,6 +43,36 @@ export function loadPublished(articlesDir) {
     .sort(byNewest);
 }
 
+
+// Balanced editorial sampling of the real stories in a date window. This is not
+// a popularity ranking: without per-story analytics, "most read" is unknowable.
+// One recent story per desk first; then fill in publication order, never inventing
+// stories or obscuring the chronological Latest feed.
+export function selectAcrossDesks(articles, limit = 5) {
+  const lane = (section) => {
+    const s = String(section || '').toLowerCase();
+    if (s === 'world' || s === 'crime') return 'world';
+    if (s === 'business') return 'business';
+    if (s === 'technology' || s === 'science') return 'technology';
+    if (s === 'film & tv' || s === 'anime' || s === 'gaming' || s === 'culture') return 'culture';
+    if (s === 'sports') return 'sports';
+    return s || 'other';
+  };
+  const chosen = [], used = new Set();
+  for (const article of articles) {
+    const group = lane(article.section);
+    if (used.has(group)) continue;
+    used.add(group);
+    chosen.push(article);
+    if (chosen.length === limit) return chosen;
+  }
+  for (const article of articles) {
+    if (chosen.length === limit) break;
+    if (!chosen.some(item => item.slug === article.slug)) chosen.push(article);
+  }
+  return chosen;
+}
+
 export const LATEST_ROWS = 5;
 /** How far down the newest stories the hero may look for one with a picture. */
 export const HERO_WINDOW = 6;
