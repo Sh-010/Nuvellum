@@ -1164,3 +1164,17 @@ The changes:
 - Production smoke checked 398 targets; all route/article/metadata checks passed. Two image requests timed out at 15 seconds, then independently returned HTTP 200 (760902 and 202528 bytes). Treat these as latency evidence, not proven missing images.
 - Demonstration limitation: no fresh end-to-end n8n editorial execution has been established. Last article merged October 2; do not claim unattended/hourly publishing is restored. Social and Brief job success alone does not establish delivery.
 - Validation: npm test 404 passed, zero failures; npm run build succeeded. No published article, homepage markup, stylesheet, locked asset, or publication gate was changed.
+
+## 2026-10-12 — remaining editorial and distribution repairs
+
+Owner requested the remaining homepage audit and publishing/social defects be fixed in place.
+- Homepage OG/Twitter metadata now uses the lead's same-origin PNG card endpoint. No SVG preview is advertised. Institutional and article pages retain their existing raster previews.
+- Supporting stories sample broad desks instead of consecutive entertainment subcategories; World can remain a text-led lead. Latest remains chronological. No layout/CSS/motion/locked archive was changed.
+- Read-time estimates derive from each actual body on public pages, excluding metadata and URLs. No article is padded to change its estimate.
+- Automated visual acquisition no longer creates unrelated representative fallbacks that the publication gate rejects, and removes previously acquired explicit unrelated-image metadata. A conservative preflight corrects unambiguous film/comic/anime metadata; it never changes risk, clearance, body, source or publication time.
+- Removed four further unrelated displayed photographs, added inline reporting attribution to four audited culture stories, and paraphrased the Boogeyman profanity with attribution. Added visible article update notices and a Corrections index; existing category/headline/market-attribution corrections are recorded too.
+- About identifies Sam Shehab as owner/publisher and explains source-assisted summaries and the institutional byline; Standards states the quotation/profanity policy.
+- Threads polls container readiness and checkpoints its container before publishing, reusing it after interruption instead of duplicating posts. Unknown/error statuses fail closed; processing timeouts can retry. Social sweeps network-check only actionable candidates, with bounded request timeouts.
+- The canonical n8n export stops forcing section from publisher hostname, strengthens in-prose attribution/category instructions, and rejects excessive unquoted wording overlap. This heuristic is not proof of originality or independent verification. The live private n8n update is NOT deployed: automatic approval review rejected access under the reporting-source restriction. No private n8n workaround was attempted.
+- Sensitive stories still require human editorial approval. Existing exhausted Threads failures were not silently marked successful or bulk reposted. Channels without credentials remain disabled.
+- Validation: 413 site tests passed; 28 focused publisher/Threads tests passed; production build and post-build check (133 articles) passed; npm audit reports zero vulnerabilities. Local Chromium screenshot capture was unavailable because the browser download failed; live visual inspection remains part of deployment verification.

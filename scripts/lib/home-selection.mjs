@@ -5,6 +5,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { hasStoryImage } from '../../src/lib/story-image.js';
+import { readingTime } from '../../src/lib/reading-time.js';
 
 function parseValue(value) {
   const v = String(value ?? '').trim();
@@ -38,7 +39,7 @@ export const byNewest = (a, b) => String(b.date || '').localeCompare(String(a.da
 export function loadPublished(articlesDir) {
   return readdirSync(articlesDir)
     .filter(name => name.endsWith('.md'))
-    .map(name => ({ slug: basename(name, '.md'), ...parseFrontmatter(readFileSync(join(articlesDir, name), 'utf8')) }))
+    .map(name => { const src = readFileSync(join(articlesDir, name), 'utf8'); return { slug: basename(name, '.md'), ...parseFrontmatter(src), readingTime: readingTime(src) }; })
     .filter(article => article.status === 'published')
     .sort(byNewest);
 }
@@ -101,10 +102,14 @@ export function selectHome(published) {
   if (!articles.length) throw new Error('Editorial homepage requires at least one published story.');
   const world = articles.filter(a => String(a.section).toLowerCase() === 'world');
   const hero = world.slice(0, HERO_WINDOW).find(hasStoryImage)
+    || world[0]
     || articles.slice(0, HERO_WINDOW).find(hasStoryImage)
     || world[0] || articles[0];
   const supporting = [];
-  for (const a of articles) {
+  // Choose supporting stories across broad desks, not three subcategories of
+  // entertainment. The Latest ticker/list still remains chronological.
+  const supportPool = selectAcrossDesks(articles.filter(a => a.slug !== hero.slug), articles.length);
+  for (const a of supportPool) {
     if (supporting.length === 3) break;
     if (a.slug === hero.slug) continue;
     if ([hero, ...supporting].some(s => s.section === a.section)) continue;

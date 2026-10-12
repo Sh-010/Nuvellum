@@ -1,4 +1,5 @@
 import { storyImage } from './story-image.js';
+import { readingTime } from './reading-time.js';
 
 export type ArticleHeading = {
   depth: number;
@@ -46,12 +47,14 @@ export type Article = {
 
 export async function getArticles(): Promise<Article[]> {
   const modules = import.meta.glob('../content/articles/*.md', { eager: true }) as Record<string, any>;
+  const sources = import.meta.glob('../content/articles/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
   return Object.entries(modules)
     .map(([path, mod]) => {
       const slug = path.split('/').pop()!.replace(/\.md$/, '');
       const article = {
         slug,
         ...mod.frontmatter,
+        readingTime: readingTime(sources[path]),
         Content: mod.Content,
         getHeadings: mod.getHeadings
       } as Article;

@@ -156,7 +156,7 @@ NASA has awarded a contract.
   assert.equal(r.outcome, 'fallback');
   assert.equal(r.fallbackType, 'text-led');
   // A story that already has its own photo is left alone.
-  r = await acquireForArticle('src/content/articles/roy-keane-and-wayne-rooney-clash-over-potential-man-city-title-strips.md', { search: async () => { throw new Error('must not search'); } });
+  r = await acquireForArticle('src/content/articles/mosaic-image-reveals-features-of-the-lunar-farside.md', { search: async () => { throw new Error('must not search'); } });
   assert.equal(r.outcome, 'already-acquired');
 });
 

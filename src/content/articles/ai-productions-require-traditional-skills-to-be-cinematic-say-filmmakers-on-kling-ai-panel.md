@@ -27,7 +27,8 @@ imageLicense: "CC BY 2.0"
 imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
 imageSourcePage: "https://commons.wikimedia.org/wiki/File:Korea-Busan-Busan_Tower-01.jpg"
 ---
-Filmmakers speaking on a Kling AI panel at the Asian Contents & Film Market (ACFM) in Busan emphasized that artificial intelligence video generation requires traditional cinematic expertise and human intervention to avoid uniform results.
+
+[Deadline](https://deadline.com/2026/10/ai-filmmaking-kling-ai-kim-sung-soo-mbc-busan-1237154243) reports that filmmakers speaking on a Kling AI panel at the Asian Contents & Film Market (ACFM) in Busan emphasized that artificial intelligence video generation requires traditional cinematic expertise and human intervention to avoid uniform results.
 
 The panel, titled "New Cinematic Possibilities: Reimagining Filmmaking with Kling AI," featured Korean director Kim Sung-soo, MooAm Co CEO Harry Hyun, Chinese animation filmmaker Li Wei, and MBC C&I AI Contents Lab producer Lee Sang-wook. The participants presented projects built using Kling AI tools and discussed current trends in AI-assisted filmmaking.
 

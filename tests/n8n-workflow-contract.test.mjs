@@ -235,3 +235,12 @@ test('SVG prompt carries the Nuvellum house style and the hard aesthetic rejects
     assert.match(prompt, re);
   assert.doesNotMatch(prompt, /cinematic|Rich but restrained palette/);
 });
+
+test('source wording screen rejects copied prose, but permits an independently structured brief', () => {
+  const code = node('Parse Draft & Build Markdown').parameters.jsCode;
+  const helper = code.slice(code.indexOf('function closeWording('), code.indexOf('\nif(closeWording(body,'));
+  const check = new Function(`${helper}; return closeWording;`)();
+  const source = Array.from({length:220},(_,i)=>`sourceword${i}`).join(' ');
+  assert.equal(check(source, source), true);
+  assert.equal(check(Array.from({length:140},(_,i)=>`independentword${i}`).join(' '),source),false);
+});

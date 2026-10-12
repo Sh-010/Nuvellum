@@ -17,15 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/xonas-commercial-gps-alternative-is-about-to-go-live.jpg"
-imageAlt: "GPS III at Buckley Space Force Base (9470835)"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: GPS III at Buckley Space Force Base (9470835)"
-imageCredit: "U.S. Space Force photo by Staff Sgt. Amanda Flower"
-imageLicense: "Public domain"
-imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:GPS_III_at_Buckley_Space_Force_Base_(9470835).jpg"
-imageSourcePage: "https://commons.wikimedia.org/wiki/File:GPS_III_at_Buckley_Space_Force_Base_(9470835).jpg"
 ---
 ## Launching a commercial navigation alternative
 

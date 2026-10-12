@@ -27,7 +27,8 @@ imageLicense: "CC BY-SA 2.0"
 imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
 imageSourcePage: "https://commons.wikimedia.org/wiki/File:MIPCOM_2010_opening_night_02.jpg"
 ---
-Fox Entertainment Global (FEG) is launching a new production hub in Malaysia to facilitate international versions of the survival competition format *Extracted*. The initiative marks the network's first international production hub, following the establishment of a *Next Level Chef* hub in Ireland for the Gordon Ramsay series.
+
+[Deadline](https://deadline.com/2026/10/fox-launching-extracted-production-hub-malaysia-1237150887) reports that Fox Entertainment Global (FEG) is launching a new production hub in Malaysia to facilitate international versions of the survival competition format *Extracted*. The initiative marks the network's first international production hub, following the establishment of a *Next Level Chef* hub in Ireland for the Gordon Ramsay series.
 
 ## Unveiling at MIPCOM
 
