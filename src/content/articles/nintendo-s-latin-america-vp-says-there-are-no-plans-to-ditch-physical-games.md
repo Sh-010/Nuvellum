@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T18:00:53.409Z"
 readingTime: "1 min"
-image: "/generated/ai/nintendo-s-latin-america-vp-says-there-are-no-plans-to-ditch-physical-games.svg"
-imageAlt: "AI-generated editorial illustration for Nintendo's Latin America VP says there are no plans to ditch physical games"
 status: "published"
 tags: ["Nintendo","Nintendo Switch 2","Physical Games","Gaming Industry"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/nintendo-s-latin-america-vp-says-there-are-no-plans-to-ditch-physical-games.jpg"
+imageAlt: "Why Valve Made The Steam Deck (The real Switch Pro )"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Why Valve Made The Steam Deck (The real Switch Pro )"
+imageCredit: "Video Game Story Time"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Why_Valve_Made_The_Steam_Deck_(The_real_Switch_Pro-).webm"
 ---
 ## Nintendo's position on physical media
 
