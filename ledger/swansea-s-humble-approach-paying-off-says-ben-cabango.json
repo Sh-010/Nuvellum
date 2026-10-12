@@ -1,0 +1,75 @@
+{
+  "slug": "swansea-s-humble-approach-paying-off-says-ben-cabango",
+  "url": "https://www.nuvellum.news/article/swansea-s-humble-approach-paying-off-says-ben-cabango",
+  "title": "Swansea's humble approach paying off, says Ben Cabango",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T05:04:21.662Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T05:04:21.662Z",
+      "remoteId": "90",
+      "remoteUrl": "https://t.me/nuvellum/90",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T05:04:21.662Z",
+      "remoteId": "1277147205491143_122107495911497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107495911497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "threads": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T05:04:21.662Z",
+      "remoteId": "18121172383910634",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T05:04:21.662Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T05:04:21.662Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
