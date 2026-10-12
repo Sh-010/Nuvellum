@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T10:00:55.074Z"
 readingTime: "2 min"
-image: "/generated/ai/ella-rumpf-julio-andrade-and-ana-flavia-cavalcanti-to-star-in-andrea-staka-s-ibicaba.svg"
-imageAlt: "AI-generated editorial illustration for Ella Rumpf, Júlio Andrade and Ana Flávia Cavalcanti to star in Andrea Štaka's 'Ibicaba'"
 status: "published"
 tags: ["Andrea Štaka","Ella Rumpf","Júlio Andrade","Ana Flávia Cavalcanti","MyMama Entertainment","Locarno Film Festival"]
 regions: ["latin-america-caribbean","europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/ella-rumpf-julio-andrade-and-ana-flavia-cavalcanti-to-star-in-andrea-staka-s-ibicaba.jpg"
+imageAlt: "Ella Rumpf bei der Pressekonferenz zu Tiger Girl bei der Berlinale 2017"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Ella Rumpf bei der Pressekonferenz zu Tiger Girl bei der Berlinale 2017. Image of Ella Rumpf, not of the events reported."
+imageCredit: "Maximilian Bühn"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Ella_Rumpf_Pressekonferenz_Tiger_Girl_Berlinale_2017.jpg"
 ---
 ## Cast and production details
 
