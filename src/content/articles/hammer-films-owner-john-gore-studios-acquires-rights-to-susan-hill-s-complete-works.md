@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T12:00:52.585Z"
 readingTime: "2 min"
-image: "/generated/ai/hammer-films-owner-john-gore-studios-acquires-rights-to-susan-hill-s-complete-works.svg"
-imageAlt: "AI-generated editorial illustration for Hammer Films owner John Gore Studios acquires rights to Susan Hill's complete works"
 status: "published"
 tags: ["Hammer Films","John Gore Studios","Susan Hill","The Woman in Black","Film","Television","Theater"]
 regions: ["europe-central-asia"]
