@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T23:00:41.366Z"
 readingTime: "1 min"
-image: "/generated/ai/amanda-seyfried-says-she-wont-do-projects-with-sex-scenes.svg"
-imageAlt: "AI-generated editorial illustration for Amanda Seyfried says she won’t do projects with sex scenes"
 status: "published"
 tags: ["Amanda Seyfried","Film & TV"]
 regions: ["north-america"]
