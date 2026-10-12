@@ -1,0 +1,77 @@
+{
+  "slug": "no-man-s-sky-is-coming-to-the-iphone-and-ipad",
+  "url": "https://www.nuvellum.news/article/no-man-s-sky-is-coming-to-the-iphone-and-ipad",
+  "title": "No Man's Sky is coming to the iPhone and iPad",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T18:02:50.267Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T18:02:50.267Z",
+      "remoteId": "99",
+      "remoteUrl": "https://t.me/nuvellum/99",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T18:02:50.267Z",
+      "remoteId": "1277147205491143_122107975677497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107975677497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    },
+    "threads": {
+      "containerId": "17949833973321818",
+      "containerCreatedAt": "2026-10-12T18:03:02.871Z",
+      "updatedAt": "2026-10-12T18:02:50.267Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T18:02:50.267Z",
+      "remoteId": "18073530380773110",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T18:02:50.267Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T18:02:50.267Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
