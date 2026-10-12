@@ -1,0 +1,74 @@
+{
+  "slug": "jose-maria-cabral-discusses-dark-comedy-sh-t-happens-ahead-of-tallinn-premiere",
+  "url": "https://www.nuvellum.news/article/jose-maria-cabral-discusses-dark-comedy-sh-t-happens-ahead-of-tallinn-premiere",
+  "title": "José María Cabral discusses dark comedy ‘Sh*t Happens’ ahead of Tallinn premiere",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T08:05:04.852Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T08:05:04.852Z",
+      "remoteId": "93",
+      "remoteUrl": "https://t.me/nuvellum/93",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T08:05:04.852Z",
+      "remoteId": "1277147205491143_122107610037497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107610037497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T08:05:04.852Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T08:05:04.852Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
