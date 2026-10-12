@@ -1,0 +1,74 @@
+{
+  "slug": "carrie-showrunner-confirms-the-biggest-changes-to-the-book-were-stephen-king-s-idea",
+  "url": "https://www.nuvellum.news/article/carrie-showrunner-confirms-the-biggest-changes-to-the-book-were-stephen-king-s-idea",
+  "title": "'Carrie' showrunner confirms the biggest changes to the book were Stephen King's idea",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T09:04:50.804Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T09:04:50.804Z",
+      "remoteId": "94",
+      "remoteUrl": "https://t.me/nuvellum/94",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T09:04:50.804Z",
+      "remoteId": "1277147205491143_122107647693497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107647693497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "threads": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T09:04:50.804Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T09:04:50.804Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
