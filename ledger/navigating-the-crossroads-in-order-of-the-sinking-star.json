@@ -1,0 +1,77 @@
+{
+  "slug": "navigating-the-crossroads-in-order-of-the-sinking-star",
+  "url": "https://www.nuvellum.news/article/navigating-the-crossroads-in-order-of-the-sinking-star",
+  "title": "How to navigate the crossroads in Order of the Sinking Star",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T16:01:01.069Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T16:01:01.069Z",
+      "remoteId": "97",
+      "remoteUrl": "https://t.me/nuvellum/97",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T16:01:01.069Z",
+      "remoteId": "1277147205491143_122107924983497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122107924983497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    },
+    "threads": {
+      "containerId": "17949816693321818",
+      "containerCreatedAt": "2026-10-12T16:01:13.286Z",
+      "updatedAt": "2026-10-12T16:01:01.069Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T16:01:01.069Z",
+      "remoteId": "18132074422667328",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T16:01:01.069Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T16:01:01.069Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
