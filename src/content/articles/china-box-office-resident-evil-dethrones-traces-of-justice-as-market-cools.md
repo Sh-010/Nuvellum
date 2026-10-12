@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T04:00:42.448Z"
 readingTime: "2 min"
-image: "/generated/ai/china-box-office-resident-evil-dethrones-traces-of-justice-as-market-cools.svg"
-imageAlt: "AI-generated editorial illustration for China box office: ‘Resident Evil’ dethrones ‘Traces of Justice’ as market cools"
 status: "published"
 tags: ["box office","China","Resident Evil","Traces of Justice"]
 regions: ["east-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/china-box-office-resident-evil-dethrones-traces-of-justice-as-market-cools.png"
+imageAlt: "Countries that uses Zhongguo to refer China"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Countries that uses Zhongguo to refer China. Image of China, not of the events reported."
+imageCredit: "Own work , mapchart.net"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Countries_that_uses_Zhongguo_to_refer_China.png"
 ---
 ## Weekend box office leaders
 
