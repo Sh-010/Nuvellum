@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#f7f2ea" />
+      <stop offset="60%" stop-color="#ede3d2" />
+      <stop offset="100%" stop-color="#e2d4be" />
+    </radialGradient>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="65%">
+      <stop offset="80%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#2a221c" stop-opacity="0.12" />
+    </radialGradient>
+
+    
+    <pattern id="etching" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#2a221c" stroke-width="0.8" stroke-opacity="0.15" />
+    </pattern>
+
+    
+    <pattern id="crosshatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#661227" stroke-width="0.6" stroke-opacity="0.18" />
+      <line x1="0" y1="0" x2="8" y2="0" stroke="#661227" stroke-width="0.6" stroke-opacity="0.18" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)" />
+
+  
+  <rect width="1200" height="675" fill="url(#vignette)" />
+
+  
+  <rect x="35" y="35" width="1130" height="605" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3" />
+  <rect x="43" y="43" width="1114" height="589" fill="none" stroke="#2a221c" stroke-width="0.5" stroke-opacity="0.2" />
+
+  
+  
+  <path d="M 50 480 Q 200 420 350 460 T 650 430 T 950 450 T 1150 410 L 1150 630 L 50 630 Z" fill="#e5dbc9" stroke="#2a221c" stroke-width="1" stroke-opacity="0.3" />
+  <path d="M 50 490 Q 180 450 300 480 T 550 460 T 800 470 T 1150 440 L 1150 630 L 50 630 Z" fill="#ded3c0" />
+
+  
+  <g stroke="#2a221c" stroke-width="0.8" stroke-opacity="0.25">
+    <path d="M 600 500 L 150 630" />
+    <path d="M 600 500 L 250 630" />
+    <path d="M 600 500 L 350 630" />
+    <path d="M 600 500 L 480 630" />
+    <path d="M 600 500 L 620 630" />
+    <path d="M 600 500 L 740 630" />
+    <path d="M 600 500 L 860 630" />
+    <path d="M 600 500 L 960 630" />
+    <path d="M 600 500 L 1050 630" />
+  </g>
+
+  
+  <g fill="#d4c5b0" stroke="#2a221c" stroke-width="1.2">
+    <rect x="850" y="380" width="180" height="70" />
+    <polygon points="840,380 940,320 1040,380" fill="#661227" fill-opacity="0.85" />
+    
+    <line x1="880" y1="410" x2="880" y2="450" stroke="#2a221c" stroke-width="2" />
+    <line x1="910" y1="410" x2="910" y2="450" stroke="#2a221c" stroke-width="2" />
+    <line x1="940" y1="410" x2="940" y2="450" stroke="#2a221c" stroke-width="2" />
+    <line x1="970" y1="410" x2="970" y2="450" stroke="#2a221c" stroke-width="2" />
+    <line x1="1000" y1="410" x2="1000" y2="450" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  
+  <circle cx="600" cy="275" r="160" fill="#f7f2ea" stroke="#661227" stroke-width="3" />
+  <circle cx="600" cy="275" r="152" fill="none" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="4 4" />
+
+  
+  <clipPath id="circleClip">
+    <circle cx="600" cy="275" r="151" />
+  </clipPath>
+
+  <g clip-path="url(#circleClip)">
+    
+    <rect x="440" y="120" width="320" height="320" fill="#eef2f5" />
+    
+    
+    <path d="M 440 300 L 510 180 L 580 250 L 630 190 L 760 330 L 760 400 L 440 400 Z" fill="#d2dcd6" stroke="#2a221c" stroke-width="1" />
+    <path d="M 510 180 L 580 250 L 550 400 L 440 400 Z" fill="url(#etching)" />
+
+    
+    <path d="M 650 400 Q 680 300 750 220 Q 720 280 710 400 Z" fill="#661227" fill-opacity="0.2" />
+    <path d="M 680 400 Q 730 280 820 210 Q 760 300 740 400 Z" fill="#661227" fill-opacity="0.3" />
+    <path d="M 600 400 Q 640 260 610 160 Q 670 260 690 400 Z" fill="#2a221c" fill-opacity="0.15" />
+
+    
+    <path d="M 470 340 Q 600 370 730 340" fill="none" stroke="#661227" stroke-width="2.5" />
+    
+    <g stroke="#2a221c" stroke-width="0.5" stroke-opacity="0.4" fill="none" transform="translate(600, 275)">
+      <line x1="-30" y1="0" x2="30" y2="0" />
+      <line x1="0" y1="-30" x2="0" y2="30" />
+      <circle cx="0" cy="0" r="20" />
+    </g>
+
+    
+    <path d="M 580 380 Q 560 320 520 300 Q 560 330 580 380" fill="url(#crosshatch)" stroke="#661227" stroke-width="1" />
+    <path d="M 620 380 Q 640 320 680 300 Q 640 330 620 380" fill="url(#crosshatch)" stroke="#661227" stroke-width="1" />
+  </g>
+
+  
+  
+  <g fill="#2a221c">
+    
+    <g transform="translate(250, 360)">
+      
+      <path d="M 40 80 Q 30 140 10 220 L 110 220 Q 90 140 80 80 Z" fill="#2a221c" />
+      
+      <circle cx="60" cy="50" r="18" />
+      
+      <path d="M 75 90 C 75 75 105 75 105 90 C 105 105 75 105 75 90 Z" fill="#661227" />
+      
+      <path d="M 40 45 Q 60 30 80 45 L 75 55 Q 60 45 45 55 Z" />
+    </g>
+
+    
+    <g transform="translate(540, 345)">
+      
+      <path d="M 45 80 Q 30 160 15 240 L 105 240 Q 90 160 75 80 Z" fill="#2a221c" />
+      
+      <circle cx="60" cy="45" r="17" />
+      <path d="M 40 40 Q 60 15 80 40 Q 75 28 60 28 Q 45 28 40 40 Z" fill="#661227" />
+      
+      <path d="M 85 100 L 95 60 M 90 70 L 105 65 M 92 80 L 80 75" stroke="#2a221c" stroke-width="2" fill="none" />
+    </g>
+
+    
+    <g transform="translate(830, 355)">
+      
+      <path d="M 45 85 Q 25 150 10 235 L 110 235 Q 95 150 75 85 Z" fill="#2a221c" />
+      
+      <circle cx="60" cy="50" r="17" />
+      
+      <ellipse cx="60" cy="42" rx="24" ry="6" />
+      <path d="M 45 40 Q 60 20 75 40 Z" />
+    </g>
+  </g>
+
+  
+  <rect x="50" y="580" width="1100" height="15" fill="#2a221c" />
+  <rect x="50" y="595" width="1100" height="5" fill="#661227" />
+
+  
+  <g stroke="#2a221c" stroke-width="1" stroke-opacity="0.4">
+    <line x1="100" y1="580" x2="80" y2="595" />
+    <line x1="200" y1="580" x2="180" y2="595" />
+    <line x1="300" y1="580" x2="280" y2="595" />
+    <line x1="400" y1="580" x2="380" y2="595" />
+    <line x1="500" y1="580" x2="480" y2="595" />
+    <line x1="600" y1="580" x2="580" y2="595" />
+    <line x1="700" y1="580" x2="680" y2="595" />
+    <line x1="800" y1="580" x2="780" y2="595" />
+    <line x1="900" y1="580" x2="880" y2="595" />
+    <line x1="1000" y1="580" x2="980" y2="595" />
+    <line x1="1100" y1="580" x2="1080" y2="595" />
+  </g>
+
+  
+  <g stroke="#661227" stroke-width="1.5" fill="none">
+    
+    <path d="M 45 65 L 65 45 M 45 55 L 55 45" />
+    
+    <path d="M 1155 65 L 1135 45 M 1155 55 L 1145 45" />
+    
+    <path d="M 45 610 L 65 630 M 45 620 L 55 630" />
+    
+    <path d="M 1155 610 L 1135 630 M 1155 620 L 1145 630" />
+  </g>
+
+  
+  <circle cx="600" cy="587.5" r="8" fill="#661227" />
+  <circle cx="600" cy="587.5" r="4" fill="#f7f2ea" />
+</svg>
