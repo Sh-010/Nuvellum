@@ -1,7 +1,7 @@
 ---
 title: "No Man's Sky is coming to the iPhone and iPad"
 dek: "Hello Games announced that its exploration game is coming to iOS on October 28th, offering the full experience with newly designed touch controls."
-section: "Technology"
+section: "Gaming"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-12"
@@ -17,14 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/no-man-s-sky-is-coming-to-the-iphone-and-ipad.jpg"
-imageAlt: "Sean Murray (left) and Grant Duncan of game development studio Hello Games, circa 2012"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: Sean Murray (left) and Grant Duncan of game development studio Hello Games, circa 2012. Image of Hello Games, not of the events reported."
-imageCredit: "jon jordan from UK"
-imageLicense: "CC BY 2.0"
-imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
 imageSourcePage: "https://commons.wikimedia.org/wiki/File:Hello_games_sean_murray_grant_duncan.jpg"
 ---
 Hello Games has announced that its long-running sci-fi exploration game *No Man's Sky* is expanding to iOS, with versions for both the iPhone and iPad set to launch on October 28th. 
