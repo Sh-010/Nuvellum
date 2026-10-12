@@ -1,0 +1,79 @@
+{
+  "slug": "nintendo-s-latin-america-vp-says-there-are-no-plans-to-ditch-physical-games",
+  "url": "https://www.nuvellum.news/article/nintendo-s-latin-america-vp-says-there-are-no-plans-to-ditch-physical-games",
+  "title": "Nintendo's Latin America VP says there are no plans to ditch physical games",
+  "risk": "low",
+  "firstSeenAt": "2026-10-12T18:56:17.453Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T18:56:17.453Z",
+      "remoteId": "100",
+      "remoteUrl": "https://t.me/nuvellum/100",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T18:56:17.453Z",
+      "remoteId": "1277147205491143_122108004105497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108004105497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    },
+    "threads": {
+      "containerId": "17949838788321818",
+      "containerCreatedAt": "2026-10-12T18:56:37.502Z",
+      "updatedAt": "2026-10-12T18:56:17.453Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-12T18:56:17.453Z",
+      "remoteId": "17916444885264305",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-12T18:56:17.453Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-12T18:56:17.453Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
