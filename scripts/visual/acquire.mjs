@@ -6,6 +6,7 @@ import { parseFrontmatter } from '../lib/editorial.mjs';
 import { buildVisualBrief, chooseVisualMode, selectBestVisual } from './core.mjs';
 import { searchWikimedia } from './wikimedia.mjs';
 import { findRepresentative, representativeCaption } from './representative.mjs';
+import { preflightArticle } from '../lib/editorial-preflight.mjs';
 
 const root=dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 const UA='NuvellumVisualEngine/1.0 (https://nuvellum.vercel.app)';
@@ -63,8 +64,14 @@ function extension(mime,url){
 // organisation, institution, event or venue; representative.mjs) → the text-led layout. Licence, credit and
 // provenance checks are identical for both kinds of photo; only the caption differs.
 export async function acquireForArticle(path,{doApply=false,search=searchWikimedia,representative=findRepresentative,fetchImage=download}={}){
-  const abs=join(root,path);const src=readFileSync(abs,'utf8');const data=parseFrontmatter(src)||{};
+  const abs=join(root,path);const original=readFileSync(abs,'utf8');
+  const src=preflightArticle(original);if(doApply&&src!==original)writeFileSync(abs,src);
+  const data=parseFrontmatter(src)||{};
   const slug=basename(path).replace(/\.md$/,'');data.slug=slug;
+  if(/not of the events? reported/i.test(String(data.imageCaption||''))){
+    if(doApply){writeFileSync(abs,removeVisualMetadata(src));const image=String(data.image||'');const photo=join(root,'public',image);if(existsSync(photo)&&['jpg','jpeg','png','webp'].some(ext=>image===`/uploads/articles/${slug}.${ext}`))rmSync(photo);}
+    return{outcome:'text-led',slug,fallbackType:'text-led'};
+  }
   if(data.imageProvider==='wikimedia'||new RegExp(`^/uploads/articles/${slug}\\.(?:jpe?g|png|webp)$`,'i').test(String(data.image||'')))return{outcome:'already-acquired',slug};
   const mode=chooseVisualMode(data);
   if(mode==='existing')return{outcome:'existing-real-visual',slug};
@@ -89,7 +96,9 @@ export async function acquireForArticle(path,{doApply=false,search=searchWikimed
   const minC=strict?86:78,minS=strict?18:12;
   let candidate=pick.best&&!notTheStory(pick.best)?pick.best:(pick.ranked.find(c=>c.selectionConfidence>=minC&&c.semanticScore>=minS&&!notTheStory(c))||null);
   let fallbackType='story-photo',entity=null,repTried=null;
-  if(!candidate){
+  // Automated news cannot replace the reported subject with an emblematic
+  // venue, logo or archive occasion. That fallback disagreed with the gate.
+  if(!candidate&&data.origin!=='automation'){
     try{
       const rep=await representative({...data},{bodyText:src.slice(src.indexOf('\n---',3)+4)});
       if(rep.outcome==='selected'){candidate=rep.candidate;fallbackType=rep.fallbackType;entity=rep.entity;}

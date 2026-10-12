@@ -27,7 +27,8 @@ imageLicense: "CC BY-SA 4.0"
 imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
 imageSourcePage: "https://commons.wikimedia.org/wiki/File:Cristian_Mungiu_at_2026_Cannes_Film_Festival_02.jpg"
 ---
-Director Cristian Mungiu’s sixth feature film, *Fjord*, centers on a religious Romanian family that moves to a small hamlet in rural Norway. The story follows Mamma, played by Renata Reinsve; Tata, played by Sebastian Stan; and their children. The parents are openly religious, proselytizing, and believe in punitive discipline rather than gentle parenting, according to the source material.
+
+[The Verge](https://www.theverge.com/entertainment/1008748/fjord-cristian-mungiu-interview) reports that director Cristian Mungiu’s sixth feature film, *Fjord*, centers on a religious Romanian family that moves to a small hamlet in rural Norway. The story follows Mamma, played by Renata Reinsve; Tata, played by Sebastian Stan; and their children. The parents are openly religious, proselytizing, and believe in punitive discipline rather than gentle parenting, according to the source material.
 
 Set in a contemporary context where the secular environment shows suspicion toward the devout, the film explores what constitutes discipline versus punishment. To construct the narrative, Mungiu spent roughly eight years conducting research, following reports on immigrant families in Nordic countries, visiting Norway, and speaking with families involved in prominent cases, lawyers, press, translators, the Norwegian child welfare agency Barnevernet, and local non-governmental organizations.
 

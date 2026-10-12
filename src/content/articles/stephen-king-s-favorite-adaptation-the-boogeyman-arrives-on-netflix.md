@@ -39,6 +39,6 @@ The adaptation moves the setting to the present day and redesigns the titular cr
 
 While King has historically been vocal about his disdain for film adaptations that he felt strayed from his books or ignored their themes—such as Stanley Kubrick’s *The Shining*, Paul Michael Glasser’s *The Running Man*, and Ralph S. Singleton’s *Graveyard Shift*—he expressed strong approval for Savage’s take.
 
-Director Rob Savage shared that King wrote the production team an extensive message praising the movie. According to Savage, King remarked that the studio would be "fucking stupid to release this on streaming and not in cinemas."
+Director Rob Savage shared that King wrote the production team an extensive message praising the movie. According to [Polygon](https://www.polygon.com/stephen-king-the-boogeyman-adaptation), Savage said King strongly urged the studio to release the film in cinemas rather than exclusively on streaming.
 
 Despite the author's endorsement, *The Boogeyman* received mixed responses from reviewers and audiences during its theatrical run. The film grossed $82 million worldwide against a $35 million budget, and holds a 60% score on Rotten Tomatoes' Tomatometer alongside a 65% audience score on the Popcornmeter.

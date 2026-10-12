@@ -10,6 +10,8 @@ import { selectHome, loadPublished } from './lib/home-selection.mjs';
 import { decodePng } from './lib/app-icons.mjs';
 
 const dist = join(root, 'dist');
+const site = (process.env.SITE_URL || 'https://nuvellum.vercel.app').replace(/\/$/, '');
+const sitePattern = site.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const errors = [];
 const read = (p) => readFileSync(join(dist, p), 'utf8');
 if (!existsSync(dist)) { console.error('dist/ is missing; run npm run build first.'); process.exit(1); }
@@ -89,7 +91,7 @@ for (const { slug, data } of published) {
   const file = join('article', slug, 'index.html');
   if (!existsSync(join(dist, file))) { errors.push(`${file}: missing`); continue; }
   const h = read(file);
-  if (!h.includes(`<link rel="canonical" href="https://nuvellum.vercel.app/article/${slug}"`)) errors.push(`${slug}: canonical URL`);
+  if (!h.includes(`<link rel="canonical" href="${site}/article/${slug}"`)) errors.push(`${slug}: canonical URL`);
   if (!/<time datetime="\d{4}-\d{2}-\d{2}T[^"]+">/.test(h)) errors.push(`${slug}: <time datetime> missing`);
   if (!/"@type":"(News)?Article"/.test(h)) errors.push(`${slug}: Article JSON-LD missing`);
   if (GENERIC_ART_RE.test(h)) errors.push(`${slug}: generic section art is rendered as a story image`);
@@ -111,7 +113,7 @@ for (const { slug, data } of published) {
 // Sitemap: every published article, each with lastmod.
 const sitemap = read('sitemap.xml');
 for (const { slug } of published) {
-  if (!new RegExp(`<loc>https://nuvellum\\.vercel\\.app/article/${slug}</loc><lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`).test(sitemap)) errors.push(`sitemap: ${slug} missing or without lastmod`);
+  if (!new RegExp(`<loc>${sitePattern}/article/${slug}</loc><lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`).test(sitemap)) errors.push(`sitemap: ${slug} missing or without lastmod`);
 }
 
 // Private admin shell: present, never indexed or listed, no third-party scripts, and nothing secret-shaped in it.

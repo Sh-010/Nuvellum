@@ -1,5 +1,8 @@
 ---
 import InstitutionalPage from '../components/InstitutionalPage.astro';
+import corrections from '../data/editorial-corrections.json';
+import { getArticles } from '../lib/articles';
+const articles = await getArticles();
 ---
 <InstitutionalPage
   title="Corrections"
@@ -10,6 +13,8 @@ import InstitutionalPage from '../components/InstitutionalPage.astro';
 >
   <h2>Material corrections</h2>
   <p>When a factual error materially affects the substance of a piece, Nuvellum corrects the article and discloses the change. The aim is a record that is both accurate and candid about what was amended.</p>
+  <h2>Published updates</h2>
+  <ul>{Object.entries(corrections).map(([slug, entry]) => <li><a href={`/article/${slug}`}>{articles.find(a => a.slug === slug)?.title || slug}</a> · {entry.date}: {entry.note}</li>)}</ul>
   <h2>Minor edits</h2>
   <p>Spelling, punctuation, formatting and other non-substantive errors may be corrected without a formal note where the change does not alter meaning, attribution or the substance of the reporting.</p>
   <h2>Raise a correction</h2>

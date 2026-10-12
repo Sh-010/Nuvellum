@@ -74,7 +74,7 @@ function candidateSlugs() {
 }
 
 async function isLive(url) {
-  try { const r = await fetch(url, { method: 'GET', redirect: 'follow' }); return r.status === 200; } catch { return false; }
+  try { const r = await fetch(url, { method: 'GET', redirect: 'follow', signal: AbortSignal.timeout(8000) }); return r.status === 200; } catch { return false; }
 }
 
 const freshEntry = (story) => ({ slug: story.slug, url: story.url, title: story.title, risk: story.risk, firstSeenAt: new Date(now).toISOString(), platforms: {} });
@@ -88,18 +88,26 @@ async function selectedCandidates() {
     let story;
     try { story = loadStory(slug); } catch { continue; }
     const entry = readEntry(slug) || freshEntry(story);
-    const liveOnSite = await isLive(story.url);
     const hasShort = existsSync(join(REPO_ROOT, 'engines', 'out', 'shorts', slug, 'short.mp4'));
-    const plan = planStory({ ledger: entry, env, live: liveOnSite, hasShort });
+    // Assess the ledger first. Network-check only the next actionable story,
+    // rather than fetching every article in the 48-hour window sequentially.
+    const plan = planStory({ ledger: entry, env, live: true, hasShort });
     assessed.push({
       slug,
+      url: story.url,
       reachedMain: reachedMain(slug),
       hasQueued: Object.values(entry.platforms || {}).some((p) => p.status === 'queued'),
       actionable: plan.some((step) => step.action === 'post')
     });
   }
-  const chosen = chooseScheduledCandidate(assessed);
-  return chosen ? [chosen] : [];
+  for (let checked = 0; checked < 6; checked++) {
+    const chosen = chooseScheduledCandidate(assessed);
+    if (!chosen) break;
+    const item = assessed.find(candidate => candidate.slug === chosen);
+    if (await isLive(item.url)) return [chosen];
+    item.actionable = false;
+  }
+  return [];
 }
 
 const selected = await selectedCandidates();

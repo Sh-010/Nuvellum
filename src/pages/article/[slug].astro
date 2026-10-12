@@ -8,6 +8,7 @@ import '../../styles/article.css';
 import { getArticles, slugify } from '../../lib/articles';
 import { initials, longDate } from '../../lib/interior';
 import { imageCredit, imageFocus } from '../../lib/image-credits.js';
+import corrections from '../../data/editorial-corrections.json';
 
 export async function getStaticPaths() {
   const articles = await getArticles();
@@ -16,6 +17,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = article;
+const correction = corrections[article.slug];
 const allArticles = await getArticles();
 const related = [
   ...allArticles.filter((a) => a.slug !== article.slug && a.section === article.section),
@@ -28,8 +30,8 @@ const articleUrl = new URL(`/article/${article.slug}`, site).toString();
 const imageUrl = article.image ? new URL(article.image, site).toString() : '';
 // publishedAt (automated stories) is the real publication time; older stories only have a date.
 const publishedTime = article.publishedAt && article.publishedAt.startsWith(article.date) ? article.publishedAt : `${article.date}T00:00:00Z`;
-const modifiedDate = article.updated || article.date;
-const modifiedTime = article.updated ? `${modifiedDate}T00:00:00Z` : publishedTime;
+const modifiedDate = article.updated || correction?.date || article.date;
+const modifiedTime = article.updated || correction ? `${modifiedDate}T00:00:00Z` : publishedTime;
 // sourceUrls / sourceNote stay in the content metadata for the newsroom, verification and duplicate
 // checks; they are not published on the page. Attribution belongs in the story text where the reporting needs it.
 const authorIsDesk = /desk|team|staff/i.test(article.author);
@@ -150,6 +152,7 @@ const tools = [
 
       <div class="reading-col">
         <div class="body" id="articleBody"><Content /></div>
+        {correction && <p class="story-correction" role="note"><strong>Editorial update · {correction.date}:</strong> {correction.note}</p>}
 
         <footer class="story-end">
           <div class="end-mark" aria-hidden="true"><span>✦</span></div>

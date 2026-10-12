@@ -167,6 +167,7 @@ test('Instagram feed: posts the public portrait card; waits (retryable) until so
 
 test('Threads: a text post with the tracked story link', async () => {
   const r = await threads.post(story(), { env: { THREADS_USER_ID: '3', THREADS_TOKEN: 'th-token-value' }, copy: { threads: { text: 'Agency awards contract' } }, fetchImpl: async (url, init) => {
+    if (url.includes('?fields=id,status,error_message')) return res(200, { id:'c', status:'FINISHED' });
     if (url.endsWith('/threads')) { assert.match(init.body, /media_type=TEXT/); assert.match(decodeURIComponent(init.body), /utm_source=threads/); return res(200, { id: 'c' }); }
     return res(200, { id: 't1' });
   } });

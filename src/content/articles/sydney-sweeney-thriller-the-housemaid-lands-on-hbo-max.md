@@ -17,15 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/sydney-sweeney-thriller-the-housemaid-lands-on-hbo-max.jpg"
-imageAlt: "Jason Momoa & Patrick Wilson Try Painting Each Other Aquaman & the Lost Kingdom Max"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: Jason Momoa & Patrick Wilson Try Painting Each Other Aquaman & the Lost Kingdom Max"
-imageCredit: "Max"
-imageLicense: "CC BY 3.0"
-imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
-imageSourcePage: "https://commons.wikimedia.org/wiki/File:Jason_Momoa_%26_Patrick_Wilson_Try_Painting_Each_Other_-_Aquaman_%26_the_Lost_Kingdom_-_Max.webm"
 ---
 ## Streaming debut on HBO Max
 

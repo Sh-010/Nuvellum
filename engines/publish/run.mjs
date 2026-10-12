@@ -72,7 +72,8 @@ export async function processStory(o) {
     }
     let result;
     try {
-      const r = await adapters[platform].post(story, { env, siteUrl, copy, assets: useAssets });
+      const r = await adapters[platform].post(story, { env, siteUrl, copy, assets: useAssets, previous: prev,
+        checkpoint: patch => { entry = record(entry, platform, patch, now); save(entry); } });
       result = { ok: true, at: new Date(now).toISOString(), ...r };
     } catch (e) {
       result = { ok: false, retryable: e instanceof PostError ? e.retryable : true, error: e instanceof PostError ? e.message : `${platform}: ${e.name || 'Error'}` };

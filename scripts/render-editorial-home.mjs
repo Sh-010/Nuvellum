@@ -252,8 +252,9 @@ html.motion-ready:not(.motion-live) :is(${REVEAL_FADES},${REVEAL_PARTS},.rule,${
 @media print{html.motion-ready :is(${REVEAL_FADES},${REVEAL_PARTS},.rule,${REVEAL_IMAGES}){opacity:1!important;translate:none!important;scale:1 1!important;clip-path:none!important;animation:none!important}}`;
 
 const heroImage = art(hero);
-// Share card: the lead's photo, else the newest story that has one (never section art).
-const shareImage = heroImage || art(articles.find(a => art(a))) || '';
+// The homepage uses the lead's raster card, including a text-led card when no
+// trustworthy photograph exists. Never advertise an SVG to social crawlers.
+const shareImage = `/api/og?slug=${hero.slug}`;
 const shareMeta = shareImage
   ? `<meta property="og:image" content="${site}${shareImage}">\n<meta name="twitter:card" content="summary_large_image">`
   : '<meta name="twitter:card" content="summary">';

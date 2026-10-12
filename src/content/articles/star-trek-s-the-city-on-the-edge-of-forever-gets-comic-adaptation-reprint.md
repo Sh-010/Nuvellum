@@ -18,7 +18,8 @@ risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
 ---
-Nearly 60 years after its original television broadcast, the *Star Trek* episode "The City on the Edge of Forever" continues to be recognized as a defining installment in the franchise's history. IDW Publishing is releasing *Star Trek: The Edges of the Final Frontier: IDW Classic Collection* on October 13, which features a reprint of a 2015 comic adaptation based on Harlan Ellison’s original screenplay. Ellison’s initial script differed notably from the version that eventually aired on television.
+
+[Polygon](https://www.polygon.com/star-trek-city-on-the-edge-of-forever) reports that nearly 60 years after its original television broadcast, the *Star Trek* episode "The City on the Edge of Forever" continues to be recognized as a defining installment in the franchise's history. IDW Publishing is releasing *Star Trek: The Edges of the Final Frontier: IDW Classic Collection* on October 13, which features a reprint of a 2015 comic adaptation based on Harlan Ellison’s original screenplay. Ellison’s initial script differed notably from the version that eventually aired on television.
 
 ## The personal stakes of time travel
 

@@ -17,15 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/roy-keane-and-wayne-rooney-clash-over-potential-man-city-title-strips.jpg?v=20260930-1"
-imageAlt: "The Manchester City team on their victory parade following their Premier League title win"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: The Manchester City team on their victory parade following their Premier League title win"
-imageCredit: "Oldelpaso"
-imageLicense: "CC BY-SA 3.0"
-imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
-imageSourcePage: "https://commons.wikimedia.org/wiki/File:MCFC_parade_2012.JPG"
 ---
 Following the Premier League's confirmation that Manchester City were found guilty of breaching financial rules over a nine-year period, former players and managers have expressed differing opinions regarding potential retrospective punishments and title adjustments.
 

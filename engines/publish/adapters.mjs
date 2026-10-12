@@ -198,15 +198,38 @@ export const instagram = {
 export const threads = {
   id: 'threads',
   configured: (env) => !!(env.THREADS_USER_ID && env.THREADS_TOKEN),
-  async post(story, { env, fetchImpl = fetch, copy }) {
+  async post(story, { env, fetchImpl = fetch, copy, previous = {}, checkpoint = () => {},
+    wait = ms => new Promise(resolve => setTimeout(resolve, ms)), now = Date.now }) {
     const base = `https://graph.threads.net/v1.0/${encodeURIComponent(env.THREADS_USER_ID)}`;
     const form = (o) => ({ method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ ...o, access_token: env.THREADS_TOKEN }).toString() });
-    const created = await fetchImpl(`${base}/threads`, form({ media_type: 'TEXT', text: copy.threads.text, link_attachment: trackedUrl(story, 'threads') }));
-    if (!created.ok) throw await readError('threads', created, env);
-    const { id } = await created.json();
+    let id = previous.containerId;
+    if (!id || now() - Date.parse(previous.containerCreatedAt || '') >= 23 * 3600e3) {
+      const created = await fetchImpl(`${base}/threads`, form({ media_type: 'TEXT', text: copy.threads.text, link_attachment: trackedUrl(story, 'threads') }));
+      if (!created.ok) throw await readError('threads', created, env);
+      id = (await created.json()).id;
+      if (!id) throw new PostError('threads', 'container response is missing its ID', { retryable: false });
+      // Persist before publication: a crash or temporary error must reuse the
+      // same container instead of creating a second public post.
+      checkpoint({ containerId: String(id), containerCreatedAt: new Date(now()).toISOString() });
+    }
+    let ready = false;
+    for (let attempt = 0; attempt < 8; attempt++) {
+      const status = await fetchImpl(`https://graph.threads.net/v1.0/${encodeURIComponent(id)}?fields=id,status,error_message`, {
+        headers: { Authorization: `Bearer ${env.THREADS_TOKEN}` }, signal: AbortSignal.timeout(15000)
+      });
+      if (!status.ok) throw await readError('threads', status, env);
+      const state = await status.json();
+      if (state.status === 'PUBLISHED') return { remoteId: '', remoteUrl: null, kind: 'link' };
+      if (state.status === 'FINISHED') { ready = true; break; }
+      if (state.status === 'ERROR' || state.status === 'EXPIRED') throw new PostError('threads', redact(state.error_message || state.status, env), { retryable: false });
+      if (state.status !== 'IN_PROGRESS') throw new PostError('threads', 'unrecognized container status', { retryable: false });
+      if (attempt < 7) await wait(2000);
+    }
+    if (!ready) throw new PostError('threads', 'container is still processing; will retry the same container');
     const pub = await fetchImpl(`${base}/threads_publish`, form({ creation_id: id }));
     if (!pub.ok) throw await readError('threads', pub, env);
     const post = (await pub.json()).id;
+    if (!post) throw new PostError('threads', 'publish response is missing its ID; check the same container on retry');
     return { remoteId: String(post || ''), remoteUrl: null, kind: 'link' };
   }
 };

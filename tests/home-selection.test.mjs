@@ -145,7 +145,7 @@ test('the repository homepage: the real manual story is placed, and every origin
     assert.ok(onPage.has(newest.slug), `${newest.slug} (${origin}) is on the homepage`);
   }
   const world = published.filter((a) => a.section === 'World');
-  const expected = world.slice(0, HERO_WINDOW).find(hasStoryImage) || published.slice(0, HERO_WINDOW).find(hasStoryImage) || world[0];
+  const expected = world.slice(0, HERO_WINDOW).find(hasStoryImage) || world[0] || published.slice(0, HERO_WINDOW).find(hasStoryImage);
   assert.equal(home.hero.slug, expected.slug, 'hero = newest World story with a picture (then any recent story with one)');
 });
 
@@ -155,9 +155,9 @@ test('hero: a fresh story with a picture leads instead of a text-led hero; nothi
   let home = selectHome([story({ slug: 'w-text', date: '2026-09-30' }), story({ slug: 'w-photo', date: '2026-09-29', image: img('w-photo') }), story({ slug: 'biz', section: 'Business', date: '2026-09-30', image: img('biz') })]);
   assert.equal(home.hero.slug, 'w-photo');
   assert.ok(slugs(home.supporting).includes('w-text'), 'the text-led World story is still on the page');
-  // No World story with a picture near the top → the newest story with one leads.
+  // A text-led World story retains the lead instead of being displaced by unrelated art.
   home = selectHome([story({ slug: 'w-text', date: '2026-09-30' }), story({ slug: 'biz', section: 'Business', date: '2026-09-29', image: img('biz') })]);
-  assert.equal(home.hero.slug, 'biz');
+  assert.equal(home.hero.slug, 'w-text');
   // Generic section art is not a picture of the story.
   home = selectHome([story({ slug: 'w-text', date: '2026-09-30' }), story({ slug: 'biz', section: 'Business', date: '2026-09-29', image: '/images/business.svg' })]);
   assert.equal(home.hero.slug, 'w-text');
