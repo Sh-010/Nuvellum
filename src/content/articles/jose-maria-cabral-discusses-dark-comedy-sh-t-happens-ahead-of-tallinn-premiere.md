@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T08:01:22.834Z"
 readingTime: "2 min"
-image: "/generated/ai/jose-maria-cabral-discusses-dark-comedy-sh-t-happens-ahead-of-tallinn-premiere.svg"
-imageAlt: "AI-generated editorial illustration for José María Cabral discusses dark comedy ‘Sh*t Happens’ ahead of Tallinn premiere"
 status: "published"
 tags: ["José María Cabral","Sh*t Happens","Tallinn Black Nights Film Festival","Latido Film Sales","Lantica Studios"]
 regions: ["latin-america-caribbean","europe-central-asia"]
