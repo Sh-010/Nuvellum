@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-12"
 publishedAt: "2026-10-12T13:00:53.883Z"
 readingTime: "2 min"
-image: "/generated/ai/jw-anderson-and-ugg-team-up-for-loafer-inspired-boots-and-slippers.svg"
-imageAlt: "AI-generated editorial illustration for JW Anderson and Ugg team up for loafer-inspired boots and slippers"
 status: "published"
 tags: ["JW Anderson","Ugg","Dev Hynes","Jonathan Anderson","Fashion"]
 regions: ["north-america"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/jw-anderson-and-ugg-team-up-for-loafer-inspired-boots-and-slippers.jpg"
+imageAlt: "UGG store at Zhengzhou Shanshan Outlet Plaza"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: UGG store at Zhengzhou Shanshan Outlet Plaza. Image of UGG, not of the events reported."
+imageCredit: "Windmemories"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:20220211_UGG_store_at_Zhengzhou_Shanshan_Outlet_Plaza.jpg"
 ---
 Designer Jonathan Anderson's namesake label, JW Anderson, has partnered with footwear brand Ugg for a new unisex capsule collection that reinterprets traditional silhouettes. The collaboration reimagines Ugg's Classic Boot and Tasman slipper by incorporating details inspired by penny loafers.
 
