@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#f7f3ec"/>
+      <stop offset="100%" stop-color="#eae0ce"/>
+    </radialGradient>
+
+    
+    <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#2a221c" stroke-width="0.4" stroke-opacity="0.15"/>
+    </pattern>
+
+    
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#661227" fill-opacity="0.08"/>
+    </pattern>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="70%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a221c" stop-opacity="0.12"/>
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)"/>
+  
+  
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  
+  <rect width="1200" height="675" fill="url(#vignette)" style="mix-blend-mode: multiply; pointer-events: none;"/>
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" stroke="#661227" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="80" y1="615" x2="1120" y2="615" stroke="#661227" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="80" y1="60" x2="80" y2="615" stroke="#661227" stroke-width="0.75" stroke-opacity="0.3"/>
+  <line x1="1120" y1="60" x2="1120" y2="615" stroke="#661227" stroke-width="0.75" stroke-opacity="0.3"/>
+
+  
+  
+
+  <g transform="translate(600, 337)">
+    
+    <rect x="-182" y="-232" width="364" height="464" rx="12" fill="#2a221c" opacity="0.15"/>
+    
+    
+    <g transform="translate(45, -20) rotate(8)">
+      <rect x="-160" y="-210" width="320" height="420" rx="4" fill="#fcf9f4" stroke="#2a221c" stroke-width="2"/>
+      
+      <line x1="-130" y1="-160" x2="-20" y2="-160" stroke="#2a221c" stroke-width="4" stroke-opacity="0.2"/>
+      <line x1="-130" y1="-130" x2="60" y2="-130" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      <line x1="-130" y1="-110" x2="20" y2="-110" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      <line x1="-130" y1="-90" x2="80" y2="-90" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      
+      <line x1="-100" y1="-50" x2="50" y2="-50" stroke="#661227" stroke-width="3" stroke-opacity="0.4"/>
+      <line x1="-130" y1="-20" x2="90" y2="-20" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      <line x1="-130" y1="0" x2="30" y2="0" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      <line x1="-130" y1="20" x2="70" y2="20" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      
+      <line x1="-130" y1="70" x2="-20" y2="70" stroke="#2a221c" stroke-width="3" stroke-opacity="0.3"/>
+      <line x1="-130" y1="100" x2="80" y2="100" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+      <line x1="-130" y1="120" x2="10" y2="120" stroke="#2a221c" stroke-width="2" stroke-opacity="0.15"/>
+    </g>
+
+    
+    <rect x="-175" y="-225" width="350" height="450" rx="8" fill="#fcf9f4" stroke="#2a221c" stroke-width="3"/>
+    
+    
+    <path d="M -172 -222 L 172 -222 L 172 -140 L -172 -140 Z" fill="#661227"/>
+    
+    
+    <circle cx="-110" cy="-225" r="12" fill="url(#paperGrad)" stroke="#2a221c" stroke-width="2"/>
+    <circle cx="110" cy="-225" r="12" fill="url(#paperGrad)" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <circle cx="-110" cy="225" r="12" fill="url(#paperGrad)" stroke="#2a221c" stroke-width="2"/>
+    <circle cx="110" cy="225" r="12" fill="url(#paperGrad)" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <line x1="-92" y1="-225" x2="-128" y2="-225" stroke="#2a221c" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="92" y1="-225" x2="128" y2="-225" stroke="#2a221c" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="-92" y1="225" x2="-128" y2="225" stroke="#2a221c" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="92" y1="225" x2="128" y2="225" stroke="#2a221c" stroke-width="2" stroke-dasharray="4,4"/>
+
+    
+    <g transform="translate(0, 10)">
+      
+      <rect x="-130" y="-105" width="260" height="210" fill="url(#hatch)" stroke="#2a221c" stroke-width="1.5"/>
+
+      
+      <path d="M -130 105 L -130 65 L -115 65 L -115 45 L -100 45 L -100 75 L -85 75 L -85 30 L -60 30 L -60 85 L -40 85 L -40 20 L -10 20 L -10 90 L 15 90 L 15 40 L 35 40 L 35 70 L 55 70 L 55 25 L 80 25 L 80 80 L 100 80 L 100 50 L 115 50 L 115 95 L 130 95 L 130 105 Z" fill="#2a221c" opacity="0.12"/>
+
+      
+      <path d="M -70 -40 C -10 -80, 50 -10, 0 50 C -40 90, 70 80, 70 20 C 70 -30, -30 -10, 50 -60" fill="none" stroke="#661227" stroke-width="5" stroke-linecap="round"/>
+      <path d="M -60 -45 C -5 -82, 45 -12, -2 48 C -38 88, 65 78, 65 18 C 65 -28, -25 -8, 45 -58" fill="none" stroke="#2a221c" stroke-width="2" stroke-linecap="round"/>
+
+      
+      <g transform="translate(0, 5)">
+        <line x1="0" y1="-18" x2="0" y2="18" stroke="#661227" stroke-width="3" stroke-linecap="round"/>
+        <line x1="-18" y1="0" x2="18" y2="0" stroke="#661227" stroke-width="3" stroke-linecap="round"/>
+        <line x1="-12" y1="-12" x2="12" y2="12" stroke="#661227" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="-12" y1="12" x2="12" y2="-12" stroke="#661227" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="4" fill="#fcf9f4" stroke="#661227" stroke-width="2"/>
+      </g>
+    </g>
+
+    
+    <g transform="translate(-130, 160)">
+      <rect x="0" y="0" width="4" height="25" fill="#2a221c"/>
+      <rect x="8" y="0" width="2" height="25" fill="#2a221c"/>
+      <rect x="14" y="0" width="6" height="25" fill="#2a221c"/>
+      <rect x="24" y="0" width="2" height="25" fill="#2a221c"/>
+      <rect x="30" y="0" width="8" height="25" fill="#2a221c"/>
+      <rect x="42" y="0" width="3" height="25" fill="#2a221c"/>
+      <rect x="49" y="0" width="5" height="25" fill="#2a221c"/>
+      <rect x="58" y="0" width="2" height="25" fill="#2a221c"/>
+      <rect x="64" y="0" width="7" height="25" fill="#2a221c"/>
+      <rect x="75" y="0" width="3" height="25" fill="#2a221c"/>
+    </g>
+
+    
+    <line x1="90" y1="-135" x2="90" y2="200" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="6,6"/>
+
+    
+    <circle cx="132" cy="35" r="14" fill="none" stroke="#661227" stroke-width="2"/>
+    <circle cx="132" cy="35" r="5" fill="#661227"/>
+  </g>
+
+  
+  <g transform="translate(180, 337)">
+    
+    <line x1="0" y1="-220" x2="0" y2="220" stroke="#661227" stroke-width="1" stroke-opacity="0.3"/>
+    
+    
+    <line x1="-15" y1="-180" x2="15" y2="-180" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="0" y1="-195" x2="0" y2="-165" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+
+    <line x1="-15" y1="180" x2="15" y2="180" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="0" y1="165" x2="0" y2="195" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+
+    
+    <polygon points="0,-60 8,-52 0,-44 -8,-52" fill="#661227" opacity="0.8"/>
+    <polygon points="0,44 8,52 0,60 -8,52" fill="#661227" opacity="0.8"/>
+    <line x1="0" y1="-44" x2="0" y2="44" stroke="#661227" stroke-width="1.5" stroke-dasharray="3,3"/>
+  </g>
+
+  
+  <g transform="translate(1020, 337)">
+    
+    <line x1="0" y1="-220" x2="0" y2="220" stroke="#661227" stroke-width="1" stroke-opacity="0.3"/>
+    
+    
+    <line x1="-15" y1="-100" x2="15" y2="-100" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="0" y1="-115" x2="0" y2="-85" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+
+    <line x1="-15" y1="100" x2="15" y2="100" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="0" y1="85" x2="0" y2="115" stroke="#2a221c" stroke-width="1" stroke-opacity="0.4"/>
+
+    
+    <rect x="-6" y="-12" width="12" height="12" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="-10" y="-16" width="20" height="20" fill="none" stroke="#661227" stroke-width="1"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" fill="none" opacity="0.5">
+    
+    <path d="M 75 90 L 75 75 L 90 75"/>
+    
+    <path d="M 1125 90 L 1125 75 L 1110 75"/>
+    
+    <path d="M 75 585 L 75 600 L 90 600"/>
+    
+    <path d="M 1125 585 L 1125 600 L 1110 600"/>
+  </g>
+</svg>
