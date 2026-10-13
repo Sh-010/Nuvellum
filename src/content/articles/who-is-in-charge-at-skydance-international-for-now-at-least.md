@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T07:00:54.807Z"
 readingTime: "2 min"
-image: "/generated/ai/who-is-in-charge-at-skydance-international-for-now-at-least.svg"
-imageAlt: "AI-generated editorial illustration for Who is in charge at Skydance International – for now at least"
 status: "published"
 tags: ["Skydance","Paramount","Warner Bros Discovery","JB Perrette","David Decker","Bryon Rubin"]
 regions: ["north-america","europe-central-asia","southeast-asia-oceania"]
