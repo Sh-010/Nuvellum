@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T23:00:41.846Z"
 readingTime: "2 min"
-image: "/generated/ai/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics.svg"
-imageAlt: "AI-generated editorial illustration for How Magic: The Gathering translates Marvel characters into card mechanics"
 status: "published"
 tags: ["Magic: The Gathering","Marvel","gaming","card games"]
 regions: []
