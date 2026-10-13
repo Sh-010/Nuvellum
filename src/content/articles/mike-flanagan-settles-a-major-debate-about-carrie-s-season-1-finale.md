@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T11:00:41.625Z"
 readingTime: "2 min"
-image: "/generated/ai/mike-flanagan-settles-a-major-debate-about-carrie-s-season-1-finale.svg"
-imageAlt: "AI-generated editorial illustration for Mike Flanagan settles a major debate about Carrie's season 1 finale"
 status: "published"
 tags: ["Carrie","Mike Flanagan","Prime Video","television"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/mike-flanagan-settles-a-major-debate-about-carrie-s-season-1-finale.jpg"
+imageAlt: "2026 Toronto International Film Festival \"Carrie\" Premiere 13"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: 2026 Toronto International Film Festival \"Carrie\" Premiere 13"
+imageCredit: "Gabriel Hutchinson"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:2026_Toronto_International_Film_Festival_-_%22Carrie%22_Premiere_13.jpg"
 ---
 Prime Video's *Carrie* series concludes its first season with an ambiguous sequence during its prom scene, prompting showrunner Mike Flanagan to clarify the events in an interview.
 
