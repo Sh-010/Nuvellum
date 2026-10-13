@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T01:00:41.378Z"
 readingTime: "2 min"
-image: "/generated/ai/high-potential-lands-post-super-bowl-lxi-slot-on-abc-next-february.svg"
-imageAlt: "AI-generated editorial illustration for ‘High Potential’ lands post-super Bowl lxi slot on ABC next February"
 status: "published"
 tags: ["High Potential","Super Bowl","ABC","Kaitlin Olson"]
 regions: ["north-america"]
