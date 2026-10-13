@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T02:00:39.746Z"
 readingTime: "2 min"
-image: "/generated/ai/bumble-shares-soar-after-report-dating-firm-in-1bn-takeover-talks.svg"
-imageAlt: "AI-generated editorial illustration for Bumble shares soar after report dating firm in $1bn takeover talks"
 status: "published"
 tags: ["Bumble","Ithaca","takeover","dating apps","Whitney Wolfe Herd"]
 regions: ["north-america"]
