@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T19:00:49.012Z"
 readingTime: "2 min"
-image: "/generated/ai/lena-dunham-sets-girls-revival-at-hbo-with-core-cast-returning.svg"
-imageAlt: "AI-generated editorial illustration for Lena Dunham sets 'Girls' revival at HBO with core cast returning"
 status: "published"
 tags: ["Lena Dunham","Girls","HBO","television"]
 regions: ["north-america"]
