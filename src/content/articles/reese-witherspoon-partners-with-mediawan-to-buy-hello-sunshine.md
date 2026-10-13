@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T18:07:03.674Z"
 readingTime: "2 min"
-image: "/generated/ai/reese-witherspoon-partners-with-mediawan-to-buy-hello-sunshine.svg"
-imageAlt: "AI-generated editorial illustration for Reese Witherspoon partners with Mediawan to buy Hello Sunshine"
 status: "published"
 tags: ["Reese Witherspoon","Mediawan","Hello Sunshine","Candle Media"]
 regions: ["europe-central-asia","north-america"]
