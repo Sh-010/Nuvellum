@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T08:00:48.118Z"
 readingTime: "2 min"
-image: "/generated/ai/new-whistleblowing-portal-launches-for-u-k-entertainment-workers.svg"
-imageAlt: "AI-generated editorial illustration for New whistleblowing portal launches for U.K. entertainment workers"
 status: "published"
 tags: ["CIISA","whistleblowing","entertainment industry","harassment","U.K."]
 regions: ["europe-central-asia"]
