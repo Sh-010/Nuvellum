@@ -1,0 +1,79 @@
+{
+  "slug": "high-potential-lands-post-super-bowl-lxi-slot-on-abc-next-february",
+  "url": "https://www.nuvellum.news/article/high-potential-lands-post-super-bowl-lxi-slot-on-abc-next-february",
+  "title": "‘High Potential’ lands post-super Bowl lxi slot on ABC next February",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T01:03:48.918Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T01:03:48.918Z",
+      "remoteId": "105",
+      "remoteUrl": "https://t.me/nuvellum/105",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T01:03:48.918Z",
+      "remoteId": "1277147205491143_122108126985497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108126985497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    },
+    "threads": {
+      "containerId": "17949871149321818",
+      "containerCreatedAt": "2026-10-13T01:04:00.253Z",
+      "updatedAt": "2026-10-13T01:03:48.918Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T01:03:48.918Z",
+      "remoteId": "17927819361185164",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T01:03:48.918Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T01:03:48.918Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
