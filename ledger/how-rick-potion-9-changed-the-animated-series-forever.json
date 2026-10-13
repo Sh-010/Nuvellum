@@ -1,0 +1,79 @@
+{
+  "slug": "how-rick-potion-9-changed-the-animated-series-forever",
+  "url": "https://www.nuvellum.news/article/how-rick-potion-9-changed-the-animated-series-forever",
+  "title": "How 'Rick Potion #9' changed the animated series forever",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T10:04:04.868Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T10:04:04.868Z",
+      "remoteId": "110",
+      "remoteUrl": "https://t.me/nuvellum/110",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T10:04:04.868Z",
+      "remoteId": "1277147205491143_122108304819497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108304819497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    },
+    "threads": {
+      "containerId": "17949926697321818",
+      "containerCreatedAt": "2026-10-13T10:04:20.946Z",
+      "updatedAt": "2026-10-13T10:04:04.868Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T10:04:04.868Z",
+      "remoteId": "18073331174753024",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T10:04:04.868Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T10:04:04.868Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
