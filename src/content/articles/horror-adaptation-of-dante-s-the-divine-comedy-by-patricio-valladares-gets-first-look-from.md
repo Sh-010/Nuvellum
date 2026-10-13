@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T09:00:47.828Z"
 readingTime: "2 min"
-image: "/generated/ai/horror-adaptation-of-dante-s-the-divine-comedy-by-patricio-valladares-gets-first-look-from.svg"
-imageAlt: "AI-generated editorial illustration for Horror adaptation of Dante's 'The Divine Comedy' by Patricio Valladares gets first look from Skincrawl Studios"
 status: "published"
 tags: ["Patricio Valladares","Skincrawl Studios","The Divine Comedy","horror","American Film Market"]
 regions: ["europe-central-asia"]
