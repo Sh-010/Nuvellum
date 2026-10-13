@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T10:00:41.577Z"
 readingTime: "2 min"
-image: "/generated/ai/how-rick-potion-9-changed-the-animated-series-forever.svg"
-imageAlt: "AI-generated editorial illustration for How 'Rick Potion #9' changed the animated series forever"
 status: "published"
 tags: ["Rick and Morty","Adult Swim","animation","horror"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/how-rick-potion-9-changed-the-animated-series-forever.png"
+imageAlt: "The title card of the Adult Swim TV series Rick and Morty"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: The title card of the Adult Swim TV series Rick and Morty"
+imageCredit: "Justin Roiland and Dan Harmon"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Rick_and_Morty_title_card.png"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Rick_and_Morty_title_card.png"
 ---
 Thirteen years after its initial broadcast, the sixth episode of *Rick and Morty*, titled "Rick Potion #9," stands out as a critical turning point that reshaped the animated series. While the show frequently parodies horror and pop culture—ranging from *A Nightmare on Elm Street* to *Total Recall*—this early first-season episode moved beyond meta-gags to embrace genuine existential horror.
 
