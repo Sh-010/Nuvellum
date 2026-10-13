@@ -1,0 +1,77 @@
+{
+  "slug": "revisiting-the-epic-space-battle-of-battlestar-galactica-season-3",
+  "url": "https://www.nuvellum.news/article/revisiting-the-epic-space-battle-of-battlestar-galactica-season-3",
+  "title": "Revisiting the epic space battle of 'battlestar galactica' season 3",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T04:04:01.958Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T04:04:01.958Z",
+      "remoteId": "107",
+      "remoteUrl": "https://t.me/nuvellum/107",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T04:04:01.958Z",
+      "remoteId": "1277147205491143_122108186343497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108186343497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    },
+    "threads": {
+      "containerId": "17949889560321818",
+      "containerCreatedAt": "2026-10-13T04:04:19.288Z",
+      "updatedAt": "2026-10-13T04:04:01.958Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T04:04:01.958Z",
+      "remoteId": "18100046312071673",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T04:04:01.958Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T04:04:01.958Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
