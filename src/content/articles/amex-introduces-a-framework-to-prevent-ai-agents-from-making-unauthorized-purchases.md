@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T13:01:13.827Z"
 readingTime: "2 min"
-image: "/generated/ai/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases.svg"
-imageAlt: "AI-generated editorial illustration for Amex introduces a framework to prevent AI agents from making unauthorized purchases"
 status: "published"
 tags: ["American Express","AI agents","AI","commerce"]
 regions: ["north-america"]
