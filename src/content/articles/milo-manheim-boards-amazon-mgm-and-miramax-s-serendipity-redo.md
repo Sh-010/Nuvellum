@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T22:00:42.375Z"
 readingTime: "1 min"
-image: "/generated/ai/milo-manheim-boards-amazon-mgm-and-miramax-s-serendipity-redo.svg"
-imageAlt: "AI-generated editorial illustration for Milo Manheim boards Amazon MGM and Miramax's 'Serendipity' redo"
 status: "published"
 tags: ["Milo Manheim","Serendipity","Michael Showalter","Amazon MGM Studios","Miramax"]
 regions: ["north-america"]
