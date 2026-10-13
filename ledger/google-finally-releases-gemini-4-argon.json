@@ -1,0 +1,79 @@
+{
+  "slug": "google-finally-releases-gemini-4-argon",
+  "url": "https://www.nuvellum.news/article/google-finally-releases-gemini-4-argon",
+  "title": "Google finally releases Gemini 4 Argon",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T16:08:14.912Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T16:08:14.912Z",
+      "remoteId": "113",
+      "remoteUrl": "https://t.me/nuvellum/113",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T16:08:14.912Z",
+      "remoteId": "1277147205491143_122108443179497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108443179497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    },
+    "threads": {
+      "containerId": "17949972867321818",
+      "containerCreatedAt": "2026-10-13T16:08:28.632Z",
+      "updatedAt": "2026-10-13T16:08:14.912Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T16:08:14.912Z",
+      "remoteId": "18270684358306273",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T16:08:14.912Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T16:08:14.912Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
