@@ -1,0 +1,79 @@
+{
+  "slug": "horror-adaptation-of-dante-s-the-divine-comedy-by-patricio-valladares-gets-first-look-from",
+  "url": "https://www.nuvellum.news/article/horror-adaptation-of-dante-s-the-divine-comedy-by-patricio-valladares-gets-first-look-from",
+  "title": "Horror adaptation of Dante's 'The Divine Comedy' by Patricio Valladares gets first look from Skincrawl Studios",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T09:04:01.194Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T09:04:01.194Z",
+      "remoteId": "109",
+      "remoteUrl": "https://t.me/nuvellum/109",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T09:04:01.194Z",
+      "remoteId": "1277147205491143_122108283237497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108283237497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    },
+    "threads": {
+      "containerId": "17949919956321818",
+      "containerCreatedAt": "2026-10-13T09:04:11.927Z",
+      "updatedAt": "2026-10-13T09:04:01.194Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T09:04:01.194Z",
+      "remoteId": "18372111268240552",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T09:04:01.194Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T09:04:01.194Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
