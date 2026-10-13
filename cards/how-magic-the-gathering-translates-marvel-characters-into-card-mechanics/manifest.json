@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "how-magic-the-gathering-translates-marvel-characters-into-card-mechanics",
+  "url": "https://nuvellum.vercel.app/article/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics",
+  "title": "How Magic: The Gathering translates Marvel characters into card mechanics",
+  "section": "Gaming",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 92,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 2,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 72,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 106,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 104,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/square.svg",
+  "portrait": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/portrait.svg",
+  "landscape": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/landscape.svg",
+  "story": "engines/out/social-cards/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics/story.svg",
+  "rasterNeededForLivePosting": true
+}
