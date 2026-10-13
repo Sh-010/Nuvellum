@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T21:00:41.525Z"
 readingTime: "2 min"
-image: "/generated/ai/resident-evil-4-remake-on-switch-2-runs-into-handheld-performance-issues.svg"
-imageAlt: "AI-generated editorial illustration for Resident Evil 4 remake on Switch 2 runs into handheld performance issues"
 status: "published"
 tags: ["Capcom","Resident Evil 4","Switch 2","Gaming"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/resident-evil-4-remake-on-switch-2-runs-into-handheld-performance-issues.jpg"
+imageAlt: "Resident Evil Veronica Trailer d'annonce"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Resident Evil Veronica Trailer d'annonce"
+imageCredit: "Capcom France"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Resident_Evil_Veronica_-_Trailer_d%27annonce.webm"
 ---
 Capcom's port of the *Resident Evil 4* remake for the Switch 2 has arrived, offering players the chance to experience the survival-horror title on the newer hardware. While the game's dock performance delivers smooth results, testing indicates that the handheld mode struggles with notable technical flaws.
 
