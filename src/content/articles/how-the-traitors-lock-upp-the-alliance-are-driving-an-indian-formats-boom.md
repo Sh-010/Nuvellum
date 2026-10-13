@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T06:00:56.101Z"
 readingTime: "2 min"
-image: "/generated/ai/how-the-traitors-lock-upp-the-alliance-are-driving-an-indian-formats-boom.svg"
-imageAlt: "AI-generated editorial illustration for How ‘The Traitors’, ‘Lock Upp’ & ‘The Alliance’ are driving an Indian formats boom"
 status: "published"
 tags: ["India","Lock Upp","The Traitors","Alliance","Streaming"]
 regions: ["south-asia"]
