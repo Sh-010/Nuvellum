@@ -1,0 +1,77 @@
+{
+  "slug": "how-magic-the-gathering-translates-marvel-characters-into-card-mechanics",
+  "url": "https://www.nuvellum.news/article/how-magic-the-gathering-translates-marvel-characters-into-card-mechanics",
+  "title": "How Magic: The Gathering translates Marvel characters into card mechanics",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T23:04:05.888Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T23:04:05.888Z",
+      "remoteId": "118",
+      "remoteUrl": "https://t.me/nuvellum/118",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T23:04:05.888Z",
+      "remoteId": "1277147205491143_122108563533497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108563533497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    },
+    "threads": {
+      "containerId": "17950015608321818",
+      "containerCreatedAt": "2026-10-13T23:04:20.070Z",
+      "updatedAt": "2026-10-13T23:04:05.888Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T23:04:05.888Z",
+      "remoteId": "18113048173844054",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T23:04:05.888Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T23:04:05.888Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
