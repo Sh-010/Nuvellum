@@ -1,0 +1,77 @@
+{
+  "slug": "milo-manheim-boards-amazon-mgm-and-miramax-s-serendipity-redo",
+  "url": "https://www.nuvellum.news/article/milo-manheim-boards-amazon-mgm-and-miramax-s-serendipity-redo",
+  "title": "Milo Manheim boards Amazon MGM and Miramax's 'Serendipity' redo",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T22:04:36.667Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T22:04:36.667Z",
+      "remoteId": "117",
+      "remoteUrl": "https://t.me/nuvellum/117",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T22:04:36.667Z",
+      "remoteId": "1277147205491143_122108549601497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108549601497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    },
+    "threads": {
+      "containerId": "17950009770321818",
+      "containerCreatedAt": "2026-10-13T22:04:46.497Z",
+      "updatedAt": "2026-10-13T22:04:36.667Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T22:04:36.667Z",
+      "remoteId": "18097941170204164",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T22:04:36.667Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T22:04:36.667Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
