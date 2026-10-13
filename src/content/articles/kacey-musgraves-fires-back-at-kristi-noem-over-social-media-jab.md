@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T00:00:40.962Z"
 readingTime: "1 min"
-image: "/generated/ai/kacey-musgraves-fires-back-at-kristi-noem-over-social-media-jab.svg"
-imageAlt: "AI-generated editorial illustration for Kacey Musgraves fires back at Kristi Noem over social media jab"
 status: "published"
 tags: ["Kacey Musgraves","Kristi Noem","James Talarico","Ella Langley"]
 regions: ["north-america"]
