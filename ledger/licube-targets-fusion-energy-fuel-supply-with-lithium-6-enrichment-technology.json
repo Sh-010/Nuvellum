@@ -1,0 +1,79 @@
+{
+  "slug": "licube-targets-fusion-energy-fuel-supply-with-lithium-6-enrichment-technology",
+  "url": "https://www.nuvellum.news/article/licube-targets-fusion-energy-fuel-supply-with-lithium-6-enrichment-technology",
+  "title": "Licube targets fusion energy fuel supply with lithium-6 enrichment technology",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T23:24:53.501Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T23:24:53.501Z",
+      "remoteId": "119",
+      "remoteUrl": "https://t.me/nuvellum/119",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T23:24:53.501Z",
+      "remoteId": "1277147205491143_122108567691497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108567691497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    },
+    "threads": {
+      "containerId": "17950017225321818",
+      "containerCreatedAt": "2026-10-13T23:25:09.767Z",
+      "updatedAt": "2026-10-13T23:24:53.501Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T23:24:53.501Z",
+      "remoteId": "18113233682155670",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T23:24:53.501Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T23:24:53.501Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
