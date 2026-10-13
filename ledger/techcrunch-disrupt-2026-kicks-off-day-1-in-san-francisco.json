@@ -1,0 +1,79 @@
+{
+  "slug": "techcrunch-disrupt-2026-kicks-off-day-1-in-san-francisco",
+  "url": "https://www.nuvellum.news/article/techcrunch-disrupt-2026-kicks-off-day-1-in-san-francisco",
+  "title": "TechCrunch Disrupt 2026 kicks off day 1 in San Francisco",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T14:10:25.908Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T14:10:25.908Z",
+      "remoteId": "112",
+      "remoteUrl": "https://t.me/nuvellum/112",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T14:10:25.908Z",
+      "remoteId": "1277147205491143_122108398899497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108398899497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    },
+    "threads": {
+      "containerId": "17949956265321818",
+      "containerCreatedAt": "2026-10-13T14:10:39.415Z",
+      "updatedAt": "2026-10-13T14:10:25.908Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T14:10:25.908Z",
+      "remoteId": "18100575449435964",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T14:10:25.908Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T14:10:25.908Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
