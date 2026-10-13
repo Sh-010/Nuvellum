@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T05:00:41.387Z"
 readingTime: "2 min"
-image: "/generated/ai/worlds-most-evil-prisoners-becomes-radial-original-for-season-4.svg"
-imageAlt: "AI-generated editorial illustration for ‘World’s Most Evil prisoners’ becomes Radial original for season 4"
 status: "published"
 tags: ["World's Most Evil Prisoners","Radial Entertainment","Woodcut Media","MIPCOM"]
 regions: ["europe-central-asia","north-america"]
