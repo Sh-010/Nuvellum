@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="paper-texture" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
+      
+        
+      
+      <feBlend mode="multiply" in="SourceGraphic" in2="light" result="blend" />
+    </filter>
+    
+    <style>
+      .bg { fill: #efe8db; }
+      .ink-dark { fill: #2a221c; }
+      .ink-stroke { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .burgundy { fill: #661227; }
+      .burgundy-stroke { stroke: #661227; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .stone-grey { fill: #b8b0a2; }
+      .stone-stroke { stroke: #8c8275; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .parchment { fill: #f7f2ea; }
+      .faint-line { stroke: #d4ccbe; stroke-width: 1; stroke-dasharray: 4 4; }
+      .etching { stroke: #2a221c; stroke-width: 0.75; opacity: 0.6; }
+    </style>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+  
+  
+  <rect x="35" y="35" width="1130" height="605" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.3" />
+  <rect x="43" y="43" width="1114" height="589" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.2" />
+
+  
+  <g transform="translate(600, 337.5)">
+    
+    <rect x="-170" y="-240" width="340" height="480" rx="16" class="parchment" />
+    <rect x="-170" y="-240" width="340" height="480" rx="16" fill="none" class="burgundy-stroke" stroke-width="3" />
+    <rect x="-150" y="-220" width="300" height="440" rx="8" fill="none" class="stone-stroke" />
+
+    
+    <rect x="-135" y="-190" width="270" height="210" fill="#e5ded2" class="stone-stroke" />
+
+    
+    <circle cx="120" cy="-205" r="12" class="burgundy" />
+    <circle cx="95" cy="-205" r="12" class="stone-grey" />
+    
+    
+    <line x1="-135" y1="45" x2="135" y2="45" class="etching" />
+    <line x1="-135" y1="65" x2="80" y2="65" class="etching" />
+    <line x1="-135" y1="85" x2="110" y2="85" class="etching" />
+    <line x1="-135" y1="105" x2="40" y2="105" class="etching" />
+    
+    <line x1="-135" y1="140" x2="135" y2="140" class="etching" />
+    <line x1="-135" y1="160" x2="90" y2="160" class="etching" />
+    <line x1="-135" y1="180" x2="115" y2="180" class="etching" />
+  </g>
+
+  
+  <g transform="translate(220, 337.5)">
+    
+    <path d="M -80 0 L 80 0" class="faint-line" />
+    <polygon points="75,-5 85,0 75,5" fill="#8c8275" />
+
+    
+    <g transform="translate(-140, 0)">
+      <circle cx="0" cy="0" r="75" class="parchment" stroke="#2a221c" stroke-width="2" />
+      
+      <ellipse rx="50" ry="18" fill="none" class="ink-stroke" transform="rotate(30)" />
+      <ellipse rx="50" ry="18" fill="none" class="ink-stroke" transform="rotate(-30)" />
+      <circle cx="0" cy="0" r="8" class="burgundy" />
+      <circle cx="-35" cy="-20" r="4" class="ink-dark" />
+      <circle cx="35" cy="20" r="4" class="ink-dark" />
+      
+      <path d="M -60 -50 L -50 -60 M -45 -55 L -35 -65" class="etching" />
+    </g>
+
+    
+    <g transform="translate(140, 0)">
+      <circle cx="0" cy="0" r="75" class="burgundy" />
+      <circle cx="0" cy="0" r="67" fill="none" stroke="#efe8db" stroke-width="1.5" stroke-dasharray="6 4" />
+      
+      
+      <path d="M -35 -45 L 35 45" stroke="#efe8db" stroke-width="6" stroke-linecap="round" />
+      <path d="M -15 -50 L 55 40" stroke="#efe8db" stroke-width="6" stroke-linecap="round" />
+      <path d="M -55 -35 L 15 55" stroke="#efe8db" stroke-width="6" stroke-linecap="round" />
+      
+      
+      <path d="M -45 -20 A 50 50 0 0 1 45 -20" fill="none" stroke="#efe8db" stroke-width="2.5" stroke-linecap="round" />
+      <polygon points="42,-28 50,-20 42,-12" fill="#efe8db" />
+    </g>
+  </g>
+
+  
+  <g transform="translate(980, 337.5)">
+    
+    <path d="M -50 120 L 50 120 L 40 160 L -40 160 Z" class="stone-grey" stroke="#2a221c" stroke-width="2" />
+    <line x1="-35" y1="130" x2="35" y2="130" class="etching" />
+    <line x1="-30" y1="145" x2="30" y2="145" class="etching" />
+
+    
+    <g transform="translate(0, 10)">
+      
+      <rect x="-8" y="-15" width="16" height="115" rx="4" class="parchment" stroke="#2a221c" stroke-width="2" />
+      <line x1="-8" y1="10" x2="8" y2="10" class="etching" />
+      <line x1="-8" y1="30" x2="8" y2="30" class="etching" />
+      <line x1="-8" y1="50" x2="8" y2="50" class="etching" />
+      <line x1="-8" y1="70" x2="8" y2="70" class="etching" />
+      <line x1="-8" y1="90" x2="8" y2="90" class="etching" />
+
+      
+      <rect x="-65" y="-75" width="130" height="65" rx="6" class="ink-dark" />
+      <rect x="-55" y="-65" width="110" height="45" rx="3" fill="#efe8db" />
+      
+      
+      <line x1="-35" y1="-42" x2="-20" y2="-42" class="burgundy-stroke" stroke-width="3" />
+      <line x1="-27" y1="-55" x2="-27" y2="-30" class="burgundy-stroke" stroke-width="3" />
+
+      <line x1="20" y1="-42" x2="35" y2="-42" class="burgundy-stroke" stroke-width="3" />
+      <line x1="27" y1="-55" x2="27" y2="-30" class="burgundy-stroke" stroke-width="3" />
+
+      <circle cx="0" cy="-42" r="6" class="burgundy" />
+
+      
+      <path d="M -12 -15 L 12 -15 L 8 -25 L -8 -25 Z" class="burgundy" />
+    </g>
+
+    
+    <g transform="translate(0, -160)">
+      
+      <circle cx="0" cy="0" r="45" fill="none" class="stone-stroke" stroke-dasharray="3 3" />
+      <circle cx="0" cy="0" r="30" fill="none" class="ink-stroke" />
+      <rect x="-10" y="-10" width="20" height="20" class="burgundy" transform="rotate(45)" />
+      
+      
+      <rect x="-55" y="-15" width="12" height="12" class="stone-grey" transform="rotate(15)" />
+      <rect x="45" y="10" width="10" height="10" class="stone-grey" transform="rotate(45)" />
+      <rect x="-35" y="35" width="8" height="8" class="ink-dark" transform="rotate(20)" />
+      <rect x="35" y="-35" width="14" height="14" class="burgundy" transform="rotate(60)" />
+    </g>
+  </g>
+
+  
+  
+  <path d="M 60 75 L 60 60 L 75 60" fill="none" class="burgundy-stroke" />
+  <circle cx="60" cy="60" r="2" class="burgundy" />
+
+  
+  <path d="M 1140 75 L 1140 60 L 1125 60" fill="none" class="burgundy-stroke" />
+  <circle cx="1140" cy="60" r="2" class="burgundy" />
+
+  
+  <path d="M 60 600 L 60 615 L 75 615" fill="none" class="burgundy-stroke" />
+  <circle cx="60" cy="615" r="2" class="burgundy" />
+
+  
+  <path d="M 1140 600 L 1140 615 L 1125 615" fill="none" class="burgundy-stroke" />
+  <circle cx="1140" cy="615" r="2" class="burgundy" />
+
+  
+  <line x1="330" y1="337.5" x2="430" y2="337.5" class="etching" />
+  <line x1="770" y1="337.5" x2="870" y2="337.5" class="etching" />
+  <circle cx="380" cy="337.5" r="3" class="stone-grey" />
+  <circle cx="820" cy="337.5" r="3" class="stone-grey" />
+</svg>
