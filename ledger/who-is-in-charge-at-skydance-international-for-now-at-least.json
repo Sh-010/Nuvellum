@@ -1,0 +1,79 @@
+{
+  "slug": "who-is-in-charge-at-skydance-international-for-now-at-least",
+  "url": "https://www.nuvellum.news/article/who-is-in-charge-at-skydance-international-for-now-at-least",
+  "title": "Who is in charge at Skydance International – for now at least",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T07:04:32.559Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T07:04:32.559Z",
+      "remoteId": "108",
+      "remoteUrl": "https://t.me/nuvellum/108",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T07:04:32.559Z",
+      "remoteId": "1277147205491143_122108243901497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108243901497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    },
+    "threads": {
+      "containerId": "17949906864321818",
+      "containerCreatedAt": "2026-10-13T07:04:44.595Z",
+      "updatedAt": "2026-10-13T07:04:32.559Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T07:04:32.559Z",
+      "remoteId": "18016601966747513",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T07:04:32.559Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T07:04:32.559Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
