@@ -1,0 +1,77 @@
+{
+  "slug": "reese-witherspoon-partners-with-mediawan-to-buy-hello-sunshine",
+  "url": "https://www.nuvellum.news/article/reese-witherspoon-partners-with-mediawan-to-buy-hello-sunshine",
+  "title": "Reese Witherspoon partners with Mediawan to buy Hello Sunshine",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T18:13:26.462Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T18:13:26.462Z",
+      "remoteId": "114",
+      "remoteUrl": "https://t.me/nuvellum/114",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T18:13:26.462Z",
+      "remoteId": "1277147205491143_122108490171497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108490171497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    },
+    "threads": {
+      "containerId": "17949987219321818",
+      "containerCreatedAt": "2026-10-13T18:13:40.788Z",
+      "updatedAt": "2026-10-13T18:13:26.462Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T18:13:26.462Z",
+      "remoteId": "18130824190763637",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T18:13:26.462Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T18:13:26.462Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
