@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T20:00:58.582Z"
 readingTime: "2 min"
-image: "/generated/ai/licube-targets-fusion-energy-fuel-supply-with-lithium-6-enrichment-technology.svg"
-imageAlt: "AI-generated editorial illustration for Licube targets fusion energy fuel supply with lithium-6 enrichment technology"
 status: "published"
 tags: ["fusion power","lithium","startups","techcrunch disrupt"]
 regions: ["north-america","east-asia"]
