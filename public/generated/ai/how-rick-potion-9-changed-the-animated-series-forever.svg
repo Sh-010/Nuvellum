@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <rect id="bg" width="1200" height="675" fill="#f4efe6"/>
+    
+    
+    <pattern id="hatch-dense" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.8" opacity="0.35"/>
+    </pattern>
+    <pattern id="hatch-loose" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#2a221c" stroke-width="0.6" opacity="0.25"/>
+    </pattern>
+    <pattern id="cross-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(60)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#661227" stroke-width="0.6" opacity="0.3"/>
+      <line x1="0" y1="0" x2="10" y2="0" stroke="#661227" stroke-width="0.6" opacity="0.3"/>
+    </pattern>
+    
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="60%" stop-color="#f4efe6" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a221c" stop-opacity="0.12"/>
+    </radialGradient>
+  </defs>
+
+  
+  use />
+  <rect width="1200" height="675" fill="#f4efe6"/>
+
+  
+  <rect x="0" y="0" width="1200" height="675" fill="url(#vignette)"/>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" opacity="0.4" fill="none">
+    <rect x="40" y="35" width="1120" height="605"/>
+    <rect x="46" y="41" width="1108" height="593" stroke-width="0.5"/>
+  </g>
+
+  
+  
+       
+  
+  <ellipse cx="600" cy="585" rx="140" ry="25" fill="#2a221c" opacity="0.1"/>
+
+  
+  <g id="flask">
+    
+    <path d="M 520,380 
+             Q 520,480 470,550 
+             Q 440,590 500,590 
+             L 700,590 
+             Q 760,590 730,550 
+             Q 680,480 680,380 Z" 
+          fill="#661227" opacity="0.15"/>
+
+    
+    <g clip-path="url(#flask-clip)">
+      <path d="M 480,590 Q 520,520 560,560 Q 600,600 640,530 Q 680,580 720,590 Z" fill="url(#hatch-dense)"/>
+      
+      <path d="M 530,590 C 530,520 510,480 490,460" stroke="#661227" stroke-width="4" fill="none"/>
+      <circle cx="490" cy="460" r="8" fill="#661227"/>
+      <circle cx="490" cy="460" r="3" fill="#f4efe6"/>
+
+      <path d="M 580,590 C 570,500 620,440 600,410" stroke="#2a221c" stroke-width="5" fill="none"/>
+      <path d="M 600,410 Q 610,395 625,405 Q 640,415 625,425 Z" fill="#661227"/>
+
+      <path d="M 650,590 C 680,530 700,490 710,470" stroke="#661227" stroke-width="3" fill="none"/>
+      <circle cx="710" cy="470" r="6" fill="#2a221c"/>
+    </g>
+
+    
+    
+    <path d="M 570,160 L 570,280 L 500,380" fill="none" stroke="#2a221c" stroke-width="3"/>
+    <path d="M 630,160 L 630,280 L 700,380" fill="none" stroke="#2a221c" stroke-width="3"/>
+    
+    
+    <ellipse cx="600" cy="160" rx="35" ry="10" fill="#f4efe6" stroke="#2a221c" stroke-width="3"/>
+    <ellipse cx="600" cy="160" rx="35" ry="10" fill="none" stroke="#661227" stroke-width="1"/>
+
+    
+    <path d="M 500,380 
+             Q 520,480 470,550 
+             Q 435,595 500,600 
+             L 700,600 
+             Q 765,595 730,550 
+             Q 680,480 680,380" 
+          fill="none" stroke="#2a221c" stroke-width="3"/>
+
+    
+    <path d="M 525,400 Q 500,460 485,520" stroke="#2a221c" stroke-width="1.5" fill="none" stroke-dasharray="6,4"/>
+    <path d="M 535,400 Q 512,460 497,520" stroke="#2a221c" stroke-width="1" fill="none" opacity="0.6"/>
+
+    
+    <ellipse cx="600" cy="420" rx="85" ry="15" fill="none" stroke="#661227" stroke-width="2.5"/>
+    <ellipse cx="600" cy="420" rx="83" ry="13" fill="#661227" opacity="0.1"/>
+  </g>
+
+  
+  <clipPath id="flask-clip">
+    <path d="M 500,380 
+             Q 520,480 470,550 
+             Q 435,595 500,600 
+             L 700,600 
+             Q 765,595 730,550 
+             Q 680,480 680,380 Z"/>
+  </clipPath>
+
+  
+  <g stroke="#661227" stroke-width="2">
+    
+    <polyline points="200,120 350,180 300,280 450,340 380,480 500,560" fill="none" opacity="0.4" stroke-dasharray="8,4"/>
+    <polyline points="1000,140 850,220 920,310 780,420 840,510 700,610" fill="none" opacity="0.4" stroke-dasharray="8,4"/>
+  </g>
+
+  
+  <g id="gravestones" opacity="0.8">
+    
+    <path d="M 240,480 L 240,560 Q 240,585 265,585 Q 290,585 290,560 L 290,480 Z" fill="#f4efe6" stroke="#2a221c" stroke-width="2"/>
+    <path d="M 265,500 L 265,550 M 248,515 L 282,515" stroke="#661227" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 240,585 L 340,610 L 180,610 Z" fill="url(#hatch-loose)"/>
+
+    
+    <path d="M 930,460 L 930,550 Q 930,575 955,575 Q 980,575 980,550 L 980,460 Z" fill="#f4efe6" stroke="#2a221c" stroke-width="2"/>
+    <path d="M 955,480 L 955,530 M 938,495 L 972,495" stroke="#661227" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 930,575 L 1030,600 L 850,600 Z" fill="url(#hatch-loose)"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="0.8" fill="none" opacity="0.3">
+    
+    <circle cx="260" cy="240" r="70"/>
+    <circle cx="260" cy="240" r="50" stroke-dasharray="4,4"/>
+    <line x1="190" y1="240" x2="330" y2="240"/>
+    <line x1="260" y1="170" x2="260" y2="310"/>
+    
+    
+    <circle cx="940" cy="240" r="70"/>
+    <line x1="880" y1="180" x2="1000" y2="300"/>
+    <line x1="880" y1="300" x2="1000" y2="180"/>
+    <path d="M 910,240 A 30,30 0 0,1 970,240" stroke="#661227" stroke-width="1.5"/>
+  </g>
+
+  
+  <g fill="#661227" stroke="#2a221c" stroke-width="1.5">
+    <circle cx="430" cy="280" r="14" opacity="0.8"/>
+    <circle cx="420" cy="265" r="5" opacity="0.9"/>
+    
+    <circle cx="770" cy="300" r="18" opacity="0.8"/>
+    <circle cx="785" cy="285" r="7" opacity="0.9"/>
+    <circle cx="755" cy="320" r="4" opacity="0.9"/>
+
+    <circle cx="600" cy="110" r="8" fill="#f4efe6"/>
+  </g>
+  
+  
+  <path d="M 505,550 Q 600,595 695,550" stroke="#2a221c" stroke-width="2" fill="none"/>
+  <rect x="520" y="560" width="160" height="25" fill="url(#cross-hatch)" opacity="0.6"/>
+
+</svg>
