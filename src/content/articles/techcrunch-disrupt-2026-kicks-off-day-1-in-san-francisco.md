@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T14:03:35.663Z"
 readingTime: "2 min"
-image: "/generated/ai/techcrunch-disrupt-2026-kicks-off-day-1-in-san-francisco.svg"
-imageAlt: "AI-generated editorial illustration for TechCrunch Disrupt 2026 kicks off day 1 in San Francisco"
 status: "published"
 tags: ["TechCrunch Disrupt","startups","technology","venture capital","artificial intelligence"]
 regions: ["north-america"]
