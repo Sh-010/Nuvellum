@@ -1,0 +1,77 @@
+{
+  "slug": "resident-evil-4-remake-on-switch-2-runs-into-handheld-performance-issues",
+  "url": "https://www.nuvellum.news/article/resident-evil-4-remake-on-switch-2-runs-into-handheld-performance-issues",
+  "title": "Resident Evil 4 remake on Switch 2 runs into handheld performance issues",
+  "risk": "low",
+  "firstSeenAt": "2026-10-13T21:04:38.262Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T21:04:38.262Z",
+      "remoteId": "116",
+      "remoteUrl": "https://t.me/nuvellum/116",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T21:04:38.262Z",
+      "remoteId": "1277147205491143_122108538621497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108538621497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    },
+    "threads": {
+      "containerId": "17950004238321818",
+      "containerCreatedAt": "2026-10-13T21:04:49.949Z",
+      "updatedAt": "2026-10-13T21:04:38.262Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-13T21:04:38.262Z",
+      "remoteId": "17871602811640512",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-13T21:04:38.262Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-13T21:04:38.262Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
