@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-13"
 publishedAt: "2026-10-13T03:00:42.605Z"
 readingTime: "1 min"
-image: "/generated/ai/robert-pattinson-shares-update-on-the-batman-part-ii-we-are-going-to-figure-it-all-out.svg"
-imageAlt: "AI-generated editorial illustration for Robert Pattinson shares update on 'The Batman Part II': \"We Are Going To Figure It All Out\""
 status: "published"
 tags: ["The Batman Part II","Robert Pattinson","Matt Reeves","DC Studios"]
 regions: []
