@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <style>
+      .bg { fill: #f3ecdf; }
+      .paper-grain { opacity: 0.03; fill: #2a221c; }
+      .ink-dark { fill: #2a221c; }
+      .ink-burgundy { fill: #661227; }
+      .ink-stone { fill: #8c8275; }
+      .paper-light { fill: #fbf8f3; }
+      .line-dark { stroke: #2a221c; stroke-width: 2; fill: none; }
+      .line-burgundy { stroke: #661227; stroke-width: 2; fill: none; }
+      .line-stone { stroke: #8c8275; stroke-width: 1.5; fill: none; }
+      .hatch { stroke: #2a221c; stroke-width: 0.75; opacity: 0.3; }
+    </style>
+    <pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1" class="paper-grain" />
+      <circle cx="70" cy="40" r="1.5" class="paper-grain" />
+      <circle cx="40" cy="80" r="1" class="paper-grain" />
+      <circle cx="90" cy="90" r="0.8" class="paper-grain" />
+    </pattern>
+    <pattern id="hatch-v" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" class="hatch" />
+    </pattern>
+    <pattern id="hatch-h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(135)">
+      <line x1="0" y1="0" x2="0" y2="8" class="hatch" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+  <rect width="1200" height="675" fill="url(#grain)" />
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.2" />
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="3" opacity="0.8" />
+
+  
+  
+  <path d="M 200 120 L 1000 120 L 1000 555 L 200 555 Z" fill="#e8dfd0" opacity="0.7" />
+  
+  
+  <line x1="200" y1="120" x2="120" y2="70" class="line-stone" opacity="0.5" />
+  <line x1="1000" y1="120" x2="1080" y2="70" class="line-stone" opacity="0.5" />
+  <line x1="1000" y1="555" x2="1080" y2="605" class="line-stone" opacity="0.5" />
+  <line x1="200" y1="555" x2="120" y2="605" class="line-stone" opacity="0.5" />
+
+  
+  <g opacity="0.85">
+    
+    <rect x="180" y="160" width="220" height="355" class="paper-light" stroke="#2a221c" stroke-width="2" />
+    <rect x="180" y="160" width="220" height="40" fill="#2a221c" opacity="0.08" />
+    
+    <line x1="210" y1="220" x2="330" y2="220" class="line-dark" stroke-width="3" />
+    <line x1="210" y1="250" x2="370" y2="250" class="line-stone" />
+    <line x1="210" y1="275" x2="350" y2="275" class="line-stone" />
+    <line x1="210" y1="300" x2="360" y2="300" class="line-stone" />
+    <line x1="210" y1="325" x2="300" y2="325" class="line-stone" />
+    <line x1="210" y1="375" x2="370" y2="375" class="line-dark" stroke-width="1.5" />
+    <line x1="210" y1="400" x2="340" y2="400" class="line-stone" />
+    <line x1="210" y1="425" x2="360" y2="425" class="line-stone" />
+    
+    <circle cx="340" cy="465" r="22" class="ink-burgundy" />
+    <circle cx="340" cy="465" r="15" fill="none" stroke="#fbf8f3" stroke-width="1.5" />
+
+    
+    <rect x="800" y="160" width="220" height="355" class="paper-light" stroke="#2a221c" stroke-width="2" />
+    <rect x="800" y="160" width="220" height="40" fill="#2a221c" opacity="0.08" />
+    <line x1="830" y1="220" x2="950" y2="220" class="line-dark" stroke-width="3" />
+    <line x1="830" y1="250" x2="990" y2="250" class="line-stone" />
+    <line x1="830" y1="275" x2="970" y2="275" class="line-stone" />
+    <line x1="830" y1="300" x2="940" y2="300" class="line-stone" />
+    <line x1="830" y1="350" x2="990" y2="350" class="line-dark" stroke-width="1.5" />
+    <line x1="830" y1="375" x2="910" y2="375" class="line-stone" />
+    <line x1="830" y1="400" x2="980" y2="400" class="line-stone" />
+    <line x1="830" y1="425" x2="950" y2="425" class="line-stone" />
+    
+    <rect x="830" y="450" width="160" height="40" fill="url(#hatch-v)" />
+  </g>
+
+  
+  <g transform="translate(410, 120)">
+    
+    <rect x="0" y="0" width="380" height="435" fill="#2a221c" />
+    <rect x="12" y="12" width="356" height="411" class="paper-light" />
+
+    
+    
+    <line x1="12" y1="120" x2="368" y2="120" class="line-stone" stroke-dasharray="4 4" />
+    <line x1="12" y1="320" x2="368" y2="320" class="line-stone" stroke-dasharray="4 4" />
+    <line x1="190" y1="12" x2="190" y2="423" class="line-stone" stroke-dasharray="4 4" />
+
+    
+    
+    <rect x="80" y="60" width="14" height="320" class="ink-dark" />
+    <rect x="83" y="60" width="4" height="320" fill="#fbf8f3" opacity="0.4" />
+
+    <rect x="130" y="60" width="14" height="320" class="ink-dark" />
+    <rect x="133" y="60" width="4" height="320" fill="#fbf8f3" opacity="0.4" />
+
+    <rect x="236" y="60" width="14" height="320" class="ink-dark" />
+    <rect x="239" y="60" width="4" height="320" fill="#fbf8f3" opacity="0.4" />
+
+    <rect x="286" y="60" width="14" height="320" class="ink-dark" />
+    <rect x="289" y="60" width="4" height="320" fill="#fbf8f3" opacity="0.4" />
+
+    
+    <circle cx="190" cy="220" r="75" fill="none" stroke="#661227" stroke-width="4" />
+    <circle cx="190" cy="220" r="71" fill="url(#hatch-h)" />
+    <circle cx="190" cy="220" r="45" fill="#f3ecdf" stroke="#2a221c" stroke-width="2" />
+
+    
+    
+    <path d="M 175 190 
+             C 185 185, 200 190, 205 205 
+             C 210 215, 205 230, 200 240 
+             C 195 245, 190 255, 185 260 
+             L 170 260 
+             C 170 240, 175 220, 175 190 Z" 
+          class="ink-dark" />
+    
+    
+    <line x1="190" y1="135" x2="190" y2="165" class="line-burgundy" stroke-width="2" />
+    <line x1="190" y1="275" x2="190" y2="305" class="line-burgundy" stroke-width="2" />
+    <line x1="105" y1="220" x2="135" y2="220" class="line-burgundy" stroke-width="2" />
+    <line x1="245" y1="220" x2="275" y2="220" class="line-burgundy" stroke-width="2" />
+
+    
+    <rect x="30" y="25" width="40" height="8" class="ink-burgundy" />
+    <rect x="310" y="25" width="40" height="8" class="ink-dark" />
+    <rect x="170" y="395" width="40" height="6" class="ink-dark" />
+  </g>
+
+  
+  
+  <rect x="55" y="55" width="40" height="40" fill="url(#hatch-v)" />
+  <rect x="1105" y="55" width="40" height="40" fill="url(#hatch-v)" />
+  <rect x="55" y="580" width="40" height="40" fill="url(#hatch-v)" />
+  <rect x="1105" y="580" width="40" height="40" fill="url(#hatch-v)" />
+
+  
+  <line x1="95" y1="595" x2="1105" y2="595" class="line-dark" stroke-width="1.5" />
+  <line x1="95" y1="600" x2="1105" y2="600" class="line-burgundy" stroke-width="1" />
+
+  
+  <g class="ink-dark">
+    <rect x="95" y="586" width="12" height="3" />
+    <rect x="115" y="586" width="6" height="3" />
+    <rect x="130" y="586" width="24" height="3" />
+    <rect x="1045" y="586" width="24" height="3" />
+    <rect x="1075" y="586" width="6" height="3" />
+    <rect x="1088" y="586" width="17" height="3" />
+  </g>
+</svg>
