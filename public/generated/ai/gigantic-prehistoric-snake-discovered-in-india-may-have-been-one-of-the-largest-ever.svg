@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <filter id="paper-texture" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
+      
+        
+      
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="0.92" />
+        <feFuncG type="linear" slope="0.90" />
+        <feFuncB type="linear" slope="0.86" />
+      </feComponentTransfer>
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+
+    
+    <pattern id="hatch" width="20" height="20" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#2a221c" stroke-width="0.8" opacity="0.12" />
+    </pattern>
+
+    
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="1" fill="#661227" opacity="0.15" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  <rect width="1200" height="675" filter="url(#paper-texture)" opacity="0.6" />
+
+  
+  <rect x="35" y="35" width="1130" height="605" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.4" />
+  <rect x="43" y="43" width="1114" height="589" fill="none" stroke="#661227" stroke-width="0.75" opacity="0.3" />
+
+  
+  
+  <path d="M 43,450 C 300,430 600,470 1157,420 L 1157,622 L 43,622 Z" fill="#2a221c" opacity="0.06" />
+  
+  <path d="M 43,510 C 350,490 700,530 1157,480 L 1157,622 L 43,622 Z" fill="url(#hatch)" />
+  
+  <path d="M 43,510 C 350,490 700,530 1157,480" fill="none" stroke="#2a221c" stroke-width="1" stroke-dasharray="6,4" opacity="0.3" />
+
+  
+  <g opacity="0.4" stroke="#2a221c" stroke-width="1">
+    
+    <line x1="120" y1="120" x2="120" y2="520" stroke-dasharray="2,8" />
+    <line x1="300" y1="120" x2="300" y2="520" stroke-dasharray="2,8" />
+    <line x1="480" y1="120" x2="480" y2="520" stroke-dasharray="2,8" />
+    <line x1="660" y1="120" x2="660" y2="520" stroke-dasharray="2,8" />
+    <line x1="840" y1="120" x2="840" y2="520" stroke-dasharray="2,8" />
+    <line x1="1020" y1="120" x2="1020" y2="520" stroke-dasharray="2,8" />
+
+    
+    <path d="M 120,115 L 120,125 M 300,115 L 300,125 M 480,115 L 480,125 M 660,115 L 660,125 M 840,115 L 840,125 M 1020,115 L 1020,125" />
+    <line x1="120" y1="120" x2="1020" y2="120" />
+  </g>
+
+  
+  
+  
+  
+  <path d="M 180,480 
+           C 100,480 80,320 200,260 
+           C 350,180 500,380 650,300 
+           C 800,220 850,150 980,220
+           C 1080,270 1100,420 1000,480
+           C 920,520 700,550 500,520
+           C 300,490 220,530 180,480 Z" 
+        fill="#2a221c" opacity="0.08" />
+
+  
+  <path d="M 220,460 
+           C 140,460 110,330 220,280 
+           C 350,210 470,360 620,310 
+           C 770,260 830,180 950,240
+           C 1030,280 1060,400 970,450
+           C 900,490 700,510 520,490
+           C 340,470 260,500 220,460" 
+        fill="none" stroke="#2a221c" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+
+  
+  
+
+  
+  <g transform="translate(180, 360) rotate(-25)">
+    <path d="M -35,-45 L 35,-45 L 45,45 L -45,45 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -25,-35 L 25,-35 L 30,35 L -30,35 Z" fill="#661227" opacity="0.12" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#2a221c" stroke-width="2" />
+    <line x1="-35" y1="0" x2="35" y2="0" stroke="#2a221c" stroke-width="1" stroke-dasharray="3,2" />
+  </g>
+
+  
+  <g transform="translate(240, 290) rotate(10)">
+    <path d="M -40,-50 L 40,-50 L 50,50 L -50,50 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -30,-40 L 30,-40 L 35,40 L -35,40 Z" fill="url(#dots)" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="16" fill="none" stroke="#2a221c" stroke-width="2" />
+    <path d="M -20,-20 L 20,20 M -20,20 L 20,-20" stroke="#2a221c" stroke-width="1" opacity="0.5" />
+  </g>
+
+  
+  <g transform="translate(330, 245) rotate(45)">
+    <path d="M -42,-52 L 42,-52 L 52,52 L -52,52 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -32,-42 L 32,-42 L 38,38 L -38,38 Z" fill="#661227" opacity="0.12" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#2a221c" stroke-width="2" />
+    <line x1="0" y1="-35" x2="0" y2="35" stroke="#2a221c" stroke-width="1" stroke-dasharray="3,2" />
+  </g>
+
+  
+  <g transform="translate(430, 275) rotate(75)">
+    <path d="M -45,-55 L 45,-55 L 55,55 L -55,55 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -35,-45 L 35,-45 L 42,42 L -42,42 Z" fill="url(#dots)" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="19" fill="none" stroke="#2a221c" stroke-width="2" />
+    <path d="M -15,-15 L 15,15" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g transform="translate(520, 335) rotate(20)">
+    <path d="M -48,-58 L 48,-58 L 58,58 L -58,58 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -38,-48 L 38,-48 L 45,45 L -45,45 Z" fill="#661227" opacity="0.15" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="21" fill="none" stroke="#2a221c" stroke-width="2.5" />
+    <line x1="-30" y1="0" x2="30" y2="0" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g transform="translate(620, 330) rotate(-15)">
+    
+    <path d="M -55,-65 C -55,-65 55,-65 62,-55 C 70,-40 68,40 60,55 C 50,65 -50,65 -60,55 C -68,40 -70,-40 -55,-65 Z" fill="#efe8db" stroke="#2a221c" stroke-width="3" />
+    
+    <path d="M -42,-50 C 0,-55 42,-50 48,-35 C 55,-20 55,20 48,35 C 42,50 0,55 -42,50 C -48,35 -50,-20 -42,-50 Z" fill="url(#dots)" stroke="#661227" stroke-width="1.5" />
+    
+    <circle cx="0" cy="0" r="22" fill="#efe8db" stroke="#2a221c" stroke-width="3" />
+    <circle cx="0" cy="0" r="14" fill="#661227" opacity="0.2" stroke="#661227" stroke-width="1" />
+    
+    <line x1="-55" y1="-20" x2="-22" y2="-10" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="-55" y1="0" x2="-22" y2="0" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="-55" y1="20" x2="-22" y2="10" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="55" y1="-20" x2="22" y2="-10" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="55" y1="0" x2="22" y2="0" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="55" y1="20" x2="22" y2="10" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g transform="translate(710, 280) rotate(-45)">
+    <path d="M -48,-58 L 48,-58 L 58,58 L -58,58 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -38,-48 L 38,-48 L 45,45 L -45,45 Z" fill="#661227" opacity="0.12" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  <g transform="translate(800, 225) rotate(-30)">
+    <path d="M -42,-50 L 42,-50 L 50,50 L -50,50 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M -32,-40 L 32,-40 L 38,38 L -38,38 Z" fill="url(#dots)" stroke="#661227" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="17" fill="none" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  <g transform="translate(880, 210) rotate(15)">
+    <path d="M -35,-42 L 35,-42 L 42,42 L -42,42 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  <g transform="translate(950, 235) rotate(50)">
+    <path d="M -28,-35 L 28,-35 L 35,35 L -35,35 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g transform="translate(1005, 285) rotate(80)">
+    <path d="M -22,-28 L 22,-28 L 28,28 L -28,28 Z" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <g transform="translate(1035, 345) rotate(105)">
+    <path d="M -16,-20 L 16,-20 L 20,20 L -20,20 Z" fill="#efe8db" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+
+  
+  
+  <path d="M 565,340 C 580,335 595,333 610,330" fill="none" stroke="#661227" stroke-width="1.5" stroke-dasharray="2,2" />
+  <path d="M 635,325 C 655,315 675,300 695,290" fill="none" stroke="#661227" stroke-width="1.5" stroke-dasharray="2,2" />
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.6">
+    
+    <path d="M 620,240 L 620,260 M 610,250 L 630,250" />
+    <circle cx="620" cy="250" r="12" fill="none" stroke-dasharray="2,2" />
+    <line x1="620" y1="262" x2="620" y2="300" stroke-dasharray="2,2" />
+
+    
+    <path d="M 120,480 L 105,480 L 105,360 L 120,360" fill="none" />
+    <path d="M 105,420 L 95,420" />
+
+    
+    <path d="M 1020,530 L 1020,545 L 620,545 L 620,530" fill="none" />
+    <path d="M 820,545 L 820,555" />
+  </g>
+
+  
+  
+  <path d="M 625,295 C 640,295 655,310 655,330 C 655,350 640,365 625,365" fill="none" stroke="#661227" stroke-width="2.5" opacity="0.8" />
+  
+  
+  <path d="M 310,210 C 330,200 350,220 340,240 C 330,260 300,240 310,210 Z" fill="#661227" opacity="0.08" />
+  <path d="M 780,200 C 810,190 825,210 815,230 C 805,250 770,220 780,200 Z" fill="#661227" opacity="0.08" />
+
+  
+  <rect x="35" y="35" width="1130" height="605" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.2" />
+</svg>
