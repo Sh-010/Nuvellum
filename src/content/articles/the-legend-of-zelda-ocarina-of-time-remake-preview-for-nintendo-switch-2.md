@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T13:00:41.440Z"
 readingTime: "2 min"
-image: "/generated/ai/the-legend-of-zelda-ocarina-of-time-remake-preview-for-nintendo-switch-2.svg"
-imageAlt: "AI-generated editorial illustration for The Legend of Zelda: Ocarina of Time remake preview for Nintendo Switch 2"
 status: "published"
 tags: ["Zelda","Nintendo","Switch 2","gaming","preview"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/the-legend-of-zelda-ocarina-of-time-remake-preview-for-nintendo-switch-2.png"
+imageAlt: "Nintendo Switch Konsole mit gedockten Joy Cons HOF08215 RAW Export 20211130000188corr07"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Nintendo Switch Konsole mit gedockten Joy Cons HOF08215 RAW Export 20211130000188corr07"
+imageCredit: "Fotografie und Bildbearbeitung von PantheraLeo1359531 😺 ( talk ) / Konsolenhardware von Nintendo"
+imageLicense: "CC BY 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Nintendo-Switch-Konsole_mit_gedockten_Joy-Cons_HOF08215_RAW-Export_20211130000188corr07.png"
 ---
 Nintendo is preparing to release a remake of the Nintendo 64 classic *The Legend of Zelda: Ocarina of Time* exclusively on the Nintendo Switch 2 on November 5. A hands-on preview of the upcoming title highlights how the new version balances nostalgia with mechanics inspired by modern entries like *Breath of the Wild*.
 
