@@ -1,0 +1,79 @@
+{
+  "slug": "gigantic-prehistoric-snake-discovered-in-india-may-have-been-one-of-the-largest-ever",
+  "url": "https://www.nuvellum.news/article/gigantic-prehistoric-snake-discovered-in-india-may-have-been-one-of-the-largest-ever",
+  "title": "Gigantic prehistoric snake discovered in India may have been one of the largest ever",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T06:04:28.239Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T06:04:28.239Z",
+      "remoteId": "122",
+      "remoteUrl": "https://t.me/nuvellum/122",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T06:04:28.239Z",
+      "remoteId": "1277147205491143_122108677335497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108677335497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    },
+    "threads": {
+      "containerId": "17950052367321818",
+      "containerCreatedAt": "2026-10-14T06:04:41.391Z",
+      "updatedAt": "2026-10-14T06:04:28.239Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T06:04:28.239Z",
+      "remoteId": "18132356093506966",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T06:04:28.239Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T06:04:28.239Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
