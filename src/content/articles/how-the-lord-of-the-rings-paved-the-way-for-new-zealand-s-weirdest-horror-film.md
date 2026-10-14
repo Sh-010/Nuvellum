@@ -1,14 +1,12 @@
 ---
 title: "How The Lord of the Rings paved the way for New Zealand's weirdest horror film"
 dek: "Twenty years after Black Sheep brought zombie farm animals to the screen, the practical effects lineage connecting Middle-earth to Jonathan King's horror-comedy comes into focus."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T10:00:43.170Z"
 readingTime: "2 min"
-image: "/generated/ai/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film.svg"
-imageAlt: "AI-generated editorial illustration for How The Lord of the Rings paved the way for New Zealand's weirdest horror film"
 status: "published"
 tags: ["movies","horror","the lord of the rings","weta workshop"]
 regions: ["southeast-asia-oceania"]
