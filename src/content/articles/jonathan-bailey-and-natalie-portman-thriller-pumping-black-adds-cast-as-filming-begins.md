@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T14:01:43.270Z"
 readingTime: "2 min"
-image: "/generated/ai/jonathan-bailey-and-natalie-portman-thriller-pumping-black-adds-cast-as-filming-begins.svg"
-imageAlt: "AI-generated editorial illustration for Jonathan Bailey and Natalie Portman thriller 'Pumping Black' adds cast as filming begins"
 status: "published"
 tags: ["film","thriller","Jonathan Bailey","Natalie Portman"]
 regions: ["europe-central-asia"]
