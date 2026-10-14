@@ -1,0 +1,79 @@
+{
+  "slug": "xbox-ceo-reportedly-warns-firm-will-not-survive-if-it-only-relies-on-existing-franchises",
+  "url": "https://www.nuvellum.news/article/xbox-ceo-reportedly-warns-firm-will-not-survive-if-it-only-relies-on-existing-franchises",
+  "title": "Xbox CEO reportedly warns firm will “not survive” if it only relies on existing franchises",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T08:04:06.841Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T08:04:06.841Z",
+      "remoteId": "124",
+      "remoteUrl": "https://t.me/nuvellum/124",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T08:04:06.841Z",
+      "remoteId": "1277147205491143_122108708853497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108708853497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    },
+    "threads": {
+      "containerId": "17950063035321818",
+      "containerCreatedAt": "2026-10-14T08:04:19.544Z",
+      "updatedAt": "2026-10-14T08:04:06.841Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T08:04:06.841Z",
+      "remoteId": "17915799117527025",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T08:04:06.841Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T08:04:06.841Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
