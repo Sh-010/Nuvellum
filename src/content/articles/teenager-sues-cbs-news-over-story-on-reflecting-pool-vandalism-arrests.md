@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T23:00:42.897Z"
 readingTime: "2 min"
-image: "/generated/ai/teenager-sues-cbs-news-over-story-on-reflecting-pool-vandalism-arrests.svg"
-imageAlt: "AI-generated editorial illustration for Teenager sues CBS News over story on reflecting pool vandalism arrests"
 status: "published"
 tags: ["CBS News","defamation","lawsuit","Lincoln Memorial","reflecting pool"]
 regions: ["north-america"]
