@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  
+  
+  <g stroke="#e2d6c3" stroke-width="0.5" opacity="0.6">
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="575" x2="1200" y2="575" />
+    <line x1="150" y1="0" x2="150" y2="675" />
+    <line x1="1050" y1="0" x2="1050" y2="675" />
+  </g>
+
+  
+  <rect x="60" y="60" width="1080" height="555" fill="none" stroke="#661227" stroke-width="1.5" />
+  <rect x="68" y="68" width="1064" height="539" fill="none" stroke="#661227" stroke-width="0.5" />
+
+  
+  
+  <g transform="translate(600, 337)">
+    
+    <path d="M-300,-150 L300,-150 L300,150 L-300,150 Z" fill="#e8dfd1" stroke="#a09282" stroke-width="1" />
+    
+    
+    <g stroke="#b5a795" stroke-width="1" opacity="0.7">
+      <line x1="-280" y1="-120" x2="280" y2="-120" stroke-dasharray="8, 4" />
+      <line x1="-280" y1="-90" x2="280" y2="-90" stroke-dasharray="2, 6" />
+      <line x1="-280" y1="90" x2="280" y2="90" stroke-dasharray="4, 4" />
+      <line x1="-280" y1="120" x2="280" y2="120" stroke-dasharray="10, 5" />
+    </g>
+
+    
+    <line x1="0" y1="-180" x2="0" y2="180" stroke="#b37d2e" stroke-width="3" stroke-dasharray="12, 6" />
+    <line x1="-15" y1="-180" x2="-15" y2="180" stroke="#661227" stroke-width="1" opacity="0.4" />
+    <line x1="15" y1="-180" x2="15" y2="180" stroke="#661227" stroke-width="1" opacity="0.4" />
+
+    
+    <g transform="translate(0, 0)">
+      
+      <circle cx="0" cy="0" r="110" fill="#f3ecdf" stroke="#2a221c" stroke-width="4" />
+      <circle cx="0" cy="0" r="95" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="6, 3" />
+      
+      
+      <line x1="-110" y1="0" x2="110" y2="0" stroke="#2a221c" stroke-width="1" />
+      <line x1="0" y1="-110" x2="0" y2="110" stroke="#2a221c" stroke-width="1" />
+
+      
+      <g transform="rotate(-15) translate(-50, -45)">
+        <polygon points="0,0 120,20 100,90 -20,70" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+        
+        <line x1="15" y1="25" x2="70" y2="28" stroke="#661227" stroke-width="4" />
+        <line x1="15" y1="40" x2="85" y2="44" stroke="#2a221c" stroke-width="2" />
+        <line x1="15" y1="55" x2="55" y2="58" stroke="#2a221c" stroke-width="2" />
+        
+        <path d="M40,0 L50,45 L30,90" fill="none" stroke="#661227" stroke-width="2.5" />
+      </g>
+
+      
+      <g stroke="#661227" stroke-width="2" stroke-linecap="round">
+        <line x1="-70" y1="-70" x2="-35" y2="-35" />
+        <line x1="50" y1="60" x2="85" y2="95" />
+        <circle cx="-35" cy="-35" r="3" fill="#661227" />
+        <circle cx="85" cy="95" r="2" fill="#661227" />
+      </g>
+    </g>
+
+    
+    <g fill="#2a221c" opacity="0.85">
+      
+      <rect x="-260" y="-40" width="40" height="90" />
+      <polygon points="-260,-40 -240,-70 -220,-40" />
+      <rect x="-210" y="-20" width="30" height="70" />
+      
+      
+      <rect x="180" y="-50" width="35" height="100" />
+      <rect x="225" y="-10" width="45" height="60" />
+      <polygon points="225,-10 247,-35 270,-10" />
+    </g>
+
+    
+    <g fill="#661227">
+      <polygon points="-140,55 -130,48 -125,58 -135,62" />
+      <polygon points="-110,65 -98,60 -102,72 -115,70" />
+      <polygon points="130,50 145,45 150,55 138,58" />
+      <polygon points="160,60 172,55 168,68 155,65" />
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="0.75" opacity="0.5">
+      <path d="M-260,50 L-220,50" />
+      <path d="M-250,30 L-230,30" />
+      <path d="M190,50 L205,50" />
+      <path d="M235,30 L260,30" />
+    </g>
+  </g>
+
+  
+  <g stroke="#661227" stroke-width="2">
+    
+    <line x1="50" y1="80" x2="80" y2="50" />
+    <line x1="60" y1="90" x2="90" y2="60" />
+    
+    <line x1="1150" y1="80" x2="1120" y2="50" />
+    <line x1="1140" y1="90" x2="1110" y2="60" />
+    
+    <line x1="50" y1="595" x2="80" y2="625" />
+    <line x1="60" y1="585" x2="90" y2="615" />
+    
+    <line x1="1150" y1="595" x2="1120" y2="625" />
+    <line x1="1140" y1="585" x2="1110" y2="615" />
+  </g>
+
+  
+  <rect x="75" y="75" width="1050" height="525" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.3" />
+</svg>
