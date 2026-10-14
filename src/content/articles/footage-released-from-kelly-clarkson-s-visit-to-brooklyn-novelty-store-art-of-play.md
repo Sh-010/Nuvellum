@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T02:01:47.861Z"
 readingTime: "2 min"
-image: "/generated/ai/footage-released-from-kelly-clarkson-s-visit-to-brooklyn-novelty-store-art-of-play.svg"
-imageAlt: "AI-generated editorial illustration for Footage released from Kelly Clarkson's visit to Brooklyn novelty store Art of Play"
 status: "published"
 tags: ["Kelly Clarkson","Art of Play","Brooklyn"]
 regions: ["north-america"]
