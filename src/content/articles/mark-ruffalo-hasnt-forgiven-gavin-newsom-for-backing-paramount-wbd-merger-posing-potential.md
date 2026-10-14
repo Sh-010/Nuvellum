@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T21:00:51.198Z"
 readingTime: "2 min"
-image: "/generated/ai/mark-ruffalo-hasnt-forgiven-gavin-newsom-for-backing-paramount-wbd-merger-posing-potential.svg"
-imageAlt: "AI-generated editorial illustration for Mark Ruffalo hasn’t forgiven Gavin Newsom for backing paramount-wbd merger, posing potential 2028 problem"
 status: "published"
 tags: ["Mark Ruffalo","Gavin Newsom","Paramount-WBD","2028 election","California"]
 regions: ["north-america"]
