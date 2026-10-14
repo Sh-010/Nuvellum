@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T12:01:22.439Z"
 readingTime: "2 min"
-image: "/generated/ai/civil-servant-wore-make-up-to-juggle-five-jobs-from-home-court-hears.svg"
-imageAlt: "AI-generated editorial illustration for Civil servant wore make-up to juggle five jobs from home, court hears"
 status: "published"
 tags: ["fraud","court","employment","civil service"]
 regions: ["europe-central-asia"]
