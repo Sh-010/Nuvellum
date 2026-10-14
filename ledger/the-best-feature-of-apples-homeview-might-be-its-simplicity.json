@@ -1,0 +1,79 @@
+{
+  "slug": "the-best-feature-of-apples-homeview-might-be-its-simplicity",
+  "url": "https://www.nuvellum.news/article/the-best-feature-of-apples-homeview-might-be-its-simplicity",
+  "title": "The best feature of Apple’s homeview might be its simplicity",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T22:34:10.587Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T22:34:10.587Z",
+      "remoteId": "127",
+      "remoteUrl": "https://t.me/nuvellum/127",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T22:34:10.587Z",
+      "remoteId": "1277147205491143_122108972931497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108972931497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    },
+    "threads": {
+      "containerId": "17950165665321818",
+      "containerCreatedAt": "2026-10-14T22:34:23.954Z",
+      "updatedAt": "2026-10-14T22:34:10.587Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T22:34:10.587Z",
+      "remoteId": "17984008464084055",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T22:34:10.587Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T22:34:10.587Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
