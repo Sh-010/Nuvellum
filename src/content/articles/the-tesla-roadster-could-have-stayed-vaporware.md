@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T11:00:41.411Z"
 readingTime: "2 min"
-image: "/generated/ai/the-tesla-roadster-could-have-stayed-vaporware.svg"
-imageAlt: "AI-generated editorial illustration for The Tesla Roadster could have stayed vaporware"
 status: "published"
 tags: ["Tesla","Roadster","Elon Musk","Electric Cars","SpaceX"]
 regions: ["north-america"]
