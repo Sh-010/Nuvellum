@@ -6,9 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T09:00:42.091Z"
-readingTime: "2 min"
-image: "/generated/ai/european-film-academy-unveils-68-films-on-shortlist-for-39th-european-film-awards.svg"
-imageAlt: "AI-generated editorial illustration for European Film Academy unveils 68 films on shortlist for 39th European Film Awards"
+readingTime: "1 min"
 status: "published"
 tags: ["European Film Awards","European Film Academy","film"]
 regions: ["europe-central-asia"]
