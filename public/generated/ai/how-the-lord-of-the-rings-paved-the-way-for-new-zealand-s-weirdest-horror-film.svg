@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="paper-texture" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="mix" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="mix" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  
+  
+  <g stroke="#2a221c" stroke-opacity="0.08" stroke-width="1">
+    <line x1="100" y1="80" x2="1100" y2="80" />
+    <line x1="100" y1="595" x2="1100" y2="595" />
+    <line x1="100" y1="80" x2="100" y2="595" />
+    <line x1="1100" y1="80" x2="1100" y2="595" />
+  </g>
+
+  
+  <g fill="none" stroke="#2a221c" stroke-opacity="0.2" stroke-width="1.5">
+    
+    <path d="M 100 450 Q 300 380, 500 420 T 900 390 T 1100 430" />
+    <path d="M 100 480 Q 350 410, 600 460 T 1100 440" />
+    
+    <path d="M 350 390 L 420 280 L 480 390" stroke-opacity="0.15" />
+    <path d="M 450 410 L 520 310 L 590 410" stroke-opacity="0.15" />
+  </g>
+
+  
+  
+  
+  <g id="drafting-stand" stroke="#2a221c" stroke-width="2" fill="none" opacity="0.4">
+    
+    <line x1="600" y1="120" x2="600" y2="520" stroke-dasharray="4 4" />
+    
+    <ellipse cx="600" cy="500" rx="180" ry="30" />
+    <path d="M 420 500 L 380 550" />
+    <path d="M 780 500 L 820 550" />
+    <path d="M 600 530 L 600 560" />
+  </g>
+
+  
+  
+  <g id="were-sheep-sculpture">
+    
+    <ellipse cx="600" cy="360" rx="130" ry="100" fill="#2a221c" fill-opacity="0.05" />
+
+    
+    <g stroke="#661227" stroke-width="2" fill="none" opacity="0.85">
+      <path d="M 530 280 C 530 240, 670 240, 670 280 C 670 340, 650 420, 600 430 C 550 420, 530 340, 530 280 Z" />
+      
+      <line x1="600" y1="260" x2="600" y2="425" />
+      <path d="M 550 300 Q 600 320 650 300" />
+      <path d="M 540 340 Q 600 370 660 340" />
+      <path d="M 545 380 Q 600 410 655 380" />
+    </g>
+
+    
+    <g fill="#efe8db" stroke="#2a221c" stroke-width="2">
+      
+      <path d="M 480 320 Q 460 340 480 370 Q 460 400 500 420 Q 530 440 560 410 Z" />
+      <path d="M 720 320 Q 740 340 720 370 Q 740 400 700 420 Q 670 440 640 410 Z" />
+      <path d="M 500 270 Q 470 290 490 320 Q 530 310 540 280 Z" />
+      <path d="M 700 270 Q 730 290 710 320 Q 670 310 660 280 Z" />
+    </g>
+
+    
+    <g fill="none" stroke="#2a221c" stroke-width="3">
+      
+      <path d="M 540 230 C 490 220, 440 250, 450 300 C 455 320, 480 330, 495 315" stroke-linecap="round" />
+      
+      <path d="M 660 230 C 710 220, 760 250, 750 300 C 745 320, 720 330, 705 315" stroke-linecap="round" />
+      
+      <path d="M 515 238 Q 505 245 495 242" stroke-width="1.5" />
+      <path d="M 495 255 Q 480 265 470 260" stroke-width="1.5" />
+      <path d="M 685 238 Q 695 245 705 242" stroke-width="1.5" />
+      <path d="M 705 255 Q 720 265 730 260" stroke-width="1.5" />
+    </g>
+
+    
+    <g fill="#efe8db" stroke="#2a221c" stroke-width="2">
+      
+      <path d="M 550 240 L 650 240 L 630 310 L 570 310 Z" />
+      
+      <path d="M 570 315 L 630 315 L 620 355 L 580 355 Z" fill="#661227" fill-opacity="0.1" />
+    </g>
+
+    
+    <circle cx="575" cy="275" r="8" fill="#661227" />
+    <circle cx="575" cy="275" r="3" fill="#efe8db" />
+    <circle cx="625" cy="275" r="8" fill="#661227" />
+    <circle cx="625" cy="275" r="3" fill="#efe8db" />
+
+    
+    <g stroke="#2a221c" stroke-width="1.5" fill="none">
+      <path d="M 600 425 C 580 480, 520 500, 480 540" />
+      <path d="M 600 425 C 620 480, 680 500, 720 540" />
+      <path d="M 560 355 C 540 380, 500 390, 450 410" />
+      <path d="M 640 355 C 660 380, 700 390, 750 410" />
+    </g>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.6">
+    
+    <line x1="160" y1="200" x2="160" y2="450" />
+    <line x1="155" y1="200" x2="165" y2="200" />
+    <line x1="155" y1="325" x2="165" y2="325" />
+    <line x1="155" y1="450" x2="165" y2="450" />
+    
+    
+    <g transform="translate(160, 325)">
+      <line x1="-10" y1="0" x2="10" y2="0" />
+      <line x1="0" y1="-10" x2="0" y2="10" />
+    </g>
+
+    <g transform="translate(1040, 325)">
+      <line x1="-10" y1="0" x2="10" y2="0" />
+      <line x1="0" y1="-10" x2="0" y2="10" />
+      <line x1="-40" y1="0" x2="-40" y2="250" stroke-dasharray="2 2" />
+    </g>
+    <line x1="1040" y1="200" x2="1040" y2="450" />
+    <line x1="1035" y1="200" x2="1045" y2="200" />
+    <line x1="1035" y1="450" x2="1045" y2="450" />
+  </g>
+
+  
+  <g fill="none" stroke="#661227" stroke-width="1" opacity="0.3">
+    <circle cx="600" cy="330" r="260" stroke-dasharray="3 9" />
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.4">
+    <line x1="100" y1="520" x2="1100" y2="520" stroke-width="2" />
+    <line x1="300" y1="525" x2="900" y2="525" />
+    <line x1="400" y1="530" x2="800" y2="530" />
+    <line x1="500" y1="535" x2="700" y2="535" />
+    
+    
+    <path d="M 200 520 L 190 535 M 250 520 L 245 535 M 300 520 L 295 535 M 350 520 L 345 535 M 400 520 L 395 535 M 450 520 L 445 535 M 500 520 L 495 535 M 550 520 L 545 535 M 650 520 L 655 535 M 700 520 L 705 535 M 750 520 L 755 535 M 800 520 L 805 535 M 850 520 L 855 535 M 900 520 L 905 535 M 950 520 L 960 535" />
+  </g>
+
+  
+  <rect width="1200" height="675" filter="url(#paper-texture)" opacity="0.6" pointer-events="none" />
+</svg>
