@@ -1,0 +1,77 @@
+{
+  "slug": "all-about-corinne-review-isabelle-huppert-stalks-sandrine-kiberlain-in-a-witty-deliciously",
+  "url": "https://www.nuvellum.news/article/all-about-corinne-review-isabelle-huppert-stalks-sandrine-kiberlain-in-a-witty-deliciously",
+  "title": "‘All About Corinne’ Review: Isabelle Huppert stalks Sandrine Kiberlain in a witty, deliciously acted French industry satire",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T03:04:13.268Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T03:04:13.268Z",
+      "remoteId": "121",
+      "remoteUrl": "https://t.me/nuvellum/121",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T03:04:13.268Z",
+      "remoteId": "1277147205491143_122108626005497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108626005497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    },
+    "threads": {
+      "containerId": "17950035363321818",
+      "containerCreatedAt": "2026-10-14T03:04:25.593Z",
+      "updatedAt": "2026-10-14T03:04:13.268Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T03:04:13.268Z",
+      "remoteId": "18113900840168388",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T03:04:13.268Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T03:04:13.268Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
