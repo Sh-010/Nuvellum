@@ -1,0 +1,77 @@
+{
+  "slug": "how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film",
+  "url": "https://www.nuvellum.news/article/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film",
+  "title": "How The Lord of the Rings paved the way for New Zealand's weirdest horror film",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T10:03:55.766Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T10:03:55.766Z",
+      "remoteId": "125",
+      "remoteUrl": "https://t.me/nuvellum/125",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T10:03:55.766Z",
+      "remoteId": "1277147205491143_122108755227497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108755227497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    },
+    "threads": {
+      "containerId": "17950074261321818",
+      "containerCreatedAt": "2026-10-14T10:04:08.187Z",
+      "updatedAt": "2026-10-14T10:03:55.766Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T10:03:55.766Z",
+      "remoteId": "18119879725971187",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T10:03:55.766Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T10:03:55.766Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
