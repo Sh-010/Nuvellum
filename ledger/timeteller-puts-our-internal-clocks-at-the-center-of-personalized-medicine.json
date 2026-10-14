@@ -1,0 +1,79 @@
+{
+  "slug": "timeteller-puts-our-internal-clocks-at-the-center-of-personalized-medicine",
+  "url": "https://www.nuvellum.news/article/timeteller-puts-our-internal-clocks-at-the-center-of-personalized-medicine",
+  "title": "TimeTeller puts our internal clocks at the center of personalized medicine",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T20:05:16.858Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T20:05:16.858Z",
+      "remoteId": "126",
+      "remoteUrl": "https://t.me/nuvellum/126",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T20:05:16.858Z",
+      "remoteId": "1277147205491143_122108941323497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108941323497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    },
+    "threads": {
+      "containerId": "17950153377321818",
+      "containerCreatedAt": "2026-10-14T20:05:33.332Z",
+      "updatedAt": "2026-10-14T20:05:16.858Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T20:05:16.858Z",
+      "remoteId": "18015996125955046",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T20:05:16.858Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T20:05:16.858Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
