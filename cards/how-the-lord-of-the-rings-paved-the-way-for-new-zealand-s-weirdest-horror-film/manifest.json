@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film",
+  "url": "https://nuvellum.vercel.app/article/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film",
+  "title": "How The Lord of the Rings paved the way for New Zealand's weirdest horror film",
+  "section": "Film & TV",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 90,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 68,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 102,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 100,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/square.svg",
+  "portrait": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/portrait.svg",
+  "landscape": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/landscape.svg",
+  "story": "engines/out/social-cards/how-the-lord-of-the-rings-paved-the-way-for-new-zealand-s-weirdest-horror-film/story.svg",
+  "rasterNeededForLivePosting": true
+}
