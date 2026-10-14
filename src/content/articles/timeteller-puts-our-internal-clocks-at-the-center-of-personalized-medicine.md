@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T20:01:21.232Z"
 readingTime: "2 min"
-image: "/generated/ai/timeteller-puts-our-internal-clocks-at-the-center-of-personalized-medicine.svg"
-imageAlt: "AI-generated editorial illustration for TimeTeller puts our internal clocks at the center of personalized medicine"
 status: "published"
 tags: ["biotech","health","startups","oncology"]
 regions: ["europe-central-asia","north-america"]
