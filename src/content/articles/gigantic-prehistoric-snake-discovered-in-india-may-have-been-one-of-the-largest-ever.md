@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T06:00:47.305Z"
 readingTime: "2 min"
-image: "/generated/ai/gigantic-prehistoric-snake-discovered-in-india-may-have-been-one-of-the-largest-ever.svg"
-imageAlt: "AI-generated editorial illustration for Gigantic prehistoric snake discovered in India may have been one of the largest ever"
 status: "published"
 tags: ["paleontology","fossils","prehistoric animals","india"]
 regions: ["south-asia"]
