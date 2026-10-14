@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T08:00:51.482Z"
 readingTime: "2 min"
-image: "/generated/ai/xbox-ceo-reportedly-warns-firm-will-not-survive-if-it-only-relies-on-existing-franchises.svg"
-imageAlt: "AI-generated editorial illustration for Xbox CEO reportedly warns firm will \"not survive\" if it only relies on existing franchises"
 status: "published"
 tags: ["Xbox","Microsoft","gaming","industry","leadership"]
 regions: []
