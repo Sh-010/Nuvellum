@@ -1,0 +1,77 @@
+{
+  "slug": "gales-and-heavy-rain-to-impact-uk-as-yellow-wind-warning-issued",
+  "url": "https://www.nuvellum.news/article/gales-and-heavy-rain-to-impact-uk-as-yellow-wind-warning-issued",
+  "title": "Gales and heavy rain to impact UK as yellow wind warning issued",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T00:03:42.001Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T00:03:42.001Z",
+      "remoteId": "120",
+      "remoteUrl": "https://t.me/nuvellum/120",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T00:03:42.001Z",
+      "remoteId": "1277147205491143_122108575407497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108575407497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    },
+    "threads": {
+      "containerId": "17950019832321818",
+      "containerCreatedAt": "2026-10-14T00:03:56.823Z",
+      "updatedAt": "2026-10-14T00:03:42.001Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T00:03:42.001Z",
+      "remoteId": "17961190422216123",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T00:03:42.001Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T00:03:42.001Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
