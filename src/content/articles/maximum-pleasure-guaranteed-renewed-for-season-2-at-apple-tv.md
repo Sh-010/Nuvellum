@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T19:00:43.984Z"
 readingTime: "2 min"
-image: "/generated/ai/maximum-pleasure-guaranteed-renewed-for-season-2-at-apple-tv.svg"
-imageAlt: "AI-generated editorial illustration for ‘Maximum Pleasure Guaranteed’ renewed for season 2 at Apple TV"
 status: "published"
 tags: ["Maximum Pleasure Guaranteed","Apple TV","Tatiana Maslany","David J. Rosen"]
 regions: []
