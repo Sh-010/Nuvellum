@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <style>
+      .bg { fill: #f3ecdf; }
+      .ink { fill: #2a221c; }
+      .stroke-ink { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .fine-ink { stroke: #2a221c; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .burgundy { fill: #661227; }
+      .stroke-burgundy { stroke: #661227; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .stone { fill: #d8cebe; }
+      .stone-dark { fill: #c4b6a3; }
+      .leaf-green { fill: #3f523b; }
+      .light-wash { fill: #e5dccb; opacity: 0.6; }
+    </style>
+    
+    <pattern id="hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.75" opacity="0.15" />
+    </pattern>
+
+    <pattern id="stone-dots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1" fill="#2a221c" opacity="0.1" />
+      <circle cx="9" cy="9" r="1.5" fill="#2a221c" opacity="0.08" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.2" />
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.1" />
+
+  
+  <g id="background-landscape" opacity="0.8">
+    
+    <path d="M 40 450 Q 300 380 600 440 T 1160 410 L 1160 635 L 40 635 Z" fill="#e8dfd0" />
+    <path d="M 40 450 Q 300 380 600 440 T 1160 410" fill="none" class="stroke-ink" />
+
+    
+    <path d="M 40 520 Q 250 470 500 510 T 1160 480 L 1160 635 L 40 635 Z" class="stone" />
+    <path d="M 40 520 Q 250 470 500 510 T 1160 480" fill="none" class="stroke-ink" />
+    <path d="M 40 520 Q 250 470 500 510 T 1160 480 L 1160 635 L 40 635 Z" fill="url(#hatch)" />
+
+    
+    <g transform="translate(880, 280)" opacity="0.7">
+      <polygon points="50,120 70,120 70,80 85,80 85,60 90,60 90,40 95,35 100,40 100,60 105,60 105,80 120,80 120,120 140,120 140,170 50,170" class="stone-dark" />
+      <path d="M 40 170 L 150 170 M 50 120 L 140 120 M 70 80 L 120 80 M 85 60 L 105 60" fill="none" class="fine-ink" />
+      <path d="M 95 35 L 95 170" fill="none" class="stroke-ink" stroke-width="1.5" />
+    </g>
+  </g>
+
+  
+  <g id="left-pillar" transform="translate(80, 100)">
+    
+    <rect x="0" y="30" width="90" height="470" class="stone" />
+    <rect x="0" y="30" width="90" height="470" fill="url(#stone-dots)" />
+    
+    <line x1="20" y1="30" x2="20" y2="500" class="fine-ink" />
+    <line x1="45" y1="30" x2="45" y2="500" class="fine-ink" />
+    <line x1="70" y1="30" x2="70" y2="500" class="fine-ink" />
+    
+    <rect x="-10" y="10" width="110" height="20" class="stone-dark" />
+    <rect x="-15" y="0" width="120" height="10" class="stone" />
+    
+    <rect x="-15" y="0" width="120" height="500" fill="none" class="stroke-ink" />
+    
+    <path d="M 0 100 Q 30 120 15 150 T 40 200 Q 10 220 0 250" fill="none" stroke="#3f523b" stroke-width="4" stroke-linecap="round" />
+    <path d="M 10 130 C 25 130 30 140 15 150 C 0 140 0 130 10 130 Z" class="leaf-green" />
+    <path d="M 30 180 C 45 180 50 190 35 200 C 20 190 20 180 30 180 Z" class="leaf-green" />
+  </g>
+
+  
+  <g id="focal-group" transform="translate(600, 310)">
+    
+    
+    <circle cx="0" cy="0" r="220" fill="none" class="fine-ink" stroke-dasharray="4 8" />
+    <circle cx="0" cy="0" r="180" fill="none" class="fine-ink" opacity="0.5" />
+    <circle cx="0" cy="0" r="140" fill="none" class="fine-ink" />
+    <circle cx="0" cy="0" r="100" fill="none" class="stroke-ink" opacity="0.3" />
+
+    
+    <path d="M -260 80 Q -100 180 0 120 T 260 100" fill="none" class="stroke-burgundy" stroke-width="4" />
+    <path d="M -260 90 Q -100 190 0 130 T 260 110" fill="none" class="stroke-burgundy" stroke-width="1.5" opacity="0.6" />
+
+    
+    <g transform="translate(0, 0)">
+      
+      <path d="M -90 -30 Q -110 50 -30 90 Q 70 120 120 50 Q 150 -10 110 -60 Q 70 -110 0 -80 Q -70 -50 -90 -30 Z" fill="#c4b6a3" opacity="0.7" />
+      
+      
+      <path d="M -85 -25 Q -105 45 -25 85 Q 65 115 115 45 Q 145 -15 105 -55 Q 65 -105 0 -75 Q -65 -45 -85 -25 Z" class="stone" />
+      <path d="M -85 -25 Q -105 45 -25 85 Q 65 115 115 45 Q 145 -15 105 -55 Q 65 -105 0 -75 Q -65 -45 -85 -25 Z" fill="url(#hatch)" />
+      
+      
+      <path d="M -85 -25 L -120 -35 L -115 -15 L -85 -5 Z" class="stone-dark" />
+      <path d="M -85 -25 L -120 -35 L -115 -15 L -85 -5 Z" fill="none" class="stroke-ink" />
+
+      
+      <path d="M -85 -25 Q -105 45 -25 85 Q 65 115 115 45 Q 145 -15 105 -55 Q 65 -105 0 -75 Q -65 -45 -85 -25 Z" fill="none" class="stroke-ink" stroke-width="3" />
+
+      
+      <g transform="translate(15, -15) scale(0.7)">
+        <polygon points="0,-30 26,15 -26,15" fill="none" class="stroke-burgundy" stroke-width="2" />
+        <polygon points="0,-30 13,-7.5 -13,-7.5" class="burgundy" opacity="0.2" />
+        <polygon points="-13,-7.5 0,15 -26,15" class="burgundy" opacity="0.2" />
+        <polygon points="13,-7.5 26,15 0,15" class="burgundy" opacity="0.2" />
+      </g>
+
+      
+      
+      <circle cx="-25" cy="-25" r="7" class="ink" />
+      <circle cx="-25" cy="-25" r="9" fill="none" class="stroke-ink" stroke-width="1.5" />
+
+      <circle cx="5" cy="-35" r="6" class="ink" />
+      <circle cx="5" cy="-35" r="8" fill="none" class="stroke-ink" stroke-width="1.5" />
+
+      <circle cx="35" cy="-25" r="6" class="ink" />
+      <circle cx="35" cy="-25" r="8" fill="none" class="stroke-ink" stroke-width="1.5" />
+
+      
+      <circle cx="-20" cy="15" r="8" class="ink" />
+      <circle cx="-20" cy="15" r="10" fill="none" class="stroke-ink" stroke-width="1.5" />
+
+      <circle cx="15" cy="20" r="8" class="ink" />
+      <circle cx="15" cy="20" r="10" fill="none" class="stroke-ink" stroke-width="1.5" />
+
+      <circle cx="50" cy="5" r="7" class="ink" />
+      <circle cx="50" cy="5" r="9" fill="none" class="stroke-ink" stroke-width="1.5" />
+
+      <circle cx="75" cy="-20" r="6" class="ink" />
+      <circle cx="75" cy="-20" r="8" fill="none" class="stroke-ink" stroke-width="1.5" />
+      
+      <circle cx="-5" cy="50" r="6" class="ink" />
+      <circle cx="-5" cy="50" r="8" fill="none" class="stroke-ink" stroke-width="1.5" />
+    </g>
+  </g>
+
+  
+  <g id="spiritual-stones" transform="translate(260, 480)">
+    
+    <polygon points="0,-40 30,-10 20,30 -20,30 -30,-10" class="leaf-green" />
+    <polygon points="0,-40 30,-10 20,30 -20,30 -30,-10" fill="none" class="stroke-ink" stroke-width="2" />
+    
+    <line x1="0" y1="-40" x2="0" y2="30" class="fine-ink" />
+    <line x1="0" y1="-40" x2="-30" y2="-10" class="fine-ink" />
+    <line x1="0" y1="-40" x2="30" y2="-10" class="fine-ink" />
+    <line x1="0" y1="30" x2="-20" y2="30" class="fine-ink" />
+    <line x1="0" y1="30" x2="20" y2="30" class="fine-ink" />
+  </g>
+
+  
+  <g id="master-sword" transform="translate(980, 450)">
+    
+    <path d="M -60 60 L 60 60 L 40 120 L -40 120 Z" class="stone" />
+    <path d="M -60 60 L 60 60 L 40 120 L -40 120 Z" fill="url(#hatch)" />
+    <path d="M -60 60 L 60 60 L 40 120 L -40 120 Z" fill="none" class="stroke-ink" />
+    
+    <rect x="-8" y="40" width="16" height="30" class="ink" />
+
+    
+    
+    <rect x="-4" y="-30" width="8" height="80" class="stone-dark" />
+    <rect x="-4" y="-30" width="8" height="80" fill="none" class="stroke-ink" />
+    
+    <path d="M -45 -30 Q 0 -45 45 -30 L 35 -20 Q 0 -30 -35 -20 Z" class="burgundy" />
+    <path d="M -45 -30 Q 0 -45 45 -30 L 35 -20 Q 0 -30 -35 -20 Z" fill="none" class="stroke-ink" />
+    
+    <rect x="-6" y="-70" width="12" height="40" class="stone" />
+    <rect x="-6" y="-70" width="12" height="40" fill="none" class="stroke-ink" />
+    <circle cx="0" cy="-75" r="10" class="burgundy" />
+    <circle cx="0" cy="-75" r="10" fill="none" class="stroke-ink" />
+    
+    <polygon points="0,-33 5,-25 -5,-25" fill="#f3ecdf" />
+  </g>
+
+  
+  <g class="stroke-ink" fill="none" stroke-width="1.5">
+    
+    <path d="M 60 80 L 60 60 L 80 60" />
+    
+    <path d="M 1140 80 L 1140 60 L 1120 60" />
+    
+    <path d="M 60 595 L 60 615 L 80 615" />
+    
+    <path d="M 1140 595 L 1140 615 L 1120 615" />
+  </g>
+
+  
+  <g transform="translate(420, 220)" opacity="0.8">
+    <circle cx="0" cy="0" r="12" fill="#e5dccb" opacity="0.6" />
+    <circle cx="0" cy="0" r="6" fill="#f3ecdf" />
+    <path d="M -12 0 Q 0 -15 12 0 Q 0 15 -12 0 Z" fill="none" class="stroke-ink" stroke-width="1" />
+    <path d="M 0 -12 Q 15 0 0 12 Q -15 0 0 -12 Z" fill="none" class="stroke-ink" stroke-width="1" />
+    <circle cx="0" cy="0" r="2" class="ink" />
+  </g>
+
+</svg>
