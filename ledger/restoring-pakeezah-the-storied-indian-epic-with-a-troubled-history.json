@@ -1,0 +1,77 @@
+{
+  "slug": "restoring-pakeezah-the-storied-indian-epic-with-a-troubled-history",
+  "url": "https://www.nuvellum.news/article/restoring-pakeezah-the-storied-indian-epic-with-a-troubled-history",
+  "title": "Restoring 'Pakeezah', the storied Indian epic with a troubled history",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T07:04:10.662Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T07:04:10.662Z",
+      "remoteId": "123",
+      "remoteUrl": "https://t.me/nuvellum/123",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T07:04:10.662Z",
+      "remoteId": "1277147205491143_122108692791497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122108692791497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    },
+    "threads": {
+      "containerId": "17950058103321818",
+      "containerCreatedAt": "2026-10-14T07:04:23.126Z",
+      "updatedAt": "2026-10-14T07:04:10.662Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-14T07:04:10.662Z",
+      "remoteId": "18117148661010595",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T07:04:10.662Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-14T07:04:10.662Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
