@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T05:00:51.747Z"
 readingTime: "2 min"
-image: "/generated/ai/russian-strikes-hit-key-power-plant-in-kyiv-zelensky-says.svg"
-imageAlt: "AI-generated editorial illustration for Russian strikes hit key power plant in Kyiv, Zelensky says"
 status: "published"
 tags: ["Ukraine","Russia","Kyiv","energy infrastructure","missile strikes"]
 regions: ["europe-central-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/russian-strikes-hit-key-power-plant-in-kyiv-zelensky-says.jpg"
+imageAlt: "Outskirts of Kyiv after Russian invasion of Ukraine"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Outskirts of Kyiv after Russian invasion of Ukraine"
+imageCredit: "Oleksandr Ratushniak"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Outskirts_of_Kyiv_after_Russian_invasion_of_Ukraine.jpg"
 ---
 A key energy facility supplying heating and electricity to Kyiv has been struck in a Russian ballistic missile attack, Ukrainian President Volodymyr Zelensky said.
 
