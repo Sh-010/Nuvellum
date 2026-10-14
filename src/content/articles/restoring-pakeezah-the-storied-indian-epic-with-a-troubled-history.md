@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T07:00:42.851Z"
 readingTime: "2 min"
-image: "/generated/ai/restoring-pakeezah-the-storied-indian-epic-with-a-troubled-history.svg"
-imageAlt: "AI-generated editorial illustration for Restoring 'Pakeezah', the storied Indian epic with a troubled history"
 status: "published"
 tags: ["Pakeezah","Film Heritage Foundation","Meena Kumari","Kamal Amrohi","Festival Lumiere"]
 regions: ["europe-central-asia","south-asia"]
