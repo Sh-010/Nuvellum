@@ -1,0 +1,60 @@
+{
+  "slug": "the-legend-of-zelda-ocarina-of-time-remake-preview-for-nintendo-switch-2",
+  "url": "https://www.nuvellum.news/article/the-legend-of-zelda-ocarina-of-time-remake-preview-for-nintendo-switch-2",
+  "title": "The Legend of Zelda: Ocarina of Time remake preview for Nintendo Switch 2",
+  "risk": "low",
+  "firstSeenAt": "2026-10-14T13:59:22.125Z",
+  "platforms": {
+    "telegram": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: FOTOGRAFIE UND BILDBEARBEITUNG VON PANTHERALEO1359531 😺 ( TALK ) / KONS…\" ends at 1187.7 > )",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "facebook": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: FOTOGRAFIE UND BILDBEARBEITUNG VON PANTHERALEO1359531 😺 ( TALK ) / KONS…\" ends at 1187.7 > )",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "threads": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: FOTOGRAFIE UND BILDBEARBEITUNG VON PANTHERALEO1359531 😺 ( TALK ) / KONS…\" ends at 1187.7 > )",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-14T13:59:22.125Z"
+    }
+  },
+  "cards": {
+    "status": "failed",
+    "at": "2026-10-14T13:59:22.125Z",
+    "error": "cards: 2 card(s) failed the overflow check (\"PHOTO: FOTOGRAFIE UND BILDBEARBEITUNG VON PANTHERALEO1359531 😺 ( TALK ) / KONS…\" ends at 1187.7 > )"
+  }
+}
