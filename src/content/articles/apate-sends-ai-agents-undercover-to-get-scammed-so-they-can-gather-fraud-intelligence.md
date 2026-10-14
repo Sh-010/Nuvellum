@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T18:00:48.208Z"
 readingTime: "2 min"
-image: "/generated/ai/apate-sends-ai-agents-undercover-to-get-scammed-so-they-can-gather-fraud-intelligence.svg"
-imageAlt: "AI-generated editorial illustration for Apate sends AI agents undercover to get scammed so they can gather fraud intelligence"
 status: "published"
 tags: ["artificial intelligence","cybersecurity","scam detection","startups"]
 regions: ["southeast-asia-oceania"]
