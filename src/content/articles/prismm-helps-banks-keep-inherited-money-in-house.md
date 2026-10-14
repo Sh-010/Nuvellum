@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T16:00:51.336Z"
 readingTime: "2 min"
-image: "/generated/ai/prismm-helps-banks-keep-inherited-money-in-house.svg"
-imageAlt: "AI-generated editorial illustration for Prismm helps banks keep inherited money in-house"
 status: "published"
 tags: ["fintech","banking","startups","estate-planning"]
 regions: ["north-america"]
