@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-14"
 publishedAt: "2026-10-14T03:00:48.478Z"
 readingTime: "2 min"
-image: "/generated/ai/all-about-corinne-review-isabelle-huppert-stalks-sandrine-kiberlain-in-a-witty-deliciously.svg"
-imageAlt: "AI-generated editorial illustration for ‘All About Corinne’ Review: Isabelle Huppert stalks Sandrine Kiberlain in a witty, deliciously acted French industry satire"
 status: "published"
 tags: ["All About Corinne","Isabelle Huppert","Sandrine Kiberlain","Marc Fitoussi","Film Festival"]
 regions: ["europe-central-asia"]
