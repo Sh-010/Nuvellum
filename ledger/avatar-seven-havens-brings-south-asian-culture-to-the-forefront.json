@@ -1,0 +1,77 @@
+{
+  "slug": "avatar-seven-havens-brings-south-asian-culture-to-the-forefront",
+  "url": "https://www.nuvellum.news/article/avatar-seven-havens-brings-south-asian-culture-to-the-forefront",
+  "title": "Avatar: Seven havens brings South Asian culture to the forefront",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T12:00:45.453Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T12:00:45.453Z",
+      "remoteId": "131",
+      "remoteUrl": "https://t.me/nuvellum/131",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T12:00:45.453Z",
+      "remoteId": "1277147205491143_122109187431497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109187431497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    },
+    "threads": {
+      "containerId": "17950243212321818",
+      "containerCreatedAt": "2026-10-15T12:00:56.446Z",
+      "updatedAt": "2026-10-15T12:00:45.453Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T12:00:45.453Z",
+      "remoteId": "18169699978464397",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T12:00:45.453Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T12:00:45.453Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
