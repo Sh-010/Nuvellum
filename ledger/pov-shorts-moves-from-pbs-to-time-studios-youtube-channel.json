@@ -1,0 +1,77 @@
+{
+  "slug": "pov-shorts-moves-from-pbs-to-time-studios-youtube-channel",
+  "url": "https://www.nuvellum.news/article/pov-shorts-moves-from-pbs-to-time-studios-youtube-channel",
+  "title": "‘POV Shorts’ moves from PBS to Time Studios’ YouTube channel",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T14:05:23.848Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T14:05:23.848Z",
+      "remoteId": "132",
+      "remoteUrl": "https://t.me/nuvellum/132",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T14:05:23.848Z",
+      "remoteId": "1277147205491143_122109221727497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109221727497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    },
+    "threads": {
+      "containerId": "17950261170321818",
+      "containerCreatedAt": "2026-10-15T14:05:36.614Z",
+      "updatedAt": "2026-10-15T14:05:23.848Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T14:05:23.848Z",
+      "remoteId": "17908843602561281",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T14:05:23.848Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T14:05:23.848Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
