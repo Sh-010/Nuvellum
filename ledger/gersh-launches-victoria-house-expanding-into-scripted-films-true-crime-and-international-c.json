@@ -1,0 +1,76 @@
+{
+  "slug": "gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c",
+  "url": "https://www.nuvellum.news/article/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c",
+  "title": "Gersh launches Victoria House, expanding into scripted Films, true crime and international co-productions",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T07:04:08.758Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T07:04:08.758Z",
+      "remoteId": "130",
+      "remoteUrl": "https://t.me/nuvellum/130",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T07:04:08.758Z",
+      "remoteId": "1277147205491143_122109099351497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109099351497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    },
+    "threads": {
+      "containerId": "17950210974321818",
+      "containerCreatedAt": "2026-10-15T07:04:21.149Z",
+      "updatedAt": "2026-10-15T07:04:08.758Z",
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T07:04:08.758Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T07:04:08.758Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
