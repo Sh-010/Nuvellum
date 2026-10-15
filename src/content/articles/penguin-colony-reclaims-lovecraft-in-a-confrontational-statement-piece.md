@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T10:00:52.790Z"
 readingTime: "2 min"
-image: "/generated/ai/penguin-colony-reclaims-lovecraft-in-a-confrontational-statement-piece.svg"
-imageAlt: "AI-generated editorial illustration for Penguin Colony reclaims Lovecraft in a confrontational statement piece"
 status: "published"
 tags: ["Penguin Colony","Origame Digital","H.P. Lovecraft","video games","reviews"]
 regions: []
