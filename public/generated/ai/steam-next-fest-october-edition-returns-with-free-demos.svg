@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="600" cy="337" r="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="100%" stop-color="#ede3d2"/>
+    </radialGradient>
+    
+    
+    <pattern id="hatchBurgundy" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#661227" stroke-width="1.2" opacity="0.35"/>
+    </pattern>
+    <pattern id="hatchCharcoal" width="6" height="6" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#2a221c" stroke-width="0.9" opacity="0.25"/>
+    </pattern>
+    <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1" fill="#7a6f63" opacity="0.25"/>
+    </pattern>
+
+    
+    <filter id="paperShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="5" stdDeviation="4" flood-color="#2a221c" flood-opacity="0.12"/>
+    </filter>
+    <filter id="subtleShadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#2a221c" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)"/>
+
+  
+  <g id="editorial-frame">
+    
+    <rect x="36" y="36" width="1128" height="603" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.3"/>
+    
+    <rect x="44" y="44" width="1112" height="587" fill="none" stroke="#661227" stroke-width="0.75" opacity="0.4"/>
+    
+    
+    <path d="M 28 36 L 44 36 M 36 28 L 36 44" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    <path d="M 1172 36 L 1156 36 M 1164 28 L 1164 44" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    <path d="M 28 639 L 44 639 M 36 647 L 36 631" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    <path d="M 1172 639 L 1156 639 M 1164 647 L 1164 631" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  
+  <rect x="80" y="80" width="1040" height="515" fill="url(#dotGrid)" opacity="0.6"/>
+
+  
+  <g id="central-composition">
+    
+    
+    <path d="M 160 550 L 1040 550 L 1080 575 L 120 575 Z" fill="#7a6f63" opacity="0.3" filter="url(#paperShadow)"/>
+    <path d="M 160 546 L 1040 546 L 1040 550 L 160 550 Z" fill="#2a221c" opacity="0.7"/>
+
+    
+    <g id="central-folio" filter="url(#paperShadow)">
+      
+      <path d="M 300 130 L 600 160 L 600 520 L 300 490 Z" fill="#fffdfa" stroke="#2a221c" stroke-width="2"/>
+      
+      <path d="M 600 160 L 900 130 L 900 490 L 600 520 Z" fill="#fffaf2" stroke="#2a221c" stroke-width="2"/>
+      
+      <path d="M 590 159 L 600 160 L 600 520 L 590 519 Z" fill="#2a221c" opacity="0.15"/>
+      <path d="M 600 160 L 610 159 L 610 519 L 600 520 Z" fill="#2a221c" opacity="0.05"/>
+    </g>
+
+    
+    <g id="left-page-content" transform="translate(0, 0)">
+      
+      <line x1="360" y1="420" x2="540" y2="400" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <polygon points="400,380 450,350 500,380 500,410 400,410" fill="none" stroke="#2a221c" stroke-width="2"/>
+      <polygon points="385,355 450,315 515,355" fill="none" stroke="#661227" stroke-width="2"/>
+      <rect x="435" y="380" width="30" height="30" fill="url(#hatchCharcoal)" stroke="#2a221c" stroke-width="1.5"/>
+      
+      
+      <path d="M 360 410 Q 370 380 390 385" fill="none" stroke="#661227" stroke-width="2"/>
+      <path d="M 520 395 Q 530 370 545 375" fill="none" stroke="#661227" stroke-width="2"/>
+      
+      
+      <path d="M 430 338 L 450 326 M 440 344 L 460 332 M 450 350 L 470 338" stroke="#661227" stroke-width="1"/>
+
+      
+      <line x1="350" y1="450" x2="550" y2="430" stroke="#2a221c" stroke-width="1" stroke-dasharray="8 4 2 4" opacity="0.6"/>
+      <line x1="370" y1="465" x2="530" y2="445" stroke="#2a221c" stroke-width="1" stroke-dasharray="12 4" opacity="0.5"/>
+    </g>
+
+    
+    <g id="right-page-content">
+      
+      <g transform="translate(750, 310)" filter="url(#subtleShadow)">
+        <circle cx="0" cy="0" r="45" fill="none" stroke="#661227" stroke-width="1.5" stroke-dasharray="6 3"/>
+        <line x1="0" y1="-70" x2="0" y2="70" stroke="#2a221c" stroke-width="2"/>
+        <line x1="-70" y1="0" x2="70" y2="0" stroke="#2a221c" stroke-width="2"/>
+        <circle cx="0" cy="0" r="8" fill="#661227"/>
+        <circle cx="0" cy="0" r="3" fill="#fffaf2"/>
+      </g>
+
+      
+      <g transform="translate(680, 200)" filter="url(#subtleShadow)">
+        <polygon points="60,0 120,30 60,60 0,30" fill="#ede3d2" stroke="#2a221c" stroke-width="1.5"/>
+        <polygon points="0,30 60,60 60,110 0,80" fill="url(#hatchCharcoal)" stroke="#2a221c" stroke-width="1.5"/>
+        <polygon points="60,60 120,30 120,80 60,110" fill="url(#hatchBurgundy)" stroke="#2a221c" stroke-width="1.5"/>
+      </g>
+
+      
+      <g transform="translate(810, 380) rotate(15)" filter="url(#subtleShadow)">
+        <path d="M 25 10 C 25 0, 10 -5, 0 10 C -10 -5, -25 0, -25 10 C -25 25, 0 45, 0 50 C 0 45, 25 25, 25 10 Z" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+      </g>
+
+      
+      <line x1="650" y1="450" x2="850" y2="470" stroke="#2a221c" stroke-width="1" stroke-dasharray="16 4 4 4" opacity="0.6"/>
+      <line x1="670" y1="465" x2="830" y2="485" stroke="#2a221c" stroke-width="1" stroke-dasharray="8 8" opacity="0.5"/>
+    </g>
+
+    
+    
+    <g transform="translate(200, 360) rotate(-12)" filter="url(#paperShadow)">
+      <rect x="0" y="0" width="130" height="70" rx="4" fill="#fffdfa" stroke="#661227" stroke-width="2"/>
+      
+      <circle cx="0" cy="35" r="8" fill="#f7f2ea" stroke="#661227" stroke-width="1.5"/>
+      <circle cx="130" cy="35" r="8" fill="#f7f2ea" stroke="#661227" stroke-width="1.5"/>
+      
+      <line x1="25" y1="35" x2="105" y2="35" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="4 2"/>
+      <rect x="35" y="15" width="20" height="15" fill="#661227" opacity="0.8"/>
+    </g>
+
+    
+    <g transform="translate(870, 310) rotate(8)" filter="url(#paperShadow)">
+      <rect x="0" y="0" width="150" height="80" rx="4" fill="#fffaf2" stroke="#2a221c" stroke-width="2"/>
+      
+      <path d="M 75 -5 L 85 5 L 65 5 Z" fill="#f7f2ea"/>
+      
+      <line x1="20" y1="25" x2="130" y2="25" stroke="#661227" stroke-width="3"/>
+      <line x1="20" y1="45" x2="100" y2="45" stroke="#2a221c" stroke-width="1.5"/>
+      <line x1="20" y1="60" x2="80" y2="60" stroke="#2a221c" stroke-width="1.5"/>
+    </g>
+
+    
+    <g transform="translate(540, 110) rotate(-35)" filter="url(#paperShadow)">
+      <path d="M 0 0 C 10 40, 15 120, 20 180 C 15 140, 5 60, 0 0 Z" fill="#2a221c"/>
+      <path d="M 20 180 C 22 195, 25 210, 30 220 C 22 210, 15 195, 20 180 Z" fill="#661227"/>
+      <line x1="10" y1="30" x2="16" y2="120" stroke="#ede3d2" stroke-width="1" opacity="0.4"/>
+    </g>
+
+    
+    <g transform="translate(300, 210)" filter="url(#subtleShadow)">
+      <circle cx="0" cy="0" r="28" fill="none" stroke="#661227" stroke-width="2"/>
+      <circle cx="0" cy="0" r="14" fill="#fffdfa" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <path d="M -5 -32 L 5 -32 L 4 -28 L -4 -28 Z" fill="#661227"/>
+      <path d="M -5 32 L 5 32 L 4 28 L -4 28 Z" fill="#661227"/>
+      <path d="M -32 -5 L -32 5 L -28 4 L -28 -4 Z" fill="#661227"/>
+      <path d="M 32 -5 L 32 5 L 28 4 L 28 -4 Z" fill="#661227"/>
+      <path d="M -22 -22 L -15 -15 L -12 -18 L -19 -25 Z" fill="#661227"/>
+      <path d="M 22 22 L 15 15 L 12 18 L 19 25 Z" fill="#661227"/>
+      <path d="M 22 -22 L 15 -15 L 18 -12 L 25 -19 Z" fill="#661227"/>
+      <path d="M -22 22 L -15 15 L -18 12 L -25 19 Z" fill="#661227"/>
+    </g>
+
+  </g>
+
+  
+  <g id="vignettes" opacity="0.4">
+    
+    <path d="M 60 70 L 60 90 M 60 70 L 80 70" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <path d="M 1140 605 L 1140 585 M 1140 605 L 1120 605" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+  </g>
+
+  
+  <circle cx="110" cy="530" r="2.5" fill="#661227" opacity="0.4"/>
+  <circle cx="1090" cy="140" r="1.5" fill="#2a221c" opacity="0.5"/>
+  <circle cx="1075" cy="148" r="3" fill="#661227" opacity="0.3"/>
+</svg>
