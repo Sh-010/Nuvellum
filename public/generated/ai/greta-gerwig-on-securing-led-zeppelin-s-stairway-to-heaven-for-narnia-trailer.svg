@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0.08 0" result="coloredNoise"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+
+    
+    <pattern id="hatch-dense" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.8" />
+    </pattern>
+    <pattern id="hatch-sparse" width="16" height="16" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#2a221c" stroke-width="0.6" />
+    </pattern>
+    <pattern id="hatch-burgundy" width="10" height="10" patternTransform="rotate(60 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#661227" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  
+  
+  <rect width="1200" height="675" filter="url(#grain)" opacity="0.6" pointer-events="none" />
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.3" />
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.2" />
+
+  
+
+  
+  <path d="M 520 120 C 520 70, 680 70, 680 120 L 680 580 L 520 580 Z" fill="#efe8db" stroke="#2a221c" stroke-width="1.5" />
+  <path d="M 540 130 C 540 90, 660 90, 660 130 L 660 580 L 540 580 Z" fill="none" stroke="#2a221c" stroke-width="0.7" stroke-dasharray="4,4" />
+
+  
+  <g opacity="0.25" stroke="#2a221c" stroke-width="0.8">
+    <line x1="600" y1="120" x2="200" y2="40" />
+    <line x1="600" y1="120" x2="150" y2="120" />
+    <line x1="600" y1="120" x2="120" y2="240" />
+    <line x1="600" y1="120" x2="1000" y2="40" />
+    <line x1="600" y1="120" x2="1050" y2="120" />
+    <line x1="600" y1="120" x2="1080" y2="240" />
+  </g>
+
+  
+  <path d="M 600 70 C 660 70, 710 120, 710 180 C 710 240, 600 320, 600 320 C 600 320, 490 240, 490 180 C 490 120, 540 70, 600 70 Z" fill="#661227" opacity="0.15" />
+  <path d="M 600 85 C 645 85, 685 125, 685 170 C 685 220, 600 290, 600 290 C 600 290, 515 220, 515 170 C 515 125, 555 85, 600 85 Z" fill="none" stroke="#661227" stroke-width="1.5" stroke-dasharray="6,3" />
+
+  
+  <g id="staircase">
+    
+    <polygon points="360,560 840,560 800,530 400,530" fill="#e4dbcc" stroke="#2a221c" stroke-width="2" />
+    <line x1="400" y1="530" x2="400" y2="560" stroke="#2a221c" stroke-width="1" />
+    <line x1="800" y1="530" x2="800" y2="560" stroke="#2a221c" stroke-width="1" />
+
+    
+    <polygon points="400,530 800,530 765,500 435,500" fill="#eae2d5" stroke="#2a221c" stroke-width="2" />
+    <line x1="435" y1="500" x2="435" y2="530" stroke="#2a221c" stroke-width="1" />
+    <line x1="765" y1="500" x2="765" y2="530" stroke="#2a221c" stroke-width="1" />
+
+    
+    <polygon points="435,500 765,500 735,470 465,470" fill="#e4dbcc" stroke="#2a221c" stroke-width="2" />
+    
+    
+    <polygon points="465,470 735,470 710,440 490,440" fill="#eae2d5" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="490,440 710,440 690,410 510,410" fill="#e4dbcc" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="510,410 690,410 675,380 525,380" fill="#eae2d5" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="525,380 675,380 665,350 535,350" fill="#e4dbcc" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="535,350 665,350 655,320 545,320" fill="#eae2d5" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="545,320 655,320 645,290 555,290" fill="#e4dbcc" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="555,290 645,290 638,260 562,260" fill="#eae2d5" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="562,260 638,260 632,230 568,230" fill="#e4dbcc" stroke="#2a221c" stroke-width="2" />
+
+    
+    <polygon points="568,230 632,230 627,200 573,200" fill="#eae2d5" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  <path d="M 360 560 L 400 530 L 435 500 L 465 470 L 490 440 L 510 410 L 525 380 L 535 350 L 545 320 L 555 290 L 562 260 L 568 230 L 573 200 L 573 230 L 568 260 L 562 290 L 555 320 L 545 350 L 535 380 L 525 410 L 510 440 L 490 470 L 465 500 L 435 530 L 400 560 Z" fill="url(#hatch-dense)" opacity="0.6" />
+  
+  <path d="M 840 560 L 800 530 L 765 500 L 735 470 L 710 440 L 690 410 L 675 380 L 665 350 L 655 320 L 645 290 L 638 260 L 632 230 L 627 200 L 627 230 L 632 260 L 638 290 L 645 320 L 655 350 L 665 380 L 675 410 L 690 440 L 710 470 L 735 500 L 765 530 L 800 560 Z" fill="url(#hatch-dense)" opacity="0.6" />
+
+  
+  <g id="narnia-trees" stroke="#2a221c" stroke-width="1.5" fill="none">
+    
+    <path d="M 280 580 C 280 480, 360 420, 350 300 C 340 200, 420 150, 480 120" />
+    <path d="M 300 580 C 300 500, 375 440, 365 300 C 355 210, 430 165, 490 135" />
+    
+    
+    <path d="M 920 580 C 920 480, 840 420, 850 300 C 860 200, 780 150, 720 120" />
+    <path d="M 900 580 C 900 500, 825 440, 835 300 C 845 210, 770 165, 710 135" />
+
+    
+    <path d="M 350 350 C 400 350, 440 320, 470 280" />
+    <path d="M 330 240 C 380 250, 440 220, 480 180" />
+    <path d="M 850 350 C 800 350, 760 320, 730 280" />
+    <path d="M 870 240 C 820 250, 760 220, 720 180" />
+  </g>
+
+  
+  <g fill="#2a221c" opacity="0.15">
+    <circle cx="320" cy="180" r="45" />
+    <circle cx="370" cy="130" r="35" />
+    <circle cx="880" cy="180" r="45" />
+    <circle cx="830" cy="130" r="35" />
+  </g>
+
+  
+  <g stroke="#661227" stroke-width="0.8" fill="none" opacity="0.6">
+    <path d="M 600 560 C 580 460, 630 380, 600 280 C 580 220, 615 160, 600 100" />
+    <path d="M 605 560 C 585 460, 635 380, 605 280 C 585 220, 620 160, 605 100" />
+    <path d="M 595 560 C 575 460, 625 380, 595 280 C 575 220, 610 160, 595 100" />
+    <path d="M 610 560 C 590 460, 640 380, 610 280 C 590 220, 625 160, 610 100" />
+  </g>
+
+  
+  <g id="apotheosis-light">
+    
+    <circle cx="600" cy="140" r="32" fill="#efe8db" stroke="#661227" stroke-width="2" />
+    <circle cx="600" cy="140" r="26" fill="none" stroke="#661227" stroke-width="0.7" stroke-dasharray="2,2" />
+    
+    
+    <rect x="592" y="115" width="16" height="30" fill="#2a221c" />
+    <polygon points="588,115 612,115 600,100" fill="#661227" />
+    <line x1="600" y1="100" x2="600" y2="70" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  <path d="M 150 635 L 1050 635 L 1080 675 L 120 675 Z" fill="#2a221c" opacity="0.08" />
+  <line x1="120" y1="635" x2="1080" y2="635" stroke="#2a221c" stroke-width="1.5" />
+
+  
+  <g stroke="#2a221c" stroke-width="0.8" opacity="0.4">
+    
+    <line x1="55" y1="65" x2="85" y2="65" />
+    <line x1="55" y1="65" x2="55" y2="95" />
+    <line x1="58" y1="68" x2="75" y2="68" />
+    <line x1="58" y1="68" x2="58" y2="85" />
+
+    
+    <line x1="1145" y1="65" x2="1115" y2="65" />
+    <line x1="1145" y1="65" x2="1145" y2="95" />
+    <line x1="1142" y1="68" x2="1125" y2="68" />
+    <line x1="1142" y1="68" x2="1142" y2="85" />
+
+    
+    <line x1="55" y1="610" x2="85" y2="610" />
+    <line x1="55" y1="610" x2="55" y2="580" />
+    <line x1="58" y1="607" x2="75" y2="607" />
+    <line x1="58" y1="607" x2="58" y2="590" />
+
+    
+    <line x1="1145" y1="610" x2="1115" y2="610" />
+    <line x1="1145" y1="610" x2="1145" y2="580" />
+    <line x1="1142" y1="607" x2="1125" y2="607" />
+    <line x1="1142" y1="607" x2="1142" y2="590" />
+  </g>
+
+</svg>
