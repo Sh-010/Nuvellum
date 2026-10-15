@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T00:00:41.032Z"
 readingTime: "2 min"
-image: "/generated/ai/lulas-party-accuses-meta-of-election-interference-ahead-of-brazil-runoff.svg"
-imageAlt: "AI-generated editorial illustration for Lula’s party accuses Meta of election interference ahead of Brazil runoff"
 status: "published"
 tags: ["Brazil","Luiz Inacio Lula da Silva","Brazilian elections","Flavio Bolsonaro","Meta"]
 regions: ["latin-america-caribbean"]
