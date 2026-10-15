@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T20:00:48.898Z"
 readingTime: "2 min"
-image: "/generated/ai/with-obsession-is-the-golden-globes-comedy-race-the-new-home-for-category-fraud.svg"
-imageAlt: "AI-generated editorial illustration for With 'Obsession', is the Golden Globes' comedy race the new home for category fraud?"
 status: "published"
 tags: ["Golden Globes","awards","film","comedy"]
 regions: []
