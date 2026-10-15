@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T06:01:09.084Z"
 readingTime: "2 min"
-image: "/generated/ai/figma-announces-new-features-to-define-how-agents-work-on-its-platform.svg"
-imageAlt: "AI-generated editorial illustration for Figma announces new features to define how agents work on its platform"
 status: "published"
 tags: ["Figma","AI","Apps","India"]
 regions: ["south-asia"]
