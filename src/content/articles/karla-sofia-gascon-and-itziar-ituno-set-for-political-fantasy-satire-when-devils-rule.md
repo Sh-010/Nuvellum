@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T08:01:29.868Z"
 readingTime: "2 min"
-image: "/generated/ai/karla-sofia-gascon-and-itziar-ituno-set-for-political-fantasy-satire-when-devils-rule.svg"
-imageAlt: "AI-generated editorial illustration for Karla Sofía Gascón and Itziar Ituño set for political fantasy satire ‘When Devils Rule’"
 status: "published"
 tags: ["Karla Sofía Gascón","Itziar Ituño","Atlantika Films","When Devils Rule","Tallinn TV Beats"]
 regions: ["europe-central-asia"]
