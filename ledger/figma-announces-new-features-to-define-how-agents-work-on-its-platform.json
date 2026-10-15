@@ -1,0 +1,79 @@
+{
+  "slug": "figma-announces-new-features-to-define-how-agents-work-on-its-platform",
+  "url": "https://www.nuvellum.news/article/figma-announces-new-features-to-define-how-agents-work-on-its-platform",
+  "title": "Figma announces new features to define how agents work on its platform",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T06:22:08.604Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T06:22:08.604Z",
+      "remoteId": "129",
+      "remoteUrl": "https://t.me/nuvellum/129",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T06:22:08.604Z",
+      "remoteId": "1277147205491143_122109091833497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109091833497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    },
+    "threads": {
+      "containerId": "17950205607321818",
+      "containerCreatedAt": "2026-10-15T06:22:22.048Z",
+      "updatedAt": "2026-10-15T06:22:08.604Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T06:22:08.604Z",
+      "remoteId": "18010938800989188",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T06:22:08.604Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T06:22:08.604Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
