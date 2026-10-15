@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T02:00:43.957Z"
 readingTime: "1 min"
-image: "/generated/ai/ai-giant-anthropic-sees-revenue-surge-ahead-of-stock-market-listing.svg"
-imageAlt: "AI-generated editorial illustration for Ai giant Anthropic sees revenue surge ahead of stock market listing"
 status: "published"
 tags: ["Anthropic","Artificial Intelligence","Stock Market","Business"]
 regions: ["north-america"]
