@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T13:00:46.850Z"
 readingTime: "2 min"
-image: "/generated/ai/el-paso-elsewhere-2-gets-a-free-demo-ahead-of-steam-next-fest.svg"
-imageAlt: "AI-generated editorial illustration for El Paso, Elsewhere 2 gets a free demo ahead of Steam Next Fest"
 status: "published"
 tags: ["El Paso Elsewhere 2","Strange Scaffold","Steam Next Fest","PC gaming","Xbox Series X"]
 regions: []
