@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <pattern id="paper-grain" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M12 0L12 120M54 0L54 120M98 0L98 120" stroke="#e6dec9" stroke-width="0.5" opacity="0.4"/>
+      <path d="M0 25L120 25M0 72L120 72M0 105L120 105" stroke="#e6dec9" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf"/>
+  <rect width="1200" height="675" fill="url(#paper-grain)"/>
+
+  
+  <rect x="30" y="30" width="1140" height="615" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.15"/>
+  <rect x="38" y="38" width="1124" height="599" fill="none" stroke="#2a221c" stroke-width="0.75" opacity="0.1"/>
+
+  
+  
+  <path d="M100 550H1100" stroke="#2a221c" stroke-width="1.5" opacity="0.25"/>
+  <path d="M100 125H1100" stroke="#2a221c" stroke-width="1.5" opacity="0.25"/>
+  <path d="M600 125V550" stroke="#2a221c" stroke-width="1" stroke-dasharray="8 8" opacity="0.25"/>
+  
+  
+  <path d="M300 200C500 120 700 120 900 200" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.15"/>
+  <path d="M250 230C500 140 700 140 950 230" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.1"/>
+
+  
+  <line x1="375" y1="125" x2="375" y2="550" stroke="#661227" stroke-width="0.75" opacity="0.2" stroke-dasharray="4 4"/>
+  <line x1="600" y1="125" x2="600" y2="550" stroke="#661227" stroke-width="0.75" opacity="0.2" stroke-dasharray="4 4"/>
+  <line x1="825" y1="125" x2="825" y2="550" stroke="#661227" stroke-width="0.75" opacity="0.2" stroke-dasharray="4 4"/>
+
+  
+  
+  
+  <g transform="translate(375, 337)">
+    
+    <ellipse cx="0" cy="110" rx="35" ry="8" fill="#2a221c" opacity="0.15"/>
+    
+    
+    <line x1="0" y1="-80" x2="0" y2="90" stroke="#2a221c" stroke-width="1.5" opacity="0.3"/>
+    
+    
+    <path d="M-45 0C-45 -55 -20 -80 0 -80C20 -80 45 -55 45 0C45 55 20 80 0 80C-20 80 -45 55 -45 0Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5"/>
+    
+    <path d="M0 -80C-10 -40 -10 40 0 80" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.7"/>
+    <path d="M0 -80C10 -40 10 40 0 80" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.7"/>
+    <line x1="-15" y1="-15" x2="15" y2="-15" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-18" y1="-5" x2="18" y2="-5" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-18" y1="5" x2="18" y2="5" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-15" y1="15" x2="15" y2="15" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#661227" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.8"/>
+  </g>
+
+  
+  <g transform="translate(600, 337)">
+    
+    <ellipse cx="0" cy="110" rx="40" ry="9" fill="#2a221c" opacity="0.15"/>
+    
+    
+    <line x1="0" y1="-95" x2="0" y2="90" stroke="#2a221c" stroke-width="2" opacity="0.3"/>
+    
+    
+    <path d="M-52 0C-52 -63 -23 -92 0 -92C23 -92 52 -63 52 0C52 63 23 92 0 92C-23 92 -52 63 -52 0Z" fill="#661227" stroke="#2a221c" stroke-width="2.5"/>
+    
+    
+    <path d="M0 -92C-12 -45 -12 45 0 92" fill="none" stroke="#efe8db" stroke-width="1.75" opacity="0.9"/>
+    <path d="M0 -92C12 -45 12 45 0 92" fill="none" stroke="#efe8db" stroke-width="1.75" opacity="0.9"/>
+    <line x1="-18" y1="-18" x2="18" y2="-18" stroke="#efe8db" stroke-width="1.75"/>
+    <line x1="-22" y1="-6" x2="22" y2="-6" stroke="#efe8db" stroke-width="1.75"/>
+    <line x1="-22" y1="6" x2="22" y2="6" stroke="#efe8db" stroke-width="1.75"/>
+    <line x1="-18" y1="18" x2="18" y2="18" stroke="#efe8db" stroke-width="1.75"/>
+
+    
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  
+  <g transform="translate(825, 337)">
+    
+    <ellipse cx="0" cy="110" rx="35" ry="8" fill="#2a221c" opacity="0.15"/>
+    
+    
+    <line x1="0" y1="-80" x2="0" y2="90" stroke="#2a221c" stroke-width="1.5" opacity="0.3"/>
+    
+    
+    <path d="M-45 0C-45 -55 -20 -80 0 -80C20 -80 45 -55 45 0C45 55 20 80 0 80C-20 80 -45 55 -45 0Z" fill="#efe8db" stroke="#2a221c" stroke-width="2.5"/>
+    
+    
+    <path d="M0 -80C-10 -40 -10 40 0 80" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.7"/>
+    <path d="M0 -80C10 -40 10 40 0 80" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.7"/>
+    <line x1="-15" y1="-15" x2="15" y2="-15" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-18" y1="-5" x2="18" y2="-5" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-18" y1="5" x2="18" y2="5" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-15" y1="15" x2="15" y2="15" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#661227" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.8"/>
+  </g>
+
+  
+  <path d="M435 337C480 290 520 290 555 337" fill="none" stroke="#661227" stroke-width="2" stroke-dasharray="5 3"/>
+  <path d="M645 337C680 380 720 380 765 337" fill="none" stroke="#661227" stroke-width="2" stroke-dasharray="5 3"/>
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.4">
+    
+    <line x1="375" y1="110" x2="375" y2="120"/>
+    <line x1="370" y1="115" x2="380" y2="115"/>
+    
+    <line x1="600" y1="95" x2="600" y2="105"/>
+    <line x1="595" y1="100" x2="605" y2="100"/>
+    
+    <line x1="825" y1="110" x2="825" y2="120"/>
+    <line x1="820" y1="115" x2="830" y2="115"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" opacity="0.4">
+    
+    <path d="M55 75V55H75"/>
+    
+    <path d="M1145 75V55H1125"/>
+    
+    <path d="M55 600V620H75"/>
+    
+    <path d="M1145 600V620H1125"/>
+  </g>
+
+  
+  <ellipse cx="600" cy="552" rx="320" ry="12" fill="#2a221c" opacity="0.08"/>
+</svg>
