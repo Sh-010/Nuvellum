@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T23:00:43.803Z"
 readingTime: "2 min"
-image: "/generated/ai/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer.svg"
-imageAlt: "AI-generated editorial illustration for Greta Gerwig on securing Led Zeppelin's 'Stairway to Heaven' for 'Narnia' trailer"
 status: "published"
 tags: ["Greta Gerwig","Led Zeppelin","Narnia","Stairway to Heaven"]
 regions: []
