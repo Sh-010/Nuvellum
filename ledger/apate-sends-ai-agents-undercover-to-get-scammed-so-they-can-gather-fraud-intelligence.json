@@ -1,0 +1,79 @@
+{
+  "slug": "apate-sends-ai-agents-undercover-to-get-scammed-so-they-can-gather-fraud-intelligence",
+  "url": "https://www.nuvellum.news/article/apate-sends-ai-agents-undercover-to-get-scammed-so-they-can-gather-fraud-intelligence",
+  "title": "Apate sends AI agents undercover to get scammed so they can gather fraud intelligence",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T00:50:30.960Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T00:50:30.960Z",
+      "remoteId": "128",
+      "remoteUrl": "https://t.me/nuvellum/128",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T00:50:30.960Z",
+      "remoteId": "1277147205491143_122109001275497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109001275497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    },
+    "threads": {
+      "containerId": "17950174311321818",
+      "containerCreatedAt": "2026-10-15T00:50:45.655Z",
+      "updatedAt": "2026-10-15T00:50:30.960Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T00:50:30.960Z",
+      "remoteId": "18112662707143308",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T00:50:30.960Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T00:50:30.960Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
