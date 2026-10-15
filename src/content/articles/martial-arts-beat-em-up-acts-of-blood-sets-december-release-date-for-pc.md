@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T19:00:42.926Z"
 readingTime: "1 min"
-image: "/generated/ai/martial-arts-beat-em-up-acts-of-blood-sets-december-release-date-for-pc.svg"
-imageAlt: "AI-generated editorial illustration for Martial arts beat-'em-up Acts of blood sets December release date for PC"
 status: "published"
 tags: ["Acts of Blood","Eksil Team","PC gaming","release date"]
 regions: []
