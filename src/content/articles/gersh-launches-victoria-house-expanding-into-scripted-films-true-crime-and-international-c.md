@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T07:00:42.662Z"
 readingTime: "2 min"
-image: "/generated/ai/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c.svg"
-imageAlt: "AI-generated editorial illustration for Gersh launches Victoria House, expanding into scripted Films, true crime and international co-productions"
 status: "published"
 tags: ["Gersh","Victoria House","You First Originals","Film","Television","Alexia Putellas"]
 regions: ["europe-central-asia","north-america"]
