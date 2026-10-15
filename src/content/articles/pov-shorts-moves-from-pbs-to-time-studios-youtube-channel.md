@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T14:01:09.243Z"
 readingTime: "2 min"
-image: "/generated/ai/pov-shorts-moves-from-pbs-to-time-studios-youtube-channel.svg"
-imageAlt: "AI-generated editorial illustration for ‘POV Shorts’ moves from PBS to Time Studios’ YouTube channel"
 status: "published"
 tags: ["POV Shorts","Time Studios","PBS","documentary","YouTube"]
 regions: ["north-america"]
