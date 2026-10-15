@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T11:00:45.694Z"
 readingTime: "2 min"
-image: "/generated/ai/avatar-seven-havens-brings-south-asian-culture-to-the-forefront.svg"
-imageAlt: "AI-generated editorial illustration for Avatar: Seven havens brings South Asian culture to the forefront"
 status: "published"
 tags: ["Avatar","Gaming","Paramount Plus"]
 regions: []
