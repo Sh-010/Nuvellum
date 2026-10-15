@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T12:00:46.107Z"
 readingTime: "1 min"
-image: "/generated/ai/steam-next-fest-october-edition-returns-with-free-demos.svg"
-imageAlt: "AI-generated editorial illustration for Steam next Fest October edition returns with free demos"
 status: "published"
 tags: ["Steam","Steam Next Fest","PC gaming","demos"]
 regions: []
