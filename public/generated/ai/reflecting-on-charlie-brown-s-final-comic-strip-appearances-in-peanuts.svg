@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <filter id="paper-texture" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0.07 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="textured" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="textured" />
+    </filter>
+
+    
+    <filter id="subtle-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#2a221c" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+    <stop offset="0%" stop-color="#fff8ef" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="#dfd2be" stop-opacity="0.4"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#vignette)" style="mix-blend-mode: multiply;" />
+
+  
+  <g id="landscape" stroke="#2a221c" stroke-width="1.5" fill="none" opacity="0.85">
+    
+    <path d="M 0,480 L 1200,480" stroke-width="1" opacity="0.3" />
+    
+    
+    <path d="M 50,480 C 150,450 300,470 450,480 C 650,460 850,475 1150,480" stroke-width="1.5" fill="#e7dcce" opacity="0.5" />
+    
+    
+    <g opacity="0.4">
+      <path d="M 180,480 L 178,410 M 178,440 L 165,425 M 178,430 L 190,420 M 178,415 L 170,400 M 178,415 L 185,405" stroke-width="1.5" />
+      <path d="M 230,480 L 232,425 M 232,445 L 220,435 M 232,438 L 242,428" stroke-width="1.2" />
+      <path d="M 980,480 L 982,415 M 982,435 L 970,420 M 982,425 L 995,410" stroke-width="1.5" />
+      <path d="M 1040,480 L 1038,400 M 1038,430 L 1025,415 M 1038,420 L 1050,410 M 1038,405 L 1032,390" stroke-width="1.2" />
+    </g>
+
+    
+    <path d="M 0,481 L 1200,481" stroke-width="2" />
+    
+    <line x1="100" y1="485" x2="80" y2="510" stroke-width="1" opacity="0.4" />
+    <line x1="105" y1="485" x2="85" y2="510" stroke-width="1" opacity="0.4" />
+    <line x1="350" y1="485" x2="330" y2="515" stroke-width="1" opacity="0.4" />
+    <line x1="355" y1="485" x2="335" y2="515" stroke-width="1" opacity="0.4" />
+    <line x1="750" y1="485" x2="735" y2="505" stroke-width="1" opacity="0.4" />
+    <line x1="1020" y1="485" x2="1005" y2="510" stroke-width="1" opacity="0.4" />
+  </g>
+
+  
+  
+  <g id="mailbox-assembly" filter="url(#subtle-shadow)">
+    
+    
+    <g id="post">
+      <rect x="585" y="320" width="30" height="200" fill="#dfd2be" stroke="#2a221c" stroke-width="2.5" />
+      
+      <line x1="593" y1="330" x2="593" y2="500" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+      <line x1="607" y1="340" x2="607" y2="490" stroke="#2a221c" stroke-width="1" opacity="0.3" />
+      <path d="M 590,360 C 600,365 600,370 590,375" stroke="#2a221c" stroke-width="1" fill="none" opacity="0.4" />
+      <path d="M 605,420 C 595,425 595,430 605,435" stroke="#2a221c" stroke-width="1" fill="none" opacity="0.4" />
+    </g>
+
+    
+    <path d="M 570,335 L 630,335 L 630,350 L 570,350 Z" fill="#2a221c" />
+
+    
+    <g id="box-body">
+      
+      <path d="M 500,220 L 700,220 C 715,220 725,230 725,245 L 725,325 C 725,340 715,350 700,350 L 500,350 C 485,350 475,340 475,325 L 475,245 C 475,230 485,220 500,220 Z" fill="#f7f2ea" stroke="#2a221c" stroke-width="3" />
+      
+      
+      <path d="M 475,255 L 725,255" stroke="#2a221c" stroke-width="1.5" opacity="0.5" />
+      <path d="M 475,265 L 725,265" stroke="#2a221c" stroke-width="1" opacity="0.3" />
+
+      
+      <line x1="485" y1="230" x2="485" y2="340" stroke="#2a221c" stroke-width="1" opacity="0.2" />
+      <line x1="490" y1="230" x2="490" y2="340" stroke="#2a221c" stroke-width="1" opacity="0.2" />
+
+      
+      <rect x="475" y="222" width="12" height="126" rx="4" fill="#2a221c" />
+      
+      <circle cx="481" cy="240" r="2" fill="#f7f2ea" />
+      <circle cx="481" cy="320" r="2" fill="#f7f2ea" />
+
+      
+      <g id="flag" transform="rotate(-25 530 270)">
+        
+        <line x1="530" y1="230" x2="530" y2="280" stroke="#2a221c" stroke-width="2.5" />
+        
+        <path d="M 530,230 L 565,242 L 530,255 Z" fill="#661227" stroke="#2a221c" stroke-width="2" />
+        
+        <line x1="535" y1="237" x2="555" y2="244" stroke="#f3ecdf" stroke-width="1" opacity="0.6" />
+        <line x1="540" y1="235" x2="550" y2="246" stroke="#f3ecdf" stroke-width="1" opacity="0.6" />
+      </g>
+
+      
+      <rect x="712" y="275" width="8" height="25" rx="3" fill="#2a221c" />
+      <line x1="690" y1="287" x2="710" y2="287" stroke="#2a221c" stroke-width="2" />
+    </g>
+
+    
+    <path d="M 550,520 L 620,520 C 635,520 645,530 645,535 L 525,535 C 525,530 535,520 550,520 Z" fill="#2a221c" />
+    <path d="M 510,535 C 550,525 650,525 690,535 Z" fill="#dfd2be" stroke="#2a221c" stroke-width="1.5" />
+  </g>
+
+  
+  
+  <g id="envelope" transform="translate(640, 390) rotate(18)">
+    <rect x="0" y="0" width="70" height="45" fill="#fcf9f5" stroke="#2a221c" stroke-width="2" />
+    
+    <path d="M 0,0 L 35,26 L 70,0" fill="none" stroke="#2a221c" stroke-width="1.5" />
+    
+    <line x1="25" y1="18" x2="45" y2="18" stroke="#661227" stroke-width="1.5" opacity="0.7" />
+    <line x1="30" y1="23" x2="40" y2="23" stroke="#661227" stroke-width="1.5" opacity="0.7" />
+  </g>
+
+  
+  <g id="charlie-brown-motif" fill="none" stroke="#2a221c" stroke-width="2.5" opacity="0.3">
+    
+    <path d="M 0,550 
+             L 50,535 100,550 150,535 200,550 250,535 300,550 
+             350,535 400,550 450,535 500,550 550,535 600,550 
+             650,535 700,550 750,535 800,550 850,535 900,550 
+             950,535 1000,550 1050,535 1100,550 1150,535 1200,550" />
+    <path d="M 0,554 
+             L 50,539 100,554 150,539 200,554 250,539 300,554 
+             350,539 400,554 450,539 500,554 550,539 600,554 
+             650,539 700,554 750,539 800,554 850,539 900,554 
+             950,539 1000,554 1050,539 1100,554 1150,539 1200,554" stroke-width="1" opacity="0.5" />
+  </g>
+
+  
+  
+  <g id="print-frame" stroke="#2a221c" fill="none">
+    <rect x="25" y="25" width="1150" height="625" stroke-width="1.5" opacity="0.6" />
+    <rect x="31" y="31" width="1138" height="613" stroke-width="0.5" opacity="0.4" />
+    
+    
+    
+    <path d="M 15,25 L 25,25 M 25,15 L 25,25" stroke-width="1" />
+    
+    <path d="M 1185,25 L 1175,25 M 1175,15 L 1175,25" stroke-width="1" />
+    
+    <path d="M 15,650 L 25,650 M 25,660 L 25,650" stroke-width="1" />
+    
+    <path d="M 1185,650 L 1175,650 M 1175,660 L 1175,650" stroke-width="1" />
+  </g>
+
+  
+  <g id="falling-leaves" stroke="#2a221c" stroke-width="1" fill="#dfd2be" opacity="0.7">
+    <path d="M 780,180 C 790,175 800,185 790,195 C 780,205 770,195 780,180 Z" />
+    <path d="M 830,240 C 840,235 848,242 840,250 C 832,258 825,250 830,240 Z" fill="#661227" opacity="0.8" />
+    <path d="M 380,220 C 375,210 385,205 392,215 C 399,225 390,230 380,220 Z" />
+    <path d="M 320,160 C 325,155 330,162 325,168 C 320,174 315,165 320,160 Z" />
+  </g>
+
+</svg>
