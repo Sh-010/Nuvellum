@@ -1,0 +1,133 @@
+{
+  "version": 2,
+  "slug": "the-best-feature-of-apples-homeview-might-be-its-simplicity",
+  "url": "https://nuvellum.vercel.app/article/the-best-feature-of-apples-homeview-might-be-its-simplicity",
+  "title": "The best feature of Apple’s homeview might be its simplicity",
+  "section": "Technology",
+  "variant": "analysis",
+  "media": {
+    "mode": "illustration",
+    "label": "ILLUSTRATION",
+    "credit": null,
+    "usedBy": []
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "analysis",
+      "image": null,
+      "headline": {
+        "size": 114,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "analysis",
+      "image": null,
+      "headline": {
+        "size": 88,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "analysis",
+      "image": null,
+      "headline": {
+        "size": 116,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "analysis",
+      "image": null,
+      "headline": {
+        "size": 114,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/square.svg",
+  "portrait": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/portrait.svg",
+  "landscape": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/landscape.svg",
+  "story": "engines/out/social-cards/the-best-feature-of-apples-homeview-might-be-its-simplicity/story.svg",
+  "rasterNeededForLivePosting": true
+}

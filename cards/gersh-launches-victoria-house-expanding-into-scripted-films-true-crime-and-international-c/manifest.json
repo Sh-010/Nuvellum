@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c",
+  "url": "https://nuvellum.vercel.app/article/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c",
+  "title": "Gersh launches Victoria House, expanding into scripted Films, true crime and international co-productions",
+  "section": "Film & TV",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 64,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 52,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 80,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 78,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/square.svg",
+  "portrait": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/portrait.svg",
+  "landscape": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/landscape.svg",
+  "story": "engines/out/social-cards/gersh-launches-victoria-house-expanding-into-scripted-films-true-crime-and-international-c/story.svg",
+  "rasterNeededForLivePosting": true
+}
