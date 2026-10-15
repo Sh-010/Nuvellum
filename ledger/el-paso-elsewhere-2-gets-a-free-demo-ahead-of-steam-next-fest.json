@@ -1,0 +1,79 @@
+{
+  "slug": "el-paso-elsewhere-2-gets-a-free-demo-ahead-of-steam-next-fest",
+  "url": "https://www.nuvellum.news/article/el-paso-elsewhere-2-gets-a-free-demo-ahead-of-steam-next-fest",
+  "title": "El Paso, Elsewhere 2 gets a free demo ahead of Steam Next Fest",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T17:18:49.126Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T17:18:49.126Z",
+      "remoteId": "133",
+      "remoteUrl": "https://t.me/nuvellum/133",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T17:18:49.126Z",
+      "remoteId": "1277147205491143_122109282723497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109282723497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    },
+    "threads": {
+      "containerId": "17950289358321818",
+      "containerCreatedAt": "2026-10-15T17:19:02.928Z",
+      "updatedAt": "2026-10-15T17:18:49.126Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T17:18:49.126Z",
+      "remoteId": "18114163046028743",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T17:18:49.126Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T17:18:49.126Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
