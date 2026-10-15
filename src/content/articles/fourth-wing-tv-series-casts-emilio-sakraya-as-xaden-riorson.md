@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T21:00:50.278Z"
 readingTime: "2 min"
-image: "/generated/ai/fourth-wing-tv-series-casts-emilio-sakraya-as-xaden-riorson.svg"
-imageAlt: "AI-generated editorial illustration for ‘Fourth Wing’ TV series casts Emilio Sakraya as Xaden Riorson"
 status: "published"
 tags: ["Fourth Wing","Emilio Sakraya","Amazon Prime Video","Television"]
 regions: []
