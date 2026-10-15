@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T04:00:53.791Z"
 readingTime: "2 min"
-image: "/generated/ai/welsh-back-row-trio-starring-for-leicester-tigers.svg"
-imageAlt: "AI-generated editorial illustration for Welsh back-row trio starring for Leicester Tigers"
 status: "published"
 tags: ["rugby union","Leicester Tigers","Wales rugby"]
 regions: ["europe-central-asia"]
