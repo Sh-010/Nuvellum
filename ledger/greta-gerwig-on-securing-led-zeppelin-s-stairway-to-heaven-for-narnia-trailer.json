@@ -1,0 +1,79 @@
+{
+  "slug": "greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer",
+  "url": "https://www.nuvellum.news/article/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer",
+  "title": "Greta Gerwig on securing Led Zeppelin's 'Stairway to Heaven' for 'Narnia' trailer",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T23:15:04.376Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T23:15:04.376Z",
+      "remoteId": "135",
+      "remoteUrl": "https://t.me/nuvellum/135",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T23:15:04.376Z",
+      "remoteId": "1277147205491143_122109370293497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109370293497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    },
+    "threads": {
+      "containerId": "17950332054321818",
+      "containerCreatedAt": "2026-10-15T23:15:18.534Z",
+      "updatedAt": "2026-10-15T23:15:04.376Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T23:15:04.376Z",
+      "remoteId": "18134612329663481",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T23:15:04.376Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T23:15:04.376Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
