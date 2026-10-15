@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T15:01:00.988Z"
 readingTime: "2 min"
-image: "/generated/ai/jrpg-fans-can-expect-a-busy-lineup-of-releases-in-2027.svg"
-imageAlt: "AI-generated editorial illustration for JRPG fans can expect a busy lineup of releases in 2027"
 status: "published"
 tags: ["jrpg","video games","release dates","square enix","atlus","nintendo"]
 regions: []
