@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T22:00:40.269Z"
 readingTime: "1 min"
-image: "/generated/ai/two-hospitalised-after-shooting-at-oregon-elementary-school-gunman-dead.svg"
-imageAlt: "AI-generated editorial illustration for Two hospitalised after shooting at Oregon elementary school, gunman dead"
 status: "published"
 tags: ["school shooting","mass shooting","USA","police","guns"]
 regions: ["north-america"]
