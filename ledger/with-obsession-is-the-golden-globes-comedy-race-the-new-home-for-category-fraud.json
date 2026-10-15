@@ -1,0 +1,79 @@
+{
+  "slug": "with-obsession-is-the-golden-globes-comedy-race-the-new-home-for-category-fraud",
+  "url": "https://www.nuvellum.news/article/with-obsession-is-the-golden-globes-comedy-race-the-new-home-for-category-fraud",
+  "title": "With 'Obsession', is the Golden Globes' comedy race the new home for category fraud?",
+  "risk": "low",
+  "firstSeenAt": "2026-10-15T20:30:55.233Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T20:30:55.233Z",
+      "remoteId": "134",
+      "remoteUrl": "https://t.me/nuvellum/134",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T20:30:55.233Z",
+      "remoteId": "1277147205491143_122109331065497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109331065497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    },
+    "threads": {
+      "containerId": "17950313496321818",
+      "containerCreatedAt": "2026-10-15T20:31:09.496Z",
+      "updatedAt": "2026-10-15T20:30:55.233Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-15T20:30:55.233Z",
+      "remoteId": "18101315498307376",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-15T20:30:55.233Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-15T20:30:55.233Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
