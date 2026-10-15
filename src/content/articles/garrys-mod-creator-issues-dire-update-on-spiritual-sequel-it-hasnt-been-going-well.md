@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T03:01:02.754Z"
 readingTime: "2 min"
-image: "/generated/ai/garrys-mod-creator-issues-dire-update-on-spiritual-sequel-it-hasnt-been-going-well.svg"
-imageAlt: "AI-generated editorial illustration for Garry’s Mod creator issues dire update on spiritual sequel: ‘IT HASN’t been going well’"
 status: "published"
 tags: ["Garry's Mod","S&box","Facepunch Studios","Gaming"]
 regions: []
