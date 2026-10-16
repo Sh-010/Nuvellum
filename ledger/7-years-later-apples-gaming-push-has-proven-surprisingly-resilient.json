@@ -1,0 +1,76 @@
+{
+  "slug": "7-years-later-apples-gaming-push-has-proven-surprisingly-resilient",
+  "url": "https://www.nuvellum.news/article/7-years-later-apples-gaming-push-has-proven-surprisingly-resilient",
+  "title": "7 Years later, Apple’s gaming push has proven surprisingly resilient",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T16:04:32.284Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:04:32.284Z",
+      "remoteId": "146",
+      "remoteUrl": "https://t.me/nuvellum/146",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:04:32.284Z",
+      "remoteId": "1277147205491143_122109650613497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109650613497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    },
+    "threads": {
+      "containerId": "17950471038321818",
+      "containerCreatedAt": "2026-10-16T16:04:45.826Z",
+      "updatedAt": "2026-10-16T16:04:32.284Z",
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T16:04:32.284Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T16:04:32.284Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
