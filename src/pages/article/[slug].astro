@@ -6,6 +6,7 @@ import InteriorShell from '../../components/InteriorShell.astro';
 import Story from '../../components/Story.astro';
 import '../../styles/article.css';
 import { getArticles, slugify } from '../../lib/articles';
+import { selectRelatedStories } from '../../lib/related-stories.js';
 import { initials, longDate } from '../../lib/interior';
 import { imageCredit, imageFocus } from '../../lib/image-credits.js';
 import corrections from '../../data/editorial-corrections.json';
@@ -19,10 +20,7 @@ const { article } = Astro.props;
 const { Content } = article;
 const correction = corrections[article.slug];
 const allArticles = await getArticles();
-const related = [
-  ...allArticles.filter((a) => a.slug !== article.slug && a.section === article.section),
-  ...allArticles.filter((a) => a.slug !== article.slug && a.section !== article.section)
-].slice(0,3);
+const related = selectRelatedStories(article, allArticles, 3);
 const headings = article.getHeadings ? await article.getHeadings() : [];
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const site = Astro.site ?? new URL('https://nuvellum.vercel.app');
