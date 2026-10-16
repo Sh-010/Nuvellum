@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T06:01:24.235Z"
 readingTime: "2 min"
-image: "/generated/ai/the-olympic-sprinter-now-bedbound-for-22-hours-a-day.svg"
-imageAlt: "AI-generated editorial illustration for The Olympic sprinter now bedbound for 22 hours a day"
 status: "published"
 tags: ["athletics","health","ME","Olympics"]
 regions: ["europe-central-asia"]
