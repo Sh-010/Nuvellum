@@ -1,0 +1,79 @@
+{
+  "slug": "greys-anatomy-boss-unpacks-season-23-premiere-and-teases-future-storylines",
+  "url": "https://www.nuvellum.news/article/greys-anatomy-boss-unpacks-season-23-premiere-and-teases-future-storylines",
+  "title": "‘Grey’s anatomy’ boss unpacks season 23 premiere and teases future storylines",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T15:52:52.709Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:52:52.709Z",
+      "remoteId": "143",
+      "remoteUrl": "https://t.me/nuvellum/143",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:52:52.709Z",
+      "remoteId": "1277147205491143_122109646761497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109646761497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    },
+    "threads": {
+      "containerId": "17950469847321818",
+      "containerCreatedAt": "2026-10-16T15:53:05.387Z",
+      "updatedAt": "2026-10-16T15:52:52.709Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:52:52.709Z",
+      "remoteId": "17954313801272708",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T15:52:52.709Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T15:52:52.709Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
