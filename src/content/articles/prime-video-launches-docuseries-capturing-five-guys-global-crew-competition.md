@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T10:01:27.579Z"
 readingTime: "2 min"
-image: "/generated/ai/prime-video-launches-docuseries-capturing-five-guys-global-crew-competition.svg"
-imageAlt: "AI-generated editorial illustration for Prime Video launches docuseries capturing Five Guys global crew competition"
 status: "published"
 tags: ["Prime Video","Five Guys","docuseries","Full Day Productions","Lost Tribe Creative"]
 regions: []
