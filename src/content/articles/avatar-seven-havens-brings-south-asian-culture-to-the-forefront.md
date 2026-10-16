@@ -1,14 +1,14 @@
 ---
 title: "Avatar: Seven havens brings South Asian culture to the forefront"
 dek: "The creative team behind Avatar: Seven Havens discusses expanding the franchise's visual scope, dual avatars, and cultural influences."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-15"
 publishedAt: "2026-10-15T11:00:45.694Z"
 readingTime: "2 min"
 status: "published"
-tags: ["Avatar","Gaming","Paramount Plus"]
+tags: ["Avatar","Animation","Paramount Plus"]
 regions: []
 countries: []
 sourceUrls: ["https://www.polygon.com/avatar-seven-havens-creators-interview-aang"]
