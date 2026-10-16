@@ -17,15 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/stephen-king-s-favorite-adaptation-the-boogeyman-arrives-on-netflix.jpg"
-imageAlt: "The headquarters of Netflix in Los Gatos"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: The headquarters of Netflix in Los Gatos. Image of Netflix, not of the events reported."
-imageCredit: "Coolcaesar at English Wikipedia"
-imageLicense: "CC BY-SA 3.0"
-imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
-imageSourcePage: "https://commons.wikimedia.org/wiki/File:Netflix_headquarters.jpg"
 ---
 ## From short story to streaming
 

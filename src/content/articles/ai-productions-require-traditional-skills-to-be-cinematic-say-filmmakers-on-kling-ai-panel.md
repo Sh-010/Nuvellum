@@ -17,15 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/ai-productions-require-traditional-skills-to-be-cinematic-say-filmmakers-on-kling-ai-panel.jpg"
-imageAlt: "Busan scenery from Busan Tower"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: Busan scenery from Busan Tower. Image of Busan, not of the events reported."
-imageCredit: "by lwy"
-imageLicense: "CC BY 2.0"
-imageLicenseUrl: "https://creativecommons.org/licenses/by/2.0"
-imageSourcePage: "https://commons.wikimedia.org/wiki/File:Korea-Busan-Busan_Tower-01.jpg"
 ---
 
 [Deadline](https://deadline.com/2026/10/ai-filmmaking-kling-ai-kim-sung-soo-mbc-busan-1237154243) reports that filmmakers speaking on a Kling AI panel at the Asian Contents & Film Market (ACFM) in Busan emphasized that artificial intelligence video generation requires traditional cinematic expertise and human intervention to avoid uniform results.

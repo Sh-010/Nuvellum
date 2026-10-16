@@ -1,7 +1,7 @@
 ---
 title: "'Carrie' showrunner confirms the biggest changes to the book were Stephen King's idea"
 dek: "Showrunner Mike Flanagan explains that author Stephen King was closely involved in expanding the universe for the new television adaptation."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-12"
