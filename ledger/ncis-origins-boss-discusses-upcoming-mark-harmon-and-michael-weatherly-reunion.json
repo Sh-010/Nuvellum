@@ -1,0 +1,77 @@
+{
+  "slug": "ncis-origins-boss-discusses-upcoming-mark-harmon-and-michael-weatherly-reunion",
+  "url": "https://www.nuvellum.news/article/ncis-origins-boss-discusses-upcoming-mark-harmon-and-michael-weatherly-reunion",
+  "title": "‘NCIS: Origins’ boss discusses upcoming Mark Harmon and Michael Weatherly reunion",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T19:05:18.534Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T19:05:18.534Z",
+      "remoteId": "152",
+      "remoteUrl": "https://t.me/nuvellum/152",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T19:05:18.534Z",
+      "remoteId": "1277147205491143_122109705867497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109705867497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    },
+    "threads": {
+      "containerId": "17950495146321818",
+      "containerCreatedAt": "2026-10-16T19:05:29.383Z",
+      "updatedAt": "2026-10-16T19:05:18.534Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T19:05:18.534Z",
+      "remoteId": "18113658803600901",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T19:05:18.534Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T19:05:18.534Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
