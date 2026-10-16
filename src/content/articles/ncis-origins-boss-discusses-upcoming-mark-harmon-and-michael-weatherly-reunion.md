@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T19:01:37.010Z"
 readingTime: "2 min"
-image: "/generated/ai/ncis-origins-boss-discusses-upcoming-mark-harmon-and-michael-weatherly-reunion.svg"
-imageAlt: "AI-generated editorial illustration for ‘NCIS: Origins’ boss discusses upcoming Mark Harmon and Michael Weatherly reunion"
 status: "published"
 tags: ["NCIS: Origins","Mark Harmon","Michael Weatherly","David J. North","television"]
 regions: []
