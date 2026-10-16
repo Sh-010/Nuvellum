@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T07:00:45.383Z"
 readingTime: "3 min"
-image: "/generated/ai/norm-the-tale-of-norm-macdonald-highlights-comedian-s-life-snl-exit-and-private-cancer-bat.svg"
-imageAlt: "AI-generated editorial illustration for ‘Norm: The Tale of Norm Macdonald’ highlights comedian's life, SNL exit and private cancer battle"
 status: "published"
 tags: ["Norm Macdonald","Documentary","Saturday Night Live","Netflix","Judd Apatow"]
 regions: ["north-america"]
