@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer",
+  "url": "https://nuvellum.vercel.app/article/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer",
+  "title": "Greta Gerwig on securing Led Zeppelin's 'Stairway to Heaven' for 'Narnia' trailer",
+  "section": "Film & TV",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 80,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 76,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 94,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 92,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/square.svg",
+  "portrait": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/portrait.svg",
+  "landscape": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/landscape.svg",
+  "story": "engines/out/social-cards/greta-gerwig-on-securing-led-zeppelin-s-stairway-to-heaven-for-narnia-trailer/story.svg",
+  "rasterNeededForLivePosting": true
+}

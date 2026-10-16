@@ -1,0 +1,130 @@
+{
+  "version": 2,
+  "slug": "avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis",
+  "url": "https://nuvellum.vercel.app/article/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis",
+  "title": "Avatar: Seven Havens episode 6 ending explained: what the anomaly reveals about Pavi and Nisha",
+  "section": "Gaming",
+  "variant": "standard",
+  "media": {
+    "mode": "text-led"
+  },
+  "quote": {
+    "skipped": "disabled"
+  },
+  "assets": [
+    {
+      "format": "square",
+      "width": 1080,
+      "height": 1080,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 68,
+        "lines": 4,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 30,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/square.svg",
+      "use": "feed (X, Facebook, LinkedIn, Threads, Telegram)",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1008
+      }
+    },
+    {
+      "format": "landscape",
+      "width": 1200,
+      "height": 630,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 56,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": null,
+      "byline": null,
+      "path": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/landscape.svg",
+      "use": "link card / og:image, Telegram, X summary_large_image",
+      "safeZone": {
+        "x": 60,
+        "y": 30,
+        "width": 1080,
+        "height": 570
+      }
+    },
+    {
+      "format": "portrait",
+      "width": 1080,
+      "height": 1350,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 86,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 34,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": false
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/portrait.svg",
+      "use": "Instagram / Facebook feed",
+      "safeZone": {
+        "x": 72,
+        "y": 36,
+        "width": 936,
+        "height": 1278
+      }
+    },
+    {
+      "format": "story",
+      "width": 1080,
+      "height": 1920,
+      "variant": "standard",
+      "image": null,
+      "headline": {
+        "size": 84,
+        "lines": 5,
+        "layout": "normal",
+        "clipped": false
+      },
+      "dek": {
+        "size": 42,
+        "lines": 3,
+        "layout": "normal",
+        "clipped": true
+      },
+      "byline": null,
+      "path": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/story.svg",
+      "use": "Instagram/Facebook Story, Reel/Short cover, TikTok cover",
+      "safeZone": {
+        "x": 80,
+        "y": 250,
+        "width": 920,
+        "height": 1350
+      }
+    }
+  ],
+  "clipped": false,
+  "sourceMode": "text-led",
+  "square": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/square.svg",
+  "portrait": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/portrait.svg",
+  "landscape": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/landscape.svg",
+  "story": "engines/out/social-cards/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis/story.svg",
+  "rasterNeededForLivePosting": true
+}
