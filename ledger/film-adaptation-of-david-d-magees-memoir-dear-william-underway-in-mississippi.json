@@ -1,0 +1,77 @@
+{
+  "slug": "film-adaptation-of-david-d-magees-memoir-dear-william-underway-in-mississippi",
+  "url": "https://www.nuvellum.news/article/film-adaptation-of-david-d-magees-memoir-dear-william-underway-in-mississippi",
+  "title": "Film adaptation of David D. Magee’s memoir ‘Dear William’ underway in Mississippi",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T13:05:15.646Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T13:05:15.646Z",
+      "remoteId": "140",
+      "remoteUrl": "https://t.me/nuvellum/140",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T13:05:15.646Z",
+      "remoteId": "1277147205491143_122109586167497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109586167497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    },
+    "threads": {
+      "containerId": "17950444506321818",
+      "containerCreatedAt": "2026-10-16T13:05:28.678Z",
+      "updatedAt": "2026-10-16T13:05:15.646Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T13:05:15.646Z",
+      "remoteId": "18145911058570198",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T13:05:15.646Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T13:05:15.646Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
