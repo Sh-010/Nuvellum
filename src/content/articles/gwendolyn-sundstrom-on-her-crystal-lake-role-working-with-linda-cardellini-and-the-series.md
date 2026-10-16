@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T22:00:48.295Z"
 readingTime: "2 min"
-image: "/generated/ai/gwendolyn-sundstrom-on-her-crystal-lake-role-working-with-linda-cardellini-and-the-series.svg"
-imageAlt: "AI-generated editorial illustration for Gwendolyn Sundstrom on her 'Crystal Lake' role, working with Linda Cardellini and the series twist"
 status: "published"
 tags: ["Crystal Lake","Gwendolyn Sundstrom","Linda Cardellini","Peacock","Television"]
 regions: ["north-america"]
