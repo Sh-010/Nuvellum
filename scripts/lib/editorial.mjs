@@ -175,6 +175,16 @@ export function evaluatePublication({ pr, repo, files, article, runs }) {
         && ['gaming','technology','science'].includes(section)) {
       fail('quality: screen/film subject has an implausible section; reclassification required');
     }
+    // Source-site desk labels can misclassify an animated film or TV episode as Gaming.
+    // Check the dek as well as the headline; don't suppress legitimate articles about
+    // video games based on those screen properties (for example, game tie-ins).
+    const screenDescription = String(data.dek || '');
+    const screenTopic = /\b(animated films?|feature films?|films?|movies?|television|tv shows?|tv series|streaming series|docuseries)\b/i.test(screenDescription)
+      || /\b(episode\s+\d+|season\s+\d+\s+(?:premiere|finale))\b/i.test(title);
+    const explicitGameTopic = /\b(games?|gaming|gameplay|video games?|dlc|console|steam|playstation|xbox|nintendo)\b/i.test(title);
+    if (section === 'gaming' && screenTopic && !explicitGameTopic) {
+      fail('quality: film or television subject described as Gaming; reclassification required');
+    }
     if (/\bfavou?rite\b/i.test(title) && !/\bfavou?rite\b/i.test(body)) {
       fail('quality: headline claims a favourite without evidence in the article');
     }
