@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T05:00:43.248Z"
 readingTime: "2 min"
-image: "/generated/ai/carney-says-us-trying-to-break-canada-amid-vote-for-alberta-independence-referendum.svg"
-imageAlt: "AI-generated editorial illustration for Carney says US trying to break Canada amid vote for Alberta independence referendum"
 status: "published"
 tags: ["Canada","Alberta","United States","politics","referendum"]
 regions: ["north-america"]
