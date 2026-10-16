@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paper-grad" cx="600" cy="337.5" r="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f8f4ec"/>
+      <stop offset="60%" stop-color="#f1eae0"/>
+      <stop offset="100% " stop-color="#e8decda"/>
+    </radialGradient>
+    
+    
+    <pattern id="hatch-fine" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#2a221c" stroke-width="0.6" stroke-opacity="0.25"/>
+    </pattern>
+
+    <pattern id="hatch-dense" width="4" height="4" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#661227" stroke-width="0.8" stroke-opacity="0.3"/>
+    </pattern>
+    
+    
+    <filter id="subtle-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#2a221c" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paper-grad)"/>
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3"/>
+  <rect x="46" y="46" width="1108" height="583" fill="none" stroke="#2a221c" stroke-width="0.5" stroke-opacity="0.15"/>
+
+  
+  <g stroke="#2a221c" stroke-width="1" fill="none" opacity="0.4">
+    <path d="M 35 55 L 55 35 M 40 55 L 55 40"/>
+    <path d="M 1165 55 L 1145 35 M 1160 55 L 1145 40"/>
+    <path d="M 35 620 L 55 640 M 40 620 L 55 635"/>
+    <path d="M 1165 620 L 1145 640 M 1160 620 L 1145 635"/>
+  </g>
+
+  
+  
+  <path d="M 150 500 Q 300 470 450 490 T 750 480 T 1050 495" fill="none" stroke="#2a221c" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M 180 515 Q 320 490 470 505 T 770 495 T 1020 510" fill="none" stroke="#2a221c" stroke-width="0.7" stroke-opacity="0.2"/>
+  <path d="M 210 530 Q 350 505 500 520 T 800 510 T 990 525" fill="none" stroke="#2a221c" stroke-width="0.5" stroke-opacity="0.15"/>
+
+  
+  
+  
+  <g transform="translate(360, 290)">
+    
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#2a221c" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.3"/>
+    
+    
+    <path d="M -60 -20 Q -30 -70 0 -50 T 60 -20" fill="none" stroke="#2a221c" stroke-width="2"/>
+    <path d="M -40 0 Q -20 -40 0 -25 T 40 0" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M -80 20 Q -40 -20 0 10 T 80 20" fill="none" stroke="#2a221c" stroke-width="1.2"/>
+    
+    
+    <line x1="0" y1="-90" x2="0" y2="-110" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-70" y1="-60" x2="-85" y2="-75" stroke="#2a221c" stroke-width="1.2"/>
+    <line x1="70" y1="-60" x2="85" y2="-75" stroke="#2a221c" stroke-width="1.2"/>
+  </g>
+
+  
+  <g transform="translate(840, 290)">
+    
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#661227" stroke-width="0.7" stroke-dasharray="6 3" opacity="0.5"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.4"/>
+
+    
+    <path d="M 0 -70 C 40 -70 60 -30 40 10 C 25 40 0 70 0 95 C 0 70 -25 40 -40 10 C -60 -30 -40 -70 0 -70 Z" fill="#661227" fill-opacity="0.1" stroke="#661227" stroke-width="2" filter="url(#subtle-shadow)"/>
+    
+    
+    <line x1="0" y1="-40" x2="0" y2="60" stroke="#661227" stroke-width="2.5"/>
+    <path d="M -20 -20 L 0 -40 L 20 -20" fill="none" stroke="#661227" stroke-width="2"/>
+    <path d="M -15 30 L 0 50 L 15 30" fill="none" stroke="#661227" stroke-width="1.5"/>
+  </g>
+
+  
+  
+  <g filter="url(#subtle-shadow)">
+    
+    <path d="M 500 450 L 500 240 C 500 160 700 160 700 240 L 700 450" fill="#f8f4ec" stroke="#2a221c" stroke-width="3"/>
+    
+    
+    <path d="M 515 450 L 515 245 C 515 175 685 175 685 245 L 685 450" fill="#efe6dc"/>
+    <path d="M 515 450 L 515 245 C 515 175 685 175 685 245 L 685 450" fill="url(#hatch-fine)"/>
+
+    
+    <path d="M 560 450 L 560 300 C 560 250 640 250 640 300 L 640 450" fill="#661227" fill-opacity="0.12"/>
+  </g>
+
+  
+  <g transform="translate(600, 330)">
+    
+    <path d="M -30 70 L -30 20 C -30 -10 -15 -30 0 -40 C -15 -50 -20 -70 -10 -90 C 5 -100 25 -90 20 -70 C 15 -50 25 -30 10 -10 L 10 70 Z" fill="#2a221c"/>
+    
+    
+    <path d="M 30 70 L 30 20 C 30 -10 15 -30 0 -40 C 15 -50 20 -70 10 -90 C -5 -100 -25 -90 -20 -70 C -15 -50 -25 -30 -10 -10 L -10 70 Z" fill="#661227"/>
+
+    
+    <circle cx="0" cy="-45" r="4" fill="#f8f4ec" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="0" y1="-55" x2="0" y2="-35" stroke="#661227" stroke-width="1"/>
+    <line x1="-10" y1="-45" x2="10" y2="-45" stroke="#661227" stroke-width="1"/>
+  </g>
+
+  
+  
+  <line x1="150" y1="450" x2="1050" y2="450" stroke="#2a221c" stroke-width="2"/>
+  <line x1="150" y1="455" x2="1050" y2="455" stroke="#2a221c" stroke-width="0.5"/>
+
+  
+  <polygon points="530,470 670,470 685,450 515,450" fill="#e2d6c4" stroke="#2a221c" stroke-width="1"/>
+  <polygon points="505,490 695,490 710,470 490,470" fill="#d8cca8" stroke="#2a221c" stroke-width="1"/>
+  
+  
+  <line x1="535" y1="450" x2="520" y2="470" stroke="#2a221c" stroke-width="0.5"/>
+  <line x1="565" y1="450" x2="550" y2="470" stroke="#2a221c" stroke-width="0.5"/>
+  <line x1="595" y1="450" x2="580" y2="470" stroke="#2a221c" stroke-width="0.5"/>
+  <line x1="625" y1="450" x2="610" y2="470" stroke="#2a221c" stroke-width="0.5"/>
+  <line x1="655" y1="450" x2="640" y2="470" stroke="#2a221c" stroke-width="0.5"/>
+  <line x1="685" y1="450" x2="670" y2="470" stroke="#2a221c" stroke-width="0.5"/>
+
+  
+  <g transform="translate(600, 115)" opacity="0.6">
+    <polygon points="0,-25 -80,15 80,15" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="0" y1="-25" x2="0" y2="15" stroke="#2a221c" stroke-width="1"/>
+    
+    <rect x="35" y="-15" width="12" height="20" fill="none" stroke="#2a221c" stroke-width="1"/>
+    <line x1="41" y1="-15" x2="41" y2="-22" stroke="#661227" stroke-width="1.5"/>
+  </g>
+
+  
+  
+  <g transform="translate(220, 360)" stroke="#2a221c" stroke-width="1" fill="none">
+    <path d="M 0 90 C -20 50 -10 20 0 -20 C 10 20 20 50 0 90 Z" fill="#2a221c" fill-opacity="0.05"/>
+    <path d="M 0 50 L -15 35 M 0 30 L 15 15 M 0 10 L -15 -5 M 0 -10 L 15 -25"/>
+  </g>
+  <g transform="translate(160, 400)" stroke="#2a221c" stroke-width="0.8" fill="none">
+    <path d="M 0 50 C -15 30 -5 10 0 -20 C 5 10 15 30 0 50 Z" fill="#2a221c" fill-opacity="0.05"/>
+    <path d="M 0 30 L -10 20 M 0 10 L 10 0 M 0 -10 L -10 -20"/>
+  </g>
+
+  
+  <g transform="translate(980, 360)" stroke="#661227" stroke-width="1" fill="none">
+    <path d="M 0 90 C 20 50 10 20 0 -20 C -10 20 -20 50 0 90 Z" fill="#661227" fill-opacity="0.08"/>
+    <path d="M 0 50 L 15 35 M 0 30 L -15 15 M 0 10 L 15 -5 M 0 -10 L -15 -25"/>
+  </g>
+  <g transform="translate(1040, 400)" stroke="#661227" stroke-width="0.8" fill="none">
+    <path d="M 0 50 C 15 30 5 10 0 -20 C -5 10 -15 30 0 50 Z" fill="#661227" fill-opacity="0.08"/>
+    <path d="M 0 30 L 10 20 M 0 10 L -10 0 M 0 -10 L 10 -20"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="0.8" opacity="0.6">
+    <line x1="280" y1="450" x2="275" y2="435"/>
+    <line x1="283" y1="450" x2="283" y2="432"/>
+    <line x1="286" y1="450" x2="291" y2="436"/>
+    
+    <line x1="340" y1="450" x2="335" y2="430"/>
+    <line x1="344" y1="450" x2="346" y2="428"/>
+
+    <line x1="860" y1="450" x2="855" y2="432"/>
+    <line x1="864" y1="450" x2="866" y2="430"/>
+
+    <line x1="920" y1="450" x2="915" y2="435"/>
+    <line x1="923" y1="450" x2="925" y2="432"/>
+    <line x1="927" y1="450" x2="933" y2="436"/>
+  </g>
+
+  
+  <rect x="55" y="55" width="1090" height="565" fill="none" stroke="#2a221c" stroke-width="1" stroke-opacity="0.25"/>
+  
+  
+  <g stroke="#2a221c" stroke-width="0.8" opacity="0.5">
+    <line x1="50" y1="60" x2="60" y2="60"/>
+    <line x1="60" y1="50" x2="60" y2="60"/>
+    
+    <line x1="1140" y1="60" x2="1150" y2="60"/>
+    <line x1="1140" y1="50" x2="1140" y2="60"/>
+    
+    <line x1="50" y1="615" x2="60" y2="615"/>
+    <line x1="60" y1="615" x2="60" y2="625"/>
+    
+    <line x1="1140" y1="615" x2="1150" y2="615"/>
+    <line x1="1140" y1="615" x2="1140" y2="625"/>
+  </g>
+</svg>
