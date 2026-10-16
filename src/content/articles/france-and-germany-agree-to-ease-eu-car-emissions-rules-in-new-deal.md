@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T00:00:47.987Z"
 readingTime: "2 min"
-image: "/generated/ai/france-and-germany-agree-to-ease-eu-car-emissions-rules-in-new-deal.svg"
-imageAlt: "AI-generated editorial illustration for France and Germany agree to ease EU car emissions rules in new deal"
 status: "published"
 tags: ["auto industry","France","Germany","European Union","European Commission","UK","carbon emissions"]
 regions: ["europe-central-asia"]
