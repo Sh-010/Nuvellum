@@ -51,7 +51,7 @@ export function renderSocialCards(story, outBase = SOCIAL_CARD_DIR, options = {}
     assets,
     clipped: assets.some((a) => a.headline?.clipped || a.quote?.clipped),
     // Compatibility with the v1 distribution drafts.
-    sourceMode: media && variant !== 'analysis' ? media.mode : 'text-led',
+    sourceMode: media && assets.some((asset) => asset.image) ? media.mode : 'text-led',
     square: byFormat.square,
     portrait: byFormat.portrait,
     landscape: byFormat.landscape,
