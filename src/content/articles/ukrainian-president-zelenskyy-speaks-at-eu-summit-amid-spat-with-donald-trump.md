@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T20:02:08.104Z"
 readingTime: "2 min"
-image: "/generated/ai/ukrainian-president-zelenskyy-speaks-at-eu-summit-amid-spat-with-donald-trump.svg"
-imageAlt: "AI-generated editorial illustration for Ukrainian president Zelenskyy speaks at EU summit amid spat with Donald Trump"
 status: "published"
 tags: ["Ukraine","European Union","United States","Russia"]
 regions: ["europe-central-asia","north-america"]
