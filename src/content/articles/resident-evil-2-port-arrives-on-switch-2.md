@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T21:00:43.847Z"
 readingTime: "1 min"
-image: "/generated/ai/resident-evil-2-port-arrives-on-switch-2.svg"
-imageAlt: "AI-generated editorial illustration for Resident Evil 2 port arrives on Switch 2"
 status: "published"
 tags: ["Resident Evil 2","Capcom","Nintendo Switch 2","gaming"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/resident-evil-2-port-arrives-on-switch-2.jpg"
+imageAlt: "Resident Evil Road to Requiem"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Resident Evil Road to Requiem"
+imageCredit: "Capcom France"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Resident_Evil_-_Road_to_Requiem.webm"
 ---
 ## Port details and performance
 
