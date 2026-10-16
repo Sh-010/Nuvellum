@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T14:01:00.457Z"
 readingTime: "2 min"
-image: "/generated/ai/veritas-expands-its-anti-counterfeit-chip-to-jewelry-trophies-and-fragrance-bottles.svg"
-imageAlt: "AI-generated editorial illustration for Veritas expands its anti-counterfeit chip to jewelry, trophies, and fragrance bottles"
 status: "published"
 tags: ["Veritas","anti-counterfeit","hardware","luxury goods"]
 regions: []
