@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <pattern id="paper-grain" width="100" height="100" patternUnits="userSpaceOnUse">
+      <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0.93  0 0 0 0 0.91  0 0 0 0 0.86  0 0 0 0.08 0" in="noiseOut" result="coloredNoise"/>
+      </filter>
+      <rect width="100" height="100" filter="url(#noise)" opacity="0.6"/>
+    </pattern>
+
+    
+    <pattern id="hatch-dark" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="1.2" opacity="0.8"/>
+    </pattern>
+    <pattern id="hatch-light" width="12" height="12" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#2a221c" stroke-width="0.8" opacity="0.4"/>
+    </pattern>
+    <pattern id="hatch-burgundy" width="6" height="6" patternTransform="rotate(60 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="1" opacity="0.7"/>
+    </pattern>
+    <pattern id="water-ripple" width="60" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 0 10 Q 15 5, 30 10 T 60 10" fill="none" stroke="#3c5a6b" stroke-width="1" opacity="0.3"/>
+      <path d="M 0 15 Q 15 10, 30 15 T 60 15" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf"/>
+  <rect width="1200" height="675" fill="url(#paper-grain)"/>
+
+  
+  <g id="environment">
+    
+    <path d="M0 380 
+             L35 375 L50 382 L70 365 L90 380 L110 360 L130 378 L150 355 L170 375 L190 350 L210 372 L230 348 L250 370 L270 345 L290 368 L310 342 L330 365 L350 340 L370 362 L390 338 L410 360 L430 335 L450 358 L470 332 L490 355 L510 330 L530 352 L550 328 L570 350 L590 325 L610 348 L630 325 L650 345 L670 322 L690 345 L710 320 L730 342 L750 318 L770 340 L790 315 L810 338 L830 315 L850 335 L870 312 L890 335 L910 310 L930 332 L950 310 L970 330 L990 308 L1010 328 L1030 305 L1050 325 L1070 305 L1090 322 L1110 300 L1130 320 L1150 298 L1170 318 L1200 315 
+             L1200 450 L0 450 Z" 
+          fill="#3c5a6b" opacity="0.3"/>
+
+    
+    <path d="M50 382 L60 330 L70 382 Z M90 380 L105 320 L120 380 Z M150 355 L165 295 L180 355 Z M230 348 L245 285 L260 348 Z M310 342 L325 275 L340 342 Z M390 338 L405 270 L420 338 Z M470 332 L485 260 L500 332 Z M550 328 L565 255 L580 328 Z M630 325 L645 250 L660 325 Z M710 320 L725 245 L740 320 Z M790 315 L805 240 L820 315 Z M870 312 L885 235 L900 312 Z M950 310 L965 230 L980 310 Z M1030 305 L1045 225 L1060 305 Z M1110 300 L1125 220 L1140 300 Z" 
+          fill="#2a221c" opacity="0.15"/>
+
+    
+    <rect x="0" y="440" width="1200" height="235" fill="#3c5a6b" opacity="0.2"/>
+    <rect x="0" y="440" width="1200" height="235" fill="url(#water-ripple)"/>
+
+    
+    <path d="M0 440 C 300 420, 900 460, 1200 435 L1200 675 L0 675 Z" fill="#efe8db"/>
+  </g>
+
+  
+  
+  
+  <g id="central-composition" transform="translate(0, 0)">
+    
+    
+    <rect x="60" y="50" width="1080" height="575" fill="none" stroke="#2a221c" stroke-width="2" opacity="0.8"/>
+    <rect x="68" y="58" width="1064" height="559" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.5"/>
+
+    
+    <g id="childhood-elements" transform="translate(150, 0)">
+      
+      <ellipse cx="250" cy="480" rx="140" ry="45" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.6"/>
+      <ellipse cx="250" cy="480" rx="90" ry="28" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+      <ellipse cx="250" cy="480" rx="40" ry="12" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.8"/>
+
+      
+      <circle cx="250" cy="475" r="18" fill="#661227"/>
+      <circle cx="250" cy="475" r="18" fill="url(#hatch-burgundy)" opacity="0.7"/>
+      <path d="M 235 470 Q 250 460, 265 470" fill="none" stroke="#f3ecdf" stroke-width="1.5" opacity="0.8"/>
+      <circle cx="244" cy="470" r="2" fill="#f3ecdf"/>
+
+      
+      <g transform="translate(50, 390) skewX(-15)">
+        <rect x="0" y="0" width="180" height="14" fill="#2a221c" opacity="0.9"/>
+        <rect x="-10" y="16" width="190" height="14" fill="#2a221c" opacity="0.85"/>
+        <rect x="-20" y="32" width="200" height="14" fill="#2a221c" opacity="0.8"/>
+        
+        <line x1="20" y1="0" x2="20" y2="14" stroke="#f3ecdf" stroke-width="1" opacity="0.4"/>
+        <line x1="90" y1="0" x2="90" y2="14" stroke="#f3ecdf" stroke-width="1" opacity="0.4"/>
+        <line x1="140" y1="0" x2="140" y2="14" stroke="#f3ecdf" stroke-width="1" opacity="0.4"/>
+        
+        
+        <rect x="10" y="14" width="12" height="90" fill="#2a221c"/>
+        <rect x="140" y="14" width="12" height="80" fill="#2a221c"/>
+      </g>
+    </g>
+
+    
+    
+    
+    <g id="grace-profile-and-twist" transform="translate(680, 120)">
+      
+      
+      <path d="M 120 120 
+               C 120 80, 140 50, 180 40 
+               C 220 30, 260 50, 280 80 
+               C 290 95, 295 110, 300 130 
+               C 310 150, 330 170, 350 190 
+               C 360 200, 365 210, 360 220 
+               C 355 230, 340 235, 330 225 
+               C 310 205, 290 190, 270 180
+               C 250 220, 240 260, 230 310
+               C 220 360, 210 400, 190 420
+               L 110 420
+               C 100 370, 105 300, 110 240
+               C 115 190, 118 150, 120 120 Z" 
+            fill="#2a221c" opacity="0.95"/>
+
+      
+      <path d="M 140 60 Q 180 50, 220 70 Q 260 90, 280 130" fill="none" stroke="#661227" stroke-width="4" opacity="0.7"/>
+      <path d="M 150 80 Q 190 70, 230 90 Q 270 110, 290 150" fill="none" stroke="#2a221c" stroke-width="3" opacity="0.8"/>
+      <path d="M 130 100 Q 170 90, 210 110 Q 250 130, 270 170" fill="none" stroke="#2a221c" stroke-width="2" opacity="0.8"/>
+
+      
+      <g clip-path="url(#profile-clip)">
+        <path d="M 120 120 C 120 80, 140 50, 180 40 C 220 30, 260 50, 280 80 C 290 95, 295 110, 300 130 C 310 150, 330 170, 350 190 C 360 200, 365 210, 360 220 C 355 230, 340 235, 330 225 C 310 205, 290 190, 270 180 C 250 220, 240 260, 230 310 C 220 360, 210 400, 190 420 L 110 420 C 100 370, 105 300, 110 240 C 115 190, 118 150, 120 120 Z" id="profile-path" fill="url(#hatch-dark)"/>
+      </g>
+
+      
+      
+      <g transform="translate(-40, 60) rotate(-25)">
+        
+        <polygon points="150,180 380,130 385,138 155,188" fill="#661227" opacity="0.3"/>
+        
+        <polygon points="150,180 400,125 405,135 155,185" fill="#efe8db" stroke="#2a221c" stroke-width="2.5"/>
+        
+        <polygon points="150,180 400,125 390,132 153,182" fill="url(#hatch-burgundy)"/>
+        
+        <line x1="180" y1="174" x2="370" y2="135" stroke="#661227" stroke-width="3" stroke-linecap="round"/>
+        
+        <path d="M 150 180 L 100 192 C 90 195, 85 205, 90 215 L 100 220 L 155 185 Z" fill="#2a221c"/>
+        <line x1="110" y1="200" x2="135" y2="190" stroke="#f3ecdf" stroke-width="1.5"/>
+        <line x1="105" y1="207" x2="130" y2="197" stroke="#f3ecdf" stroke-width="1.5"/>
+      </g>
+    </g>
+
+    
+    <g id="falling-leaves" fill="#661227" opacity="0.8">
+      <path d="M 550 180 Q 555 170, 565 175 Q 560 185, 550 180 Z" transform="rotate(15 555 175)"/>
+      <path d="M 620 240 Q 628 230, 635 238 Q 625 248, 620 240 Z" transform="rotate(-30 625 240)"/>
+      <path d="M 480 320 Q 485 310, 495 315 Q 490 325, 480 320 Z" transform="rotate(45 485 320)" fill="#2a221c"/>
+      <path d="M 780 150 Q 784 142, 792 147 Q 788 155, 780 150 Z" transform="rotate(-15 785 148)" fill="#2a221c"/>
+      <path d="M 350 280 Q 353 273, 361 277 Q 357 285, 350 280 Z" transform="rotate(60 355 280)"/>
+    </g>
+
+    
+    <line x1="600" y1="50" x2="600" y2="625" stroke="#661227" stroke-width="1" stroke-dasharray="4 8" opacity="0.5"/>
+
+  </g>
+
+  
+  <g id="editorial-corners" stroke="#2a221c" stroke-width="1.5" fill="none">
+    
+    <path d="M 60 75 L 75 75 M 75 60 L 75 75"/>
+    
+    <path d="M 1140 75 L 1125 75 M 1125 60 L 1125 75"/>
+    
+    <path d="M 60 600 L 75 600 M 75 615 L 75 600"/>
+    
+    <path d="M 1140 600 L 1125 600 M 1125 615 L 1125 600"/>
+  </g>
+
+  
+  <line x1="78" y1="615" x2="1122" y2="615" stroke="#2a221c" stroke-width="0.7" opacity="0.6"/>
+  <line x1="78" y1="60" x2="1122" y2="60" stroke="#2a221c" stroke-width="0.7" opacity="0.6"/>
+
+</svg>
