@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T15:00:49.712Z"
 readingTime: "1 min"
-image: "/generated/ai/six-newly-announced-indie-games-highlighted-from-the-triple-i-initiative-showcase.svg"
-imageAlt: "AI-generated editorial illustration for Six newly announced indie games highlighted from the Triple-i Initiative showcase"
 status: "published"
 tags: ["gaming","steam","indie games","triple-i initiative"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/six-newly-announced-indie-games-highlighted-from-the-triple-i-initiative-showcase.jpg"
+imageAlt: "Why Valve Made The Steam Deck (The real Switch Pro )"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Why Valve Made The Steam Deck (The real Switch Pro )"
+imageCredit: "Video Game Story Time"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Why_Valve_Made_The_Steam_Deck_(The_real_Switch_Pro-).webm"
 ---
 The Triple-i Initiative showcase recently featured 40 independent games during a 45-minute stream. Alongside updates for previously anticipated titles such as *The Talos Principle 3* and *Pony Island 2: Panda Circus*, the event highlighted an array of newly announced indie projects planned for Steam.
 
