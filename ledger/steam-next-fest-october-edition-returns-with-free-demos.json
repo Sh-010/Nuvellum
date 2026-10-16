@@ -1,0 +1,77 @@
+{
+  "slug": "steam-next-fest-october-edition-returns-with-free-demos",
+  "url": "https://www.nuvellum.news/article/steam-next-fest-october-edition-returns-with-free-demos",
+  "title": "Steam next Fest October edition returns with free demos",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T01:37:22.905Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T01:37:22.905Z",
+      "remoteId": "136",
+      "remoteUrl": "https://t.me/nuvellum/136",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T01:37:22.905Z",
+      "remoteId": "1277147205491143_122109403305497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109403305497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    },
+    "threads": {
+      "containerId": "17950346964321818",
+      "containerCreatedAt": "2026-10-16T01:37:37.057Z",
+      "updatedAt": "2026-10-16T01:37:22.905Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T01:37:22.905Z",
+      "remoteId": "18124773610687257",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T01:37:22.905Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T01:37:22.905Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
