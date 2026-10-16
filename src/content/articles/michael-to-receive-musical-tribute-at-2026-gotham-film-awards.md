@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T18:01:16.655Z"
 readingTime: "2 min"
-image: "/generated/ai/michael-to-receive-musical-tribute-at-2026-gotham-film-awards.svg"
-imageAlt: "AI-generated editorial illustration for ‘Michael’ to receive Musical tribute at 2026 Gotham film awards"
 status: "published"
 tags: ["Gotham Film Awards","Michael","awards","film"]
 regions: ["north-america"]
