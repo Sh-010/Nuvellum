@@ -1,0 +1,79 @@
+{
+  "slug": "veritas-expands-its-anti-counterfeit-chip-to-jewelry-trophies-and-fragrance-bottles",
+  "url": "https://www.nuvellum.news/article/veritas-expands-its-anti-counterfeit-chip-to-jewelry-trophies-and-fragrance-bottles",
+  "title": "Veritas expands its anti-counterfeit chip to jewelry, trophies, and fragrance bottles",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T14:04:58.529Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T14:04:58.529Z",
+      "remoteId": "141",
+      "remoteUrl": "https://t.me/nuvellum/141",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T14:04:58.529Z",
+      "remoteId": "1277147205491143_122109606681497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109606681497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    },
+    "threads": {
+      "containerId": "17950454520321818",
+      "containerCreatedAt": "2026-10-16T14:05:10.963Z",
+      "updatedAt": "2026-10-16T14:04:58.529Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T14:04:58.529Z",
+      "remoteId": "17946844935347190",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T14:04:58.529Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T14:04:58.529Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
