@@ -1,0 +1,79 @@
+{
+  "slug": "prime-video-launches-docuseries-capturing-five-guys-global-crew-competition",
+  "url": "https://www.nuvellum.news/article/prime-video-launches-docuseries-capturing-five-guys-global-crew-competition",
+  "title": "Prime Video launches docuseries capturing Five Guys global crew competition",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T12:41:55.755Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T12:41:55.755Z",
+      "remoteId": "139",
+      "remoteUrl": "https://t.me/nuvellum/139",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T12:41:55.755Z",
+      "remoteId": "1277147205491143_122109573303497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109573303497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    },
+    "threads": {
+      "containerId": "17950441482321818",
+      "containerCreatedAt": "2026-10-16T12:42:08.779Z",
+      "updatedAt": "2026-10-16T12:41:55.755Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T12:41:55.755Z",
+      "remoteId": "18347335738266776",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T12:41:55.755Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T12:41:55.755Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
