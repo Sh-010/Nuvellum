@@ -6,9 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T13:00:56.167Z"
-readingTime: "2 min"
-image: "/generated/ai/film-adaptation-of-david-d-magees-memoir-dear-william-underway-in-mississippi.svg"
-imageAlt: "AI-generated editorial illustration for Film adaptation of David D. Magee’s memoir ‘Dear William’ underway in Mississippi"
+readingTime: "1 min"
 status: "published"
 tags: ["Dear William","David D. Magee","Andrew Hyatt","Film Adaptation"]
 regions: ["north-america"]
