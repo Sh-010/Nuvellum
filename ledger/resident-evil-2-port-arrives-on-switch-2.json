@@ -1,0 +1,77 @@
+{
+  "slug": "resident-evil-2-port-arrives-on-switch-2",
+  "url": "https://www.nuvellum.news/article/resident-evil-2-port-arrives-on-switch-2",
+  "title": "Resident Evil 2 port arrives on Switch 2",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T21:04:04.991Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T21:04:04.991Z",
+      "remoteId": "153",
+      "remoteUrl": "https://t.me/nuvellum/153",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T21:04:04.991Z",
+      "remoteId": "1277147205491143_122109734523497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109734523497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    },
+    "threads": {
+      "containerId": "17950510023321818",
+      "containerCreatedAt": "2026-10-16T21:04:18.248Z",
+      "updatedAt": "2026-10-16T21:04:04.991Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T21:04:04.991Z",
+      "remoteId": "17952728280313762",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T21:04:04.991Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T21:04:04.991Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
