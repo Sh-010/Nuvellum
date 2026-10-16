@@ -1,7 +1,7 @@
 ---
 title: "How 'Rick Potion #9' changed the animated series forever"
 dek: "Thirteen years after its release, the sixth episode of Rick and Morty remains a defining turning point for the show's tone and continuity."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-13"
