@@ -1,0 +1,77 @@
+{
+  "slug": "six-newly-announced-indie-games-highlighted-from-the-triple-i-initiative-showcase",
+  "url": "https://www.nuvellum.news/article/six-newly-announced-indie-games-highlighted-from-the-triple-i-initiative-showcase",
+  "title": "Six newly announced indie games highlighted from the Triple-i Initiative showcase",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T15:04:29.567Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:04:29.567Z",
+      "remoteId": "142",
+      "remoteUrl": "https://t.me/nuvellum/142",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:04:29.567Z",
+      "remoteId": "1277147205491143_122109629553497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109629553497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    },
+    "threads": {
+      "containerId": "17950462512321818",
+      "containerCreatedAt": "2026-10-16T15:04:44.920Z",
+      "updatedAt": "2026-10-16T15:04:29.567Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:04:29.567Z",
+      "remoteId": "17863990578693118",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T15:04:29.567Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T15:04:29.567Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
