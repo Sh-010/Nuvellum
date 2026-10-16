@@ -1,0 +1,77 @@
+{
+  "slug": "reflecting-on-charlie-brown-s-final-comic-strip-appearances-in-peanuts",
+  "url": "https://www.nuvellum.news/article/reflecting-on-charlie-brown-s-final-comic-strip-appearances-in-peanuts",
+  "title": "Reflecting on Charlie Brown's final comic strip appearances in Peanuts",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T16:00:11.146Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:00:11.146Z",
+      "remoteId": "145",
+      "remoteUrl": "https://t.me/nuvellum/145",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:00:11.146Z",
+      "remoteId": "1277147205491143_122109648771497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109648771497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    },
+    "threads": {
+      "containerId": "17950470468321818",
+      "containerCreatedAt": "2026-10-16T16:00:23.695Z",
+      "updatedAt": "2026-10-16T16:00:11.146Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:00:11.146Z",
+      "remoteId": "17911981077490907",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T16:00:11.146Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T16:00:11.146Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
