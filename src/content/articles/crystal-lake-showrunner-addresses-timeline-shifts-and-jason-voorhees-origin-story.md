@@ -1,7 +1,7 @@
 ---
 title: "Crystal Lake showrunner addresses timeline shifts and Jason Voorhees' origin story"
 dek: "Brad Caleb Kane discusses the narrative choices, timeline adjustments, and background changes made to Jason and Pamela Voorhees in the Peacock series Crystal Lake."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-16"
@@ -18,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/crystal-lake-showrunner-addresses-timeline-shifts-and-jason-voorhees-origin-story.jpg"
+imageAlt: "Jason Voorhees from Friday the 13th with chainsaw at Cockington Green"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Jason Voorhees from Friday the 13th with chainsaw at Cockington Green"
+imageCredit: "Binarysequence"
+imageLicense: "CC BY-SA 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Jason_Voorhees_With_Chainsaw_Cockington_Green.jpg"
 ---
 ## Timeline shifts and canon changes in Crystal Lake
 
