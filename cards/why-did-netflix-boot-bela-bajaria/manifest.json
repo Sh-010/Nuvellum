@@ -2,7 +2,7 @@
   "version": 2,
   "slug": "why-did-netflix-boot-bela-bajaria",
   "url": "https://nuvellum.vercel.app/article/why-did-netflix-boot-bela-bajaria",
-  "title": "Why did Netflix boot Bela Bajaria?",
+  "title": "Netflix names Peter Rice content chief as Bela Bajaria departs",
   "section": "Film & TV",
   "variant": "standard",
   "media": {
@@ -19,14 +19,14 @@
       "variant": "standard",
       "image": null,
       "headline": {
-        "size": 118,
-        "lines": 3,
+        "size": 102,
+        "lines": 4,
         "layout": "normal",
         "clipped": false
       },
       "dek": {
         "size": 30,
-        "lines": 3,
+        "lines": 2,
         "layout": "normal",
         "clipped": false
       },
@@ -48,7 +48,7 @@
       "image": null,
       "headline": {
         "size": 88,
-        "lines": 2,
+        "lines": 3,
         "layout": "normal",
         "clipped": false
       },
@@ -71,7 +71,7 @@
       "image": null,
       "headline": {
         "size": 128,
-        "lines": 3,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
@@ -98,8 +98,8 @@
       "variant": "standard",
       "image": null,
       "headline": {
-        "size": 150,
-        "lines": 4,
+        "size": 128,
+        "lines": 5,
         "layout": "normal",
         "clipped": false
       },
@@ -107,7 +107,7 @@
         "size": 42,
         "lines": 3,
         "layout": "normal",
-        "clipped": true
+        "clipped": false
       },
       "byline": null,
       "path": "engines/out/social-cards/why-did-netflix-boot-bela-bajaria/story.svg",
