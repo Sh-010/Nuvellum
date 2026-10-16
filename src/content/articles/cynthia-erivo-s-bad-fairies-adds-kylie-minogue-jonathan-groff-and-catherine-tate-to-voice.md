@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T04:00:48.883Z"
 readingTime: "2 min"
-image: "/generated/ai/cynthia-erivo-s-bad-fairies-adds-kylie-minogue-jonathan-groff-and-catherine-tate-to-voice.svg"
-imageAlt: "AI-generated editorial illustration for Cynthia Erivo's 'Bad fairies' adds Kylie Minogue, Jonathan Groff and Catherine Tate to voice cast"
 status: "published"
 tags: ["Bad Fairies","Cynthia Erivo","Kylie Minogue","Jonathan Groff","Catherine Tate","Warner Bros. Pictures Animation"]
 regions: ["north-america","europe-central-asia"]
