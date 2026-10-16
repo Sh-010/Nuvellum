@@ -90,3 +90,27 @@ test('Nuvellum-drawn SVGs in /uploads/articles are illustrations, not file photo
   assert.equal(mediaMode({ image: '/generated/ai/some-story.svg' }), 'illustration');
   assert.equal(mediaMode({}), 'text-led');
 });
+
+
+test('overlong photo attribution yields a text-led card rather than overflow', async () => {
+  const { renderCard } = await import('../cards/templates.mjs');
+  const story = {
+    title: 'A relevant article title with a real source',
+    dek: 'A brief verified news summary.',
+    section: 'World',
+    type: 'News',
+    author: 'Nuvellum Global Desk',
+    publishedAt: '2026-10-16T12:00:00Z'
+  };
+  const media = {
+    mode: 'photo',
+    credit: 'Photo: ' + 'Long Wikimedia contributor and license attribution '.repeat(4),
+    label: 'FILE PHOTO'
+  };
+  for (const format of ['square', 'landscape', 'portrait', 'story']) {
+    const card = renderCard(format, story, media, 'standard');
+    assert.equal(card.meta.image, null, format);
+    assert.match(card.meta.imageDropped, /credit too long/);
+    assert.doesNotMatch(card.svg, /FILE PHOTO/);
+  }
+});
