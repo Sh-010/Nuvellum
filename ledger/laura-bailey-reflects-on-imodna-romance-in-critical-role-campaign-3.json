@@ -1,0 +1,77 @@
+{
+  "slug": "laura-bailey-reflects-on-imodna-romance-in-critical-role-campaign-3",
+  "url": "https://www.nuvellum.news/article/laura-bailey-reflects-on-imodna-romance-in-critical-role-campaign-3",
+  "title": "Laura Bailey reflects on Imodna romance in Critical Role Campaign 3",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T17:05:17.173Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T17:05:17.173Z",
+      "remoteId": "148",
+      "remoteUrl": "https://t.me/nuvellum/148",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T17:05:17.173Z",
+      "remoteId": "1277147205491143_122109670251497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109670251497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    },
+    "threads": {
+      "containerId": "17950481358321818",
+      "containerCreatedAt": "2026-10-16T17:05:31.282Z",
+      "updatedAt": "2026-10-16T17:05:17.173Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T17:05:17.173Z",
+      "remoteId": "18009626822776184",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T17:05:17.173Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T17:05:17.173Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
