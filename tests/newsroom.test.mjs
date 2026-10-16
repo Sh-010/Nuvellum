@@ -158,3 +158,37 @@ test('buildArticle: low-risk story publishes without verification fields', () =>
 test('buildArticle is idempotent: same input gives identical file and branch', () => {
   assert.deepEqual(buildArticle(story()), buildArticle(story()));
 });
+
+
+test('publication gate holds screen stories filed under Gaming based on dek or episode wording', () => {
+  const cases = [
+    {
+      title: 'Cast members discuss voice acting and character design in Forgotten Island',
+      dek: 'The voices and animation process behind the fantasy adventure film.',
+      section: 'Gaming'
+    },
+    {
+      title: 'Avatar: Seven Havens episode 6 ending explained',
+      dek: 'Pavi and Nisha confront the Anomaly in a new animated series installment.',
+      section: 'Gaming'
+    }
+  ];
+  for (const meta of cases) {
+    const candidate = buildArticle(story({ ...meta, review: { editorialReview: 'passed', risk: 'low' }, verification: undefined }));
+    const verdict = gate(candidate);
+    assert.equal(verdict.publish, false, meta.title);
+    assert.match(verdict.reasons.join('; '), /film or television subject described as Gaming/, meta.title);
+  }
+});
+
+test('publication gate does not mistake an explicit video game tie-in for screen coverage', () => {
+  const candidate = buildArticle(story({
+    title: 'Game studio introduces a new crossover expansion for a video game',
+    dek: 'A movie tie-in is coming to the video game and changes playable equipment.',
+    section: 'Gaming',
+    review: { editorialReview: 'passed', risk: 'low' },
+    verification: undefined
+  }));
+  const verdict = gate(candidate);
+  assert.equal(verdict.publish, true, verdict.reasons.join('; '));
+});
