@@ -1,0 +1,77 @@
+{
+  "slug": "why-did-netflix-boot-bela-bajaria",
+  "url": "https://www.nuvellum.news/article/why-did-netflix-boot-bela-bajaria",
+  "title": "Netflix names Peter Rice content chief as Bela Bajaria departs",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T15:58:03.527Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:58:03.527Z",
+      "remoteId": "144",
+      "remoteUrl": "https://t.me/nuvellum/144",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:58:03.527Z",
+      "remoteId": "1277147205491143_122109647919497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109647919497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    },
+    "threads": {
+      "containerId": "17950470330321818",
+      "containerCreatedAt": "2026-10-16T15:58:15.503Z",
+      "updatedAt": "2026-10-16T15:58:03.527Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T15:58:03.527Z",
+      "remoteId": "18133371046751340",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T15:58:03.527Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T15:58:03.527Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
