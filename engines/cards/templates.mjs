@@ -52,6 +52,15 @@ export const LEGIBLE = { square: 44, portrait: 48, landscape: 34, story: 56 };
 
 /** One card. Returns { svg, meta } where meta records the fit so the manifest and tests can check it. */
 export function renderCard(fmtName, story, media, variant) {
+  // Very long photo attributions can overflow once Chromium renders real glyph widths,
+  // even if the approximate text measurer thinks they fit. Preserve the story and
+  // attribution integrity by switching to a text-led card instead of failing every
+  // social destination. The full attribution remains in the site's image credits.
+  if (media?.mode === 'photo' && String(media.credit || '').length > 80) {
+    const fallback = layoutCard(fmtName, story, null, variant);
+    fallback.meta.imageDropped = 'photo credit too long for reliably safe layout';
+    return fallback;
+  }
   const card = layoutCard(fmtName, story, media, variant);
   if (card.meta.image && (card.meta.headline.size < LEGIBLE[fmtName] || card.meta.headline.clipped)) {
     const text = layoutCard(fmtName, story, null, variant);
