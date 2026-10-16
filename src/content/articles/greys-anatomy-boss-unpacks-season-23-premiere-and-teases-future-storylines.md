@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T03:00:44.298Z"
 readingTime: "2 min"
-image: "/generated/ai/greys-anatomy-boss-unpacks-season-23-premiere-and-teases-future-storylines.svg"
-imageAlt: "AI-generated editorial illustration for ‘Grey’s anatomy’ boss unpacks season 23 premiere and teases future storylines"
 status: "published"
 tags: ["Grey's Anatomy","Meg Marinis","Television","ABC"]
 regions: ["north-america"]
