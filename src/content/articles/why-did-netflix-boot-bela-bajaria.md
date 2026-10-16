@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T02:00:44.947Z"
 readingTime: "2 min"
-image: "/generated/ai/why-did-netflix-boot-bela-bajaria.svg"
-imageAlt: "AI-generated editorial illustration for Why did Netflix boot Bela Bajaria?"
 status: "published"
 tags: ["Netflix","Bela Bajaria","Peter Rice","streaming"]
 regions: ["north-america"]
