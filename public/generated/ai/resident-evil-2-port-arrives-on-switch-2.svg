@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <rect id="bg" width="1200" height="675" fill="#f3ecdf"/>
+
+    
+    <pattern id="hatch-dense" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.6" opacity="0.18"/>
+    </pattern>
+    <pattern id="hatch-cross" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#661227" stroke-width="0.5" opacity="0.2"/>
+      <line x1="0" y1="0" x2="12" y2="0" stroke="#661227" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+
+    
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#2a221c" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  
+  
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.3">
+    <line x1="60" y1="50" x2="1140" y2="50"/>
+    <line x1="60" y1="625" x2="1140" y2="625"/>
+    <line x1="60" y1="50" x2="60" y2="625"/>
+    <line x1="1140" y1="50" x2="1140" y2="625"/>
+  </g>
+  <g stroke="#661227" stroke-width="2" opacity="0.6">
+    <line x1="66" y1="56" x2="1134" y2="56"/>
+    <line x1="66" y1="619" x2="1134" y2="619"/>
+  </g>
+
+  
+
+  
+  <g fill="#2a221c" opacity="0.08">
+    <rect x="150" y="200" width="120" height="350"/>
+    <polygon points="150,200 210,140 270,200"/>
+    <rect x="300" y="170" width="90" height="380"/>
+    <rect x="420" y="250" width="140" height="300"/>
+    <rect x="900" y="180" width="100" height="370"/>
+    <polygon points="900,180 950,120 1000,180"/>
+  </g>
+  
+  
+  <g stroke="#2a221c" stroke-width="0.5" opacity="0.15">
+    <line x1="170" y1="220" x2="170" y2="540"/><line x1="190" y1="220" x2="190" y2="540"/><line x1="210" y1="220" x2="210" y2="540"/><line x1="230" y1="220" x2="230" y2="540"/><line x1="250" y1="220" x2="250" y2="540"/>
+    <line x1="920" y1="200" x2="920" y2="530"/><line x1="940" y1="200" x2="940" y2="530"/><line x1="960" y1="200" x2="960" y2="530"/><line x1="980" y1="200" x2="980" y2="530"/>
+  </g>
+
+  
+  
+
+  
+  <g filter="url(#shadow)">
+    
+    <rect x="310" y="110" width="580" height="455" rx="32" fill="#e5dcce" stroke="#2a221c" stroke-width="4"/>
+    
+    
+    <rect x="370" y="145" width="460" height="320" rx="12" fill="#2a221c"/>
+  </g>
+
+  
+  <g clip-path="url(#screen-clip)">
+    <clipPath id="screen-clip">
+      <rect x="370" y="145" width="460" height="320" rx="12"/>
+    </clipPath>
+    
+    
+    <rect x="370" y="145" width="460" height="320" fill="#181310"/>
+    
+    
+    <polygon points="370,145 650,145 520,465 370,465" fill="#f3ecdf" opacity="0.12"/>
+    <polygon points="650,145 830,145 830,465 520,465" fill="#661227" opacity="0.25"/>
+
+    
+    <g stroke="#f3ecdf" stroke-width="6" opacity="0.85">
+      <line x1="430" y1="145" x2="430" y2="465"/>
+      <line x1="510" y1="145" x2="510" y2="465"/>
+      <line x1="590" y1="145" x2="590" y2="465"/>
+      <line x1="670" y1="145" x2="670" y2="465"/>
+      <line x1="750" y1="145" x2="750" y2="465"/>
+    </g>
+    
+    <g stroke="#ffffff" stroke-width="1.5" opacity="0.4">
+      <line x1="428" y1="145" x2="428" y2="465"/>
+      <line x1="508" y1="145" x2="508" y2="465"/>
+      <line x1="588" y1="145" x2="588" y2="465"/>
+      <line x1="668" y1="145" x2="668" y2="465"/>
+      <line x1="748" y1="145" x2="748" y2="465"/>
+    </g>
+    
+    <g stroke="#f3ecdf" stroke-width="4" opacity="0.6">
+      <line x1="370" y1="230" x2="830" y2="230"/>
+      <line x1="370" y1="380" x2="830" y2="380"/>
+    </g>
+
+    
+    
+    <g transform="translate(680, 260) scale(0.7)" stroke="#f3ecdf" stroke-width="2" fill="none" opacity="0.8">
+      <path d="M0,60 C 20,30 40,20 60,0 C 40,20 20,20 0,60 Z" fill="#661227" opacity="0.4"/>
+      <path d="M0,60 C -20,30 -40,20 -60,0 C -40,20 -20,20 0,60 Z" fill="#661227" opacity="0.4"/>
+      <path d="M0,70 L0,0" stroke-width="2.5"/>
+      <path d="M0,45 C 15,35 30,35 45,25"/>
+      <path d="M0,30 C -15,20 -30,20 -45,10"/>
+    </g>
+
+    
+    <rect x="440" y="415" width="120" height="30" rx="4" fill="#2a221c" opacity="0.7"/>
+    <line x1="450" y1="425" x2="550" y2="425" stroke="#f3ecdf" stroke-width="1.5" opacity="0.5"/>
+    <line x1="450" y1="435" x2="520" y2="435" stroke="#f3ecdf" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  
+  
+  <g fill="#d4c9b8" stroke="#2a221c" stroke-width="3">
+    
+    <line x1="310" y1="180" x2="310" y2="430" stroke="#2a221c" stroke-width="2" opacity="0.4"/>
+    
+    <path d="M 310,142 c 0,-18 14,-32 32,-32 h 28 v 385 h -28 c -18,0 -32,-14 -32,-32 z"/>
+  </g>
+  
+  <circle cx="352" cy="225" r="22" fill="#2a221c" opacity="0.15"/>
+  <circle cx="352" cy="225" r="16" fill="#2a221c" stroke="#f3ecdf" stroke-width="2"/>
+  <g fill="#2a221c">
+    
+    <rect x="344" y="315" width="16" height="42" rx="3"/>
+    <rect x="331" y="328" width="42" height="16" rx="3"/>
+    <circle cx="352" cy="336" r="4" fill="#e5dcce"/>
+  </g>
+
+  
+  <g fill="#d4c9b8" stroke="#2a221c" stroke-width="3">
+    <line x1="890" y1="180" x2="890" y2="430" stroke="#2a221c" stroke-width="2" opacity="0.4"/>
+    <path d="M 890,142 c 0,-18 -14,-32 -32,-32 h -28 v 385 h 28 c 18,0 32,-14 32,-32 z"/>
+  </g>
+  
+  <circle cx="850" cy="350" r="22" fill="#2a221c" opacity="0.15"/>
+  <circle cx="850" cy="350" r="16" fill="#2a221c" stroke="#f3ecdf" stroke-width="2"/>
+  
+  <g fill="#2a221c">
+    <circle cx="850" cy="210" r="6"/>
+    <circle cx="872" cy="232" r="6"/>
+    <circle cx="828" cy="232" r="6"/>
+    <circle cx="850" cy="254" r="6"/>
+  </g>
+
+  
+  <rect x="370" y="98" width="80" height="12" rx="4" fill="#d4c9b8" stroke="#2a221c" stroke-width="2.5"/>
+  <rect x="750" y="98" width="80" height="12" rx="4" fill="#d4c9b8" stroke="#2a221c" stroke-width="2.5"/>
+  
+  <g stroke="#2a221c" stroke-width="2" opacity="0.5">
+    <line x1="580" y1="102" x2="600" y2="102"/>
+    <line x1="610" y1="102" x2="630" y2="102"/>
+    <line x1="640" y1="102" x2="660" y2="102"/>
+  </g>
+
+  
+  
+  <ellipse cx="600" cy="545" rx="270" ry="24" fill="#2a221c" opacity="0.2" filter="url(#shadow)"/>
+
+  
+  <g transform="translate(1030, 530)">
+    <rect x="0" y="0" width="60" height="50" fill="none" stroke="#661227" stroke-width="2"/>
+    <line x1="8" y1="8" x2="52" y2="8" stroke="#661227" stroke-width="1"/>
+    <line x1="8" y1="42" x2="52" y2="42" stroke="#661227" stroke-width="1"/>
+    
+    <rect x="14" y="14" width="32" height="22" fill="url(#hatch-cross)" stroke="#661227" stroke-width="1"/>
+  </g>
+
+  
+  <g transform="translate(110, 530)">
+    <line x1="0" y1="0" x2="50" y2="0" stroke="#2a221c" stroke-width="2"/>
+    <line x1="0" y1="0" x2="0" y2="50" stroke="#2a221c" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3" fill="#661227"/>
+    
+  </g>
+
+  
+  <path d="M 330,130 L 330,480" stroke="#2a221c" stroke-width="0.5" opacity="0.15"/>
+  <path d="M 870,130 L 870,480" stroke="#2a221c" stroke-width="0.5" opacity="0.15"/>
+
+</svg>
