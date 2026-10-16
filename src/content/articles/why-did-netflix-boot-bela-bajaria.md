@@ -1,6 +1,6 @@
 ---
-title: "Why did Netflix boot Bela Bajaria?"
-dek: "Netflix’s shock firing of chief content officer Bela Bajaria follows slowing user engagement, layoffs, and an Emmy slump, with veteran executive Peter Rice stepping in as her replacement."
+title: "Netflix names Peter Rice content chief as Bela Bajaria departs"
+dek: "Netflix says Peter Rice will become chief content officer on 26 October, replacing Bela Bajaria after nearly a decade with the company."
 section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
@@ -11,29 +11,23 @@ status: "published"
 tags: ["Netflix","Bela Bajaria","Peter Rice","streaming"]
 regions: ["north-america"]
 countries: ["United States"]
-sourceUrls: ["https://variety.com/2026/film/news/netflix-bela-bajaria-why-did-she-leave-1236913635"]
-sourceNote: "Prepared from Variety reporting and reviewed by the Nuvellum editorial pipeline."
+sourceUrls: ["https://about.netflix.com/en/news/peter-rice-named-netflix-chief-content-officer", "https://www.reuters.com/business/media-telecom/netflix-names-former-disney-executive-rice-new-content-chief-bajaria-departs-2026-10-15/"]
+sourceNote: "Updated against Netflix’s 15 October announcement; departure circumstances are not confirmed by Netflix."
 origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
 ---
-Hollywood is processing the sudden departure of Bela Bajaria from her position as Netflix chief content officer. Word of her exit leaked ahead of an internal announcement, which simultaneously revealed that venerated film and TV executive Peter Rice would replace her.
+Netflix announced on 15 October 2026 that Peter Rice will become its chief content officer on 26 October. He replaces Bela Bajaria, who is leaving the company after nearly ten years. Netflix's announcement did not specify the circumstances of her departure.
 
-## Pressures on the streaming platform
+## What Netflix confirmed
 
-Industry players pointed to slowing user engagement that has rattled Wall Street investors, alongside recent layoffs intended to support the company's share price. Co-CEO Ted Sarandos noted at a recent event that overall user engagement growth sat at 2% year-over-year during the first half of 2026, adding that the platform is not growing as fast as desired.
+The company said Rice will oversee its global content organization, including scripted and unscripted series, film, and live events. Netflix co-CEO Ted Sarandos thanked Bajaria for her leadership and credited her with expanding unscripted programming, live events, sports, and international films and series.
 
-Sources familiar with Netflix suggested Bajaria was made a scapegoat for broader business challenges. In addition to user growth pressures, Netflix experienced an Emmy slump this year, winning just 16 Primetime Emmy Awards compared to 30 in 2025 and 44 in 2021, while lacking a culture-defining hit on the scale of *Stranger Things*.
+## Questions around the transition
 
-## A decade of expansion
+The executive change comes amid scrutiny of Netflix's content strategy and viewership growth. External reporting has examined whether commercial pressure played a role, but the company's public statement does not establish that Bajaria was dismissed or explain why she is leaving. Those possibilities should not be presented as confirmed facts.
 
-During her decade at Netflix, Bajaria oversaw significant global expansion, opening nearly two dozen international offices and driving investments into local language productions. She was also credited internally with pushing the platform into live entertainment through licensing deals with WWE and the NFL.
+## The incoming chief content officer
 
-Her departure echoes the 2020 exit of Cindy Holland, Netflix's first content head who oversaw early flagship hits. WME co-chair Richard Weitz praised Bajaria's tenure, stating that her impact on talent relations, live events, and global expansion was transformational.
-
-## Incoming leadership
-
-Peter Rice steps into the chief content officer role to oversee both film and television operations. Rice previously served as general entertainment chairman at the Walt Disney Company, president of 21st Century Fox, and head of Fox Searchlight and the Fox network.
-
-Rice inherits a team facing significant restructuring following recent layoffs. Departures on the television side included director of original series Carolina Garcia, scheduling head Andy Kubitz, and directors Lisa Lang McMullen, Andrew McQuinn, and James Oh, alongside original series creative development manager Jason Pan and film group vice president Doug Belgrad.
+Rice is a former senior executive at Disney and Fox. He takes charge of Netflix's global content business on 26 October. The appointment marks a major leadership change, but its implications for programming and commissioning will become clearer after the transition.
