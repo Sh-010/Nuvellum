@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" result="coloredNoise" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+    </filter>
+
+    
+    <pattern id="hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.8" opacity="0.35" />
+    </pattern>
+
+    <pattern id="hatch-burgundy" width="6" height="6" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="1" opacity="0.4" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" filter="url(#paper-grain)" />
+
+  
+  <g id="background-landscape" opacity="0.85">
+    
+    <path d="M0 250 Q 300 200, 600 240 T 1200 220 L 1200 675 L 0 675 Z" fill="#efe8db" />
+    
+    
+    <path d="M0 380 
+             L 40 375 L 45 385 L 60 370 L 75 385 L 90 365 L 105 380 L 120 372 L 140 388 L 160 370 
+             L 190 385 L 220 368 L 250 382 L 280 370 L 320 385 L 360 372 L 400 386 L 450 370 
+             L 500 384 L 550 372 L 600 385 L 660 370 L 720 386 L 780 372 L 840 385 L 900 370 
+             L 960 386 L 1020 373 L 1080 385 L 1140 372 L 1200 380 L 1200 675 L 0 675 Z" 
+          fill="#2a221c" opacity="0.12" />
+
+    <path d="M0 400 
+             L 50 395 L 70 410 L 95 392 L 120 408 L 150 390 L 180 405 L 210 395 L 245 410 L 280 392 
+             L 320 408 L 360 390 L 400 405 L 450 392 L 500 408 L 560 390 L 620 405 L 680 392 
+             L 740 408 L 800 390 L 860 405 L 920 392 L 980 408 L 1040 390 L 1100 405 L 1160 392 L 1200 400 L 1200 675 L 0 675 Z" 
+          fill="#2a221c" opacity="0.2" />
+  </g>
+
+  
+  <g id="highway-system">
+    
+    <path d="M 600 380 C 600 450, 400 520, 0 630 L 0 675 L 1200 675 L 1200 630 C 800 520, 600 450, 600 380 Z" 
+          fill="#d8cebc" stroke="#2a221c" stroke-width="2" />
+
+    
+    <path d="M 600 380 C 600 460, 420 530, 0 650 L 0 675 L 1200 675 L 1200 650 C 780 530, 600 460, 600 380 Z" 
+          fill="#2a221c" opacity="0.15" />
+
+    <path d="M 590 380 C 590 465, 410 540, 0 665 L 1200 665 C 790 540, 610 465, 610 380 Z" 
+          fill="url(#hatch)" />
+
+    
+    <line x1="600" y1="380" x2="600" y2="400" stroke="#f3ecdf" stroke-width="3" stroke-dasharray="8 6" />
+    <line x1="600" y1="410" x2="580" y2="430" stroke="#f3ecdf" stroke-width="3.5" stroke-dasharray="10 7" />
+    <line x1="560" y1="450" x2="500" y2="480" stroke="#f3ecdf" stroke-width="4" stroke-dasharray="12 8" />
+    <line x1="450" y1="505" x2="350" y2="540" stroke="#f3ecdf" stroke-width="5" stroke-dasharray="16 10" />
+    <line x1="280" y1="565" x2="150" y2="605" stroke="#f3ecdf" stroke-width="6" stroke-dasharray="20 12" />
+    <line x1="80" y1="625" x2="0" y2="650" stroke="#f3ecdf" stroke-width="7" stroke-dasharray="24 14" />
+  </g>
+
+  
+  <g id="focal-device" transform="translate(600, 260)">
+    
+    <circle cx="0" cy="0" r="140" fill="#efe8db" stroke="#2a221c" stroke-width="4" />
+    <circle cx="0" cy="0" r="140" fill="url(#hatch-burgundy)" opacity="0.3" />
+    
+    
+    <circle cx="0" cy="0" r="115" fill="#f3ecdf" stroke="#2a221c" stroke-width="2" />
+    
+    
+    <g stroke="#2a221c" stroke-width="1.5" opacity="0.6">
+      <line x1="0" y1="-115" x2="0" y2="-140" />
+      <line x1="81" y1="-81" x2="98" y2="-98" />
+      <line x1="115" y1="0" x2="140" y2="0" />
+      <line x1="81" y1="81" x2="98" y2="98" />
+      <line x1="0" y1="115" x2="0" y2="140" />
+      <line x1="-81" y1="81" x2="-98" y2="98" />
+      <line x1="-115" y1="0" x2="-140" y2="0" />
+      <line x1="-81" y1="-81" x2="-98" y2="-98" />
+    </g>
+
+    
+    <g transform="translate(0, 10)">
+      
+      <path d="M -70 -30 C -35 -50, 0 -45, 0 -50 C 0 -45, 35 -50, 70 -30 L 70 50 C 35 40, 0 45, 0 55 C 0 45, -35 40, -70 50 Z" 
+            fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+      
+      <line x1="0" y1="-50" x2="0" y2="55" stroke="#661227" stroke-width="2" />
+      
+      <g stroke="#2a221c" stroke-width="1" opacity="0.5">
+        <line x1="-55" y1="-20" x2="-15" y2="-15" />
+        <line x1="-55" y1="-10" x2="-20" y2="-5" />
+        <line x1="-55" y1="0" x2="-15" y2="5" />
+        <line x1="-55" y1="10" x2="-25" y2="15" />
+        
+        <line x1="15" y1="-15" x2="55" y2="-20" />
+        <line x1="20" y1="-5" x2="55" y2="-10" />
+        <line x1="15" y1="5" x2="55" y2="0" />
+        <line x1="25" y1="15" x2="55" y2="10" />
+      </g>
+    </g>
+
+    
+    <path d="M 0 45 C 10 70, -20 90, -10 120 C -5 135, 15 130, 20 110" 
+          fill="none" stroke="#661227" stroke-width="4" stroke-linecap="round" />
+
+    
+    <path d="M -90 -30 A 95 95 0 0 1 90 -30" fill="none" stroke="#661227" stroke-width="2" stroke-dasharray="4 4" opacity="0.7" />
+  </g>
+
+  
+  <g id="mississippi-foliage" fill="#2a221c">
+    
+    <path d="M0 0 L 180 0 C 140 30, 110 70, 90 120 C 70 80, 40 40, 0 60 Z" opacity="0.85" />
+    <path d="M40 0 C 35 40, 20 70, 0 90" fill="none" stroke="#2a221c" stroke-width="3" />
+    <path d="M110 0 C 95 50, 70 90, 40 130 C 80 110, 110 80, 130 50 Z" opacity="0.6" />
+    
+    
+    <path d="M 90 120 Q 85 150, 95 180 T 90 220" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.5" />
+    <path d="M 115 85 Q 110 120, 120 150 T 115 190" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+    <path d="M 65 75 Q 60 110, 70 140" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+
+    
+    <path d="M1200 0 L 1020 0 C 1060 30, 1090 70, 1110 120 C 1130 80, 1160 40, 1200 60 Z" opacity="0.85" />
+    <path d="M1160 0 C 1165 40, 1180 70, 1200 90" fill="none" stroke="#2a221c" stroke-width="3" />
+    <path d="M1090 0 C 1105 50, 1130 90, 1160 130 C 1120 110, 1090 80, 1070 50 Z" opacity="0.6" />
+
+    
+    <path d="M 1110 120 Q 1115 160, 1105 190 T 1112 230" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.5" />
+    <path d="M 1135 85 Q 1140 120, 1130 160" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+  </g>
+
+  
+  <g id="figures" transform="translate(0, 0)">
+    
+    <g transform="translate(480, 435) scale(0.65)" stroke="#2a221c" stroke-width="2" fill="#2a221c">
+      
+      <circle cx="0" cy="-60" r="10" />
+      
+      <path d="M -8 -45 L 8 -45 L 12 0 L -12 0 Z" />
+      
+      <line x1="-6" y1="0" x2="-18" y2="55" stroke-width="4" stroke-linecap="round" />
+      <line x1="6" y1="0" x2="14" y2="50" stroke-width="4" stroke-linecap="round" />
+      
+      <line x1="-8" y1="-35" x2="-22" y2="-10" stroke-width="3.5" stroke-linecap="round" />
+      <line x1="8" y1="-35" x2="20" y2="-15" stroke-width="3.5" stroke-linecap="round" />
+    </g>
+
+    
+    <g transform="translate(525, 420) scale(0.55)" stroke="#2a221c" stroke-width="2" fill="#2a221c">
+      
+      <circle cx="0" cy="-55" r="9" />
+      
+      <path d="M -7 -40 L 7 -40 L 10 0 L -10 0 Z" />
+      
+      <line x1="-5" y1="0" x2="12" y2="45" stroke-width="3.5" stroke-linecap="round" />
+      <line x1="5" y1="0" x2="-10" y2="48" stroke-width="3.5" stroke-linecap="round" />
+      
+      <line x1="-7" y1="-30" x2="-18" y2="-5" stroke-width="3" stroke-linecap="round" />
+      <line x1="7" y1="-30" x2="16" y2="-10" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </g>
+
+  
+  <g id="editorial-borders" stroke="#2a221c" stroke-width="1.5">
+    
+    <rect x="24" y="24" width="1152" height="627" fill="none" opacity="0.3" />
+    
+    <rect x="30" y="30" width="1140" height="615" fill="none" opacity="0.7" />
+    
+    
+    <line x1="20" y1="30" x2="40" y2="30" stroke-width="2" />
+    <line x1="30" y1="20" x2="30" y2="40" stroke-width="2" />
+
+    <line x1="1160" y1="30" x2="1180" y2="30" stroke-width="2" />
+    <line x1="1170" y1="20" x2="1170" y2="40" stroke-width="2" />
+
+    <line x1="20" y1="645" x2="40" y2="645" stroke-width="2" />
+    <line x1="30" y1="635" x2="30" y2="655" stroke-width="2" />
+
+    <line x1="1160" y1="645" x2="1180" y2="645" stroke-width="2" />
+    <line x1="1170" y1="635" x2="1170" y2="655" stroke-width="2" />
+  </g>
+
+  
+  <g id="burgundy-accents" stroke="#661227" stroke-width="3">
+    <line x1="600" y1="24" x2="600" y2="30" />
+    <line x1="600" y1="645" x2="600" y2="651" />
+  </g>
+</svg>
