@@ -1,0 +1,77 @@
+{
+  "slug": "avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis",
+  "url": "https://www.nuvellum.news/article/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis",
+  "title": "Avatar: Seven Havens episode 6 ending explained: what the anomaly reveals about Pavi and Nisha",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T09:04:45.675Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T09:04:45.675Z",
+      "remoteId": "138",
+      "remoteUrl": "https://t.me/nuvellum/138",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T09:04:45.675Z",
+      "remoteId": "1277147205491143_122109505293497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109505293497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    },
+    "threads": {
+      "containerId": "17950413363321818",
+      "containerCreatedAt": "2026-10-16T09:05:00.489Z",
+      "updatedAt": "2026-10-16T09:04:45.675Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T09:04:45.675Z",
+      "remoteId": "18055594595586925",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T09:04:45.675Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T09:04:45.675Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
