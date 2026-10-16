@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T11:00:53.869Z"
 readingTime: "1 min"
-image: "/generated/ai/uk-youtube-breakout-a-memory-owed-moves-into-feature-development.svg"
-imageAlt: "AI-generated editorial illustration for UK YouTube breakout ‘A Memory Owed’ moves into feature development"
 status: "published"
 tags: ["A Memory Owed","YouTube","Film","Royal Air Force"]
 regions: ["europe-central-asia"]
