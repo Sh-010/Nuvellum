@@ -1,0 +1,79 @@
+{
+  "slug": "ai-giant-anthropic-sees-revenue-surge-ahead-of-stock-market-listing",
+  "url": "https://www.nuvellum.news/article/ai-giant-anthropic-sees-revenue-surge-ahead-of-stock-market-listing",
+  "title": "Ai giant Anthropic sees revenue surge ahead of stock market listing",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T21:38:17.839Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T21:38:17.839Z",
+      "remoteId": "154",
+      "remoteUrl": "https://t.me/nuvellum/154",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T21:38:17.839Z",
+      "remoteId": "1277147205491143_122109742131497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109742131497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    },
+    "threads": {
+      "containerId": "17950512171321818",
+      "containerCreatedAt": "2026-10-16T21:38:32.802Z",
+      "updatedAt": "2026-10-16T21:38:17.839Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T21:38:17.839Z",
+      "remoteId": "17898451365394502",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T21:38:17.839Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T21:38:17.839Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
