@@ -1,14 +1,14 @@
 ---
 title: "Avatar: Seven Havens episode 6 ending explained: what the anomaly reveals about Pavi and Nisha"
 dek: "An explainer on the ending of Avatar: Seven Havens episode 6, detailing the Anomaly, memories of Pavi and Nisha, and Chancellor Kayoko's broadcast."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T09:00:59.840Z"
 readingTime: "2 min"
 status: "published"
-tags: ["Avatar Seven Havens","Paramount Plus","gaming","explainer"]
+tags: ["Avatar Seven Havens","Paramount Plus","animation","explainer"]
 regions: []
 countries: []
 sourceUrls: ["https://www.polygon.com/avatar-seven-havens-episode-6-ending-explained-pavi-nisha-anomaly-afflicted"]
