@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T16:01:05.749Z"
 readingTime: "3 min"
-image: "/generated/ai/7-years-later-apples-gaming-push-has-proven-surprisingly-resilient.svg"
-imageAlt: "AI-generated editorial illustration for 7 Years later, Apple’s gaming push has proven surprisingly resilient"
 status: "published"
 tags: ["Apple","gaming","App Store","indie games","mobile gaming"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/7-years-later-apples-gaming-push-has-proven-surprisingly-resilient.jpg"
+imageAlt: "SpongeBob SquarePants The Cosmic Shake Mobile Release Trailer"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: SpongeBob SquarePants The Cosmic Shake Mobile Release Trailer"
+imageCredit: "HandyGames"
+imageLicense: "CC BY 3.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/3.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:SpongeBob_SquarePants-_The_Cosmic_Shake_--_Mobile_Release_Trailer.webm"
 ---
 ## Seven years of Apple gaming
 
