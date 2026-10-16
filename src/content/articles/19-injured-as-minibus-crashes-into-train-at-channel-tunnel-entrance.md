@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T01:00:42.766Z"
 readingTime: "1 min"
-image: "/generated/ai/19-injured-as-minibus-crashes-into-train-at-channel-tunnel-entrance.svg"
-imageAlt: "AI-generated editorial illustration for 19 Injured as minibus crashes into train at Channel Tunnel entrance"
 status: "published"
 tags: ["Channel Tunnel","France","accidents","transport"]
 regions: ["europe-central-asia"]
