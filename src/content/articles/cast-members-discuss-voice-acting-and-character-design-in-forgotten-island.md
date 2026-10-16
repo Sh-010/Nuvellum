@@ -1,7 +1,7 @@
 ---
 title: "Cast members discuss voice acting and character design in Forgotten Island"
 dek: "Dave Franco, Manny Jacinto, and Jenny Slate share insights on their voice roles and the multi-year animation process for the fantasy adventure film."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-09-28"
