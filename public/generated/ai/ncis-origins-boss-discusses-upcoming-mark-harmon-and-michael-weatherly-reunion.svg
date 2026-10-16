@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="60%" stop-color="#f0e7dc"/>
+      <stop offset="100%" stop-color="#e5dacf"/>
+    </radialGradient>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="65%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a221c" stop-opacity="0.12"/>
+    </radialGradient>
+
+    
+    <clipPath id="archClip">
+      <path d="M 350,110 L 850,110 L 850,530 L 350,530 Z"/>
+    </clipPath>
+
+    
+    <pattern id="hatchDark" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="1.2" stroke-opacity="0.25"/>
+    </pattern>
+    <pattern id="hatchBurgundy" width="6" height="6" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="1" stroke-opacity="0.3"/>
+    </pattern>
+    <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#4a3b32" fill-opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)"/>
+  <rect width="1200" height="675" fill="url(#vignette)"/>
+
+  
+  <rect x="150" y="75" width="900" height="525" fill="url(#dotGrid)" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.35"/>
+  
+  
+  <rect x="162" y="87" width="876" height="501" fill="none" stroke="#661227" stroke-width="0.75" stroke-opacity="0.5"/>
+
+  
+  <g stroke="#2a221c" stroke-width="1" stroke-opacity="0.15" fill="none">
+    <line x1="220" y1="120" x2="220" y2="555"/>
+    <line x1="280" y1="120" x2="280" y2="555"/>
+    <line x1="920" y1="120" x2="920" y2="555"/>
+    <line x1="980" y1="120" x2="980" y2="555"/>
+    
+    
+    <polyline points="180,120 600,80 1020,120"/>
+  </g>
+
+  
+  
+  
+  
+  <g transform="translate(250, 130)">
+    
+    <path d="M 20,40 L 680,40 L 700,430 L 0,430 Z" fill="#2a221c" fill-opacity="0.08"/>
+    
+    <path d="M 10,20 L 340,20 L 350,410 L 0,410 Z" fill="#fdfbf7" stroke="#2a221c" stroke-width="2"/>
+    
+    <path d="M 350,20 L 690,20 L 700,410 L 350,410 Z" fill="#f5ede2" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    <line x1="350" y1="20" x2="350" y2="410" stroke="#2a221c" stroke-width="3" stroke-opacity="0.4"/>
+
+    
+    <rect x="50" y="50" width="100" height="24" fill="#661227" fill-opacity="0.85"/>
+    <rect x="540" y="50" width="110" height="24" fill="#2a221c" fill-opacity="0.8"/>
+    
+    
+    <g stroke="#2a221c" stroke-width="3" stroke-linecap="round" stroke-opacity="0.3">
+      <line x1="50" y1="110" x2="250" y2="110"/>
+      <line x1="50" y1="135" x2="180" y2="135"/>
+      <line x1="400" y1="110" x2="620" y2="110"/>
+      <line x1="400" y1="135" x2="550" y2="135"/>
+    </g>
+    
+    
+    <path d="M 310,25 L 390,25 L 400,60 L 300,60 Z" fill="#661227"/>
+  </g>
+
+  
+  <g transform="translate(280, 200)">
+    
+    <path d="M 90,120 Q 90,80 120,65 Q 140,55 160,70 Q 180,60 200,85 Q 210,110 205,140 Q 220,160 215,200 L 220,310 L 40,310 L 50,200 Q 55,150 90,120 Z" fill="#2a221c" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    <polygon points="100,280 135,320 170,280 150,260 120,260" fill="#f7f2ea"/>
+    <polygon points="125,280 145,280 140,320 130,320" fill="#661227"/>
+
+    
+    <path d="M 55,220 L 110,310 L 80,310 L 45,240 Z" fill="url(#hatchDark)"/>
+    <path d="M 180,180 Q 200,220 200,280 L 220,280 Q 210,200 180,180 Z" fill="url(#hatchDark)"/>
+  </g>
+
+  
+  <g transform="translate(620, 200)">
+    
+    <path d="M 130,110 Q 140,75 170,65 Q 190,60 210,80 Q 230,70 250,95 Q 260,125 255,150 Q 275,170 270,210 L 275,310 L 95,310 L 105,210 Q 100,165 130,110 Z" fill="#2a221c" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <polygon points="140,270 185,320 230,270 210,250 160,250" fill="#f5ede2"/>
+    <polygon points="175,270 195,270 190,320 180,320" fill="#661227"/>
+
+    
+    <path d="M 110,220 L 160,310 L 130,310 L 100,250 Z" fill="url(#hatchDark)"/>
+    <path d="M 230,170 Q 260,200 260,270 L 275,270 Q 270,180 230,170 Z" fill="url(#hatchBurgundy)"/>
+  </g>
+
+  
+  
+  <g transform="translate(600, 310)">
+    
+    <path d="M -160,-80 C -80,-140 80,-140 160,-80" fill="none" stroke="#661227" stroke-width="3" stroke-dasharray="6,4"/>
+    <path d="M -140,-60 C -70,-110 70,-110 140,-60" fill="none" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    <circle cx="0" cy="-90" r="22" fill="#f7f2ea" stroke="#661227" stroke-width="3"/>
+    <circle cx="0" cy="-90" r="14" fill="#661227"/>
+    <line x1="0" y1="-120" x2="0" y2="-60" stroke="#f7f2ea" stroke-width="2"/>
+    <line x1="-30" y1="-90" x2="30" y2="-90" stroke="#f7f2ea" stroke-width="2"/>
+  </g>
+
+  
+  <g transform="translate(500, 240)" opacity="0.12">
+    <path d="M 50,150 L 50,100 Q 50,70 80,60 L 90,60 L 90,40 Q 90,30 100,30 Q 110,30 110,40 L 110,60 L 120,60 Q 150,70 150,100 L 150,150 Z" fill="#2a221c"/>
+    <path d="M 20,150 L 180,150 L 170,180 L 30,180 Z" fill="#2a221c"/>
+  </g>
+
+  
+  <g stroke="#661227" stroke-width="2" fill="none">
+    
+    <path d="M 180,130 L 140,130 L 140,170"/>
+    
+    <path d="M 1020,130 L 1060,130 L 1060,170"/>
+    
+    <path d="M 180,545 L 140,545 L 140,505"/>
+    
+    <path d="M 1020,545 L 1060,545 L 1060,505"/>
+  </g>
+
+  
+  <line x1="220" y1="520" x2="980" y2="520" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="450" y1="526" x2="750" y2="526" stroke="#661227" stroke-width="2"/>
+
+  
+  <g transform="translate(260, 140)">
+    
+    <path d="M 10,0 L 30,0 Q 38,0 38,10 L 38,70 Q 38,78 30,78 L 18,78 Q 12,78 12,70 L 12,10 L 22,10 L 22,68 L 28,68 L 28,12 L 18,12" fill="none" stroke="#2a221c" stroke-width="2.5" stroke-opacity="0.6"/>
+  </g>
+
+  
+  <g fill="#2a221c" opacity="0.25">
+    <circle cx="210" cy="480" r="1.5"/>
+    <circle cx="215" cy="485" r="1"/>
+    <circle cx="985" cy="180" r="1.5"/>
+    <circle cx="990" cy="175" r="2"/>
+    <circle cx="982" cy="190" r="1"/>
+    <circle cx="340" cy="130" r="1.5"/>
+    <circle cx="865" cy="450" r="2"/>
+  </g>
+</svg>
