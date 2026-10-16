@@ -1,7 +1,7 @@
 ---
 title: "Revisiting the epic space battle of 'battlestar galactica' season 3"
 dek: "Two decades after 'Exodus, Part 2' aired, the landmark sci-fi episode remains celebrated for its high-stakes tactics and visual effects."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-13"
@@ -17,15 +17,6 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
-image: "/uploads/articles/revisiting-the-epic-space-battle-of-battlestar-galactica-season-3.jpg"
-imageAlt: "Picture of the character cards from Battlestar Galactica: The Board Game"
-imageProvider: "wikimedia"
-imageKind: "photo"
-imageCaption: "File photo: Picture of the character cards from Battlestar Galactica: The Board Game"
-imageCredit: "Kevin Galens"
-imageLicense: "CC BY-SA 2.0"
-imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
-imageSourcePage: "https://commons.wikimedia.org/wiki/File:Battlestar_Galactica_Game_-_3451948241.jpg"
 ---
 Two decades after its initial broadcast, the *Battlestar Galactica* season 3 episode "Exodus, Part 2" continues to stand out for its ambitious space battle sequences and narrative resolution. Written by Bradley Thompson and David Weddle and directed by Félix Enríquez Alcalá, the installment resolved the militarized occupation storyline of New Caprica.
 
