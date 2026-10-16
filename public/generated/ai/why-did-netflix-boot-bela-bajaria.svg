@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <radialGradient id="paperGlow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#f8f4ec"/>
+      <stop offset="100%" stop-color="#e8e0d0"/>
+    </radialGradient>
+    
+    
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.8" stroke-opacity="0.15"/>
+    </pattern>
+    <pattern id="hatchDense" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#661227" stroke-width="0.6" stroke-opacity="0.2"/>
+    </pattern>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a221c" stop-opacity="0.08"/>
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGlow)"/>
+  <rect width="1200" height="675" fill="url(#vignette)"/>
+
+  
+  <g stroke="#2a221c" stroke-opacity="0.3" stroke-width="1">
+    <line x1="60" y1="50" x2="1140" y2="50" />
+    <line x1="60" y1="625" x2="1140" y2="625" />
+    <line x1="60" y1="50" x2="60" y2="625" />
+    <line x1="1140" y1="50" x2="1140" y2="625" />
+    
+    <line x1="68" y1="58" x2="1132" y2="58" stroke-width="0.5"/>
+    <line x1="68" y1="617" x2="1132" y2="617" stroke-width="0.5"/>
+  </g>
+
+  
+  <g transform="translate(100, 90)">
+    
+    <line x1="0" y1="100" x2="980" y2="100" stroke="#7f756b" stroke-opacity="0.2" stroke-dasharray="4 4" stroke-width="1"/>
+    <line x1="0" y1="200" x2="980" y2="200" stroke="#7f756b" stroke-opacity="0.2" stroke-dasharray="4 4" stroke-width="1"/>
+    <line x1="0" y1="300" x2="980" y2="300" stroke="#7f756b" stroke-opacity="0.2" stroke-dasharray="4 4" stroke-width="1"/>
+    <line x1="0" y1="400" x2="980" y2="400" stroke="#7f756b" stroke-opacity="0.2" stroke-dasharray="4 4" stroke-width="1"/>
+
+    
+    <g fill="#dfd6c6" stroke="#2a221c" stroke-width="1.5">
+      
+      <rect x="50" y="120" width="80" height="360" />
+      <rect x="150" y="80" width="80" height="400" />
+      <rect x="250" y="150" width="80" height="330" />
+      
+      
+      
+      <path d="M 330 150 L 500 220 L 680 320 L 850 380 L 930 400 L 930 480 L 330 480 Z" fill="#efe8db" fill-opacity="0.9"/>
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="1.5" fill="#f8f4ec">
+      <polygon points="40,120 140,120 130,100 50,100" />
+      <polygon points="140,80 240,80 230,60 150,60" />
+      <polygon points="240,150 340,150 330,130 250,130" />
+    </g>
+
+    
+    <rect x="55" y="125" width="70" height="350" fill="url(#hatch)" />
+    <rect x="155" y="85" width="70" height="390" fill="url(#hatch)" />
+    <rect x="255" y="155" width="70" height="318" fill="url(#hatch)" />
+
+    
+    <path d="M 90 140 L 190 100 L 290 170 L 450 200 L 620 290 L 800 340 L 930 370" fill="none" stroke="#661227" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    
+    <circle cx="90" cy="140" r="5" fill="#661227"/>
+    <circle cx="190" cy="100" r="5" fill="#661227"/>
+    <circle cx="290" cy="170" r="5" fill="#661227"/>
+    <circle cx="620" cy="290" r="5" fill="#661227"/>
+    <circle cx="930" cy="370" r="6" fill="#661227"/>
+    <circle cx="930" cy="370" r="3" fill="#efe8db"/>
+  </g>
+
+  
+  
+  <g transform="translate(680, 315)">
+    
+    <circle cx="0" cy="0" r="185" fill="#2a221c" />
+    <circle cx="0" cy="0" r="177" fill="#efe8db" />
+    <circle cx="0" cy="0" r="170" fill="#f8f4ec" />
+    
+    
+    <g stroke="#2a221c" stroke-width="1.5">
+      <line x1="0" y1="-170" x2="0" y2="-158" />
+      <line x1="120" y1="-120" x2="112" y2="-112" />
+      <line x1="170" y1="0" x2="158" y2="0" />
+      <line x1="120" y1="120" x2="112" y2="112" />
+      <line x1="0" y1="170" x2="0" y2="158" />
+      <line x1="-120" y1="120" x2="-112" y2="112" />
+      <line x1="-170" y1="0" x2="-158" y2="0" />
+      <line x1="-120" y1="-120" x2="-112" y2="-112" />
+    </g>
+
+    
+    <circle cx="0" cy="0" r="135" fill="#661227" fill-opacity="0.12" stroke="#661227" stroke-width="2" />
+    <circle cx="0" cy="0" r="135" fill="url(#hatchDense)" />
+
+    
+    <g fill="#2a221c" fill-opacity="0.85" stroke="#efe8db" stroke-width="1.5">
+      
+      <path d="M 0 0 L -120 -60 C -80 -120 -20 -130 0 -135 Z" />
+      
+      <path d="M 0 0 L 60 -120 C 120 -80 130 -20 135 0 Z" />
+      
+      <path d="M 0 0 L 120 60 C 80 120 20 130 0 135 Z" />
+      
+      <path d="M 0 0 L -60 120 C -120 80 -130 20 -135 0 Z" />
+    </g>
+
+    
+    <circle cx="0" cy="0" r="45" fill="#efe8db" stroke="#2a221c" stroke-width="3" />
+    
+    
+    <polygon points="-12,-18 18,0 -12,18" fill="#661227" />
+
+    
+    <path d="M -90 -90 L -40 -40" stroke="#f8f4ec" stroke-width="6" stroke-linecap="round" stroke-opacity="0.8"/>
+    <path d="M -70 -105 L -55 -90" stroke="#f8f4ec" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+  </g>
+
+  
+  <g transform="translate(140, 475)">
+    
+    <path d="M 0 30 L 320 10 L 340 70 L 20 90 Z" fill="#2a221c" fill-opacity="0.1" />
+    
+    
+    <g stroke="#2a221c" stroke-width="1.2">
+      
+      <polygon points="20,20 300,0 310,60 30,80" fill="#e4dbcc" />
+      
+      <polygon points="10,10 290,-10 300,50 20,70" fill="#efe8db" />
+      
+      <polygon points="0,0 280,-20 290,40 10,60" fill="#f8f4ec" />
+      
+      
+      <line x1="30" y1="10" x2="180" y2="0" stroke="#7f756b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="30" y1="22" x2="220" y2="8" stroke="#7f756b" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="30" y1="34" x2="120" y2="20" stroke="#7f756b" stroke-width="1.5" stroke-linecap="round"/>
+      
+      
+      <line x1="25" y1="15" x2="210" y2="-5" stroke="#661227" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" stroke-opacity="0.6">
+    
+    <path d="M 40 75 L 55 75 M 47 68 L 47 83" />
+    
+    <path d="M 1160 75 L 1145 75 M 1152 68 L 1152 83" />
+    
+    <path d="M 40 600 L 55 600 M 47 592 L 47 607" />
+    
+    <path d="M 1160 600 L 1145 600 M 1152 592 L 1152 607" />
+  </g>
+
+  
+  <line x1="600" y1="58" x2="600" y2="67" stroke="#2a221c" stroke-opacity="0.4" stroke-width="1"/>
+  <line x1="600" y1="608" x2="600" y2="617" stroke="#2a221c" stroke-opacity="0.4" stroke-width="1"/>
+
+</svg>
