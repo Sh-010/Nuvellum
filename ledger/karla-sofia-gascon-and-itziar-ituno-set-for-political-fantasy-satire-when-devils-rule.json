@@ -1,0 +1,79 @@
+{
+  "slug": "karla-sofia-gascon-and-itziar-ituno-set-for-political-fantasy-satire-when-devils-rule",
+  "url": "https://www.nuvellum.news/article/karla-sofia-gascon-and-itziar-ituno-set-for-political-fantasy-satire-when-devils-rule",
+  "title": "Karla Sofía Gascón and Itziar Ituño set for political fantasy satire ‘When Devils Rule’",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T16:06:54.899Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:06:54.899Z",
+      "remoteId": "147",
+      "remoteUrl": "https://t.me/nuvellum/147",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:06:54.899Z",
+      "remoteId": "1277147205491143_122109651063497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109651063497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    },
+    "threads": {
+      "containerId": "17950471800321818",
+      "containerCreatedAt": "2026-10-16T16:07:06.538Z",
+      "updatedAt": "2026-10-16T16:06:54.899Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T16:06:54.899Z",
+      "remoteId": "18411493771091895",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T16:06:54.899Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T16:06:54.899Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
