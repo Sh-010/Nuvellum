@@ -1,0 +1,79 @@
+{
+  "slug": "garrys-mod-creator-issues-dire-update-on-spiritual-sequel-it-hasnt-been-going-well",
+  "url": "https://www.nuvellum.news/article/garrys-mod-creator-issues-dire-update-on-spiritual-sequel-it-hasnt-been-going-well",
+  "title": "Garry’s Mod creator issues dire update on spiritual sequel: ‘IT HASN’t been going well’",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T18:18:32.181Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T18:18:32.181Z",
+      "remoteId": "151",
+      "remoteUrl": "https://t.me/nuvellum/151",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T18:18:32.181Z",
+      "remoteId": "1277147205491143_122109689391497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109689391497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    },
+    "threads": {
+      "containerId": "17950491258321818",
+      "containerCreatedAt": "2026-10-16T18:18:45.953Z",
+      "updatedAt": "2026-10-16T18:18:32.181Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T18:18:32.181Z",
+      "remoteId": "18646582288047450",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T18:18:32.181Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T18:18:32.181Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
