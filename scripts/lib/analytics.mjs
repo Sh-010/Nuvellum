@@ -6,7 +6,7 @@
 //   jurisdictions where the owner has decided consent is not required).
 // - One page_view per page, sent by this script (gtag's automatic page_view is off), with a page_type
 //   (home, article, section, latest, world_explorer, world, country, author, page, not_found).
-// - Events: scroll_depth, article_click, save_story, outbound_click (domain only), and sign_up when a Brief
+// - Events: scroll_depth, article_click, related_story_click, save_story, outbound_click (domain only), and sign_up when a Brief
 //   sign-up actually succeeds (the form dispatches `nuvellum:brief-signup`). No email address, name, search
 //   text or query string is ever sent; only utm_* campaign parameters are kept in page_location.
 // - Never on /admin or /brief/* (see instrument-analytics.mjs), and a page can never initialise it twice.
@@ -95,7 +95,13 @@ export function analyticsSnippet(measurementId, { consent = 'required' } = {}) {
       if (!href) return;
       try {
         const url = new URL(href, location.href);
-        if (url.origin === location.origin && url.pathname.startsWith('/article/')) send('article_click', { destination_path: url.pathname, page_path: location.pathname });
+        if (url.origin === location.origin && url.pathname.startsWith('/article/')) {
+          send('article_click', { destination_path: url.pathname, page_path: location.pathname });
+          // A separate event reveals whether topic-aware "Continue reading" links
+          // produce actual onward readership. Remains subject to the existing
+          // analytics-consent choice; includes paths only, never visitor identity.
+          if (el.closest('section.continue')) send('related_story_click', { destination_path: url.pathname, page_path: location.pathname });
+        }
         else if (url.origin !== location.origin && /^https?:$/.test(url.protocol)) send('outbound_click', { link_domain: url.hostname, page_path: location.pathname });
       } catch {}
     }, { passive: true });
