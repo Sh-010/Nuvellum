@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T17:00:56.616Z"
 readingTime: "1 min"
-image: "/generated/ai/laura-bailey-reflects-on-imodna-romance-in-critical-role-campaign-3.svg"
-imageAlt: "AI-generated editorial illustration for Laura Bailey reflects on Imodna romance in Critical Role Campaign 3"
 status: "published"
 tags: ["Critical Role","Laura Bailey","Imodna","Gaming"]
 regions: []
