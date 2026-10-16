@@ -1,0 +1,76 @@
+{
+  "slug": "cynthia-erivo-s-bad-fairies-adds-kylie-minogue-jonathan-groff-and-catherine-tate-to-voice",
+  "url": "https://www.nuvellum.news/article/cynthia-erivo-s-bad-fairies-adds-kylie-minogue-jonathan-groff-and-catherine-tate-to-voice",
+  "title": "Cynthia Erivo's 'Bad fairies' adds Kylie Minogue, Jonathan Groff and Catherine Tate to voice cast",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T07:29:31.172Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T07:29:31.172Z",
+      "remoteId": "137",
+      "remoteUrl": "https://t.me/nuvellum/137",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T07:29:31.172Z",
+      "remoteId": "1277147205491143_122109478755497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109478755497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    },
+    "threads": {
+      "containerId": "17950403313321818",
+      "containerCreatedAt": "2026-10-16T07:29:44.629Z",
+      "updatedAt": "2026-10-16T07:29:31.172Z",
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 Fatal",
+      "reason": "non-retryable API error"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T07:29:31.172Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T07:29:31.172Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
