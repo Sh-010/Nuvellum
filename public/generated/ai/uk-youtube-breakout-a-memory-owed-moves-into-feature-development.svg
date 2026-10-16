@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="matrix" values="0.3 0 0 0 0  0 0.3 0 0 0  0 0 0.3 0 0  0 0 0 0.05 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="subtleNoise" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="subtleNoise" />
+    </filter>
+    <clipPath id="frame-clip">
+      <rect x="60" y="60" width="1080" height="555" />
+    </clipPath>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  <rect width="1200" height="675" filter="url(#paper-grain)" opacity="0.6" />
+
+  
+  <rect x="45" y="45" width="1110" height="585" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.25" />
+  <line x1="60" y1="55" x2="1140" y2="55" stroke="#661227" stroke-width="3" opacity="0.8" />
+  <line x1="60" y1="620" x2="1140" y2="620" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+
+  <g clip-path="url(#frame-clip)">
+    
+    <rect x="60" y="60" width="1080" height="400" fill="#e5ded2" opacity="0.5" />
+    
+    
+    <line x1="60" y1="380" x2="1140" y2="380" stroke="#2a221c" stroke-width="1" opacity="0.3" />
+    
+    
+    <path d="M 60 220 Q 250 120 440 380 L 60 380 Z" fill="#661227" opacity="0.06" />
+    <path d="M 1140 200 Q 900 100 680 380 L 1140 380 Z" fill="#2a221c" opacity="0.05" />
+
+    
+    
+    <g stroke="#2a221c" stroke-width="0.75" opacity="0.2">
+      <line x1="200" y1="120" x2="200" y2="520" />
+      <line x1="210" y1="120" x2="210" y2="520" />
+      <line x1="990" y1="120" x2="990" y2="520" />
+      <line x1="1000" y1="120" x2="1000" y2="520" />
+    </g>
+
+    
+    
+    <path d="M 320 280 L 880 280 L 960 330 L 750 330 L 600 370 L 480 370 L 240 330 Z" fill="#2a221c" opacity="0.85" />
+    
+    
+    <path d="M 830 280 L 870 190 L 910 210 L 890 280 Z" fill="#2a221c" opacity="0.85" />
+    <path d="M 350 280 L 330 210 L 290 230 L 310 280 Z" fill="#2a221c" opacity="0.85" />
+
+    
+    <circle cx="480" cy="325" r="55" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.6" />
+    <circle cx="480" cy="325" r="70" fill="none" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="4,6" opacity="0.5" />
+    <circle cx="720" cy="325" r="55" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.6" />
+    <circle cx="720" cy="325" r="70" fill="none" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="4,6" opacity="0.5" />
+
+    
+    <g stroke="#f3ecdf" stroke-width="1" opacity="0.4">
+      <line x1="450" y1="295" x2="470" y2="315" />
+      <line x1="470" y1="295" x2="490" y2="315" />
+      <line x1="490" y1="295" x2="510" y2="315" />
+      <line x1="690" y1="295" x2="710" y2="315" />
+      <line x1="710" y1="295" x2="730" y2="315" />
+      <line x1="730" y1="295" x2="750" y2="315" />
+    </g>
+
+    
+    <path d="M 60 480 Q 350 390 600 480 T 1140 460" fill="none" stroke="#661227" stroke-width="3.5" stroke-linecap="round" opacity="0.85" />
+    <path d="M 60 495 Q 350 405 600 495 T 1140 475" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="12,8" opacity="0.6" />
+
+    
+    <g stroke="#2a221c" stroke-width="1" opacity="0.5">
+      
+      <line x1="150" y1="440" x2="190" y2="440" />
+      <line x1="170" y1="420" x2="170" y2="460" />
+      
+      
+      <line x1="1010" y1="420" x2="1050" y2="420" />
+      <line x1="1030" y1="400" x2="1030" y2="440" />
+      
+      
+      <line x1="600" y1="520" x2="600" y2="560" />
+      <circle cx="600" cy="540" r="3" fill="#2a221c" />
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="0.75" opacity="0.4">
+      <line x1="90" y1="380" x2="90" y2="480" />
+      <line x1="85" y1="380" x2="95" y2="380" />
+      <line x1="85" y1="480" x2="95" y2="480" />
+      
+      <line x1="1110" y1="360" x2="1110" y2="460" />
+      <line x1="1105" y1="360" x2="1115" y2="360" />
+      <line x1="1105" y1="460" x2="1115" y2="460" />
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="0.75" opacity="0.25">
+      <line x1="60" y1="510" x2="350" y2="580" />
+      <line x1="120" y1="510" x2="410" y2="580" />
+      <line x1="180" y1="510" x2="470" y2="580" />
+      <line x1="240" y1="510" x2="530" y2="580" />
+      <line x1="300" y1="510" x2="590" y2="580" />
+      
+      <line x1="600" y1="580" x2="900" y2="510" />
+      <line x1="660" y1="580" x2="960" y2="510" />
+      <line x1="720" y1="580" x2="1020" y2="510" />
+      <line x1="780" y1="580" x2="1080" y2="510" />
+      <line x1="840" y1="580" x2="1140" y2="510" />
+    </g>
+
+    
+    <g transform="translate(1010, 110)">
+      <circle cx="0" cy="0" r="32" fill="#661227" opacity="0.12" />
+      <circle cx="0" cy="0" r="26" fill="none" stroke="#661227" stroke-width="1.5" opacity="0.8" />
+      <circle cx="0" cy="0" r="22" fill="none" stroke="#661227" stroke-width="0.75" stroke-dasharray="2,2" opacity="0.6" />
+      
+      <path d="M 0 -10 C 6 -2 6 8 0 14 C -6 8 -6 -2 0 -10 Z" fill="#661227" opacity="0.85" />
+      <line x1="0" y1="-4" x2="0" y2="8" stroke="#f3ecdf" stroke-width="1" />
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="0.75" opacity="0.25">
+      <line x1="500" y1="380" x2="500" y2="280" />
+      <line x1="500" y1="280" x2="540" y2="340" />
+      <line x1="540" y1="340" x2="580" y2="280" />
+      <line x1="580" y1="280" x2="580" y2="380" />
+      
+      <line x1="620" y1="380" x2="620" y2="280" />
+      <line x1="620" y1="280" x2="660" y2="340" />
+      <line x1="660" y1="340" x2="700" y2="280" />
+      <line x1="700" y1="280" x2="700" y2="380" />
+    </g>
+  </g>
+</svg>
