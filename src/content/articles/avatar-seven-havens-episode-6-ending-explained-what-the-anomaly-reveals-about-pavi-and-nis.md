@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-16"
 publishedAt: "2026-10-16T09:00:59.840Z"
 readingTime: "2 min"
-image: "/generated/ai/avatar-seven-havens-episode-6-ending-explained-what-the-anomaly-reveals-about-pavi-and-nis.svg"
-imageAlt: "AI-generated editorial illustration for Avatar: Seven Havens episode 6 ending explained: what the anomaly reveals about Pavi and Nisha"
 status: "published"
 tags: ["Avatar Seven Havens","Paramount Plus","gaming","explainer"]
 regions: []
