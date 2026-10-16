@@ -1,0 +1,79 @@
+{
+  "slug": "michael-to-receive-musical-tribute-at-2026-gotham-film-awards",
+  "url": "https://www.nuvellum.news/article/michael-to-receive-musical-tribute-at-2026-gotham-film-awards",
+  "title": "‘Michael’ to receive Musical tribute at 2026 Gotham film awards",
+  "risk": "low",
+  "firstSeenAt": "2026-10-16T18:04:59.369Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T18:04:59.369Z",
+      "remoteId": "150",
+      "remoteUrl": "https://t.me/nuvellum/150",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T18:04:59.369Z",
+      "remoteId": "1277147205491143_122109686799497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109686799497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    },
+    "threads": {
+      "containerId": "17950489581321818",
+      "containerCreatedAt": "2026-10-16T18:05:11.603Z",
+      "updatedAt": "2026-10-16T18:04:59.369Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-16T18:04:59.369Z",
+      "remoteId": "18117626239993810",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-16T18:04:59.369Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-16T18:04:59.369Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
