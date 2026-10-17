@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/all-the-news-about-the-iphone-duo.jpg"
+imageAlt: "Apple foldable smartphone"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Apple foldable smartphone"
+imageCredit: "ΚΑ ΚΙΤ"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Apple_foldable_smartphone.jpg"
 ---
 Apple has announced its first foldable device, the iPhone Duo. The new smartphone features a 5.4-inch outer display and a 7.6-inch inner Super Retina XDR display equipped with a matte "nano-texture" finish and an almost invisible crease. Unveiled during Apple's launch event led by CEO John Ternus, the device starts at $1,999 for the 256GB model.
 
