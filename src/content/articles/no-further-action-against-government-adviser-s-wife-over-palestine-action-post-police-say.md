@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T20:30:40.318Z"
 readingTime: "2 min"
-image: "/generated/ai/no-further-action-against-government-adviser-s-wife-over-palestine-action-post-police-say.svg"
-imageAlt: "AI-generated editorial illustration for No further action against government adviser's wife over Palestine Action post, police say"
 status: "published"
 tags: ["policing","social media","palestine action"]
 regions: ["europe-central-asia"]
