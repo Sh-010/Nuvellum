@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T22:40:41.878Z"
 readingTime: "2 min"
-image: "/generated/ai/rangers-miss-chance-to-go-top-after-2-2-draw-with-dundee.svg"
-imageAlt: "AI-generated editorial illustration for Rangers miss chance to go top after 2-2 draw with Dundee"
 status: "published"
 tags: ["Rangers","Dundee","Scottish Premiership","Derek McInnes","Dan Neil"]
 regions: ["europe-central-asia"]
