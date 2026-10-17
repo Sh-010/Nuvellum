@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T21:20:43.997Z"
 readingTime: "2 min"
-image: "/generated/ai/bath-lose-at-home-to-montpellier-in-champions-cup.svg"
-imageAlt: "AI-generated editorial illustration for Bath lose at home to Montpellier in Champions Cup"
 status: "published"
 tags: ["Rugby Union","Champions Cup","Bath","Montpellier"]
 regions: ["europe-central-asia"]
