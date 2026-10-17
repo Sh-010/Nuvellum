@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T20:40:42.464Z"
 readingTime: "2 min"
-image: "/generated/ai/art-dealer-who-sold-forged-warhols-sentenced-to-nearly-four-years-in-prison.svg"
-imageAlt: "AI-generated editorial illustration for Art dealer who sold forged Warhols sentenced to nearly four years in prison"
 status: "published"
 tags: ["art fraud","andy warhol","miami","crime"]
 regions: ["north-america"]
