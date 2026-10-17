@@ -1,0 +1,77 @@
+{
+  "slug": "rare-pink-diamond-goes-on-display-in-france-100-years-after-amateur-heist",
+  "url": "https://www.nuvellum.news/article/rare-pink-diamond-goes-on-display-in-france-100-years-after-amateur-heist",
+  "title": "Rare pink diamond goes on display in France 100 years after amateur heist",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T11:03:35.264Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T11:03:35.264Z",
+      "remoteId": "162",
+      "remoteUrl": "https://t.me/nuvellum/162",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T11:03:35.264Z",
+      "remoteId": "1277147205491143_122109951177497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109951177497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    },
+    "threads": {
+      "containerId": "17950595562321818",
+      "containerCreatedAt": "2026-10-17T11:03:50.295Z",
+      "updatedAt": "2026-10-17T11:03:35.264Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T11:03:35.264Z",
+      "remoteId": "18124313890831742",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T11:03:35.264Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T11:03:35.264Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
