@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="60%" stop-color="#f0e9dd"/>
+      <stop offset="100%" stop-color="#e4d9cc"/>
+    </radialGradient>
+    
+    
+    <linearGradient id="burgundyGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#8a1a36"/>
+      <stop offset="50%" stop-color="#661227"/>
+      <stop offset="100%" stop-color="#400b18"/>
+    </linearGradient>
+
+    
+    <linearGradient id="gemLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7c5d0" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#b84a65" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#520e1f" stop-opacity="0.9"/>
+    </linearGradient>
+
+    
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8a7343"/>
+      <stop offset="50%" stop-color="#b09559"/>
+      <stop offset="100%" stop-color="#6e5a31"/>
+    </linearGradient>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a1f18" stop-opacity="0.15"/>
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)"/>
+  <rect width="1200" height="675" fill="url(#vignette)" style="mix-blend-mode: multiply;"/>
+
+  
+  <g fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.3">
+    
+    <path d="M 380,600 L 380,250 C 380,140 470,70 600,70 C 730,70 820,140 820,250 L 820,600" />
+    <path d="M 350,625 L 850,625" stroke-width="2"/>
+    
+    <path d="M 410,600 L 410,255 C 410,160 485,95 600,95 C 715,95 790,160 790,255 L 790,600" stroke-dasharray="4 4"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="0.5" opacity="0.15">
+    <line x1="440" y1="120" x2="440" y2="580"/>
+    <line x1="480" y1="100" x2="480" y2="580"/>
+    <line x1="520" y1="90" x2="520" y2="580"/>
+    <line x1="560" y1="85" x2="560" y2="580"/>
+    <line x1="640" y1="85" x2="640" y2="580"/>
+    <line x1="680" y1="90" x2="680" y2="580"/>
+    <line x1="720" y1="100" x2="720" y2="580"/>
+    <line x1="760" y1="120" x2="760" y2="580"/>
+  </g>
+
+  
+  <g opacity="0.12" fill="#2a221c">
+    
+    <path d="M 600,160 C 530,160 480,220 480,290 C 480,360 540,410 560,450 C 580,490 570,520 600,520 C 630,520 620,490 640,450 C 660,410 720,360 720,290 C 720,220 670,160 600,160 Z" />
+    <path d="M 600,160 C 600,130 620,110 640,100" fill="none" stroke="#2a221c" stroke-width="3"/>
+  </g>
+
+  
+  <g>
+    
+    <ellipse cx="600" cy="530" rx="140" ry="25" fill="#2a221c" opacity="0.2"/>
+    
+    <path d="M 480,525 L 720,525 L 700,500 L 500,500 Z" fill="url(#goldAccent)" opacity="0.85"/>
+    <path d="M 500,500 L 700,500 L 680,480 L 520,480 Z" fill="#2a221c" opacity="0.8"/>
+    
+    <path d="M 530,480 C 530,470 560,465 600,465 C 640,465 670,470 670,480 Z" fill="url(#burgundyGrad)"/>
+    
+    <line x1="600" y1="465" x2="600" y2="390" stroke="url(#goldAccent)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  
+  
+  <g id="GrandCondeDiamond">
+    
+    <path d="M 600,210 C 660,260 680,370 600,410 C 520,370 540,260 600,210 Z" fill="#2a221c" opacity="0.15" transform="translate(0, 15) scale(0.95)" filter="blur(4px)"/>
+
+    
+    <path d="M 600,195 
+             C 635,225 665,270 670,335 
+             C 675,400 635,425 600,430 
+             C 565,425 525,400 530,335 
+             C 535,270 565,225 600,195 Z" 
+          fill="url(#burgundyGrad)" stroke="#400b18" stroke-width="2.5"/>
+
+    
+    
+    <path d="M 600,195 L 600,430" stroke="url(#gemLight)" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 530,335 L 670,335" stroke="url(#gemLight)" stroke-width="1" opacity="0.5"/>
+    <path d="M 550,270 L 650,270" stroke="url(#gemLight)" stroke-width="1" opacity="0.6"/>
+    <path d="M 565,395 L 635,395" stroke="url(#gemLight)" stroke-width="1" opacity="0.6"/>
+
+    
+    <path d="M 600,195 L 550,270 L 530,335 L 565,395 L 600,430" fill="none" stroke="#f7c5d0" stroke-width="1.2" opacity="0.6"/>
+    <path d="M 600,195 L 650,270 L 670,335 L 635,395 L 600,430" fill="none" stroke="#400b18" stroke-width="1.2" opacity="0.8"/>
+
+    <path d="M 550,270 L 600,290 L 650,270" fill="none" stroke="#f7c5d0" stroke-width="1" opacity="0.5"/>
+    <path d="M 530,335 L 600,345 L 670,335" fill="none" stroke="#f7c5d0" stroke-width="1" opacity="0.4"/>
+    <path d="M 565,395 L 600,385 L 635,395" fill="none" stroke="#f7c5d0" stroke-width="1" opacity="0.5"/>
+
+    
+    <polygon points="600,225 618,250 600,275 582,250" fill="url(#gemLight)" stroke="#f7c5d0" stroke-width="1" opacity="0.9"/>
+
+    
+    <path d="M 590,230 L 600,210 L 610,230 Z" fill="#ffffff" opacity="0.5"/>
+    <path d="M 545,310 C 555,300 565,310 555,325 Z" fill="#ffffff" opacity="0.3"/>
+  </g>
+
+  
+  <g opacity="0.35" stroke="#2a221c" stroke-width="1" fill="none">
+    
+    <g transform="translate(140, 220)">
+      <rect x="0" y="0" width="160" height="220" fill="#f3ecdf" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <line x1="20" y1="25" x2="140" y2="25" stroke-width="2"/>
+      <line x1="20" y1="35" x2="100" y2="35" stroke-width="1"/>
+      
+      <line x1="20" y1="55" x2="140" y2="55"/>
+      <line x1="20" y1="65" x2="130" y2="65"/>
+      <line x1="20" y1="75" x2="140" y2="75"/>
+      <line x1="20" y1="85" x2="115" y2="85"/>
+      
+      <line x1="20" y1="110" x2="140" y2="110"/>
+      <line x1="20" y1="120" x2="125" y2="120"/>
+      <line x1="20" y1="130" x2="140" y2="130"/>
+      <line x1="20" y1="140" x2="135" y2="140"/>
+      <line x1="20" y1="150" x2="100" y2="150"/>
+
+      <line x1="20" y1="175" x2="140" y2="175"/>
+      <line x1="20" y1="185" x2="130" y2="185"/>
+      <line x1="20" y1="195" x2="115" y2="195"/>
+    </g>
+
+    
+    <g transform="translate(900, 220)">
+      <rect x="0" y="0" width="160" height="220" fill="#f3ecdf" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <circle cx="80" cy="150" r="22" fill="#661227" opacity="0.8" stroke="none"/>
+      <circle cx="80" cy="150" r="17" fill="none" stroke="#f3ecdf" stroke-width="1" opacity="0.8"/>
+      
+      
+      <line x1="20" y1="30" x2="140" y2="30"/>
+      <line x1="20" y1="42" x2="120" y2="42"/>
+      <line x1="20" y1="54" x2="135" y2="54"/>
+      <line x1="20" y1="66" x2="100" y2="66"/>
+      
+      <line x1="20" y1="95" x2="140" y2="95"/>
+      <line x1="20" y1="107" x2="125" y2="107"/>
+    </g>
+  </g>
+
+  
+  <g stroke="#661227" stroke-width="1" opacity="0.4">
+    <line x1="100" y1="100" x2="250" y2="100"/>
+    <line x1="100" y1="100" x2="100" y2="150"/>
+
+    <line x1="1100" y1="100" x2="950" y2="100"/>
+    <line x1="1100" y1="100" x2="1100" y2="150"/>
+
+    <line x1="100" y1="575" x2="250" y2="575"/>
+    <line x1="100" y1="575" x2="100" y2="525"/>
+
+    <line x1="1100" y1="575" x2="950" y2="575"/>
+    <line x1="1100" y1="575" x2="1100" y2="525"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="0.3" opacity="0.08">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+  </g>
+
+</svg>
