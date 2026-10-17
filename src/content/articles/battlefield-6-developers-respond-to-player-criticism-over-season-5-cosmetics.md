@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T22:20:47.565Z"
 readingTime: "2 min"
-image: "/generated/ai/battlefield-6-developers-respond-to-player-criticism-over-season-5-cosmetics.svg"
-imageAlt: "AI-generated editorial illustration for Battlefield 6 developers respond to player criticism over Season 5 cosmetics"
 status: "published"
 tags: ["Battlefield 6","Battlefield Studios","EA","gaming"]
 regions: []
