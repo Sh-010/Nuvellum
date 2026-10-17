@@ -1,14 +1,12 @@
 ---
 title: "When Garfield briefly shifted into a horror comic"
 dek: "For one week in October 1989, Jim Davis's daily newspaper comic Garfield took a surreal, terrifying turn that still haunts readers today."
-section: "Gaming"
+section: "Culture"
 type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T09:00:49.007Z"
 readingTime: "2 min"
-image: "/generated/ai/when-garfield-briefly-shifted-into-a-horror-comic.svg"
-imageAlt: "AI-generated editorial illustration for When Garfield briefly shifted into a horror comic"
 status: "published"
 tags: ["Garfield","Jim Davis","comics","horror","1989"]
 regions: []
