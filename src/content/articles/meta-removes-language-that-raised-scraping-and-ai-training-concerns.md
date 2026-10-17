@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T21:40:41.918Z"
 readingTime: "1 min"
-image: "/generated/ai/meta-removes-language-that-raised-scraping-and-ai-training-concerns.svg"
-imageAlt: "AI-generated editorial illustration for Meta removes language that raised scraping and AI training concerns"
 status: "published"
 tags: ["Meta","AI","scraping","commercial terms"]
 regions: []
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/meta-removes-language-that-raised-scraping-and-ai-training-concerns.jpg"
+imageAlt: "Wikimedia’s knowledge infrastructure in a changing internet — Establishing sustainable pathways for content reuse – Wikimania 2025 in Nairobi, Kenya"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Wikimedia’s knowledge infrastructure in a changing internet — Establishing sustainable pathways for content reuse – Wikimania 2025 in Nairobi, Kenya"
+imageCredit: "Wikimania 2025 East African Organising Team"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Wikimedia%E2%80%99s_knowledge_infrastructure_in_a_changing_internet_%E2%80%94_Establishing_sustainable_pathways_for_content_reuse_%E2%80%93_Wikimania_2025_in_Nairobi,_Kenya.webm"
 ---
 ## Commercial terms update
 
