@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T01:00:41.439Z"
 readingTime: "2 min"
-image: "/generated/ai/malibus-bryson-fire-containment-grows-to-39-as-wind-conditions-begin-to-improve.svg"
-imageAlt: "AI-generated editorial illustration for Malibu’s Bryson Fire containment grows to 39% as wind conditions begin to improve"
 status: "published"
 tags: ["Bryson Fire","Malibu","wildfires","Cal Fire"]
 regions: ["north-america"]
