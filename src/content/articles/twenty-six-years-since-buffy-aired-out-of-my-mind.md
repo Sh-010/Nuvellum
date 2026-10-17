@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T08:00:42.862Z"
 readingTime: "2 min"
-image: "/generated/ai/twenty-six-years-since-buffy-aired-out-of-my-mind.svg"
-imageAlt: "AI-generated editorial illustration for Twenty-six years since 'Buffy' aired 'Out of My Mind'"
 status: "published"
 tags: ["Buffy the Vampire Slayer","television","retrospective"]
 regions: ["north-america"]
