@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T22:10:41.960Z"
 readingTime: "1 min"
-image: "/generated/ai/dubois-destroys-wardley-in-two-rounds-to-retain-title.svg"
-imageAlt: "AI-generated editorial illustration for Dubois destroys Wardley in two rounds to retain title"
 status: "published"
 tags: ["boxing","heavyweight","Daniel Dubois","Fabio Wardley"]
 regions: ["europe-central-asia"]
