@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T04:00:45.986Z"
 readingTime: "2 min"
-image: "/generated/ai/anthony-scaramucci-reacts-to-katie-zacharias-short-white-house-tenure.svg"
-imageAlt: "AI-generated editorial illustration for Anthony Scaramucci reacts to Katie Zacharia’s short White House tenure"
 status: "published"
 tags: ["Anthony Scaramucci","Katie Zacharia","White House","Donald Trump"]
 regions: ["north-america"]
