@@ -1,0 +1,74 @@
+{
+  "slug": "paul-mccartney-shares-height-concerns-over-paul-mescal-in-upcoming-beatles-biopic",
+  "url": "https://www.nuvellum.news/article/paul-mccartney-shares-height-concerns-over-paul-mescal-in-upcoming-beatles-biopic",
+  "title": "Paul McCartney shares height concerns over Paul Mescal in upcoming Beatles biopic",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T23:12:58.619Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T23:12:58.619Z",
+      "remoteId": "172",
+      "remoteUrl": "https://t.me/nuvellum/172",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    },
+    "threads": {
+      "containerId": "17950702587321818",
+      "containerCreatedAt": "2026-10-17T23:13:07.991Z",
+      "updatedAt": "2026-10-17T23:12:58.619Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T23:12:58.619Z",
+      "remoteId": "18097321385115476",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T23:12:58.619Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T23:12:58.619Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
