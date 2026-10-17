@@ -1,0 +1,79 @@
+{
+  "slug": "the-angry-birds-movie-3-unpacked-by-vfx-supervisor-including-reds-redesign-and-character-e",
+  "url": "https://www.nuvellum.news/article/the-angry-birds-movie-3-unpacked-by-vfx-supervisor-including-reds-redesign-and-character-e",
+  "title": "‘The Angry Birds Movie 3’ unpacked by vfx supervisor, including Red’s Redesign and character-effects automation",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T14:22:56.411Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T14:22:56.411Z",
+      "remoteId": "164",
+      "remoteUrl": "https://t.me/nuvellum/164",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T14:22:56.411Z",
+      "remoteId": "1277147205491143_122110024311497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122110024311497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    },
+    "threads": {
+      "containerId": "17950628550321818",
+      "containerCreatedAt": "2026-10-17T14:23:08.833Z",
+      "updatedAt": "2026-10-17T14:22:56.411Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T14:22:56.411Z",
+      "remoteId": "18131138014790470",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T14:22:56.411Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T14:22:56.411Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
