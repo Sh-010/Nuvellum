@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T22:50:40.804Z"
 readingTime: "1 min"
-image: "/generated/ai/new-york-city-police-seek-suspect-in-fatal-subway-station-shooting.svg"
-imageAlt: "AI-generated editorial illustration for New York City police seek suspect in fatal subway station shooting"
 status: "published"
 tags: ["New York City","gun crime","US crime","NYPD"]
 regions: ["north-america"]
