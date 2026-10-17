@@ -1,0 +1,77 @@
+{
+  "slug": "twenty-six-years-since-buffy-aired-out-of-my-mind",
+  "url": "https://www.nuvellum.news/article/twenty-six-years-since-buffy-aired-out-of-my-mind",
+  "title": "Twenty-six years since 'Buffy' aired 'Out of My Mind'",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T08:04:12.732Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T08:04:12.732Z",
+      "remoteId": "159",
+      "remoteUrl": "https://t.me/nuvellum/159",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T08:04:12.732Z",
+      "remoteId": "1277147205491143_122109901935497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109901935497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    },
+    "threads": {
+      "containerId": "17950576701321818",
+      "containerCreatedAt": "2026-10-17T08:04:24.191Z",
+      "updatedAt": "2026-10-17T08:04:12.732Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T08:04:12.732Z",
+      "remoteId": "18425404321151884",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T08:04:12.732Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T08:04:12.732Z",
+    "variant": "analysis",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
