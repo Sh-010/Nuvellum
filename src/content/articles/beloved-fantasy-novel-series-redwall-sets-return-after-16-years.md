@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T02:00:42.981Z"
 readingTime: "2 min"
-image: "/generated/ai/beloved-fantasy-novel-series-redwall-sets-return-after-16-years.svg"
-imageAlt: "AI-generated editorial illustration for Beloved fantasy novel series Redwall sets return after 16 years"
 status: "published"
 tags: ["Redwall","Books","Fantasy","Brian Jacques"]
 regions: ["europe-central-asia","north-america"]
