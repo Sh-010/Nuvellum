@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <style>
+      .bg { fill: #f3ecdf; }
+      .ink-dark { fill: #2a221c; }
+      .ink-stroke { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .ink-stroke-fine { stroke: #2a221c; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .burgundy { fill: #661227; }
+      .burgundy-stroke { stroke: #661227; stroke-width: 2; fill: none; }
+      .stone-grey { fill: #d5cebe; }
+      .dead-blue { fill: #9bb0b6; }
+      .dead-blue-stroke { stroke: #4f5f63; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .hatch { stroke: #2a221c; stroke-width: 0.75; opacity: 0.3; }
+    </style>
+    
+    
+    <pattern id="hatch-pat" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" class="hatch" />
+    </pattern>
+    <pattern id="dot-pat" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#2a221c" opacity="0.15" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+  <rect width="1200" height="675" fill="url(#dot-pat)" />
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1.5" />
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="0.5" />
+
+  
+  <path d="M 600 48 L 600 627" stroke="#2a221c" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+
+  
+  <g id="living-world">
+    
+    <line x1="100" y1="520" x2="550" y2="520" class="ink-stroke" />
+    
+    
+    <g class="ink-stroke">
+      <line x1="120" y1="520" x2="120" y2="350" />
+      <line x1="160" y1="520" x2="160" y2="350" />
+      <line x1="200" y1="520" x2="200" y2="350" />
+      <path d="M 120 350 Q 140 320 160 350 Q 180 320 200 350" />
+      
+      <line x1="450" y1="520" x2="450" y2="350" />
+      <line x1="490" y1="520" x2="490" y2="350" />
+      <line x1="530" y1="520" x2="530" y2="350" />
+      <path d="M 450 350 Q 470 320 490 350 Q 510 320 530 350" />
+    </g>
+
+    
+    <path d="M 325 520 C 325 450, 310 400, 280 340 C 265 310, 240 280, 210 260 C 250 270, 275 250, 290 220 C 270 200, 265 170, 280 140 C 310 180, 330 220, 340 260 C 360 210, 390 180, 430 150 C 410 190, 400 220, 400 260 C 430 290, 450 320, 450 360 C 400 370, 360 410, 345 520 Z" class="ink-dark" opacity="0.85" />
+    
+    
+    <path d="M 100 220 L 100 120 Q 325 60 550 120 L 550 220" class="ink-stroke" fill="#e8dfd0" />
+    <path d="M 120 200 L 120 130 Q 325 80 530 130 L 530 200" class="ink-stroke-fine" />
+  </g>
+
+  
+  <g id="dead-world">
+    
+    <path d="M 650 520 Q 900 540 1100 520" class="ink-stroke" />
+
+    
+    <path d="M 875 520 C 875 440, 890 390, 920 330 C 935 300, 960 270, 990 250 C 950 260, 925 240, 910 210 C 930 190, 935 160, 920 130 C 890 170, 870 210, 860 250 C 840 200, 810 170, 770 140 C 790 180, 800 210, 800 250 C 770 280, 750 310, 750 350 C 800 360, 840 400, 855 520 Z" class="dead-blue" />
+    <path d="M 875 520 C 875 440, 890 390, 920 330 C 935 300, 960 270, 990 250 C 950 260, 925 240, 910 210 C 930 190, 935 160, 920 130 C 890 170, 870 210, 860 250 C 840 200, 810 170, 770 140 C 790 180, 800 210, 800 250 C 770 280, 750 310, 750 350 C 800 360, 840 400, 855 520 Z" fill="url(#hatch-pat)" />
+    <path d="M 875 520 C 875 440, 890 390, 920 330 C 935 300, 960 270, 990 250 C 950 260, 925 240, 910 210 C 930 190, 935 160, 920 130 C 890 170, 870 210, 860 250 C 840 200, 810 170, 770 140 C 790 180, 800 210, 800 250 C 770 280, 750 310, 750 350 C 800 360, 840 400, 855 520 Z" class="dead-blue-stroke" />
+
+    
+    <path d="M 650 220 L 650 120 Q 875 60 1100 120 L 1100 220" class="ink-stroke" fill="#e5edea" />
+    <path d="M 670 200 L 670 130 Q 875 80 1080 130 L 1080 200" class="ink-stroke-fine" />
+  </g>
+
+  
+  <g id="central-motif">
+    
+    <path d="M 520 520 Q 600 540 680 520" class="ink-stroke" />
+
+    
+    <g transform="translate(600, 520)">
+      
+      <path d="M -20 0 L -30 -60 L 30 -60 L 20 0 Z" fill="#d5cebe" class="ink-stroke" />
+      <path d="M -35 -60 Q 0 -75 35 -60" class="ink-stroke" />
+      
+      
+      <line x1="-8" y1="-60" x2="-8" y2="-150" class="dead-blue-stroke" />
+      <line x1="8" y1="-60" x2="8" y2="-150" class="dead-blue-stroke" />
+      <line x1="-8" y1="-100" x2="8" y2="-100" class="dead-blue-stroke" />
+      <line x1="-8" y1="-130" x2="8" y2="-130" class="dead-blue-stroke" />
+
+      
+      <path d="M -8 -150 C -15 -180, -30 -190, -45 -185" class="dead-blue-stroke" />
+      <path d="M -3 -150 C -5 -190, -15 -210, -25 -215" class="dead-blue-stroke" />
+      <path d="M 3 -150 C 5 -190, 5 -215, 5 -225" class="dead-blue-stroke" />
+      <path d="M 8 -150 C 15 -190, 25 -210, 35 -205" class="dead-blue-stroke" />
+      <path d="M 15 -150 C 25 -170, 35 -165, 45 -155" class="dead-blue-stroke" />
+
+      
+      <circle cx="5" cy="-210" r="6" class="burgundy-stroke" fill="#f3ecdf" />
+      <circle cx="5" cy="-210" r="3" class="burgundy" />
+
+      
+      <circle cx="0" cy="-60" r="4" class="ink-dark" />
+      <circle cx="0" cy="-150" r="3" class="ink-dark" />
+    </g>
+  </g>
+
+  
+  <g class="ink-dark" opacity="0.6">
+    <rect x="58" y="58" width="8" height="12" rx="2" />
+    <rect x="58" y="88" width="8" height="12" rx="2" />
+    <rect x="58" y="118" width="8" height="12" rx="2" />
+    <rect x="58" y="148" width="8" height="12" rx="2" />
+    
+    <rect x="1134" y="58" width="8" height="12" rx="2" />
+    <rect x="1134" y="88" width="8" height="12" rx="2" />
+    <rect x="1134" y="118" width="8" height="12" rx="2" />
+    <rect x="1134" y="148" width="8" height="12" rx="2" />
+  </g>
+
+  
+  <g id="accents">
+    
+    <g transform="translate(760, 260) rotate(-15)">
+      <path d="M 0 0 C -20 -20, -30 0, -10 20 C -25 30, -15 45, 0 25 C 15 45, 25 30, 10 20 C 30 0, 20 -20, 0 0 Z" class="burgundy" />
+      <path d="M 0 -5 L 0 30" class="ink-dark" stroke-width="1.5" />
+      <circle cx="0" cy="-6" r="2" class="ink-dark" />
+      <path d="M 0 -5 Q -8 -15 -12 -12" class="ink-stroke-fine" />
+      <path d="M 0 -5 Q 8 -15 12 -12" class="ink-stroke-fine" />
+    </g>
+
+    <g transform="translate(980, 360) scale(0.7) rotate(20)">
+      <path d="M 0 0 C -20 -20, -30 0, -10 20 C -25 30, -15 45, 0 25 C 15 45, 25 30, 10 20 C 30 0, 20 -20, 0 0 Z" class="dead-blue" stroke="#4f5f63" stroke-width="2" />
+      <path d="M 0 -5 L 0 30" class="ink-dark" stroke-width="1.5" />
+    </g>
+
+    
+    <path d="M 450 560 Q 530 540 600 565 Q 670 590 750 560" class="ink-stroke-fine" opacity="0.4" />
+    <path d="M 480 580 Q 560 560 620 585 Q 700 610 780 575" class="ink-stroke-fine" opacity="0.3" />
+
+    
+    <g transform="translate(220, 180)">
+      <line x1="0" y1="-40" x2="0" y2="0" class="ink-stroke" />
+      <polygon points="-15,0 15,0 10,25 -10,25" class="stone-grey" stroke="#2a221c" stroke-width="2" />
+      <path d="M -10 25 L 0 35 L 10 25 Z" class="ink-dark" />
+      <rect x="-8" y="8" width="16" height="12" fill="#f3ecdf" stroke="#2a221c" stroke-width="1" />
+    </g>
+
+    
+    <g transform="translate(680, 480)">
+      <path d="M 0 40 Q 5 10 0 -20" class="dead-blue-stroke" />
+      <circle cx="0" cy="-25" r="8" fill="#f3ecdf" stroke="#4f5f63" stroke-width="2" />
+      <circle cx="0" cy="-25" r="3" class="burgundy" />
+      <path d="M -10 -15 Q -15 0 0 10" class="dead-blue-stroke" />
+    </g>
+  </g>
+
+  
+  <line x1="100" y1="600" x2="1100" y2="600" class="burgundy-stroke" stroke-width="1.5" />
+  <circle cx="100" cy="600" r="3" class="burgundy" />
+  <circle cx="1100" cy="600" r="3" class="burgundy" />
+
+</svg>
