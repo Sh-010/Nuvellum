@@ -1,0 +1,74 @@
+{
+  "slug": "bath-lose-at-home-to-montpellier-in-champions-cup",
+  "url": "https://www.nuvellum.news/article/bath-lose-at-home-to-montpellier-in-champions-cup",
+  "title": "Bath lose at home to Montpellier in Champions Cup",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T21:33:03.695Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T21:33:03.695Z",
+      "remoteId": "170",
+      "remoteUrl": "https://t.me/nuvellum/170",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    },
+    "threads": {
+      "containerId": "17950690545321818",
+      "containerCreatedAt": "2026-10-17T21:33:10.402Z",
+      "updatedAt": "2026-10-17T21:33:03.695Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T21:33:03.695Z",
+      "remoteId": "17976249417131956",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T21:33:03.695Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T21:33:03.695Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
