@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T18:50:44.247Z"
 readingTime: "2 min"
-image: "/generated/ai/replit-is-no-longer-working-with-anthropic-ceo-says.svg"
-imageAlt: "AI-generated editorial illustration for Replit is no longer working with Anthropic, CEO says"
 status: "published"
 tags: ["Replit","Anthropic","OpenAI","TechCrunch Disrupt"]
 regions: []
