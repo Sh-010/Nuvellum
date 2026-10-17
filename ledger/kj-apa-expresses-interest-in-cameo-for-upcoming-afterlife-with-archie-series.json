@@ -1,0 +1,79 @@
+{
+  "slug": "kj-apa-expresses-interest-in-cameo-for-upcoming-afterlife-with-archie-series",
+  "url": "https://www.nuvellum.news/article/kj-apa-expresses-interest-in-cameo-for-upcoming-afterlife-with-archie-series",
+  "title": "KJ Apa expresses interest in cameo for upcoming 'Afterlife with Archie' series",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T03:03:47.248Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T03:03:47.248Z",
+      "remoteId": "157",
+      "remoteUrl": "https://t.me/nuvellum/157",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T03:03:47.248Z",
+      "remoteId": "1277147205491143_122109817875497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109817875497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    },
+    "threads": {
+      "containerId": "17950541799321818",
+      "containerCreatedAt": "2026-10-17T03:03:58.811Z",
+      "updatedAt": "2026-10-17T03:03:47.248Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T03:03:47.248Z",
+      "remoteId": "17890728648617336",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T03:03:47.248Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T03:03:47.248Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
