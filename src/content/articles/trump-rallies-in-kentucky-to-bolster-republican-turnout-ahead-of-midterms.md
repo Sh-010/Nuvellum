@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T22:00:47.023Z"
 readingTime: "2 min"
-image: "/generated/ai/trump-rallies-in-kentucky-to-bolster-republican-turnout-ahead-of-midterms.svg"
-imageAlt: "AI-generated editorial illustration for Trump rallies in Kentucky to bolster Republican turnout ahead of midterms"
 status: "published"
 tags: ["Donald Trump","Kentucky","midterms","Department of Defense","Ed Gallrein"]
 regions: ["north-america"]
