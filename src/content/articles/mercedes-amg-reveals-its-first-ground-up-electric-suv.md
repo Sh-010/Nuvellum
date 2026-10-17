@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T17:00:41.692Z"
 readingTime: "2 min"
-image: "/generated/ai/mercedes-amg-reveals-its-first-ground-up-electric-suv.svg"
-imageAlt: "AI-generated editorial illustration for Mercedes-AMG reveals its first ground-up electric SUV"
 status: "published"
 tags: ["Mercedes-AMG","Electric Vehicles","Cars","Technology"]
 regions: ["north-america","europe-central-asia"]
