@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T10:00:55.945Z"
 readingTime: "2 min"
-image: "/generated/ai/coen-brothers-receive-lumiere-award-at-lyon-festival.svg"
-imageAlt: "AI-generated editorial illustration for Coen brothers receive Lumière Award at Lyon festival"
 status: "published"
 tags: ["Coen brothers","Lumiere Award","Javier Bardem","Lyon"]
 regions: ["europe-central-asia"]
