@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T19:30:45.753Z"
 readingTime: "2 min"
-image: "/generated/ai/val-chmerkovskiy-suspended-from-dancing-with-the-stars-over-tiktok-post.svg"
-imageAlt: "AI-generated editorial illustration for Val Chmerkovskiy suspended from 'Dancing With The Stars' over TikTok post"
 status: "published"
 tags: ["Dancing with the Stars","Val Chmerkovskiy","Carrie Ann Inaba","BBC Studios"]
 regions: ["north-america"]
