@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T23:00:50.012Z"
 readingTime: "2 min"
-image: "/generated/ai/paul-mccartney-shares-height-concerns-over-paul-mescal-in-upcoming-beatles-biopic.svg"
-imageAlt: "AI-generated editorial illustration for Paul McCartney shares height concerns over Paul Mescal in upcoming Beatles biopic"
 status: "published"
 tags: ["Paul McCartney","Paul Mescal","Sam Mendes","The Beatles"]
 regions: ["europe-central-asia","north-america"]
