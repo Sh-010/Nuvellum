@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T21:50:49.926Z"
 readingTime: "2 min"
-image: "/generated/ai/munster-hold-on-to-beat-racing-after-foley-tributes.svg"
-imageAlt: "AI-generated editorial illustration for Munster hold on to beat Racing after Foley tributes"
 status: "published"
 tags: ["Rugby Union","Champions Cup","Munster","Racing 92"]
 regions: ["europe-central-asia"]
