@@ -1,0 +1,79 @@
+{
+  "slug": "all-the-news-about-the-iphone-duo",
+  "url": "https://www.nuvellum.news/article/all-the-news-about-the-iphone-duo",
+  "title": "All the news about the iPhone Duo",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T00:03:52.480Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T00:03:52.480Z",
+      "remoteId": "155",
+      "remoteUrl": "https://t.me/nuvellum/155",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T00:03:52.480Z",
+      "remoteId": "1277147205491143_122109774351497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109774351497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    },
+    "threads": {
+      "containerId": "17950522818321818",
+      "containerCreatedAt": "2026-10-17T00:04:09.212Z",
+      "updatedAt": "2026-10-17T00:03:52.480Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T00:03:52.480Z",
+      "remoteId": "18154378261531826",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T00:03:52.480Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T00:03:52.480Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
