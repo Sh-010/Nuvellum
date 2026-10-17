@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T06:00:40.809Z"
 readingTime: "2 min"
-image: "/generated/ai/england-s-41-match-unbeaten-run-ended-by-canada.svg"
-imageAlt: "AI-generated editorial illustration for England's 41-match unbeaten run ended by Canada"
 status: "published"
 tags: ["rugby union","England","Canada","WXV Global Series"]
 regions: ["north-america","europe-central-asia"]
