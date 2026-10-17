@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T19:10:43.046Z"
 readingTime: "1 min"
-image: "/generated/ai/harry-styles-together-together-tour-doc-coming-from-john-wilson-universal-pictures-content.svg"
-imageAlt: "AI-generated editorial illustration for Harry Styles ‘Together, Together’ tour doc coming from John Wilson, Universal Pictures Content Group"
 status: "published"
 tags: ["Harry Styles","John Wilson","Universal Pictures Content Group","documentary","Madison Square Garden"]
 regions: ["north-america"]
