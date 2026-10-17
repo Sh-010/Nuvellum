@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <rect id="bg" width="1200" height="675" fill="#f3ecdf"/>
+
+    
+    <pattern id="hatch" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#2a221c" stroke-width="0.5" stroke-opacity="0.05"/>
+    </pattern>
+
+    
+    <clipPath id="circle-clip">
+      <circle cx="600" cy="310" r="180"/>
+    </clipPath>
+  </defs>
+
+  
+  
+  <rect width="1200" height="675" fill="url(#hatch)"/>
+
+  
+  <g stroke="#2a221c" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="4,4">
+    <line x1="150" y1="310" x2="1050" y2="310"/>
+    <line x1="600" y1="60" x2="600" y2="560"/>
+    <circle cx="600" cy="310" r="230" fill="none"/>
+    <circle cx="600" cy="310" r="130" fill="none"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-opacity="0.4" stroke-width="1.5">
+    
+    <line x1="590" y1="310" x2="610" y2="310"/>
+    <line x1="600" y1="300" x2="600" y2="320"/>
+
+    
+    <path d="M 60 60 L 90 60 M 60 60 L 60 90" fill="none"/>
+    <path d="M 1140 60 L 1110 60 M 1140 60 L 1140 90" fill="none"/>
+    <path d="M 60 615 L 90 615 M 60 615 L 60 585" fill="none"/>
+    <path d="M 1140 615 L 1110 615 M 1140 615 L 1140 585" fill="none"/>
+  </g>
+
+  
+  <g stroke="#661227" stroke-opacity="0.5" stroke-width="1">
+    <line x1="420" y1="100" x2="420" y2="520"/>
+    <line x1="415" y1="100" x2="425" y2="100"/>
+    <line x1="415" y1="520" x2="425" y2="520"/>
+    
+    <line x1="780" y1="150" x2="780" y2="470"/>
+    <line x1="775" y1="150" x2="785" y2="150"/>
+    <line x1="775" y1="470" x2="785" y2="470"/>
+  </g>
+
+  
+  <g transform="translate(600, 310)">
+    
+    
+    <circle cx="0" cy="0" r="140" fill="#661227" fill-opacity="0.1"/>
+
+    
+    <g stroke="#661227" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.8">
+      <path d="M -80 -90 Q -40 -120 0 -115 Q 40 -120 80 -90"/>
+      <path d="M -100 -50 Q -50 -90 0 -85 Q 50 -90 100 -50"/>
+      <path d="M -120 0 Q -60 -50 0 -45 Q 60 -50 120 0"/>
+      <path d="M -100 50 Q -50 20 0 25 Q 50 20 100 50"/>
+      <path d="M -70 100 Q -35 80 0 85 Q 35 80 70 100"/>
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="0.75" fill="none" opacity="0.4">
+      <polygon points="0,-115 -70,-70 -110,0 -70,70 0,115 70,70 110,0 70,-70"/>
+      <polygon points="0,-75 -45,-45 -75,0 -45,45 0,75 45,45 75,0 45,-45"/>
+      <line x1="0" y1="-115" x2="0" y2="115"/>
+      <line x1="-110" y1="0" x2="110" y2="0"/>
+      <line x1="-70" y1="-70" x2="70" y2="70"/>
+      <line x1="-70" y1="70" x2="70" y2="-70"/>
+    </g>
+
+    
+    
+    <path d="M -80 -20 C -80 -90 -30 -110 0 -110 C 30 -110 80 -90 80 -20 C 80 60 50 110 0 110 C -50 110 -80 60 -80 -20 Z" 
+          fill="#661227" stroke="#2a221c" stroke-width="2.5"/>
+
+    
+    <path d="M -75 -45 L -20 -65 L 20 -65 L 75 -45 L 45 -15 L 0 -25 L -45 -15 Z" 
+          fill="#efe8db" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <g stroke="#2a221c" stroke-width="1.5">
+      
+      <circle cx="-30" cy="-5" r="18" fill="#efe8db"/>
+      <circle cx="-30" cy="-5" r="9" fill="#661227" fill-opacity="0.3"/>
+      <circle cx="-27" cy="-8" r="3" fill="#2a221c"/>
+      
+      
+      <circle cx="30" cy="-5" r="18" fill="#efe8db"/>
+      <circle cx="30" cy="-5" r="9" fill="#661227" fill-opacity="0.3"/>
+      <circle cx="27" cy="-8" r="3" fill="#2a221c"/>
+    </g>
+
+    
+    <polygon points="-25,10 25,10 35,45 0,70 -35,45" fill="#efe8db" stroke="#2a221c" stroke-width="2"/>
+    <line x1="0" y1="10" x2="0" y2="70" stroke="#2a221c" stroke-width="1.5"/>
+
+    
+    <path d="M -15 -110 C -25 -135 -5 -145 0 -130 C 5 -145 25 -135 15 -110 Z" 
+          fill="#661227" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <circle cx="0" cy="0" r="128" fill="none" stroke="#661227" stroke-width="1" stroke-dasharray="2,6"/>
+    <circle cx="0" cy="0" r="148" fill="none" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="1,4"/>
+
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" fill="none">
+    
+    <line x1="120" y1="600" x2="1080" y2="600"/>
+    <line x1="120" y1="606" x2="1080" y2="606" stroke-width="0.5"/>
+
+    
+    <line x1="120" y1="75" x2="1080" y2="75"/>
+  </g>
+
+  
+  <g fill="#2a221c">
+    
+    <rect x="120" y="200" width="12" height="2"/>
+    <rect x="120" y="240" width="8" height="2"/>
+    <rect x="120" y="280" width="12" height="2"/>
+    <rect x="120" y="320" width="6" height="2"/>
+    <rect x="120" y="360" width="12" height="2"/>
+    <rect x="120" y="400" width="8" height="2"/>
+
+    
+    <rect x="1068" y="200" width="12" height="2"/>
+    <rect x="1072" y="240" width="8" height="2"/>
+    <rect x="1068" y="280" width="12" height="2"/>
+    <rect x="1074" y="320" width="6" height="2"/>
+    <rect x="1068" y="360" width="12" height="2"/>
+    <rect x="1072" y="400" width="8" height="2"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" fill="#f3ecdf">
+    <circle cx="250" cy="520" r="6"/>
+    <circle cx="350" cy="520" r="6"/>
+    <circle cx="450" cy="520" r="6"/>
+    <line x1="250" y1="520" x2="450" y2="520" stroke-dasharray="2,2"/>
+    <circle cx="350" cy="520" r="3" fill="#661227"/>
+
+    <circle cx="750" cy="520" r="6"/>
+    <circle cx="850" cy="520" r="6"/>
+    <circle cx="950" cy="520" r="6"/>
+    <line x1="750" y1="520" x2="950" y2="520" stroke-dasharray="2,2"/>
+    <circle cx="850" cy="520" r="3" fill="#661227"/>
+  </g>
+
+</svg>
