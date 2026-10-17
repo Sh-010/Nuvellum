@@ -1,0 +1,76 @@
+{
+  "slug": "harry-styles-together-together-tour-doc-coming-from-john-wilson-universal-pictures-content",
+  "url": "https://www.nuvellum.news/article/harry-styles-together-together-tour-doc-coming-from-john-wilson-universal-pictures-content",
+  "title": "Harry Styles ‘Together, Together’ tour doc coming from John Wilson, Universal Pictures Content Group",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T19:44:15.247Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T19:44:15.247Z",
+      "remoteId": "168",
+      "remoteUrl": "https://t.me/nuvellum/168",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    },
+    "threads": {
+      "containerId": "17950676829321818",
+      "containerCreatedAt": "2026-10-17T19:44:22.047Z",
+      "updatedAt": "2026-10-17T19:44:15.247Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T19:44:15.247Z",
+      "remoteId": "17978698167128560",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T19:44:15.247Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T19:44:15.247Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
