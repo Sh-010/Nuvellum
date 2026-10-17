@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T11:00:42.714Z"
 readingTime: "2 min"
-image: "/generated/ai/rare-pink-diamond-goes-on-display-in-france-100-years-after-amateur-heist.svg"
-imageAlt: "AI-generated editorial illustration for Rare pink diamond goes on display in France 100 years after amateur heist"
 status: "published"
 tags: ["Diamonds","France","Exhibitions"]
 regions: ["europe-central-asia"]
