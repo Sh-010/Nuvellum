@@ -1,0 +1,79 @@
+{
+  "slug": "coen-brothers-receive-lumiere-award-at-lyon-festival",
+  "url": "https://www.nuvellum.news/article/coen-brothers-receive-lumiere-award-at-lyon-festival",
+  "title": "Coen brothers receive Lumière Award at Lyon festival",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T10:04:14.122Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T10:04:14.122Z",
+      "remoteId": "161",
+      "remoteUrl": "https://t.me/nuvellum/161",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T10:04:14.122Z",
+      "remoteId": "1277147205491143_122109930645497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109930645497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    },
+    "threads": {
+      "containerId": "17950590003321818",
+      "containerCreatedAt": "2026-10-17T10:04:26.320Z",
+      "updatedAt": "2026-10-17T10:04:14.122Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T10:04:14.122Z",
+      "remoteId": "18131459629783299",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T10:04:14.122Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T10:04:14.122Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
