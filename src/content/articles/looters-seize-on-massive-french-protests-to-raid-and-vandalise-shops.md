@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T20:20:42.371Z"
 readingTime: "2 min"
-image: "/generated/ai/looters-seize-on-massive-french-protests-to-raid-and-vandalise-shops.svg"
-imageAlt: "AI-generated editorial illustration for Looters seize on massive French protests to raid and vandalise shops"
 status: "published"
 tags: ["France","protest","unrest","French student protests"]
 regions: ["europe-central-asia"]
