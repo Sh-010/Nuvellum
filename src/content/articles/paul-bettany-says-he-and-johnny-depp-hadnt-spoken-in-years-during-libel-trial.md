@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T20:50:45.308Z"
 readingTime: "2 min"
-image: "/generated/ai/paul-bettany-says-he-and-johnny-depp-hadnt-spoken-in-years-during-libel-trial.svg"
-imageAlt: "AI-generated editorial illustration for Paul Bettany says he and Johnny Depp hadn’t spoken in years during libel trial"
 status: "published"
 tags: ["Paul Bettany","Johnny Depp","libel trial"]
 regions: []
