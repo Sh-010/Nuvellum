@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T14:00:49.786Z"
 readingTime: "2 min"
-image: "/generated/ai/the-angry-birds-movie-3-unpacked-by-vfx-supervisor-including-reds-redesign-and-character-e.svg"
-imageAlt: "AI-generated editorial illustration for ‘The Angry Birds Movie 3’ unpacked by vfx supervisor, including Red’s Redesign and character-effects automation"
 status: "published"
 tags: ["The Angry Birds Movie 3","DNEG Animation","View Conference","VFX"]
 regions: ["europe-central-asia"]
