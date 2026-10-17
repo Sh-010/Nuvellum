@@ -1,0 +1,77 @@
+{
+  "slug": "beloved-fantasy-novel-series-redwall-sets-return-after-16-years",
+  "url": "https://www.nuvellum.news/article/beloved-fantasy-novel-series-redwall-sets-return-after-16-years",
+  "title": "Beloved fantasy novel series Redwall sets return after 16 years",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T02:04:11.255Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T02:04:11.255Z",
+      "remoteId": "156",
+      "remoteUrl": "https://t.me/nuvellum/156",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T02:04:11.255Z",
+      "remoteId": "1277147205491143_122109807873497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109807873497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    },
+    "threads": {
+      "containerId": "17950534404321818",
+      "containerCreatedAt": "2026-10-17T02:04:25.834Z",
+      "updatedAt": "2026-10-17T02:04:11.255Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T02:04:11.255Z",
+      "remoteId": "18151999225547966",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T02:04:11.255Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T02:04:11.255Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
