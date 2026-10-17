@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T18:00:56.739Z"
 readingTime: "2 min"
-image: "/generated/ai/costume-designer-grace-snell-blends-historical-accuracy-and-modern-styling-for-new-sense-a.svg"
-imageAlt: "AI-generated editorial illustration for Costume designer Grace Snell blends historical accuracy and modern styling for new 'Sense and Sensibility' film"
 status: "published"
 tags: ["Sense and Sensibility","Grace Snell","Jane Austen","costume design"]
 regions: []
