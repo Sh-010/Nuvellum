@@ -1,14 +1,12 @@
 ---
 title: "Miley Cyrus tearfully remembers Dolly Parton at Hollywood Bowl concert, performs 'Jolene'"
 dek: "Miley Cyrus delivered an emotional tribute to her late godmother Dolly Parton during her Hollywood Bowl performance, sharing memories and performing the classic song “Jolene.”"
-section: "Film & TV"
+section: "Culture"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T18:30:51.390Z"
 readingTime: "2 min"
-image: "/generated/ai/miley-cyrus-tearfully-remembers-dolly-parton-at-hollywood-bowl-concert-performs-jolene.svg"
-imageAlt: "AI-generated editorial illustration for Miley Cyrus tearfully remembers Dolly Parton at Hollywood Bowl concert, performs 'Jolene'"
 status: "published"
 tags: ["Miley Cyrus","Dolly Parton","Hollywood Bowl","Jolene"]
 regions: ["north-america"]
