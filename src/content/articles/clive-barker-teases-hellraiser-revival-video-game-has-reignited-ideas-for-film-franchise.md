@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T23:40:41.381Z"
 readingTime: "1 min"
-image: "/generated/ai/clive-barker-teases-hellraiser-revival-video-game-has-reignited-ideas-for-film-franchise.svg"
-imageAlt: "AI-generated editorial illustration for Clive Barker teases ‘Hellraiser: Revival’ video game has reignited ideas for film franchise"
 status: "published"
 tags: ["Clive Barker","Hellraiser","video games","horror"]
 regions: []
