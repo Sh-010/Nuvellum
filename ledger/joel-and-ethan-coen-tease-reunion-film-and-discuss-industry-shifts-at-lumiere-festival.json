@@ -1,0 +1,79 @@
+{
+  "slug": "joel-and-ethan-coen-tease-reunion-film-and-discuss-industry-shifts-at-lumiere-festival",
+  "url": "https://www.nuvellum.news/article/joel-and-ethan-coen-tease-reunion-film-and-discuss-industry-shifts-at-lumiere-festival",
+  "title": "Joel and Ethan Coen tease reunion film and discuss industry shifts at Lumière Festival",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T13:04:22.243Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T13:04:22.243Z",
+      "remoteId": "163",
+      "remoteUrl": "https://t.me/nuvellum/163",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T13:04:22.243Z",
+      "remoteId": "1277147205491143_122109996855497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109996855497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    },
+    "threads": {
+      "containerId": "17950617192321818",
+      "containerCreatedAt": "2026-10-17T13:04:35.809Z",
+      "updatedAt": "2026-10-17T13:04:22.243Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T13:04:22.243Z",
+      "remoteId": "18171856816459419",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T13:04:22.243Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T13:04:22.243Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
