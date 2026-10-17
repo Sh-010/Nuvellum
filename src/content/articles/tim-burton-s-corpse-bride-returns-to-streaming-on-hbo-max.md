@@ -1,14 +1,12 @@
 ---
 title: "Tim Burton's Corpse Bride returns to streaming on HBO Max"
 dek: "Tim Burton's 2005 stop-motion film Corpse Bride, which served as stop-motion studio Laika's first official project, is currently streaming on HBO Max."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T19:00:52.277Z"
 readingTime: "2 min"
-image: "/generated/ai/tim-burton-s-corpse-bride-returns-to-streaming-on-hbo-max.svg"
-imageAlt: "AI-generated editorial illustration for Tim Burton's Corpse Bride returns to streaming on HBO Max"
 status: "published"
 tags: ["Tim Burton","Corpse Bride","Laika","HBO Max","animation"]
 regions: []
