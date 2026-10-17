@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <style>
+      .bg { fill: #f3ecdf; }
+      .ink-charcoal { fill: #2a221c; stroke: #2a221c; }
+      .ink-burgundy { fill: #661227; stroke: #661227; }
+      .stone-grey { fill: #b8b0a2; stroke: #b8b0a2; }
+      .warm-ochre { fill: #c48344; stroke: #c48344; }
+      .paper-white { fill: #fbf8f2; }
+      
+      .line-fine { stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-medium { stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .line-bold { stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      
+      .hatch { stroke: #2a221c; stroke-width: 0.75; stroke-linecap: round; opacity: 0.35; }
+      .hatch-burgundy { stroke: #661227; stroke-width: 0.75; stroke-linecap: round; opacity: 0.4; }
+    </style>
+    
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" result="coloredNoise"/>
+      <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>
+      <feBlend mode="multiply" in="SourceGraphic" in2="monoNoise" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg" />
+
+  
+  <g opacity="0.15" class="ink-charcoal">
+    <line x1="100" y1="80" x2="1100" y2="80" stroke-width="1" />
+    <line x1="100" y1="595" x2="1100" y2="595" stroke-width="1" />
+    <line x1="100" y1="80" x2="100" y2="595" stroke-width="1" />
+    <line x1="1100" y1="80" x2="1100" y2="595" stroke-width="1" />
+  </g>
+
+  
+
+  <g filter="url(#paper-grain)">
+    
+    
+    <path d="M 200,480 L 1000,480 L 1050,540 L 150,540 Z" class="stone-grey" opacity="0.3" />
+    <line x1="150" y1="540" x2="1050" y2="540" class="ink-charcoal line-medium" />
+    <line x1="200" y1="480" x2="150" y2="540" class="ink-charcoal line-fine" />
+    <line x1="1000" y1="480" x2="1050" y2="540" class="ink-charcoal line-fine" />
+
+    
+    <g transform="translate(320, 360)">
+      
+      <polygon points="0,80 280,40 320,90 40,130" class="paper-white ink-charcoal" stroke-width="2" />
+      
+      <polygon points="280,40 320,90 320,98 280,48" class="stone-grey" />
+      
+      
+      <polygon points="20,50 290,10 325,55 55,95" class="paper-white ink-charcoal" stroke-width="2" />
+      <polygon points="290,10 325,55 325,61 290,16" class="stone-grey" />
+      <line x1="40" y1="72" x2="280" y2="32" class="hatch" />
+      <line x1="60" y1="77" x2="260" y2="37" class="hatch" />
+
+      
+      <path d="M 40,10 C 120,-10 180,-10 260,10 L 250,60 C 170,40 110,40 30,60 Z" class="paper-white ink-charcoal" stroke-width="2" />
+      
+      <line x1="145" y1="0" x2="140" y2="50" class="ink-charcoal line-fine" />
+      
+      <line x1="60" y1="20" x2="120" y2="15" class="hatch" />
+      <line x1="60" y1="28" x2="110" y2="23" class="hatch" />
+      <line x1="170" y1="18" x2="230" y2="22" class="hatch" />
+      <line x1="170" y1="26" x2="220" y2="30" class="hatch" />
+    </g>
+
+    
+    <g transform="translate(680, 150)">
+      
+      <line x1="0" y1="0" x2="0" y2="350" class="ink-burgundy line-fine" stroke-dasharray="8 6" />
+      
+      
+      <polygon points="0,350 -15,310 15,310" class="ink-burgundy" />
+      <ellipse cx="0" cy="310" rx="15" ry="5" class="ink-burgundy" />
+      
+      
+      <path d="M -160,120 L 160,120" class="ink-charcoal line-bold" />
+      
+      <polygon points="0,100 -12,130 12,130" class="ink-charcoal" />
+
+      
+      <line x1="-160" y1="120" x2="-220" y2="240" class="ink-charcoal line-fine" />
+      <line x1="-160" y1="120" x2="-100" y2="240" class="ink-charcoal line-fine" />
+      <path d="M -240,240 Q -160,270 -80,240 Z" class="paper-white ink-charcoal" stroke-width="1.5" />
+      <line x1="-160" y1="120" x2="-160" y2="105" class="ink-charcoal line-medium" />
+
+      
+      <line x1="160" y1="120" x2="100" y2="240" class="ink-charcoal line-fine" />
+      <line x1="160" y1="120" x2="220" y2="240" class="ink-charcoal line-fine" />
+      <path d="M 80,240 Q 160,270 240,240 Z" class="paper-white ink-charcoal" stroke-width="1.5" />
+      <line x1="160" y1="120" x2="160" y2="105" class="ink-charcoal line-medium" />
+
+      
+      <polygon points="130,220 190,210 200,235 140,245" class="paper-white ink-charcoal" stroke-width="1" />
+      <line x1="145" y1="228" x2="180" y2="222" class="hatch-burgundy" />
+      <line x1="148" y1="234" x2="175" y2="229" class="hatch-burgundy" />
+    </g>
+
+    
+    <g transform="translate(250, 220) rotate(-35)">
+      
+      <path d="M 0,0 L 15,10 L 10,180 L -5,180 L -10,10 Z" class="ink-charcoal" />
+      
+      <polygon points="-10,10 10,10 5,50 -5,50" class="warm-ochre" />
+      <polygon points="-5,50 5,50 0,90" class="warm-ochre" stroke="#2a221c" stroke-width="1" />
+      <line x1="0" y1="50" x2="0" y2="82" class="ink-charcoal line-fine" />
+      
+      <rect x="-11" y="-15" width="28" height="15" rx="2" class="ink-burgundy" />
+      <line x1="-11" y1="-5" x2="17" y2="-5" class="paper-white" stroke-width="1.5" />
+    </g>
+
+    
+    <g transform="translate(480, 420)">
+      
+      <path d="M 0,20 C 0,5 -15,0 -25,10 C -30,15 -28,25 -20,25 C -10,25 -5,35 -5,45 C -5,55 -15,60 -25,55 C -35,50 -40,35 -40,15 C -40,-10 -15,-20 5,-25 L 5,-10 C -5,-8 -10,0 -10,10 L 0,10 Z" class="ink-burgundy" opacity="0.8" />
+      
+      
+      <line x1="20" y1="-10" x2="180" y2="-10" class="ink-charcoal line-medium" />
+      <line x1="20" y1="10" x2="240" y2="10" class="ink-charcoal line-medium" />
+      <line x1="20" y1="30" x2="140" y2="30" class="ink-charcoal line-medium" />
+
+      
+      <line x1="20" y1="45" x2="220" y2="45" class="hatch" />
+      <line x1="20" y1="53" x2="190" y2="53" class="hatch" />
+    </g>
+
+    
+    <g opacity="0.3" class="ink-charcoal">
+      
+      <path d="M 120,100 L 140,100 M 120,100 L 120,120" class="line-medium" />
+      <path d="M 1080,100 L 1060,100 M 1080,100 L 1080,120" class="line-medium" />
+      <path d="M 120,575 L 140,575 M 120,575 L 120,555" class="line-medium" />
+      <path d="M 1080,575 L 1060,575 M 1080,575 L 1080,555" class="line-medium" />
+      
+      
+      <line x1="160" y1="100" x2="1040" y2="100" stroke-width="0.75" />
+      <line x1="160" y1="575" x2="1040" y2="575" stroke-width="0.75" />
+    </g>
+
+    
+    <ellipse cx="400" cy="470" rx="120" ry="15" class="stone-grey" opacity="0.4" />
+    <ellipse cx="840" cy="460" rx="90" ry="12" class="stone-grey" opacity="0.4" />
+
+  </g>
+</svg>
