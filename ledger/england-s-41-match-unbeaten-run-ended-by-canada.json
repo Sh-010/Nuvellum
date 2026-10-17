@@ -1,0 +1,74 @@
+{
+  "slug": "england-s-41-match-unbeaten-run-ended-by-canada",
+  "url": "https://www.nuvellum.news/article/england-s-41-match-unbeaten-run-ended-by-canada",
+  "title": "England's 41-match unbeaten run ended by Canada",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T06:03:40.867Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T06:03:40.867Z",
+      "remoteId": "158",
+      "remoteUrl": "https://t.me/nuvellum/158",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T06:03:40.867Z",
+      "remoteId": "1277147205491143_122109852681497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122109852681497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    },
+    "threads": {
+      "containerId": "17950561815321818",
+      "containerCreatedAt": "2026-10-17T06:04:06.481Z",
+      "updatedAt": "2026-10-17T06:03:40.867Z",
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T06:03:40.867Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T06:03:40.867Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
