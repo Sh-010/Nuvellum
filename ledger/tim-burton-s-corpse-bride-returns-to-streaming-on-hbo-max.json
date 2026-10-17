@@ -1,0 +1,74 @@
+{
+  "slug": "tim-burton-s-corpse-bride-returns-to-streaming-on-hbo-max",
+  "url": "https://www.nuvellum.news/article/tim-burton-s-corpse-bride-returns-to-streaming-on-hbo-max",
+  "title": "Tim Burton's Corpse Bride returns to streaming on HBO Max",
+  "risk": "low",
+  "firstSeenAt": "2026-10-17T20:42:35.897Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T20:42:35.897Z",
+      "remoteId": "169",
+      "remoteUrl": "https://t.me/nuvellum/169",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    },
+    "threads": {
+      "containerId": "17950684974321818",
+      "containerCreatedAt": "2026-10-17T20:42:44.396Z",
+      "updatedAt": "2026-10-17T20:42:35.897Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-17T20:42:35.897Z",
+      "remoteId": "18124715329908051",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-17T20:42:35.897Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-17T20:42:35.897Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
