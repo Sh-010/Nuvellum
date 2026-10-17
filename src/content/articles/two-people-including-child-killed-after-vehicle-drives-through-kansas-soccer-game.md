@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T23:10:40.584Z"
 readingTime: "1 min"
-image: "/generated/ai/two-people-including-child-killed-after-vehicle-drives-through-kansas-soccer-game.svg"
-imageAlt: "AI-generated editorial illustration for Two people, including child, killed after vehicle drives through Kansas soccer game"
 status: "published"
 tags: ["crime","kansas","police"]
 regions: ["north-america"]
