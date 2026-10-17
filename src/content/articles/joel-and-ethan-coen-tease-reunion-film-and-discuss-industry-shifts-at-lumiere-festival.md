@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T13:00:48.596Z"
 readingTime: "2 min"
-image: "/generated/ai/joel-and-ethan-coen-tease-reunion-film-and-discuss-industry-shifts-at-lumiere-festival.svg"
-imageAlt: "AI-generated editorial illustration for Joel and Ethan Coen tease reunion film and discuss industry shifts at Lumière Festival"
 status: "published"
 tags: ["Joel Coen","Ethan Coen","Lumiere Festival","streaming","studio consolidation"]
 regions: ["europe-central-asia","north-america"]
