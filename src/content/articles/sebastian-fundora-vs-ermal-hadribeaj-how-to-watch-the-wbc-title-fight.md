@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T21:00:41.369Z"
 readingTime: "2 min"
-image: "/generated/ai/sebastian-fundora-vs-ermal-hadribeaj-how-to-watch-the-wbc-title-fight.svg"
-imageAlt: "AI-generated editorial illustration for Sebastian Fundora vs. Ermal Hadribeaj: how to watch the WBC title fight"
 status: "published"
 tags: ["boxing","Sebastian Fundora","Ermal Hadribeaj","WBC","Las Vegas"]
 regions: ["north-america"]
