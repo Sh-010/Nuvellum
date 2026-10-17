@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T07:00:41.370Z"
 readingTime: "2 min"
-image: "/generated/ai/oregon-teacher-fought-school-attacker-before-armed-dad-shot-suspect-multiple-times.svg"
-imageAlt: "AI-generated editorial illustration for Oregon teacher fought school attacker before armed dad shot suspect 'multiple times'"
 status: "published"
 tags: ["school shooting","Oregon","Bend","gun violence"]
 regions: ["north-america"]
