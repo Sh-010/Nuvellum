@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T21:11:09.828Z"
 readingTime: "1 min"
-image: "/generated/ai/street-fighter-star-orville-peck-tried-to-orchestrate-kylie-minogue-cameo.svg"
-imageAlt: "AI-generated editorial illustration for ‘Street Fighter’ star Orville Peck tried to orchestrate Kylie Minogue cameo"
 status: "published"
 tags: ["Street Fighter","Orville Peck","Kylie Minogue","Mel Jarnson"]
 regions: []
