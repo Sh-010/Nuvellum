@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T19:21:08.636Z"
 readingTime: "2 min"
-image: "/generated/ai/alberta-votes-on-first-step-toward-separation-referendum.svg"
-imageAlt: "AI-generated editorial illustration for Alberta votes on first step toward separation referendum"
 status: "published"
 tags: ["alberta","canada","separatism","oil","referendum"]
 regions: ["north-america"]
