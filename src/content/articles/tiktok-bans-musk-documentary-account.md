@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T19:40:45.495Z"
 readingTime: "1 min"
-image: "/generated/ai/tiktok-bans-musk-documentary-account.svg"
-imageAlt: "AI-generated editorial illustration for TikTok bans Musk documentary account"
 status: "published"
 tags: ["TikTok","Elon Musk","Alex Gibney","Bleecker Street"]
 regions: []
