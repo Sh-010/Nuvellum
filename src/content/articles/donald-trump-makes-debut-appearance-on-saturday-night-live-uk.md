@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T21:30:41.605Z"
 readingTime: "1 min"
-image: "/generated/ai/donald-trump-makes-debut-appearance-on-saturday-night-live-uk.svg"
-imageAlt: "AI-generated editorial illustration for Donald Trump makes debut appearance on 'Saturday Night Live UK'"
 status: "published"
 tags: ["Saturday Night Live UK","Donald Trump","James Austin Johnson","Sky"]
 regions: ["europe-central-asia","north-america"]
