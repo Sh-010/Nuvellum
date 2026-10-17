@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T18:40:49.378Z"
 readingTime: "2 min"
-image: "/generated/ai/seven-try-connacht-beat-saracens-in-champions-cup.svg"
-imageAlt: "AI-generated editorial illustration for Seven-try Connacht beat Saracens in Champions Cup"
 status: "published"
 tags: ["rugby union","Champions Cup","Connacht","Saracens"]
 regions: ["europe-central-asia"]
