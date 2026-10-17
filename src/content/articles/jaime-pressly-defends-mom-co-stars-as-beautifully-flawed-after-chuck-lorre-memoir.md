@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-17"
 publishedAt: "2026-10-17T23:50:45.137Z"
 readingTime: "2 min"
-image: "/generated/ai/jaime-pressly-defends-mom-co-stars-as-beautifully-flawed-after-chuck-lorre-memoir.svg"
-imageAlt: "AI-generated editorial illustration for Jaime Pressly defends 'Mom' co-stars as 'Beautifully Flawed' after Chuck Lorre memoir"
 status: "published"
 tags: ["Jaime Pressly","Anna Faris","Chuck Lorre","Mom","Television"]
 regions: ["north-america"]
