@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T10:10:48.291Z"
 readingTime: "2 min"
-image: "/generated/ai/shakespeare-was-a-black-woman-exhibition-explores-the-playwrights-connection-to-black-cult.svg"
-imageAlt: "AI-generated editorial illustration for ‘Shakespeare was a Black woman’: exhibition explores the playwright’s connection to Black culture"
 status: "published"
 tags: ["Shakespeare","exhibition","Black women","Folger Shakespeare Library","Maya Angelou","Toni Morrison"]
 regions: ["north-america"]
