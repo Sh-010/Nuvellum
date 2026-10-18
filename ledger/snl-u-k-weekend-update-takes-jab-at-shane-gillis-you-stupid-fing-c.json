@@ -1,0 +1,74 @@
+{
+  "slug": "snl-u-k-weekend-update-takes-jab-at-shane-gillis-you-stupid-fing-c",
+  "url": "https://www.nuvellum.news/article/snl-u-k-weekend-update-takes-jab-at-shane-gillis-you-stupid-fing-c",
+  "title": "‘SNL U.K.’ weekend Update takes jab at Shane Gillis: ‘You Stupid F—ing C—’",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T09:32:41.374Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T09:32:41.374Z",
+      "remoteId": "181",
+      "remoteUrl": "https://t.me/nuvellum/181",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    },
+    "threads": {
+      "containerId": "17950776264321818",
+      "containerCreatedAt": "2026-10-18T09:32:50.717Z",
+      "updatedAt": "2026-10-18T09:32:41.374Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T09:32:41.374Z",
+      "remoteId": "18416612359084583",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T09:32:41.374Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T09:32:41.374Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
