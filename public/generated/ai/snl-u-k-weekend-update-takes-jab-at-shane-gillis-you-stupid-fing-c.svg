@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paper-bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#f7f2ea" />
+      <stop offset="60%" stop-color="#efe8db" />
+      <stop offset="100%" stop-color="#e5dccb" />
+    </radialGradient>
+    
+    <pattern id="hatch-fine" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.8" stroke-opacity="0.18" />
+    </pattern>
+
+    <pattern id="hatch-dense" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#661227" stroke-width="1" stroke-opacity="0.25" />
+    </pattern>
+
+    <filter id="subtle-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#2a221c" flood-opacity="0.12" />
+    </filter>
+    <filter id="print-press" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" />
+      <feComposite in="SourceGraphic" in2="nit" operator="in" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paper-bg)" />
+  
+  
+  <g stroke="#2a221c" stroke-width="1" stroke-opacity="0.15" fill="none">
+    <rect x="50" y="40" width="1100" height="595" />
+    <rect x="58" y="48" width="1084" height="579" />
+  </g>
+
+  
+  <g transform="translate(0, 0)">
+    
+    
+    <path d="M 360,130 L 840,130 L 840,490 L 360,490 Z" fill="#e8dfd0" stroke="#2a221c" stroke-width="3" filter="url(#subtle-shadow)" />
+    <path d="M 390,160 L 810,160 L 810,460 L 390,460 Z" fill="#efe8db" stroke="#2a221c" stroke-width="1.5" />
+
+    
+    <rect x="440" y="190" width="320" height="200" fill="#2a221c" opacity="0.92" />
+    <rect x="455" y="205" width="290" height="170" fill="#f3ecdf" />
+    
+    
+    <rect x="455" y="205" width="290" height="170" fill="url(#hatch-fine)" />
+    
+    
+    <path d="M 550,330 C 550,290 570,265 600,265 C 630,265 650,290 650,330 L 650,365 C 650,365 550,365 550,365 Z" fill="#2a221c" opacity="0.85" />
+    <circle cx="600" cy="245" r="32" fill="#2a221c" opacity="0.85" />
+    
+    <rect x="594" y="210" width="12" height="50" rx="6" fill="none" stroke="#661227" stroke-width="3" />
+    <line x1="600" y1="260" x2="600" y2="380" stroke="#661227" stroke-width="3" />
+
+    
+    <path d="M 300,480 L 900,480 L 940,560 L 260,560 Z" fill="#661227" stroke="#2a221c" stroke-width="3" filter="url(#subtle-shadow)" />
+    
+    
+    <path d="M 320,495 L 880,495" stroke="#efe8db" stroke-width="1.5" opacity="0.4" />
+    <path d="M 285,535 L 915,535" stroke="#efe8db" stroke-width="1.5" opacity="0.4" />
+    
+    
+    <g transform="translate(0, 10)">
+      
+      <line x1="380" y1="480" x2="380" y2="420" stroke="#2a221c" stroke-width="4" />
+      <circle cx="380" cy="410" r="14" fill="none" stroke="#2a221c" stroke-width="3" />
+      <path d="M 373,410 C 373,405 387,405 387,410" fill="#661227" />
+
+      
+      <line x1="820" y1="480" x2="820" y2="420" stroke="#2a221c" stroke-width="4" />
+      <circle cx="820" cy="410" r="14" fill="none" stroke="#2a221c" stroke-width="3" />
+      <path d="M 813,410 C 813,405 827,405 827,410" fill="#661227" />
+    </g>
+
+    
+    
+    <g stroke="#661227" stroke-width="3" stroke-linecap="round">
+      <line x1="180" y1="250" x2="240" y2="250" />
+      <line x1="160" y1="280" x2="260" y2="280" />
+      <line x1="200" y1="310" x2="280" y2="310" />
+      <line x1="170" y1="340" x2="230" y2="340" />
+
+      <line x1="960" y1="250" x2="1020" y2="250" />
+      <line x1="940" y1="280" x2="1040" y2="280" />
+      <line x1="920" y1="310" x2="1000" y2="310" />
+      <line x1="970" y1="340" x2="1030" y2="340" />
+    </g>
+
+    
+    <g transform="translate(510, 310)" filter="url(#subtle-shadow)">
+      <rect x="-10" y="-15" width="200" height="40" fill="#661227" stroke="#2a221c" stroke-width="2" />
+      <line x1="5" y1="5" x2="185" y2="5" stroke="#efe8db" stroke-width="2" stroke-dasharray="6,4" />
+    </g>
+
+    
+    <path d="M 50,80 L 50,50 L 80,50" fill="none" stroke="#661227" stroke-width="4" />
+    <path d="M 1150,80 L 1150,50 L 1120,50" fill="none" stroke="#661227" stroke-width="4" />
+    <path d="M 50,595 L 50,625 L 80,625" fill="none" stroke="#661227" stroke-width="4" />
+    <path d="M 1150,595 L 1150,625 L 1120,625" fill="none" stroke="#661227" stroke-width="4" />
+
+    
+    <ellipse cx="600" cy="575" rx="360" ry="18" fill="#2a221c" opacity="0.18" />
+  </g>
+</svg>
