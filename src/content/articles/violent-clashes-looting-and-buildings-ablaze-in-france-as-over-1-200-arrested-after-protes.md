@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T06:00:48.102Z"
 readingTime: "2 min"
-image: "/generated/ai/violent-clashes-looting-and-buildings-ablaze-in-france-as-over-1-200-arrested-after-protes.svg"
-imageAlt: "AI-generated editorial illustration for Violent clashes, looting and buildings ablaze in France as over 1,200 arrested after protests"
 status: "published"
 tags: ["protests","clashes","france","cost of living"]
 regions: ["europe-central-asia"]
