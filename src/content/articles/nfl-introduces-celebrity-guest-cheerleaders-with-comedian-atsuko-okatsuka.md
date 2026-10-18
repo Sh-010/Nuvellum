@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T13:20:44.522Z"
 readingTime: "2 min"
-image: "/generated/ai/nfl-introduces-celebrity-guest-cheerleaders-with-comedian-atsuko-okatsuka.svg"
-imageAlt: "AI-generated editorial illustration for NFL introduces celebrity guest cheerleaders with comedian Atsuko Okatsuka"
 status: "published"
 tags: ["NFL","Atsuko Okatsuka","Los Angeles Rams","cheerleaders","comedy"]
 regions: ["north-america"]
