@@ -18,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/paris-streets-show-burnt-out-cars-and-shattered-glass-after-protests-turn-to-riots-and-loo.jpg"
+imageAlt: "Paris , Oct 17 Paris riots, 17 October 2026 Protester in rainbow wig JJxFile 0000.jpg 01"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Paris , Oct 17 Paris riots, 17 October 2026 Protester in rainbow wig JJxFile 0000.jpg 01"
+imageCredit: "Jorge Jaramillo"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Paris_,_Oct_17_Paris_riots,_17_October_2026_-_Protester_in_rainbow_wig_-_JJxFile_0000.jpg_01.jpg"
 ---
 France awoke to widespread damage on Sunday following a day of riots and demonstrations that left shopfronts shattered, burnt-out cars, charred bikes, and debris on the pavements of Paris.
 
