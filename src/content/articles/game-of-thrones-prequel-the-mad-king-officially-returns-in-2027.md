@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T00:50:44.302Z"
 readingTime: "1 min"
-image: "/generated/ai/game-of-thrones-prequel-the-mad-king-officially-returns-in-2027.svg"
-imageAlt: "AI-generated editorial illustration for Game of Thrones prequel The Mad King officially returns in 2027"
 status: "published"
 tags: ["Game of Thrones","theatre","Royal Shakespeare Company","George R.R. Martin"]
 regions: ["europe-central-asia"]
