@@ -1,0 +1,74 @@
+{
+  "slug": "game-of-thrones-prequel-the-mad-king-officially-returns-in-2027",
+  "url": "https://www.nuvellum.news/article/game-of-thrones-prequel-the-mad-king-officially-returns-in-2027",
+  "title": "Game of Thrones prequel The Mad King officially returns in 2027",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T01:43:54.030Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T01:43:54.030Z",
+      "remoteId": "175",
+      "remoteUrl": "https://t.me/nuvellum/175",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    },
+    "threads": {
+      "containerId": "17950717245321818",
+      "containerCreatedAt": "2026-10-18T01:44:00.609Z",
+      "updatedAt": "2026-10-18T01:43:54.030Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T01:43:54.030Z",
+      "remoteId": "18099481199410704",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T01:43:54.030Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T01:43:54.030Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
