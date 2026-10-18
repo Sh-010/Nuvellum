@@ -1,0 +1,74 @@
+{
+  "slug": "ryan-gosling-s-zero-g-stunts-and-visual-effects-on-project-hail-mary-explained-by-supervis",
+  "url": "https://www.nuvellum.news/article/ryan-gosling-s-zero-g-stunts-and-visual-effects-on-project-hail-mary-explained-by-supervis",
+  "title": "Ryan Gosling's zero-g stunts and visual effects on 'Project Hail Mary' explained by supervisors",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T22:38:31.995Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T22:38:31.995Z",
+      "remoteId": "190",
+      "remoteUrl": "https://t.me/nuvellum/190",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    },
+    "threads": {
+      "containerId": "17950888041321818",
+      "containerCreatedAt": "2026-10-18T22:38:41.148Z",
+      "updatedAt": "2026-10-18T22:38:31.995Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T22:38:31.995Z",
+      "remoteId": "18151064608539586",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T22:38:31.995Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T22:38:31.995Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
