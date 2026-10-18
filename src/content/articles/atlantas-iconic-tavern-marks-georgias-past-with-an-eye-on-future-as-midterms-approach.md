@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T11:20:43.688Z"
 readingTime: "2 min"
-image: "/generated/ai/atlantas-iconic-tavern-marks-georgias-past-with-an-eye-on-future-as-midterms-approach.svg"
-imageAlt: "AI-generated editorial illustration for Atlanta’s iconic tavern marks Georgia’s past with an eye on future as midterms approach"
 status: "published"
 tags: ["midterms","Atlanta","elections","Jon Ossoff","Manuel's Tavern"]
 regions: ["north-america"]
