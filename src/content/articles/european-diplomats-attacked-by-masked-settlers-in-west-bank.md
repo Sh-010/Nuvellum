@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T12:21:10.678Z"
 readingTime: "2 min"
-image: "/generated/ai/european-diplomats-attacked-by-masked-settlers-in-west-bank.svg"
-imageAlt: "AI-generated editorial illustration for European diplomats attacked by masked settlers in West Bank"
 status: "published"
 tags: ["West Bank","diplomats","settler violence","Israel","Palestine"]
 regions: ["middle-east-north-africa","europe-central-asia"]
