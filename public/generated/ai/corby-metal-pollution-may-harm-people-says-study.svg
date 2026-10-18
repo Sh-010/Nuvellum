@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <pattern id="paper-grain" width="100" height="100" patternUnits="userSpaceOnUse">
+      <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0.93  0 0 0 0 0.91  0 0 0 0 0.86  0 0 0 0.08 0" in="noiseOut" result="coloredNoise"/>
+      </filter>
+      <rect width="100" height="100" filter="url(#noise)" opacity="0.6"/>
+    </pattern>
+
+    
+    <pattern id="hatch-soil" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#2a221c" stroke-width="0.8" opacity="0.35"/>
+    </pattern>
+    <pattern id="hatch-deep" width="6" height="6" patternTransform="rotate(135 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="1.2" opacity="0.4"/>
+    </pattern>
+    <pattern id="hatch-water" width="12" height="12" patternTransform="rotate(0 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="3" x2="12" y2="3" stroke="#4a5c66" stroke-width="0.7" opacity="0.3"/>
+      <line x1="0" y1="9" x2="12" y2="9" stroke="#4a5c66" stroke-width="0.4" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf"/>
+  <rect width="1200" height="675" fill="url(#paper-grain)"/>
+
+  
+  <rect x="36" y="36" width="1128" height="603" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.25"/>
+  <rect x="42" y="42" width="1116" height="591" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.15"/>
+
+  
+  <g opacity="0.7">
+    
+    <path d="M 80 440 Q 250 410 400 435 T 720 420 Q 950 390 1120 430 L 1120 540 L 80 540 Z" fill="#e5dbcc" stroke="#2a221c" stroke-width="1"/>
+    
+    
+    <path d="M 850 425 L 870 330 L 880 330 L 900 425 Z" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.5"/>
+    <line x1="858" y1="390" x2="892" y2="390" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    <line x1="863" y1="365" x2="887" y2="365" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    <line x1="867" y1="345" x2="883" y2="345" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    
+    <path d="M 940 430 L 965 310 L 975 310 L 1000 430 Z" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.4"/>
+    <line x1="948" y1="390" x2="992" y2="390" stroke="#2a221c" stroke-width="1" opacity="0.4"/>
+    <line x1="954" y1="355" x2="986" y2="355" stroke="#2a221c" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  
+  
+  <g id="strata-section">
+    
+    <path d="M 120 440 C 300 420 600 430 1080 430 L 1080 470 C 600 470 300 460 120 480 Z" fill="url(#hatch-soil)" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <path d="M 120 480 C 300 460 600 470 1080 470 L 1080 540 C 600 550 300 540 120 530 Z" fill="#dfd3c3" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M 120 495 Q 350 515 650 500 T 1080 515" fill="none" stroke="#2a221c" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.6"/>
+
+    
+    <path d="M 120 530 C 300 540 600 550 1080 540 L 1080 590 C 600 600 300 590 120 580 Z" fill="#2a221c" opacity="0.1" stroke="#2a221c" stroke-width="1.5"/>
+  </g>
+
+  
+  <g id="freshwater-stream">
+    
+    <path d="M 520 435 Q 560 480 620 485 Q 680 480 720 435 Z" fill="#d2c5b4" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <path d="M 535 450 Q 565 472 620 475 Q 675 472 705 450 Z" fill="url(#hatch-water)" stroke="#2a221c" stroke-width="1.2"/>
+    
+    
+    <path d="M 550 458 Q 585 468 620 469 Q 655 468 690 458" fill="none" stroke="#4a5c66" stroke-width="1" opacity="0.7"/>
+    <path d="M 565 464 Q 590 471 620 472 Q 650 471 675 464" fill="none" stroke="#4a5c66" stroke-width="0.8" opacity="0.6"/>
+  </g>
+
+  
+  <g id="scientific-indicators">
+    
+    <line x1="340" y1="180" x2="340" y2="590" stroke="#661227" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.8"/>
+    
+    
+    <path d="M 325 180 L 355 180 L 345 165 L 335 165 Z" fill="#661227" opacity="0.9"/>
+    <line x1="340" y1="165" x2="340" y2="140" stroke="#661227" stroke-width="2"/>
+    <circle cx="340" cy="135" r="5" fill="none" stroke="#661227" stroke-width="2"/>
+
+    
+    <g stroke="#2a221c" stroke-width="1">
+      <line x1="332" y1="230" x2="348" y2="230"/>
+      <line x1="336" y1="280" x2="344" y2="280"/>
+      <line x1="332" y1="330" x2="348" y2="330"/>
+      <line x1="336" y1="380" x2="344" y2="380"/>
+      <line x1="332" y1="430" x2="348" y2="430"/>
+      <line x1="332" y1="480" x2="348" y2="480"/>
+      <line x1="336" y1="530" x2="344" y2="530"/>
+      <line x1="332" y1="580" x2="348" y2="580"/>
+    </g>
+
+    
+    <g transform="translate(390, 240)">
+      <rect x="0" y="0" width="24" height="320" fill="#efe8db" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <line x1="0" y1="60" x2="24" y2="60" stroke="#2a221c" stroke-width="1"/>
+      <line x1="0" y1="140" x2="24" y2="140" stroke="#2a221c" stroke-width="1"/>
+      <line x1="0" y1="240" x2="24" y2="240" stroke="#2a221c" stroke-width="1"/>
+      
+      
+      <rect x="2" y="65" width="20" height="40" fill="url(#hatch-deep)" stroke="#661227" stroke-width="1"/>
+      <rect x="2" y="150" width="20" height="30" fill="url(#hatch-deep)" stroke="#661227" stroke-width="1"/>
+      
+      
+      <path d="M -6 10 L 0 10 L 0 50 L -6 50" fill="none" stroke="#2a221c" stroke-width="2"/>
+      <path d="M -6 310 L 0 310 L 0 270 L -6 270" fill="none" stroke="#2a221c" stroke-width="2"/>
+    </g>
+
+    
+    <g id="data-points">
+      
+      <circle cx="340" cy="455" r="7" fill="#661227" opacity="0.85"/>
+      <circle cx="340" cy="455" r="14" fill="none" stroke="#661227" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <path d="M 347 455 L 430 455" stroke="#661227" stroke-width="1"/>
+      
+      
+      <circle cx="620" cy="470" r="7" fill="#661227" opacity="0.85"/>
+      <circle cx="620" cy="470" r="14" fill="none" stroke="#661227" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <path d="M 627 470 L 690 410 L 760 410" stroke="#661227" stroke-width="1"/>
+      <circle cx="760" cy="410" r="3" fill="#661227"/>
+
+      
+      <circle cx="820" cy="510" r="7" fill="#661227" opacity="0.85"/>
+      <circle cx="820" cy="510" r="14" fill="none" stroke="#661227" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <path d="M 827 510 L 910 510 L 950 470" stroke="#661227" stroke-width="1"/>
+      <circle cx="950" cy="470" r="3" fill="#661227"/>
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="0.5" opacity="0.3">
+      <line x1="120" y1="430" x2="1080" y2="430" stroke-dasharray="3,3"/>
+      <line x1="120" y1="540" x2="1080" y2="540" stroke-dasharray="3,3"/>
+      
+      
+      <line x1="520" y1="180" x2="520" y2="610" stroke-dasharray="2,4"/>
+      <line x1="720" y1="180" x2="720" y2="610" stroke-dasharray="2,4"/>
+    </g>
+  </g>
+
+  
+  <g id="botanical-indicators" opacity="0.85">
+    
+    <path d="M 505 450 Q 500 390 480 340 M 510 450 Q 508 400 495 360 M 515 450 Q 520 380 525 330 M 518 450 Q 528 410 540 370" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    <ellipse cx="480" cy="340" rx="2" ry="8" fill="#2a221c"/>
+    <ellipse cx="495" cy="360" rx="1.5" ry="6" fill="#2a221c"/>
+    <ellipse cx="525" cy="330" rx="2" ry="9" fill="#2a221c"/>
+
+    
+    <path d="M 735 450 Q 740 390 760 350 M 730 450 Q 732 410 745 370 M 725 450 Q 720 385 710 340" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+    <ellipse cx="760" cy="350" rx="2" ry="7" fill="#2a221c"/>
+    <ellipse cx="710" cy="340" rx="2" ry="8" fill="#2a221c"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.6">
+    
+    <line x1="55" y1="65" x2="85" y2="65"/>
+    <line x1="65" y1="55" x2="65" y2="85"/>
+    
+    
+    <line x1="1115" y1="65" x2="1145" y2="65"/>
+    <line x1="1135" y1="55" x2="1135" y2="85"/>
+
+    
+    <line x1="55" y1="610" x2="85" y2="610"/>
+    <line x1="65" y1="595" x2="65" y2="625"/>
+
+    
+    <line x1="1115" y1="610" x2="1145" y2="610"/>
+    <line x1="1135" y1="595" x2="1135" y2="625"/>
+  </g>
+
+  
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="60%" stop-color="#2a221c" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#2a221c" stop-opacity="0.12"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#vignette)" pointer-events="none"/>
+</svg>
