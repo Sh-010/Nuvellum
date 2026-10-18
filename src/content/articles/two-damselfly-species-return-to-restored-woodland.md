@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T05:20:43.049Z"
 readingTime: "2 min"
-image: "/generated/ai/two-damselfly-species-return-to-restored-woodland.svg"
-imageAlt: "AI-generated editorial illustration for Two damselfly species return to restored woodland"
 status: "published"
 tags: ["nature","wildlife","conservation","woodland"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/two-damselfly-species-return-to-restored-woodland.jpg"
+imageAlt: "Wildlife Conservation Area at Gronant Dunes SSSI"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Wildlife Conservation Area at Gronant Dunes SSSI"
+imageCredit: "Jeff Buck"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Wildlife_Conservation_Area_at_Gronant_Dunes_SSSI_-_geograph.org.uk_-_3353271.jpg"
 ---
 Two species of damselfly have been recorded for the first time in a woodland following the completion of a three-year project to restore habitats across seven nature reserves, according to the Herts & Middlesex Wildlife Trust.
 
