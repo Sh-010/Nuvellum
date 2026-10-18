@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T01:00:45.309Z"
 readingTime: "1 min"
-image: "/generated/ai/no-kings-rallies-push-early-voting-ahead-of-us-midterm-elections.svg"
-imageAlt: "AI-generated editorial illustration for 'No Kings' rallies push early voting ahead of US midterm elections"
 status: "published"
 tags: ["midterm elections","protests","early voting","united states"]
 regions: ["north-america"]
