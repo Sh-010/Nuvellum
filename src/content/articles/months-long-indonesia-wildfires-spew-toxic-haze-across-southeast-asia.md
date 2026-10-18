@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T06:40:43.712Z"
 readingTime: "2 min"
-image: "/generated/ai/months-long-indonesia-wildfires-spew-toxic-haze-across-southeast-asia.svg"
-imageAlt: "AI-generated editorial illustration for Months-long Indonesia wildfires spew toxic haze across Southeast Asia"
 status: "published"
 tags: ["Indonesia","wildfires","Pollution","Malaysia","Singapore"]
 regions: ["southeast-asia-oceania"]
