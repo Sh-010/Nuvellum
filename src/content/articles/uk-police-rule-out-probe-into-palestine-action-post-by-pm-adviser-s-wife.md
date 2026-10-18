@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T05:00:40.643Z"
 readingTime: "2 min"
-image: "/generated/ai/uk-police-rule-out-probe-into-palestine-action-post-by-pm-adviser-s-wife.svg"
-imageAlt: "AI-generated editorial illustration for UK police rule out probe into Palestine Action post by PM adviser's wife"
 status: "published"
 tags: ["UK","Police","Palestine Action","Sarah Helm"]
 regions: ["europe-central-asia"]
