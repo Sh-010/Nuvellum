@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T04:50:43.573Z"
 readingTime: "1 min"
-image: "/generated/ai/nasa-features-sonified-view-of-the-eagle-nebula-pillars.svg"
-imageAlt: "AI-generated editorial illustration for NASA features sonified view of the Eagle Nebula pillars"
 status: "published"
 tags: ["astronomy","space","nebula","nasa","hubble"]
 regions: []
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/nasa-features-sonified-view-of-the-eagle-nebula-pillars.jpg"
+imageAlt: "Comets Kick up Dust in Helix Nebula (PIA09178)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Comets Kick up Dust in Helix Nebula (PIA09178)"
+imageCredit: "NASA/JPL-Caltech/Univ. of Ariz."
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Comets_Kick_up_Dust_in_Helix_Nebula_(PIA09178).jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Comets_Kick_up_Dust_in_Helix_Nebula_(PIA09178).jpg"
 ---
 ## Experience the Eagle Nebula with sound
 
