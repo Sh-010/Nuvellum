@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="mix" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="mix" />
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  
+  
+  <g filter="url(#paper-grain)">
+    
+    <path d="M -100 250 Q 600 50 1300 150 L 1300 675 L -100 675 Z" fill="#e6decb" opacity="0.6" />
+    <path d="M -100 320 Q 600 120 1300 220" stroke="#d5ccb8" stroke-width="3" fill="none" />
+    <path d="M -100 380 Q 600 180 1300 280" stroke="#d5ccb8" stroke-width="1.5" fill="none" stroke-dasharray="8 8" />
+
+    
+    <g stroke="#d5ccb8" stroke-width="2" opacity="0.5">
+      <line x1="200" y1="675" x2="500" y2="450" />
+      <line x1="400" y1="675" x2="600" y2="450" />
+      <line x1="600" y1="675" x2="700" y2="450" />
+      <line x1="800" y1="675" x2="800" y2="450" />
+      <line x1="1000" y1="675" x2="900" y2="450" />
+      
+      <line x1="480" y1="520" x2="520" y2="510" stroke-width="1.5" />
+      <line x1="580" y1="500" x2="620" y2="490" stroke-width="1.5" />
+      <line x1="680" y1="480" x2="720" y2="470" stroke-width="1.5" />
+    </g>
+
+    
+    <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="2" />
+    <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="0.5" />
+
+    
+    <g transform="translate(920, 180)">
+      
+      <g stroke="#661227" stroke-width="1.5" opacity="0.3">
+        <line x1="0" y1="0" x2="-120" y2="-80" />
+        <line x1="0" y1="0" x2="-140" y2="10" />
+        <line x1="0" y1="0" x2="-100" y2="90" />
+        <line x1="0" y1="0" x2="-20" y2="130" />
+        <line x1="0" y1="0" x2="60" y2="110" />
+        <line x1="0" y1="0" x2="110" y2="40" />
+        <line x1="0" y1="0" x2="90" y2="-50" />
+        <line x1="0" y1="0" x2="20" y2="-110" />
+      </g>
+    </g>
+
+    
+    <g transform="translate(560, 240)">
+      
+      <ellipse cx="20" cy="315" rx="90" ry="18" fill="#2a221c" opacity="0.12" />
+
+      
+      
+      <g transform="translate(-55, 60)">
+        <circle cx="0" cy="0" r="45" fill="#661227" opacity="0.9" />
+        
+        <path d="M-30 -30 Q0 -40 30 -30 M-40 0 Q0 -10 40 0 M-30 30 Q0 20 30 30" stroke="#f3ecdf" stroke-width="2.5" fill="none" />
+        <path d="M-20 -40 Q-10 0 -30 40 M20 -40 Q10 0 30 40" stroke="#f3ecdf" stroke-width="1.5" fill="none" />
+        <circle cx="0" cy="0" r="45" fill="none" stroke="#2a221c" stroke-width="2" />
+      </g>
+
+      
+      <g transform="translate(85, 45)">
+        <circle cx="0" cy="0" r="48" fill="#2a221c" opacity="0.85" />
+        
+        <path d="M-35 -30 Q0 -45 35 -30 M-45 0 Q0 -15 45 0 M-35 30 Q0 15 35 30" stroke="#f3ecdf" stroke-width="2.5" fill="none" />
+        <path d="M-25 -45 Q-5 0 -35 45 M25 -45 Q5 0 35 45" stroke="#f3ecdf" stroke-width="1.5" fill="none" />
+        <circle cx="0" cy="0" r="48" fill="none" stroke="#2a221c" stroke-width="2" />
+      </g>
+
+      
+      
+      <g stroke="#2a221c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        
+        <path d="M 5 210 L -15 260 L -35 305" />
+        
+        <path d="M 5 210 L 30 255 L 45 300" />
+      </g>
+
+      
+      <path d="M -20 110 L 30 110 L 25 210 L -15 210 Z" fill="#2a221c" />
+      
+      <path d="M -10 110 L 20 210" stroke="#661227" stroke-width="6" />
+      <path d="M -5 110 L 25 210" stroke="#f3ecdf" stroke-width="2" />
+
+      
+      <g stroke="#2a221c" stroke-width="9" stroke-linecap="round" fill="none">
+        
+        <path d="M -15 120 Q -40 90 -55 60" />
+        
+        <path d="M 20 120 Q 55 80 85 45" />
+      </g>
+
+      
+      <path d="M 0 75 C 18 75 25 60 22 40 C 20 25 5 15 -2 15 C -12 15 -22 25 -20 42 C -18 58 -10 75 0 75 Z" fill="#2a221c" />
+      
+      <path d="M 5 35 Q 12 40 8 50" stroke="#f3ecdf" stroke-width="2" fill="none" />
+    </g>
+
+    
+    <g transform="translate(320, 420) rotate(-15)" opacity="0.85">
+      <path d="M 0 0 L 70 -25 L 70 25 Z" fill="#661227" />
+      <ellipse cx="70" cy="0" rx="6" ry="25" fill="#440b19" />
+      <path d="M 0 0 L 70 -25 L 70 25 Z" fill="none" stroke="#2a221c" stroke-width="2" />
+      <path d="M 0 0 L -20 8" stroke="#2a221c" stroke-width="4" stroke-linecap="round" />
+    </g>
+
+    
+    <g fill="#661227" opacity="0.7">
+      <circle cx="240" cy="180" r="4" />
+      <circle cx="260" cy="165" r="3" />
+      <path d="M 244 180 L 244 150 L 263 145 L 263 165" stroke="#661227" stroke-width="1.5" fill="none" />
+      
+      <circle cx="880" cy="120" r="3.5" />
+      <path d="M 883 120 L 883 95 L 900 90 L 900 115" stroke="#661227" stroke-width="1.5" fill="none" />
+    </g>
+
+    
+    <g stroke="#2a221c" stroke-width="1" opacity="0.4">
+      
+      <line x1="55" y1="65" x2="95" y2="65" />
+      <line x1="55" y1="70" x2="85" y2="70" />
+      <line x1="55" y1="75" x2="75" y2="75" />
+      <line x1="65" y1="55" x2="65" y2="95" />
+      <line x1="70" y1="55" x2="70" y2="85" />
+      <line x1="75" y1="55" x2="75" y2="75" />
+
+      
+      <line x1="1105" y1="65" x2="1145" y2="65" />
+      <line x1="1115" y1="70" x2="1145" y2="70" />
+      <line x1="1125" y1="75" x2="1145" y2="75" />
+      <line x1="1135" y1="55" x2="1135" y2="95" />
+      <line x1="1130" y1="55" x2="1130" y2="85" />
+      <line x1="1125" y1="55" x2="1125" y2="75" />
+
+      
+      <line x1="55" y1="610" x2="95" y2="610" />
+      <line x1="55" y1="605" x2="85" y2="605" />
+      <line x1="55" y1="600" x2="75" y2="600" />
+      <line x1="65" y1="580" x2="65" y2="620" />
+      <line x1="70" y1="590" x2="70" y2="620" />
+      <line x1="75" y1="600" x2="75" y2="620" />
+
+      
+      <line x1="1105" y1="610" x2="1145" y2="610" />
+      <line x1="1115" y1="605" x2="1145" y2="605" />
+      <line x1="1125" y1="600" x2="1145" y2="600" />
+      <line x1="1135" y1="580" x2="1135" y2="620" />
+      <line x1="1130" y1="590" x2="1130" y2="620" />
+      <line x1="1125" y1="600" x2="1125" y2="620" />
+    </g>
+
+    
+    <line x1="150" y1="570" x2="1050" y2="570" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="4 8" opacity="0.6" />
+    <circle cx="600" cy="570" r="3.5" fill="#661227" />
+
+  </g>
+</svg>
