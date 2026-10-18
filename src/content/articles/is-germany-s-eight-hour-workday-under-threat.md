@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T10:30:40.282Z"
 readingTime: "2 min"
-image: "/generated/ai/is-germany-s-eight-hour-workday-under-threat.svg"
-imageAlt: "AI-generated editorial illustration for Is Germany's eight-hour workday under threat?"
 status: "published"
 tags: ["Germany","labor","workplace","politics"]
 regions: ["europe-central-asia"]
