@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="withNoise" />
+      <feBlend mode="multiply" in="SourceGraphic" in2="withNoise" />
+    </filter>
+
+    
+    <pattern id="hatch-dark" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="1" opacity="0.35" />
+    </pattern>
+    <pattern id="hatch-burgundy" width="6" height="6" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#661227" stroke-width="1.2" opacity="0.4" />
+    </pattern>
+    <pattern id="hatch-stone" width="10" height="10" patternTransform="rotate(60 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#7a7067" stroke-width="0.8" opacity="0.3" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  <rect width="1200" height="675" fill="#efe8db" filter="url(#paper-grain)" opacity="0.7" />
+
+  
+  <rect x="40" y="40" width="1120" height="595" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.8" />
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.4" />
+
+  
+  
+  <g id="studio-background" opacity="0.85">
+    
+    <rect x="120" y="100" width="960" height="420" fill="#e5dbcc" stroke="#2a221c" stroke-width="1" />
+    
+    
+    <line x1="120" y1="420" x2="1080" y2="420" stroke="#2a221c" stroke-width="1.5" />
+    
+    
+    <rect x="160" y="140" width="240" height="240" fill="none" stroke="#2a221c" stroke-width="1" />
+    <rect x="180" y="160" width="200" height="200" fill="none" stroke="#2a221c" stroke-width="0.75" />
+    
+    
+    <path d="M 490,380 L 490,180 A 110,110 0 0,1 710,180 L 710,380 Z" fill="#dfd4c3" stroke="#2a221c" stroke-width="2" />
+    <path d="M 510,380 L 510,185 A 90,90 0 0,1 690,185 L 690,380 Z" fill="#d4c8b6" />
+    
+    <line x1="600" y1="180" x2="600" y2="380" stroke="#2a221c" stroke-width="0.75" opacity="0.5" />
+    <line x1="510" y1="280" x2="690" y2="280" stroke="#2a221c" stroke-width="0.75" opacity="0.5" />
+
+    
+    <rect x="800" y="140" width="240" height="240" fill="none" stroke="#2a221c" stroke-width="1" />
+    <rect x="820" y="160" width="200" height="200" fill="none" stroke="#2a221c" stroke-width="0.75" />
+  </g>
+
+  
+  <polygon points="120,520 1080,520 1140,590 60,590" fill="#dfd4c3" stroke="#2a221c" stroke-width="1.5" />
+  <line x1="600" y1="520" x2="600" y2="590" stroke="#2a221c" stroke-width="1" stroke-dasharray="6,4" />
+
+  
+  
+  <g id="dispatch-desk" transform="translate(420, 440)">
+    
+    <ellipse cx="180" cy="95" rx="140" ry="25" fill="#2a221c" opacity="0.15" />
+    
+    
+    <rect x="80" y="10" width="200" height="75" fill="#661227" stroke="#2a221c" stroke-width="2" />
+    <rect x="70" y="0" width="220" height="15" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    
+    
+    <rect x="130" y="30" width="20" height="35" fill="#d4c8b6" stroke="#2a221c" stroke-width="1" />
+    <rect x="210" y="30" width="20" height="35" fill="#d4c8b6" stroke="#2a221c" stroke-width="1" />
+    <line x1="80" y1="48" x2="280" y2="48" stroke="#2a221c" stroke-width="1" opacity="0.5" />
+
+    
+    <path d="M 120,0 L 120,-35" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <circle cx="120" cy="-42" r="7" fill="#2a221c" />
+    <path d="M 240,0 L 240,-35" stroke="#2a221c" stroke-width="3" stroke-linecap="round" />
+    <circle cx="240" cy="-42" r="7" fill="#2a221c" />
+  </g>
+
+  
+  <rect x="120" y="70" width="960" height="12" fill="#2a221c" />
+  <circle cx="250" cy="76" r="5" fill="#efe8db" />
+  <circle cx="600" cy="76" r="5" fill="#efe8db" />
+  <circle cx="950" cy="76" r="5" fill="#efe8db" />
+  
+  <polygon points="600,76 350,520 850,520" fill="#fffef9" opacity="0.12" />
+
+  
+  
+  <g id="figure-burnham" transform="translate(220, 260)">
+    
+    <ellipse cx="60" cy="270" rx="45" ry="12" fill="#2a221c" opacity="0.2" />
+    
+    
+    <path d="M 30,100 L 90,100 L 110,260 L 10,260 Z" fill="#2a221c" stroke="#2a221c" stroke-width="1.5" />
+    <path d="M 60,100 L 60,250" stroke="#efe8db" stroke-width="1" opacity="0.6" /> 
+    
+    
+    <polygon points="50,100 70,100 60,130" fill="#efe8db" />
+    <polygon points="58,130 62,130 63,190 57,190" fill="#661227" />
+
+    
+    <circle cx="60" cy="65" r="32" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    
+    <path d="M 30,60 Q 40,30 75,40 Q 90,45 85,70" fill="none" stroke="#2a221c" stroke-width="2.5" />
+    <path d="M 40,45 Q 60,35 80,50" fill="none" stroke="#2a221c" stroke-width="1.5" />
+    
+    
+    <path d="M 30,120 Q -10,140 10,180 L 30,160" fill="#2a221c" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  <g id="figure-zelenskyy" transform="translate(340, 280)">
+    
+    <ellipse cx="50" cy="250" rx="35" ry="10" fill="#2a221c" opacity="0.2" />
+
+    
+    <path d="M 20,80 L 80,80 L 95,240 L 5,240 Z" fill="#525c49" stroke="#2a221c" stroke-width="2" />
+    <path d="M 50,80 L 50,230" stroke="#2a221c" stroke-width="1" opacity="0.4" />
+    
+    <line x1="50" y1="80" x2="50" y2="150" stroke="#efe8db" stroke-width="1.5" stroke-dasharray="3,2" />
+
+    
+    <circle cx="50" cy="45" r="28" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+    
+    <path d="M 24,42 Q 50,20 76,42" fill="none" stroke="#2a221c" stroke-width="2.5" />
+    <line x1="40" y1="65" x2="60" y2="65" stroke="#2a221c" stroke-width="1" opacity="0.6" />
+  </g>
+
+  
+  <g id="figure-trump" transform="translate(680, 220)">
+    
+    <ellipse cx="110" cy="310" rx="65" ry="15" fill="#2a221c" opacity="0.25" />
+
+    
+    <path d="M 50,110 L 170,110 L 195,300 L 25,300 Z" fill="#2a221c" stroke="#2a221c" stroke-width="2" />
+    <path d="M 50,110 L 170,110 L 195,300 L 25,300 Z" fill="url(#hatch-dark)" />
+
+    
+    <polygon points="90,110 130,110 110,150" fill="#efe8db" stroke="#2a221c" stroke-width="1" />
+    
+    <polygon points="102,145 118,145 130,290 90,290" fill="#661227" stroke="#2a221c" stroke-width="2" />
+    <polygon points="102,145 118,145 130,290 90,290" fill="url(#hatch-burgundy)" />
+
+    
+    <path d="M 50,110 L 90,180 L 60,250" fill="none" stroke="#efe8db" stroke-width="2" />
+    <path d="M 170,110 L 130,180 L 160,250" fill="none" stroke="#efe8db" stroke-width="2" />
+
+    
+    <g transform="translate(110, 65)">
+      
+      <circle cx="0" cy="0" r="38" fill="#efe8db" stroke="#2a221c" stroke-width="2.5" />
+      
+      
+      <path d="M -42,-10 Q -50,-40 -10,-45 Q 30,-50 45,-20 Q 55,0 40,25 Q 20,35 -5,30" fill="#2a221c" stroke="#2a221c" stroke-width="1.5" />
+      <path d="M -30,-25 Q -10,-42 20,-35 Q 38,-20 32,5" fill="none" stroke="#2a221c" stroke-width="2" />
+      <path d="M -20,-33 Q 5,-40 28,-25" fill="none" stroke="#2a221c" stroke-width="1.5" />
+      
+      
+      <line x1="-15" y1="-8" x2="-5" y2="-12" stroke="#2a221c" stroke-width="2" /> 
+      <line x1="5" y1="-8" x2="15" y2="-12" stroke="#2a221c" stroke-width="2" />  
+      <path d="M -8,15 Q 5,22 18,15" fill="none" stroke="#2a221c" stroke-width="2" stroke-linecap="round" /> 
+    </g>
+
+    
+    <path d="M 170,140 Q 220,130 205,170 Q 195,190 175,180" fill="none" stroke="#2a221c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 170,140 Q 220,130 205,170 Q 195,190 175,180" fill="none" stroke="#efe8db" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    
+    <circle cx="205" cy="170" r="8" fill="#efe8db" stroke="#2a221c" stroke-width="2" />
+  </g>
+
+  
+  
+  <line x1="40" y1="595" x2="1160" y2="595" stroke="#2a221c" stroke-width="2" />
+  
+  
+  <g stroke="#2a221c" stroke-width="1.5" fill="none">
+    
+    <path d="M 40,65 L 65,40" />
+    <path d="M 40,75 L 75,40" />
+    
+    <path d="M 1160,65 L 1135,40" />
+    <path d="M 1160,75 L 1125,40" />
+    
+    <path d="M 40,610 L 65,635" />
+    <path d="M 40,600 L 75,635" />
+    
+    <path d="M 1160,610 L 1135,635" />
+    <path d="M 1160,600 L 1125,635" />
+  </g>
+
+  
+  <g transform="translate(1040, 180)" opacity="0.35">
+    <rect x="0" y="0" width="80" height="60" fill="none" stroke="#2a221c" stroke-width="1" stroke-dasharray="4,2" />
+    <circle cx="40" cy="30" r="20" fill="none" stroke="#661227" stroke-width="1" />
+    <line x1="20" y1="30" x2="60" y2="30" stroke="#2a221c" stroke-width="1" />
+    <line x1="40" y1="10" x2="40" y2="50" stroke="#2a221c" stroke-width="1" />
+  </g>
+</svg>
