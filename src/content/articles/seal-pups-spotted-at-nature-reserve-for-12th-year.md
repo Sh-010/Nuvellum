@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T06:30:47.018Z"
 readingTime: "2 min"
-image: "/generated/ai/seal-pups-spotted-at-nature-reserve-for-12th-year.svg"
-imageAlt: "AI-generated editorial illustration for Seal pups spotted at nature reserve for 12th year"
 status: "published"
 tags: ["conservation","wildlife","nature reserve","seals"]
 regions: ["europe-central-asia"]
@@ -19,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/seal-pups-spotted-at-nature-reserve-for-12th-year.jpg"
+imageAlt: "Wildlife Conservation Area at Gronant Dunes SSSI"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Wildlife Conservation Area at Gronant Dunes SSSI"
+imageCredit: "Jeff Buck"
+imageLicense: "CC BY-SA 2.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Wildlife_Conservation_Area_at_Gronant_Dunes_SSSI_-_geograph.org.uk_-_3353271.jpg"
 ---
 ## Consecutive breeding success at South Walney
 
