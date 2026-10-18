@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T01:41:06.794Z"
 readingTime: "2 min"
-image: "/generated/ai/mark-carney-makes-closing-argument-to-alberta-against-independence-from-canada.svg"
-imageAlt: "AI-generated editorial illustration for Mark Carney makes closing argument to Alberta against independence from Canada"
 status: "published"
 tags: ["Canada","Alberta","Mark Carney","Danielle Smith","independence"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/mark-carney-makes-closing-argument-to-alberta-against-independence-from-canada.jpg"
+imageAlt: "Mark Carney in Calgary after Canada–Alberta energy agreement, May 15 2026"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Mark Carney in Calgary after Canada–Alberta energy agreement, May 15 2026"
+imageCredit: "Jasonhargrove"
+imageLicense: "CC BY 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Mark_Carney_in_Calgary_after_Canada%E2%80%93Alberta_energy_agreement,_May_15_2026.jpg"
 ---
 Canadian Prime Minister Mark Carney made a final appeal to voters in Alberta considering a path toward independence, warning that a referendum is a dangerous gamble amid growing threats to Canada's sovereignty.
 
