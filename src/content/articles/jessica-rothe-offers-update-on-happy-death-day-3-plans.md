@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T13:00:42.971Z"
 readingTime: "1 min"
-image: "/generated/ai/jessica-rothe-offers-update-on-happy-death-day-3-plans.svg"
-imageAlt: "AI-generated editorial illustration for Jessica Rothe offers update on Happy death day 3 plans"
 status: "published"
 tags: ["Jessica Rothe","Happy Death Day 3","Christopher Landon","horror movies"]
 regions: []
