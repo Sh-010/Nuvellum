@@ -1,0 +1,76 @@
+{
+  "slug": "44-years-later-poltergeist-returns-to-streaming-amid-enduring-directorial-debate",
+  "url": "https://www.nuvellum.news/article/44-years-later-poltergeist-returns-to-streaming-amid-enduring-directorial-debate",
+  "title": "44 Years later, 'Poltergeist' returns to streaming amid enduring directorial debate",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T04:23:19.827Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T04:23:19.827Z",
+      "remoteId": "177",
+      "remoteUrl": "https://t.me/nuvellum/177",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    },
+    "threads": {
+      "containerId": "17950738104321818",
+      "containerCreatedAt": "2026-10-18T04:23:29.256Z",
+      "updatedAt": "2026-10-18T04:23:19.827Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T04:23:19.827Z",
+      "remoteId": "18071103443780543",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T04:23:19.827Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T04:23:19.827Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
