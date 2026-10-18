@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paper-vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="100%" stop-color="#e8decb"/>
+    </radialGradient>
+    
+    
+    <pattern id="hatch-burgundy" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#661227" stroke-width="1.2" stroke-opacity="0.25"/>
+    </pattern>
+    <pattern id="hatch-stone" width="6" height="6" patternTransform="rotate(-30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#7a7067" stroke-width="1" stroke-opacity="0.2"/>
+    </pattern>
+    <pattern id="dots-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#2a221c" fill-opacity="0.08"/>
+    </pattern>
+    
+    
+    <filter id="editorial-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#2a221c" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paper-vignette)"/>
+  <rect width="1200" height="675" fill="url(#dots-grid)"/>
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3"/>
+  <line x1="80" y1="615" x2="1120" y2="615" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3"/>
+  <line x1="80" y1="60" x2="80" y2="615" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3"/>
+  <line x1="1120" y1="60" x2="1120" y2="615" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  
+  
+  
+  <g transform="translate(600, 330)">
+    
+    <path d="M-15 180 L15 180 L8 210 L-8 210 Z" fill="#2a221c" opacity="0.8"/>
+    <rect x="-4" y="-80" width="8" height="260" fill="#2a221c" rx="2"/>
+    
+    
+    <circle cx="0" cy="-85" r="12" fill="none" stroke="#2a221c" stroke-width="5"/>
+    <circle cx="0" cy="-85" r="4" fill="#661227"/>
+
+    
+    <circle cx="0" cy="-75" r="14" fill="#e8decb" stroke="#2a221c" stroke-width="4" filter="url(#editorial-shadow)"/>
+    <circle cx="0" cy="-75" r="5" fill="#661227"/>
+
+    
+    
+    <g transform="rotate(-7)">
+      <path d="M-280 -85 L280 -65 L280 -85 L-280 -105 Z" fill="#2a221c" filter="url(#editorial-shadow)"/>
+      <line x1="-280" y1="-95" x2="280" y2="-75" stroke="#e8decb" stroke-width="2" stroke-dasharray="10 6"/>
+
+      
+      <g transform="translate(-280, -75)">
+        
+        <line x1="0" y1="0" x2="-80" y2="180" stroke="#2a221c" stroke-width="2.5"/>
+        <line x1="0" y1="0" x2="80" y2="180" stroke="#2a221c" stroke-width="2.5"/>
+        <line x1="0" y1="0" x2="0" y2="190" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+        
+        <path d="M-100 180 Q0 210 100 180 L85 160 Q0 185 -85 160 Z" fill="#7a7067" stroke="#2a221c" stroke-width="3" filter="url(#editorial-shadow)"/>
+        <ellipse cx="0" cy="170" rx="90" ry="12" fill="#e8decb" stroke="#2a221c" stroke-width="2"/>
+
+        
+        <g transform="translate(0, 110)">
+          
+          <rect x="-45" y="10" width="90" height="60" fill="#fdfbf7" stroke="#2a221c" stroke-width="1.5" rx="2" transform="rotate(-4)" filter="url(#editorial-shadow)"/>
+          <line x1="-30" y1="25" x2="10" y2="25" stroke="#7a7067" stroke-width="2"/>
+          <line x1="-30" y1="38" x2="25" y2="38" stroke="#2a221c" stroke-width="1.5"/>
+          <line x1="-30" y1="50" x2="0" y2="50" stroke="#7a7067" stroke-width="1.5"/>
+
+          
+          <g transform="translate(-35, -25) rotate(-10)">
+            <rect x="-12" y="-30" width="24" height="50" rx="4" fill="#f7f2ea" stroke="#2a221c" stroke-width="2.5"/>
+            <rect x="-12" y="-30" width="24" height="20" fill="url(#hatch-burgundy)" stroke="#2a221c" stroke-width="2"/>
+            <rect x="-8" y="-40" width="16" height="12" rx="2" fill="#2a221c"/>
+            <rect x="-8" y="-15" width="16" height="30" fill="#661227" opacity="0.3"/>
+          </g>
+
+          
+          <g transform="translate(10, -20) rotate(5)">
+            <rect x="-10" y="-25" width="20" height="42" rx="3" fill="#f7f2ea" stroke="#2a221c" stroke-width="2.5"/>
+            <rect x="-10" y="-25" width="20" height="16" fill="url(#hatch-stone)" stroke="#2a221c" stroke-width="2"/>
+            <rect x="-6" y="-32" width="12" height="10" rx="2" fill="#2a221c"/>
+            <rect x="-6" y="-10" width="12" height="24" fill="#7a7067" opacity="0.3"/>
+          </g>
+
+          
+          <g transform="translate(30, 5) rotate(15)">
+            <rect x="-25" y="-10" width="50" height="20" rx="4" fill="#e8decb" stroke="#2a221c" stroke-width="2"/>
+            <circle cx="-15" cy="0" r="5" fill="#f7f2ea" stroke="#2a221c" stroke-width="1.5"/>
+            <circle cx="0" cy="0" r="5" fill="#f7f2ea" stroke="#2a221c" stroke-width="1.5"/>
+            <circle cx="15" cy="0" r="5" fill="#f7f2ea" stroke="#2a221c" stroke-width="1.5"/>
+          </g>
+
+          
+          <path d="M-5 -65 L5 -65 L5 -75 L15 -75 L15 -65 L25 -65 L25 -55 L15 -55 L15 -45 L5 -45 L5 -55 L-5 -55 Z" fill="#661227" opacity="0.8"/>
+        </g>
+      </g>
+
+      
+      <g transform="translate(280, -55)">
+        
+        <line x1="0" y1="0" x2="-80" y2="120" stroke="#2a221c" stroke-width="2.5"/>
+        <line x1="0" y1="0" x2="80" y2="120" stroke="#2a221c" stroke-width="2.5"/>
+        <line x1="0" y1="0" x2="0" y2="130" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+        
+        <path d="M-100 120 Q0 150 100 120 L85 100 Q0 125 -85 100 Z" fill="#7a7067" stroke="#2a221c" stroke-width="3" filter="url(#editorial-shadow)"/>
+        <ellipse cx="0" cy="110" rx="90" ry="12" fill="#e8decb" stroke="#2a221c" stroke-width="2"/>
+
+        
+        <g transform="translate(0, 50)">
+          
+          <path d="M-30 40 Q-35 10 -20 0 Q0 -10 20 0 Q35 10 30 40 Z" fill="#f7f2ea" stroke="#2a221c" stroke-width="2.5" filter="url(#editorial-shadow)"/>
+          
+          <path d="M-22 5 Q0 2 22 5" fill="none" stroke="#661227" stroke-width="2"/>
+          <line x1="-15" y1="15" x2="15" y2="15" stroke="#2a221c" stroke-width="1" stroke-dasharray="3 3"/>
+          
+          
+          <path d="M25 45 C 25 10, 40 -10, 55 -30" fill="none" stroke="#2a221c" stroke-width="2"/>
+          <ellipse cx="50" cy="-20" rx="4" ry="7" fill="#7a7067" stroke="#2a221c" stroke-width="1.5" transform="rotate(30 50 -20)"/>
+          <ellipse cx="42" cy="-10" rx="3" ry="5" fill="#7a7067" stroke="#2a221c" stroke-width="1.5" transform="rotate(20 42 -10)"/>
+          <ellipse cx="53" cy="-32" rx="3" ry="5" fill="#7a7067" stroke="#2a221c" stroke-width="1.5" transform="rotate(40 53 -32)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  
+  <g transform="translate(130, 160)">
+    
+    <line x1="0" y1="0" x2="0" y2="340" stroke="#2a221c" stroke-width="1" stroke-opacity="0.2"/>
+    <line x1="0" y1="340" x2="220" y2="340" stroke="#2a221c" stroke-width="1" stroke-opacity="0.2"/>
+    
+    
+    <line x1="-5" y1="80" x2="5" y2="80" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-5" y1="160" x2="5" y2="160" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="-5" y1="240" x2="5" y2="240" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <path d="M0 320 L 40 310 L 80 295 L 120 270 L 160 180 L 200 60" fill="none" stroke="#661227" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    
+    <path d="M0 320 L 200 320" fill="none" stroke="#7a7067" stroke-width="1.5" stroke-dasharray="6 4"/>
+    
+    
+    <circle cx="40" cy="310" r="3.5" fill="#2a221c"/>
+    <circle cx="120" cy="270" r="3.5" fill="#2a221c"/>
+    <circle cx="160" cy="180" r="4.5" fill="#661227"/>
+    <circle cx="200" cy="60" r="5" fill="#661227"/>
+    
+    
+    <line x1="200" y1="60" x2="200" y2="320" stroke="#661227" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+  </g>
+
+  
+  <g transform="translate(980, 160)">
+    
+    <rect x="0" y="0" width="40" height="240" rx="20" fill="#f7f2ea" stroke="#2a221c" stroke-width="3" filter="url(#editorial-shadow)"/>
+    
+    
+    <circle cx="20" cy="230" r="18" fill="#f7f2ea" stroke="#2a221c" stroke-width="3"/>
+    <circle cx="20" cy="230" r="10" fill="#661227"/>
+    
+    
+    <rect x="14" y="90" width="12" height="135" rx="6" fill="#661227"/>
+    
+    
+    <line x1="28" y1="50" x2="36" y2="50" stroke="#2a221c" stroke-width="2"/>
+    <line x1="28" y1="90" x2="36" y2="90" stroke="#2a221c" stroke-width="2"/>
+    <line x1="28" y1="130" x2="36" y2="130" stroke="#2a221c" stroke-width="2"/>
+    <line x1="28" y1="170" x2="36" y2="170" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    <g transform="translate(-40, 70)" stroke="#7a7067" stroke-width="1.5" stroke-linecap="round">
+      <line x1="0" y1="0" x2="24" y2="24"/>
+      <line x1="24" y1="0" x2="0" y2="24"/>
+      <line x1="12" y1="-5" x2="12" y2="29"/>
+      <line x1="-2" y1="12" x2="26" y2="12"/>
+    </g>
+  </g>
+
+  
+  
+  <path d="M 90 80 L 110 80 M 90 80 L 90 100" fill="none" stroke="#2a221c" stroke-width="2"/>
+  <path d="M 1110 80 L 1090 80 M 1110 80 L 1110 100" fill="none" stroke="#2a221c" stroke-width="2"/>
+  <path d="M 90 595 L 110 595 M 90 595 L 90 575" fill="none" stroke="#2a221c" stroke-width="2"/>
+  <path d="M 1110 595 L 1090 595 M 1110 595 L 1110 575" fill="none" stroke="#2a221c" stroke-width="2"/>
+
+  
+  <line x1="550" y1="615" x2="650" y2="615" stroke="#661227" stroke-width="4"/>
+</svg>
