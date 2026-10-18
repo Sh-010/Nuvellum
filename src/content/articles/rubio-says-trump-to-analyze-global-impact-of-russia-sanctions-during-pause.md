@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T02:50:42.513Z"
 readingTime: "2 min"
-image: "/generated/ai/rubio-says-trump-to-analyze-global-impact-of-russia-sanctions-during-pause.svg"
-imageAlt: "AI-generated editorial illustration for Rubio says Trump to 'ANALYZE' global impact of Russia sanctions during pause"
 status: "published"
 tags: ["Russia","Donald Trump","Marco Rubio","Ukraine","Oil and gas industry"]
 regions: ["north-america","europe-central-asia"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/rubio-says-trump-to-analyze-global-impact-of-russia-sanctions-during-pause.jpg"
+imageAlt: "U.S President Donald Trump addresses the nation on the United States strikes on Iranian nuclear sites during the Iran–Israel war"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: U.S President Donald Trump addresses the nation on the United States strikes on Iranian nuclear sites during the Iran–Israel war"
+imageCredit: "The White House"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:President_Donald_Trump_Delivers_Address_to_the_Nation,_June_21,_2025.webm"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:President_Donald_Trump_Delivers_Address_to_the_Nation,_June_21,_2025.webm"
 ---
 US Secretary of State Marco Rubio stated that President Donald Trump's decision to waive sweeping sanctions and tariffs on Russia will last for a 60-day period. According to Rubio, the pause is designed to analyze how the economic restrictions affect the global and US economies.
 
