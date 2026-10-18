@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <linearGradient id="paper-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6efe4"/>
+      <stop offset="50%" stop-color="#f0e7da"/>
+      <stop offset="100%" stop-color="#e8dec9"/>
+    </linearGradient>
+
+    
+    <pattern id="engraving" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.4" stroke-opacity="0.15"/>
+    </pattern>
+
+    
+    <linearGradient id="burgundy-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a172e"/>
+      <stop offset="100%" stop-color="#550f1f"/>
+    </linearGradient>
+
+    
+    <linearGradient id="stone-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9a8d82"/>
+      <stop offset="100%" stop-color="#6f6359"/>
+    </linearGradient>
+
+    
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a221c" stop-opacity="0.12"/>
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paper-grad)"/>
+  
+  
+  <rect width="1200" height="675" fill="url(#engraving)" opacity="0.6"/>
+
+  
+  <rect width="1200" height="675" fill="url(#vignette)"/>
+
+  
+  
+  
+
+  
+  <path d="M 0,500 C 200,470 400,510 600,480 C 800,450 1000,490 1200,460 L 1200,675 L 0,675 Z" fill="#dfd3c3" stroke="#2a221c" stroke-width="1.5"/>
+  <path d="M 0,540 C 300,510 600,560 900,520 C 1050,500 1150,530 1200,520 L 1200,675 L 0,675 Z" fill="#d4c6b4" stroke="#2a221c" stroke-width="1"/>
+
+  
+  <g id="medieval-tower" stroke="#2a221c" stroke-width="2" fill="#e5dbcc">
+    <rect x="120" y="250" width="120" height="280"/>
+    
+    <polygon points="120,250 120,220 140,220 140,250 160,250 160,220 180,220 180,250 200,250 200,220 220,220 220,250 240,250 240,220 " fill="#dfd3c3"/>
+    
+    <path d="M 160,290 C 160,280 180,280 180,290 L 180,340 L 160,340 Z" fill="#2a221c"/>
+    <path d="M 180,290 C 180,280 200,280 200,290 L 200,340 L 180,340 Z" fill="#2a221c"/>
+    <path d="M 160,380 C 160,370 180,370 180,380 L 180,430 L 160,430 Z" fill="#2a221c"/>
+    <path d="M 180,380 C 180,370 200,370 200,380 L 200,430 L 180,430 Z" fill="#2a221c"/>
+    
+    <line x1="120" y1="300" x2="240" y2="300" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="10,5"/>
+    <line x1="120" y1="350" x2="240" y2="350" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="12,6"/>
+    <line x1="120" y1="400" x2="240" y2="400" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="8,4"/>
+    <line x1="120" y1="450" x2="240" y2="450" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="14,4"/>
+    <line x1="120" y1="500" x2="240" y2="500" stroke="#2a221c" stroke-width="0.75" stroke-dasharray="10,8"/>
+  </g>
+
+  
+  <g id="enchanted-flora" stroke="#2a221c" stroke-width="1.5" fill="#554738">
+    
+    <path d="M 980,530 C 950,450 1020,380 970,300 C 930,240 980,180 950,120" fill="none" stroke-width="4"/>
+    <path d="M 1020,530 C 1060,460 1000,390 1050,310 C 1090,250 1040,190 1080,130" fill="none" stroke-width="3"/>
+    
+    
+    <path d="M 950,120 C 900,100 850,130 830,180 C 880,190 920,160 950,120 Z" fill="url(#stone-grad)"/>
+    <path d="M 950,120 C 1000,90 1060,110 1090,160 C 1040,180 990,150 950,120 Z" fill="url(#stone-grad)"/>
+    <path d="M 970,300 C 900,280 860,330 850,380 C 900,380 930,340 970,300 Z" fill="url(#stone-grad)"/>
+  </g>
+
+  
+  
+  
+
+  
+  <g id="gothic-frame">
+    
+    <path d="M 320,580 L 320,200 C 320,120 380,60 600,60 C 820,60 880,120 880,200 L 880,580" fill="none" stroke="#2a221c" stroke-width="4"/>
+    
+    <path d="M 340,580 L 340,205 C 340,135 395,80 600,80 C 805,80 860,135 860,205 L 860,580" fill="none" stroke="#2a221c" stroke-width="1.5" stroke-dasharray="6,3"/>
+    
+    
+    <rect x="305" y="575" width="30" height="25" fill="#2a221c"/>
+    <rect x="865" y="575" width="30" height="25" fill="#2a221c"/>
+    <polygon points="600,45 615,65 585,65" fill="#2a221c"/>
+  </g>
+
+  
+  <path d="M 340,580 L 340,205 C 340,135 395,80 600,80 C 805,80 860,135 860,205 L 860,580 Z" fill="#fcf6ec"/>
+  
+  
+  <g stroke="#2a221c" stroke-width="0.5" opacity="0.3">
+    <line x1="380" y1="120" x2="520" y2="120"/><line x1="380" y1="130" x2="500" y2="130"/><line x1="380" y1="140" x2="530" y2="140"/>
+    <line x1="680" y1="120" x2="820" y2="120"/><line x1="700" y1="130" x2="820" y2="130"/><line x1="670" y1="140" x2="800" y2="140"/>
+    <line x1="380" y1="520" x2="490" y2="520"/><line x1="380" y1="530" x2="510" y2="530"/>
+    <line x1="710" y1="520" x2="820" y2="520"/><line x1="690" y1="530" x2="820" y2="530"/>
+  </g>
+
+  
+  
+  
+  
+
+  
+  <path d="M 340,400 C 400,380 420,450 480,410 C 520,380 500,300 450,280" fill="none" stroke="#7a172e" stroke-width="2"/>
+  <path d="M 860,400 C 800,380 780,450 720,410 C 680,380 700,300 750,280" fill="none" stroke="#7a172e" stroke-width="2"/>
+
+  
+  <g id="central-figures">
+
+    
+    <ellipse cx="600" cy="545" rx="110" ry="18" fill="#2a221c" opacity="0.2"/>
+
+    
+    <g id="mortal-knight" stroke="#2a221c" stroke-width="2">
+      
+      <path d="M 490,480 C 480,440 510,400 550,420 C 580,435 590,480 600,530 L 490,530 Z" fill="#9a8d82"/>
+      
+      
+      <path d="M 485,395 C 475,395 470,410 475,420 C 480,430 495,425 500,415 Z" fill="#f0e7da"/>
+      
+      <path d="M 470,400 C 460,415 465,440 480,445" fill="none" stroke-width="2.5"/>
+
+      
+      <path d="M 525,435 C 510,460 495,490 485,520" fill="none" stroke-width="2.5"/>
+
+      
+      <path d="M 460,540 L 410,560" stroke-width="3"/>
+      <path d="M 445,542 L 452,555" stroke-width="2"/> 
+      <circle cx="405" cy="562" r="3" fill="#2a221c"/>
+    </g>
+
+    
+    <g id="fairy-queen" stroke="#2a221c" stroke-width="2">
+      
+      
+      <g id="wings" fill="none" stroke="#7a172e" stroke-width="1.5">
+        
+        <path d="M 580,330 C 500,280 440,320 420,380 C 400,440 470,450 560,400 Z" fill="#f6efe4" fill-opacity="0.8"/>
+        <path d="M 540,340 C 480,310 450,350 440,390" />
+        <path d="M 520,360 C 470,360 450,400 460,430" />
+        <path d="M 560,320 C 500,240 460,220 410,260 C 370,300 420,360 520,370 Z" fill="#f6efe4" fill-opacity="0.8"/>
+        <path d="M 500,280 C 450,260 430,280 420,310"/>
+
+        
+        <path d="M 620,330 C 700,280 760,320 780,380 C 800,440 730,450 640,400 Z" fill="#f6efe4" fill-opacity="0.8"/>
+        <path d="M 660,340 C 720,310 750,350 760,390" />
+        <path d="M 680,360 C 730,360 750,400 740,430" />
+        <path d="M 640,320 C 700,240 740,220 790,260 C 830,300 780,360 680,370 Z" fill="#f6efe4" fill-opacity="0.8"/>
+        <path d="M 700,280 C 750,260 770,280 780,310"/>
+      </g>
+
+      
+      <path d="M 600,290 C 570,340 540,430 520,540 L 680,540 C 660,430 630,340 600,290 Z" fill="url(#burgundy-grad)" stroke="#2a221c" stroke-width="2"/>
+      
+      
+      <path d="M 600,310 C 590,380 575,450 560,540" fill="none" stroke="#2a221c" stroke-width="1"/>
+      <path d="M 600,310 C 610,380 625,450 640,540" fill="none" stroke="#2a221c" stroke-width="1"/>
+      <path d="M 585,400 C 600,410 615,400 620,410" fill="none" stroke="#2a221c" stroke-width="1"/>
+
+      
+      <path d="M 570,290 C 570,260 630,260 630,290 L 620,360 C 620,380 580,380 580,360 Z" fill="#6f6359"/>
+
+      
+      <path d="M 600,220 C 580,220 575,250 590,265 C 600,275 610,275 620,265 C 635,250 620,220 600,220 Z" fill="#f0e7da"/>
+      
+      <path d="M 575,240 C 560,270 560,330 570,360" fill="none" stroke="#2a221c" stroke-width="2.5"/>
+      <path d="M 625,240 C 640,270 640,330 630,360" fill="none" stroke="#2a221c" stroke-width="2.5"/>
+
+      
+      <path d="M 585,223 C 595,215 605,215 615,223 L 610,210 L 600,200 L 590,210 Z" fill="#2a221c"/>
+      <circle cx="600" cy="197" r="2.5" fill="#7a172e"/>
+      <circle cx="585" cy="213" r="2" fill="#7a172e"/>
+      <circle cx="615" cy="213" r="2" fill="#7a172e"/>
+
+      
+      <path d="M 575,310 C 540,330 510,360 495,385" fill="none" stroke="#2a221c" stroke-width="2.5"/>
+      <circle cx="493" cy="387" r="3" fill="#f0e7da"/>
+
+      
+      <path d="M 625,310 C 650,330 670,365 685,355" fill="none" stroke="#2a221c" stroke-width="2.5"/>
+
+    </g>
+
+  </g>
+
+  
+  
+  
+
+  
+  <g fill="#7a172e" stroke="#2a221c" stroke-width="1">
+    <path d="M 370,250 L 375,260 L 385,265 L 375,270 L 370,280 L 365,270 L 355,265 L 365,260 Z"/>
+    <path d="M 830,220 L 833,227 L 840,230 L 833,233 L 830,240 L 827,233 L 820,230 L 827,227 Z"/>
+    <path d="M 780,480 L 782,485 L 787,487 L 782,489 L 780,494 L 778,489 L 773,487 L 778,485 Z"/>
+    <path d="M 420,460 L 422,465 L 427,467 L 422,469 L 420,474 L 418,469 L 413,467 L 418,465 Z"/>
+  </g>
+
+  
+  <line x1="280" y1="580" x2="920" y2="580" stroke="#2a221c" stroke-width="3"/>
+  <line x1="300" y1="586" x2="900" y2="586" stroke="#2a221c" stroke-width="1"/>
+
+  
+  <path d="M 320,580 C 330,550 350,540 370,560 C 390,580 410,540 430,570" fill="none" stroke="#2a221c" stroke-width="2"/>
+  <path d="M 880,580 C 870,550 850,540 830,560 C 810,580 790,540 770,570" fill="none" stroke="#2a221c" stroke-width="2"/>
+
+</svg>
