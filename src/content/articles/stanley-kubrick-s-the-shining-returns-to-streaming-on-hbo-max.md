@@ -1,7 +1,7 @@
 ---
 title: "Stanley Kubrick's The Shining returns to streaming on HBO Max"
 dek: "Stanley Kubrick's 1980 psychological horror adaptation of Stephen King's novel is officially back on streaming via HBO Max."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-18"
