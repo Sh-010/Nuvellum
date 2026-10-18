@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" in="noise" result="coloredNoise"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+
+    
+    <pattern id="hatch-fine" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.75" opacity="0.3"/>
+    </pattern>
+    <pattern id="hatch-dense" width="4" height="4" patternTransform="rotate(30 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#661227" stroke-width="1" opacity="0.4"/>
+    </pattern>
+    
+    
+    <pattern id="sheen-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 20 Q 10 10, 20 20 T 40 20" fill="none" stroke="#6b7a82" stroke-width="1" opacity="0.25"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf"/>
+  <rect width="1200" height="675" fill="#efe8db" filter="url(#paper-grain)" opacity="0.6"/>
+
+  
+  <path d="M0 380 Q 250 320, 500 360 T 1200 330 L 1200 675 L 0 675 Z" fill="#e4dbcc" opacity="0.7"/>
+  <path d="M0 340 Q 300 290, 650 330 T 1200 300 L 1200 675 L 0 675 Z" fill="#d8cebc" opacity="0.5"/>
+
+  
+  <path d="M-50 420 Q 300 350, 700 400 T 1250 370" fill="none" stroke="#2a221c" stroke-width="0.75" opacity="0.2"/>
+  <path d="M-50 450 Q 280 390, 680 430 T 1250 400" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.15"/>
+  <path d="M-50 480 Q 320 420, 720 460 T 1250 430" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.15"/>
+
+  
+  
+  <path d="M -50 490 C 250 430, 450 550, 750 480 C 1050 410, 1100 590, 1250 620 L 1250 675 L -50 675 Z" fill="#d2c6b2"/>
+
+  
+  <path id="river-body" d="M -50 510 C 250 450, 450 570, 750 500 C 1050 430, 1100 610, 1250 640 L 1250 675 L -50 675 Z" fill="#8ca0a8" opacity="0.4"/>
+  
+  
+  <path d="M0 530 C 240 470, 460 590, 740 520 C 1020 450, 1080 630, 1200 655" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.4"/>
+  <path d="M0 545 C 240 485, 460 605, 740 535 C 1020 465, 1080 645, 1200 670" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.3"/>
+  <path d="M0 560 C 240 500, 460 620, 740 550 C 1020 480, 1080 660, 1200 685" fill="none" stroke="#2a221c" stroke-width="0.75" opacity="0.2"/>
+
+  
+  
+  <path d="M 150 505 C 300 475, 420 540, 650 490 C 880 440, 1000 580, 1250 615 L 1250 550 C 1000 510, 880 390, 650 440 C 420 490, 300 420, 150 450 Z" fill="url(#hatch-dense)" opacity="0.65"/>
+  
+  
+  <path d="M 200 480 C 350 450, 480 520, 700 470 C 920 420, 1050 550, 1200 580" fill="none" stroke="#661227" stroke-width="3" stroke-dasharray="12 6 4 6" opacity="0.7"/>
+  <path d="M 120 495 C 280 460, 400 530, 630 480 C 860 430, 980 565, 1180 595" fill="none" stroke="#e8c8c8" stroke-width="2" opacity="0.8"/>
+
+  
+  <g transform="translate(150, 450)">
+    
+    <rect x="-40" y="-30" width="80" height="90" fill="#2a221c" opacity="0.1"/>
+    <path d="M-40 0 L 40 0 L 40 60 L -40 60 Z" fill="#d2c6b2" stroke="#2a221c" stroke-width="2"/>
+    
+    <path d="M -20 60 L -20 20 C -20 5, 20 5, 20 20 L 20 60 Z" fill="#2a221c"/>
+    <path d="M -25 63 L -25 20 C -25 0, 25 0, 25 20 L 25 63" fill="none" stroke="#2a221c" stroke-width="2"/>
+    
+    <line x1="-40" y1="15" x2="40" y2="15" stroke="#2a221c" stroke-width="1" opacity="0.4"/>
+    <line x1="-40" y1="30" x2="40" y2="30" stroke="#2a221c" stroke-width="1" opacity="0.4"/>
+    <line x1="-40" y1="45" x2="40" y2="45" stroke="#2a221c" stroke-width="1" opacity="0.4"/>
+
+    
+    <path d="M 0 40 C 20 45, 40 50, 80 45 C 120 40, 140 55, 200 50" fill="none" stroke="#661227" stroke-width="8" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 0 40 C 20 45, 40 50, 80 45 C 120 40, 140 55, 200 50" fill="none" stroke="#efe8db" stroke-width="3" stroke-dasharray="4 8" opacity="0.9"/>
+  </g>
+
+  
+  
+  <g transform="translate(480, 485) rotate(-15)">
+    <rect x="-35" y="-6" width="70" height="12" rx="6" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    <circle cx="-25" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <circle cx="0" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <circle cx="25" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <path d="M -35 0 L 35 0" stroke="#2a221c" stroke-width="1" stroke-dasharray="2 2"/>
+  </g>
+
+  
+  <g transform="translate(680, 465) rotate(20)">
+    <rect x="-45" y="-6" width="90" height="12" rx="6" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    <circle cx="-30" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <circle cx="-10" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <circle cx="10" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <circle cx="30" cy="0" r="3" fill="#efe8db" opacity="0.7"/>
+    <path d="M -45 0 L 45 0" stroke="#2a221c" stroke-width="1" stroke-dasharray="2 2"/>
+  </g>
+
+  
+  
+  <g transform="translate(850, 290)">
+    
+    <polygon points="0,90 40,60 80,90 80,160 0,160" fill="#e8dfd0" stroke="#2a221c" stroke-width="1.5"/>
+    <polygon points="-5,65 40,30 85,65 75,65 40,40 5,65" fill="#661227"/>
+    <rect x="20" y="110" width="15" height="30" fill="#2a221c" opacity="0.8"/>
+    <rect x="45" y="110" width="15" height="20" fill="#2a221c" opacity="0.5"/>
+    <rect x="45" y="75" width="15" height="15" fill="#2a221c" opacity="0.5"/>
+
+    
+    <polygon points="75,95 115,70 155,95 155,160 75,160" fill="#ded4c3" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="95" y="115" width="15" height="35" fill="#2a221c" opacity="0.8"/>
+    <rect x="125" y="115" width="15" height="20" fill="#2a221c" opacity="0.5"/>
+    <rect x="125" y="85" width="15" height="15" fill="#2a221c" opacity="0.5"/>
+
+    
+    <polygon points="150,105 185,85 210,105 210,160 150,160" fill="#e8dfd0" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="170" y="120" width="20" height="40" fill="#2a221c" opacity="0.8"/>
+  </g>
+
+  
+  <g transform="translate(80, 270)">
+    <rect x="0" y="80" width="120" height="70" fill="#d8cebc" stroke="#2a221c" stroke-width="1.5"/>
+    <polygon points="-10,80 60,30 130,80" fill="#cbbfae" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <path d="M 120 80 L 160 50 L 160 80 Z" fill="#d8cebc" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M 155 80 L 195 50 L 195 80 Z" fill="#d8cebc" stroke="#2a221c" stroke-width="1.5"/>
+    <rect x="20" y="100" width="15" height="30" fill="#2a221c" opacity="0.7"/>
+    <rect x="45" y="100" width="15" height="30" fill="#2a221c" opacity="0.7"/>
+    <rect x="70" y="100" width="15" height="30" fill="#2a221c" opacity="0.7"/>
+    
+    <rect x="100" y="20" width="12" height="60" fill="#d8cebc" stroke="#2a221c" stroke-width="1.5"/>
+    <ellipse cx="106" cy="20" rx="6" ry="2" fill="#2a221c"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.7" fill="none">
+    
+    <path d="M 100 530 L 95 480"/>
+    <path d="M 105 525 L 103 470"/>
+    <path d="M 110 535 L 115 485"/>
+    <path d="M 115 530 L 122 475"/>
+    <path d="M 120 540 L 130 490"/>
+    
+    <path d="M 250 560 L 245 510"/>
+    <path d="M 255 555 L 255 500"/>
+    <path d="M 260 565 L 268 515"/>
+
+    
+    <path d="M 750 490 C 740 460, 760 440, 750 420" stroke-width="2"/>
+    <path d="M 753 480 C 745 455, 765 435, 755 415"/>
+    <path d="M 1020 440 C 1010 410, 1030 390, 1020 370" stroke-width="2"/>
+    <path d="M 1025 435 C 1015 405, 1035 385, 1025 365"/>
+  </g>
+
+  
+  
+  <g transform="translate(610, 470)">
+    
+    <circle cx="0" cy="0" r="8" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="3" fill="#efe8db"/>
+    <path d="M 0 8 L 0 25" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M -10 25 L 10 25" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <ellipse cx="0" cy="25" rx="15" ry="5" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+    <ellipse cx="0" cy="25" rx="28" ry="9" fill="none" stroke="#661227" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  
+  <g transform="translate(920, 520)">
+    <circle cx="0" cy="0" r="6" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    <path d="M 0 6 L 0 20" stroke="#2a221c" stroke-width="1.5"/>
+    <ellipse cx="0" cy="20" rx="12" ry="4" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  
+  
+  <rect x="35" y="35" width="1130" height="605" fill="none" stroke="#2a221c" stroke-width="1" opacity="0.3"/>
+  <line x1="45" y1="45" x2="1155" y2="45" stroke="#2a221c" stroke-width="2" opacity="0.7"/>
+  <line x1="45" y1="630" x2="1155" y2="630" stroke="#2a221c" stroke-width="2" opacity="0.7"/>
+
+  
+  <path d="M 40 55 L 55 55 M 55 40 L 55 55" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+  <path d="M 1160 55 L 1145 55 M 1145 40 L 1145 55" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+  <path d="M 40 620 L 55 620 M 55 635 L 55 620" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+  <path d="M 1160 620 L 1145 620 M 1145 635 L 1145 620" fill="none" stroke="#2a221c" stroke-width="1.5"/>
+
+  
+  <g transform="translate(60, 595)">
+    <line x1="0" y1="0" x2="100" y2="0" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="0" y1="-4" x2="0" y2="4" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="50" y1="-2" x2="50" y2="2" stroke="#2a221c" stroke-width="1"/>
+    <line x1="100" y1="-4" x2="100" y2="4" stroke="#2a221c" stroke-width="1.5"/>
+    
+    <path d="M 0 10 L 100 10" stroke="#661227" stroke-width="3" opacity="0.6"/>
+  </g>
+</svg>
