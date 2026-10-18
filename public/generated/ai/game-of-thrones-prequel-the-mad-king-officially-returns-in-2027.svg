@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <radialGradient id="paperGrad" cx="50%" cy="40%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="100%" stop-color="#e8decb"/>
+    </radialGradient>
+
+    
+    <linearGradient id="stoneGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dfd6c5"/>
+      <stop offset="100%" stop-color="#c9bca6"/>
+    </linearGradient>
+
+    
+    <linearGradient id="inkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#362c25"/>
+      <stop offset="100%" stop-color="#1d1612"/>
+    </linearGradient>
+
+    
+    <linearGradient id="burgundyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7a1c30"/>
+      <stop offset="100%" stop-color="#52101e"/>
+    </linearGradient>
+
+    
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c8a45c"/>
+      <stop offset="100%" stop-color="#9a7732"/>
+    </linearGradient>
+
+    
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="8" stdDeviation="6" flood-color="#2a221c" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="url(#paperGrad)"/>
+
+  
+  <line x1="80" y1="60" x2="1120" y2="60" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.2"/>
+  <line x1="80" y1="615" x2="1120" y2="615" stroke="#2a221c" stroke-width="1.5" stroke-opacity="0.2"/>
+  <line x1="80" y1="64" x2="1120" y2="64" stroke="#661227" stroke-width="3" stroke-opacity="0.8"/>
+
+  
+  <g opacity="0.35">
+    
+    <path d="M 350 560 L 350 280 C 350 180, 480 100, 600 100 C 720 100, 850 180, 850 280 L 850 560 Z" fill="none" stroke="#362c25" stroke-width="2" stroke-dasharray="8 6"/>
+    <path d="M 400 560 L 400 300 C 400 215, 490 150, 600 150 C 710 150, 800 215, 800 300 L 800 560 Z" fill="url(#stoneGrad)" stroke="#362c25" stroke-width="1.5"/>
+    
+    <line x1="200" y1="560" x2="1000" y2="560" stroke="#362c25" stroke-width="2"/>
+    <line x1="150" y1="585" x2="1050" y2="585" stroke="#661227" stroke-width="1"/>
+  </g>
+
+  
+  <path d="M 80 60 Q 180 300 120 615 L 80 615 Z" fill="url(#burgundyGrad)" opacity="0.85"/>
+  <path d="M 1120 60 Q 1020 300 1080 615 L 1120 615 Z" fill="url(#burgundyGrad)" opacity="0.85"/>
+
+  
+  <g filter="url(#softShadow)" transform="translate(0, 15)">
+    
+    
+    <g transform="rotate(-35, 600, 320)">
+      <rect x="593" y="140" width="14" height="360" fill="url(#stoneGrad)" stroke="#2a221c" stroke-width="2"/>
+      
+      <line x1="593" y1="280" x2="607" y2="280" stroke="#2a221c" stroke-width="2"/>
+      <line x1="593" y1="295" x2="607" y2="295" stroke="#2a221c" stroke-width="2"/>
+      <line x1="593" y1="310" x2="607" y2="310" stroke="#2a221c" stroke-width="2"/>
+      
+      <polygon points="600,110 590,140 610,140" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <path d="M 600 180 Q 560 200 530 185 Q 560 215 600 220 Z" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    </g>
+
+    
+    <g transform="rotate(35, 600, 320)">
+      <rect x="593" y="140" width="14" height="360" fill="url(#stoneGrad)" stroke="#2a221c" stroke-width="2"/>
+      
+      <line x1="593" y1="280" x2="607" y2="280" stroke="#2a221c" stroke-width="2"/>
+      <line x1="593" y1="295" x2="607" y2="295" stroke="#2a221c" stroke-width="2"/>
+      <line x1="593" y1="310" x2="607" y2="310" stroke="#2a221c" stroke-width="2"/>
+      
+      <polygon points="600,110 590,140 610,140" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="1.5"/>
+      
+      <path d="M 600 180 Q 640 200 670 185 Q 640 215 600 220 Z" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    </g>
+
+    
+    <g transform="translate(600, 275)">
+      
+      <path d="M -90 40 C -45 55, 45 55, 90 40 L 80 15 C 40 28, -40 28, -80 15 Z" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="2.5"/>
+      
+      
+      
+      <polygon points="0,-35 -15,20 15,20" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="2.5"/>
+      
+      <path d="M 0 -10 Q -5 5 0 15 Q 5 5 0 -10 Z" fill="#661227"/>
+
+      
+      <polygon points="-45,-20 -60,25 -25,25" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="2.5"/>
+      
+      
+      <polygon points="45,-20 25,25 60,25" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="2.5"/>
+
+      
+      <polygon points="-80,-5 -95,30 -65,30" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="2.5"/>
+
+      
+      <polygon points="80,-5 65,30 95,30" fill="url(#goldGrad)" stroke="#2a221c" stroke-width="2.5"/>
+
+      
+      <circle cx="-60" cy="30" r="3.5" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+      <circle cx="-30" cy="36" r="3.5" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+      <circle cx="0" cy="38" r="3.5" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+      <circle cx="30" cy="36" r="3.5" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+      <circle cx="60" cy="30" r="3.5" fill="#661227" stroke="#2a221c" stroke-width="1.5"/>
+    </g>
+
+    
+    <polygon points="600,100 250,570 950,570" fill="#ffffff" opacity="0.12" style="mix-blend-mode: overlay;"/>
+
+    
+    <path d="M 480 560 L 720 560 L 700 540 L 500 540 Z" fill="url(#stoneGrad)" stroke="#2a221c" stroke-width="2"/>
+    <line x1="520" y1="540" x2="520" y2="560" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="560" y1="540" x2="560" y2="560" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="600" y1="540" x2="600" y2="560" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="640" y1="540" x2="640" y2="560" stroke="#2a221c" stroke-width="1.5"/>
+    <line x1="680" y1="540" x2="680" y2="560" stroke="#2a221c" stroke-width="1.5"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1" opacity="0.3">
+    <line x1="250" y1="585" x2="950" y2="585"/>
+    <line x1="280" y1="590" x2="920" y2="590"/>
+    
+    <line x1="600" y1="560" x2="200" y2="615"/>
+    <line x1="600" y1="560" x2="350" y2="615"/>
+    <line x1="600" y1="560" x2="500" y2="615"/>
+    <line x1="600" y1="560" x2="700" y2="615"/>
+    <line x1="600" y1="560" x2="850" y2="615"/>
+    <line x1="600" y1="560" x2="1000" y2="615"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="2" opacity="0.6">
+    <line x1="420" y1="200" x2="420" y2="540" stroke-dasharray="12 8"/>
+    <circle cx="420" cy="190" r="6" fill="url(#inkGrad)"/>
+
+    <line x1="780" y1="200" x2="780" y2="540" stroke-dasharray="12 8"/>
+    <circle cx="780" cy="190" r="6" fill="url(#inkGrad)"/>
+  </g>
+
+  
+  <g stroke="#2a221c" stroke-width="1.5" fill="none">
+    <path d="M 95 75 L 95 95 M 95 75 L 115 75"/>
+    <path d="M 1105 75 L 1105 95 M 1105 75 L 1085 75"/>
+    <path d="M 95 600 L 95 580 M 95 600 L 115 600"/>
+    <path d="M 1105 600 L 1105 580 M 1105 600 L 1085 600"/>
+  </g>
+</svg>
