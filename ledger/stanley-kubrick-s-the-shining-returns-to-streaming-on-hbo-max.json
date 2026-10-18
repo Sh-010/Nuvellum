@@ -1,0 +1,74 @@
+{
+  "slug": "stanley-kubrick-s-the-shining-returns-to-streaming-on-hbo-max",
+  "url": "https://www.nuvellum.news/article/stanley-kubrick-s-the-shining-returns-to-streaming-on-hbo-max",
+  "title": "Stanley Kubrick's The Shining returns to streaming on HBO Max",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T11:39:30.567Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T11:39:30.567Z",
+      "remoteId": "184",
+      "remoteUrl": "https://t.me/nuvellum/184",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    },
+    "threads": {
+      "containerId": "17950792131321818",
+      "containerCreatedAt": "2026-10-18T11:39:39.449Z",
+      "updatedAt": "2026-10-18T11:39:30.567Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T11:39:30.567Z",
+      "remoteId": "18106676455959205",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T11:39:30.567Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T11:39:30.567Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
