@@ -1,0 +1,74 @@
+{
+  "slug": "nfl-introduces-celebrity-guest-cheerleaders-with-comedian-atsuko-okatsuka",
+  "url": "https://www.nuvellum.news/article/nfl-introduces-celebrity-guest-cheerleaders-with-comedian-atsuko-okatsuka",
+  "title": "NFL introduces celebrity guest cheerleaders with comedian Atsuko Okatsuka",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T14:52:47.288Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T14:52:47.288Z",
+      "remoteId": "187",
+      "remoteUrl": "https://t.me/nuvellum/187",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    },
+    "threads": {
+      "containerId": "17950824120321818",
+      "containerCreatedAt": "2026-10-18T14:52:56.040Z",
+      "updatedAt": "2026-10-18T14:52:47.288Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T14:52:47.288Z",
+      "remoteId": "17948947392342805",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T14:52:47.288Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T14:52:47.288Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
