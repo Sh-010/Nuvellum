@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T12:30:49.607Z"
 readingTime: "2 min"
-image: "/generated/ai/fuel-leak-spreads-more-than-two-miles-along-river-taff.svg"
-imageAlt: "AI-generated editorial illustration for Fuel leak spreads more than two miles along River Taff"
 status: "published"
 tags: ["water pollution","River Taff","Natural Resources Wales","Taffs Well"]
 regions: ["europe-central-asia"]
