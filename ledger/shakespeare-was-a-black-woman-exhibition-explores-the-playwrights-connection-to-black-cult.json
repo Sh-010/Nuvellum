@@ -1,0 +1,74 @@
+{
+  "slug": "shakespeare-was-a-black-woman-exhibition-explores-the-playwrights-connection-to-black-cult",
+  "url": "https://www.nuvellum.news/article/shakespeare-was-a-black-woman-exhibition-explores-the-playwrights-connection-to-black-cult",
+  "title": "‘Shakespeare was a Black woman’: exhibition explores the playwright’s connection to Black culture",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T10:32:36.412Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T10:32:36.412Z",
+      "remoteId": "182",
+      "remoteUrl": "https://t.me/nuvellum/182",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    },
+    "threads": {
+      "containerId": "17950783491321818",
+      "containerCreatedAt": "2026-10-18T10:32:44.878Z",
+      "updatedAt": "2026-10-18T10:32:36.412Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T10:32:36.412Z",
+      "remoteId": "18434701387194017",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T10:32:36.412Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T10:32:36.412Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
