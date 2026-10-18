@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T11:00:53.418Z"
 readingTime: "2 min"
-image: "/generated/ai/before-gta-6-grand-theft-auto-5-suffered-a-historic-pre-launch-leak.svg"
-imageAlt: "AI-generated editorial illustration for Before GTA 6, Grand Theft Auto 5 suffered a historic pre-launch leak"
 status: "published"
 tags: ["Rockstar Games","Grand Theft Auto 5","video game leaks"]
 regions: []
