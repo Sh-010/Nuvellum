@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T09:30:41.722Z"
 readingTime: "2 min"
-image: "/generated/ai/emma-finucane-vows-to-come-back-fighting-after-winning-bronze-at-track-cycling-world-champ.svg"
-imageAlt: "AI-generated editorial illustration for Emma Finucane vows to come back fighting after winning bronze at Track Cycling world championships"
 status: "published"
 tags: ["Cycling","Track Cycling World Championships","Olympic Games"]
 regions: ["east-asia","europe-central-asia"]
