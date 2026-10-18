@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T00:10:46.410Z"
 readingTime: "1 min"
-image: "/generated/ai/quentin-tarantino-confirms-script-finished-for-tenth-film-but-plans-to-wait.svg"
-imageAlt: "AI-generated editorial illustration for Quentin Tarantino confirms script finished for tenth film, but plans to wait"
 status: "published"
 tags: ["Quentin Tarantino","film","theatre"]
 regions: ["europe-central-asia"]
