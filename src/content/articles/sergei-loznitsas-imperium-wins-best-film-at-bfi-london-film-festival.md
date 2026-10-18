@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T13:10:49.750Z"
 readingTime: "2 min"
-image: "/generated/ai/sergei-loznitsas-imperium-wins-best-film-at-bfi-london-film-festival.svg"
-imageAlt: "AI-generated editorial illustration for Sergei Loznitsa’s ‘Imperium’ wins best film at BFI London Film Festival"
 status: "published"
 tags: ["BFI London Film Festival","Sergei Loznitsa","Imperium","film awards"]
 regions: ["europe-central-asia"]
