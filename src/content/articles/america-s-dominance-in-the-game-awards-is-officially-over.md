@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T12:00:55.481Z"
 readingTime: "2 min"
-image: "/generated/ai/america-s-dominance-in-the-game-awards-is-officially-over.svg"
-imageAlt: "AI-generated editorial illustration for America's dominance in The Game Awards is officially over"
 status: "published"
 tags: ["The Game Awards","video games","gaming industry"]
 regions: ["north-america","europe-central-asia","latin-america-caribbean"]
