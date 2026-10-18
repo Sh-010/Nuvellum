@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T08:40:41.518Z"
 readingTime: "2 min"
-image: "/generated/ai/roger-deakins-on-instinct-experience-and-not-knowing-what-is-a-cinematographer.svg"
-imageAlt: "AI-generated editorial illustration for Roger Deakins on instinct, experience and not knowing what is a cinematographer"
 status: "published"
 tags: ["Roger Deakins","James Ellis Deakins","cinematography","filmmaking"]
 regions: ["europe-central-asia"]
