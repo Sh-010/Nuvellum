@@ -1,14 +1,12 @@
 ---
 title: "44 Years later, 'Poltergeist' returns to streaming amid enduring directorial debate"
 dek: "The 1982 horror film Poltergeist is available to stream on HBO Max, reviving longstanding questions over whether Tobe Hooper or Steven Spielberg truly directed it."
-section: "Gaming"
+section: "Film & TV"
 type: "Explainer"
 author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T00:00:43.525Z"
 readingTime: "2 min"
-image: "/generated/ai/44-years-later-poltergeist-returns-to-streaming-amid-enduring-directorial-debate.svg"
-imageAlt: "AI-generated editorial illustration for 44 Years later, 'Poltergeist' returns to streaming amid enduring directorial debate"
 status: "published"
 tags: ["Poltergeist","Tobe Hooper","Steven Spielberg","streaming","HBO Max"]
 regions: []
