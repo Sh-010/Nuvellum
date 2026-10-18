@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T11:10:40.997Z"
 readingTime: "2 min"
-image: "/generated/ai/gleaning-group-gives-1m-of-produce-to-food-banks.svg"
-imageAlt: "AI-generated editorial illustration for Gleaning group gives £1m of produce to food banks"
 status: "published"
 tags: ["food waste","food banks","charity","agriculture"]
 regions: ["europe-central-asia"]
