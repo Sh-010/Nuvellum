@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T12:50:41.000Z"
 readingTime: "2 min"
-image: "/generated/ai/several-dead-or-injured-in-major-fire-at-canada-military-base.svg"
-imageAlt: "AI-generated editorial illustration for Several dead or injured in major fire at Canada military base"
 status: "published"
 tags: ["Canada","military","fire","Alberta"]
 regions: ["north-america"]
@@ -20,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: "Nuvellum Verification Pipeline"
 verification: "cleared"
+image: "/uploads/articles/several-dead-or-injured-in-major-fire-at-canada-military-base.png"
+imageAlt: "Canadian Military Police Photo 1"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Canadian Military Police Photo 1"
+imageCredit: "Air Force Master Sgt. Greg Rudl"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Canadian_Military_Police_Photo_1.png"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Canadian_Military_Police_Photo_1.png"
 ---
 Several people have been killed or injured following a large fire near a Canadian military base in Alberta, according to the nation's military. 
 
