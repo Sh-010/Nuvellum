@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T05:50:47.534Z"
 readingTime: "2 min"
-image: "/generated/ai/india-s-cockroach-movement-founder-released-from-police-custody.svg"
-imageAlt: "AI-generated editorial illustration for India's 'cockroach' movement founder released from police custody"
 status: "published"
 tags: ["India","Cockroach Janta Party (CJP)","Narendra Modi","activists"]
 regions: ["south-asia"]
