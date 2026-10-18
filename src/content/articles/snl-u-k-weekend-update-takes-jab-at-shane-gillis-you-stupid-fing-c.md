@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T08:50:43.468Z"
 readingTime: "1 min"
-image: "/generated/ai/snl-u-k-weekend-update-takes-jab-at-shane-gillis-you-stupid-fing-c.svg"
-imageAlt: "AI-generated editorial illustration for ‘SNL U.K.’ weekend Update takes jab at Shane Gillis: ‘You Stupid F—ing C—’"
 status: "published"
 tags: ["SNL UK","Shane Gillis","Ania Magliano","Weekend Update"]
 regions: []
