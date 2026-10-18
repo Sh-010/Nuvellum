@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <style>
+      .bg { fill: #f3ecdf; }
+      .ink-dark { fill: #2a221c; }
+      .ink-burgundy { fill: #661227; }
+      .stone-grey { fill: #9e9387; }
+      .light-stone { fill: #e3dad0; }
+      .warm-accent { fill: #b85d38; }
+      .line-dark { stroke: #2a221c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .line-burgundy { stroke: #661227; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .line-fine { stroke: #2a221c; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+      .line-grey { stroke: #9e9387; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .hatch { stroke: #9e9387; stroke-width: 0.75; opacity: 0.6; }
+    </style>
+    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e3dad0" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" class="bg"/>
+  <rect width="1200" height="675" fill="url(#grid-pattern)" opacity="0.4"/>
+
+  
+  <path d="M 80 70 L 1120 70 M 80 605 L 1120 605" stroke="#2a221c" stroke-width="1.5" opacity="0.3"/>
+  
+  
+  
+
+  
+  <g opacity="0.4">
+    <line x1="600" y1="120" x2="600" y2="550" class="line-grey" stroke-dasharray="6,6"/>
+    <line x1="300" y1="360" x2="900" y2="360" class="line-grey" stroke-dasharray="4,8"/>
+    <circle cx="600" cy="200" r="180" fill="none" stroke="#9e9387" stroke-width="0.75" stroke-dasharray="3,3"/>
+  </g>
+
+  
+  <path d="M 570 550 L 630 550 L 610 220 L 590 220 Z" class="stone-grey" opacity="0.4"/>
+  <path d="M 540 550 L 660 550" class="line-dark"/>
+  <circle cx="600" cy="210" r="16" class="ink-dark"/>
+  <circle cx="600" cy="210" r="8" class="bg"/>
+
+  
+  <g transform="rotate(-4.5, 600, 210)">
+    <path d="M 280 206 L 920 214 L 920 206 L 280 198 Z" class="ink-dark"/>
+    
+    
+    <line x1="300" y1="202" x2="300" y2="330" class="line-dark"/>
+    
+    <path d="M 220 330 L 380 330 L 360 380 L 240 380 Z" class="light-stone" stroke="#2a221c" stroke-width="2"/>
+    
+    
+    
+    <rect x="250" y="270" width="100" height="60" class="bg" stroke="#2a221c" stroke-width="2"/>
+    
+    <line x1="265" y1="270" x2="265" y2="330" class="hatch"/>
+    <line x1="280" y1="270" x2="280" y2="330" class="hatch"/>
+    <line x1="295" y1="270" x2="295" y2="330" class="hatch"/>
+    <line x1="310" y1="270" x2="310" y2="330" class="hatch"/>
+    <line x1="325" y1="270" x2="325" y2="330" class="hatch"/>
+    <line x1="340" y1="270" x2="340" y2="330" class="hatch"/>
+
+    
+    <line x1="900" y1="212" x2="900" y2="310" class="line-dark"/>
+    
+    <path d="M 820 310 L 980 310 L 960 360 L 840 360 Z" class="light-stone" stroke="#2a221c" stroke-width="2"/>
+
+    
+    <rect x="850" y="235" width="40" height="75" class="bg" stroke="#661227" stroke-width="2"/>
+    <rect x="895" y="235" width="40" height="75" class="bg" stroke="#661227" stroke-width="2"/>
+    <rect x="940" y="255" width="20" height="55" class="warm-accent" opacity="0.8" stroke="#2a221c" stroke-width="1.5"/>
+    
+    
+    <path d="M 845 225 L 845 220 L 965 220 L 965 225" fill="none" class="line-burgundy"/>
+    <circle cx="905" cy="220" r="3" class="ink-burgundy"/>
+  </g>
+
+  
+  <g transform="translate(100, 150)">
+    <line x1="0" y1="0" x2="0" y2="300" class="line-fine" opacity="0.3"/>
+    <line x1="-5" y1="0" x2="5" y2="0" class="line-fine"/>
+    <line x1="-5" y1="150" x2="5" y2="150" class="line-fine"/>
+    <line x1="-5" y1="300" x2="5" y2="300" class="line-fine"/>
+    
+    
+    <path d="M -15 0 L -25 0 L -25 150 L -15 150" fill="none" class="line-fine" opacity="0.5"/>
+    <path d="M -15 150 L -25 150 L -25 300 L -15 300" fill="none" class="line-fine" opacity="0.5"/>
+  </g>
+
+  
+  <g transform="translate(250, 430)">
+    
+    <path d="M 0 30 L 180 0 L 210 130 L 30 160 Z" class="light-stone" stroke="#2a221c" stroke-width="2"/>
+    
+    <line x1="30" y1="60" x2="110" y2="47" class="line-grey"/>
+    <line x1="38" y1="85" x2="130" y2="70" class="line-grey"/>
+    <line x1="45" y1="110" x2="140" y2="95" class="line-grey"/>
+
+    
+    <path d="M 120 10 L 310 40 L 280 170 L 90 140 Z" class="bg" stroke="#661227" stroke-width="2.5"/>
+    <line x1="140" y1="50" x2="250" y2="65" class="line-burgundy" stroke-width="2"/>
+    <line x1="148" y1="80" x2="270" y2="100" class="line-fine"/>
+    <line x1="155" y1="110" x2="230" y2="120" class="line-fine"/>
+
+    
+    <line x1="160" y1="135" x2="210" y2="142" class="warm-accent" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  
+  <g transform="translate(930, 440)">
+    
+    <circle cx="0" cy="0" r="75" class="light-stone" stroke="#2a221c" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="65" class="bg" stroke="#9e9387" stroke-width="1"/>
+    
+    
+    <line x1="0" y1="-65" x2="0" y2="-55" class="line-dark"/>
+    <line x1="0" y1="65" x2="0" y2="55" class="line-dark"/>
+    <line x1="-65" y1="0" x2="-55" y2="0" class="line-dark"/>
+    <line x1="65" y1="0" x2="55" y2="0" class="line-dark"/>
+    
+    <line x1="45" y1="45" x2="38" y2="38" class="line-grey"/>
+    <line x1="-45" y1="45" x2="-38" y2="38" class="line-grey"/>
+    <line x1="45" y1="-45" x2="38" y2="-38" class="line-grey"/>
+    <line x1="-45" y1="-45" x2="-38" y2="-38" class="line-grey"/>
+
+    
+    <line x1="0" y1="0" x2="0" y2="-40" class="line-dark" stroke-width="4"/>
+    
+    
+    <path d="M 0 0 Q 30 -30 50 -10" fill="none" class="line-burgundy" stroke-width="3"/>
+    
+    
+    <circle cx="0" cy="0" r="6" class="ink-burgundy"/>
+  </g>
+
+  
+  <g transform="translate(1080, 140) rotate(25)">
+    <line x1="0" y1="0" x2="-25" y2="140" class="line-dark"/>
+    <line x1="0" y1="0" x2="25" y2="140" class="line-dark"/>
+    <circle cx="0" cy="0" r="7" class="ink-burgundy"/>
+    <circle cx="0" cy="0" r="3" class="bg"/>
+    
+    <path d="M -12 60 Q 0 65 12 60" fill="none" class="line-grey"/>
+  </g>
+
+  
+  <g class="stone-grey">
+    <circle cx="300" cy="360" r="3"/>
+    <circle cx="600" cy="360" r="3"/>
+    <circle cx="900" cy="360" r="3"/>
+    <circle cx="600" cy="210" r="4" class="ink-burgundy"/>
+  </g>
+
+</svg>
