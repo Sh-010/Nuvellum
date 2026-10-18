@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T05:40:52.550Z"
 readingTime: "2 min"
-image: "/generated/ai/corby-metal-pollution-may-harm-people-says-study.svg"
-imageAlt: "AI-generated editorial illustration for Corby metal pollution may harm people, says study"
 status: "published"
 tags: ["pollution","environment","Corby","metals","health"]
 regions: ["europe-central-asia"]
