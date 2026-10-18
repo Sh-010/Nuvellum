@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T10:50:45.501Z"
 readingTime: "2 min"
-image: "/generated/ai/south-african-rugby-player-hyron-andrews-paid-emotional-tribute-in-france.svg"
-imageAlt: "AI-generated editorial illustration for South African rugby player Hyron Andrews paid emotional tribute in France"
 status: "published"
 tags: ["rugby","Hyron Andrews","France","South Africa"]
 regions: ["europe-central-asia","sub-saharan-africa"]
