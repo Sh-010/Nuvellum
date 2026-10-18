@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T07:40:42.026Z"
 readingTime: "2 min"
-image: "/generated/ai/new-zealand-avoid-world-cup-shock-against-fiji.svg"
-imageAlt: "AI-generated editorial illustration for New Zealand avoid World Cup shock against Fiji"
 status: "published"
 tags: ["Rugby League","Women's World Cup","New Zealand","Fiji"]
 regions: ["southeast-asia-oceania"]
