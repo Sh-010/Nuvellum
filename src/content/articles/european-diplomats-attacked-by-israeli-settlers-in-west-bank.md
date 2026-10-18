@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T00:20:49.486Z"
 readingTime: "2 min"
-image: "/generated/ai/european-diplomats-attacked-by-israeli-settlers-in-west-bank.svg"
-imageAlt: "AI-generated editorial illustration for European diplomats attacked by Israeli settlers in West Bank"
 status: "published"
 tags: ["West Bank","Israel","diplomacy","violence"]
 regions: ["middle-east-north-africa","europe-central-asia"]
