@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T09:40:44.297Z"
 readingTime: "1 min"
-image: "/generated/ai/james-austin-johnson-brings-trump-impression-to-snl-u-k-cold-open.svg"
-imageAlt: "AI-generated editorial illustration for James Austin Johnson brings Trump impression to ‘SNL U.K.’ cold open"
 status: "published"
 tags: ["SNL U.K.","James Austin Johnson","Donald Trump","television"]
 regions: ["europe-central-asia","north-america"]
