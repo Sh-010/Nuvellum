@@ -1,0 +1,76 @@
+{
+  "slug": "quentin-tarantino-confirms-script-finished-for-tenth-film-but-plans-to-wait",
+  "url": "https://www.nuvellum.news/article/quentin-tarantino-confirms-script-finished-for-tenth-film-but-plans-to-wait",
+  "title": "Quentin Tarantino confirms script finished for tenth film, but plans to wait",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T02:52:49.530Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T02:52:49.530Z",
+      "remoteId": "176",
+      "remoteUrl": "https://t.me/nuvellum/176",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    },
+    "threads": {
+      "containerId": "17950725264321818",
+      "containerCreatedAt": "2026-10-18T02:52:57.054Z",
+      "updatedAt": "2026-10-18T02:52:49.530Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T02:52:49.530Z",
+      "remoteId": "18054514412654246",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T02:52:49.530Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T02:52:49.530Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
