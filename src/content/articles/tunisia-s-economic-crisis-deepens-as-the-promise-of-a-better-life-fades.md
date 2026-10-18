@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T04:30:42.790Z"
 readingTime: "3 min"
-image: "/generated/ai/tunisia-s-economic-crisis-deepens-as-the-promise-of-a-better-life-fades.svg"
-imageAlt: "AI-generated editorial illustration for Tunisia's economic crisis deepens as the promise of a better life fades"
 status: "published"
 tags: ["economy","unemployment","protests","politics"]
 regions: ["middle-east-north-africa"]
