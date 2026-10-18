@@ -1,0 +1,76 @@
+{
+  "slug": "turning-the-tides-could-hidden-sea-power-energise-our-coastal-towns",
+  "url": "https://www.nuvellum.news/article/turning-the-tides-could-hidden-sea-power-energise-our-coastal-towns",
+  "title": "Turning the tides: could hidden sea power energise our coastal towns?",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T20:32:10.549Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T20:32:10.549Z",
+      "remoteId": "189",
+      "remoteUrl": "https://t.me/nuvellum/189",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    },
+    "threads": {
+      "containerId": "17950877679321818",
+      "containerCreatedAt": "2026-10-18T20:32:19.482Z",
+      "updatedAt": "2026-10-18T20:32:10.549Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T20:32:10.549Z",
+      "remoteId": "17877204000574056",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T20:32:10.549Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T20:32:10.549Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
