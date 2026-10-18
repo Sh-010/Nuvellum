@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T02:20:42.561Z"
 readingTime: "1 min"
-image: "/generated/ai/canada-major-fire-reported-at-military-base-in-alberta.svg"
-imageAlt: "AI-generated editorial illustration for Canada: Major fire reported at military base in Alberta"
 status: "published"
 tags: ["fire","military base","Alberta","CFB Wainwright"]
 regions: ["north-america"]
