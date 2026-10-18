@@ -1,0 +1,76 @@
+{
+  "slug": "jessica-rothe-offers-update-on-happy-death-day-3-plans",
+  "url": "https://www.nuvellum.news/article/jessica-rothe-offers-update-on-happy-death-day-3-plans",
+  "title": "Jessica Rothe offers update on Happy death day 3 plans",
+  "risk": "low",
+  "firstSeenAt": "2026-10-18T18:01:48.843Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T18:01:48.843Z",
+      "remoteId": "188",
+      "remoteUrl": "https://t.me/nuvellum/188",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    },
+    "threads": {
+      "containerId": "17950858371321818",
+      "containerCreatedAt": "2026-10-18T18:01:58.055Z",
+      "updatedAt": "2026-10-18T18:01:48.843Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-18T18:01:48.843Z",
+      "remoteId": "18157680916510642",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-18T18:01:48.843Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-18T18:01:48.843Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
