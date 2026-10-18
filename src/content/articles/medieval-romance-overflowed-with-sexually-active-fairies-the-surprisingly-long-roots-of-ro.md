@@ -7,8 +7,6 @@ author: "Nuvellum Global Desk"
 date: "2026-10-18"
 publishedAt: "2026-10-18T11:31:10.035Z"
 readingTime: "2 min"
-image: "/generated/ai/medieval-romance-overflowed-with-sexually-active-fairies-the-surprisingly-long-roots-of-ro.svg"
-imageAlt: "AI-generated editorial illustration for ‘Medieval romance overflowed with sexually active fairies’: the surprisingly long roots of romantasy"
 status: "published"
 tags: ["romantasy","literature","medieval romance","fairies","books"]
 regions: []
