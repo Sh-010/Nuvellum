@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    
+    <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" in="noise" result="coloredNoise" />
+      <feComposite operator="in" in2="SourceGraphic" />
+    </filter>
+
+    
+    <pattern id="hatch-stone" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2a221c" stroke-width="0.5" opacity="0.15" />
+    </pattern>
+    <pattern id="hatch-water" width="12" height="12" patternTransform="rotate(10 0 0)" patternUnits="userSpaceOnUse">
+      <path d="M0,6 Q3,3 6,6 T12,6" fill="none" stroke="#3c5054" stroke-width="0.8" opacity="0.2" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1200" height="675" fill="#f3ecdf" />
+  <rect width="1200" height="675" filter="url(#paper-grain)" opacity="0.75" />
+
+  
+  <rect x="36" y="36" width="1128" height="603" fill="none" stroke="#2a221c" stroke-width="1.5" opacity="0.3" />
+  <rect x="42" y="42" width="1116" height="591" fill="none" stroke="#2a221c" stroke-width="0.5" opacity="0.15" />
+
+  
+  
+  <line x1="80" y1="380" x2="1120" y2="380" stroke="#2a221c" stroke-width="1" opacity="0.2" />
+
+  
+  <path d="M80 380 Q 300 350, 600 370 T 1120 360 L 1120 420 L 80 420 Z" fill="#d4c9bc" opacity="0.6" />
+  
+  <path d="M150 380 Q 180 370, 220 382" fill="none" stroke="#2a221c" stroke-width="0.8" opacity="0.3" />
+  <path d="M450 373 Q 500 360, 550 375" fill="none" stroke="#2a221c" stroke-width="0.8" opacity="0.3" />
+  <path d="M850 366 Q 900 355, 960 370" fill="none" stroke="#2a221c" stroke-width="0.8" opacity="0.3" />
+
+  
+  <path d="M80 420 Q 350 405, 650 415 T 1120 400 L 1120 600 L 80 600 Z" fill="#e4ded5" />
+  <rect x="80" y="420" width="1040" height="180" fill="url(#hatch-water)" />
+
+  
+  <path d="M80 440 Q 400 420, 750 435 T 1120 420 L 1120 600 L 80 600 Z" fill="#e8e0d2" />
+  
+  <path d="M120 480 Q 450 455, 800 470 T 1100 460" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.25" />
+  <path d="M100 520 Q 420 495, 750 510 T 1100 500" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.2" />
+  <path d="M140 560 Q 480 535, 820 550 T 1080 540" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.15" />
+
+  
+  <g id="adult-seal" transform="translate(260, 410)">
+    
+    <path d="M 40 85 C 10 85, -20 100, -40 120 C -60 140, -50 160, -20 165 C 20 170, 120 160, 220 145 C 300 135, 380 110, 420 80 C 440 65, 410 50, 390 60 C 350 80, 250 110, 150 120 C 80 125, 60 85, 40 85 Z" fill="#544942" stroke="#2a221c" stroke-width="1.5" />
+    
+    
+    <path d="M 50 100 C 90 105, 150 115, 210 110" fill="none" stroke="#2a221c" stroke-width="0.8" opacity="0.4" />
+    <path d="M 80 115 C 120 120, 180 120, 240 110" fill="none" stroke="#2a221c" stroke-width="0.8" opacity="0.4" />
+    <path d="M 120 125 C 160 130, 220 125, 270 115" fill="none" stroke="#2a221c" stroke-width="0.8" opacity="0.4" />
+
+    
+    <path d="M 390 60 C 410 50, 440 45, 465 55 C 480 62, 475 75, 455 80 C 430 85, 410 80, 390 75 Z" fill="#544942" stroke="#2a221c" stroke-width="1.5" />
+    
+    <circle cx="445" cy="62" r="3" fill="#2a221c" />
+    
+    <path d="M 462 70 Q 475 72, 485 70" fill="none" stroke="#2a221c" stroke-width="0.8" />
+    <path d="M 460 74 Q 473 78, 483 77" fill="none" stroke="#2a221c" stroke-width="0.8" />
+
+    
+    <path d="M 160 125 C 150 145, 170 165, 190 160 C 210 155, 215 135, 195 125 Z" fill="#423731" stroke="#2a221c" stroke-width="1.2" />
+
+    
+    <path d="M -40 120 C -65 115, -95 120, -110 135 C -120 145, -100 155, -80 150 C -60 145, -50 135, -40 120 Z" fill="#544942" stroke="#2a221c" stroke-width="1.2" />
+    <path d="M -40 120 C -55 135, -75 155, -90 170 C -95 175, -80 180, -70 165 C -55 145, -45 130, -40 120 Z" fill="#423731" stroke="#2a221c" stroke-width="1.2" />
+  </g>
+
+  
+  
+  <g id="pup-one" transform="translate(750, 450)">
+    
+    <path d="M 30 50 C 10 50, -10 65, -15 85 C -20 105, 0 120, 30 120 C 60 120, 100 110, 120 90 C 130 80, 120 60, 100 55 C 80 50, 50 50, 30 50 Z" fill="#d9d0c1" stroke="#2a221c" stroke-width="1.5" />
+    
+    <path d="M 100 55 C 115 45, 135 45, 145 60 C 150 70, 140 85, 125 85 C 115 85, 105 75, 100 55 Z" fill="#d9d0c1" stroke="#2a221c" stroke-width="1.5" />
+    
+    <circle cx="132" cy="62" r="2.5" fill="#2a221c" />
+    <path d="M 142 67 Q 148 68, 152 66" fill="none" stroke="#2a221c" stroke-width="0.8" />
+    
+    <path d="M 20 70 Q 30 65, 40 75" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.4" />
+    <path d="M 50 80 Q 60 75, 70 85" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.4" />
+    <path d="M 70 65 Q 80 60, 90 70" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.4" />
+  </g>
+
+  
+  <g id="pup-two" transform="translate(900, 465)">
+    
+    <path d="M 25 45 C 5 45, -10 60, -5 80 C 0 100, 25 110, 55 110 C 85 110, 110 95, 115 75 C 120 55, 95 45, 75 45 C 55 45, 40 45, 25 45 Z" fill="#d9d0c1" stroke="#2a221c" stroke-width="1.5" />
+    
+    <path d="M 75 45 C 85 30, 105 30, 115 45 C 120 55, 115 70, 100 72 C 90 73, 80 60, 75 45 Z" fill="#d9d0c1" stroke="#2a221c" stroke-width="1.5" />
+    
+    <circle cx="102" cy="45" r="2.2" fill="#2a221c" />
+    <path d="M 110 50 Q 115 52, 120 50" fill="none" stroke="#2a221c" stroke-width="0.8" />
+    
+    <path d="M 20 60 Q 30 55, 35 65" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.4" />
+    <path d="M 45 70 Q 55 65, 65 75" fill="none" stroke="#2a221c" stroke-width="0.7" opacity="0.4" />
+  </g>
+
+  
+  <g id="viewing-hide" transform="translate(920, 240)">
+    
+    <rect x="0" y="50" width="120" height="60" fill="#a48c77" stroke="#2a221c" stroke-width="1.2" />
+    <polygon points="-10,50 60,15 130,50" fill="#724d38" stroke="#2a221c" stroke-width="1.2" />
+    
+    
+    <line x1="15" y1="110" x2="5" y2="150" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="45" y1="110" x2="40" y2="150" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="75" y1="110" x2="80" y2="150" stroke="#2a221c" stroke-width="1.5" />
+    <line x1="105" y1="110" x2="115" y2="150" stroke="#2a221c" stroke-width="1.5" />
+
+    
+    <rect x="20" y="70" width="30" height="12" fill="#2a221c" />
+    <rect x="70" y="70" width="30" height="12" fill="#2a221c" />
+    
+    
+    <g transform="translate(-500, 140)" opacity="0.7">
+      <line x1="0" y1="0" x2="500" y2="0" stroke="#661227" stroke-width="1.5" stroke-dasharray="4 4" />
+      <circle cx="0" cy="0" r="3" fill="#661227" />
+      <circle cx="500" cy="0" r="3" fill="#661227" />
+      
+      <line x1="0" y1="-5" x2="0" y2="5" stroke="#661227" stroke-width="1.5" />
+      <line x1="500" y1="-5" x2="500" y2="5" stroke="#661227" stroke-width="1.5" />
+    </g>
+  </g>
+
+  
+  <g id="dune-grass" opacity="0.8">
+    
+    <path d="M 120 380 Q 115 340, 100 320" fill="none" stroke="#556153" stroke-width="1.5" />
+    <path d="M 123 380 Q 125 345, 130 315" fill="none" stroke="#556153" stroke-width="1.2" />
+    <path d="M 126 380 Q 135 350, 150 325" fill="none" stroke="#556153" stroke-width="1.5" />
+    <path d="M 118 380 Q 105 350, 90 335" fill="none" stroke="#556153" stroke-width="1" />
+
+    
+    <path d="M 750 375 Q 755 335, 745 310" fill="none" stroke="#556153" stroke-width="1.5" />
+    <path d="M 754 375 Q 765 340, 780 315" fill="none" stroke="#556153" stroke-width="1.2" />
+    <path d="M 748 375 Q 735 345, 720 320" fill="none" stroke="#556153" stroke-width="1.5" />
+  </g>
+
+  
+  <g id="editorial-marker" transform="translate(70, 75)">
+    
+    <rect x="0" y="0" width="12" height="12" fill="#661227" />
+    <line x1="20" y1="6" x2="110" y2="6" stroke="#661227" stroke-width="1.5" opacity="0.6" />
+  </g>
+
+  
+  <g id="birds" fill="none" stroke="#2a221c" stroke-width="1.2" opacity="0.6" transform="translate(0, -10)">
+    
+    <path d="M 300 220 Q 310 210, 320 220 Q 330 210, 340 220" />
+    
+    <path d="M 335 200 Q 342 192, 350 200 Q 358 192, 365 200" />
+    
+    <path d="M 318 190 Q 323 185, 328 190 Q 333 185, 338 190" />
+  </g>
+</svg>
