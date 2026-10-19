@@ -1,0 +1,74 @@
+{
+  "slug": "every-major-game-releasing-in-november-that-isnt-gta-6",
+  "url": "https://www.nuvellum.news/article/every-major-game-releasing-in-november-that-isnt-gta-6",
+  "title": "Every major game releasing in November that isn’t GTA 6",
+  "risk": "low",
+  "firstSeenAt": "2026-10-19T00:32:26.166Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-19T00:32:26.166Z",
+      "remoteId": "191",
+      "remoteUrl": "https://t.me/nuvellum/191",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    },
+    "threads": {
+      "containerId": "17950897719321818",
+      "containerCreatedAt": "2026-10-19T00:32:33.617Z",
+      "updatedAt": "2026-10-19T00:32:26.166Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-19T00:32:26.166Z",
+      "remoteId": "18123483586972443",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-19T00:32:26.166Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-19T00:32:26.166Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
