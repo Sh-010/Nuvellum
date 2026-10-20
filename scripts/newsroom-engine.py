@@ -16,6 +16,7 @@ from html.parser import HTMLParser
 import ipaddress
 import json
 import os
+from pathlib import Path
 import re
 import socket
 import subprocess
@@ -509,10 +510,35 @@ def local_repository_gate(slug, markdown):
 
 
 def github_write(slug, markdown, candidate, token):
-    if not token or os.getenv("ALLOW_EDITORIAL_WRITES") != "on":
-        raise ValueError("write requires NUVELLUM_EDITORIAL_TOKEN and ALLOW_EDITORIAL_WRITES=on")
+    if os.getenv("ALLOW_EDITORIAL_WRITES") != "on":
+        raise ValueError("writes not explicitly allowed")
+    deploy_key = os.getenv("NUVELLUM_USE_DEPLOY_KEY") == "on"
+    if not deploy_key and not os.getenv("NUVELLUM_EDITORIAL_TOKEN"):
+        raise ValueError("write requires the repository deploy key or NUVELLUM_EDITORIAL_TOKEN")
     branch = f"incoming/{slug[:60].rstrip('-')}-{source_hash(candidate['link'])}"
     path = f"src/content/articles/{slug}.md"
+    if deploy_key:
+        # actions/checkout provides the existing NUVELLUM_DEPLOY_KEY as SSH credentials.
+        # Unlike GITHUB_TOKEN writes, deploy-key git pushes start the downstream gates.
+        def run_git(*args):
+            return subprocess.run(["git", *args], capture_output=True, text=True,
+                                  check=True, timeout=90)
+        remote = run_git("ls-remote", "--heads", "origin", branch)
+        if remote.stdout.strip():
+            raise ValueError("incoming branch already exists; refusing an overwrite")
+        run_git("fetch", "origin", "main", "--depth=1")
+        run_git("checkout", "-b", branch, "FETCH_HEAD")
+        destination = Path(path)
+        if destination.exists():
+            raise ValueError("the article slug already exists on main")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(markdown, encoding="utf-8")
+        run_git("add", path)
+        run_git("-c", "user.name=Nuvellum Newsroom",
+                "-c", "user.email=actions@users.noreply.github.com",
+                "commit", "-m", "editorial: add " + slug)
+        run_git("push", "origin", "HEAD:refs/heads/" + branch)
+        return branch
     base = f"https://api.github.com/repos/{REPO}"
     head = json_request(base + "/git/ref/heads/main", token=token)["object"]["sha"]
     # No publishing changes happen until editorial checks have passed.
@@ -547,8 +573,8 @@ def main(argv=None):
         parser.error("--max-candidates must be between 1 and 5")
     api_key = os.getenv("GOOGLE_GEMINI_API_KEY", "")
     token = os.getenv("NUVELLUM_EDITORIAL_TOKEN", "") or os.getenv("GITHUB_TOKEN", "")
-    if args.write and (not api_key or not os.getenv("NUVELLUM_EDITORIAL_TOKEN")):
-        parser.error("Write mode requires Gemini key and NUVELLUM_EDITORIAL_TOKEN")
+    if args.write and (not api_key or not (os.getenv("NUVELLUM_EDITORIAL_TOKEN") or os.getenv("NUVELLUM_USE_DEPLOY_KEY") == "on")):
+        parser.error("Write mode requires Gemini key and either an SSH deploy key or editorial token")
     feed_items, errors = collect_feeds()
     candidates = select_candidates(feed_items, args.max_candidates)
     print(json.dumps({"stage": "feed_discovery", "feeds": len(FEEDS), "items": len(feed_items),
