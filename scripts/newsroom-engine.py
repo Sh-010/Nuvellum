@@ -292,7 +292,7 @@ def select_candidates(items, max_candidates=5):
 
 
 def gemini(prompt, api_key, *, model=None):
-    model = model or os.getenv("NUVELLUM_GEMINI_MODEL", "gemini-2.5-flash-lite")
+    model = model or os.getenv("NUVELLUM_GEMINI_MODEL", "gemini-3.5-flash-lite")
     if not re.fullmatch(r"[a-zA-Z0-9._-]+", model):
         raise ValueError("Invalid model name")
     endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
