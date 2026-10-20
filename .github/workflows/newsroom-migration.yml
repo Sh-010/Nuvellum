@@ -1,0 +1,85 @@
+name: Nuvellum newsroom migration
+
+on:
+  push:
+    branches:
+      - migration/github-actions-newsroom-v65
+    paths:
+      - 'scripts/newsroom-engine.py'
+      - 'tests/test_newsroom_engine.py'
+      - '.github/workflows/newsroom-migration.yml'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "feed_check = no Gemini; dry_run = Gemini without writes; publish = one vetted incoming branch"
+        type: choice
+        required: true
+        default: feed_check
+        options:
+          - feed_check
+          - dry_run
+          - publish
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: nuvellum-newsroom-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    name: Newsroom migration tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p 'test_newsroom_engine.py' -v
+
+  newsroom:
+    name: Newsroom engine — manual only
+    if: github.event_name == 'workflow_dispatch'
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
+      NUVELLUM_EDITORIAL_TOKEN: ${{ secrets.NUVELLUM_EDITORIAL_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+      ALLOW_EDITORIAL_WRITES: ${{ inputs.mode == 'publish' && 'on' || 'off' }}
+      NUVELLUM_GEMINI_MODEL: gemini-2.5-flash-lite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run source check or guarded candidate generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ inputs.mode }}" in
+            feed_check)
+              python scripts/newsroom-engine.py --feeds-only
+              ;;
+            dry_run)
+              test -n "$GOOGLE_GEMINI_API_KEY" || { echo "Missing NUVELLUM_GEMINI_API_KEY"; exit 1; }
+              python scripts/newsroom-engine.py
+              ;;
+            publish)
+              test -n "$GOOGLE_GEMINI_API_KEY" && test -n "$NUVELLUM_EDITORIAL_TOKEN" || {
+                echo "Missing required API credentials"; exit 1;
+              }
+              python scripts/newsroom-engine.py --write
+              ;;
+            *)
+              echo "Unsupported mode"; exit 1
+              ;;
+          esac
