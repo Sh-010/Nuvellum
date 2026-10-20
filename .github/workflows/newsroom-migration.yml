@@ -8,7 +8,7 @@ on:
       - 'scripts/newsroom-engine.py'
       - 'tests/test_newsroom_engine.py'
       - '.github/workflows/newsroom-migration.yml'
-  # Schedule is inert until NUVELLUM_NEWSROOM_LIVE is explicitly 'on'.
+  # PRODUCTION: hourly newsroom enabled. Emergency stop: set Actions variable NUVELLUM_NEWSROOM_LIVE to 'off'.
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
@@ -34,7 +34,7 @@ concurrency:
 jobs:
   tests:
     name: Newsroom migration tests
-    if: github.event_name != 'schedule' || vars.NUVELLUM_NEWSROOM_LIVE == 'on'
+    if: github.event_name != 'schedule' || vars.NUVELLUM_NEWSROOM_LIVE != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -63,18 +63,18 @@ jobs:
 
 
   newsroom:
-    name: Newsroom engine — guarded hourly or manual
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')
+    name: Newsroom engine — hourly production (or manual)
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE != 'off')
     needs: tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
       GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
       NUVELLUM_EDITORIAL_TOKEN: ${{ secrets.NUVELLUM_EDITORIAL_TOKEN }}
-      NUVELLUM_USE_DEPLOY_KEY: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')) && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
+      NUVELLUM_USE_DEPLOY_KEY: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE != 'off')) && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
       GITHUB_TOKEN: ${{ github.token }}
-      ALLOW_EDITORIAL_WRITES: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')) && 'on' || 'off' }}
-      NUVELLUM_ALLOW_AUTOPUBLISH: ${{ github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on' && 'on' || 'off' }}
+      ALLOW_EDITORIAL_WRITES: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE != 'off')) && 'on' || 'off' }}
+      NUVELLUM_ALLOW_AUTOPUBLISH: ${{ github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE != 'off' && 'on' || 'off' }}
       NUVELLUM_GEMINI_MODEL: gemini-3.5-flash-lite
     steps:
       - uses: actions/checkout@v7
