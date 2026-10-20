@@ -34,6 +34,7 @@ concurrency:
 jobs:
   tests:
     name: Newsroom migration tests
+    if: github.event_name != 'schedule' || vars.NUVELLUM_NEWSROOM_LIVE == 'on'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
