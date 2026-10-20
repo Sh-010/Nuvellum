@@ -90,6 +90,22 @@ class NewsroomMigrationTests(unittest.TestCase):
                     published=False)
         engine.local_repository_gate(slug, markdown)
 
+    def test_api_request_budget_blocks_network_calls(self):
+        previous = engine._GEMINI_HTTP_REQUESTS
+        try:
+            engine._GEMINI_HTTP_REQUESTS = engine.GEMINI_HTTP_REQUEST_CAP
+            with self.assertRaisesRegex(RuntimeError, "request cap"):
+                engine.gemini("test", "not-a-real-key")
+        finally:
+            engine._GEMINI_HTTP_REQUESTS = previous
+
+    def test_excessive_quote_fails_closed(self):
+        d = self.valid_draft()
+        long_quote = " ".join(["verbatim"] * 30)
+        d["bodyMarkdown"] += '\n\n' + '"' + long_quote + '"'
+        with self.assertRaisesRegex(ValueError, "direct quotation"):
+            engine.validate_draft(d, {"title": "NASA research changes"}, "")
+
     @staticmethod
     def valid_draft():
         sentence = "NASA published research findings based on observations and described the methods used in the study. "
