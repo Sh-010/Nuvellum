@@ -51,4 +51,4 @@ GitHub Actions migration unit tests passed, and a live feed check successfully p
 
 ## Go-live decision
 
-**Not yet deployed as an hourly publisher.** The migration draft PR must be approved/merged, a strictly capped hourly schedule introduced, free-tier/billing limits checked, and a separately reviewed, intentionally published test article observed through deployment. This avoids treating an isolated passing dry run as proof that unattended publication is safe.
+**Not yet deployed as an hourly publisher.** The workflow now includes a cron schedule at minute 17 of each hour, but its newsroom job is completely disabled unless the repository Actions variable `NUVELLUM_NEWSROOM_LIVE` equals `on`. A launch still requires merging this draft PR, confirming free-tier/billing limits, reviewing a published end-to-end article through Vercel, and explicitly switching on that variable. Scheduled runs would write at most one article per hour, and sensitive stories remain human-review only.
