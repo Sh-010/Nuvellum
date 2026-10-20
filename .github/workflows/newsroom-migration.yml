@@ -41,6 +41,20 @@ jobs:
       - name: Unit tests
         run: python -m unittest discover -s tests -p 'test_newsroom_engine.py' -v
 
+  feed_sanity:
+    name: Live RSS feed smoke test
+    if: github.event_name == 'push'
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Check all configured feed URLs without AI or GitHub writes
+        run: python scripts/newsroom-engine.py --feeds-only
+
   newsroom:
     name: Newsroom engine — manual only
     if: github.event_name == 'workflow_dispatch'
