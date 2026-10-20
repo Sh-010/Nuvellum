@@ -145,7 +145,7 @@ def words(text):
 
 def child_text(elem, name):
     for child in elem:
-        if child.tag.rsplit("}", 1)[-1].lower() == name:
+        if child.tag.rsplit("}", 1)[-1].lower() == name.lower():
             return "".join(child.itertext()).strip()
     return ""
 
