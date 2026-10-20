@@ -29,7 +29,7 @@ Write mode additionally checks ALLOW_EDITORIAL_WRITES=on, set only by the explic
 ## Known differences from n8n
 
 - Full source extraction uses HTMLParser and JSON-LD instead of n8n CSS selectors. Live feed testing is mandatory.
-- The Gemini model is configurable and defaults to gemini-2.5-flash-lite. Verify model availability and free-tier quotas with the account.
+- The Gemini model is configurable and defaults to gemini-3.5-flash-lite. Verify model availability and free-tier quotas with the account.
 - This first migration does not call the old Gemini SVG illustrator. Existing photo acquisition and intentional text-led stories avoid inaccurate or unsafe decorative visuals.
 - The n8n workflow export is a rollback reference; equivalence is not asserted until real end-to-end tests pass.
 
