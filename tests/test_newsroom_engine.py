@@ -82,6 +82,14 @@ class NewsroomMigrationTests(unittest.TestCase):
         self.assertRegex(slug, r"^[a-z0-9-]+$")
         self.assertNotIn("image:", md)
 
+    def test_generated_article_passes_repository_integrity_gate(self):
+        draft = self.valid_draft()
+        article = engine.validate_draft(draft, {"title": "NASA research changes"}, "")
+        slug, markdown = engine.frontmatter(article,
+                    {"link": "https://nasa.gov/news/quality-check", "outlet": "NASA"},
+                    published=False)
+        engine.local_repository_gate(slug, markdown)
+
     @staticmethod
     def valid_draft():
         sentence = "NASA published research findings based on observations and described the methods used in the study. "
