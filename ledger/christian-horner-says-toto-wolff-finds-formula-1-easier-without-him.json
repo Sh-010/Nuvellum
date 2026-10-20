@@ -1,0 +1,74 @@
+{
+  "slug": "christian-horner-says-toto-wolff-finds-formula-1-easier-without-him",
+  "url": "https://www.nuvellum.news/article/christian-horner-says-toto-wolff-finds-formula-1-easier-without-him",
+  "title": "Christian Horner says Toto Wolff finds Formula 1 easier without him",
+  "risk": "low",
+  "firstSeenAt": "2026-10-20T15:12:26.109Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-20T15:12:26.109Z",
+      "remoteId": "192",
+      "remoteUrl": "https://t.me/nuvellum/192",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    },
+    "threads": {
+      "containerId": "17951202405321818",
+      "containerCreatedAt": "2026-10-20T15:12:33.400Z",
+      "updatedAt": "2026-10-20T15:12:26.109Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-20T15:12:26.109Z",
+      "remoteId": "18117646475009376",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-20T15:12:26.109Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-20T15:12:26.109Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
