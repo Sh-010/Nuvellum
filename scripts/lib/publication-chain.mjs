@@ -3,12 +3,13 @@
 //    (every published story is one production build; the plan allows 100 deployments a day), and
 //  - which stories still need branded social cards on the social-assets branch.
 
-export const DEFAULT_DAILY_CAP = 24;
-// Hourly cadence: one automatic publication per hourly slot. Another may merge once the previous merge is at
-// least MIN_GAP_MINUTES old. Not a strict 60: the gate runs when each hourly newsroom push lands (a few minutes
-// past the hour, with drift), so a strict rolling hour skipped every other slot.
+// Leave room beneath Vercel Hobby's 100-deployment/day budget for other builds.
+export const DEFAULT_DAILY_CAP = 72;
+// The newsroom checks every 15 minutes. An approved story may merge after a 12-minute gap,
+// leaving three minutes' tolerance for the usual GitHub Actions scheduling / PR-check drift.
+// HOURLY_CAP is retained as a backwards-compatible name for the per-cadence-slot cap.
 export const HOURLY_CAP = 1;
-export const MIN_GAP_MINUTES = 50;
+export const MIN_GAP_MINUTES = 12;
 const GAP = MIN_GAP_MINUTES * 60000;
 const HOUR = 3600000;
 const DAY = 86400000;
@@ -16,7 +17,7 @@ const DAY = 86400000;
 /** The cap from the repository variable; anything unusable falls back to the default, never "unlimited". */
 export function dailyCap(value) {
   const n = Number.parseInt(String(value ?? '').trim(), 10);
-  return Number.isFinite(n) && n >= 0 && n <= 200 ? n : DEFAULT_DAILY_CAP;
+  return Number.isFinite(n) && n >= 0 && n <= DEFAULT_DAILY_CAP ? n : DEFAULT_DAILY_CAP;
 }
 
 /** Automatic publications (merged incoming/** PRs) in the 24 hours before `now`. */
@@ -29,12 +30,12 @@ export function remainingToday(pulls, cap, now = Date.now()) {
   return Math.max(0, cap - publishedInLastDay(pulls, now));
 }
 
-/** Automatic publications (merged incoming/** PRs) within the minimum gap before `now`. */
+/** Automatic publications (merged incoming/** PRs) within the configured minimum gap before `now`. */
 export function publishedInLastHour(pulls = [], now = Date.now()) {
   return pulls.filter((pr) => String(pr?.head?.ref || '').startsWith('incoming/') && pr.merged_at && now - Date.parse(pr.merged_at) < GAP).length;
 }
 
-/** How many stories may be merged right now: the hourly-slot limit and the rolling daily cap both apply. */
+/** How many stories may be merged now: per-cadence limit and rolling daily cap both apply. */
 export function remainingNow(pulls, cap, now = Date.now()) {
   return Math.min(remainingToday(pulls, cap, now), Math.max(0, HOURLY_CAP - publishedInLastHour(pulls, now)));
 }
