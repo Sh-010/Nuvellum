@@ -57,38 +57,6 @@ jobs:
 
 
 
-  review_handoff:
-    name: Submit one editorial-review candidate — never publish
-    if: github.event_name == 'push'
-    needs: [tests, feed_sanity]
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    env:
-      GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
-      NUVELLUM_USE_DEPLOY_KEY: ${{ secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
-      GITHUB_TOKEN: ${{ github.token }}
-      ALLOW_EDITORIAL_WRITES: 'on'
-      NUVELLUM_ALLOW_AUTOPUBLISH: 'off'
-      NUVELLUM_GEMINI_MODEL: gemini-3.5-flash-lite
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ssh-key: ${{ secrets.NUVELLUM_DEPLOY_KEY }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: actions/setup-python@v7
-        with:
-          python-version: '3.12'
-      - name: Write one safeguarded review-only story using the existing deploy key
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -n "$GOOGLE_GEMINI_API_KEY" && test "$NUVELLUM_USE_DEPLOY_KEY" = "on" || {
-            echo "::error::Missing Gemini API key or existing NUVELLUM_DEPLOY_KEY"; exit 1;
-          }
-          python scripts/newsroom-engine.py --write --max-candidates 3
-
 
   newsroom:
     name: Newsroom engine — manual only
