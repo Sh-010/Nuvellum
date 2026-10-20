@@ -34,8 +34,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Unit tests
@@ -50,15 +50,18 @@ jobs:
     env:
       GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
       NUVELLUM_EDITORIAL_TOKEN: ${{ secrets.NUVELLUM_EDITORIAL_TOKEN }}
+      NUVELLUM_USE_DEPLOY_KEY: ${{ inputs.mode == 'publish' && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
       GITHUB_TOKEN: ${{ github.token }}
       ALLOW_EDITORIAL_WRITES: ${{ inputs.mode == 'publish' && 'on' || 'off' }}
       NUVELLUM_GEMINI_MODEL: gemini-2.5-flash-lite
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+        with:
+          ssh-key: ${{ inputs.mode == 'publish' && secrets.NUVELLUM_DEPLOY_KEY || '' }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Run source check or guarded candidate generation
@@ -74,7 +77,7 @@ jobs:
               python scripts/newsroom-engine.py
               ;;
             publish)
-              test -n "$GOOGLE_GEMINI_API_KEY" && test -n "$NUVELLUM_EDITORIAL_TOKEN" || {
+              test -n "$GOOGLE_GEMINI_API_KEY" && { test "$NUVELLUM_USE_DEPLOY_KEY" = "on" || test -n "$NUVELLUM_EDITORIAL_TOKEN"; } || {
                 echo "Missing required API credentials"; exit 1;
               }
               python scripts/newsroom-engine.py --write
