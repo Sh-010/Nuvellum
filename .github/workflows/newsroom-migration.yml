@@ -1,0 +1,117 @@
+name: Nuvellum newsroom migration
+
+on:
+  push:
+    branches:
+      - migration/github-actions-newsroom-v65
+    paths:
+      - 'scripts/newsroom-engine.py'
+      - 'tests/test_newsroom_engine.py'
+      - '.github/workflows/newsroom-migration.yml'
+  # Schedule is inert until NUVELLUM_NEWSROOM_LIVE is explicitly 'on'.
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "feed_check = no Gemini; dry_run = Gemini without writes; submit_for_review = review-only branch"
+        type: choice
+        required: true
+        default: feed_check
+        options:
+          - feed_check
+          - dry_run
+          - submit_for_review
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: nuvellum-newsroom-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    name: Newsroom migration tests
+    if: github.event_name != 'schedule' || vars.NUVELLUM_NEWSROOM_LIVE == 'on'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p 'test_newsroom_engine.py' -v
+
+  feed_sanity:
+    name: Live RSS feed smoke test
+    if: github.event_name == 'push'
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Check all configured feed URLs without AI or GitHub writes
+        run: python scripts/newsroom-engine.py --feeds-only
+
+
+
+
+  newsroom:
+    name: Newsroom engine — guarded hourly or manual
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
+      NUVELLUM_EDITORIAL_TOKEN: ${{ secrets.NUVELLUM_EDITORIAL_TOKEN }}
+      NUVELLUM_USE_DEPLOY_KEY: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')) && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
+      GITHUB_TOKEN: ${{ github.token }}
+      ALLOW_EDITORIAL_WRITES: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')) && 'on' || 'off' }}
+      NUVELLUM_ALLOW_AUTOPUBLISH: ${{ github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on' && 'on' || 'off' }}
+      NUVELLUM_GEMINI_MODEL: gemini-3.5-flash-lite
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ssh-key: ${{ (inputs.mode == 'submit_for_review' || github.event_name == 'schedule') && secrets.NUVELLUM_DEPLOY_KEY || '' }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Run source check or guarded candidate generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            test "$ALLOW_EDITORIAL_WRITES" = "on" && test -n "$GOOGLE_GEMINI_API_KEY" && test "$NUVELLUM_USE_DEPLOY_KEY" = "on" || {
+              echo "::error::Scheduled publishing is not fully enabled or configured"; exit 1;
+            }
+            python scripts/newsroom-engine.py --write --max-candidates 5
+            exit $?
+          fi
+          case "${{ inputs.mode }}" in
+            feed_check)
+              python scripts/newsroom-engine.py --feeds-only
+              ;;
+            dry_run)
+              test -n "$GOOGLE_GEMINI_API_KEY" || { echo "Missing NUVELLUM_GEMINI_API_KEY"; exit 1; }
+              python scripts/newsroom-engine.py
+              ;;
+            submit_for_review)
+              test -n "$GOOGLE_GEMINI_API_KEY" && { test "$NUVELLUM_USE_DEPLOY_KEY" = "on" || test -n "$NUVELLUM_EDITORIAL_TOKEN"; } || {
+                echo "Missing required API credentials"; exit 1;
+              }
+              python scripts/newsroom-engine.py --write
+              ;;
+            *)
+              echo "Unsupported mode"; exit 1
+              ;;
+          esac
