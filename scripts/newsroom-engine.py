@@ -113,6 +113,13 @@ def source_hash(raw: str) -> str:
     return f"{h:08x}"
 
 
+class HTTPSOnlyRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        if not safe_https(newurl):
+            raise ValueError("unsafe redirect target")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 def request(url: str, *, method="GET", payload=None, token=None, timeout=18, max_bytes=MAX_BYTES):
     if not safe_https(url):
         raise ValueError("blocked URL")
@@ -125,7 +132,7 @@ def request(url: str, *, method="GET", payload=None, token=None, timeout=18, max
         headers["Content-Type"] = "application/json"
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     req = urllib.request.Request(url, data=body, headers=headers, method=method)
-    with urllib.request.urlopen(req, timeout=timeout) as res:
+    with urllib.request.build_opener(HTTPSOnlyRedirect).open(req, timeout=timeout) as res:
         data = res.read(max_bytes + 1)
         if len(data) > max_bytes:
             raise ValueError("oversized response")
@@ -609,15 +616,19 @@ def main(argv=None):
                 verify_sensitive(article, candidate, source, api_key)
             # Sensitive stories are human-review candidates, NEVER auto-published.
             is_low_risk = article["risk"] == "low"
-            slug, markdown = frontmatter(article, candidate, published=is_low_risk)
+            # Test-stage writes remain review-only, even if the existing auto-publish gate is on.
+            can_autopublish = is_low_risk and os.getenv("NUVELLUM_ALLOW_AUTOPUBLISH") == "on"
+            slug, markdown = frontmatter(article, candidate, published=can_autopublish)
             local_repository_gate(slug, markdown)
             if not args.write:
                 print(json.dumps({"stage": "dry_run_approved", "slug": slug,
                                   "risk": article["risk"], "section": article["section"],
-                                  "would_publish": is_low_risk}, ensure_ascii=False))
+                                  "eligible_for_future_autopublish": is_low_risk,
+                                  "status": "published" if can_autopublish else "review"}, ensure_ascii=False))
                 return 0
             branch = github_write(slug, markdown, candidate, token)
             print(json.dumps({"stage": "submitted", "branch": branch,
+                              "review_only": not can_autopublish,
                               "sensitive_human_review_required": not is_low_risk}))
             return 0  # Always one approved story per run.
         except Exception as e:
