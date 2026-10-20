@@ -13,7 +13,7 @@
 
 Set GitHub Actions repository secrets:
 1. NUVELLUM_GEMINI_API_KEY: a Gemini Generative Language API key.
-2. NUVELLUM_EDITORIAL_TOKEN: a fine-grained GitHub PAT or App token scoped to Sh-010/Nuvellum with Contents read/write. An ordinary GITHUB_TOKEN write may not trigger downstream workflows. Never commit credentials.
+2. Reuse the existing NUVELLUM_DEPLOY_KEY secret already used by visual acquisition. If this deploy key has write access, it can push the incoming article branch over SSH, triggering the downstream checks. If no SSH deploy key is configured, instead set NUVELLUM_EDITORIAL_TOKEN to a fine-grained GitHub PAT or App token scoped to Sh-010/Nuvellum with Contents read/write. Ordinary GITHUB_TOKEN writes may not trigger downstream workflows. Never commit credentials.
 
 Write mode additionally checks ALLOW_EDITORIAL_WRITES=on, set only by the explicit publish workflow input. It stops on missing published index or PR data, blocks exact and semantic duplicates, and invokes the existing article validator before writing. Sensitive stories are recorded for human review, not merged automatically.
 
