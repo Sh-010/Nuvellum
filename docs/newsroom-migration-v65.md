@@ -37,3 +37,18 @@ Do not enable an automatic schedule just because repository tests pass.
 ## Verified initial test results (20 October 2026)
 
 GitHub Actions migration unit tests passed, and a live feed check successfully processed all 27 source URLs: 509 recent feed items, zero reported feed errors, five chosen candidates. No Gemini credential-backed dry run or actual new article push has occurred.
+
+
+## Credential-backed and incoming-PR rehearsal (20 October 2026)
+
+- Secret `NUVELLUM_GEMINI_API_KEY` tested successfully with `gemini-3.5-flash-lite`.
+- Editorial no-write dry run accepted a Sports story after live source resolution, Gemini duplicate screening, article drafting, Gemini editorial review, and the repository's article preflight.
+- One controlled write used the existing `NUVELLUM_DEPLOY_KEY` to create `incoming/christian-horner-says-toto-wolff-finds-formula-1-easier-with-c99aa1f3`.
+- Repository automation created [review-only PR #588](https://github.com/Sh-010/Nuvellum/pull/588), which was labeled `hold` to block automatic publication.
+- Live push-triggered workflow checks for PR #588 passed initial site build, security, duplicate guard, visual acquisition and PR creation. Automated pull-request event checks may display `action_required` when GitHub parks bot-created PR triggers; actual push-run checks are the relevant ones.
+- Compared the generated article's central factual claims with the Sky Sports source. Its UK geography is incidental and should be removed before publication; a human editor should scrutinize extended quotations.
+- The temporary one-shot test jobs were removed after success. Only unit/feed tests plus a manual workflow remain.
+
+## Go-live decision
+
+**Not yet deployed as an hourly publisher.** The migration draft PR must be approved/merged, a strictly capped hourly schedule introduced, free-tier/billing limits checked, and a separately reviewed, intentionally published test article observed through deployment. This avoids treating an isolated passing dry run as proof that unattended publication is safe.
