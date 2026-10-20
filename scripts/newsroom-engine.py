@@ -72,6 +72,9 @@ TRACK = re.compile(r"^(utm_.*|fbclid|gclid|dclid|msclkid|yclid|igshid|mc_cid|mc_
 USER_AGENT = "NuvellumNewsroom/6.5 (+https://nuvellum.news)"
 MAX_BYTES = 2_000_000
 MAX_SOURCE_AGE_H = 72
+# Hard upper bound on Gemini HTTP requests within any single run, including retries.
+GEMINI_HTTP_REQUEST_CAP = 6
+_GEMINI_HTTP_REQUESTS = 0
 
 
 def safe_https(value: str) -> bool:
@@ -299,6 +302,7 @@ def select_candidates(items, max_candidates=5):
 
 
 def gemini(prompt, api_key, *, model=None):
+    global _GEMINI_HTTP_REQUESTS
     model = model or os.getenv("NUVELLUM_GEMINI_MODEL", "gemini-3.5-flash-lite")
     if not re.fullmatch(r"[a-zA-Z0-9._-]+", model):
         raise ValueError("Invalid model name")
@@ -308,6 +312,9 @@ def gemini(prompt, api_key, *, model=None):
         "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2}
     }
     for attempt in range(3):
+        if _GEMINI_HTTP_REQUESTS >= GEMINI_HTTP_REQUEST_CAP:
+            raise RuntimeError("Gemini per-run request cap reached; safely skipping further candidates")
+        _GEMINI_HTTP_REQUESTS += 1
         try:
             req = urllib.request.Request(endpoint, data=json.dumps(body).encode(), method="POST",
                                          headers={"Content-Type": "application/json", "x-goog-api-key": api_key,
@@ -379,6 +386,8 @@ def draft_story(candidate, text, api_key):
         "Use original sentence-case headline under 120 chars and factual dek under 260. "
         "Write 120-500 words, only as long as the source supports, with two or three ## subheads. "
         "No raw HTML, invented quotes, unattributed accusations, or embedded images. "
+        "Use no more than 15 words of direct quotation from the source in total; paraphrase the rest. "
+        "Do not insert countries or World Desk regions unless the actual reported event is geographically located there. "
         "Tags: 2-6 factual labels. regions: only north-america,latin-america-caribbean,"
         "europe-central-asia,middle-east-north-africa,sub-saharan-africa,south-asia,"
         "east-asia,southeast-asia-oceania. Countries only when explicitly relevant; "
@@ -402,6 +411,9 @@ def validate_draft(d, candidate, text):
         raise ValueError("title/dek/body lengths invalid")
     if re.search(r"<\s*/?\s*[a-z][^>]*>", body, re.I) or re.search(r"!\[[^\]]*\]\(", body):
         raise ValueError("unsafe markup or embedded image")
+    quoted = re.findall(r'[\"“]([^\"”]+)[\"”]', body)
+    if sum(words(x) for x in quoted) > 25:
+        raise ValueError("excessive direct quotation from one source")
     if len(re.findall(r"^##\s+", body, flags=re.M)) < 2:
         raise ValueError("article is missing structure")
     if re.search(r"\]\((?!https://|mailto:|/|#)", body, re.I):
