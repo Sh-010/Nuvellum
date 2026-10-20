@@ -55,6 +55,45 @@ jobs:
       - name: Check all configured feed URLs without AI or GitHub writes
         run: python scripts/newsroom-engine.py --feeds-only
 
+
+  credential_dry_run:
+    name: Gemini credential and editorial dry-run (no writes)
+    if: github.event_name == 'push'
+    needs: [tests, feed_sanity]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
+      GITHUB_TOKEN: ${{ github.token }}
+      NUVELLUM_GEMINI_MODEL: gemini-3.5-flash-lite
+      ALLOW_EDITORIAL_WRITES: 'off'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Validate key and run nonpublishing editorial simulation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$GOOGLE_GEMINI_API_KEY" || { echo "::error::NUVELLUM_GEMINI_API_KEY is missing"; exit 1; }
+          python - <<'PY'
+          import importlib.util
+          import os
+          spec = importlib.util.spec_from_file_location("engine", "scripts/newsroom-engine.py")
+          engine = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(engine)
+          response = engine.gemini('Reply with one JSON object exactly: {"credential_test":"ok"}', os.environ["GOOGLE_GEMINI_API_KEY"])
+          if response.get("credential_test") != "ok":
+              raise RuntimeError("Unexpected Gemini probe output")
+          print("Gemini credential and model probe: SUCCESS")
+          PY
+          python scripts/newsroom-engine.py --max-candidates 3
+
+
   newsroom:
     name: Newsroom engine — manual only
     if: github.event_name == 'workflow_dispatch'
