@@ -11,14 +11,14 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "feed_check = no Gemini; dry_run = Gemini without writes; publish = one vetted incoming branch"
+        description: "feed_check = no Gemini; dry_run = Gemini without writes; submit_for_review = review-only branch"
         type: choice
         required: true
         default: feed_check
         options:
           - feed_check
           - dry_run
-          - publish
+          - submit_for_review
 
 permissions:
   contents: read
@@ -64,14 +64,14 @@ jobs:
     env:
       GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
       NUVELLUM_EDITORIAL_TOKEN: ${{ secrets.NUVELLUM_EDITORIAL_TOKEN }}
-      NUVELLUM_USE_DEPLOY_KEY: ${{ inputs.mode == 'publish' && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
+      NUVELLUM_USE_DEPLOY_KEY: ${{ inputs.mode == 'submit_for_review' && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
       GITHUB_TOKEN: ${{ github.token }}
-      ALLOW_EDITORIAL_WRITES: ${{ inputs.mode == 'publish' && 'on' || 'off' }}
+      ALLOW_EDITORIAL_WRITES: ${{ inputs.mode == 'submit_for_review' && 'on' || 'off' }}
       NUVELLUM_GEMINI_MODEL: gemini-3.5-flash-lite
     steps:
       - uses: actions/checkout@v7
         with:
-          ssh-key: ${{ inputs.mode == 'publish' && secrets.NUVELLUM_DEPLOY_KEY || '' }}
+          ssh-key: ${{ inputs.mode == 'submit_for_review' && secrets.NUVELLUM_DEPLOY_KEY || '' }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -90,7 +90,7 @@ jobs:
               test -n "$GOOGLE_GEMINI_API_KEY" || { echo "Missing NUVELLUM_GEMINI_API_KEY"; exit 1; }
               python scripts/newsroom-engine.py
               ;;
-            publish)
+            submit_for_review)
               test -n "$GOOGLE_GEMINI_API_KEY" && { test "$NUVELLUM_USE_DEPLOY_KEY" = "on" || test -n "$NUVELLUM_EDITORIAL_TOKEN"; } || {
                 echo "Missing required API credentials"; exit 1;
               }
