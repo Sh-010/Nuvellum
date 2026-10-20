@@ -8,6 +8,9 @@ on:
       - 'scripts/newsroom-engine.py'
       - 'tests/test_newsroom_engine.py'
       - '.github/workflows/newsroom-migration.yml'
+  # Schedule is inert until NUVELLUM_NEWSROOM_LIVE is explicitly 'on'.
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -59,22 +62,23 @@ jobs:
 
 
   newsroom:
-    name: Newsroom engine — manual only
-    if: github.event_name == 'workflow_dispatch'
+    name: Newsroom engine — guarded hourly or manual
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')
     needs: tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
       GOOGLE_GEMINI_API_KEY: ${{ secrets.NUVELLUM_GEMINI_API_KEY }}
       NUVELLUM_EDITORIAL_TOKEN: ${{ secrets.NUVELLUM_EDITORIAL_TOKEN }}
-      NUVELLUM_USE_DEPLOY_KEY: ${{ inputs.mode == 'submit_for_review' && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
+      NUVELLUM_USE_DEPLOY_KEY: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')) && secrets.NUVELLUM_DEPLOY_KEY != '' && 'on' || 'off' }}
       GITHUB_TOKEN: ${{ github.token }}
-      ALLOW_EDITORIAL_WRITES: ${{ inputs.mode == 'submit_for_review' && 'on' || 'off' }}
+      ALLOW_EDITORIAL_WRITES: ${{ (inputs.mode == 'submit_for_review' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on')) && 'on' || 'off' }}
+      NUVELLUM_ALLOW_AUTOPUBLISH: ${{ github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE == 'on' && 'on' || 'off' }}
       NUVELLUM_GEMINI_MODEL: gemini-3.5-flash-lite
     steps:
       - uses: actions/checkout@v7
         with:
-          ssh-key: ${{ inputs.mode == 'submit_for_review' && secrets.NUVELLUM_DEPLOY_KEY || '' }}
+          ssh-key: ${{ (inputs.mode == 'submit_for_review' || github.event_name == 'schedule') && secrets.NUVELLUM_DEPLOY_KEY || '' }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -85,6 +89,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            test "$ALLOW_EDITORIAL_WRITES" = "on" && test -n "$GOOGLE_GEMINI_API_KEY" && test "$NUVELLUM_USE_DEPLOY_KEY" = "on" || {
+              echo "::error::Scheduled publishing is not fully enabled or configured"; exit 1;
+            }
+            python scripts/newsroom-engine.py --write --max-candidates 5
+            exit $?
+          fi
           case "${{ inputs.mode }}" in
             feed_check)
               python scripts/newsroom-engine.py --feeds-only
