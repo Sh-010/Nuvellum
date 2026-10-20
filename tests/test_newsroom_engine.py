@@ -33,7 +33,7 @@ class NewsroomMigrationTests(unittest.TestCase):
         self.assertEqual(engine.source_hash(x["link"]), engine.source_hash(y["link"]))
 
     def test_rss_parse_and_stale_rejection(self):
-        now = dt.datetime(2026, 10, 20, tzinfo=dt.timezone.utc)
+        now = dt.datetime(2026, 10, 20, 12, 0, tzinfo=dt.timezone.utc)
         xml = "<rss><channel><item><title>Space research expands</title>" + \
               "<link>https://www.nasa.gov/space-research</link><description>Details</description>" + \
               "<pubDate>Tue, 20 Oct 2026 10:00:00 GMT</pubDate></item>" + \
@@ -44,7 +44,7 @@ class NewsroomMigrationTests(unittest.TestCase):
         self.assertEqual(results[0]["title"], "Space research expands")
 
     def test_atom_entry_href(self):
-        now = dt.datetime(2026, 10, 20, tzinfo=dt.timezone.utc)
+        now = dt.datetime(2026, 10, 20, 12, 0, tzinfo=dt.timezone.utc)
         xml = '<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>Major launch</title>' + \
               '<link href="https://techcrunch.com/major-launch" />' + \
               '<updated>2026-10-20T11:00:00Z</updated></entry></feed>'
