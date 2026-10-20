@@ -47,7 +47,7 @@ FEEDS = [
     ("https://www.fbi.gov/feeds/national-press-releases/rss.xml", "FBI", "Crime"),
     ("https://www.theguardian.com/us-news/us-crime/rss", "The Guardian", "Crime"),
     ("https://feeds.bbci.co.uk/sport/rss.xml?edition=uk", "BBC", "Sports"),
-    ("https://www.espn.com/espn/rss/news", "ESPN", "Sports"),
+    ("https://www.skysports.com/rss/12040", "Sky Sports", "Sports"),
     ("https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml", "BBC", "Culture"),
     ("https://www.theguardian.com/culture/rss", "The Guardian", "Culture"),
     ("https://www.theguardian.com/film/rss", "The Guardian", "Film & TV"),
@@ -328,19 +328,21 @@ def index_and_prs(token):
     if not isinstance(prs, list):
         raise ValueError("GitHub PR list unavailable")
     sources = set()
-    titles = []
+    published_titles = []
+    pr_titles = []
     for row in indexed:
         if isinstance(row, dict):
-            titles.append(str(row.get("title", "")))
+            published_titles.append(str(row.get("title", "")))
             for url in row.get("sourceUrls", []):
                 try: sources.add(source_key(url))
                 except ValueError: pass
     for pr in prs:
-        titles.append(re.sub(r"^Editorial:\s*", "", str(pr.get("title", "")), flags=re.I))
+        pr_titles.append(re.sub(r"^Editorial:\s*", "", str(pr.get("title", "")), flags=re.I))
         for url in re.findall(r"\*\*Source:\*\*\s*(https://\S+)", pr.get("body") or ""):
             try: sources.add(source_key(url))
             except ValueError: pass
-    return sources, [x for x in titles if x][-100:]
+    # The live index is newest-first; -100 would compare the *oldest* headlines.
+    return sources, [x for x in pr_titles[:60] + published_titles[:60] if x]
 
 
 def duplicate_check(candidate, titles, api_key):
@@ -581,7 +583,7 @@ def main(argv=None):
                       "errors": errors, "selected": len(candidates)}, ensure_ascii=False))
     if args.feeds_only or not api_key:
         print("Feed-only mode: no generation and no GitHub writes.")
-        return 0
+        return 0 if candidates else 1
     try:
         existing, titles = index_and_prs(token)
     except Exception as e:
