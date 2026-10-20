@@ -9,9 +9,9 @@ on:
       - 'scripts/newsroom-engine.py'
       - 'tests/test_newsroom_engine.py'
       - '.github/workflows/newsroom-migration.yml'
-  # PRODUCTION: hourly newsroom enabled. Emergency stop: set Actions variable NUVELLUM_NEWSROOM_LIVE to 'off'.
+  # PRODUCTION: newsroom every 15 minutes. Emergency stop: set Actions variable NUVELLUM_NEWSROOM_LIVE to 'off'.
   schedule:
-    - cron: '17 * * * *'
+    - cron: '2,17,32,47 * * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -64,7 +64,7 @@ jobs:
 
 
   newsroom:
-    name: Newsroom engine — hourly production (or manual)
+    name: Newsroom engine — 15-minute production (or manual)
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && vars.NUVELLUM_NEWSROOM_LIVE != 'off')
     needs: tests
     runs-on: ubuntu-latest
