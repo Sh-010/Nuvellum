@@ -1,54 +1,34 @@
-# Nuvellum v6.5 to GitHub Actions migration
+# Nuvellum newsroom — production operations
 
-**State: staged and manual-only.** This branch does not change the production pipeline or enable a new schedule.
+**Production launch:** 20 October 2026, [PR #589](https://github.com/Sh-010/Nuvellum/pull/589).
 
-## Architecture
+## How it works
 
-- scripts/newsroom-engine.py contains the dependency-free newsroom engine: 27 RSS feeds, up to five candidates, one approved story per run, URL normalization and deduplication, Gemini duplicate/drafting/review stages, and repository-compatible frontmatter.
-- tests/test_newsroom_engine.py tests feed parsing, duplicates, URL rejection, article extraction and editorial metadata.
-- .github/workflows/newsroom-migration.yml runs migration tests when migration-branch code changes and offers three manual modes: feed_check (no AI), dry_run (AI; no writes), submit_for_review (one review-only incoming branch).
-- Nuvellum's existing incoming-branch automation, GitHub PR gate, content validation, visual acquisition and Vercel deployment remain unchanged. The migrated engine leaves image metadata unset; the repository's licensed-photo acquisition and text-led fallback handle presentation.
+The GitHub Actions newsroom workflow runs hourly at minute 17 (UTC), subject to GitHub scheduling delays. It collects stories from 27 RSS feeds, chooses at most five candidates, uses Gemini 3.5 Flash-Lite for deduplication, source-based drafting, editorial checking and sensitive-story verification, then writes **no more than one** qualified article to an incoming branch.
 
-## Credentials and safety
+A hard ceiling of **six Gemini HTTP attempts per run (including retries)** guards usage. API-quota errors or no acceptable story mean the run can publish nothing. Sensitive reporting still requires human approval. The previous n8n SVG-generation stage has not been migrated; suitable licensed photography and text-led layouts remain available.
 
-Set GitHub Actions repository secrets:
-1. NUVELLUM_GEMINI_API_KEY: a Gemini Generative Language API key.
-2. Reuse the existing NUVELLUM_DEPLOY_KEY secret already used by visual acquisition. If this deploy key has write access, it can push the incoming article branch over SSH, triggering the downstream checks. If no SSH deploy key is configured, instead set NUVELLUM_EDITORIAL_TOKEN to a fine-grained GitHub PAT or App token scoped to Sh-010/Nuvellum with Contents read/write. Ordinary GITHUB_TOKEN writes may not trigger downstream workflows. Never commit credentials.
+The existing GitHub newsroom automation creates a PR, runs the image, duplicate, build, security and CodeQL checks, and publishes qualified low-risk stories. The publication gate limits merges to one every 50 minutes and at most 24 in any rolling 24-hour window.
 
-Review-branch write mode additionally checks ALLOW_EDITORIAL_WRITES=on, set only by the explicit submit_for_review workflow input. The resulting article has status=review by default; it cannot be automatically merged even when the repository's existing auto-publish setting is enabled. A separate, deliberately configured NUVELLUM_ALLOW_AUTOPUBLISH=on is needed for future unattended publishing. It stops on missing published index or PR data, blocks exact and semantic duplicates, and invokes the existing article validator before writing. Sensitive stories are recorded for human review, not merged automatically.
+## Launch verification
 
-## Activation checklist
+- The 27 RSS feeds delivered 509 recent items without errors in a test.
+- The Gemini key and dry-run article generation worked.
+- A review-only candidate progressed to [PR #588](https://github.com/Sh-010/Nuvellum/pull/588), was independently edited against its original reporting, then passed required PR checks.
+- The existing auto-publish gate merged it at [commit ce489b8](https://github.com/Sh-010/Nuvellum/commit/ce489b8aacc2fb075e6a9f7f72463d69eaea03f3).
+- The production [Christian Horner article](https://www.nuvellum.news/article/christian-horner-says-toto-wolff-finds-formula-1-easier-without-him) is publicly visible and included in Nuvellum's search index; Vercel reported a successful deployment.
+- Release-branch tests and Build Nuvellum, Security checks, CodeQL passed.
 
-1. Confirm the Python unit tests and existing repository checks pass on this PR.
-2. Use feed_check on the default branch after merging; replace feeds that have become unavailable.
-3. Use dry_run after adding the Gemini key; verify the model name works and review rejection summaries.
-4. When the full chain is ready, use submit_for_review manually once, confirm the resulting incoming branch/PR, build checks, duplicate guard, and visual acquisition. This review-only test does not merge or deploy an article.
-5. Independently examine published facts, sections, attribution, and image provenance. Sensitive stories must stay human-approved.
-6. Only after a successful monitored review and an expressly approved end-to-end merge/deployment test should an hourly cron trigger be added. Setting NUVELLUM_ALLOW_AUTOPUBLISH=on must be explicit and the hourly quota must be checked.
+## Emergency stop
 
-## Known differences from n8n
+For **hourly article generation**, visit GitHub repository **Settings → Secrets and variables → Actions → Variables** and set the repository variable `NUVELLUM_NEWSROOM_LIVE` to `off`. This prevents scheduled newsroom runs. Remove the variable or give it a different value to resume.
 
-- Full source extraction uses HTMLParser and JSON-LD instead of n8n CSS selectors. Live feed testing is mandatory.
-- The Gemini model is configurable and defaults to gemini-3.5-flash-lite. Verify model availability and free-tier quotas with the account.
-- This first migration does not call the old Gemini SVG illustrator. Existing photo acquisition and intentional text-led stories avoid inaccurate or unsafe decorative visuals.
-- The n8n workflow export is a rollback reference; equivalence is not asserted until real end-to-end tests pass.
+For **all automatic editorial merging** including already-queued PRs, also set `NUVELLUM_AUTOPUBLISH` to `off`. This is a separate independent publication switch; pausing just the hourly generator does not stop the publishing gate from processing queued PRs.
 
-Do not enable an automatic schedule just because repository tests pass.
-## Verified initial test results (20 October 2026)
+Never paste API keys into files or pull requests. GitHub Actions uses secrets `NUVELLUM_GEMINI_API_KEY` and `NUVELLUM_DEPLOY_KEY`.
 
-GitHub Actions migration unit tests passed, and a live feed check successfully processed all 27 source URLs: 509 recent feed items, zero reported feed errors, five chosen candidates. No Gemini credential-backed dry run or actual new article push has occurred.
+## Operating limits
 
+Gemini pricing includes a free API tier, but the actual account's project-wide request quotas and billing status cannot be inferred from a successful test. Inspect **Google AI Studio → Usage and billing**; free usage is not a guarantee that a paid-enabled project will incur zero charges.
 
-## Credential-backed and incoming-PR rehearsal (20 October 2026)
-
-- Secret `NUVELLUM_GEMINI_API_KEY` tested successfully with `gemini-3.5-flash-lite`.
-- Editorial no-write dry run accepted a Sports story after live source resolution, Gemini duplicate screening, article drafting, Gemini editorial review, and the repository's article preflight.
-- One controlled write used the existing `NUVELLUM_DEPLOY_KEY` to create `incoming/christian-horner-says-toto-wolff-finds-formula-1-easier-with-c99aa1f3`.
-- Repository automation created [review-only PR #588](https://github.com/Sh-010/Nuvellum/pull/588), which was labeled `hold` to block automatic publication.
-- Live push-triggered workflow checks for PR #588 passed initial site build, security, duplicate guard, visual acquisition and PR creation. Automated pull-request event checks may display `action_required` when GitHub parks bot-created PR triggers; actual push-run checks are the relevant ones.
-- Compared the generated article's central factual claims with the Sky Sports source. Its UK geography is incidental and should be removed before publication; a human editor should scrutinize extended quotations.
-- The temporary one-shot test jobs were removed after success. Only unit/feed tests plus a manual workflow remain.
-
-## Go-live decision
-
-**Not yet deployed as an hourly publisher.** The workflow now includes a cron schedule at minute 17 of each hour, but its newsroom job is completely disabled unless the repository Actions variable `NUVELLUM_NEWSROOM_LIVE` equals `on`. A launch still requires merging this draft PR, confirming free-tier/billing limits, reviewing a published end-to-end article through Vercel, and explicitly switching on that variable. Scheduled runs would write at most one article per hour, and sensitive stories remain human-review only.
+GitHub scheduled jobs can be delayed or skipped, and stories failing validation are deliberately not published. The verified publication test does **not** prove that every future hourly run will produce an article. Monitor GitHub Actions > Nuvellum newsroom migration for actual runs and issues. The new scheduled run itself should be observed after deployment.
