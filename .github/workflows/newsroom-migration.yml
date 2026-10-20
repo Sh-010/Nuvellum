@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - migration/github-actions-newsroom-v65
+      - release/newsroom-hourly-20261020
     paths:
       - 'scripts/newsroom-engine.py'
       - 'tests/test_newsroom_engine.py'
