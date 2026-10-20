@@ -109,7 +109,7 @@ function scenario() {
   };
 }
 
-test('auto-publish: merges ONE cleared story per rolling hour, pinned to head SHA; the rest stay queued', async () => {
+test('auto-publish: merges ONE cleared story per cadence gap, pinned to head SHA; the rest stay queued', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
@@ -119,12 +119,12 @@ test('auto-publish: merges ONE cleared story per rolling hour, pinned to head SH
     assert.equal(state.merged[0].merge_method, 'squash');
     assert.equal(state.merged[0].sha, 'sha-low');
     assert.deepEqual(state.deleted, ['incoming/low-1a2b3c4d']);
-    assert.match(r.out, /WAIT {2}3 open incoming PR\(s\): publication limit reached \(1 per hourly slot, 50 min apart; 24 per 24h\)/);
+    assert.match(r.out, /WAIT {2}3 open incoming PR\(s\): publication limit reached \(1 per cadence slot, 12 min apart; 72 per 24h\)/);
     assert.equal(state.prs.find(p => p.number === 2).state, 'open', 'the approved sensitive story stays queued');
   } finally { server.close(); }
 });
 
-test('auto-publish: an hourly slot cannot bypass the human hold on sensitive stories', async () => {
+test('auto-publish: a cadence slot cannot bypass the human hold on sensitive stories', async () => {
   const state = scenario();
   const { server, url } = await mockGitHub(state);
   try {
@@ -137,7 +137,7 @@ test('auto-publish: an hourly slot cannot bypass the human hold on sensitive sto
   } finally { server.close(); }
 });
 
-test('auto-publish: the rolling daily cap still applies on top of the hourly limit', async () => {
+test('auto-publish: the rolling daily cap still applies on top of the cadence limit', async () => {
   const state = scenario();
   const old = (n, mins) => ({ number: 100 + n, state: 'closed', head: { ref: `incoming/old-${n}` }, merged_at: new Date(Date.now() - mins * 60000).toISOString() });
   state.prs.push(old(1, 90), old(2, 150));

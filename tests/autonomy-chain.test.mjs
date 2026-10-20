@@ -131,14 +131,14 @@ test('every gate run sweeps all open incoming PRs, so a dropped pending run cann
   assert.doesNotMatch(wf, /HEAD_BRANCH: \$\{\{ github\.event_name == 'workflow_run'/);
 });
 
-test('hourly cadence: one publication per hourly slot (50-minute minimum gap), inside the daily cap', () => {
+test('15-minute cadence: one publication per 12-minute gap, inside the daily cap', () => {
   assert.equal(HOURLY_CAP, 1);
-  assert.equal(MIN_GAP_MINUTES, 50);
+  assert.equal(MIN_GAP_MINUTES, 12);
   const merged = (minsAgo) => ({ head: { ref: 'incoming/x' }, merged_at: new Date(NOW - minsAgo * 60000).toISOString() });
   assert.equal(remainingNow([], 24, NOW), 1, 'nothing merged lately: one may go');
-  assert.equal(publishedInLastHour([merged(49)], NOW), 1);
-  assert.equal(remainingNow([merged(49)], 24, NOW), 0, 'previous merge under 50 minutes ago: the rest wait');
-  assert.equal(remainingNow([merged(57)], 24, NOW), 1, 'the next hourly push lands a few minutes early: it still goes (the old strict hour skipped it)');
+  assert.equal(publishedInLastHour([merged(11)], NOW), 1);
+  assert.equal(remainingNow([merged(11)], 24, NOW), 0, 'previous merge under 12 minutes ago: the rest wait');
+  assert.equal(remainingNow([merged(14)], 24, NOW), 1, 'next quarter-hour slot can merge with jitter tolerance');
   assert.equal(remainingNow([merged(55), merged(120)], 2, NOW), 0, 'the daily cap still applies');
 });
 

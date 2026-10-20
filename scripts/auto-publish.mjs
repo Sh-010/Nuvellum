@@ -9,9 +9,10 @@
 // - Nothing is merged unless the repository variable NUVELLUM_AUTOPUBLISH is "on".
 // - DRY_RUN=1 evaluates and reports without merging.
 // - A PR labelled hold / do-not-publish / needs-human is never merged.
-// - Hourly cadence: at most HOURLY_CAP (1) story per hourly slot (another may merge once the previous merge is
-//   MIN_GAP_MINUTES = 50 minutes old), and at most NUVELLUM_PUBLISH_DAILY_CAP (default 24) in any 24 hours
-//   (each is a production build; Vercel Hobby allows 100 a day). Further approved stories wait, open.
+// - 15-minute cadence: at most one story per MIN_GAP_MINUTES (12) and at most
+//   NUVELLUM_PUBLISH_DAILY_CAP (default and maximum 72) in any rolling 24 hours.
+//   The cap reserves production build headroom for Vercel Hobby (100 deployments/day).
+//   Further approved stories remain open and wait.
 // - Freshness: newest first. Time-sensitive candidates (News, breaking/developing) that have waited more than
 //   STALE_HOURS (6) are closed as stale with a "stale" label and a comment; the branch and article are kept.
 //   Long-life formats (Explainer, Analysis, Review, Essay, Opinion, Ideas) do not expire this way.
@@ -97,7 +98,19 @@ if (!enabled) console.log('NUVELLUM_AUTOPUBLISH is not "on": evaluating only, no
 // Publications already made count against the rolling-hour limit and the daily cap. If they cannot be
 // counted, nothing is merged this run (fail closed; the next sweep tries again).
 let allowance = 0;
-try { allowance = remainingNow(await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100`), cap); }
+try {
+  // Busy days can create >100 closed PRs (including stale rejects and unrelated work).
+  // Count every recent merged PR, not only GitHub's first page. Fail closed when truncated.
+  const closed = [];
+  for (let page = 1; page <= 5; page++) {
+    const batch = await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=${page}`);
+    if (!Array.isArray(batch)) throw new Error('Unexpected closed-PR response');
+    closed.push(...batch);
+    if (batch.length < 100) break;
+    if (page === 5) throw new Error('Closed-PR list exceeds 500 entries; refusing to publish without full count');
+  }
+  allowance = remainingNow(closed, cap);
+}
 catch (err) { console.warn(`Could not count recent publications (${err.message}); merging nothing this run.`); }
 
 // Freshness sweep: close time-sensitive candidates that have waited too long. Only PRs older than STALE_HOURS
@@ -136,7 +149,7 @@ for (const [i, pr] of candidates.entries()) {
   // the rest, so a growing queue cannot exhaust the GITHUB_TOKEN API budget.
   if (!dryRun && allowance <= 0) {
     const queued = candidates.length - i;
-    console.log(`WAIT  ${queued} open incoming PR(s): publication limit reached (${HOURLY_CAP} per hourly slot, ${MIN_GAP_MINUTES} min apart; ${cap} per 24h); queued for the next sweep`);
+    console.log(`WAIT  ${queued} open incoming PR(s): publication limit reached (${HOURLY_CAP} per cadence slot, ${MIN_GAP_MINUTES} min apart; ${cap} per 24h); queued for the next sweep`);
     summary.push(`| ${queued} open | queued | ${HOURLY_CAP} per ${MIN_GAP_MINUTES} min or ${cap}/24h limit reached |`);
     break;
   }
