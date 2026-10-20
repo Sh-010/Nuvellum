@@ -4,11 +4,11 @@
 
 ## How it works
 
-The GitHub Actions newsroom workflow runs hourly at minute 17 (UTC), subject to GitHub scheduling delays. It collects stories from 27 RSS feeds, chooses at most five candidates, uses Gemini 3.5 Flash-Lite for deduplication, source-based drafting, editorial checking and sensitive-story verification, then writes **no more than one** qualified article to an incoming branch.
+The GitHub Actions newsroom workflow is scheduled **every 15 minutes**, at minutes 02, 17, 32, and 47 (UTC), subject to GitHub scheduling delays. It collects stories from 27 RSS feeds, chooses at most five candidates, uses Gemini 3.5 Flash-Lite for deduplication, source-based drafting, editorial checking and sensitive-story verification, then writes **no more than one** qualified article to an incoming branch.
 
 A hard ceiling of **six Gemini HTTP attempts per run (including retries)** guards usage. API-quota errors or no acceptable story mean the run can publish nothing. Sensitive reporting still requires human approval. The previous n8n SVG-generation stage has not been migrated; suitable licensed photography and text-led layouts remain available.
 
-The existing GitHub newsroom automation creates a PR, runs the image, duplicate, build, security and CodeQL checks, and publishes qualified low-risk stories. The publication gate limits merges to one every 50 minutes and at most 24 in any rolling 24-hour window.
+The existing GitHub newsroom automation creates a PR, runs the image, duplicate, build, security and CodeQL checks, and publishes qualified low-risk stories. The publication gate enforces a **minimum 12-minute gap** between automatic merges and a default and absolute ceiling of **72 published articles per rolling 24 hours**, leaving headroom beneath Vercel Hobby's 100-deployments/day limit. 15-minute execution does not guarantee a new article every run; editorial failures, no new stories, GitHub scheduling drift and quota limits are legitimate skips.
 
 ## Launch verification
 
@@ -31,4 +31,4 @@ Never paste API keys into files or pull requests. GitHub Actions uses secrets `N
 
 Gemini pricing includes a free API tier, but the actual account's project-wide request quotas and billing status cannot be inferred from a successful test. Inspect **Google AI Studio → Usage and billing**; free usage is not a guarantee that a paid-enabled project will incur zero charges.
 
-GitHub scheduled jobs can be delayed or skipped, and stories failing validation are deliberately not published. The verified publication test does **not** prove that every future hourly run will produce an article. Monitor GitHub Actions > Nuvellum newsroom migration for actual runs and issues. The new scheduled run itself should be observed after deployment.
+GitHub scheduled jobs can be delayed or skipped, and stories failing validation are deliberately not published. The verified publication test does **not** prove that every future hourly run will produce an article. Monitor GitHub Actions > Nuvellum newsroom migration for actual runs and issues. The new 15-minute scheduled cadence should be observed after deployment.
