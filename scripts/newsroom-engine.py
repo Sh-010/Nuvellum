@@ -64,8 +64,8 @@ REGIONS = {"north-america", "latin-america-caribbean", "europe-central-asia", "m
 BLOCKED_PATH = re.compile(r"/(?:video|watch|liveblog|live-updates|podcast|audio|gallery|in-pictures|pictures|photos|slideshow|newsletter|quiz)(?:/|-)", re.I)
 BLOCKED_TITLE = re.compile(r"^(?:live|watch|video|listen|podcast|gallery|photos?|quiz)\b|\blive(?: blog| updates|:)\b|\bas it happened\b", re.I)
 COMMENTARY = re.compile(r"\b(opinion|editorial|review|best of|buyers? guide|gift guide|ranking|listicle)\b", re.I)
-RISK_TERMS = re.compile(r"\b(election|candidate|politic|minister|president|parliament|war|missile|attack|"
-                        r"fatal|killed|died|death|injur|lawsuit|court|arrest|charged|accused|"
+RISK_TERMS = re.compile(r"\b(election\w*|candidate\w*|politic\w*|minister\w*|president\w*|parliament\w*|war|missile|attack\w*|"
+                        r"fatal|kill(?:ed|ing)?|died|deaths?|injur\w*|lawsuit|court|arrest\w*|charged|accused|"
                         r"allegation|rape|sex abuse|data breach|privacy breach|terror|hostage|crime)\b", re.I)
 TRACK = re.compile(r"^(utm_.*|fbclid|gclid|dclid|msclkid|yclid|igshid|mc_cid|mc_eid|_ga|_gl|ref|ref_src|source|src|partner|share)$", re.I)
 USER_AGENT = "NuvellumNewsroom/6.5 (+https://nuvellum.news)"
@@ -213,6 +213,7 @@ class ArticleExtractor(HTMLParser):
         self.stack.append(tag)
         if tag == "script" and a.get("type", "").lower() == "application/ld+json":
             self.ld = True
+            self.ld_parts.append("")
             return
         if tag in ("article", "main"):
             self.depth += 1
@@ -233,7 +234,7 @@ class ArticleExtractor(HTMLParser):
 
     def handle_data(self, data):
         if self.ld:
-            self.ld_parts.append(data)
+            self.ld_parts[-1] += data
         elif self.depth and not self.blocked:
             self.text_parts.append(data)
 
@@ -411,7 +412,8 @@ def validate_draft(d, candidate, text):
     if not isinstance(countries, list) or len(countries) > 12 or not all(isinstance(x, str) for x in countries) or len(set(countries)) != len(countries):
         raise ValueError("invalid countries")
     # A model's low-risk label cannot override deterministic escalation.
-    risk = "sensitive" if RISK_TERMS.search(title + " " + candidate["title"] + " " + dek) else d.get("risk")
+    elevated = candidate.get("section") == "Crime" or RISK_TERMS.search(title + " " + candidate["title"] + " " + dek)
+    risk = "sensitive" if elevated else d.get("risk")
     if risk not in ("low", "sensitive"):
         raise ValueError("invalid risk")
     return {"title": title, "dek": dek, "body": body, "section": d["section"], "type": d.get("type", "News"),
@@ -438,6 +440,21 @@ def review_story(article, candidate, source, api_key):
     if decision.get("sensitive") is True:
         article["risk"] = "sensitive"
     return decision
+
+
+def verify_sensitive(article, candidate, source, api_key):
+    """Independent second-model pass is an additional check, never human approval."""
+    prompt = ("Nuvellum sensitive reporting second-pass verification. Reject fabricated facts, "
+              "unattributed disputed claims, inferred guilt or causation, partisan language, altered "
+              "quotes, unsupported headlines, omissions or opinion disguised as news. "
+              "Return JSON: publishable (boolean), risk_score (number), issues (array of strings), "
+              "reason (string). Be strict. This model check is NOT human approval.\n" +
+              json.dumps({"headline": article["title"], "dek": article["dek"], "source": source,
+                          "body": article["body"], "outlet": candidate["outlet"]}, ensure_ascii=False))
+    verdict = gemini(prompt, api_key)
+    if verdict.get("publishable") is not True or verdict.get("issues") != [] or not isinstance(verdict.get("risk_score"), (int, float)) or verdict["risk_score"] > 20:
+        raise ValueError("sensitive verification declined; human review required")
+    return verdict
 
 
 def frontmatter(article, candidate, *, published):
@@ -560,6 +577,8 @@ def main(argv=None):
             generated = draft_story(candidate, source, api_key)
             article = validate_draft(generated, candidate, source)
             review_story(article, candidate, source, api_key)
+            if article["risk"] == "sensitive":
+                verify_sensitive(article, candidate, source, api_key)
             # Sensitive stories are human-review candidates, NEVER auto-published.
             is_low_risk = article["risk"] == "low"
             slug, markdown = frontmatter(article, candidate, published=is_low_risk)
