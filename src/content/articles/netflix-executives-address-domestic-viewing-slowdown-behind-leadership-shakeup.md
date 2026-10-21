@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-21"
 publishedAt: "2026-10-21T01:00:10Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Netflix", "Streaming", "Media", "Business"]
 regions: ["north-america"]
