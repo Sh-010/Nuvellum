@@ -1,7 +1,7 @@
 ---
 title: "tom hanks and kelli o'hara bringing 'this world of tomorrow' to broadway"
 dek: "the new play co-written by tom hanks and james glossman will arrive at a shubert theater in fall 2027 following an off-broadway run."
-section: "Film & TV"
+section: "Culture"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-22"
