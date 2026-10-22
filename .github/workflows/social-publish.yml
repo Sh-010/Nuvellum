@@ -93,7 +93,7 @@ jobs:
 
       - name: Cache Chromium
         if: steps.cards.outputs.needed == 'yes'
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('engines/package-lock.json') }}

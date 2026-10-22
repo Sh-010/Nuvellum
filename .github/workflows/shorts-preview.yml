@@ -53,7 +53,7 @@ jobs:
       # downloaded at run time and cached; neither is committed. See docs/SHORTS_ENGINE.md.
       - name: Cache the Piper voice
         if: github.event_name == 'workflow_dispatch' && inputs.voice == 'piper'
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/piper-voices
           key: piper-voice-en_GB-cori-high-v1
