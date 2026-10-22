@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-22"
 publishedAt: "2026-10-22T12:29:28Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["Skydance", "merger", "Christina Sulebakk", "media industry", "Munich Media Days"]
 regions: ["europe-central-asia", "north-america"]
