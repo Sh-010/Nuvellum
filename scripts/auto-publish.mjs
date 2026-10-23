@@ -21,7 +21,7 @@
 // no push workflows, so nothing downstream would otherwise notice the new story.
 
 import { evaluatePublication, parseFrontmatter, HOLD_LABELS } from './lib/editorial.mjs';
-import { dailyCap, remainingNow, HOURLY_CAP, MIN_GAP_MINUTES, STALE_HOURS, staleReason } from './lib/publication-chain.mjs';
+import { dailyCap, remainingNow, recentClosedPulls, HOURLY_CAP, MIN_GAP_MINUTES, STALE_HOURS, staleReason } from './lib/publication-chain.mjs';
 
 const token = process.env.GITHUB_TOKEN;
 const repo = process.env.GITHUB_REPOSITORY;
@@ -99,16 +99,14 @@ if (!enabled) console.log('NUVELLUM_AUTOPUBLISH is not "on": evaluating only, no
 // counted, nothing is merged this run (fail closed; the next sweep tries again).
 let allowance = 0;
 try {
-  // Busy days can create >100 closed PRs (including stale rejects and unrelated work).
-  // Count every recent merged PR, not only GitHub's first page. Fail closed when truncated.
-  const closed = [];
-  for (let page = 1; page <= 5; page++) {
-    const batch = await gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=${page}`);
-    if (!Array.isArray(batch)) throw new Error('Unexpected closed-PR response');
-    closed.push(...batch);
-    if (batch.length < 100) break;
-    if (page === 5) throw new Error('Closed-PR list exceeds 500 entries; refusing to publish without full count');
-  }
+  // GitHub sorts closed PRs by updated_at descending, and a PR cannot be
+  // merged after its last update. Stop once an older PR is encountered: none
+  // after it can have merged during the rolling 24-hour publication window.
+  // This avoids the original 500-PR lifetime limit while still failing closed
+  // on incomplete/invalid pagination.
+  const closed = await recentClosedPulls(
+    (page) => gh(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=${page}`)
+  );
   allowance = remainingNow(closed, cap);
 }
 catch (err) { console.warn(`Could not count recent publications (${err.message}); merging nothing this run.`); }

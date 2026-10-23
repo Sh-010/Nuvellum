@@ -40,6 +40,29 @@ export function remainingNow(pulls, cap, now = Date.now()) {
   return Math.min(remainingToday(pulls, cap, now), Math.max(0, HOURLY_CAP - publishedInLastHour(pulls, now)));
 }
 
+/**
+ * Retrieve closed PRs whose last GitHub update falls within the rolling day.
+ * The caller must request state=closed, sort=updated, direction=desc, per_page=100.
+ * A merged PR is updated at merge time, so any PR older than the cutoff
+ * cannot have merged in the window. Never silently use a truncated result.
+ */
+export async function recentClosedPulls(fetchPage, now = Date.now(), maxPages = 50) {
+  const cutoff = now - DAY;
+  const recent = [];
+  for (let page = 1; page <= maxPages; page++) {
+    const batch = await fetchPage(page);
+    if (!Array.isArray(batch) || batch.length > 100) throw new Error('Unexpected closed-PR response');
+    for (const pr of batch) {
+      const updated = Date.parse(pr?.updated_at || '');
+      if (!Number.isFinite(updated)) throw new Error('Closed PR is missing a valid updated_at');
+      if (updated < cutoff) return recent;
+      recent.push(pr);
+    }
+    if (batch.length < 100) return recent;
+  }
+  throw new Error(`Closed-PR activity exceeds ${maxPages * 100} entries in 24 hours; refusing to publish without full count`);
+}
+
 // Freshness: Nuvellum publishes the newest approved story first, so an ordinary news candidate that waits
 // too long would never publish and only grow the queue. Time-sensitive candidates (News, or anything flagged
 // breaking/developing) that have waited more than STALE_HOURS are closed as stale; their branch and article are
