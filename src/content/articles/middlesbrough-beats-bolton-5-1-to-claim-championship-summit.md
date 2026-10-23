@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-23"
 publishedAt: "2026-10-23T21:35:30Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Middlesbrough", "Bolton Wanderers", "Championship", "Will Lankshear"]
 regions: ["europe-central-asia"]
