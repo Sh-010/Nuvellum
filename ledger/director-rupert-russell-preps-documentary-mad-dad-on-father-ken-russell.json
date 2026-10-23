@@ -1,0 +1,79 @@
+{
+  "slug": "director-rupert-russell-preps-documentary-mad-dad-on-father-ken-russell",
+  "url": "https://www.nuvellum.news/article/director-rupert-russell-preps-documentary-mad-dad-on-father-ken-russell",
+  "title": "Director Rupert Russell preps documentary 'Mad Dad' on father Ken Russell",
+  "risk": "low",
+  "firstSeenAt": "2026-10-23T18:42:13.520Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-23T18:42:13.520Z",
+      "remoteId": "194",
+      "remoteUrl": "https://t.me/nuvellum/194",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-23T18:42:13.520Z",
+      "remoteId": "1277147205491143_122112054381497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122112054381497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    },
+    "threads": {
+      "containerId": "17951721447321818",
+      "containerCreatedAt": "2026-10-23T18:42:29.564Z",
+      "updatedAt": "2026-10-23T18:42:13.520Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-23T18:42:13.520Z",
+      "remoteId": "18093498191664429",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-23T18:42:13.520Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-23T18:42:13.520Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
