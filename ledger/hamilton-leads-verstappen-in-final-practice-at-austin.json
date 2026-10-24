@@ -1,0 +1,74 @@
+{
+  "slug": "hamilton-leads-verstappen-in-final-practice-at-austin",
+  "url": "https://www.nuvellum.news/article/hamilton-leads-verstappen-in-final-practice-at-austin",
+  "title": "Hamilton leads Verstappen in final practice at Austin",
+  "risk": "low",
+  "firstSeenAt": "2026-10-24T21:40:22.661Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-24T21:40:22.661Z",
+      "remoteId": "195",
+      "remoteUrl": "https://t.me/nuvellum/195",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    },
+    "threads": {
+      "containerId": "17951935302321818",
+      "containerCreatedAt": "2026-10-24T21:40:30.300Z",
+      "updatedAt": "2026-10-24T21:40:22.661Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-24T21:40:22.661Z",
+      "remoteId": "18138741883745193",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-24T21:40:22.661Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-24T21:40:22.661Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
