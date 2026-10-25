@@ -1,0 +1,60 @@
+{
+  "slug": "noah-centineo-shares-new-details-about-netflix-s-live-action-gundam-film",
+  "url": "https://www.nuvellum.news/article/noah-centineo-shares-new-details-about-netflix-s-live-action-gundam-film",
+  "title": "Noah Centineo shares new details about Netflix's live-action Gundam film",
+  "risk": "low",
+  "firstSeenAt": "2026-10-25T22:07:41.148Z",
+  "platforms": {
+    "telegram": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "facebook": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "threads": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-25T22:07:41.148Z"
+    }
+  },
+  "cards": {
+    "status": "failed",
+    "at": "2026-10-25T22:07:41.148Z",
+    "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)"
+  }
+}
