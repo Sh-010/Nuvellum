@@ -6,18 +6,23 @@
   "firstSeenAt": "2026-10-25T22:07:41.148Z",
   "platforms": {
     "telegram": {
-      "status": "queued",
+      "status": "sent",
       "cardFailures": 1,
-      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
-      "reason": "card rendering failed; will retry",
-      "updatedAt": "2026-10-25T22:07:41.148Z"
+      "reason": null,
+      "updatedAt": "2026-10-25T23:30:46.649Z",
+      "attempts": 1,
+      "sentAt": "2026-10-25T23:30:46.649Z",
+      "remoteId": "198",
+      "remoteUrl": "https://t.me/nuvellum/198",
+      "kind": "card"
     },
     "facebook": {
-      "status": "queued",
+      "status": "failed",
       "cardFailures": 1,
-      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
-      "reason": "card rendering failed; will retry",
-      "updatedAt": "2026-10-25T22:07:41.148Z"
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-25T23:30:46.649Z",
+      "attempts": 1
     },
     "linkedin": {
       "status": "skipped",
@@ -35,11 +40,17 @@
       "updatedAt": "2026-10-25T22:07:41.148Z"
     },
     "threads": {
-      "status": "queued",
+      "status": "sent",
       "cardFailures": 1,
-      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
-      "reason": "card rendering failed; will retry",
-      "updatedAt": "2026-10-25T22:07:41.148Z"
+      "reason": null,
+      "updatedAt": "2026-10-25T23:30:46.649Z",
+      "containerId": "17952175713321818",
+      "containerCreatedAt": "2026-10-25T23:30:54.409Z",
+      "attempts": 1,
+      "sentAt": "2026-10-25T23:30:46.649Z",
+      "remoteId": "18152089801554335",
+      "remoteUrl": null,
+      "kind": "link"
     },
     "youtube": {
       "status": "skipped",
@@ -53,8 +64,14 @@
     }
   },
   "cards": {
-    "status": "failed",
-    "at": "2026-10-25T22:07:41.148Z",
-    "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)"
+    "status": "rendered",
+    "at": "2026-10-25T23:30:46.649Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
   }
 }
