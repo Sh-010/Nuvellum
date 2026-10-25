@@ -1,7 +1,7 @@
 ---
 title: "Noah Centineo shares new details about Netflix's live-action Gundam film"
 dek: "Cast member Noah Centineo describes the upcoming Netflix adaptation as a galactic romance, confirming its setting in the Universal Century timeline."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-25"
