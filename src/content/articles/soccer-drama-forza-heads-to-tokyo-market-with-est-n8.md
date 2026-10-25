@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-25"
 publishedAt: "2026-10-25T03:44:41Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["film", "soccer", "TIFFCOM", "EST N8"]
 regions: ["southeast-asia-oceania", "europe-central-asia", "east-asia"]
