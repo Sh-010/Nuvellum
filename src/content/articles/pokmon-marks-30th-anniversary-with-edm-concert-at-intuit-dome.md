@@ -1,12 +1,12 @@
 ---
 title: "Pokémon marks 30th anniversary with EDM concert at Intuit Dome"
 dek: "The franchise celebrated three decades with an electronic dance music concert featuring Marshmello and Alison Wonderland in Los Angeles."
-section: "Film & TV"
+section: "Culture"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-25"
 publishedAt: "2026-10-25T17:11:16Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Pokemon", "EDM", "Marshmello", "Alison Wonderland", "Intuit Dome"]
 regions: ["north-america", "europe-central-asia"]
