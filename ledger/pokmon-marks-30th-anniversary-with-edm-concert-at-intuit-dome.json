@@ -1,0 +1,74 @@
+{
+  "slug": "pokmon-marks-30th-anniversary-with-edm-concert-at-intuit-dome",
+  "url": "https://www.nuvellum.news/article/pokmon-marks-30th-anniversary-with-edm-concert-at-intuit-dome",
+  "title": "Pokémon marks 30th anniversary with EDM concert at Intuit Dome",
+  "risk": "low",
+  "firstSeenAt": "2026-10-25T17:49:54.457Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-25T17:49:54.457Z",
+      "remoteId": "197",
+      "remoteUrl": "https://t.me/nuvellum/197",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    },
+    "facebook": {
+      "status": "failed",
+      "attempts": 1,
+      "error": "facebook: HTTP 400 You cannot access the app till you log in to www.facebook.com and follow the instructions given.",
+      "reason": "non-retryable API error",
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    },
+    "threads": {
+      "containerId": "17952119232321818",
+      "containerCreatedAt": "2026-10-25T17:50:02.042Z",
+      "updatedAt": "2026-10-25T17:49:54.457Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-25T17:49:54.457Z",
+      "remoteId": "17989068524878455",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-25T17:49:54.457Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-25T17:49:54.457Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
