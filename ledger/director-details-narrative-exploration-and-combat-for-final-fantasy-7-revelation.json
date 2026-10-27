@@ -1,0 +1,74 @@
+{
+  "slug": "director-details-narrative-exploration-and-combat-for-final-fantasy-7-revelation",
+  "url": "https://www.nuvellum.news/article/director-details-narrative-exploration-and-combat-for-final-fantasy-7-revelation",
+  "title": "Director details narrative, exploration, and combat for Final Fantasy 7 Revelation",
+  "risk": "low",
+  "firstSeenAt": "2026-10-27T13:31:38.810Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-27T13:31:38.810Z",
+      "remoteId": "199",
+      "remoteUrl": "https://t.me/nuvellum/199",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-27T13:31:38.810Z",
+      "remoteId": "1277147205491143_122113268607497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122113268607497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    },
+    "threads": {
+      "containerId": "17952479856321818",
+      "containerCreatedAt": "2026-10-27T13:31:49.644Z",
+      "updatedAt": "2026-10-27T13:31:38.810Z",
+      "status": "failed",
+      "attempts": 1,
+      "error": "threads: HTTP 400 The requested resource does not exist",
+      "reason": "non-retryable API error"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-27T13:31:38.810Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-27T13:31:38.810Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
