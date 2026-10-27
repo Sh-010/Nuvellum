@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-27"
 publishedAt: "2026-10-27T22:15:47Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["Barry Keoghan", "Nilam Holmes", "cosmetic treatment", "skin care", "social media"]
 regions: ["europe-central-asia"]
