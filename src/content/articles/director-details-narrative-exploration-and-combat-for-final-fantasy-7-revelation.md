@@ -1,7 +1,7 @@
 ---
 title: "Director details narrative, exploration, and combat for Final Fantasy 7 Revelation"
 dek: "Square Enix director Naoki Hamaguchi shares insights into the final entry of the remake trilogy, covering seamless world loading, optional combat systems, and future project possibilities."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-27"
