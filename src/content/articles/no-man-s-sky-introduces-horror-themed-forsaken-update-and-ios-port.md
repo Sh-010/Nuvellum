@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/no-man-s-sky-introduces-horror-themed-forsaken-update-and-ios-port.jpg"
+imageAlt: "C'est une capture d'écrande No Man's Sky (No Man's sky est un jeu vidéo d'Hello Games) avec un filtre"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: C'est une capture d'écrande No Man's Sky (No Man's sky est un jeu vidéo d'Hello Games) avec un filtre"
+imageCredit: "PanoramixWiki"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Capture_d%27%C3%A9cran_de_No_Man%27s_Sky_avec_filtre_(1).jpg"
 ---
 
 ## Exploring the darker side of the universe
