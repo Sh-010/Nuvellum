@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-28"
 publishedAt: "2026-10-28T19:36:03Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["theater", "agent", "broadway", "obituary"]
 regions: ["north-america"]
