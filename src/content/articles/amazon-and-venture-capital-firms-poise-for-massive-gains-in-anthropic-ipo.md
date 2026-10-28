@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-28"
 publishedAt: "2026-10-28T01:27:37Z"
-readingTime: "3 min"
+readingTime: "2 min"
 status: "published"
 tags: ["IPO", "Anthropic", "Amazon", "Venture Capital", "Artificial Intelligence"]
 regions: ["north-america"]
