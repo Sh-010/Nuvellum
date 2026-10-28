@@ -1,0 +1,79 @@
+{
+  "slug": "amazon-and-venture-capital-firms-poise-for-massive-gains-in-anthropic-ipo",
+  "url": "https://www.nuvellum.news/article/amazon-and-venture-capital-firms-poise-for-massive-gains-in-anthropic-ipo",
+  "title": "Amazon and venture capital firms poise for massive gains in anthropic IPO",
+  "risk": "low",
+  "firstSeenAt": "2026-10-28T02:33:28.057Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T02:33:28.057Z",
+      "remoteId": "201",
+      "remoteUrl": "https://t.me/nuvellum/201",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T02:33:28.057Z",
+      "remoteId": "1277147205491143_122113430535497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122113430535497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    },
+    "threads": {
+      "containerId": "17952579519321818",
+      "containerCreatedAt": "2026-10-28T02:33:42.908Z",
+      "updatedAt": "2026-10-28T02:33:28.057Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T02:33:28.057Z",
+      "remoteId": "18116203493120294",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-28T02:33:28.057Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-28T02:33:28.057Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
