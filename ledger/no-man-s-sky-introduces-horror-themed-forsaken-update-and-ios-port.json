@@ -1,0 +1,77 @@
+{
+  "slug": "no-man-s-sky-introduces-horror-themed-forsaken-update-and-ios-port",
+  "url": "https://www.nuvellum.news/article/no-man-s-sky-introduces-horror-themed-forsaken-update-and-ios-port",
+  "title": "No man's sky introduces horror-themed 'forsaken' update and ios port",
+  "risk": "low",
+  "firstSeenAt": "2026-10-28T16:15:22.993Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T16:15:22.993Z",
+      "remoteId": "202",
+      "remoteUrl": "https://t.me/nuvellum/202",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T16:15:22.993Z",
+      "remoteId": "1277147205491143_122113625553497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122113625553497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    },
+    "threads": {
+      "containerId": "17952697983321818",
+      "containerCreatedAt": "2026-10-28T16:15:40.143Z",
+      "updatedAt": "2026-10-28T16:15:22.993Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T16:15:22.993Z",
+      "remoteId": "18201259462391781",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-28T16:15:22.993Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-28T16:15:22.993Z",
+    "variant": "culture",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
