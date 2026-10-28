@@ -1,0 +1,77 @@
+{
+  "slug": "ladakh-set-feature-kakthet-wins-inaugural-co-production-fund",
+  "url": "https://www.nuvellum.news/article/ladakh-set-feature-kakthet-wins-inaugural-co-production-fund",
+  "title": "Ladakh-set feature 'Kakthet' wins inaugural co-production fund",
+  "risk": "low",
+  "firstSeenAt": "2026-10-28T23:38:41.337Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T23:38:41.337Z",
+      "remoteId": "203",
+      "remoteUrl": "https://t.me/nuvellum/203",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T23:38:41.337Z",
+      "remoteId": "1277147205491143_122113715313497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122113715313497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    },
+    "threads": {
+      "containerId": "17952747591321818",
+      "containerCreatedAt": "2026-10-28T23:38:54.394Z",
+      "updatedAt": "2026-10-28T23:38:41.337Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-28T23:38:41.337Z",
+      "remoteId": "17976292055940605",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-28T23:38:41.337Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-28T23:38:41.337Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
