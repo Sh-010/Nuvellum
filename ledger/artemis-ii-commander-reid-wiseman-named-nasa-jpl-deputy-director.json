@@ -1,0 +1,77 @@
+{
+  "slug": "artemis-ii-commander-reid-wiseman-named-nasa-jpl-deputy-director",
+  "url": "https://www.nuvellum.news/article/artemis-ii-commander-reid-wiseman-named-nasa-jpl-deputy-director",
+  "title": "Artemis II commander Reid Wiseman named NASA JPL deputy director",
+  "risk": "low",
+  "firstSeenAt": "2026-10-29T02:58:54.941Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-29T02:58:54.941Z",
+      "remoteId": "204",
+      "remoteUrl": "https://t.me/nuvellum/204",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-29T02:58:54.941Z",
+      "remoteId": "1277147205491143_122113745943497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122113745943497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    },
+    "threads": {
+      "containerId": "17952770394321818",
+      "containerCreatedAt": "2026-10-29T02:59:06.792Z",
+      "updatedAt": "2026-10-29T02:58:54.941Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-29T02:58:54.941Z",
+      "remoteId": "18052199441811670",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-29T02:58:54.941Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-29T02:58:54.941Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
