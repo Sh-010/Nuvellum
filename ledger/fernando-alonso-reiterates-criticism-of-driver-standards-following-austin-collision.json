@@ -1,0 +1,77 @@
+{
+  "slug": "fernando-alonso-reiterates-criticism-of-driver-standards-following-austin-collision",
+  "url": "https://www.nuvellum.news/article/fernando-alonso-reiterates-criticism-of-driver-standards-following-austin-collision",
+  "title": "Fernando Alonso reiterates criticism of driver standards following Austin collision",
+  "risk": "low",
+  "firstSeenAt": "2026-10-29T21:24:28.496Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-29T21:24:28.496Z",
+      "remoteId": "205",
+      "remoteUrl": "https://t.me/nuvellum/205",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-29T21:24:28.496Z",
+      "remoteId": "1277147205491143_122114005569497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122114005569497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    },
+    "threads": {
+      "containerId": "17952935772321818",
+      "containerCreatedAt": "2026-10-29T21:24:49.089Z",
+      "updatedAt": "2026-10-29T21:24:28.496Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-29T21:24:28.496Z",
+      "remoteId": "18132987109852743",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-29T21:24:28.496Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-29T21:24:28.496Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
