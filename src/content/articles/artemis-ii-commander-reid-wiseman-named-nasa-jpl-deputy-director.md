@@ -1,7 +1,7 @@
 ---
 title: "Artemis II commander Reid Wiseman named NASA JPL deputy director"
 dek: "The retired U.S. Navy captain and emeritus astronaut will step into his new leadership roles at Caltech and the Jet Propulsion Laboratory on November 30, 2026."
-section: "Science"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-10-29"
