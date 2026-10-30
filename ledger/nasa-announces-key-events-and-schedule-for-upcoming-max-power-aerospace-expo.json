@@ -1,0 +1,77 @@
+{
+  "slug": "nasa-announces-key-events-and-schedule-for-upcoming-max-power-aerospace-expo",
+  "url": "https://www.nuvellum.news/article/nasa-announces-key-events-and-schedule-for-upcoming-max-power-aerospace-expo",
+  "title": "NASA announces key events and schedule for upcoming MAX POWER aerospace expo",
+  "risk": "low",
+  "firstSeenAt": "2026-10-30T23:09:49.410Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-30T23:09:49.410Z",
+      "remoteId": "207",
+      "remoteUrl": "https://t.me/nuvellum/207",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-30T23:09:49.410Z",
+      "remoteId": "1277147205491143_122114345679497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122114345679497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    },
+    "threads": {
+      "containerId": "17953112910321818",
+      "containerCreatedAt": "2026-10-30T23:10:03.343Z",
+      "updatedAt": "2026-10-30T23:09:49.410Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-30T23:09:49.410Z",
+      "remoteId": "18128455675876935",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-30T23:09:49.410Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-30T23:09:49.410Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
