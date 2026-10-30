@@ -1,0 +1,77 @@
+{
+  "slug": "waymo-partners-with-toyota-to-supply-robotaxis-for-international-markets",
+  "url": "https://www.nuvellum.news/article/waymo-partners-with-toyota-to-supply-robotaxis-for-international-markets",
+  "title": "Waymo partners with Toyota to supply robotaxis for international markets",
+  "risk": "low",
+  "firstSeenAt": "2026-10-30T13:27:49.258Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-30T13:27:49.258Z",
+      "remoteId": "206",
+      "remoteUrl": "https://t.me/nuvellum/206",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-30T13:27:49.258Z",
+      "remoteId": "1277147205491143_122114228337497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122114228337497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    },
+    "threads": {
+      "containerId": "17953037595321818",
+      "containerCreatedAt": "2026-10-30T13:28:01.286Z",
+      "updatedAt": "2026-10-30T13:27:49.258Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-10-30T13:27:49.258Z",
+      "remoteId": "18117495089277971",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-10-30T13:27:49.258Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-10-30T13:27:49.258Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
