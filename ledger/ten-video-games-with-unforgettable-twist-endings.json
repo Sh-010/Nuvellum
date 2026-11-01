@@ -1,0 +1,77 @@
+{
+  "slug": "ten-video-games-with-unforgettable-twist-endings",
+  "url": "https://www.nuvellum.news/article/ten-video-games-with-unforgettable-twist-endings",
+  "title": "Ten video games with unforgettable twist endings",
+  "risk": "low",
+  "firstSeenAt": "2026-11-01T01:28:28.697Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-01T01:28:28.697Z",
+      "remoteId": "208",
+      "remoteUrl": "https://t.me/nuvellum/208",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-01T01:28:28.697Z",
+      "remoteId": "1277147205491143_122114657169497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122114657169497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    },
+    "threads": {
+      "containerId": "17953344918321818",
+      "containerCreatedAt": "2026-11-01T01:28:43.990Z",
+      "updatedAt": "2026-11-01T01:28:28.697Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-01T01:28:28.697Z",
+      "remoteId": "17965257753235648",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-01T01:28:28.697Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-11-01T01:28:28.697Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
