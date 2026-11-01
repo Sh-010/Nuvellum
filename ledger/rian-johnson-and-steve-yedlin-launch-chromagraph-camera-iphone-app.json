@@ -1,0 +1,77 @@
+{
+  "slug": "rian-johnson-and-steve-yedlin-launch-chromagraph-camera-iphone-app",
+  "url": "https://www.nuvellum.news/article/rian-johnson-and-steve-yedlin-launch-chromagraph-camera-iphone-app",
+  "title": "Rian Johnson and Steve Yedlin launch Chromagraph Camera iPhone app",
+  "risk": "low",
+  "firstSeenAt": "2026-11-01T23:00:49.351Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-01T23:00:49.351Z",
+      "remoteId": "209",
+      "remoteUrl": "https://t.me/nuvellum/209",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-01T23:00:49.351Z",
+      "remoteId": "1277147205491143_122114896971497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122114896971497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    },
+    "threads": {
+      "containerId": "17953511514321818",
+      "containerCreatedAt": "2026-11-01T23:01:01.941Z",
+      "updatedAt": "2026-11-01T23:00:49.351Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-01T23:00:49.351Z",
+      "remoteId": "18080807414384540",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-01T23:00:49.351Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-11-01T23:00:49.351Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story"
+    ]
+  }
+}
