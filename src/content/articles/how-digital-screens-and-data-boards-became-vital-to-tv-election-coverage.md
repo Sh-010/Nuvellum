@@ -6,7 +6,7 @@ type: "Analysis"
 author: "Nuvellum Global Desk"
 date: "2026-11-02"
 publishedAt: "2026-11-02T19:48:32Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["television", "election coverage", "media technology", "news networks"]
 regions: ["north-america"]
