@@ -1,0 +1,79 @@
+{
+  "slug": "taiwan-creative-content-fest-opens-with-focus-on-intellectual-property-and-artificial-inte",
+  "url": "https://www.nuvellum.news/article/taiwan-creative-content-fest-opens-with-focus-on-intellectual-property-and-artificial-inte",
+  "title": "Taiwan Creative Content Fest opens with focus on intellectual property and artificial intelligence",
+  "risk": "low",
+  "firstSeenAt": "2026-11-06T07:20:10.731Z",
+  "platforms": {
+    "telegram": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-06T07:20:10.731Z",
+      "remoteId": "210",
+      "remoteUrl": "https://t.me/nuvellum/210",
+      "kind": "card",
+      "reason": null,
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    },
+    "facebook": {
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-06T07:20:10.731Z",
+      "remoteId": "1277147205491143_122116180497497904",
+      "remoteUrl": "https://www.facebook.com/1277147205491143_122116180497497904",
+      "kind": "link",
+      "reason": null,
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    },
+    "threads": {
+      "containerId": "17954169147321818",
+      "containerCreatedAt": "2026-11-06T07:20:23.258Z",
+      "updatedAt": "2026-11-06T07:20:10.731Z",
+      "status": "sent",
+      "attempts": 1,
+      "sentAt": "2026-11-06T07:20:10.731Z",
+      "remoteId": "18126984875491126",
+      "remoteUrl": null,
+      "kind": "link",
+      "reason": null
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-06T07:20:10.731Z"
+    }
+  },
+  "cards": {
+    "status": "rendered",
+    "at": "2026-11-06T07:20:10.731Z",
+    "variant": "standard",
+    "formats": [
+      "square",
+      "landscape",
+      "portrait",
+      "story",
+      "quote-square",
+      "quote-portrait"
+    ]
+  }
+}
