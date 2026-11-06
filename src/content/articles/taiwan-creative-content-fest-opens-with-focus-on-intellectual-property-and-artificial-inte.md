@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-06"
 publishedAt: "2026-11-06T06:49:49Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["film", "television", "festivals", "government support", "artificial intelligence"]
 regions: ["east-asia"]
