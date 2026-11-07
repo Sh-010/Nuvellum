@@ -1,0 +1,60 @@
+{
+  "slug": "ridley-scott-s-alien-and-sequel-leaving-netflix-in-december",
+  "url": "https://www.nuvellum.news/article/ridley-scott-s-alien-and-sequel-leaving-netflix-in-december",
+  "title": "Ridley Scott's Alien and sequel leaving Netflix in December",
+  "risk": "low",
+  "firstSeenAt": "2026-11-07T13:29:39.276Z",
+  "platforms": {
+    "telegram": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "facebook": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "threads": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-07T13:29:39.276Z"
+    }
+  },
+  "cards": {
+    "status": "failed",
+    "at": "2026-11-07T13:29:39.276Z",
+    "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)"
+  }
+}
