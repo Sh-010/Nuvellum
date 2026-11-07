@@ -1,7 +1,7 @@
 ---
 title: "Ridley Scott's Alien and sequel leaving Netflix in December"
 dek: "Subscribers have until Dec. 1 to stream the iconic 1979 sci-fi horror classic and its acclaimed sequel before they depart the platform."
-section: "Gaming"
+section: "Film & TV"
 type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-07"
