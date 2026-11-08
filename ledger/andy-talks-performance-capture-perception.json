@@ -1,0 +1,60 @@
+{
+  "slug": "andy-talks-performance-capture-perception",
+  "url": "https://www.nuvellum.news/article/andy-talks-performance-capture-perception",
+  "title": "Andy talks performance capture perception",
+  "risk": "low",
+  "firstSeenAt": "2026-11-08T19:01:40.099Z",
+  "platforms": {
+    "telegram": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "facebook": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "linkedin": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "x": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "instagram": {
+      "status": "skipped",
+      "reason": "not configured",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "threads": {
+      "status": "queued",
+      "cardFailures": 1,
+      "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)",
+      "reason": "card rendering failed; will retry",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "youtube": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    },
+    "tiktok": {
+      "status": "skipped",
+      "reason": "video platform: Shorts are distributed by the Shorts autopilot",
+      "updatedAt": "2026-11-08T19:01:40.099Z"
+    }
+  },
+  "cards": {
+    "status": "failed",
+    "at": "2026-11-08T19:01:40.099Z",
+    "error": "cards: rasterisation failed (Error: Cannot find package 'playwright-core' imported from /home/runner/work/Nuvellum/Nuvellum/engines/cards/raster.mjs)"
+  }
+}
