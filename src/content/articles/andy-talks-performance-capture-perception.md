@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-08"
 publishedAt: "2026-11-08T18:58:46Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Andy Serkis", "Lord of the Rings", "Gollum", "film technology"]
 regions: ["north-america"]
