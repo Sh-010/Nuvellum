@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-10"
 publishedAt: "2026-11-10T18:08:39Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Skydance", "Paramount", "streaming", "executive appointment"]
 regions: ["north-america"]
