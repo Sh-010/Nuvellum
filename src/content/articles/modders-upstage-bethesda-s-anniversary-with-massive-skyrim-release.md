@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-11"
 publishedAt: "2026-11-11T18:00:44Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Skyrim", "Mods", "Bethesda", "Gaming"]
 regions: []
