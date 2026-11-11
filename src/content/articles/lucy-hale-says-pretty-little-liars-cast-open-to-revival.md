@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-11"
 publishedAt: "2026-11-11T02:56:29Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Lucy Hale", "Pretty Little Liars", "Television", "Ian Harding"]
 regions: ["north-america"]
