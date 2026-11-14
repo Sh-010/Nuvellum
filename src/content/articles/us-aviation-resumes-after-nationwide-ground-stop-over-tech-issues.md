@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-14"
 publishedAt: "2026-11-14T03:37:20Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["aviation", "transportation", "technology", "travel"]
 regions: ["north-america"]
@@ -18,6 +18,15 @@ risk: "sensitive"
 editorialReview: "passed"
 reviewedBy: ""
 verification: "uncertain"
+image: "/uploads/articles/us-aviation-resumes-after-nationwide-ground-stop-over-tech-issues.jpg"
+imageAlt: "Forum Emerging Flight Data & Locator Technology (15445801526)"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Forum Emerging Flight Data & Locator Technology (15445801526)"
+imageCredit: "NTSBgov"
+imageLicense: "Public domain"
+imageLicenseUrl: "https://commons.wikimedia.org/wiki/File:Forum-_Emerging_Flight_Data_%26_Locator_Technology_(15445801526).jpg"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:Forum-_Emerging_Flight_Data_%26_Locator_Technology_(15445801526).jpg"
 ---
 
 ## Nationwide ground stop halted departures
