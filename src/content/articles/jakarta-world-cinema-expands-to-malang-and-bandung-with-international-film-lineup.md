@@ -17,6 +17,15 @@ origin: "automation"
 risk: "low"
 editorialReview: "passed"
 reviewedBy: ""
+image: "/uploads/articles/jakarta-world-cinema-expands-to-malang-and-bandung-with-international-film-lineup.jpg"
+imageAlt: "Piazza Maggiore during one evening of \"Cinema in Piazza\" the renown outdoor summer film festival"
+imageProvider: "wikimedia"
+imageKind: "photo"
+imageCaption: "File photo: Piazza Maggiore during one evening of \"Cinema in Piazza\" the renown outdoor summer film festival"
+imageCredit: "Ugeorge"
+imageLicense: "CC BY-SA 4.0"
+imageLicenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+imageSourcePage: "https://commons.wikimedia.org/wiki/File:The_most_beautiful_cinema_in_the_world.jpg"
 ---
 
 ## Expansion beyond the capital
