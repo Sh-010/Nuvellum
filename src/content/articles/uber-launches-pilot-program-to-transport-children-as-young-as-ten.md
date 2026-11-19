@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-19"
 publishedAt: "2026-11-19T21:36:56Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Uber", "transportation", "pilot program", "ride-hailing"]
 regions: ["north-america"]
