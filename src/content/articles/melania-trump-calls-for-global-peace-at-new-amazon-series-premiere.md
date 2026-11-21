@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-21"
 publishedAt: "2026-11-21T00:40:24Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["Melania Trump", "Amazon Prime Video", "documentary", "international relations"]
 regions: ["north-america"]
