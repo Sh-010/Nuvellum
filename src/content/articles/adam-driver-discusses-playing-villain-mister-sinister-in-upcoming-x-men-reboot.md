@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-24"
 publishedAt: "2026-11-24T06:50:15Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "published"
 tags: ["Adam Driver", "X-Men", "Marvel", "Mister Sinister", "Seth Meyers"]
 regions: ["north-america"]
