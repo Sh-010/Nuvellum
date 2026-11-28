@@ -6,7 +6,7 @@ type: "News"
 author: "Nuvellum Global Desk"
 date: "2026-11-28"
 publishedAt: "2026-11-28T04:36:13Z"
-readingTime: "2 min"
+readingTime: "1 min"
 status: "review"
 tags: ["WWE", "Bronson Reed", "Jermaine Haley", "obituary"]
 regions: ["north-america", "europe-central-asia"]
